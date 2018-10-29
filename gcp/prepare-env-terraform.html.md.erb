@@ -10,7 +10,7 @@ This guide describes the preparation steps required to install Pivotal Cloud Fou
 
 The Terraform template for PCF on GCP describes a set of GCP resources and properties. For more information about how Terraform creates resources in GCP, see the [Google Cloud Provider](https://www.terraform.io/docs/providers/google/index.html) topic on the Terraform site. 
 
-You may also find it helpful to review different deployment options in the [Reference Architecture for Pivotal Cloud Foundry on GCP](../../refarch//gcp/gcp_ref_arch.html).
+You may also find it helpful to review different deployment options in the [Reference Architecture for Pivotal Cloud Foundry on GCP](../../refarch/gcp/gcp_ref_arch.html).
 
 ## <a id="prereqs"></a>Prerequisites ##
 
@@ -24,8 +24,6 @@ In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cl
   * [Cloud DNS](https://console.developers.google.com/apis/api/dns/overview)
   * [Cloud SQL API](https://console.developers.google.com/apis/api/sqladmin/overview)
   * [Compute Engine API](https://console.developers.google.com/apis/api/compute/overview)
-
- To avoid this upgrade issue, ensure that </code>
 
 ## <a id="svc-key"></a>Step 1: Obtain a GCP Service Account Key File ##
 
@@ -63,6 +61,8 @@ Before you can run Terraform commands to create infrastructure resources, you mu
   <pre class="terminal">$ touch terraform.tfvars</pre>
 
 1. Open the `terraform.tfvars` file and paste in the following contents:
+
+    <p class="note"><strong>Note: </strong>Ensure that you insert a new line at the end of the file.</p>
 
     ```
     env_name         = "YOUR-ENVIRONMENT-NAME"

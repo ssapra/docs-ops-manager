@@ -18,7 +18,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
 ## <a id='access-om'></a> Step 1: Access Ops Manager
 
-<p class="note"><strong>Note:</strong> For security, Ops Manager v1.7 and later require that you log in using a fully qualified domain name.</p>
+<p class="note"><strong>Note:</strong> For security, Ops Manager v1.7 and later require that you log in using a fully qualified domain name.</p> 
 
 1. In a web browser, navigate to the fully qualified domain name (FQDN) of the BOSH Director. Use the `ops_manager_dns` value from running `terraform output`.
 
@@ -30,14 +30,14 @@ To complete the procedures in this topic, you must have access to the output fro
 
 ### <a id='idp'></a> Use an Identity Provider (IdP)
 
-<%= partial '../common/using_idp_ops_manager' %>
+<%= partial '../common/using_idp_ops_manager' %> 
 
 ### <a id='internal'></a> Internal Authentication
 
 1. When redirected to the **Internal Authentication** page, you must complete the following steps:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable if lost.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](../../customizing/pcf-aws-manual-er-config.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](./../../customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -52,7 +52,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
 1. Click the **BOSH Director** tile.
 
-    <%= image_tag("../common/images/aws/director-tile-aws.png") %>
+    <%= image_tag("../../common/images/cloudform/om-tile.png") %>
 
 1. Select **AWS Config** to open the **AWS Management Console Config** page.
 
@@ -73,7 +73,7 @@ To complete the procedures in this topic, you must have access to the output fro
       on persistent disks of all BOSH-deployed virtual machines (VMs), except
       for the Ops Manager VM and Director VM. See the [Configuring Amazon EBS Encryption](../../customizing/cloudform-om-ebs-config.html) topic for
       details about using Elastic Block Store (EBS) encryption.
-      <p class="note"><strong>Note</strong>: Enabling EBS encryption only encrypts Linux VMs. The Windows VMs deployed with Pivotal Application Service (PAS) for Windows are not encrypted.</p>
+      <p class="note"><strong>Note</strong>: Enabling EBS encryption only encrypts Linux VMs. The Windows VMs deployed with Pivotal Application Service (PAS) for Windows or PAS for Windows 2012R2 are not encrypted.</p>
       * **Custom Encryption Key (Optional)** Once you enable EBS encryption, you may want to specify a custom Key Management Service (KMS) encryption key. If you don't enter a value, your custom encryption key will default to the account key. For more information, see [Configuring Amazon EBS Encryption](../../customizing/cloudform-om-ebs-config.html).
 
 1. Click **Save**.
@@ -101,15 +101,14 @@ To complete the procedures in this topic, you must have access to the output fro
 
 1. Select **Enable bosh deploy retries** if you want Ops Manager to retry failed BOSH operations up to five times.
 
-1. <%= partial '../common/legacy-deploys' %>
-
-1. Select **Keep Unreachable Director VMs** if you want to preserve BOSH Director VMs after a failed deployment for troubleshooting purposes.
+1. Select **Keep Unreachable Director VMs** if you want to preserve BOSH Director VMs after a failed deployment for troubleshooting purposes. 
 
 1. Select **HM Pager Duty Plugin** to enable Health Monitor integration with PagerDuty.
 
     <%= image_tag("../common/images/director_hm_pager.png") %>
     * **Service Key**: Enter your API service key from PagerDuty.
     * **HTTP Proxy**: Enter an HTTP proxy for use with PagerDuty.
+
 
 1. Select **HM Email Plugin** to enable Health Monitor integration with email.
 
@@ -129,33 +128,26 @@ To complete the procedures in this topic, you must have access to the output fro
 
 1. For **Database Location**, if you choose to configure an external MySQL database with Amazon Relational Database Service (RDS) or another service, select **External MySQL Database** and complete the fields below. Otherwise, select **Internal**. For more information about creating a RDS MySQL instance, see [Creating a MySQL DB Instance](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.MySQL.html#CHAP_GettingStarted.Creating.MySQL) in the AWS documentation.
     * **Host**: Enter the value of your host.
-    * **Port**: Enter your port number. For example, `3306`.
+    * **Port**: Enter your port number. For example, `3306`. 
     * **Username**: Enter your username.
     * **Password**: Enter your password.
-    * **Database**: Enter your database name.<br>
-In addition, if you selected the **Enable TLS for Director Database** checkbox, you can fill out the following optional fields:
-    * **Enable TLS:** Selecting this checkbox enables TLS communication between the BOSH Director and the database.
-    * **TLS CA:** Enter the Certificate Authority for the TLS Certificate.
-    * **TLS Certificate:** Enter the client certificate for mutual TLS connections to the database.
-    * **TLS Private Key:** Enter the client private key for mutual TLS connections to the database.
+    * **Database**: Enter your database name.
 
 1. (Optional) **Director Workers** sets the number of workers available to execute Director tasks. This field defaults to `5`.
 
 1. (Optional) **Max Threads** sets the maximum number of threads that the BOSH Director can run simultaneously. Pivotal recommends that you leave the field blank to use the default value, unless doing so results in rate limiting or errors on your IaaS.
 
 1. (Optional) To add a custom URL for your BOSH Director, enter a valid hostname in **Director Hostname**. You can also use this field to configure a load balancer in front of your BOSH Director. For more information, see [How to set up a load balancer in front of BOSH Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director) in the Pivotal Knowledge Base.
-    <p class="note warning"><strong>WARNING: </strong>If you change the <strong>Director
-  Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy.</p>
+     <p class="note warning"><strong>WARNING: </strong>If you change the <strong>Director
+     Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy.</p>
 
 1. <%= partial "../common/exclude-recursors" %>
 
-1. <%= partial "../common/disable_bosh_dns" %>
-    <p class="note breaking"><strong>Breaking Change:</strong> Do not disable BOSH DNS without consulting Pivotal Support.</p>
+1. (Optional) To disable BOSH DNS, select the **Disable BOSH DNS server for troubleshooting purposes** checkbox. For more information about the BOSH DNS service discovery mechanism, see [BOSH DNS Service Discovery for Application Containers](http://docs.pivotal.io/pivotalcf/2-0/pcf-release-notes/runtime-rn.html#bosh-dns) in the PAS Release Notes.
+  <p class="note breaking"><strong>Breaking Change:</strong> Do not disable BOSH DNS without consulting Pivotal Support. For more information about disabling BOSH DNS, see <a href="https://discuss.pivotal.io/hc/en-us/articles/115015720428-Disabling-or-Opting-Out-of-BOSH-DNS-in-PCF">Disabling or Opting Out of BOSH DNS in PCF</a> in the Pivotal Knowledge Base.</p>
 
 1. (Optional) To set a custom banner that users see when logging in to the Director using SSH, enter text in the **Custom SSH Banner** field.
   <%= image_tag("../common/images/disable-bosh-dns.png") %>
-
-1. <%= partial "../common/identification-tags" %>
 
 1. Click **Save**.
 
@@ -345,8 +337,7 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
 
 1. Click **Save**.
 
-
-## <a id="custom-vm-extensions"></a> Step 10: (Optional) Add Custom VM Extensions
+## <a id="../../customizing/custom-vm-extensions"></a> Step 10: (Optional) Add Custom VM Extensions
 
 <%= partial "../common/vm-extension-config"  %>
 

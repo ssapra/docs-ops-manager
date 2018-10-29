@@ -22,13 +22,18 @@ Before you perform the procedures in this topic, you must have completed the pro
 
 <p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="../../customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
-### <a id="stack-gov-prereqs"></a> Prerequisites for Azure Stack or Azure Government Cloud
+
+### <a id="stack-gov-prereqs"></a> Prerequisites for Azure Stack (beta) or Azure Government Cloud
 
 If you are using Azure Stack or Azure Government Cloud, you must set custom VM types for a successful deployment. You can set custom VM types with the Ops Manager API. For more information, see [Using the Ops Manager API](../../customizing/ops-man-api.html).
 
 To set custom VM types, see the following information.
 
-* **For Azure Stack:** The example below may not have up-to-date VM types. For a current list of supported Azure Stack VM types that you can include in your API call, see [Virtual Machine Sizes](https://docs.microsoft.com/en-us/azure/azure-stack/user/azure-stack-vm-considerations#virtual-machine-sizes) from the Azure Stack documentation. Include at least one `Standard` VM type.
+<p class="note"><strong>Note:</strong> Azure Stack is in beta for this release. Pivotal does not recommend using Azure Stack for a production deployment.</p>
+
+For more information, see [Azure Stack Support is in Beta for Ops Manager](https://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/breaking-changes.html#azure-stack).
+
+* **For Azure Stack (beta):** The example below may not have up-to-date VM types. For a current list of supported Azure Stack VM types that you can include in your API call, see [Virtual Machine Sizes](https://docs.microsoft.com/en-us/azure/azure-stack/user/azure-stack-vm-considerations#virtual-machine-sizes) from the Azure Stack documentation. Include at least one `Standard` VM type.
 
 * **For Azure Government:** See the example `curl` command below for your list of VM types.
 
@@ -86,7 +91,7 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 
 ## <a id='access-om'></a> Step 1: Access Ops Manager
 
-1. In a web browser, navigate to the fully qualified domain name (FQDN) of Ops Manager that you set up in either the [Launching a BOSH Director Instance with an ARM Template](../../customizing/azure-arm-template.html) topic or the [Launching a BOSH Director Instance on Azure without an ARM Template](deploy-manual.html) topic.
+1. In a web browser, navigate to the fully qualified domain name (FQDN) of Ops Manager that you set up in either [Launching a BOSH Director Instance with an ARM Template](../../customizing/azure-arm-template.html) or [Launching a BOSH Director Instance on Azure without an ARM Template](deploy-manual.html).
 
 1. When Ops Manager starts for the first time, you must choose one of the following:
     * [Use an Identity Provider](#idp): If you use an Identity Provider, an external identity server maintains your user database.
@@ -103,7 +108,7 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 1. When redirected to the **Internal Authentication** page, you must complete the following steps:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable if lost.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](../../customizing/pcf-aws-manual-er-config.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](./../../customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -118,7 +123,7 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 
 1. Click the **BOSH Director** tile.
 
-    <%= image_tag("../common/images/azure/director-tile-azure.png") %>
+    <%= image_tag("../common/images/azure/azure-om-tile.png") %>
 
 1. Select **Azure Config**.
 
@@ -151,9 +156,10 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 1. <%= partial "../common/azure-environment" %>
 
 1. (Optional) If you selected `Azure Stack` for your **Azure Environment**, complete the following Azure Stack-only fields:
+  <p class="note"><strong>Note:</strong> Azure Stack is in beta and not recommended for production use.</p>
   1. For **Domain**, enter the domain for your Azure Stack deployment. For example, `local.azurestack.external`.
   1. Enter the URL for your **Tenant Management Resource Endpoint**.
-  1. Enter `AzureAD` for **Authentication**. If you want to use Azure China Cloud Active Directory for your authentication type, enter `AzureChinaCloudAD`.
+  1. Enter `AzureAD` for **Authentication**.
   1. Enter your **Azure Stack Endpoint Prefix**. For example `management`.
   1. Enter your **Azure Stack CA Certificate**. Azure Stack requires a custom CA certiciate. Copy the certificate from your Azure Stack environment.
 
@@ -182,8 +188,6 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 
 1. Select **Enable bosh deploy retries** if you want Ops Manager to retry failed BOSH operations up to five times.
 
-1. <%= partial '../common/legacy-deploys' %>
-
 1. Select **Keep Unreachable Director VMs** if you want to preserve BOSH Director VMs after a failed deployment for troubleshooting purposes.
 
 1. (Optional) Select **HM Pager Duty Plugin** to enable Health Monitor integration with PagerDuty.
@@ -209,14 +213,8 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 1. <%= partial "../common/blobstore-location" %>
 
 1. For **Database Location**, Pivotal recommends that you keep **Internal** selected.
+
      <%= image_tag("../common/images/azure/database.png") %>
-<br>
-  In addition, if you selected **External MySQL Database**, you can fill out the following optional fields:
-    * **Enable TLS:** Selecting this checkbox enables TLS communication between the BOSH Director and the database.
-    * **TLS CA:** Enter the Certificate Authority for the TLS Certificate.
-    * **TLS Certificate:** Enter the client certificate for mutual TLS connections to the database.
-    * **TLS Private Key:** Enter the client private key for mutual TLS connections to the database.
-  <p class='note'><strong>Note:</strong> You must select <strong>Enable TLS for Director Database</strong> to configure the TLS-related fields.</p>
 
 1. (Optional) **Director Workers** sets the number of workers available to execute Director tasks. This field defaults to `5`.
 
@@ -230,13 +228,11 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 
 1. <%= partial "../common/exclude-recursors" %>
 
-1. <%= partial "../common/disable_bosh_dns" %>
-    <p class="note breaking"><strong>Breaking Change:</strong> Do not disable BOSH DNS without consulting Pivotal Support.</p>
+1. (Optional) To disable BOSH DNS, select the **Disable BOSH DNS server for troubleshooting purposes** checkbox. For more information about the BOSH DNS service discovery mechanism, see [BOSH DNS Service Discovery for Application Containers](http://docs.pivotal.io/pivotalcf/2-0/pcf-release-notes/runtime-rn.html#bosh-dns) in the Pivotal Application Service (PAS) Release Notes.
+  <p class="note breaking"><strong>Breaking Change:</strong> Do not disable BOSH DNS without consulting Pivotal Support. For more information about disabling BOSH DNS, see <a href="https://discuss.pivotal.io/hc/en-us/articles/115015720428-Disabling-or-Opting-Out-of-BOSH-DNS-in-PCF">Disabling or Opting Out of BOSH DNS in PCF</a> in the Pivotal Knowledge Base.</p>
 
 1. (Optional) To set a custom banner that users see when logging in to the Director using SSH, enter text in the **Custom SSH Banner** field.
   <%= image_tag("../common/images/disable-bosh-dns.png") %>
-
-1. <%= partial "../common/identification-tags" %>
 
 1. Click **Save**.
 
@@ -250,7 +246,6 @@ In this procedure, you create three networks.
 1. Select **Create Networks**.
 
 1. Click **Add Network**.
-
 1. Select **Enable ICMP checks** if you want to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
 
 1. For **Name**, enter the name of the network you want to create. For example, `Management`.
@@ -318,11 +313,11 @@ In this procedure, you create three networks.
 
 ## <a id='security'></a> Step 6: Security Page
 
-<%= partial "../common/security-pane" %>
+1. <%= partial "../common/security-pane" %>
 
 ## <a id='syslog'></a> Step 7: Syslog Page
 
-<%= partial "../common/syslog_bosh" %>
+<%= partial '../common/syslog_bosh' %>
 
 ## <a id='resource-config'></a> Step 8: Resource Config Page
 
@@ -337,12 +332,12 @@ In this procedure, you create three networks.
     <p class="note"><strong>Note:</strong> If you set a field to <strong>Automatic</strong> and the recommended resource allocation changes in a future version, Ops Manager automatically uses the updated recommended allocation.</p>
 
 1. (Optional) For **Load Balancers**, enter your Azure application gateway name for each associated job. To create an application gateway, follow the procedures in [Configure an application gateway for SSL offload by using Azure Resource Manager](https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-arm) from the Azure documentation. When you create the application gateway, associate the gateway's IP with your PCF system domain.
-    <p class="note warning"><strong>WARNING:</strong> This feature is not recommended for production use. The Azure load balancer does not support an override port in the healthcheck configuration.</p>
+<p class="note warning"><strong>WARNING:</strong> This feature is not recommended for production use. The Azure load balancer does not support an override port in the healthcheck configuration.</p>
 
 1. Click **Save**.
 
 
-## <a id="custom-vm-extensions"></a> Step 9: (Optional) Add Custom VM Extensions
+## <a id="../../customizing/custom-vm-extensions"></a> Step 9: (Optional) Add Custom VM Extensions
 
 <%= partial "../common/vm-extension-config"  %>
 
