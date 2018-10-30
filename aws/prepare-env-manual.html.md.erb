@@ -75,7 +75,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
 
 1. On the **Create policy** page, define a policy: 
 
-   1. Copy the policy document included in the [Pivotal Cloud Foundry for AWS Policy Document](../../customizing/policy-doc.html) topic. You must edit the policy document so the names of the S3 buckets match the ones you created in [Step 2: Create S3 Buckets](#create-s3).
+   1. Copy the policy document included in the [Pivotal Cloud Foundry for AWS Policy Document](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/policy-doc.html) topic. You must edit the policy document so the names of the S3 buckets match the ones you created in [Step 2: Create S3 Buckets](#create-s3).
 
    1. Paste the policy document into the **JSON** tab on the **Create policy** page. 
 
@@ -522,7 +522,7 @@ To launch an Amazon Machine Image (AMI) for Ops Manager, perform the following s
     * **Network**: Select the VPC that you created.
     * **Subnet**: Select `pcf-public-subnet-az0`.
     * **Auto-assign for Public IP**: Select **Enable**.
-    * **IAM role**: Select the IAM role associated with your pcf-user profile. If you have not created one, click **Create new IAM role** and follow the [Guidelines for Creating User Roles on AWS](../../customizing/aws-iaas-user-roles.html).
+    * **IAM role**: Select the IAM role associated with your pcf-user profile. If you have not created one, click **Create new IAM role** and follow the [Guidelines for Creating User Roles on AWS](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/aws-iaas-user-roles.html).
     * For all other fields, accept the default values.
 
     <%= image_tag("../common/images/pcfaws/pcf_aws_configure_instance.png") %>
@@ -595,7 +595,7 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
     </tr>
     </table>
     <br/>
-    If you require traffic between the load balancer and HAProxy or the Gorouter to be encrypted with TLS, consider that the AWS Classic load balancers do not support recommended TLS cipher suites. See [Securing Traffic into Cloud Foundry](../../adminguide/securing-traffic.html#ciphers) for details.
+    If you require traffic between the load balancer and HAProxy or the Gorouter to be encrypted with TLS, consider that the AWS Classic load balancers do not support recommended TLS cipher suites. See [Securing Traffic into Cloud Foundry](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/adminguide/securing-traffic.html#ciphers) for details.
 
 1. Under **Select Subnets**, select the public subnets you configured in [Step 4: Create a VPC](#pcfaws-vpc), and click **Next: Assign Security Groups**.
 
@@ -883,7 +883,7 @@ See [Step 2: Create S3 Buckets](#create-s3).
 
 ### <a id='iam-user'></a> IAM User for PCF
 
-You must create an IAM user for PCF named `pcf-user` from the Identity and Access Management Dashboard, using the policy document included in the [Pivotal Cloud Foundry for AWS Policy Document](../../customizing/policy-doc.html) topic.
+You must create an IAM user for PCF named `pcf-user` from the Identity and Access Management Dashboard, using the policy document included in the [Pivotal Cloud Foundry for AWS Policy Document](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/policy-doc.html) topic.
 
 See [Step 3: Create an IAM User for PCF](#create-iam).
 
