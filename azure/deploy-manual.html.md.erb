@@ -1,5 +1,5 @@
 ---
-title: Deploying BOSH and Manager to Azure Manually
+title: Deploying BOSH and Ops Manager to Azure Manually
 owner: Ops Manager
 ---
 
@@ -9,9 +9,9 @@ This topic describes how to deploy BOSH and Ops Manager for Pivotal Cloud Foundr
 
 As an alternative to this procedure, you can use an Azure Resource Manager (ARM) template to create resources automatically. For information about using the ARM template, see the [Deploying BOSH and Ops Manager to Azure with ARM](../../customizing/azure-arm-template.html) topic.
 
-Before you perform the procedures in this topic, you must have completed the procedures in the [Preparing Azure](prepare-env-manual.html) topic. After you complete the procedures in this topic, follow the instructions in the [Configuring BOSH Director on Azure](config-manual.html) topic.
+Before you perform the procedures in this topic, you must have completed the procedures in the [Preparing Azure](prepare-env-manual.html) topic. After you complete the procedures in this topic, follow the instructions in the [Configuring Ops Manager  on Azure](config-manual.html) topic.
 
-<p class="note"><strong>Note:</strong> Azure Stack is in beta for this release. Pivotal does not recommend using Azure Stack for a production deployment. For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/breaking-changes.html#azure-stack">Azure Stack Support is in Beta for Ops Manager</a>. If you choose to deploy PCF on Azure Stack regardless of its beta status, complete the procedures in <a href="https://docs.microsoft.com/en-us/azure/azure-stack/user/azure-stack-connect-cli">Install and configure CLI for use with Azure Stack</a> in the Microsoft documentation before following the procedures in this topic.</p>
+<p class="note"><strong>Note:</strong> Azure Stack is in beta for this release. Pivotal does not recommend using Azure Stack for a production deployment. For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-0/pcf-release-notes/breaking-changes.html#azure-stack">Azure Stack Support is in Beta for Ops Manager</a>. If you choose to deploy PCF on Azure Stack regardless of its beta status, complete the procedures in <a href="https://docs.microsoft.com/en-us/azure/azure-stack/user/azure-stack-connect-cli">Install and configure CLI for use with Azure Stack</a> in the Microsoft documentation before following the procedures in this topic.</p>
 
 <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
 
@@ -301,18 +301,18 @@ Azure for PCF uses multiple general-purpose Azure storage accounts. The BOSH and
 1. Export the Ops Manager image URL as an environment variable.
     <pre class="terminal">$ export OPS\_MAN\_IMAGE\_URL="YOUR-OPS-MAN-IMAGE-URL"</pre>
 
-1. Download the Ops Manager image. For compatibility when upgrading to future versions of Ops Manager, choose a unique name for the image that includes the Ops Manager version number. For example, replace <code>opsman-image-2.1.x</code> in the following examples with <code>opsman-image-2.1.1</code>.
+1. Download the Ops Manager image. For compatibility when upgrading to future versions of Ops Manager, choose a unique name for the image that includes the Ops Manager version number. For example, replace <code>opsman-image-2.0.x</code> in the following examples with <code>opsman-image-2.0.1</code>.
   * If you use unmanaged disks, perform the following steps:
   <p class="note"><strong>Note:</strong> Azure Stack requires unmanaged disks.</p>
       1. Download the Ops Manager image to your local machine. The image size is 10&nbsp;GB.
-        <pre class="terminal">$ wget $OPS\_MAN\_IMAGE\_URL -O opsman-image-2.1.x.vhd</pre>
+        <pre class="terminal">$ wget $OPS\_MAN\_IMAGE\_URL -O opsman-image-2.0.x.vhd</pre>
       1. Upload the image to your storage account using the Azure CLI.
         <pre class="terminal">
-        $ az storage blob upload --name opsman-image-2.1.x.vhd \
+        $ az storage blob upload --name opsman-image-2.0.x.vhd \
         --connection-string $CONNECTION\_STRING \
         --container-name opsmanager \
         --type page \
-        --file opsman-image-2.1.x.vhd
+        --file opsman-image-2.0.x.vhd
         </pre>
   * If you use managed disks, do the following:
        1. Copy the Ops Manager image into your storage account using the Azure CLI.
@@ -320,11 +320,11 @@ Azure for PCF uses multiple general-purpose Azure storage accounts. The BOSH and
         $ az storage blob copy start --source-uri $OPS\_MAN\_IMAGE\_URL \
         --connection-string $CONNECTION\_STRING \
         --destination-container opsmanager \
-        --destination-blob opsman-image-2.1.x.vhd
+        --destination-blob opsman-image-2.0.x.vhd
         </pre>
        1. Copying the image may take several minutes. Run the following command and examine the output under `"copy"`:
         <pre class="terminal">
-        $ az storage blob show --name opsman-image-2.1.x.vhd \
+        $ az storage blob show --name opsman-image-2.0.x.vhd \
         --container-name opsmanager \
         --connection-string $CONNECTION_STRING
         ...
@@ -332,7 +332,7 @@ Azure for PCF uses multiple general-purpose Azure storage accounts. The BOSH and
           "completionTime": "2017-06-26T22:24:11+00:00",
           "id": "b9c8b272-a562-4574-baa6-f1a04afcefdf",
           "progress": "53687091712/53687091712",
-          "source": "http<span>s:/</span>/opsmanagerwestus.blob.core.windows.net/images/ops-manager-2.1.0.vhd",
+          "source": "http<span>s:/</span>/opsmanagerwestus.blob.core.windows.net/images/ops-manager-2.0.0.vhd",
           "status": "success",
           "statusDescription": null
         },
@@ -387,11 +387,11 @@ Azure for PCF uses multiple general-purpose Azure storage accounts. The BOSH and
 1. Create the Ops Manager VM.
     * If you are using unmanaged disks, run the following command to create your Ops Manager VM, replacing `PATH-TO-PUBLIC-KEY` with the path to your public key .pub file:
         <pre class="terminal">
-        $ az vm create --name opsman-2.1.x --resource-group $RESOURCE_GROUP \
+        $ az vm create --name opsman-2.0.x --resource-group $RESOURCE_GROUP \
         --location $LOCATION \
         --nics opsman-nic \
-        --image https://$STORAGE_NAME.my-azure-instance.com/opsmanager/opsman-image-2.1.x.vhd \
-        --os-disk-name opsman-2.1.x-osdisk \
+        --image https://$STORAGE_NAME.my-azure-instance.com/opsmanager/opsman-image-2.0.x.vhd \
+        --os-disk-name opsman-2.0.x-osdisk \
         --os-disk-size-gb 128 \
         --os-type Linux \
         --use-unmanaged-disk \
@@ -405,8 +405,8 @@ Azure for PCF uses multiple general-purpose Azure storage accounts. The BOSH and
         1. Create a managed image from the Ops Manager VHD file:
             <pre class="terminal">
             $ az image create --resource-group $RESOURCE_GROUP \
-            --name opsman-image-2.1.x \
-            --source https://$STORAGE_NAME.blob.core.windows.net/opsmanager/image-2.1.x.vhd \
+            --name opsman-image-2.0.x \
+            --source https://$STORAGE_NAME.blob.core.windows.net/opsmanager/image-2.0.x.vhd \
             --location $LOCATION \
             --os-type Linux
             </pre>
@@ -416,12 +416,12 @@ Azure for PCF uses multiple general-purpose Azure storage accounts. The BOSH and
             * For Azure Germany, use `blob.core.cloudapi.de`. See the [Azure documentation](https://docs.microsoft.com/en-us/azure/germany/germany-developer-guide) for more information.
         1. Create your Ops Manager VM, replacing `PATH-TO-PUBLIC-KEY` with the path to your public key `.pub` file.
             <pre class="terminal">
-             $ az vm create --name opsman-2.1.x --resource-group $RESOURCE\_GROUP \
+             $ az vm create --name opsman-2.0.x --resource-group $RESOURCE\_GROUP \
              --location $LOCATION \
              --nics opsman-nic \
-             --image opsman-image-2.1.x \
+             --image opsman-image-2.0.x \
              --os-disk-size-gb 128 \
-             --os-disk-name opsman-2.1.x-osdisk \
+             --os-disk-name opsman-2.0.x-osdisk \
              --admin-username ubuntu \
              --size Standard\_DS2_v2 \
              --storage-sku Standard\_LRS \
@@ -432,22 +432,22 @@ Azure for PCF uses multiple general-purpose Azure storage accounts. The BOSH and
     <p class="note"><strong>Note:</strong> If you use Azure Stack, you must increase the Ops Manager VM disk size using the Azure Stack UI.</p>
     1. Run the following command to stop the VM and detach the disk:
     <pre class="terminal">
-    $ az vm deallocate --name opsman-2.1.x \
+    $ az vm deallocate --name opsman-2.0.x \
     --resource-group $RESOURCE\_GROUP
     </pre>
     1. Run the following command to resize the disk to 128&nbsp;GB:
     <pre class="terminal">
-    $ az disk update --size-gb 128 --name opsman-2.1.x-osdisk \
+    $ az disk update --size-gb 128 --name opsman-2.0.x-osdisk \
     --resource-group $RESOURCE\_GROUP
     </pre>
     1. Run the following command to start the VM:
     <pre class="terminal">
-    $ az vm start --name opsman-2.1.x --resource-group $RESOURCE\_GROUP
+    $ az vm start --name opsman-2.0.x --resource-group $RESOURCE\_GROUP
     </pre>
 
 
-## <a id='post-deploy'></a> Step 5: Complete BOSH Director Configuration
+## <a id='post-deploy'></a> Step 5: Complete Ops Manager Director Configuration
 
 1. Navigate to your DNS provider, and create an entry that points a fully qualified domain name (FQDN) to the public IP address of Ops Manager. As a best practice, always use the FQDN to access Ops Manager.
 
-1. Continue to the [Configuring BOSH Director on Azure](config-manual.html) topic.
+1. Continue to the [Configuring Ops Manager on Azure](config-manual.html) topic.

@@ -1,13 +1,12 @@
 ---
-title: Configuring BOSH Director on OpenStack
+title: Configuring Ops Manager Director on OpenStack
 owner: Ops Manager
-iaas: OpenStack
 ---
 
 <strong><%= modified_date %></strong>
 <html class="list-style-none"></html>
 
-This topic describes how to configure the BOSH Director after deploying
+This topic describes how to configure the Ops Manager Director after deploying
 [Pivotal Cloud Foundry](https://network.pivotal.io/products/pivotal-cf) (PCF) on OpenStack.
 Use this topic when [Installing Pivotal Cloud Foundry on OpenStack](../../customizing/openstack.html).
 
@@ -40,7 +39,7 @@ After you complete this procedure, follow the instructions in [Deploying PAS on 
 1.  When redirected to the **Internal Authentication** page, you must complete the following steps:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](./../../customizing/pcf-director-proxy-settings.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](../../customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -59,7 +58,7 @@ After you complete this procedure, follow the instructions in [Deploying PAS on 
 
     <%= image_tag("../common/images/openstack/record-endpoint.png") %>
 
-1. In the PCF Ops Manager Installation Dashboard, click the **BOSH Director** tile.
+1. In the PCF Ops Manager Installation Dashboard, click the **Ops Manager Director** tile.
 
     <%= image_tag("../common/images/openstack/om-tile.png") %>
 
@@ -68,7 +67,7 @@ After you complete this procedure, follow the instructions in [Deploying PAS on 
 1. Complete the **OpenStack Management Console Config** page with the following information:
     * **Authentication URL**: Enter the Service Endpoint for the Identity
       service that you recorded in a previous step.
-    * **Keystone Version**: Choose a Keystone version. If you choose **v3**, you must enter a **Domain** to authenticate against. 
+    * **Keystone Version**: Choose a Keystone version. If you choose **v3**, you must enter a **Domain** to authenticate against.
     * **Username**: Enter your OpenStack Horizon username.
     * **Password**: Enter your OpenStack Horizon password.
     * **Tenant**: Enter your OpenStack tenant name.
@@ -131,7 +130,7 @@ After you complete this procedure, follow the instructions in [Deploying PAS on 
 
 1. Select **Enable bosh deploy retries** if you want Ops Manager to retry failed BOSH operations up to five times.
 
-1. Select **Keep Unreachable Director VMs** if you want to preserve BOSH Director VMs after a failed deployment for troubleshooting purposes. 
+1. Select **Keep Unreachable Director VMs** if you want to preserve Ops Manager Director VMs after a failed deployment for troubleshooting purposes.
 
 1. Select **HM Pager Duty Plugin** to enable Health Monitor integration with PagerDuty.
     <%= image_tag("../common/images/director_hm_pager.png") %>
@@ -149,20 +148,25 @@ After you complete this procedure, follow the instructions in [Deploying PAS on 
     * **Password**: Enter the password for your email server.
     * **Enable TLS**: Select this checkbox to enable Transport Layer Security.
 
-1. <%= partial "../common/credhub-encryption" %>
-
-1. <%= partial "../common/blobstore-location" %>
+1. For **Blobstore Location**, select **S3 Compatible Blobstore** and complete the following steps using information from the `ec2rc.sh` file:
+    <%= image_tag("../common/images/openstack/director-blobstore.png") %>
+    * In a text editor, open the `ec2rc.sh` file that you downloaded in [Step 8: Download Credentials for S3 Blob Storage](./setup.html#blobstore-creds). Use the file to populate the fields described below.
+    * **Blobstore Location**: Select the **S3 Compatible Blobstore** option.
+    * **S3 Endpoint**: Use **S3_URL** from the `ec2rc.sh` file.
+    * **Bucket Name**: Enter `pcf`.
+    * **Access Key**: Use **EC2\_ACCESS\_KEY** from the `ec2rc.sh` file.
+    * **Secret Key**: Use **EC2\_SECRET\_KEY** from the `ec2rc.sh` file.
 
 1. Select a **Database Location**. By default, PCF deploys and manages a database for you. If you choose to use an **External MySQL Database**, complete the associated fields with information obtained from your external MySQL Database provider.
     <%= image_tag("../common/images/director_database.png") %>
 
 1. (Optional) **Director Workers** sets the number of workers available to execute Director tasks. This field defaults to `5`.
 
-1. (Optional) For **Max Threads**, enter the number of operations the BOSH Director can perform simultaneously.
+1. (Optional) For **Max Threads**, enter the number of operations the Ops Manager Director can perform simultaneously.
 
-1. (Optional) **Director Hostname**: Enter a valid hostname to add a custom URL for your BOSH Director. You can also use this field to configure a load balancer in front of your BOSH Director. For more information, see [How to Set Up a Load Balancer in Front of Operations Manager Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director) in the Pivotal Support documentation.
-     <p class="note warning"><strong>WARNING: </strong>If you change the <strong>Director
-     Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy.</p>
+1. (Optional) To add a custom URL for your Ops Manager Director, enter a valid hostname in **Director Hostname**. You can also use this field to configure [a load balancer in front of your Ops Manager Director](https://discuss.pivotal.io/hc/en-us/articles/225420588).
+    <p class="note warning"><strong>WARNING: </strong>If you change the <strong>Director
+  Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/2-0/pcf-release-notes/opsmanager-rn.html#2-0-26">Ops Manager 2.0.26</a> and higher.</p>
 
 1. <%= partial "../common/exclude-recursors" %>
 
@@ -201,11 +205,12 @@ After you complete this procedure, follow the instructions in [Deploying PAS on 
 
     <%= image_tag("../common/images/openstack/om-create-networks-config.png") %>
 
-1. Select **Enable ICMP checks** to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable. Review the [Configure Security](./setup.html#security) topic to ensure you have setup ICMP in your Security Group.
+1. Select **Enable ICMP checks** to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable. Review the [Configure Security](setup.html#security) topic to ensure you have setup ICMP in your Security Group.
 
 1. Use the following steps to create one or more Ops Manager networks using information from your OpenStack network:
     * Click **Add Network**.
     * Enter a unique **Name** for the network.
+    *  If you want to dynamically provision VMs in this network for use with on-demand services, select the **Service Networks** checkbox. When the checkbox is selected, Ops Manager does not provision VMs within the specified CIDR range.
     * Click **Add Subnet** to create one or more subnets for the network.
     * For **Network ID**, use the **ID** from the OpenStack page.
     * For **CIDR**, use the **Network Address** from the OpenStack page.
@@ -213,7 +218,7 @@ After you complete this procedure, follow the instructions in [Deploying PAS on 
     * For **DNS**, enter one or more Domain Name Servers.
     * For **Gateway**, use the **Gateway IP** from the OpenStack page.
     * For **Availability Zones**, select which Availability Zones to use with the network.
-1. Click **Save**.<%= vars.expand_network_azs  %>
+1. Click **Save**.
 
 
 ## <a id='assign-az'></a> Step 7: Complete the Assign AZs and Networks Page
@@ -222,9 +227,8 @@ After you complete this procedure, follow the instructions in [Deploying PAS on 
 
     <%= image_tag("../common/images/openstack/assign-az.png") %>
 
-1. From the **Singleton Availability Zone** drop-down menu, select the availability zone that you created in a previous step. The BOSH Director installs in this Availability Zone.
-
-1. Use the drop-down menu to select the **Network** that you created in a previous step. BOSH Director installs in this network.
+1. From the **Singleton Availability Zone** drop-down menu, select the availability zone that you created in a previous step. The Ops Manager Director installs in this Availability Zone.
+1. Use the drop-down menu to select the **Network** that you created in a previous step. Ops Manager Director installs in this network.
 
 1. Click **Save**.
 
@@ -249,11 +253,7 @@ After you complete this procedure, follow the instructions in [Deploying PAS on 
 1. Click **Save**.
 
 
-## <a id="../../customizing/custom-vm-extensions"></a> Step 11: (Optional) Add Custom VM Extensions
-
-<%= partial "../common/vm-extension-config"  %>
-
-## <a id='complete-ops'></a> Step 12: Complete BOSH Director Installation
+## <a id='complete-ops'></a> Step 11: Complete Ops Manager Director Installation
 
 1. Click the **Installation Dashboard** link to return to the Installation Dashboard.
 
@@ -261,7 +261,7 @@ After you complete this procedure, follow the instructions in [Deploying PAS on 
 
     <%= image_tag("../common/images/openstack/icmp-error.png") %>
 
-1. BOSH Director installs. The image shows the **Changes Applied** message that Ops Manager displays when the installation process successfully completes.
+1. Ops Manager Director installs. The image shows the **Changes Applied** message that Ops Manager displays when the installation process successfully completes.
 
     <%= image_tag("../common/images/openstack/om-installed.png") %>
 

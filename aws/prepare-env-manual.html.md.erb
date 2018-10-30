@@ -11,7 +11,7 @@ To deploy PCF on AWS, you must perform the procedures in this topic to create ob
 
 To view the list of AWS objects created by the procedures in this topic, see the [Required AWS Objects](#required-objects) section. 
 
-After completing the procedures in this topic, proceed to [Configuring BOSH Director on AWS](config-manual.html) to continue deploying PCF.
+After completing the procedures in this topic, proceed to [Configuring Ops Manager Director on AWS](config-manual.html) to continue deploying PCF.
 
 
 ## <a id='file-ticket'></a> Step 1: File a Ticket
@@ -366,6 +366,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
       <td>0.0.0.0/0</td>
     </tr>
     </table>
+
 1. Click **Create**.
 
 
@@ -433,7 +434,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
 
 ## <a id='pcfaws-om-mysqlsecgrp'></a> Step 11: Configure a Security Group for MySQL
 
-<p class="note"><strong>Note:</strong> If you plan to use an internal database, skip this step. If you are using RDS, you must configure a security group that enables the Ops Manager VM and BOSH Director VM to access the database.</p>
+<p class="note"><strong>Note:</strong> If you plan to use an internal database, skip this step. If you are using RDS, you must configure a security group that enables the Ops Manager VM and Ops Manager Director VM to access the database.</p>
 
 1. From the **Security Groups** page, click **Create Security Group** to create another security group.
 
@@ -459,7 +460,6 @@ Perform the following steps to create an Amazon Identity and Access Management (
       <td>10.0.0.0/16</td>
     </tr>
     </table>
-
 1. Click the **Outbound** tab. Add a rule of type `All traffic` and specify the subnet of your VPC in **Destination**, as the table and image show.
     <table border="1" class="nice" >
     <tr>
@@ -484,7 +484,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
 
 ## <a id='pcfaws-om-ami'></a> Step 12: Launch an Ops Manager AMI
 
-To launch an Amazon Machine Image (AMI) for Ops Manager, do the following:
+To launch an Amazon Machine Image (AMI) for Ops Manager, perform the following steps:
 
 1. Navigate to the **Pivotal Cloud Foundry Operations Manager** section of [Pivotal Network](https://network.pivotal.io/products/ops-manager).
 
@@ -532,7 +532,7 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
 
     <%= image_tag("../common/images/pcfaws/pcf_aws_add_storage.png") %>
 
-1. Click **Next: Tag Instance** 
+1. Click **Next: Tag Instance**.
 
 1. On the **Add Tags** page, add a tag with the key `Name` and value `pcf-ops-manager`. 
 
@@ -812,6 +812,7 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
         * **Availability Zone** and **Subnet ID**: Choose the AZ and subnet for `pcf-rds-subnet-az0` and click **Add**.
     1. Repeat the steps above to add `pcf-rds-subnet-az1` and `pcf-rds-subnet-az2` to the group.
     1. Click **Create**.
+
     The following screenshot shows a completed subnet group.
 
     <%= image_tag("../common/images/pcfaws/rds_pcf_subnet_group.png") %>
@@ -840,7 +841,7 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
     * **Allocated Storage**: Enter **100&nbsp;GB**.
     * **DB Instance Identifier**: Enter `pcf-ops-manager-director`.
     * Enter a secure **Master Username** and **Master Password**.
-          <p class="note"><strong>Note:</strong> Record the username and password. You need these credentials later when configuring the <strong>Director Config</strong> page in the BOSH Director tile.</p>
+          <p class="note"><strong>Note:</strong> Record the username and password. You need these credentials later when configuring the <strong>Director Config</strong> page in the Ops Manager Director tile.</p>
   <%= image_tag("../common/images/pcfaws/db_details.png") %>
 
 1. Click **Next Step**.
@@ -857,7 +858,7 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
 
 1. Click **Launch DB Instance**. Launching the instance may take several minutes.
 
-1. When the instance has launched, proceed to [Configuring BOSH Director on AWS](config-manual.html) to continue deploying PCF. 
+1. When the instance has launched, proceed to [Configuring Ops Manager Director on AWS](config-manual.html) to continue deploying PCF.
 
 
 ## <a id='required-objects'></a> Required AWS Objects
@@ -894,7 +895,7 @@ Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
 in the AWS documentation.
 
 
-### <a id='vpc'></a>  VPC (Public and Private Subnets)
+### <a id='vpc'></a> VPC (Public and Private Subnets)
 
 You must create a VPC with public and private subnets from the VPC Dashboard.
 
@@ -985,7 +986,7 @@ The following table lists the subnets in CIDR block `10.0.0.0/16`.
 
 See [Step 4: Create a VPC](#pcfaws-vpc).
 
-### <a id='nat'></a>  NAT Instance
+### <a id='nat-instance'></a> NAT Instance
 
 You must create a NAT instance when creating a VPC. The NAT instance must have the following configuration:
 
@@ -1246,7 +1247,7 @@ The MySQL Security Group must have the following outbound rules:
 
 See [Step 11: Configure a Security Group for MySQL](#pcfaws-om-mysqlsecgrp).
 
-### <a id='om-api'></a> Ops Manager AMI
+### <a id='om-ami'></a> Ops Manager AMI
 
 You must locate the public Ops Manager AMI using the AMI ID provided by the PDF downloaded when clicking **Pivotal Cloud Foundry Ops Manager for AWS** on Pivotal Network.
 
@@ -1294,7 +1295,7 @@ You must navigate to your DNS provider and create CNAME and A records for all th
 
 See [Step 16: Configure DNS Records](#pcfaws-dns).
 
-### <a id='rds-subnet-group'></a> RDS Subnet Group
+### <a id='rds-subnet'></a> RDS Subnet Group
 
 You must create a subnet group for RDS named `pcf-rds-subnet-group` from the RDS Dashboard.
 

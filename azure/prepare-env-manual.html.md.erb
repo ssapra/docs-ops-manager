@@ -1,18 +1,14 @@
 ---
-title: Preparing to Deploy PCF on Azure
+title: Preparing Azure
 owner: Ops Manager
 ---
 
 <strong><%= modified_date %></strong>
 <html class="list-style-none"></html>
 
-This topic describes how to prepare to deploy Pivotal Cloud Foundry (PCF) on Azure by manually creating a service principal to access resources in your Azure subscription. See [Preparing to Deploy PCF on Azure using Terraform](./prepare-env-terraform.html) for how to install PCF on Azure using Terraform templates.
+This topic describes how to prepare to deploy Pivotal Cloud Foundry (PCF) on Azure by creating a service principal to access resources in your Azure subscription. 
 
-After you complete this procedure, follow the instructions in one of the following topics:
-
-* [Launching a BOSH Director Instance on Azure using Terraform](deploy-manual.html)
-* [Launching a BOSH Director Instance with an ARM Template](../../customizing/azure-arm-template.html)
-* [Launching a BOSH Director Instance on Azure without an ARM Template](deploy-manual.html)
+After you complete this procedure, follow the instructions in either the [Launching an Ops Manager Director Instance with an ARM Template](../../customizing/azure-arm-template.html) topic or the [Launching an Ops Manager Director Instance on Azure without an ARM Template](deploy-manual.html) topic.
 
 ##<a id="install"></a> Step 1: Install and Configure the Azure CLI
 
@@ -198,6 +194,5 @@ If you cannot log in, the service principal is invalid. Create a new service pri
 
 After you complete this topic, continue to one of the following topics:
 
-* [Launching a BOSH Director Instance on Azure using Terraform](../../customizing/azure-terraform.html): Perform the procedures in this topic to deploy BOSH Director using Terraform. Pivotal recommends using Terraform.
-* [Launching a BOSH Director Instance with an ARM Template](../../customizing/azure-arm-template.html): Perform the procedures in this topic to deploy BOSH Director with an Azure Resource Manager (ARM) template.
-* [Launching a BOSH Director Instance on Azure without an ARM Template](deploy-manual.html): Perform the procedures in this topic to deploy BOSH Director manually.
+* [Launching an Ops Manager Director Instance with an ARM Template](../../customizing/azure-arm-template.html): Perform the procedures in this topic to deploy Ops Manager Director with an Azure Resource Manager (ARM) template. Pivotal recommends using an ARM template.
+* [Launching an Ops Manager Director Instance on Azure without an ARM Template](deploy-manual.html): Perform the procedures in this topic to deploy Ops Manager Director manually.

@@ -1,8 +1,9 @@
 ---
-title: Configuring BOSH Director on GCP
+title: Configuring Ops Manager Director on GCP
 owner: Ops Manager
 iaas: GCP
 ---
+
 
 <script>
 function openDocs(evt, tabId) {
@@ -27,13 +28,13 @@ function openDocs(evt, tabId) {
 <strong><%= modified_date %></strong>
 <html class="list-style-none"></html>
 
-This topic describes how to configure the BOSH Director for Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
+This topic describes how to configure the Ops Manager Director for Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
 
 <p class="note"><strong>Note</strong>: You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="../../customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
 ## <a id='access-om'></a>Step 1: Access Ops Manager ##
 
-1. In a web browser, navigate to the fully qualified domain name (FQDN) of Ops Manager that you set up in [Launching an BOSH Director Instance on GCP](./deploy-manual.html). 
+1. In a web browser, navigate to the fully qualified domain name (FQDN) of Ops Manager that you set up in [Launching an Ops Manager Director Instance on GCP](./deploy-manual.html).
 
     <p class="note"><strong>Note</strong>: In order to set up Ops Manager authentication correctly, Pivotal recommends using a Fully Qualified Domain Name (FQDN) to access Ops Manager. Using an ephemeral IP address to access Ops Manager can cause authentication errors upon subsequent access.</p>
 
@@ -45,14 +46,14 @@ This topic describes how to configure the BOSH Director for Pivotal Cloud Foundr
 
 ### <a id='idp'></a>Use an Identity Provider (IdP) ###
 
-<%= partial '../common/using_idp_ops_manager' %> 
+<%= partial '../common/using_idp_ops_manager' %>
 
 ### <a id='internal'></a>Internal Authentication ###
 
 1. When redirected to the **Internal Authentication** page, you must complete the following steps:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable if lost.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](./../../customizing/pcf-director-proxy-settings.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](../../customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -67,8 +68,8 @@ This topic describes how to configure the BOSH Director for Pivotal Cloud Foundr
 1. Click the **Google Cloud Platform** tile within the **Installation Dashboard**.
     <%= image_tag("../common/images/gcp/gcp-om-config.png") %>
 1. Select **Google Config**. Complete the following fields:
-    * **Project ID**: Enter your GCP project ID in all lower case, such as: <code>your-gcp-project-id</code>. 
-    * **Default Deployment Tag**: Enter the `MY-PCF` prefix that you used when creating the GCP resources for this PCF installation. 
+    * **Project ID**: Enter your GCP project ID in all lower case, such as: <code>your-gcp-project-id</code>.
+    * **Default Deployment Tag**: Enter the `MY-PCF` prefix that you used when creating the GCP resources for this PCF installation.
     * Select **AuthJSON** and in the field below enter the contents of the JSON file that you downloaded in the [Set up an IAM Service Account](./prepare-env-manual.html#iam_account) section of the _Preparing to Deploy PCF on GCP_ topic.
         <p class="note"><strong>Note</strong>:
        As an alternative, you can select <strong>The Ops Manager VM Service Account</strong> option to use the service account automatically created by GCP for the Ops Manager VM. To use this option, the project-wide service account that you set up in [Set up an IAM Service Account](./prepare-env-manual.html#iam_account) must be assigned the **Service Account Actor** role.</p>
@@ -101,7 +102,7 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
 
 1. Select **Enable bosh deploy retries** for Ops Manager to retry failed BOSH operations up to five times.
 
-1. (Optional) Select **Keep Unreachable Director VMs** if you want to preserve BOSH Director VMs after a failed deployment for troubleshooting purposes. 
+1. (Optional) Select **Keep Unreachable Director VMs** if you want to preserve Ops Manager Director VMs after a failed deployment for troubleshooting purposes.
 
 1. (Optional) Select **HM Pager Duty Plugin** to enable Health Monitor integration with PagerDuty.
     <%= image_tag("../common/images/director_hm_pager.png") %>
@@ -119,30 +120,29 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
     * **Password**: Enter the password for your email server.
     * **Enable TLS**: Select this checkbox to enable Transport Layer Security.
 
-1. <%= partial "../common/credhub-encryption" %>
-
-1. <%= partial "../common/blobstore-location" %>
+1. For **Blobstore Location**, select **Internal**.
 
 1. For **Database Location**, if you configured an external MySQL database such as Cloud SQL, select **External MySQL Database** and complete the fields below. Otherwise, select **Internal**. For more information about creating a Cloud SQL instance, see [Quickstart for Cloud SQL for MySQL](https://cloud.google.com/sql/docs/mysql/quickstart) in the Google Cloud documentation.
     * **Host**: Enter the value of your host.
-    * **Port**: Enter your port number. For example, `3306`. 
+    * **Port**: Enter your port number. For example, `3306`.
     * **Username**: Enter your username.
     * **Password**: Enter your password.
     * **Database**: Enter your database name.
 
 1. (Optional) Modify the **Director Workers** value, which sets the number of workers available to execute Director tasks. This field defaults to `5`.
 
-1. (Optional) **Max Threads** sets the maximum number of threads that the BOSH Director can run simultaneously. Pivotal recommends that you leave the field blank to use the default value, unless doing so results in rate limiting or errors on your IaaS.
+1. (Optional) **Max Threads** sets the maximum number of threads that the Ops Manager Director can run simultaneously. Pivotal recommends that you leave the field blank to use the default value, unless doing so results in rate limiting or errors on your IaaS.
 
-1. (Optional) To add a custom URL for your BOSH Director, enter a valid hostname in **Director Hostname**. You can also use this field to configure [a load balancer in front of your BOSH Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director). 
+1. (Optional) To add a custom URL for your Ops Manager Director, enter a valid hostname in **Director Hostname**. You can also use this field to configure [a load balancer in front of your Ops Manager Director](https://discuss.pivotal.io/hc/en-us/articles/225420588).
      <p class="note warning"><strong>WARNING: </strong>If you change the <strong>Director
-  Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy.</p>
+  Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/2-0/pcf-release-notes/opsmanager-rn.html#2-0-26">Ops Manager 2.0.26</a> and higher.</p>
+
      <%= image_tag("../common/images/director_workers.png") %>
 
 1. <%= partial "../common/exclude-recursors" %>
 
 1. (Optional) To disable BOSH DNS, select the **Disable BOSH DNS server for troubleshooting purposes** checkbox. For more information about the BOSH DNS service discovery mechanism, see [BOSH DNS Service Discovery for Application Containers](https://docs.pivotal.io/pivotalcf/2-0/pcf-release-notes/runtime-rn.html#bosh-dns) in the Pivotal Application Service (PAS) Release Notes.
-  <p class="note"><strong>Note: </strong>Disabling BOSH DNS affects <a href="#network">Step 5: Create Networks Page</a> below when you configure your network DNS.</p>
+  <p class="note"><strong>Note: </strong>Disabling BOSH DNS affects <a href="#network">Step 5: Create Networks Page</a> below when you configure your network DNS. You must first navigate to your PAS tile and enter <code>8.8.8.8</code> into the <strong>DNS Servers</strong> field.</p>
   <p class="note breaking"><strong>Breaking Change</strong>: Do not disable BOSH DNS without consulting Pivotal Support. For more information about disabling BOSH DNS, see <a href="https://discuss.pivotal.io/hc/en-us/articles/115015720428-Disabling-or-Opting-Out-of-BOSH-DNS-in-PCF">Disabling or Opting Out of BOSH DNS in PCF</a> in the Pivotal Knowledge Base.</p>
   <p class="note"><strong>Note</strong>: If you are deploying PKS, do not disable BOSH DNS. If PAS and PKS are running on the same instance of Ops Manager, you cannot use the opt-out feature of BOSH DNS for your PAS without breaking PKS. If you want to opt out of BOSH DNS in your PAS deployment, install the tile on a separate instance of Ops Manager.</p>
 
@@ -156,10 +156,10 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
 
 1. Select **Create Availability Zones**.
 1. Click **Add**.
-1. For **Google Availability Zone**: 
-    * Enter one of the zones that you associated to the backend service instance groups of the HTTP(S) Load Balancer. For example, if you are using the `us-central1` region and selected `us-central1-a` as one of the zones for your HTTP(S) Load Balancer instance groups, enter `us-central1-a`. 
+1. For **Google Availability Zone**:
+    * Enter one of the zones that you associated to the backend service instance groups of the HTTP(S) Load Balancer. For example, if you are using the `us-central1` region and selected `us-central1-a` as one of the zones for your HTTP(S) Load Balancer instance groups, enter `us-central1-a`.
     * Click **Add**
-    * Repeat the above step for all the availability zones that you associated to instance groups in [Preparing to Deploy PCF on GCP](./prepare-env-manual.html#create-http-and-instance-group). 
+    * Repeat the above step for all the availability zones that you associated to instance groups in [Preparing to Deploy PCF on GCP](./prepare-env-manual.html#create-http-and-instance-group).
     <%= image_tag("../common/images/gcp/availability_zones_multiple.png") %>
     * Click **Save**.
 
@@ -176,10 +176,10 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
 
 1. Select the runtime you are installing from the following table to determine which networks you need to create:
     <div class="tab">
-      <button aria-label="Expand install table for PAS and Other Runtimes" aria-controls="PAS-networks" class="tablinks" onclick="openDocs(event, 'PAS-networks')">PAS and Other Runtimes</button>
-      <button aria-label="Expand install table for PKS Only" aria-controls="PKS-networks" class="tablinks" onclick="openDocs(event, 'PKS-networks')">PKS Only</button>
+      <button class="tablinks" onclick="openDocs(event, 'PAS-networks')">PAS and Other Runtimes</button>
+      <button class="tablinks" onclick="openDocs(event, 'PKS-networks')">PKS Only</button>
     </div>
-    <div id="PAS-networks" class="tabcontent" style="display:none">
+    <div id="PAS-networks" class="tabcontent">
       <p>If you intend to deploy Pivotal Application Service (PAS), or PAS plus additional runtimes, create networks according to the table below.
       For more information about the runtimes you can deploy to PCF, see <a href="../../customizing/runtimes.html">Installing Runtimes</a>.<br>
         <table>
@@ -197,12 +197,12 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
                 </tr>
                 <tr>
                   <th>Google Network Name</th>
-                  <td>Enter the name of the infrastructure network you created when preparing your GCP environment. 
+                  <td>Enter the name of the infrastructure network you created when preparing your GCP environment.
                   <br>The format is: <code>MY-PCF-virt-net/MY-PCF-subnet-infrastructure-MY-REGION/MY-GCP-REGION</code></td>
                 </tr>
                 <tr>
                   <th>CIDR</th>
-                  <td>Enter the name of the CIDR ending in <code>/26</code> you used when creating the infrastructure subnet in GCP. 
+                  <td>Enter the name of the CIDR ending in <code>/26</code> you used when creating the infrastructure subnet in GCP.
                   <br>Example: <code>192.168.101.0/26</code></td>
                 </tr>
                 <tr>
@@ -234,12 +234,12 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
               </tr>
               <tr>
               <th>Google Network Name</th>
-              <td>Enter the name of the runtime network you created when preparing your GCP environment. 
+              <td>Enter the name of the runtime network you created when preparing your GCP environment.
               <br>The format is: <code>MY-PCF-virt-net/MY-PCF-subnet-pas-MY-REGION/MY-GCP-REGION</code></td>
               </tr>
               <tr>
               <th>CIDR</th>
-              <td>Enter the name of the CIDR ending in <code>/22</code> you used when creating the PAS subnet in GCP. 
+              <td>Enter the name of the CIDR ending in <code>/22</code> you used when creating the PAS subnet in GCP.
               <br>Example: <code>192.168.16.0/22</code></td>
               </tr>
               <tr>
@@ -271,12 +271,12 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
               </tr>
               <tr>
               <th>Google Network Name</th>
-              <td>Enter the name of the services network you created when preparing your GCP environment. 
+              <td>Enter the name of the services network you created when preparing your GCP environment.
               <br>The format is: <code>MY-PCF-virt-net/MY-PCF-subnet-services-MY-REGION/MY-GCP-REGION</code></td>
               </tr>
               <tr>
               <th>CIDR</th>
-              <td>Enter the name of the CIDR ending in <code>/22</code> you used when creating the services subnet in GCP. 
+              <td>Enter the name of the CIDR ending in <code>/22</code> you used when creating the services subnet in GCP.
               <br>Example: <code>192.168.20.0/22</code></td>
               </tr>
               <tr>
@@ -299,9 +299,8 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
             </td>
           </tr>
         </table>
-      </p>
     </div>
-    <div id="PKS-networks" class="tabcontent" style="display:none">
+    <div id="PKS-networks" class="tabcontent">
      <p>If you intend to deploy only Pivotal Container Service (PKS) to this Ops Manager instance, create the following networks:
         <table>
           <tr>
@@ -363,15 +362,14 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
             <td><code>192.168.20.1</code></td>
           </tr>
         </table>
-     </p> 
+     </p>
     </div>
-   <%= vars.expand_network_azs %> 
 
 ## <a id="assign-azs"></a>Step 6: Assign AZs and Networks Page##
 
 1. Select **Assign AZs and Networks**.
-1. Use the drop-down menu to select a **Singleton Availability Zone**. The BOSH Director installs in this Availability Zone.
-1. Under **Network**, select the `infrastructure` network for your BOSH Director.
+1. Use the drop-down menu to select a **Singleton Availability Zone**. The Ops Manager Director installs in this Availability Zone.
+1. Under **Network**, select the `infrastructure` network for your Ops Manager Director.
 1. Click **Save**.
 
 ## <a id='security'></a>Step 7: Security Page ##
@@ -388,24 +386,20 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
 
 1. Ensure that the **Internet Connected** checkboxes are not selected for any jobs. The checkbox gives VMs a public IP address that enables outbound Internet access. In [Preparing to Deploy PCF on GCP](./prepare-env-manual.html), you provisioned a Network Address Translation (NAT) box to provide Internet connectivity to your VMs. For more information about using NAT in GCP, see the <a href="https://cloud.google.com/compute/docs/networking">GCP documentation</a>.
 
-## <a id="../../customizing/custom-vm-extensions"></a> Step 10: (Optional) Add Custom VM Extensions
-
-<%= partial "../common/vm-extension-config"  %>
-
-## <a id='complete'></a>Step 11: Complete the BOSH Director Installation ##
+## <a id='complete'></a>Step 10: Complete the Ops Manager Director Installation ##
 
 1. Click the **Installation Dashboard** link to return to the Installation
 Dashboard.
 
-1. Click **Apply Changes**. If the following ICMP error message appears, return to the [Network Config](#network) screen, and make sure you have deselected the **Enable ICMP Checks** box. Then click **Apply Changes** again. 
+1. Click **Apply Changes**. If the following ICMP error message appears, return to the [Network Config](#network) screen, and make sure you have deselected the **Enable ICMP Checks** box. Then click **Apply Changes** again.
 
     <%= image_tag("../common/images/cloudform/install-error.png") %>
 
-1. BOSH Director installs. This may take a few moments. When the installation process successfully completes, the **Changes Applied** window appears.
+1. Ops Manager Director installs. This may take a few moments. When the installation process successfully completes, the **Changes Applied** window appears.
 
     <%= image_tag("../common/images/cloudform/ops-manager-complete.png") %>
 
-## <a id="next"></a> What to Do Next ###
+### <a id="next"></a> What to Do Next ###
 
 After you complete this procedure, follow the instructions for the runtime you intend to install.
 For example, see [Deploying PAS on GCP](../../customizing/gcp-er-config.html) to deploy PAS.
