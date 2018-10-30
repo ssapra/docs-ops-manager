@@ -4,14 +4,14 @@ owner: Ops Manager
 iaas: OpenStack
 ---
 
-This topic describes how to configure BOSH Director after deploying [Pivotal Cloud Foundry](https://network.pivotal.io/products/pivotal-cf) (PCF) on OpenStack. Use this topic when [Installing Pivotal Cloud Foundry on OpenStack](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/openstack.html).
+This topic describes how to configure BOSH Director after deploying [Pivotal Cloud Foundry](https://network.pivotal.io/products/pivotal-cf) (PCF) on OpenStack. Use this topic when [Installing Pivotal Cloud Foundry on OpenStack](https://docs.pivotal.io/pivotalcf/2-2/customizing/openstack.html).
 
 * Before beginning this procedure, ensure that you have successfully completed
 all steps in [Provisioning the OpenStack Infrastructure](./setup.html).
 
-* After you complete this procedure, follow the instructions in [Deploying PAS on OpenStack](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/openstack-er-config.html).
+* After you complete this procedure, follow the instructions in [Deploying PAS on OpenStack](https://docs.pivotal.io/pivotalcf/2-2/customizing/openstack-er-config.html).
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/ops-man-api.html">Using the Ops Manager API</a>.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-2/customizing/ops-man-api.html">Using the Ops Manager API</a>.</p>
 
 
 ## <a id='log-in'></a> Step 1: Access Ops Manager
@@ -33,7 +33,7 @@ all steps in [Provisioning the OpenStack Infrastructure](./setup.html).
 1.  When redirected to the **Internal Authentication** page, you must complete the following steps:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/pcf-aws-manual-er-config.html).
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/2-2/customizing/pcf-aws-manual-er-config.html).
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -184,7 +184,7 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
 
 1. Click **Save**.
 
-<p class='note'><strong>Note:</strong> If you select to use an internal database, back up your data frequently. For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/backup-restore/index.html">Backing Up and Restoring Pivotal Cloud Foundry</a>.</p>
+<p class='note'><strong>Note:</strong> If you select to use an internal database, back up your data frequently. For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-2/customizing/backup-restore/index.html">Backing Up and Restoring Pivotal Cloud Foundry</a>.</p>
 
 ## <a id='az-config'></a> Step 5: Create Availability Zones Page
 
@@ -274,8 +274,8 @@ Review the [Configure Security](./setup.html#security) step of _Deploying BOSH a
 
     <%= image_tag("../common/images/openstack/om-installed.png") %>
 
-1. After you complete this procedure, follow the instructions in [Deploying PAS on OpenStack](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/openstack-er-config.html).
+1. After you complete this procedure, follow the instructions in [Deploying PAS on OpenStack](https://docs.pivotal.io/pivotalcf/2-2/customizing/openstack-er-config.html).
 
 ---
 
-Return to [Installing Pivotal Cloud Foundry on OpenStack](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/openstack.html).
+Return to [Installing Pivotal Cloud Foundry on OpenStack](https://docs.pivotal.io/pivotalcf/2-2/customizing/openstack.html).
