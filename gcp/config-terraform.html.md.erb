@@ -8,7 +8,7 @@ iaas: GCP
 
 This topic describes how to configure the BOSH Director for Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP) after [Preparing to Deploy PCF on GCP Using Terraform](./prepare-env-terraform.html).
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/2-1/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
 
 ## <a id='prereq'></a> Prerequisite
@@ -36,7 +36,7 @@ To complete the procedures in this topic, you must have access to the output fro
 1. When redirected to the **Internal Authentication** page, you must complete the following steps:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable if lost.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](./https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/pcf-director-proxy-settings.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](./https://docs.pivotal.io/pivotalcf/2-1/customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -136,7 +136,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
 ## <a id='az'></a> Step 4: Create Availability Zones Page
 
-<p class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation of PAS. For an example of a three availability zone deployment, see <a href="https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</p>
+<p class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation of PAS. For an example of a three availability zone deployment, see <a href="https://docs.pivotal.io/pivotalcf/2-1/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</p>
 
 1. Select **Create Availability Zones**.
 
@@ -153,8 +153,8 @@ To complete the procedures in this topic, you must have access to the output fro
 
 1. Use the **Add Network** button to create the following three networks:
     <p class="note"><strong>Note:</strong> To use a shared VPC network, enter the shared VPC host project name before the network name in the format <code>VPC-PROJECT-NAME/NETWORK-NAME/SUBNET-NAME/REGION-NAME</code>.
-    For example, <code>vpc-project/opsmgr/central/us-central1</code>. For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/gcp-shared-vpc.html">Configuring a Shared VPC on GCP</a>.</p>
-    <p class="note"><strong>Note:</strong> If you disabled BOSH DNS, enter <code>8.8.8.8</code> into the **DNS Servers** field of the PAS tile. For more information, see step 29g in the <em>Configure Networking</em> section of the <a href="https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/gcp-er-config-terraform.html#dns-servers">Deploying PAS on GCP Using Terraform</a> topic.</p>
+    For example, <code>vpc-project/opsmgr/central/us-central1</code>. For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-1/customizing/gcp-shared-vpc.html">Configuring a Shared VPC on GCP</a>.</p>
+    <p class="note"><strong>Note:</strong> If you disabled BOSH DNS, enter <code>8.8.8.8</code> into the **DNS Servers** field of the PAS tile. For more information, see step 29g in the <em>Configure Networking</em> section of the <a href="https://docs.pivotal.io/pivotalcf/2-1/customizing/gcp-er-config-terraform.html#dns-servers">Deploying PAS on GCP Using Terraform</a> topic.</p>
     <table>
         <tr>
             <th>Network Name</th>
@@ -319,4 +319,4 @@ To complete the procedures in this topic, you must have access to the output fro
 
 ## <a id="next"></a> What to Do Next
 
-After you complete this procedure, follow the instructions in the [Deploying PAS on GCP](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/gcp-er-config.html) topic.
+After you complete this procedure, follow the instructions in the [Deploying PAS on GCP](https://docs.pivotal.io/pivotalcf/2-1/customizing/gcp-er-config.html) topic.

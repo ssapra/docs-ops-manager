@@ -8,7 +8,7 @@ iaas: AWS
 
 This topic describes how to configure the BOSH Director for Pivotal Cloud Foundry (PCF) on Amazon Web Services (AWS) after [Preparing to Deploy PCF on AWS Using Terraform](./prepare-env-terraform.html).
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/2-1/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
 
 ## <a id='prereq'></a> Prerequisite
@@ -37,7 +37,7 @@ To complete the procedures in this topic, you must have access to the output fro
 1. When redirected to the **Internal Authentication** page, you must complete the following steps:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable if lost.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](./https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/pcf-director-proxy-settings.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](./https://docs.pivotal.io/pivotalcf/2-1/customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -71,10 +71,10 @@ To complete the procedures in this topic, you must have access to the output fro
     * **Region**: Select the region where you deployed Ops Manager.
     * **Encrypt EBS Volumes**: Select this checkbox to enable full encryption
       on persistent disks of all BOSH-deployed virtual machines (VMs), except
-      for the Ops Manager VM and Director VM. See the [Configuring Amazon EBS Encryption](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/cloudform-om-ebs-config.html) topic for
+      for the Ops Manager VM and Director VM. See the [Configuring Amazon EBS Encryption](https://docs.pivotal.io/pivotalcf/2-1/customizing/cloudform-om-ebs-config.html) topic for
       details about using Elastic Block Store (EBS) encryption.
       <p class="note"><strong>Note</strong>: Enabling EBS encryption only encrypts Linux VMs. The Windows VMs deployed with Pivotal Application Service (PAS) for Windows or PAS for Windows 2012R2 are not encrypted.</p>
-      * **Custom Encryption Key (Optional)** Once you enable EBS encryption, you may want to specify a custom Key Management Service (KMS) encryption key. If you don't enter a value, your custom encryption key will default to the account key. For more information, see [Configuring Amazon EBS Encryption](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/cloudform-om-ebs-config.html).
+      * **Custom Encryption Key (Optional)** Once you enable EBS encryption, you may want to specify a custom Key Management Service (KMS) encryption key. If you don't enter a value, your custom encryption key will default to the account key. For more information, see [Configuring Amazon EBS Encryption](https://docs.pivotal.io/pivotalcf/2-1/customizing/cloudform-om-ebs-config.html).
 
 1. Click **Save**.
 
@@ -337,7 +337,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
 1. Click **Save**.
 
-## <a id="https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/custom-vm-extensions"></a> Step 10: (Optional) Add Custom VM Extensions
+## <a id="https://docs.pivotal.io/pivotalcf/2-1/customizing/custom-vm-extensions"></a> Step 10: (Optional) Add Custom VM Extensions
 
 <%= partial "../common/vm-extension-config"  %>
 
@@ -353,4 +353,4 @@ To complete the procedures in this topic, you must have access to the output fro
 
     <%= image_tag("../common/images/cloudform/ops-manager-complete.png") %>
 
-1. After you complete this procedure, follow the instructions in the [Deploying PAS on AWS Using Terraform](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/aws-er-config-terraform.html) topic.
+1. After you complete this procedure, follow the instructions in the [Deploying PAS on AWS Using Terraform](https://docs.pivotal.io/pivotalcf/2-1/customizing/aws-er-config-terraform.html) topic.
