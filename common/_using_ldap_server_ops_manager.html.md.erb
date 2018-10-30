@@ -40,7 +40,7 @@ from which the LDAP Group search begins.
 For example, a domain named "cloud.example.com" typically uses the following
 LDAP Group Search Base: `ou=Groups,dc=example,dc=com`
 <br><br>
-    <p class="note"><strong>Note</strong>: Refer to the <a href="https://docs.pivotal.io/pivotalcf/<%=vars.version_for_link%>/opsguide/external-user-management.html">Adding Existing SAML or LDAP Users to a PCF Deployment</a> topic to on-board individual LDAP users and map them to Ops Manager roles.</p>
+    <p class="note"><strong>Note</strong>: Refer to the <a href="https://docs.pivotal.io/pivotalcf/2-4/opsguide/external-user-management.html">Adding Existing SAML or LDAP Users to a PCF Deployment</a> topic to on-board individual LDAP users and map them to Ops Manager roles.</p>
 
 * For **Group Search Filter**, enter a string that defines LDAP Group search
 criteria. The standard value is `member={0}`.
@@ -61,11 +61,11 @@ certificate or your self-signed certificate.
 
 * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
 
-* If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%=vars.version_for_link%>/customizing/pcf-director-proxy-settings.html) topic.
+* If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/2-4/customizing/pcf-director-proxy-settings.html) topic.
 
 * Read the **End User License Agreement**, and select the checkbox to accept the terms.
 
-* Select **Provision an admin client in the BOSH UAA**. You can use this to enable BOSH automation with scripts and tooling. For more infomation, see [Provision Admin Client](https://docs.pivotal.io/pivotalcf/<%=vars.version_for_link%>/customizing/opsmanager-create-bosh-client.html#saml).
+* Select **Provision an admin client in the BOSH UAA**. You can use this to enable BOSH automation with scripts and tooling. For more infomation, see [Provision Admin Client](https://docs.pivotal.io/pivotalcf/2-4/customizing/opsmanager-create-bosh-client.html#saml).
 
 * Click **Setup Authentication**.
 
