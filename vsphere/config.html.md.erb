@@ -10,11 +10,11 @@ This topic describes how to configure the BOSH Director for VMware vSphere.
 
 Before you begin this procedure, ensure that you have successfully completed all steps in the [Deploying BOSH and Ops Manager to vSphere](deploy.html) topic.
 After you complete this procedure, follow the configuration instructions for the runtime you choose to install.
-For example, to install Pivotal Application Service (PAS), see the [Deploying PAS on vSphere](../../customizing/config-er-vmware.html) topic.
+For example, to install Pivotal Application Service (PAS), see the [Deploying PAS on vSphere](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/config-er-vmware.html) topic.
 
-See [Installing Runtimes](../../customizing/runtimes.html) for more information about Pivotal Cloud Foundry (PCF) runtimes.
+See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/runtimes.html) for more information about Pivotal Cloud Foundry (PCF) runtimes.
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="../../customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
 
 ## <a id="set-up"></a> Step 1: Set Up Ops Manager
@@ -36,7 +36,7 @@ See [Installing Runtimes](../../customizing/runtimes.html) for more information 
 1. When redirected to the **Internal Authentication** page, you must complete the following steps:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](../../customizing/../../customizing/pcf-director-proxy-settings.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
 
     <%= image_tag("../common/images/om-login.png") %>
@@ -61,7 +61,7 @@ See [Installing Runtimes](../../customizing/runtimes.html) for more information 
     * **vCenter Username**: A vCenter username with create and delete privileges for virtual machines (VMs) and folders.
     * **vCenter Password**: The password for the vCenter user specified above.
     * **Datacenter Name**: The name of the datacenter as it appears in vCenter.
-    * **Virtual Disk Type**: The Virtual Disk Type to provision for all VMs. For guidance about the virtual disk type to select, see [Provisioning a Virtual Disk in vSphere](../../customizing/disk-format.html).
+    * **Virtual Disk Type**: The Virtual Disk Type to provision for all VMs. For guidance about the virtual disk type to select, see [Provisioning a Virtual Disk in vSphere](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/disk-format.html).
     <p class="note"><strong>Note:</strong> The following fields do not allow whitespace. Including whitespace characters in datastore or datastore folder names causes an error.</p>
     * **Ephemeral Datastore Names (comma delimited)**: The names of the datastores that store ephemeral VM disks deployed by Ops Manager.
     * **Persistent Datastore Names (comma delimited)**: The names of the datastores that store persistent VM disks deployed by Ops Manager.
@@ -82,7 +82,7 @@ See [Installing Runtimes](../../customizing/runtimes.html) for more information 
     * **NSX Password**: The password for the username specified above.
     * **NSX CA Cert**: A CA certificate in PEM format that authenticates to the NSX server.
     If the NSX Manager generated a self-signed certificate, you can retrieve the CA certificate using OpenSSL with the following command: `openssl s_client -showcerts -connect NSX-MANAGER-ADDRESS:443 < /dev/null 2> /dev/null | openssl x509`
-    <p class="note"><strong>Note</strong>: To update NSX security group and load balancer information, see the <a href="../../customizing/update-nsx.html">Updating NSX Security Group and Load Balancer Information</a> topic.</p>
+    <p class="note"><strong>Note</strong>: To update NSX security group and load balancer information, see the <a href="https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/update-nsx.html">Updating NSX Security Group and Load Balancer Information</a> topic.</p>
 
 1. Click **Save**.
 
@@ -103,7 +103,7 @@ See [Installing Runtimes](../../customizing/runtimes.html) for more information 
 1. Leave the **Bosh HM Forwarder IP Address** field blank.
     <p class="note"><strong>Note:</strong> Starting from PCF v2.0, BOSH-reported component metrics are available in the Loggregator Firehose by default. Therefore, if you continue to use the BOSH HM Forwarder for consuming them, you may receive duplicate data. To prevent this, leave the <strong>Bosh HM Forwarder IP Address</strong> field blank. For additional guidance, see <a href="https://docs.pivotal.io/pivotalcf/2-0/pcf-release-notes/runtime-rn.html#bosh-metrics">BOSH System Metrics Available in Loggregator Firehose</a>.</p>
 
-1. Select the **Enable VM Resurrector Plugin** to enable Ops Manager Resurrector functionality. If you are installing PAS, this setting also increases availability in your deployment. For more information, see the [Using Ops Manager Resurrector on VMware vSphere](../../customizing/resurrector.html) topic.
+1. Select the **Enable VM Resurrector Plugin** to enable Ops Manager Resurrector functionality. If you are installing PAS, this setting also increases availability in your deployment. For more information, see the [Using Ops Manager Resurrector on VMware vSphere](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/resurrector.html) topic.
 
 1. Select **Enable Post Deploy Scripts** to run a post-deploy script after deployment. This script allows the job to execute additional commands against a deployment.
   <p class="note"><strong>Note:</strong> If you are deploying Pivotal Container Service (PKS), you must enable post-deploy scripts.</p>
@@ -174,7 +174,7 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
     * Enter the name of an existing vCenter **Cluster** to use as an Availability Zone.
     * **(Optional)** Enter the name of a **Resource Pool** in the vCenter cluster that you specified above. The jobs running in this Availability Zone share the CPU and memory resources defined by the pool.
     * **(Optional)** Click **Add Cluster** to create another set of **Cluster** and **Resource Pool** fields. You can add multiple clusters. Click the trash icon to delete a cluster. The first cluster cannot be deleted.
-    <p class="note"><strong>Note:</strong> For more information about using availability zones in vSphere, see the <a href="../../customizing/understand-az.html">Understanding Availability Zones in VMware Installations</a> topic.</p>
+    <p class="note"><strong>Note:</strong> For more information about using availability zones in vSphere, see the <a href="https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/understand-az.html">Understanding Availability Zones in VMware Installations</a> topic.</p>
 
 1. Click **Save**.
 
@@ -200,7 +200,7 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
 
 1. Click **Save**.
     <p class="note"><strong>Note:</strong> Multiple networks allow you to place vCenter on a private network and the rest of your deployment on a public network. Isolating vCenter in this manner denies access to it from outside sources and reduces possible security vulnerabilities.</p>
-    <p class='note'><strong>Note:</strong> If you are using the Cisco Nexus 1000v Switch, refer to the <a href="../../customizing/nexus-switch.html">Using the Cisco Nexus 1000v Switch with Ops Manager</a> topic for more information.</p><%= vars.expand_network_azs %>
+    <p class='note'><strong>Note:</strong> If you are using the Cisco Nexus 1000v Switch, refer to the <a href="https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/nexus-switch.html">Using the Cisco Nexus 1000v Switch with Ops Manager</a> topic for more information.</p><%= vars.expand_network_azs %>
 
 
 ## <a id='assign-azs'></a> Step 6: Assign AZs and Networks Page
@@ -237,7 +237,7 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
 1. Click **Save**.
 
 
-## <a id="../../customizing/custom-vm-extensions"></a> Step 10: (Optional) Add Custom VM Extensions
+## <a id="https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/custom-vm-extensions"></a> Step 10: (Optional) Add Custom VM Extensions
 
 <%= partial "../common/vm-extension-config"  %>
 
@@ -247,4 +247,4 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
 
 1. Click **Apply Changes** on the right navigation.
 
-1. After you complete this procedure, follow the instructions in the [Deploying PAS on vSphere](../../customizing/config-er-vmware.html) topic.
+1. After you complete this procedure, follow the instructions in the [Deploying PAS on vSphere](https://docs.pivotal.io/pivotalcf/<%=vars.link_for_version%>/customizing/config-er-vmware.html) topic.
