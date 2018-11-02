@@ -3,26 +3,6 @@ title: Preparing GCP
 owner: Ops Manager
 ---
 
-<script>
-function openDocs(evt, tabId) {
-   // Declare all variables
-   var i, tabcontent, tablinks;
-   // Get all elements with class="tabcontent" and hide them
-   tabcontent = document.getElementsByClassName("tabcontent");
-   for (i = 0; i < tabcontent.length; i++) {
-       tabcontent[i].style.display = "none";
-   }
-   // Get all elements with class="tablinks" and remove the class "active"
-   tablinks = document.getElementsByClassName("tablinks");
-   for (i = 0; i < tablinks.length; i++) {
-       tablinks[i].className = tablinks[i].className.replace(" active", "");
-   }
-   // Show the current tab, and add an "active" class to the button that opened the tab
-   document.getElementById(tabId).style.display = "block";
-   evt.currentTarget.className += " active";
-}
-</script>
-
 This guide describes the preparation steps required to install Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
 
 In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-0/customizing/gcp.html) topic, you must create resources in GCP such as a new network, firewall rules, load balancers, and a service account before deploying PCF. Follow these procedures to prepare your GCP environment.
@@ -41,32 +21,15 @@ For more information, review the different deployment options and recommendation
 1. From the GCP Console, select **IAM & Admin**, then **Service accounts**.
 1. Click **Create Service Account**: 
   * **Service account name**: Enter a name. For example, `bosh`.
-  * **Role**: To determine which roles to assign the service account, select the runtime you are installing from the following table:
-      <div class="tab" role="group">
-       <button type ="button" class="tablinks" onclick="openDocs(event, 'PAS')">PAS and Other Runtimes</button>
-       <button type ="button" class="tablinks" onclick="openDocs(event, 'PKS')">PKS Only</button>
-      </div>
-      <div id="PAS" class="tabcontent" style="display: none">
-       <p>If you intend to deploy PAS, or PAS and additional runtimes, grant the following roles to the service account. For more information about the runtimes you can deploy to PCF, see <a href="https://docs.pivotal.io/pivotalcf/2-0/customizing/runtimes.html">Installing Runtimes</a>.
-        <ul><li><strong>Service Accounts</strong> > <strong>Service Account User</strong></li></ul>
-        <ul><li><strong>Service Accounts</strong> > <strong>Service Account Token Creator</strong></li></ul>
-        <ul><li><strong>Compute Engine</strong> > <strong>Compute Instance Admin (v1)</strong></li></ul>
-        <ul><li><strong>Compute Engine</strong> > <strong>Compute Network Admin</strong></li></ul>
-        <ul><li><strong>Compute Engine</strong> > <strong>Compute Storage Admin</strong></li></ul>
-        <ul><li><strong>Storage</strong> > <strong>Storage Admin</strong></li></ul>
-        <p class="note">The <strong>Service Account User</strong> role is only required if you plan to use <strong>The Ops Manager VM Service Account</strong> to deploy Ops Manager. For more information about <strong>The Ops Manager VM Service Account</strong>, see <a href="config-manual.html#gcp-config">Step 2: Google Cloud Platform Config</a> in <em>Configuring BOSH Director on GCP</em>.</p>
-       </p>
-      </div>
-      <div id="PKS" class="tabcontent" style="display: none">
-       <p>If you intend to deploy only Pivotal Container Service (PKS) to this Ops Manager instance, grant the following roles to the service account:
-        <ul><li><strong>Compute Engine</strong> > <strong>Compute Instance Admin (v1)</strong></li></ul>
-        <ul><li><strong>Compute Engine</strong> > <strong>Compute Security Admin</strong></li></ul>
-        <ul><li><strong>Compute Engine</strong> > <strong>Compute Storage Admin</strong></li></ul>
-        <ul><li><strong>Compute Engine</strong> > <strong>Compute Network Admin</strong></li></ul>
-        <ul><li><strong>Compute Engine</strong> > <strong>Compute Viewer</strong></li></ul>
-       </p> 
-      </div>
-     <p class="note"><strong>Note:</strong>You must scroll down in the pop-up windows to select all required roles.</p>
+  * **Role**: Select the following roles:
+        * **Service Accounts > Service Account User**
+        * **Service Accounts > Service Account Token Creator**
+        * **Compute Engine > Compute Instance Admin (v1)**
+        * **Compute Engine > Compute Network Admin**
+        * **Compute Engine > Compute Storage Admin**
+        * **Storage > Storage Admin**
+        <p class="note"><strong>Note</strong>: You must scroll down in the pop-up windows to select all required roles.<br><br>
+        The <strong>Service Account User</strong> role is only required if you plan to use <strong>The Ops Manager VM Service Account</strong> to deploy Ops Manager. For more information about <strong>The Ops Manager VM Service Account</strong>, see <a href="config-manual.html#gcp-config">Step 2: Google Cloud Platform Config</a> in <em>Configuring BOSH Director on GCP</em>.</p>
   * **Service account ID**: The field automatically generates a unique ID based on the username.
   * **Furnish a new private key**: Select this checkbox and JSON as the **Key type**.
     <%= image_tag("../common/images/gcp/iam_account_2.png") %>
@@ -321,15 +284,8 @@ This step assigns tags and firewall rules to Ops Manager components and VMs that
 
 1. In the **Networking** > **VPC network** pane, select **Firewall rules**.
 
-1. Select the runtime you want to install from the following table to determine which firewall rules you must apply:
-    <div class="tab">
-      <button class="tablinks" onclick="openDocs(event, 'PAS-firewall')">PAS and Other Runtimes</button>
-      <button class="tablinks" onclick="openDocs(event, 'PKS-firewall')">PKS Only</button>
-    </div>
-    <div id="PAS-firewall" class="tabcontent">
-      <p>If you intend to deploy PAS, or PAS and additional runtimes, create and apply the firewall rules according to the table below.
-         For more information about the runtimes you can deploy to PCF, see <a href="https://docs.pivotal.io/pivotalcf/2-0/customizing/runtimes.html">Installing Runtimes</a>.<br>
-        <table>
+1. Apply the firewall rules in the following table:
+       <table>
         <tr><th colspan="2" style="text-align: center;">Firewall Rules</th></tr>
          <tr>
           <tr>
@@ -417,65 +373,7 @@ This step assigns tags and firewall rules to Ops Manager components and VMs that
             </td>
           </tr>
         </table>
-      </p>
-    </div>
-    <div id="PKS-firewall" class="tabcontent">
-     <p>If you intend to deploy only PKS to this Ops Manager instance, apply the following firewall rules:
-      <table>
-        <tr><th colspan="2" style="text-align: center;">Firewall Rules</th></tr>
-         <tr>
-          <tr>
-            <th>Rule 1</th>
-            <td>
-              This rule allows SSH from public networks.<br><br>
-              <strong>Name</strong>: <code>MY-PCF-allow-ssh</code><br>
-              <strong>Network</strong>: <code>MY-PCF-virt-net</code><br>
-              <strong>Allowed protocols and ports</strong>: <code>tcp:22</code><br>
-              <strong>Source filter</strong>: IP ranges<br>
-              <strong>Source IP ranges</strong>: <code>0.0.0.0/0</code><br>
-              <strong>Target tags</strong>: <code>allow-ssh</code>
-            </td>
-          </tr>
-          <tr>
-            <th>Rule 2</th>
-            <td>
-              This rule allows HTTP from public networks.<br><br>
-              <strong>Name</strong>: <code>MY-PCF-allow-http</code><br>
-              <strong>Network</strong>: <code>MY-PCF-virt-net</code><br>
-              <strong>Allowed protocols and ports</strong>: <code>tcp:80</code><br>
-              <strong>Source filter</strong>: IP ranges<br>
-              <strong>Source IP ranges</strong>: <code>0.0.0.0/0</code><br>
-              <strong>Target tags</strong>: <code>allow-http</code>, <code>router</code>
-            </td>
-          </tr>
-          <tr>
-            <th>Rule 3</th>
-            <td>
-              This rule allows HTTPS from public networks.<br><br>
-              <strong>Name</strong>: <code>MY-PCF-allow-https</code><br>
-              <strong>Network</strong>: <code>MY-PCF-virt-net</code><br>
-              <strong>Allowed protocols and ports</strong>: <code>tcp:443</code><br>
-              <strong>Source filter</strong>: IP ranges<br>
-              <strong>Source IP ranges</strong>: <code>0.0.0.0/0</code><br>
-              <strong>Target tags</strong>: <code>allow-https</code>, <code>router</code>
-            </td>
-          </tr>
-          <tr>
-            <th>Rule 4</th>
-            <td>
-              This rule allows communication between BOSH-deployed jobs.<br><br>
-              <strong>Name</strong>: <code>MY-PCF-allow-pks-all</code><br>
-              <strong>Network</strong>: <code>MY-PCF-virt-net</code><br>
-              <strong>Allowed protocols and ports</strong>: <code>tcp;udp;icmp</code><br>
-              <strong>Source filter</strong>: Source tags<br>
-              <strong>Target tags</strong>: <code>MY-PCF</code>, <code>MY-PCF-opsman</code>, <code>nat-traverse</code><br>
-              <strong>Source tags</strong>: <code>MY-PCF</code>, <code>MY-PCF-opsman</code>, <code>nat-traverse</code>
-            </td>
-          </tr>
-        </table>
-     </p> 
-    </div>
-    <p class="note"><strong>Note:</strong> If you want your firewall rules to only allow traffic within your private network, modify the <strong>Source IP Ranges</strong> from the table accordingly.</p>
+   <p class="note"><strong>Note:</strong> If you want your firewall rules to only allow traffic within your private network, modify the <strong>Source IP Ranges</strong> from the table accordingly.</p>
 
 1. If you are only using your GCP project to deploy PCF, then you can delete the following default firewall rules:
    * `default-allow-http`
