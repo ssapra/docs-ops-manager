@@ -102,6 +102,7 @@ Ops Manager manages GCP resources using the Google Compute Engine and Cloud Reso
       </table><br>
       See the following image for an example:
       ![Create VPC Subnet](../common/images/gcp/gcp-vpc-subnet.png)
+      <p class="note"><strong>Note:</strong> For deployments that do not use external IP addresses, <strong>Private Google access</strong> should be enabled to allow Cloud Foundry to make API calls to Google services.</p>
     1. Click **Add subnet** to add a second subnet for the BOSH Director and components specific to your runtime. Complete the form as follows:
       <table>
         <tr>
