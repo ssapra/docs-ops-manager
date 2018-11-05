@@ -86,6 +86,8 @@ Before beginning this procedure, ensure that you have successfully completed all
 1. Select the **Enable VM Resurrector Plugin** checkbox to enable the Ops Manager Resurrector functionality and increase Pivotal Application Service (PAS) availability. For more information, see the [Using Ops Manager Resurrector on VMware vSphere](https://docs.pivotal.io/pivotalcf/2-1/customizing/resurrector.html) topic.
 
 1. Select **Enable Post Deploy Scripts** to run a post-deploy script after deployment. This script allows the job to execute additional commands against a deployment.
+<p class="note"><strong>Note:</strong> You must enable post-deploy scripts to install PKS.
+</p>
 
 1. Select **Recreate all VMs** to force BOSH to recreate all VMs on the next deploy. This process does not destroy any persistent disk data.
 
