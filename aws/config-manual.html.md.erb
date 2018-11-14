@@ -11,7 +11,7 @@ This topic describes how to configure Ops Manager to deploy Pivotal Cloud Foundr
 
 Before beginning this procedure, ensure that you have successfully completed all of the steps in the [Installing PCF on AWS Manually](prepare-env-manual.html) topic. After completing the procedures in this topic, proceed to the [Deploying PAS on AWS](https://docs.pivotal.io/pivotalcf/2-2/customizing/pcf-aws-manual-er-config.html) topic to continue deploying PCF.
 
- 
+
 ## <a id='pcfaws-om-access'></a> Step 1: Access Ops Manager
 
 1. In a web browser, navigate to the fully qualified domain you created in the [Configure DNS Records](./prepare-env-manual.html#pcfaws-dns) step of _Installing PCF on AWS Manually_.
@@ -24,7 +24,7 @@ Before beginning this procedure, ensure that you have successfully completed all
 
 ### <a id='idp'></a> Use an Identity Provider (IdP)
 
-<%= partial '../common/using_idp_ops_manager' %> 
+<%= partial '../common/using_idp_ops_manager' %>
 
 ### <a id='internal'></a> Internal Authentication
 
@@ -54,10 +54,10 @@ Before beginning this procedure, ensure that you have successfully completed all
 
 1. Select **Use AWS Keys** or **Use AWS Instance Profile**.
     * **Access Key ID** and **AWS Secret Key**: To retrieve your AWS key information, use the AWS Identity and Access Management (IAM) credentials that you generated in the [Step 3: Create an IAM User for PCF](prepare-env-manual.html#create-iam) section of the _Installing PCF on AWS Manually_ topic.
-    * **AWS IAM Instance Profile**: Enter the name of the IAM profile you created in the [Step 3: Create an IAM User for PCF](prepare-env-manual.html#create-iam) section of the _Installing PCF on AWS Manually_ topic. 
+    * **AWS IAM Instance Profile**: Enter the name of the IAM profile you created in the [Step 3: Create an IAM User for PCF](prepare-env-manual.html#create-iam) section of the _Installing PCF on AWS Manually_ topic.
 
 1. Complete the rest of the **AWS Management Console Config** page:
-    * **Security Group ID**: Enter the **Group ID** of the `pcf-vms-security-group` you created for your PCF VMs in the [Step 6: Configure a Security Group for PCF VMs](prepare-env-manual.html#pcfaws-om-ersecgrp) section of the _Installing PCF on AWS Manually_ topic. Locate the Group ID in the **Security Groups** tab of your EC2 Dashboard. 
+    * **Security Group ID**: Enter the **Group ID** of the `pcf-vms-security-group` you created for your PCF VMs in the [Step 6: Configure a Security Group for PCF VMs](prepare-env-manual.html#pcfaws-om-ersecgrp) section of the _Installing PCF on AWS Manually_ topic. Locate the Group ID in the **Security Groups** tab of your EC2 Dashboard.
     * **Key Pair Name**: Enter `pcf-ops-manager-key`.
     * **SSH Private Key**: Open the AWS key pair `pcf-ops-manager-keys.pem` file you generated in the [Step 3: Create an IAM User for PCF](prepare-env-manual.html#create-iam) section of the _Installing PCF on AWS Manually_ topic. Copy the contents of the `.pem` file and paste it into the **SSH Private Key** field.
     * **Region**: Select the region where you deployed Ops Manager.
@@ -74,6 +74,10 @@ Before beginning this procedure, ensure that you have successfully completed all
     <%= image_tag("../common/images/cloudform/director_aws.png") %>
 
 1. Enter at least two of the following NTP servers in the **NTP Servers (comma delimited)** field, separated by a comma: `0.amazon.pool.ntp.org,1.amazon.pool.ntp.org,2.amazon.pool.ntp.org,3.amazon.pool.ntp.org`
+
+    <p class="note"><strong>Note:</strong> The NTP server configuration only updates
+    after VM recreation. Ensure that you select the <strong>Recreate all VMs</strong> checkbox
+    if you modify the value of this field.</p>
 
 1. Leave the **JMX Provider IP Address** field blank.
   <p class="note"><strong>Note:</strong> Starting from PCF v2.0, BOSH-reported component metrics are available in the Loggregator Firehose by default. Therefore, if you continue to use PCF JMX Bridge for consuming them outside of the Firehose, you may receive duplicate data. To prevent this, leave the <strong>JMX Provider IP Address</strong> field blank. For additional guidance, see <a href="http://docs.pivotal.io/pivotalcf/2-0/pcf-release-notes/runtime-rn.html#bosh-metrics">BOSH System Metrics Available in Loggregator Firehose</a>.</p>
@@ -93,7 +97,7 @@ Before beginning this procedure, ensure that you have successfully completed all
 
 1. <%= partial '../common/legacy-deploys' %>
 
-1. Select **Keep Unreachable Director VMs** if you want to preserve BOSH Director VMs after a failed deployment for troubleshooting purposes. 
+1. Select **Keep Unreachable Director VMs** if you want to preserve BOSH Director VMs after a failed deployment for troubleshooting purposes.
 
 1. (Optional) Select **HM Pager Duty Plugin** to enable Health Monitor integration with PagerDuty.
 
@@ -180,10 +184,10 @@ Before beginning this procedure, ensure that you have successfully completed all
 1. Select **Create Availability Zones**.
 <%= image_tag("../common/images/cloudform/create-az.png") %>
 
-1. Perform the following steps to add the three AZs you specified in the [Step 4: Create a VPC](prepare-env-manual.html#pcfaws-vpc) section of the _Installing PCF on AWS Manually_ topic: 
+1. Perform the following steps to add the three AZs you specified in the [Step 4: Create a VPC](prepare-env-manual.html#pcfaws-vpc) section of the _Installing PCF on AWS Manually_ topic:
     1. Click **Add**.
     1. For **Amazon Availability Zone**, enter the name of the AZ.
-    1. Repeat until you have entered all three AZs, in the format `REGION-#a`, `REGION-#b`, and `REGION-#c`. For example, `us-west-2a`, `us-west-2b`, and `us-west-2c`. 
+    1. Repeat until you have entered all three AZs, in the format `REGION-#a`, `REGION-#b`, and `REGION-#c`. For example, `us-west-2a`, `us-west-2b`, and `us-west-2c`.
 
 1. Click **Save**.
 
@@ -363,7 +367,7 @@ choose **Automatic** from the drop-down menu to allocate the recommended resourc
 
 1. Return to the **Installation Dashboard**.
 
-1. Click **Apply Changes**. 
+1. Click **Apply Changes**.
 
 1. BOSH Director begins to install. The **Changes Applied** window displays when the installation process successfully completes.
 
