@@ -31,19 +31,22 @@ In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cl
 
 Before you can run Terraform commands to create infrastructure resources, you must fill out a template variables file.
 
-1. Navigate to the Pivotal Application Service (PAS) release on [Pivotal Network](https://network.pivotal.io).
+1. In a browser, navigate to [Pivotal Network](https://network.pivotal.io) and log in.
 
-1. Download the AWS Terraform zip file.
+1. Select **Pivotal Application Service**
 
-1. Extract the contents of the zip file and move the folder to the `workspace` directory on your local machine.
+1. Download the **AWS Terraform Templates** zip file.
 
-1. From a terminal window, navigate to the folder:
+1. Extract the contents of the zip file. Move the folder for your runtime, `terraforming-pas` or
+`terraforming-pks`, to the `workspace` directory on your local machine.
+
+1. On the command line, navigate to the folder.
   <pre class="terminal">$ cd ~/workspace/TERRAFORMING-AWS-FOLDER</pre>
 
 1. Create a new file named `terraform.tfvars`.
   <pre class="terminal">$ touch terraform.tfvars</pre>
 
-1. Open the `terraform.tfvars` file and paste in the following contents:
+1. Open the `terraform.tfvars` file and copy in the following contents:
 
     ```
     env_name           = "YOUR-ENVIRONMENT-NAME"
@@ -183,7 +186,7 @@ Follow these steps to use the Terraform CLI to create resources on AWS:
 
 1. In a browser, navigate to the DNS provider for the DNS suffix you entered in your `terraform.tfvars` file.
 
-1. Create a new NS (Name server) record for your PCF system domain. Your system domain is `YOUR-ENVIRONMENT-NAME.YOUR-DNS-SUFFIX`.
+1. Create a new NS record for your PCF system domain. Your system domain is `YOUR-ENVIRONMENT-NAME.YOUR-DNS-SUFFIX`.
 
 1. In this record, enter the name servers included in `env_dns_zone_name_servers` from your Terraform output.
 
