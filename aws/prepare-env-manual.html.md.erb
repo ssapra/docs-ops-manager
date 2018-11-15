@@ -559,45 +559,39 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
 
 1. Click **Create Load Balancer**. 
 
-1. Select **Classic Load Balancer**. 
+1. Under **Application Load Balancer**, click **Create**.
 
-1. Configure the load balancer with the following information:
-    * **Load Balancer name**: Enter `pcf-web-elb`.
-    * **Create LB Inside**: Select the `pcf-vpc` VPC that you created in [Step 4: Create a VPC](#pcfaws-vpc).
-    * Ensure that the **Create an internal load balancer** checkbox is not selected.
+1. Under **Basic Configuration**, enter `pcf-web-elb` for **Name**.
 
-    <%= image_tag("../common/images/pcfaws/config_elb.png") %>
+1. Under **Listeners**, click **Add listener**. Select **HTTPS** for your **Load Balancer Protocol**.
 
-1. Under **Listener Configuration**, add the following rules:
+1. Under **Availability Zones**, select all availability zones.
 
-    <table border="1" class="nice" >
-    <tr>
-      <th><strong>Load Balancer Protocol</strong></th>
-      <th><strong>Load Balancer Port</strong></th>
-      <th><strong>Instance Protocol</strong></th>
-      <th><strong>Instance Port</strong></th>
-    </tr>
-    <tr>
-      <td>HTTP</td>
-      <td>80</td>
-      <td>HTTP</td>
-      <td>80</td>
-    </tr>
-    <tr>
-      <td>HTTPS</td>
-      <td>443</td>
-      <td>HTTP</td>
-      <td>80</td>
-    </tr>
-    <tr>
-      <td>SSL</td>
-      <td>4443</td>
-      <td>TCP</td>
-      <td>80</td>
-    </tr>
-    </table>
-    <br/>
-    If you require traffic between the load balancer and HAProxy or the Gorouter to be encrypted with TLS, consider that the AWS Classic load balancers do not support recommended TLS cipher suites. See [Securing Traffic into Cloud Foundry](https://docs.pivotal.io/pivotalcf/2-4/adminguide/securing-traffic.html#ciphers) for details.
+1. Under **Select default certificate**, do one of the following:
+    - If you already have a certificate from AWS Certificate Manager (ACM), select **Choose a certicate from ACM**.
+    - If you do not have a certificate from ACM, select **Upload a certificate to ACM**. For more information, see [Importing Certificates into AWS Certificate Manager](https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html) in the AWS documentation.
+
+1. For **Certificate Name**, select the desired certificated.
+
+1. For **Security Policy**, select the policy you created in [Step 3: Create an IAM User for PCF](#create-iam).
+
+1. For **Assign a security group**, enable **Select an existing security group**. From the list of security groups, select the security group `pcf-web-elb-security-group` that you configured in [Step 7: Configure a Security Group for the Web ELB](#pcfaws-om-elbsecgrp).
+
+1. For **Configure Routing**, enter the following values:
+  * **Name**: Enter `pcf-web-elb-target-group`.
+  * **Protocol**: Select **HTTP**
+  * **Path**: Set to `/health`. 
+
+1. For **Advanced health check settings**, enter the following values:
+  * **Port**: Set to `8080`. 
+  * **Interval**: Set to `5` seconds. 
+  * **Timeout**: Set to `3` seconds.
+  * **Unhealthy threshold**: Set to `3`.
+  * **Health threshold**: Set to `6`.
+
+
+
+<!--     <%= image_tag("../common/images/pcfaws/config_elb.png") %> -->
 
 1. Under **Select Subnets**, select the public subnets you configured in [Step 4: Create a VPC](#pcfaws-vpc), and click **Next: Assign Security Groups**.
 
