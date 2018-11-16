@@ -3,15 +3,19 @@
 
 1. (Optional) Select **Yes** to send BOSH Director system logs to a remote server.
 
-1. In the **Address** field, enter the IP address or DNS name for the remote server.
+1. Enter the IP address or DNS name for the remote server in the **Address** field.
 
-1. In the **Port** field, enter the port number that the remote server listens on.
+1. Enter the port number that the remote server listens on in the **Port** field.
 
-1. In the **Transport Protocol** dropdown menu, select **TCP**, **UDP**, or **RELP**. This selection determines which transport protocol is used to send the logs to the remote server.
+1. Select **TCP** or **UDP** from the **Transport Protocol** dropdown. This selection determines which transport protocol is used to send the logs to the remote server.
 
-1. (Optional) Pivotal strongly recommends that you enable TLS encryption when forwarding logs as they may contain sensitive information. For example, these logs may contain cloud provider credentials. To enable TLS, perform the following steps.
-  * In the **Permitted Peer** field, enter either the name or SHA1 fingerprint of the remote peer.
-  * In the **SSL Certificate** field, enter the SSL certificate for the remote server.
+1. (Optional) Select the **Enable TLS** checkbox to send encrypted logs to remote server via TLS. After you select the checkbox, perform the following steps:
+  * Enter either the name or SHA1 fingerprint of the remote peer in the **Permitted Peer** field.
+  * Enter the SSL certificate for the remote server in the **SSL Certificate** field.
+
+  <p class="note"><strong>Note</strong>: Pivotal strongly recommends that you enable TLS encryption when you are forwarding logs. Logs can contain sensitive information, such as cloud provider credentials.</p>
+
+1. (Optional) Enter an integer in the **Queue Size** field. This value specifies the number of log messages held in the buffer. The default value is 100,000.
 
 1. Click **Save**.
 
