@@ -86,6 +86,8 @@ Use the `ops_manager_dns` value from running `terraform output`.
 
 1. (Optional) Select **Enable Post Deploy Scripts** to run a post-deploy script after deployment. This script allows the job to execute additional commands against a deployment.
 
+  <p class="note"><strong>Note:</strong> You must enable post-deploy scripts to install PKS.</p>
+
 1. (Optional) Select **Recreate all VMs** to force BOSH to recreate all VMs on the next deploy. This process does not destroy any persistent disk data.
 
 1. Select **Enable bosh deploy retries** for Ops Manager to retry failed BOSH operations up to five times.
