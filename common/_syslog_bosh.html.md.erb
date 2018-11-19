@@ -3,17 +3,17 @@
      <%= image_tag("../common/images/syslog_bosh.png") %>
 </li>
 <li>(Optional) Select <strong>Yes</strong> to send BOSH Director system logs to a remote server.</li>
-<li>Enter the IP address or DNS name for the remote server in the <strong>Address</strong> field.
+<li>Enter the IP address or DNS name for the remote server in <strong>Address</strong>.
 </li>
-<li>Enter the port number that the remote server listens on in the <strong>Port</strong> field.</li>
+<li>Enter the port number that the remote server listens on in <strong>Port</strong>.</li>
 <li>Select <strong>TCP</strong> or <strong>UDP</strong> from the <strong>Transport Protocol</strong> dropdown. This selection determines which transport protocol is used to send the logs to the remote server.</li>
-<li>(Optional) Select the <strong>Enable TLS</strong> checkbox to send encrypted logs to remote server via TLS. After you select the checkbox, perform the following steps:<br/>
+<li>(Optional) Select the <strong>Enable TLS</strong> checkbox to send encrypted logs to remote server with TLS. After you select the checkbox, perform the following steps:<br/>
 	<ul>
-	  <li>Enter either the name or SHA1 fingerprint of the remote peer in the <strong>Permitted Peer</strong> field.</li>
-	  <li>Enter the SSL certificate for the remote server in the <strong>SSL Certificate</strong> field.</li>
+	  <li>Enter either the name or SHA1 fingerprint of the remote peer in <strong>Permitted Peer</strong>.</li>
+	  <li>Enter the SSL certificate for the remote server in <strong>SSL Certificate</strong>.</li>
 	</ul>
   <p class="note"><strong>Note</strong>: Pivotal strongly recommends that you enable TLS encryption when you are forwarding logs. Logs can contain sensitive information, such as cloud provider credentials.</p>
 </li>
-<li>(Optional) Enter an integer in the <strong>Queue Size</strong> field. This value specifies the number of log messages held in the buffer. The default value is 100,000.</li>
+<li>(Optional) Enter an integer in <strong>Queue Size</strong>. This value specifies the number of log messages held in the buffer. The default value is 100,000.</li>
 <li>Click <strong>Save</strong>.</li>
 </ol>
