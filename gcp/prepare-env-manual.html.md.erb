@@ -84,14 +84,14 @@ Ops Manager manages GCP resources using the Google Compute Engine and Cloud Reso
 1. Select **VPC network**, then **CREATE VPC NETWORK**.
   ![Create VPC Network](../common/images/gcp/gcp-vpc-networks.png)
 
-1. In the **Name** field, enter `MY-PCF-virt-net`.<br>
-     `MY-PCF` is a prefix to help you identify resources for this PCF deployment in the GCP console. 
+1. In the **Name** field, enter `my-pcf-virt-net`.<br>
+     `MY-PCF` is a prefix to help you identify resources for this PCF deployment in the GCP console. Network names must be lower-case.
      ![Enter VPC Name](../common/images/gcp/gcp-vpc-name.png)
   1. Under **Subnets**, complete the form as follows to create an infrastructure subnet for Ops Manager and NAT instances:
       <table>
         <tr>
           <th style="width:25%">Name</th>
-          <td><code>MY-PCF-subnet-infrastructure-MY-GCP-REGION</code></td>
+          <td><code>my-pcf-subnet-infrastructure-my-gcp-region</code></td>
         </tr>
         <tr>
           <th>Region</th>
@@ -110,8 +110,8 @@ Ops Manager manages GCP resources using the Google Compute Engine and Cloud Reso
       <table>
         <tr>
           <th style="width:25%">Name</th>
-          <td><code>MY-PCF-subnet-RUNTIME-MY-GCP-REGION</code><br>
-          Example: <code>MY-PCF-subnet-pas-us-west1</code></td>
+          <td><code>my-pcf-subnet-RUNTIME-my-gcp-region</code><br>
+          Example: <code>my-pcf-subnet-pas-us-west1</code></td>
         </tr>
         <tr>
           <th>Region</th>
@@ -127,8 +127,8 @@ Ops Manager manages GCP resources using the Google Compute Engine and Cloud Reso
       <table>
         <tr>
           <th style="width:25%">Name</th>
-          <td><code>MY-PCF-subnet-services-MY-GCP-REGION</code><br>
-          Example: <code>MY-PCF-subnet-services-us-west1</code></td>
+          <td><code>my-pcf-subnet-services-my-gcp-region</code><br>
+          Example: <code>my-pcf-subnet-services-us-west1</code></td>
         </tr>
         <tr>
           <th>Region</th>
@@ -187,12 +187,12 @@ For more information, see [Reference Architecture for Pivotal Cloud Foundry on G
   ![NAT Networking settings](../common/images/gcp/gcp-nat-network.png) 
     1. In the **Network tags** field, add the following: `nat-traverse` and `MY-PCF-nat-instance`. 
     1. Click on the **Networking** tab and the pencil icon to edit the **Network interface**. 
-    1. For **Network**, select `MY-PCF-virt-net`. You created this network in [Step 1: Create a GCP Network with Subnets](#create-net).
-    1. For **Subnetwork**, select `MY-PCF-subnet-infrastructure-MY-GCP-REGION`.
+    1. For **Network**, select `my-pcf-virt-net`. You created this network in [Step 1: Create a GCP Network with Subnets](#create-net).
+    1. For **Subnetwork**, select `my-pcf-subnet-infrastructure-my-gcp-region`.
     1. For **Primary internal IP**, select `Ephemeral (Custom)`. Enter an IP address, for example, `192.168.101.2`, in the **Custom ephemeral IP address** field. The IP address must meet the following requirements: 
-      - The IP address must exist in the CIDR range you set for the `MY-PCF-subnet-infrastructure-GCP-REGION` subnet. 
-      - The IP address must exist in a reserved IP range set later in BOSH Director. The reserved range is typically the first `.1` through `.9` addresses in the CIDR range you set for the `MY-PCF-subnet-infrastructure-GCP-REGION` subnet. 
-      - The IP address cannot be the same as the Gateway IP address set later in Ops Manager. The Gateway IP address is typically the first `.1` address in the CIDR range you set for the `MY-PCF-subnet-infrastructure-GCP-REGION` subnet.
+      - The IP address must exist in the CIDR range you set for the `MY-PCF-subnet-infrastructure-gcp-region` subnet. 
+      - The IP address must exist in a reserved IP range set later in BOSH Director. The reserved range is typically the first `.1` through `.9` addresses in the CIDR range you set for the `my-pcf-subnet-infrastructure-gcp-region` subnet. 
+      - The IP address cannot be the same as the Gateway IP address set later in Ops Manager. The Gateway IP address is typically the first `.1` address in the CIDR range you set for the `my-pcf-subnet-infrastructure-gcp-region` subnet.
     1. For **External IP**, select `Ephemeral`.
     <p class="note"><strong>Note</strong>: If you select a static external IP address for the NAT instance, then you can use the static IP to further secure access to your CloudSQL instances.</p>
     1. Set **IP forwarding** to `On`. 
@@ -220,7 +220,7 @@ For more information, see [Reference Architecture for Pivotal Cloud Foundry on G
         <td><strong>Internal IP</strong></td>
         <td>
           Select <code>Custom</code> and enter an IP address in the <strong>Internal IP address</strong> field. Example: <code>192.168.101.3</code>.
-          <br><br>As described above, this address must in the CIDR range you set for the <code>MY-PCF-subnet-infrastructure-GCP-REGION</code> subnet, must exist in a reserved IP range set later in BOSH Director, and cannot be the same as the Gateway IP address set later in Ops Manager.
+          <br><br>As described above, this address must in the CIDR range you set for the <code>MY-PCF-subnet-infrastructure-gcp-region</code> subnet, must exist in a reserved IP range set later in BOSH Director, and cannot be the same as the Gateway IP address set later in Ops Manager.
         </td>
       </tr>
       <tr>
@@ -241,7 +241,7 @@ For more information, see [Reference Architecture for Pivotal Cloud Foundry on G
         <td><strong>Internal IP</strong></td>
         <td>
           Select <code>Custom</code> and enter an IP address in the <strong>Internal IP address</strong> field. Example: <code>192.168.101.4</code>.
-          <br><br>As described above, this address must in the CIDR range you set for the <code>MY-PCF-subnet-infrastructure-GCP-REGION</code> subnet, must exist in a reserved IP range set later in BOSH Director, and cannot be the same as the Gateway IP address set later in Ops Manager.
+          <br><br>As described above, this address must in the CIDR range you set for the <code>MY-PCF-subnet-infrastructure-gcp-region</code> subnet, must exist in a reserved IP range set later in BOSH Director, and cannot be the same as the Gateway IP address set later in Ops Manager.
         </td>
       </tr>
     </table>
@@ -255,7 +255,7 @@ For more information, see [Reference Architecture for Pivotal Cloud Foundry on G
 
 1. Complete the form as follows:
   * **Name**: `MY-PCF-nat-pri`
-  * **Network**: `MY-PCF-virt-net`
+  * **Network**: `my-pcf-virt-net`
   * **Destination IP range**: `0.0.0.0/0`
   * **Priority**: `800`
   * **Instance tags**: `MY-PCF`
@@ -299,7 +299,7 @@ This step assigns tags and firewall rules to Ops Manager components and VMs that
             <td>
               This rule allows SSH from public networks.<br><br>
               <strong>Name</strong>: <code>MY-PCF-allow-ssh</code><br>
-              <strong>Network</strong>: <code>MY-PCF-virt-net</code><br>
+              <strong>Network</strong>: <code>my-pcf-virt-net</code><br>
               <strong>Allowed protocols and ports</strong>: <code>tcp:22</code><br>
               <strong>Source filter</strong>: IP ranges<br>
               <strong>Source IP ranges</strong>: <code>0.0.0.0/0</code><br>
@@ -323,7 +323,7 @@ This step assigns tags and firewall rules to Ops Manager components and VMs that
             <td>
               This rule allows HTTPS from public networks.<br><br>
               <strong>Name</strong>: <code>MY-PCF-allow-https</code><br>
-              <strong>Network</strong>: <code>MY-PCF-virt-net</code><br>
+              <strong>Network</strong>: <code>my-pcf-virt-net</code><br>
               <strong>Allowed protocols and ports</strong>: <code>tcp:443</code><br>
               <strong>Source filter</strong>: IP ranges<br>
               <strong>Source IP ranges</strong>: <code>0.0.0.0/0</code><br>
@@ -335,7 +335,7 @@ This step assigns tags and firewall rules to Ops Manager components and VMs that
             <td>
               This rule allows Gorouter health checks.<br><br>
               <strong>Name</strong>: <code>MY-PCF-allow-http-8080</code><br>
-              <strong>Network</strong>: <code>MY-PCF-virt-net</code><br>
+              <strong>Network</strong>: <code>my-pcf-virt-net</code><br>
               <strong>Allowed protocols and ports</strong>: <code>tcp:8080</code><br>
               <strong>Source filter</strong>: IP ranges<br>
               <strong>Source IP Ranges</strong>: <code>0.0.0.0/0</code><br>
@@ -347,7 +347,7 @@ This step assigns tags and firewall rules to Ops Manager components and VMs that
             <td>
               This rule allows communication between BOSH-deployed jobs.<br><br>
               <strong>Name</strong>: <code>MY-PCF-allow-pas-all</code><br>
-              <strong>Network</strong>: <code>MY-PCF-virt-net</code><br>
+              <strong>Network</strong>: <code>my-pcf-virt-net</code><br>
               <strong>Allowed protocols and ports</strong>: <code>tcp;udp;icmp</code><br>
               <strong>Source filter</strong>: Source tags<br>
               <strong>Target tags</strong>: <code>MY-PCF</code>, <code>MY-PCF-opsman</code>, <code>nat-traverse</code><br>
@@ -359,7 +359,7 @@ This step assigns tags and firewall rules to Ops Manager components and VMs that
             <td>
               This rule allows access to the TCP router.<br><br>
               <strong>Name</strong>: <code>MY-PCF-allow-cf-tcp</code><br>
-              <strong>Network</strong>: <code>MY-PCF-virt-net</code><br>
+              <strong>Network</strong>: <code>my-pcf-virt-net</code><br>
               <strong>Source filter</strong>: IP ranges<br>
               <strong>Source IP ranges</strong>: <code>0.0.0.0/0</code><br>
               <strong>Allowed protocols and ports</strong>: <code>tcp:1024-65535</code><br>
@@ -371,7 +371,7 @@ This step assigns tags and firewall rules to Ops Manager components and VMs that
             <td>
               This rule allows access to the SSH proxy.<br><br>
               <strong>Name</strong>: <code>MY-PCF-allow-ssh-proxy</code><br>
-              <strong>Network</strong>: <code>MY-PCF-virt-net</code><br>
+              <strong>Network</strong>: <code>my-pcf-virt-net</code><br>
               <strong>Source filter</strong>: IP ranges<br>
               <strong>Source IP ranges</strong>: <code>0.0.0.0/0</code><br>
               <strong>Allowed protocols and ports</strong>: <code>tcp:2222</code><br>
@@ -476,8 +476,8 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
   * For **Zone**, select the first zone from your region.<br>
     Example: For region `us-west1`, select zone `us-west1-a`.
   * Under **Group type**, select **Unmanaged instance group**. 
-  * For **Network**, select `MY-PCF-virt-net`. 
-  * For **Subnetwork**, select the `MY-PCF-subnet-pas-MY-GCP-REGION` subnet that you created previously.
+  * For **Network**, select `my-pcf-virt-net`. 
+  * For **Subnetwork**, select the `my-pcf-subnet-pas-my-gcp-region` subnet that you created previously.
   * Click **Create**. 
 
 1. Create a second instance group with the following details:
@@ -486,8 +486,8 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
   * **Zone**: Select the second zone from your region.<br>
     Example: For region `us-west1`, select zone `us-west1-b`.
   * **Group type**: Select **Unmanaged instance group**. 
-  * **Network**: Select `MY-PCF-virt-net`. 
-  * **Subnetwork**: Select the `MY-PCF-subnet-pas-MY-GCP-REGION` subnet that you created previously.  
+  * **Network**: Select `my-pcf-virt-net`. 
+  * **Subnetwork**: Select the `my-pcf-subnet-pas-my-gcp-region` subnet that you created previously.  
 
 1. Create a third instance group with the following details:
   * **Name**: `MY-PCF-http-lb`
@@ -495,8 +495,8 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
   * **Zone**: Select the third zone from your region.<br>
     Example: For region `us-west1`, select zone `us-west1-c`.
   * **Group type**: Select **Unmanaged instance group**. 
-  * **Network**: Select `MY-PCF-virt-net`. 
-  * **Subnetwork**: Select the `MY-PCF-subnet-pas-MY-GCP-REGION` subnet that you created previously.
+  * **Network**: Select `my-pcf-virt-net`. 
+  * **Subnetwork**: Select the `my-pcf-subnet-pas-my-gcp-region` subnet that you created previously.
 
 ### <a id='create-health-check'></a> Create Health Check
 
