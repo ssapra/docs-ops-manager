@@ -253,7 +253,7 @@ In this procedure, you create three networks.
 1. Under **Subnets**, complete the following fields:
    * **Azure Network Name**: Enter `PCF/Management`. You can use either the `NETWORK-NAME/SUBNET-NAME` format or the `RESOURCE-GROUP/NETWORK-NAME/SUBNET-NAME` format. If you specify a resource group, it must exist under the same subscription ID you provided in the [Azure Config](#azure-config) page.
      <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
-   * **CIDR**: Enter `10.0.4.0/22`.
+   * **CIDR**: Enter `10.0.4.0/26`.
    * **Reserved IP Ranges**: Enter the first 9 IP addresses of the subnet. For example, `10.0.4.1-10.0.4.9`.
    * **DNS**: Enter `168.63.129.16`.
    * **Gateway**: Enter the first IP address of the subnet. For example, `10.0.4.1`.
