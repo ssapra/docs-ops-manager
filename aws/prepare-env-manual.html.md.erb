@@ -302,7 +302,9 @@ Perform the following steps to create an Amazon Identity and Access Management (
 1. For **VPC**, select the VPC where you want to deploy this Elastic Load Balancer (ELB).
 
 1. Click the **Inbound** tab and add rules to allow traffic to ports `80`, `443`, and `4443` from `0.0.0.0/0`, as the table and image show.
-    <p class="note"><strong>Note:</strong> You can change the <code>0.0.0.0/0</code> to be more restrictive if you want finer control over what can reach the PAS. This security group governs external access to the PAS from applications such as the cf CLI and application URLs.</p>
+    <p class="note"><b>Note</b>: Allow traffic to port `4443` only if you are in an AWS cloud region that does not support AWS ALBs. For example, the GovCloud region. For more information about AWS regoins and availability zones, see <a href="https://aws.amazon.com/about-aws/global-infrastructure/">AWS Global Infrastructure</a>.</p>
+
+    <p class="note"><b>Note</b>: For finer control over what can reach PAS, change <code>0.0.0.0/0</code> to be more restrictive. This security group governs external access to PAS from apps such as the cf CLI and app URLs.</p>
 
     <table border="1" class="nice" >
 <tr>
@@ -559,74 +561,44 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
 
 1. Click **Create Load Balancer**. 
 
-1. Select **Classic Load Balancer**. 
+1. Under **Application Load Balancer**, click **Create**.
 
-1. Configure the load balancer with the following information:
-    * **Load Balancer name**: Enter `pcf-web-elb`.
-    * **Create LB Inside**: Select the `pcf-vpc` VPC that you created in [Step 4: Create a VPC](#pcfaws-vpc).
-    * Ensure that the **Create an internal load balancer** checkbox is not selected.
+1. For **Step 1: Configure Load Balancer**, do the following:
+  1. Under **Basic Configuration**, enter `pcf-web-elb` for **Name**.
+  1. Under **Listeners**, click **Add listener**. For **Load Balancer Protocol**, select **HTTPS**.
+  1. Under **Availability Zones**, select all availability zones.
+  1. Click **Next: Configure Security Settings**.
 
-    <%= image_tag("../common/images/pcfaws/config_elb.png") %>
+1. For **Step 2: Configure Security Settings**, do the following:
+  1. Under **Select default certificate**, do one of the following:
+      - If you already have a certificate from AWS Certificate Manager (ACM), select **Choose a certicate from ACM**.
+      - If you do not have a certificate from ACM, select **Upload a certificate to ACM**. For more information, see [Importing Certificates into AWS Certificate Manager](https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html) in the AWS documentation.
+        <p class="note"><strong>Note:</strong> For a production or production-like environment, use a certificate from a Certificate Authority (CA). This can be an internal certificate or a purchased certificate. For a sandbox environment, you can use a self-signed certificate.</p>
+  1. For **Certificate Name**, select the desired certificate.
+  1. For **Security Policy**, select the policy you created in [Step 3: Create an IAM User for PCF](#create-iam).
+  1. Click **Next: Configure Security Groups**.
 
-1. Under **Listener Configuration**, add the following rules:
+1. For **Step 3: Configure Security Groups**, do the following:
+  1. Under **Assign a security group**, select **Select an existing security group**. 
+  1. From the list of security groups, select the `pcf-web-elb-security-group` security group that you configured in [Step 7: Configure a Security Group for the Web ELB](#pcfaws-om-elbsecgrp).
+  1. Click **Next: Configure Routing**.
 
-    <table border="1" class="nice" >
-    <tr>
-      <th><strong>Load Balancer Protocol</strong></th>
-      <th><strong>Load Balancer Port</strong></th>
-      <th><strong>Instance Protocol</strong></th>
-      <th><strong>Instance Port</strong></th>
-    </tr>
-    <tr>
-      <td>HTTP</td>
-      <td>80</td>
-      <td>HTTP</td>
-      <td>80</td>
-    </tr>
-    <tr>
-      <td>HTTPS</td>
-      <td>443</td>
-      <td>HTTP</td>
-      <td>80</td>
-    </tr>
-    <tr>
-      <td>SSL</td>
-      <td>4443</td>
-      <td>TCP</td>
-      <td>80</td>
-    </tr>
-    </table>
-    <br/>
-    If you require traffic between the load balancer and HAProxy or the Gorouter to be encrypted with TLS, consider that the AWS Classic load balancers do not support recommended TLS cipher suites. See [Securing Traffic into Cloud Foundry](https://docs.pivotal.io/pivotalcf/2-3/adminguide/securing-traffic.html#ciphers) for details.
+1. For **Step 4: Configure Routing**, do the following:
+  1. Under **Target Group**, enter the following values:
+      - **Name**: Enter `pcf-web-elb-target-group`.
+      - **Protocol**: Select **HTTP**.
+  1. Under **Health checks**, set **Path** to `/health`. 
+  1. Under **Advanced health check settings**, enter the following values:
+      - **Port**: Set to `8080`. 
+      - **Interval**: Set to `5` seconds. 
+      - **Timeout**: Set to `3` seconds.
+      - **Unhealthy threshold**: Set to `3`.
+      - **Health threshold**: Set to `6`.
+  1. Click **Next: Register Targets**. 
 
-1. Under **Select Subnets**, select the public subnets you configured in [Step 4: Create a VPC](#pcfaws-vpc), and click **Next: Assign Security Groups**.
+1. For **Step 5: Register Targets**, accept the default values and click **Next: Review**.
 
-1. On the **Assign Security Groups** page, select the security group `pcf-web-elb-security-group` you configured in [Step 7: Configure a Security Group for the Web ELB](#pcfaws-om-elbsecgrp), and click **Next: Configure Security Settings**.
-
-    <%= image_tag("../common/images/pcfaws/lb_assign_sec_groups.png") %>
-
-1. On the **Configure Security Settings** page, select **Upload a new SSL certificate to AWS Identity and Access Management (IAM)**. For a production environment, use a certificate from a Certificate Authority. For a development environment, use a self-signed certificate.
-    <p class="note"><strong>Note:</strong> In this configuration, SSL traffic will be decrypted at the load balancer and then sent to the Gorouter instances in the VPC.</p>
-
-1. On the **Configure Health Check** page, enter the following values:
-  * **Ping Protocol**: Select **HTTP**.
-  * **Ping Port**: Set to `8080`. 
-  * **Ping Path**: Set to `/health`. 
-  * **Interval**: Set to `5` seconds. 
-  * **Response Timeout**: Set to `3` seconds.
-  * **Unhealthy threshold**: Set to `3`.
-  * **Health threshold**: Set to `6`.
-
-1. Click **Next: Add EC2 Instances**.
-
-    <%= image_tag("../common/images/pcfaws/lb_health_check.png") %>
-
-1. Accept the defaults on the **Add EC2 Instances** page and click **Next: Add Tags**.
-
-1. Accept the defaults on the **Add Tags** page and click **Review and Create**.
-
-1. Review and confirm the load balancer details, and click **Create**.
-
+1. For **Step 6: Review**, review the load balancer details and then click **Create**. A message appears to confirm AWS successfully created the load balancer.
 
 ## <a id='pcfaws-ssh-lb'></a> Step 14: Create SSH Load Balancer
 
