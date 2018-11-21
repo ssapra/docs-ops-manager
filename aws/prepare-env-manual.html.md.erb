@@ -302,7 +302,9 @@ Perform the following steps to create an Amazon Identity and Access Management (
 1. For **VPC**, select the VPC where you want to deploy this Elastic Load Balancer (ELB).
 
 1. Click the **Inbound** tab and add rules to allow traffic to ports `80`, `443`, and `4443` from `0.0.0.0/0`, as the table and image show.
-    <p class="note"><strong>Note:</strong> You can change the <code>0.0.0.0/0</code> to be more restrictive if you want finer control over what can reach the PAS. This security group governs external access to the PAS from applications such as the cf CLI and application URLs.</p>
+    <p class="note"><b>Note</b>: Allow traffic to port `4443` only if you are in an AWS cloud region that does not support AWS ALBs. For example, the GovCloud region. For more information about AWS regoins and availability zones, see <a href="https://aws.amazon.com/about-aws/global-infrastructure/">AWS Global Infrastructure</a>.</p>
+
+    <p class="note"><strong>Note:</strong> For finer control over what can reach PAS, change <code>0.0.0.0/0</code> to be more restrictive. This security group governs external access to PAS from apps such as the cf CLI and app URLs.</p>
 
     <table border="1" class="nice" >
 <tr>
@@ -571,7 +573,7 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
   1. Under **Select default certificate**, do one of the following:
       - If you already have a certificate from AWS Certificate Manager (ACM), select **Choose a certicate from ACM**.
       - If you do not have a certificate from ACM, select **Upload a certificate to ACM**. For more information, see [Importing Certificates into AWS Certificate Manager](https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html) in the AWS documentation.
-        <p class="note"><strong>Note:</strong> For a production environment, use a certificate from a Certificate Authority. For a development environment, use a self-signed certificate.</p>
+        <p class="note"><strong>Note:</strong> For a production or production-like environment, use a certificate from a Certificate Authority (CA). This can be an internal certificate or a purchased certificate. For a sandbox environment, you can use a self-signed certificate.</p>
   1. For **Certificate Name**, select the desired certificate.
   1. For **Security Policy**, select the policy you created in [Step 3: Create an IAM User for PCF](#create-iam).
   1. Click **Next: Configure Security Groups**.
