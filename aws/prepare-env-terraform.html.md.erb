@@ -177,21 +177,21 @@ Follow these steps to use the Terraform CLI to create resources on AWS:
 
 1. From the directory that contains the Terraform files, run `terraform init` to initialize the directory based on the information you specified in the `terraform.tfvars` file. 
   
-  ```
-  terraform init
-  ```
+    ```
+    terraform init
+    ```
 
 1. Run `terraform plan -out=plan` to create the execution plan for Terraform.
   
-  ```
-  terraform plan -out=plan
-  ```
+    ```
+    terraform plan -out=plan
+    ```
 
 1. Run `terraform apply plan` to execute the plan from the previous step. It may take several minutes for Terraform to create all the resources in AWS. 
-  
-  ```
-  terraform apply plan
-  ```
+    
+    ```
+    terraform apply plan
+    ```
 
 
 ## <a id="dns"></a> Step 4: Create DNS Record
