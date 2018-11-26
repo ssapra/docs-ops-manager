@@ -40,11 +40,14 @@ Before you can run Terraform commands to create infrastructure resources, you mu
 1. Extract the contents of the zip file. Move the folder for your runtime, `terraforming-pas` or
 `terraforming-pks`, to the `workspace` directory on your local machine.
 
-1. On the command line, navigate to the folder.
-  <pre class="terminal">$ cd ~/workspace/TERRAFORMING-AWS-FOLDER</pre>
+1. On the command line, navigate to the folder. For example:
+  <pre class="terminal">$ cd ~/workspace/pivotal-cf-terraforming-aws</pre>
 
-1. Create a new file named `terraform.tfvars`.
-  <pre class="terminal">$ touch terraform.tfvars</pre>
+1. Create a new file named `terraform.tfvars` with the following command:
+  
+  ```
+  touch terraform.tfvars</pre>
+  ```
 
 1. Open the `terraform.tfvars` file and copy in the following contents:
 
@@ -173,13 +176,22 @@ ISO_SEG_SSL_KEY
 Follow these steps to use the Terraform CLI to create resources on AWS:
 
 1. From the directory that contains the Terraform files, run `terraform init` to initialize the directory based on the information you specified in the `terraform.tfvars` file. 
-  <pre class="terminal">$ terraform init</pre>
+  
+  ```
+  terraform init
+  ```
 
 1. Run `terraform plan -out=plan` to create the execution plan for Terraform.
-  <pre class="terminal">$ terraform plan -out=plan</pre>
+  
+  ```
+  terraform plan -out=plan
+  ```
 
 1. Run `terraform apply plan` to execute the plan from the previous step. It may take several minutes for Terraform to create all the resources in AWS. 
-  <pre class="terminal">$ terraform apply plan</pre>
+  
+  ```
+  terraform apply plan
+  ```
 
 
 ## <a id="dns"></a> Step 4: Create DNS Record
