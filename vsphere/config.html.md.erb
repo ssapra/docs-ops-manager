@@ -178,13 +178,17 @@ Pivotal recommends that you use at least three AZs for a highly available instal
 
 <%= partial "../common/security-pane" %>
 
-## <a id='syslog'></a> Step 8: Syslog Page
+## <a id="bosh-dns"></a> Step 8: BOSH DNS Config Page
+
+<%= partial '../common/bosh-dns-config'  %>
+
+## <a id='syslog'></a> Step 9: Syslog Page
 
 <p class="note"><strong>Note:</strong> BOSH Director logs contain sensitive information that should be considered privileged. For example, these logs may contain cloud provider credentials. If you choose to forward logs to an external syslog endpoint, use TLS encryption to prevent information from being intercepted by a third party.</p>
 
 <%= partial '../common/syslog_bosh' %>
 
-## <a id='resource-config'></a> Step 9: Resource Config Page
+## <a id='resource-config'></a> Step 10: Resource Config Page
 
 1. Select **Resource Config**.
 
@@ -197,7 +201,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
 1. Click **Save**.
 
 
-## <a id="custom-vm-extensions"></a> Step 10: (Optional) Add Custom VM Extensions
+## <a id="custom-vm-extensions"></a> Step 11: (Optional) Add Custom VM Extensions
 
 <%= partial "../common/vm-extension-config"  %>
 
