@@ -7,16 +7,31 @@ This guide describes the preparation steps required to install Pivotal Cloud Fou
 
 In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-4/customizing/gcp.html) topic, you must create resources in GCP such as a new network, firewall rules, load balancers, and a service account before deploying PCF. Follow these procedures to prepare your GCP environment.
 
+The [Configuration and Components](#config-components) section outlines high-level infrastructure options for PCF on GCP. For more information, review the deployment options and recommendations in [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-4/refarch/gcp/gcp_ref_arch.html).
+
+## <a id="config-components"></a>Configuration and Components
+
+You can deploy PCF in one of two main configurations on a GCP virtual private cloud (VPC):
+
+  * A _single-project_ configuration that gives PCF full access to VPC resources
+  * A _shared VPC_ configuration in which PCF shares VPC resources
+
+See [Shared vs Single-Project VPCs](../../refarch/gcp/gcp_ref_arch.html#shared-vs-single) in the _Reference Architecture for Pivotal Cloud Foundry on GCP_ topic for a full discussion and recommendations.
+
 When deploying PCF on GCP, Pivotal recommends using the following GCP components:
 
   * [Google Cloud SQL](https://cloud.google.com/sql/docs/) for external Pivotal Application Service (PAS) database services
   * [NAT Gateway Instances](https://cloud.google.com/solutions/connecting-securely#natgateway) to limit the number of virtual machines (VMs) with public IP addresses
   * [Google Cloud Storage](https://cloud.google.com/storage/) for external filestorage in PAS
 
-For more information, review the different deployment options and recommendations in [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-4/refarch/gcp/gcp_ref_arch.html).
 
+## <a id="iam_account"></a> Step 1: Set up IAM Service Accounts
 
-## <a id="iam_account"></a> Step 1: Set up an IAM Service Account
+PCF uses IAM service accounts to access GCP resources.
+
+**For a single-project installation**: Complete the following steps to create a service account for PCF.
+
+**For a shared-VPC installation**: Complete the following steps twice, to create a host account and service account for PCF.
 
 1. From the GCP Console, select **IAM & Admin**, then **Service accounts**.
 
@@ -47,7 +62,9 @@ Ops Manager manages GCP resources using the Google Compute Engine and Cloud Reso
 
 1. Log in to the Google Developers console at [https://console.developers.google.com](https://console.developers.google.com).
 
-1. In the console, navigate to the GCP project where you want to install PCF.
+1. In the console, navigate to the GCP projects where you want to install PCF.
+  - For a single-project installation, complete the following steps for the PCF project.
+  - For a shared-VPC installation, complete the following steps for both host and service projects, to enable them to access the Google Cloud API.
 
 1. Select **API Manager > Library**.
 
@@ -68,8 +85,9 @@ Ops Manager manages GCP resources using the Google Compute Engine and Cloud Reso
   1. List your projects:
     <pre class="terminal">
     $ gcloud projects list
-    PROJECT\_ID       NAME                 PROJECT\_NUMBER
-    my-project-id    my-project-name      ##############
+    PROJECT\_ID              NAME                      PROJECT\_NUMBER
+    my-host-project-id      my-host-project-name      ##############
+    my-service-project-id   my-service-project-name   ##############
     </pre>
     
     This command lists the projects where you enabled Google Cloud APIs.
@@ -79,7 +97,7 @@ Ops Manager manages GCP resources using the Google Compute Engine and Cloud Reso
 
 1. Log in to the [GCP Console](https://console.cloud.google.com/).
  
-1. Navigate to the GCP project where you want to install PCF. 
+1. Navigate to the GCP project where you want to install PCF. For a shared-VPC installation, navigate to the host project.
 
 1. Select **VPC network**, then **CREATE VPC NETWORK**.
   ![Create VPC Network](../common/images/gcp/gcp-vpc-networks.png)
@@ -157,7 +175,7 @@ You might, for example, need this Internet access for pulling Docker images or e
 
 For more information, see [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-4/refarch/gcp/gcp_ref_arch.html#common_network) and [GCP documentation](https://cloud.google.com/solutions/connecting-securely#natgateway).
 
-1. In the console, navigate to **Compute Engine** > **VM instances**. 
+1. In the GCP console, with your single project or shared-VPC host project selected, navigate to **Compute Engine** > **VM instances**. 
   ![Compute Instance](../common/images/gcp/gcp-vm-instances.png)
 
 1. Click **CREATE INSTANCE**. 
@@ -248,7 +266,7 @@ For more information, see [Reference Architecture for Pivotal Cloud Foundry on G
 
 ### <a id="nat-routes"></a> Create Routes for NAT Instances
 
-1. In the GCP console, navigate to **VPC Networks** > **Routes**. 
+1. Navigate to **VPC Networks** > **Routes**.  
   ![NAT Routes](../common/images/gcp/gcp-vpc-routes.png)
 
 1. Click **CREATE ROUTE**. 
@@ -288,7 +306,7 @@ For more information, see [Reference Architecture for Pivotal Cloud Foundry on G
 GCP lets you assign tags to VM instances and create firewall rules that apply to VMs based on their tags. For more information about tags, see [Labeling Resources](https://cloud.google.com/compute/docs/labeling-resources) in the Google Cloud documentation.
 This step assigns tags and firewall rules to Ops Manager components and VMs that handle incoming traffic.
 
-1. In the **Networking** > **VPC network** pane, select **Firewall rules**.
+1. With your single project or shared-VPC host project selected, navigate to the **Networking** > **VPC network** pane and select **Firewall rules**.
 
 1. Apply the firewall rules in the following table:
        <table>
@@ -398,6 +416,8 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
 
 ### <a id='create-dbs-instance'></a> Create Database Instance  
 
+1. For a shared-VPC installation, select the service project in the GCP console. This step and the following steps allocate resources to the service project, not the host project.
+
 1. From the GCP Console, select **SQL** and click **CREATE INSTANCE**. 
 
 1. Ensure **MySQL** is selected and click **Next**. 
@@ -424,7 +444,7 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
 
 ### <a id='create-dbs'></a> Create Databases
 
-1. From the **Instances** page, select the database instance you just created. 
+1. Navigate to the **Instances** page and select the database instance you just created. 
 
 1. Select the **Databases** tab. 
 
@@ -453,7 +473,7 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
 
 ## <a id="buckets"></a> Step 7: Create Storage Buckets
 
-1. From the GCP Console, select **Storage** > **Browser**.
+1. With your single project or shared-VPC service project selected in the GCP console, select **Storage** > **Browser**.
 
 1. Using **CREATE BUCKET**, create buckets with the following names. For **Default storage class**, select **Multi-Regional**:
   * `MY-PCF-buildpacks`
@@ -461,10 +481,47 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
   * `MY-PCF-packages`
   * `MY-PCF-resources`
 
-    
-## <a id="http_loadbalancers"></a> Step 8: Create HTTP Load Balancer
 
-### <a id='create-instance-group'></a> Create Instance Group
+## <a id="loadbalancer"></a> Create HTTP Load Balancer
+
+For load balancing, you can use a global HTTP load balancer or an internal, regional load balancer with a private IP address.
+
+Single-project, standalone installations typically use a global HTTP load balancer. See [Create HTTP Load Balancer](#http_loadbalancer) for how to set this up.
+
+Shared-VPC installation typically use an internal TCP/UDP load balancer to minimize public IP addresses. See [Create Internal Load Balancer](#internal_loadbalancer) for how to set this up.
+
+### <a id="internal_loadbalancer"></a> Create Internal Load Balancer
+
+To create an internal load balancer for PCF on GCP, do the following.
+
+1. Create an internal-facing TCP/UDP load balancer for each region that you are deploying PCF to.
+<p class="note"><strong>Note</strong>: GCP Internal Load Balancer (iLB) is a regional product. Within the same VPC/network, client VMs in a different region from the iLB cannot access the iLB. See <a href="https://cloud.google.com/load-balancing/docs/internal/setting-up-internal#global_routing_issue">Global Routing Issue</a> in the Google Cloud <em>Setting Up Internal Load Balancing</em> documentation.</p>
+
+1. Assign private IP addresses to the load balancers.
+
+1. After you have deployed Ops Manager, follow instructions in [Create or Update a VM Extension](./custom-vm-extensions.html#create-vm-extension) to add a custom VM extension that applies internal load balancing to all VMs deployed by BOSH.  
+  - For example, the following manifest code adds a VM extension `backend-pool` to PCF VMs:
+
+    ```
+vm_extensions:
+- name: backend-pool
+  cloud_properties:
+    ephemeral_external_ip: true
+    backend_service:
+      name: name-of-backend-service
+      scheme: INTERNAL
+    ```
+
+### <a id="http_loadbalancer"></a> Create HTTP Load Balancer
+
+To create a global HTTP load balancer PCF on GCP, do the following:
+
+1. [Create Instance Group](#create-instance-group)
+1. [Create Health Check](#create-health-check)
+1. [Configure Back End](#config-backend)
+1. [Configure Front End](#config-frontend)
+
+#### <a id='create-instance-group'></a> Create Instance Group
 
 1. Navigate to **Compute Engine** > **Instance groups**. 
 
@@ -498,7 +555,7 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
   * **Network**: Select `my-pcf-virt-net`. 
   * **Subnetwork**: Select the `my-pcf-subnet-pas-my-gcp-region` subnet that you created previously.
 
-### <a id='create-health-check'></a> Create Health Check
+#### <a id='create-health-check'></a> Create Health Check
 
 1. Navigate to **Compute Engine** > **Health checks**. 
 
@@ -515,7 +572,7 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
 
 1. Click **Create**. 
 
-### <a id='config-backend'></a> Configure Back End
+#### <a id='config-backend'></a> Configure Back End
 
 1. Navigate to **Network services** > **Load balancing**. 
 
@@ -540,7 +597,7 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
  
  1. Click **Create**. 
 
-### <a id='config-frontend'></a> Configure Front End
+#### <a id='config-frontend'></a> Configure Front End
 
 1. Click **Host and path rules** to populate the default fields and a green check mark.
 
