@@ -149,21 +149,6 @@ after a failed deployment for troubleshooting purposes.
     <%= image_tag("../common/images/director_workers.png") %>
 
 
-
-<%# **Excluded Recursors** field, differentiated by IaaS %>
-
-<%# For GCP: %>
-<% if current_page.data.iaas == "GCP" %>
-1. Enter your list of comma-separated Excluded Recursors to declare which IP addresses and ports should not be used by the DNS server, this should minimally include the IP of the Metadata Server (169.254.169.254). Adding this IP is required to avoid name resolution issues with Bosh DNS.
-
-<%# For all other IaaSes: %>
-<% else %>
-1. (Optional) Enter your list of comma-separated Excluded Recursors to declare which IP addresses and ports should not be used by the DNS server.
-<% end %>
-
-
-
-
 1. (Optional) To set a custom banner that users see when logging in to the Director using SSH, enter text in the **Custom SSH Banner** field.
     
 
