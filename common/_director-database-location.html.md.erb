@@ -25,7 +25,7 @@ In addition, if you selected **External MySQL Database**, you can fill out the f
     * **TLS Private Key:** Enter the client private key for mutual TLS connections to the database.
     <p class='note'><strong>Note:</strong> You must select <strong>Enable TLS for Director Database</strong> to configure
     the TLS-related fields.</p>
-
+    * **Advanced DB Connection Options:** If you would like to provide additional options for the database, use this field to provide a JSON-formatted options string.
 
 
 <%# For GCP Manual config topic only: %>
@@ -41,8 +41,7 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
     * **TLS CA:** Enter the Certificate Authority for the TLS Certificate.
     * **TLS Certificate:** Enter the client certificate for mutual TLS connections to the database.
     * **TLS Private Key:** Enter the client private key for mutual TLS connections to the database.
-
-
+    * **Advanced DB Connection Options:** If you would like to provide additional options for the database, use this field to provide a JSON-formatted options string.
 
 <%# For AWS Terraform config topic only: %>
 <% elsif current_page.data.iaas == "AWS" and current_page.data.install_type == "terraform" %>
@@ -57,6 +56,7 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
     * **TLS CA:** Enter the Certificate Authority for the TLS Certificate.
     * **TLS Certificate:** Enter the client certificate for mutual TLS connections to the database.
     * **TLS Private Key:** Enter the client private key for mutual TLS connections to the database.
+    * **Advanced DB Connection Options:** If you would like to provide additional options for the database, use this field to provide a JSON-formatted options string.
 
 
 <%# For AWS Manual config topic only: %>
@@ -94,13 +94,12 @@ For **Database Location**, select **External MySQL Database** and complete the f
     * **TLS CA:** Enter the Certificate Authority for the TLS Certificate.
     * **TLS Certificate:** Enter the client certificate for mutual TLS connections to the database.
     * **TLS Private Key:** Enter the client private key for mutual TLS connections to the database.
+    * **Advanced DB Connection Options:** If you would like to provide additional options for the database, use this field to provide a JSON-formatted options string.
 
 
 <%# For Azure Terraform topic only: %>
 <% elsif current_page.data.iaas == "Azure" and current_page.data.install_type == "terraform" %>
 For **Database Location**, select **Internal**.
-
-
 
 
 <%# For all other IaaSes such as OpenStack, vSphere and manual Azure: %>
@@ -114,5 +113,6 @@ obtained from your external MySQL Database provider: **Host**, **Port**, **Usern
     * **TLS CA:** Enter the Certificate Authority for the TLS Certificate.
     * **TLS Certificate:** Enter the client certificate for mutual TLS connections to the database.
     * **TLS Private Key:** Enter the client private key for mutual TLS connections to the database.
+    * **Advanced DB Connection Options:** If you would like to provide additional options for the database, use this field to provide a JSON-formatted options string.
 
 <% end %>
