@@ -50,6 +50,7 @@ For more information about the runtimes you can deploy for PCF, see [Installing 
     client_secret         = "YOUR-CLIENT-SECRET"
 
     env_name              = "YOUR-ENVIRONMENT-NAME"
+    env_short_name        = "YOUR-ENVIRONMENT-SHORTNAME"
     location              = "YOUR-AZURE-LOCATION"
     ops_manager_image_uri = "YOUR-OPS-MAN-IMAGE-URI"
     dns_suffix            = "YOUR-DNS-SUFFIX"
@@ -79,8 +80,16 @@ For more information about the runtimes you can deploy for PCF, see [Installing 
       <td>Enter your Azure service client secret. Terraform requires this secret to create resources.</td>
     </tr>
     <tr>
+     <td><code>YOUR-CLIENT-SECRET</code></td>
+      <td>Enter your Azure service client secret. Terraform requires this secret to create resources.</td>
+    </tr>
+    <tr>
       <td><code>YOUR-ENVIRONMENT-NAME</code></td>
       <td>Enter a name to use to identify resources in Azure. Terraform prepends the names of the resources it creates with this environment name. Example: <code>pcf</code>.</td>
+    </tr>
+    <tr>
+      <td><code>YOUR-ENVIRONMENT-SHORTNAME</code></td>
+      <td>Enter a name to use when creating storage accounts in Azure. Must be a-z only and no longer than 10 characters. Example: <code>myazure</code>.</td>
     </tr>
     <tr>
       <td><code>YOUR-AZURE-LOCATION</code></td>
