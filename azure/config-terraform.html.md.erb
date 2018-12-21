@@ -68,8 +68,14 @@ To complete the procedures in this topic, you must have access to the output fro
 	* **Resource Group Name**: Enter the name of your resource group, which is exported from Terraform as the output `pcf_resource_group_name`.
 	* **BOSH Storage Account Name**: Enter the name of your storage account, which is exported from Terraform as the output `bosh_root_storage_account`.
 
-1. For **Cloud Storage Type**, select **Use Storage Accounts** and enter the `wildcard_vm_storage_account` output from Terraform.
-        <%= image_tag("../common/images/azure/storage-accounts.png") %>
+1. For **Cloud Storage Type**, select **Use Managed Disks**. For **Storage Account Type**,
+ select **Premium_LRS** which corresponds to SSD-based storage. 
+ See [Azure Managed Disks Overview](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview) in the Microsoft documentation for more information. 
+        <%= image_tag("../common/images/azure/azure-managed-disk.png") %>
+
+    <p class="note warning"><strong>WARNING</strong>: You can update your deployment from using storage accounts to using managed disks. 
+      However, after you select <strong>Use Managed Disks</strong> and deploy Ops Manager, you cannot change your 
+      deployment back to use storage accounts.</p>
 
 1. For **Default Security Group**, enter the `bosh_deployed_vms_security_group_name` output from Terraform.
 
