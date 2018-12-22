@@ -128,6 +128,10 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 	* **Use Storage Accounts**: Select this option if you use storage accounts to store your Azure VMs. Enter the base storage name that you used to create your deployment storage accounts, prepended and appended with the wildcard character `*`. For example, if you created accounts named  `xyzdeploymentstorage1`, `xyzdeploymentstorage2`, and `xyzdeploymentstorage3`, enter `*deploymentstorage*`. Ops Manager requires that you specify an asterisk at both the beginning and the end of the base storage account name.
         <%= image_tag("../common/images/azure/storage-accounts.png") %>
 
+    <p class="note warning"><strong>WARNING</strong>: You can update your deployment from using storage accounts to using managed disks. 
+      However, after you select <strong>Use Managed Disks</strong> and deploy Ops Manager, you cannot change your 
+      deployment back to use storage accounts.</p>
+
 1. (Optional) Enter your **Default Security Group**. For more information about Network Security Groups, see [Filter network traffic with network security groups](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-nsg) in Microsoft Azure's documentation.
     <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
 
