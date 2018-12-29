@@ -6,8 +6,7 @@ owner: Ops Manager
 <strong><%= modified_date %></strong>
 <html class="list-style-none"></html>
 
-This topic describes how to prepare to deploy Pivotal Cloud Foundry (PCF) on Azure by
-creating a service principal to access resources in your Azure subscription.
+This topic describes how to prepare to deploy Pivotal Cloud Foundry (PCF) on Azure.
 
 ##<a id="install"></a> Step 1: Install and Configure the Azure CLI
 
@@ -37,7 +36,7 @@ Microsoft Azure documentation.
     </pre>
 
     <p class="note"><strong>Note</strong>: For more information about installing PCF in the China
-    Region, see <a href="https://docs.pivotal.io/pivotalcf/2-3/customizing/offline_installation.html#install_china">Install in the China Region</a>
+    Region, see <a href="https://docs.pivotal.io/pivotalcf/customizing/offline_installation.html#install_china">Install in the China Region</a>
     in <em>Installing PCF in Airgapped Environments</em> in the Pivotal documentation.</p>
 
 1. To log in, run the following command:
@@ -51,7 +50,7 @@ Microsoft Azure documentation.
 
 ##<a id="default-subscription"></a> Step 2: Set Your Default Subscription
 
-1. To list your Azure subscriptions,  run the following command:
+1. To list your Azure subscriptions, run the following command:
 
     ```
     az account list
@@ -206,8 +205,7 @@ the Contributor role on your service principal, run the following command:
     </pre>
     <p class="note"><strong>Note:</strong> If you need to use multiple resource groups for your PCF
     deployment on Azure, you can define custom roles for your Service Principal. These roles allow
-    BOSH to deploy PCF to pre-existing network resources outside of the PCF resource group. For
-    more information, see <a href="https://docs.pivotal.io/pivotalcf/refarch/azure/azure_ref_arch.html#multiple_resource_groups">Multiple Resource Group Deployment</a> in <em>Reference Architecture for Pivotal Cloud Foundry on Azure</em> in the Pivotal documentation.</p>
+    BOSH to deploy PCF to pre-existing network resources outside of the PCF resource group.</p>
 
     For more information about Azure Role-Based Access Control, refer to <a href="https://azure.microsoft.com/en-us/documentation/articles/role-based-access-built-in-roles/">Built-in roles for Azure resource</a> the Microsoft Azure documentation.
 
@@ -301,4 +299,5 @@ again.
 ##<a id='next-steps'></a> Next Steps
 
 After you complete this procedure, follow the instructions in
-[Deploying BOSH and Ops Manager to Azure Manually](deploy-manual.html).
+[Preparing to Deploy PCF on Azure using Terraform](./prepare-env-terraform.html)
+in the Pivotal documentation.
