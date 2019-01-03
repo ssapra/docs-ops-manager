@@ -11,7 +11,6 @@ The Terraform template for PCF on AWS describes a set of AWS resources and prope
 
 You may also find it helpful to review different deployment options in the [Reference Architecture for Pivotal Cloud Foundry on AWS](https://docs.pivotal.io/pivotalcf/2-3/refarch/aws/aws_ref_arch.html).
 
-
 ## <a id="prereqs"></a> Prerequisites
 
 In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cloud Foundry on AWS](https://docs.pivotal.io/pivotalcf/2-3/customizing/aws.html) topic, ensure you have the following: 
@@ -27,29 +26,33 @@ In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cl
   * AWSKeyManagementServicePowerUser
 
 
-## <a id="download"></a> Step 1: Download and Edit the Terraform Variables File
+## <a id="download"></a> Step 1: Download Templates and Edit Variables File
 
-Before you can run Terraform commands to create infrastructure resources, you must fill out a template variables file.
+Before you can run Terraform commands to provision infrastructure resources,
+you must download the AWS Terraform Templates and create a Terraform template variables
+file as described below:
 
-1. In a browser, navigate to [Pivotal Network](https://network.pivotal.io) and log in.
+1. On [Pivotal Network](https://network.pivotal.io), navigate to the Pivotal Application Service (PAS) release.
 
-1. Select **Pivotal Application Service**
+1. Download the AWS Terraform Templates ZIP file. You can use the templates to deploy PAS or Pivotal
+Container Service (PKS).
 
-1. Download the **AWS Terraform Templates** zip file.
+1. Extract the contents of the ZIP file.
 
-1. Extract the contents of the zip file. Move the folder for your runtime, `terraforming-pas` or
-`terraforming-pks`, to the `workspace` directory on your local machine.
+1. Move the extracted folder to the `workspace` directory on your local machine.
 
-1. On the command line, navigate to the folder. For example:
-  <pre class="terminal">$ cd ~/workspace/pivotal-cf-terraforming-aws</pre>
+1. On the command line, navigate to the directory. For example:
 
-1. Create a new file named `terraform.tfvars` with the following command:
-  
-    ```
-    touch terraform.tfvars
-    ```
+    <pre class="terminal">
+    $ cd ~/workspace/pivotal-cf-terraforming-aws
+    </pre>
 
-1. Open the `terraform.tfvars` file and copy in the following contents:
+1. Navigate to the `terraforming-pas` or `terraforming-pks` directory that contains the Terraform files
+for your runtime.
+
+1. In the runtime directory, create a text file named `terraform.tfvars`.
+
+1. Open the `terraform.tfvars` file and add the following:
 
     ```
     env_name           = "YOUR-ENVIRONMENT-NAME"
@@ -74,7 +77,7 @@ Before you can run Terraform commands to create infrastructure resources, you mu
 
     ```
 
-1. Edit the values in the file according to the table below:
+1. Edit the values in the file according to the table below.
   <table>
     <tr>
       <th style="width: 35%">Value to replace</th>
