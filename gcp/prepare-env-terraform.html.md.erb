@@ -42,25 +42,31 @@ To use the Terraform templates to create the necessary infrastructure resources 
   1. Bind the service account to your project and give it the owner role:
     <pre class="terminal">$ gcloud projects add-iam-policy-binding PROJECT&#95;ID --member 'serviceAccount&#58;some-account-name@PROJECT&#95;ID.iam.gserviceaccount.com' --role 'roles/owner'</pre>  
 
-## <a id="download"></a>Step 2: Download and Edit the Terraform Variables File ##
+## <a id="download"></a>Step 2: Download Templates and Edit Variables File ##
 
-Before you can run Terraform commands to create infrastructure resources, you must fill out a template variables file. 
+Before you can run Terraform commands to provision infrastructure resources,
+you must download the GCP Terraform Templates and create a Terraform template variables
+file as described below:
 
-1. Navigate to the runtime release on [Pivotal Network](https://network.pivotal.io). For more information about the runtimes you can deploy for PCF, see [Installing Runtimes](https://docs.pivotal.io/pivotalcf/2-1/customizing/runtimes.html).
+1. On [Pivotal Network](https://network.pivotal.io), navigate to the Pivotal Application Service (PAS) release.
 
-1. Select *Pivotal Application Service*. The Pivotal Application Service page opens.
+1. Download the GCP Terraform ZIP file.
 
-1. Download the GCP Terraform zip file. 
+1. Extract the contents of the ZIP file.
 
-1. Extract the contents of the zip file and move the folder to the `workspace` directory on your local machine.  
+1. Move the extracted folder to the `workspace` directory on your local machine.
 
-1. From a terminal window, navigate to the folder:
-  <pre class="terminal">$ cd ~/workspace/TERRAFORMING-GCP-FOLDER</pre>
+1. On the command line, navigate to the directory. For example:
 
-1. Create a new file named `terraform.tfvars`:
-  <pre class="terminal">$ touch terraform.tfvars</pre>
+    <pre class="terminal">
+    $ cd ~/workspace/pivotal-cf-terraforming-gcp
+    </pre>
 
-1. Open the `terraform.tfvars` file and paste in the following contents:
+1. Navigate to the directory that contains the Terraform files for your runtime.
+
+1. In the runtime directory, create a text file named `terraform.tfvars`.
+
+1. Open the `terraform.tfvars` file and add the following:
 
     <p class="note"><strong>Note: </strong>Ensure that you insert a new line at the end of the file.</p>
 
@@ -90,7 +96,7 @@ Before you can run Terraform commands to create infrastructure resources, you mu
     
     ```
 
-1. Edit the values in the file according to the table below:
+1. Edit the values in the file according to the table below.
   <table>
     <tr>
       <th style="width: 35%">Value to replace</th>
