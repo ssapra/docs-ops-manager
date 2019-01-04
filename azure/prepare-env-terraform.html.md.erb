@@ -56,6 +56,7 @@ the Terraform files for your runtime.
     client_secret         = "YOUR-CLIENT-SECRET"
 
     env_name              = "YOUR-ENVIRONMENT-NAME"
+    env_short_name        = "YOUR-ENVIRONMENT-SHORTNAME"
     location              = "YOUR-AZURE-LOCATION"
     ops_manager_image_uri = "YOUR-OPS-MAN-IMAGE-URI"
     dns_suffix            = "YOUR-DNS-SUFFIX"
@@ -88,6 +89,10 @@ the Terraform files for your runtime.
       <td><code>YOUR-ENVIRONMENT-NAME</code></td>
       <td>Enter a name to use to identify resources in Azure. Terraform prepends the names of the resources it creates with this environment name. This environment variable is also used to name the Azure resource group created for the deployment. Example: <code>mypcf</code>.
       </td>
+    </tr>
+    <tr>
+      <td><code>YOUR-ENVIRONMENT-SHORTNAME</code></td>
+      <td>Enter a name to use when creating storage accounts in Azure. Must be a-z only and no longer than 10 characters. Example: <code>myazure</code>.</td>
     </tr>
     <tr>
       <td><code>YOUR-AZURE-LOCATION</code></td>
