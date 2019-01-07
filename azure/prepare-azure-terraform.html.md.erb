@@ -21,14 +21,14 @@ Microsoft Azure documentation.
     ```
     Where `CLOUD-NAME` is one of the following values. Use the value that corresponds to the Azure
     environment on which you are installing PCF:
-    - **Azure**: `AzureCloud`
+    - **Azure**: `AzureCloud`.
     - **Azure China**: `AzureChinaCloud`. If logging in to <code>AzureChinaCloud</code> fails with
       a `CERT_UNTRUSTED`, use the latest version of node, 4.x or later. For more information about
       this error, see
       [Failed to login AzureChinaCloud](https://github.com/Azure/azure-xplat-cli/issues/2725) in
       the Azure/azure-xplat-cli GitHub repository.
     - **Azure Government Cloud**: `AzureUSGovernment`.
-    - **Azure Germany**: `AzureGermanCloud`
+    - **Azure Germany**: `AzureGermanCloud`.
 
     For example:
     <pre class="terminal">
@@ -131,10 +131,10 @@ account to log in to your Azure subscription.
     --identifier-uris "http<span>:</span>//BOSHAzureCPI"
     </pre>
     <p class="note"><strong>Note</strong>: You can provide any string for the
-    <code>home-page</code> and <code>identifier-uris</code> flags, but the value of
+    <code>homepage</code> and <code>identifier-uris</code> flags, but the value of
     <code>identifer-uris</code> must be unique within the organization associated with your Azure
-    subscription. For the <code>home-page</code>, Pivotal recommends using
-    <code><span>http:</span>//BOSHAzureCPI</code>, as shown in the example above.
+    subscription. For the <code>homepage</code>, Pivotal recommends using
+    <code><span>http:</span>//BOSHAzureCPI</code> as shown in the example above.
     </p>
 
 1. From the output of the `az ad app create` that you ran in the previous step, locate and record
@@ -299,5 +299,5 @@ again.
 ##<a id='next-steps'></a> Next Steps
 
 After you complete this procedure, follow the instructions in
-[Preparing to Deploy PCF on Azure using Terraform](./prepare-env-terraform.html)
+[Deploying Ops Manager to Azure Using Terraform](./prepare-env-terraform.html)
 in the Pivotal documentation.
