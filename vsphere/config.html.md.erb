@@ -88,20 +88,19 @@ See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/2-2/customizing/runt
     * **Standard vCenter Networking**: This is the default option when upgrading Ops Manager.
     * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization.
     <%= image_tag("../common/images/NSXdirectorconfig.png") %>
+        Configure NSX networking by entering the following information:
+        * **NSX Mode**: Select either **NSX-V** or **NSX-T**.
+        <p class="note"><strong>Note:</strong> Do not select <b>NSX-V</b> if you are installing PKS.</p>
+        * **NSX Address**: The address of the NSX manager.
+        * **NSX Username**: The username to connect to the NSX manager.
+        * **NSX Password**: The password for the username specified above.
+        * **NSX CA Cert**: A CA certificate in PEM format that authenticates to the NSX server.
+        If the NSX Manager generated a self-signed certificate, you can retrieve the CA certificate using OpenSSL with the following command:
 
-1. Configure NSX networking by entering the following information:
-    * **NSX Mode**: Select either **NSX-V** or **NSX-T**.
-    <p class="note"><strong>Note:</strong> Do not select <b>NSX-V</b> if you are installing PKS.</p>
-    * **NSX Address**: The address of the NSX manager.
-    * **NSX Username**: The username to connect to the NSX manager.
-    * **NSX Password**: The password for the username specified above.
-    * **NSX CA Cert**: A CA certificate in PEM format that authenticates to the NSX server.
-    If the NSX Manager generated a self-signed certificate, you can retrieve the CA certificate using OpenSSL with the following command:
-
-        ```
-        openssl s_client -showcerts -connect NSX-MANAGER-ADDRESS:443 < /dev/null 2> /dev/null | openssl x509
-        ```
-        Where `NSX-MANAGER-ADDRESS` is the address of the NSX manager.
+            ```
+            openssl s_client -showcerts -connect NSX-MANAGER-ADDRESS:443 < /dev/null 2> /dev/null | openssl x509
+            ```
+            Where `NSX-MANAGER-ADDRESS` is the address of the NSX manager.
 
 1. Click **Save**.
 
