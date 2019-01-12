@@ -10,9 +10,8 @@ connection.
 
 * For **LDAP Username** and **LDAP Password**, enter the LDAP Distinguished Name (DN) and the
 password for binding to the LDAP Server. Example DN: `cn=administrator,ou=Users,dc=example,dc=com`
-     <p class="note"><strong>Note</strong>: Pivotal recommends that you provide LDAP credentials that grant read-only permissions on the LDAP Search Base and the LDAP Group Search Base. In addition to this, if the bind user belongs to a different search base, you must use the full DN.</p>
-
-    <p class="note warning"><strong>WARNING: </strong>Pivotal recommends against reusing LDAP service accounts across environments. LDAP service accounts should not be subject to manual lockouts, such as lockouts that result from users utilizing the same account. Also, LDAP service accounts should not be subject to automated deletions, since disruption to these service accounts could prevent user logins.
+    <p class="note"><strong>Note:</strong> Pivotal recommends that you provide LDAP credentials that grant read-only permissions on the LDAP Search Base and the LDAP Group Search Base. In addition to this, if the bind user belongs to a different search base, you must use the full DN.</p>
+    <p class="note warning"><strong>WARNING:</strong> Pivotal recommends against reusing LDAP service accounts across environments. LDAP service accounts should not be subject to manual lockouts, such as lockouts that result from users utilizing the same account. Also, LDAP service accounts should not be subject to automated deletions, since disruption to these service accounts could prevent user logins.
     </p>
   
 * For **User Search Base**, enter the location in the LDAP directory tree from
@@ -32,7 +31,7 @@ all LDAP objects with the same common name as the username.
 <br><br>
 In addition to `cn`, other attributes commonly searched for and returned are
 `mail`, `uid` and, in the case of Active Directory, `sAMAccountName`.
-    <p class="note"><strong>Note</strong>: For instructions for testing and troubleshooting your LDAP search filters, see the [Configuring LDAP Integration with Pivotal Cloud Foundry](https://discuss.zendesk.com/hc/en-us/articles/204140418-Configuring-LDAP-Integration-with-Pivotal-Cloud-Foundry-) Knowledge Base article.</p>
+    <p class="note"><strong>Note:</strong> For instructions for testing and troubleshooting your LDAP search filters, see the [Configuring LDAP Integration with Pivotal Cloud Foundry](https://discuss.zendesk.com/hc/en-us/articles/204140418-Configuring-LDAP-Integration-with-Pivotal-Cloud-Foundry-) Knowledge Base article.</p>
 
 * For **Group Search Base**, enter the location in the LDAP directory tree
 from which the LDAP Group search begins.
@@ -40,7 +39,7 @@ from which the LDAP Group search begins.
 For example, a domain named "cloud.example.com" typically uses the following
 LDAP Group Search Base: `ou=Groups,dc=example,dc=com`
 <br><br>
-    <p class="note"><strong>Note</strong>: For the PAS runtime, see <a href="https://docs.pivotal.io/pivotalcf/2-4/opsguide/external-user-management.html">Adding Existing SAML or LDAP Users to a PCF Deployment</a> to on-board individual LDAP users and map them to Ops Manager roles.</p>
+    <p class="note"><strong>Note:</strong> For the PAS runtime, see <a href="https://docs.pivotal.io/pivotalcf/2-4/opsguide/external-user-management.html">Adding Existing SAML or LDAP Users to a PCF Deployment</a> to on-board individual LDAP users and map them to Ops Manager roles.</p>
 
 * For **Group Search Filter**, enter a string that defines LDAP Group search
 criteria. The standard value is `member={0}`.
@@ -50,7 +49,7 @@ that corresponds to the email address in each user record, for example `mail`.
 
 * For **LDAP RBAC Admin Group Name**, enter the DN of the LDAP group you want to have admin permissions in Ops Manager.
 
-* From the dropdown menu, select how the UAA handles LDAP server referrals out
+* From the dropdown, select how the UAA handles LDAP server referrals out
 to other external user stores. The UAA can: 
     * **Automatically follow any referrals**.
     * **Ignore referrals and return partial result**. 
