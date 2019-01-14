@@ -90,7 +90,10 @@ See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/2-2/customizing/runt
     <%= image_tag("../common/images/NSXdirectorconfig.png") %>
         Configure NSX networking by entering the following information:
         * **NSX Mode**: Select either **NSX-V** or **NSX-T**.
-        <p class="note"><strong>Note:</strong> Do not select <b>NSX-V</b> if you are installing PKS.</p>
+        <p class="note"><strong>Note:</strong> If you want to configure <strong>NSX Networking</strong> for PKS,
+        you must select <strong>NSX-T</strong>. For instructions on how to configure <strong>NSX Networking</strong> for PKS, see
+        the <a href="https://docs.pivotal.io/runtimes/pks/1-1/vsphere-nsxt-om-config.html#vcenter-config">Configure vCenter for PKS</a>
+        section in <em>Configuring BOSH Director with NSX-T for PKS</em>.</p>
         * **NSX Address**: The address of the NSX manager.
         * **NSX Username**: The username to connect to the NSX manager.
         * **NSX Password**: The password for the username specified above.
