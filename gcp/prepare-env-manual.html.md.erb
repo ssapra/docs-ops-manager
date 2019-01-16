@@ -5,9 +5,9 @@ owner: Ops Manager
 
 This guide describes the preparation steps required to install Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
 
-In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-4/customizing/gcp.html) topic, you must create resources in GCP such as a new network, firewall rules, load balancers, and a service account before deploying PCF. Follow these procedures to prepare your GCP environment.
+In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-5/customizing/gcp.html) topic, you must create resources in GCP such as a new network, firewall rules, load balancers, and a service account before deploying PCF. Follow these procedures to prepare your GCP environment.
 
-The [Configuration and Components](#config-components) section outlines high-level infrastructure options for PCF on GCP. For more information, review the deployment options and recommendations in [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-4/refarch/gcp/gcp_ref_arch.html).
+The [Configuration and Components](#config-components) section outlines high-level infrastructure options for PCF on GCP. For more information, review the deployment options and recommendations in [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-5/refarch/gcp/gcp_ref_arch.html).
 
 
 ## <a id="config-components"></a> Configuration and Components
@@ -17,7 +17,7 @@ You can deploy PCF in one of two main configurations on a GCP virtual private cl
   * A _single-project_ configuration that gives PCF full access to VPC resources
   * A _shared VPC_ configuration in which PCF shares VPC resources
 
-See [Shared vs Single-Project VPCs](https://docs.pivotal.io/pivotalcf/2-4/refarch/gcp/gcp_ref_arch.html#shared-vs-single) in the _Reference Architecture for Pivotal Cloud Foundry on GCP_ topic for a full discussion and recommendations.
+See [Shared vs Single-Project VPCs](https://docs.pivotal.io/pivotalcf/2-5/refarch/gcp/gcp_ref_arch.html#shared-vs-single) in the _Reference Architecture for Pivotal Cloud Foundry on GCP_ topic for a full discussion and recommendations.
 
 When deploying PCF on GCP, Pivotal recommends using the following GCP components:
 
@@ -170,7 +170,7 @@ Use NAT instances when you want to expose only a minimal number of public IP add
 Creating NAT instances permits Internet access from cluster VMs.
 You might, for example, need this Internet access for pulling Docker images or enabling Internet access for your workloads.
 
-For more information, see [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-4/refarch/gcp/gcp_ref_arch.html#common_network) and [GCP documentation](https://cloud.google.com/solutions/connecting-securely#natgateway).
+For more information, see [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-5/refarch/gcp/gcp_ref_arch.html#common_network) and [GCP documentation](https://cloud.google.com/solutions/connecting-securely#natgateway).
 
 1. In the GCP console, with your single project or shared-VPC host project selected, navigate to **Compute Engine** > **VM instances**.
   ![Compute Instance](../common/images/gcp/gcp-vm-instances.png)
@@ -496,7 +496,7 @@ To create an internal load balancer for PCF on GCP, do the following.
 
 1. Assign private IP addresses to the load balancers.
 
-1. After you have deployed Ops Manager, follow instructions in [Create or Update a VM Extension](https://docs.pivotal.io/pivotalcf/2-4/customizing/custom-vm-extensions.html#create-vm-extension) to add a custom VM extension that applies internal load balancing to all VMs deployed by BOSH.
+1. After you have deployed Ops Manager, follow instructions in [Create or Update a VM Extension](https://docs.pivotal.io/pivotalcf/2-5/customizing/custom-vm-extensions.html#create-vm-extension) to add a custom VM extension that applies internal load balancing to all VMs deployed by BOSH.
   - For example, the following manifest code adds a VM extension `backend-pool` to PCF VMs:
 
     ```
@@ -609,7 +609,7 @@ To create a global HTTP load balancer PCF on GCP, do the following:
 
 1. If you use a trusted SSL certificate or already have a self-signed certificate, proceed to step 5.
 
-1. If you want to use a self-signed certificate generated during [PAS network configuration](https://docs.pivotal.io/pivotalcf/2-4/customizing/gcp-er-config.html#networking), skip over the next step of adding the HTTPS frontend configuration until after you generate the certificate in PAS. After you generate the certificate, return to step 5 using the following guidelines:
+1. If you want to use a self-signed certificate generated during [PAS network configuration](https://docs.pivotal.io/pivotalcf/2-5/customizing/gcp-er-config.html#networking), skip over the next step of adding the HTTPS frontend configuration until after you generate the certificate in PAS. After you generate the certificate, return to step 5 using the following guidelines:
    * Copy and paste the generated contents of the **Router SSL Termination Certificate and Private Key** fields from PAS into the public certificate and private key fields.
    * Since you are using a self-signed certificate, do not enter a value in the **Certificate Chain** field.
 
@@ -828,6 +828,6 @@ xyz.EXAMPLE.COM.      1767    IN  A 203.0.113.1</pre>
 
 ## <a id="next"></a> What to Do Next
 
-* (Optional) If you are deploying PAS, to save time during the final stage of the installation process, you can start downloading the PAS tile. See [Step 1: Download the PAS Tile](https://docs.pivotal.io/pivotalcf/2-4/customizing/gcp-er-config.html#download-er) of the _Deploying PAS on GCP_ topic.
+* (Optional) If you are deploying PAS, to save time during the final stage of the installation process, you can start downloading the PAS tile. See [Step 1: Download the PAS Tile](https://docs.pivotal.io/pivotalcf/2-5/customizing/gcp-er-config.html#download-er) of the _Deploying PAS on GCP_ topic.
 
 * Proceed to the next step in the deployment, [Deploying BOSH and Ops Manager to GCP](./deploy-manual.html).
