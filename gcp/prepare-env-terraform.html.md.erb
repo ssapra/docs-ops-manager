@@ -14,7 +14,9 @@ You may also find it helpful to review different deployment options in the [Refe
 
 ## <a id="prereqs"></a> Prerequisites
 
-In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-5/customizing/gcp.html) topic, ensure you have the following: 
+In addition to fulfilling the installation prerequisites (for PAS prerequisites see: [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-5/customizing/gcp.html),
+for PKS refer to: [GCP Prerequisites and Resource Requirements](https://docs.pivotal.io/runtimes/pks/1-3/gcp-requirements.html)),
+ensure you have the following:
 
 * The [Terraform CLI](https://www.terraform.io/intro/getting-started/install.html)
 * The [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstarts)
@@ -38,12 +40,14 @@ To use the Terraform templates to create the necessary infrastructure resources 
   1. From the **Options** column, open the dropdown and click **Create Key**.
 * **I want to create a new service account**
   1. Open a terminal window. 
-  1. Create a service account using the gcloud CLI:
-    <pre class="terminal">$ gcloud iam service-accounts create ACCOUNT-NAME</pre>
-  1. Create a key file for your service account:
-    <pre class="terminal">$ gcloud iam service-accounts keys create "terraform.key.json" --iam-account "some-account-name&#64;yourproject.iam.gserviceaccount.com"</pre>
-  1. Bind the service account to your project and give it the owner role:
-    <pre class="terminal">$ gcloud projects add-iam-policy-binding PROJECT&#95;ID --member 'serviceAccount&#58;some-account-name@PROJECT&#95;ID.iam.gserviceaccount.com' --role 'roles/owner'</pre>  
+  1. To create a service account using the gcloud CLI, run the following command:
+    <pre>gcloud iam service-accounts create ACCOUNT-NAME</pre>
+
+  1. To create a key file for your service account, run the following command:
+    <pre>gcloud iam service-accounts keys create "terraform.key.json" --iam-account "ACCOUNT-NAME&#64;PROJECT-ID.iam.gserviceaccount.com"</pre>
+
+  1. To bind the service account to your project and give it the owner role, run the following command:
+    <pre>gcloud projects add-iam-policy-binding PROJECT-ID --member 'serviceAccount&#58;ACCOUNT-NAME&#64;PROJECT-ID.iam.gserviceaccount.com' --role 'roles/owner'</pre>
 
 
 ## <a id="download"></a> Step 2: Download Templates and Edit Variables File
@@ -202,8 +206,8 @@ ISO_SEG_SSL_KEY
 1. If you want to specify a single host from which users can connect to the Ops Manager and runtime database, add the following variables to your `terraform.tfvars` file. Replace `HOST_IP_ADDRESS` with your desired IP addresses.
 
     ```
-    opsman_sql_db_host = HOST_IP_ADDRESS
-    pas_sql_db_host = HOST_IP_ADDRESS
+    opsman_sql_db_host = HOST-IP-ADDRESS
+    pas_sql_db_host = HOST-IP-ADDRESS
     ```
 
 ### <a id="gcs"></a> External Storage Buckets
@@ -228,14 +232,14 @@ create_blobstore_service_account_key = false
 Follow these steps to use the Terraform CLI to create resources on GCP:
 
 1. From the directory that contains the Terraform files, run the following command to initialize the directory based on the information you specified in the `terraform.tfvars` file. 
-  <pre class="terminal">$ terraform init</pre>
+    <pre>terraform init</pre>
 
 1. Run the following command to create the execution plan for Terraform.
-  <pre class="terminal">$ terraform plan -out=plan</pre>
+    <pre>terraform plan -out=plan</pre>
 
-1. Run the following command to execute the plan from the previous step.
-It may take several minutes for Terraform to create all the resources in GCP.
-  <pre class="terminal">$ terraform apply plan</pre>
+1. To execute the plan from the previous step, run the following command
+(it may take several minutes for Terraform to create all the resources in GCP):
+    <pre>terraform apply plan</pre>
 
 
 ## <a id="dns"></a> Step 5: Create DNS Record
@@ -246,6 +250,6 @@ It may take several minutes for Terraform to create all the resources in GCP.
   1. In this record, enter the name servers included in `env_dns_zone_name_servers` from your Terraform output.
 
 
-## <a id="next"></a> What to Do Next
+## <a id="next"></a> Next Steps
 
 Proceed to the next step in the deployment, [Configuring BOSH Director on GCP (Terraform)](./config-terraform.html).
