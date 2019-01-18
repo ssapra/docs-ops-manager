@@ -8,7 +8,7 @@ owner: Ops Manager
 
 This guide describes the preparation steps required to deploy Ops Manager to Azure using Terraform templates.
 
-The Terraform template for PCF on Azure describes a set of Azure resources and properties.
+The Azure Terraform templates describe a set of Azure resources and properties.
 For more information about how Terraform creates resources in Azure, see the
 [Azure Provider](https://www.terraform.io/docs/providers/azurerm/index.html) topic on the Terraform site. 
 
@@ -64,7 +64,7 @@ the Terraform files for your runtime.
     ```
 
 1. Edit the values in the file according to the table below. For information
-about locating your Azure service principal values, see [Preparing to Deploy PCF on Azure](prepare-env-manual.html).
+about locating your Azure service principal values, see [Preparing Azure](prepare-env-manual.html).
   <table>
     <tr>
       <th style="width: 35%">Value to replace</th>
@@ -144,7 +144,7 @@ It may take several minutes for Terraform to create all the resources in Azure.
 
 1. In a browser, navigate to the DNS provider for the DNS suffix you entered in your `terraform.tfvars` file.
 
-1. Create a new name server (NS) record for your PCF system domain.
+1. Create a new name server (NS) record for your system domain.
 Your system domain is `YOUR-ENVIRONMENT-NAME.YOUR-DNS-SUFFIX`.
 
 1. In this record, enter the name servers included in `env_dns_zone_name_servers` from your Terraform output.
