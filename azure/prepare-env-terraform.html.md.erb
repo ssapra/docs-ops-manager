@@ -20,7 +20,7 @@ You may also find it helpful to review different deployment options in the
 In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cloud Foundry on Azure](https://docs.pivotal.io/pivotalcf/2-5/customizing/azure.html) topic, ensure you have the following: 
 
 * The [Terraform CLI](https://www.terraform.io/intro/getting-started/install.html)
-* In your Azure project, ensure you have completed the steps in [Preparing to Deploy PCF on Azure](./prepare-env-manual.html) to create a service principal.
+* In your Azure project, ensure you have completed the steps in [Preparing Azure](./prepare-env-manual.html) to create a service principal.
 
 ## <a id="download"></a>Step 1: Download Templates and Edit Variables File
 
@@ -104,7 +104,7 @@ about locating your Azure service principal values, see [Preparing Azure](prepar
     </tr>
     <tr>
       <td><code>YOUR-DNS-SUFFIX</code></td>
-      <td>Enter a domain name to use as part of the system domain for your PCF deployment. Terraform creates DNS records in Azure using <code>YOUR-ENVIRONMENT-NAME</code> and <code>YOUR-DNS-SUFFIX</code>. For example, if you enter <code>example.com</code> for your DNS suffix and have <code>pcf</code> as your environment name, Terraform creates DNS records at <code>pcf.example.com</code>.</td>
+      <td>Enter a domain name to use as part of the system domain for your deployment. Terraform creates DNS records in Azure using <code>YOUR-ENVIRONMENT-NAME</code> and <code>YOUR-DNS-SUFFIX</code>. For example, if you enter <code>example.com</code> for your DNS suffix and have <code>pcf</code> as your environment name, Terraform creates DNS records at <code>pcf.example.com</code>.</td>
     </tr>
     <tr>
       <td><code>YOUR-ADMIN-USERNAME</code></td>
