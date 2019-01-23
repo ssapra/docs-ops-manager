@@ -7,7 +7,7 @@ install_type: terraform
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to configure the BOSH Director tile for Pivotal Cloud Foundry (PCF) on Azure after [Deploying Ops Manager to Azure](./prepare-env-terraform.html).
+This topic describes how to configure the BOSH Director tile within Ops Manager on Azure after [Deploying Ops Manager to Azure](./prepare-env-terraform.html).
 
 <p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
@@ -68,10 +68,10 @@ For more information, see <a href="https://docs.pivotal.io/runtimes/pks/pas-and-
 
     <%= image_tag("../common/images/azure/azure-config.png") %>
 
-1. Complete the following fields with information you obtained in the [Preparing to Deploy PCF on Azure](./prepare-env-manual.html) topic. If you are deploying PKS on Azure, refer to [Preparing to Deploy PKS on Azure](https://docs.pivotal.io/runtimes/pks/1-3/azure-prepare-env.html).
+1. Complete the following fields with information you obtained in the [Preparing Azure](./prepare-env-manual.html) topic. If you are deploying PKS on Azure, refer to [Preparing to Deploy PKS on Azure](https://docs.pivotal.io/runtimes/pks/1-3/azure-prepare-env.html).
 	* **Subscription ID**: Enter the ID of your Azure subscription.
 	* **Tenant ID**: Enter your `TENANT_ID`.
-	* **Application ID**: Enter the `APPLICATION_ID` that you created in the [Create an Azure Active Directory Application](./prepare-env-manual.html#create-aad) step of the _Preparing to Deploy PCF on Azure_ topic. For information on obtaining the `APPLICATION_ID` for PKS, see [Preparing to Deploy PKS on Azure](https://docs.pivotal.io/runtimes/pks/1-3/azure-prepare-env.html#create-aad).
+	* **Application ID**: Enter the `APPLICATION_ID` that you created in the [Create an Azure Active Directory Application](./prepare-env-manual.html#create-aad) step of the _Preparing Azure_ topic. For information on obtaining the `APPLICATION_ID` for PKS, see [Preparing to Deploy PKS on Azure](https://docs.pivotal.io/runtimes/pks/1-3/azure-prepare-env.html#create-aad).
 	* **Client Secret**: Enter your `CLIENT_SECRET`.
 
 1. Complete the following fields:
@@ -239,7 +239,7 @@ If you have completed this step for PAS, proceed to [Step 5: Assign Networks Pag
     <p class="note"><strong>Note:</strong> If you set a field to <strong>Automatic</strong> and the recommended resource allocation changes in a future version, Ops Manager automatically uses the new recommended allocation.</p>
     <p class="note"><strong>Note:</strong> If you install PAS for Windows, provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
 
-1. (Optional) For **Load Balancers**, enter your Azure application gateway name for each associated job. To create an application gateway, follow the procedures in [Create an application gateway with SSL termination using Azure PowerShell](https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-arm) from the Azure documentation. When you create the application gateway, associate the gateway's IP with your PCF system domain.
+1. (Optional) For **Load Balancers**, enter your Azure application gateway name for each associated job. To create an application gateway, follow the procedures in [Create an application gateway with SSL termination using Azure PowerShell](https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-arm) from the Azure documentation. When you create the application gateway, associate the gateway's IP with your system domain.
 
 1. Click **Save**.
 
