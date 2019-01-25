@@ -79,7 +79,7 @@ To complete the procedures in this topic, you must have access to the output fro
       on persistent disks of all BOSH-deployed virtual machines (VMs), except
       for the Ops Manager VM and Director VM. See the [Configuring Amazon EBS Encryption](https://docs.pivotal.io/pivotalcf/2-3/customizing/cloudform-om-ebs-config.html) topic for
       details about using Elastic Block Store (EBS) encryption.
-      <p class="note"><strong>Note</strong>: Enabling EBS encryption only encrypts Linux VMs. The Windows VMs deployed with Pivotal Application Service (PAS) for Windows are not encrypted.</p>
+      <p class="note"><strong>Note:</strong> Enabling EBS encryption only encrypts Linux VMs. The Windows VMs deployed with Pivotal Application Service (PAS) for Windows are not encrypted.</p>
       * **Custom Encryption Key (Optional)** Once you enable EBS encryption, you may want to specify a custom Key Management Service (KMS) encryption key. If you don't enter a value, your custom encryption key will default to the account key. For more information, see [Configuring Amazon EBS Encryption](https://docs.pivotal.io/pivotalcf/2-3/customizing/cloudform-om-ebs-config.html).
 
 1. Click **Save**.
@@ -111,7 +111,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
 1. (Optional) Select **Enable ICMP checks** to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
 
-1. Perform the following steps to add the network configuration you created for your VPC:
+1. To add the network configuration you created for your VPC, do the following:
     1. Click **Add Network**.
     1. For **Name**, enter `pcf-management-network`.
     1. Create a subnet for each availability zone by clicking **Add Subnet**. Refer to the table below for the information required to create all three subnets:
@@ -153,7 +153,7 @@ To complete the procedures in this topic, you must have access to the output fro
     <br><br>
     1. Click **Add Network**.
     1. For **Name**, enter `pcf-pas-network`.
-    1. Create a subnet for each availability zone by clicking **Add Subnet**. Refer to the table below for the information required to create all three subnets:
+    1. Create a subnet for each availability zone by clicking **Add Subnet**. See the table below for the information required to create all three subnets:
          <table>
           <tr>
           <th>VPC Subnet ID</th>
@@ -192,7 +192,7 @@ To complete the procedures in this topic, you must have access to the output fro
     <br><br>
     1. Click **Add Network**.
     1. Enter `pcf-services-network` in **Name** field.
-    1. Create a subnet for each availability zone by clicking **Add Subnet**. Refer to the table below for the information required to create all three subnets:
+    1. Create a subnet for each availability zone by clicking **Add Subnet**. See the table below for the information required to create all three subnets:
         <table>
          <tr>
            <th>VPC Subnet ID</th>
@@ -263,7 +263,6 @@ To complete the procedures in this topic, you must have access to the output fro
     with at least 100&nbsp;GB of disk space.
 
 1. (Optional) Enter your AWS target group name in the **Load Balancers** column for each job. Prepend the name with `alb:`. For example, enter `alb:target-group-name`.
-
     To create an Application Load Balancer (ALB) and target group, follow the procedures in [Getting Started with Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancer-getting-started.html) in the AWS documentation. Then navigate to **Target Groups** in the **EC2 Dashboard** menu to find your target group **Name**.
     <div class="note">
       <p><strong>Note:</strong> To configure an ALB, you must have the following AWS IAM permissions.</p>

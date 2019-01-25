@@ -79,8 +79,7 @@ This topic describes how to configure the BOSH Director for Pivotal Cloud Foundr
     * **Project ID**: Enter your GCP project ID in all lower case, such as: <code>your-gcp-project-id</code>.
     * **Default Deployment Tag**: Enter the `MY-PCF` prefix that you used when creating the GCP resources for this PCF installation.
     * Select **AuthJSON** and in the field below enter the contents of the JSON file that you downloaded in the [Set up an IAM Service Account](./prepare-env-manual.html#iam_account) section of the _Preparing to Deploy PCF on GCP_ topic.
-        <p class="note"><strong>Note:</strong>
-       As an alternative, you can select <strong>The Ops Manager VM Service Account</strong> option to use the service account automatically created by GCP for the Ops Manager VM. To use this option, the project-wide service account that you set up in [Set up an IAM Service Account](./prepare-env-manual.html#iam_account) must be assigned the **Service Account Actor** role.</p>
+        <p class="note"><strong>Note:</strong> As an alternative, you can select <strong>The Ops Manager VM Service Account</strong> option to use the service account automatically created by GCP for the Ops Manager VM. To use this option, the project-wide service account that you set up in [Set up an IAM Service Account](./prepare-env-manual.html#iam_account) must be assigned the **Service Account Actor** role.</p>
        <%= image_tag("../common/images/gcp/google_config.png") %>
 1. Click **Save**.
 
@@ -115,8 +114,7 @@ This topic describes how to configure the BOSH Director for Pivotal Cloud Foundr
 
 1. Use the **Add Network** button to create the following three networks:
     <p class="note"><strong>Note:</strong> To use a shared VPC network, enter the shared VPC host project name before the network name in the format <code>VPC-PROJECT-NAME/NETWORK-NAME/SUBNET-NAME/REGION-NAME</code>.
-    For example, <code>vpc-project/opsmgr/central/us-central1</code>.
-    For more information, see <a href="./../../customizing/gcp-shared-vpc.html">Configuring a Shared VPC on GCP</a>.</p>
+    For example, <code>vpc-project/opsmgr/central/us-central1</code>. For more information, see <a href="./../../customizing/gcp-shared-vpc.html">Configuring a Shared VPC on GCP</a>.</p>
 
 1. Select the runtime you are installing from the following table to determine which networks you need to create:
     <div class="tab">
@@ -337,8 +335,7 @@ This topic describes how to configure the BOSH Director for Pivotal Cloud Foundr
 
 1. Ensure that the **Internet Connected** checkboxes are not selected for any jobs. The checkbox gives VMs a public IP address that enables outbound Internet access. In [Preparing to Deploy PCF on GCP](./prepare-env-manual.html), you provisioned a Network Address Translation (NAT) box to provide Internet connectivity to your VMs. For more information about using NAT in GCP, see the <a href="https://cloud.google.com/compute/docs/networking">GCP documentation</a>.
 
-<p class="note"><strong>Note:</strong> If you install PAS for Windows,
-provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
+<p class="note"><strong>Note:</strong> If you install PAS for Windows, provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
 
 ## <a id="custom-vm-extensions"></a> Step 10: (Optional) Add Custom VM Extensions
 
@@ -346,8 +343,7 @@ provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB
 
 ## <a id='complete'></a> Step 11: Complete the BOSH Director Installation
 
-1. Click the **Installation Dashboard** link to return to the Installation
-Dashboard.
+1. Click the **Installation Dashboard** link to return to the Installation Dashboard.
 
 1. Click **Review Pending Changes**, then **Apply Changes**. If the following ICMP error message appears, return to the [Network Config](#network) screen, and make sure you have deselected the **Enable ICMP Checks**. Click **Review Pending Changes**, then **Apply Changes** again.
 
