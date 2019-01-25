@@ -5,7 +5,19 @@ owner: Ops Manager
 
 This guide describes the preparation steps required to install Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
 
-In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-2/customizing/gcp.html) topic, you must create resources in GCP such as a new network, firewall rules, load balancers, and a service account before deploying PCF. Follow these procedures to prepare your GCP environment.
+## <a id="prerequisites"></a> Prerequisites
+
+In addition to fulfilling the installation prerequisites for your desired runtime, 
+you must create resources in GCP such as a new network, firewall rules, load balancers, 
+and a service account before deploying Ops Manager.<br><br>
+To verify the prerequisites for PAS, see [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-2/customizing/gcp.html).<br><br>
+To verify the prerequisites for PKS, see [GCP Prerequisites and Resource Requirements](https://docs.pivotal.io/runtimes/pks/1-2/gcp-requirements.html).
+
+## <a id="config-components"></a> Configuration and Components
+
+This section outlines high-level infrastructure options for PCF on GCP. For more information, 
+review the deployment options and recommendations in 
+[Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-2/refarch/gcp/gcp_ref_arch.html).
 
 When deploying PCF on GCP, Pivotal recommends using the following GCP components:
 
@@ -386,7 +398,7 @@ This step assigns tags and firewall rules to Ops Manager components and VMs that
    * `default-allow-rdp`
    * `default-allow-ssh`
 
-If you are deploying **PKS only**, continue to [Deploying BOSH and Ops Manager to GCP](deploy-manual.html).
+If you are deploying **PKS only**, continue to [Next Steps](#next-steps).
 
 If you are deploying **PAS or other runtimes**, proceed to the following step.
 
@@ -761,18 +773,23 @@ In this step you redirect queries for your domain to the IP addresses of your lo
 
 1. Save changes within the web interface of your DNS registrar.
 
-1. In a terminal window, run the following `dig` command to confirm that you created your A record successfully:
+1. In a terminal window, run the following `dig` command to confirm that you created your A record successfully: 
 
-    <pre class='terminal'>dig xyz.EXAMPLE.COM</pre>
+    <pre>dig SUBDOMAIN.EXAMPLE-URL.com</pre> 
 
-    You should see the A record that you just created:
+    Where `SUBDOMAIN.EXAMPLE-URL` is the subdomain for your load balancer. <br><br>
+    
+    You should see the A record that you just created: 
     <pre class='terminal'>
 ;; ANSWER SECTION:
 xyz.EXAMPLE.COM.      1767    IN  A 203.0.113.1</pre>
 
 
-## <a id="next"></a> What to Do Next
+## <a id="next-steps"></a> Next Steps
 
-* (Optional) If you are deploying PAS, to save time during the final stage of the installation process, you can start downloading the PAS tile. See [Step 1: Download the PAS Tile](https://docs.pivotal.io/pivotalcf/2-2/customizing/gcp-er-config.html#download-er) of the _Deploying PAS on GCP_ topic.
+* (Optional) To prepare for deploying either a PAS or PKS tile on GCP, you can download the needed runtime tile in advance: 
+  * To download PAS, log in to [Pivotal Network](https://network.pivotal.io/products/elastic-runtime), select your desired release version, and download **Pivotal Application Service**.
+  * To download PKS, log in to [Pivotal Network](https://network.pivotal.io/products/pivotal-container-service), select your desired release version, and download **Pivotal Container Service**.
 
-* Proceed to the next step in the deployment, [Deploying BOSH and Ops Manager to GCP](./deploy-manual.html).
+* After initiating the tile download, proceed to the next step in the deployment, [Deploying BOSH and Ops Manager to GCP](./deploy-manual.html).
+
