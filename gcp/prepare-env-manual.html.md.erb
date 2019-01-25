@@ -720,7 +720,7 @@ The load balancer for tailing logs with WebSockets for PCF on GCP operates on TC
 
 <p class="note"><strong>Note:</strong> This step is optional and only required if you enable TCP routing in your deployment.</p>
 
-To create a load balancer for TCP routing in GCP, perform the following steps:
+To create a load balancer for TCP routing in GCP, do the following:
 
 1. From the GCP Console, select **Network services > Load balancing > Create load balancer**.
 
@@ -759,9 +759,10 @@ To create a load balancer for TCP routing in GCP, perform the following steps:
 
 1. Click **Create**.
 
+
 ## <a id='cname'></a> Step 12: Add DNS Records for Your Load Balancers
 
-In this step you redirect queries for your domain to the IP addresses of your load balancers.
+In this step, you redirect queries for your domain to the IP addresses of your load balancers.
 
 1. Locate the static IP addresses of the load balancers you created in [Preparing to Deploy PCF on GCP](./prepare-env-manual.html):
     * An HTTP(S) load balancer named `MY-PCF-global-pcf`
