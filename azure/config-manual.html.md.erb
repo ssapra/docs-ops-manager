@@ -105,7 +105,7 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 
 ### <a id='internal'></a> Internal Authentication
 
-1. When redirected to the **Internal Authentication** page, you must complete the following steps:
+1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable if lost.
     * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/2-1/customizing/pcf-director-proxy-settings.html) topic.
@@ -139,16 +139,12 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 	* **Resource Group Name**: Enter the name of your resource group, which you exported as the `$RESOURCE_GROUP` environment variable.
 	* **BOSH Storage Account Name**: Enter the name of your storage account, which you exported as the `$STORAGE_NAME` environment variable.
 
-
 1. For **Cloud Storage Type**, select one of the following options based on your Azure VM storage settings.
 	* **Use Managed Disks**: Select this option if you use Azure Managed Disks. See [Azure Managed Disks Overview](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview) in the Microsoft documentation for more information. For **Storage Account Type**, select the storage option that corresponds with your Azure subscription. Select **Standard_LRS** for HDD-based storage or **Premium_LRS** for SSD-based storage.
         <%= image_tag("../common/images/azure/azure-managed-disk.png") %>
 	* **Use Storage Accounts**: Select this option if you use storage accounts to store your Azure VMs. Enter the base storage name that you used to create your deployment storage accounts, prepended and appended with the wildcard character `*`. For example, if you created accounts named  `xyzdeploymentstorage1`, `xyzdeploymentstorage2`, and `xyzdeploymentstorage3`, enter `*deploymentstorage*`. Ops Manager requires that you specify an asterisk at both the beginning and the end of the base storage account name.
         <%= image_tag("../common/images/azure/storage-accounts.png") %>
-
-    <p class="note warning"><strong>WARNING</strong>: You can update your deployment from using storage accounts to using managed disks. 
-      However, after you select <strong>Use Managed Disks</strong> and deploy Ops Manager, you cannot change your 
-      deployment back to use storage accounts.</p>
+    <p class="note warning"><strong>WARNING:</strong> You can update your deployment from using storage accounts to using managed disks. However, after you select <strong>Use Managed Disks</strong> and deploy Ops Manager, you cannot change your deployment back to use storage accounts.</p>
 
 1. (Optional) Enter your **Default Security Group**. For more information about Network Security Groups, see [Filter network traffic with network security groups](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-nsg) in Microsoft Azure's documentation.
     <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
@@ -177,7 +173,6 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 	<%= image_tag("../common/images/azure/director-config.png") %>
 
 1. In the **NTP Servers (comma delimited)** field, enter a comma-separated list of valid NTP servers.
-
     <p class="note"><strong>Note:</strong> The NTP server configuration only updates
     after VM recreation. Ensure that you select the <strong>Recreate all VMs</strong> checkbox
     if you modify the value of this field.</p>
@@ -229,7 +224,7 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 1. (Optional) **Max Threads** sets the maximum number of threads that the BOSH Director can run simultaneously. Pivotal recommends that you leave the field blank to use the default value unless doing so results in rate limiting or errors on your IaaS.
 
 1. (Optional) To add a custom URL for your BOSH Director, enter a valid hostname in **Director Hostname**. You can also use this field to configure [a load balancer in front of your BOSH Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director).
-     <p class="note warning"><strong>WARNING: </strong>In Ops Manager v2.1.17 and earlier, if you change the <strong>Director
+     <p class="note warning"><strong>WARNING:</strong> In Ops Manager v2.1.17 and earlier, if you change the <strong>Director
   Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/opsmanager-rn.html#2-1-18">Ops Manager v2.1.18</a> and later.</p>
 
      <%= image_tag("../common/images/director_workers.png") %>
