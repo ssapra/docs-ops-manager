@@ -164,7 +164,7 @@ If you are completing this step for PKS, proceed to [Create the Infrastructure N
 
 1. Click **Save**. If you do not have **Enable ICMP checks** selected, you may see red warnings which you can safely ignore.
 
-If you have completed this step for PAS, proceed to [Step 5: Assign Networks Page](config-terraform.html#assign-azs).
+If you have completed this step for PAS, proceed to [Step 5: Assign AZs and Networks Page](config-terraform.html#assign-azs).
 
 ### <a id='pks-infrastructure'></a> Create the Infrastructure Network for PKS
 
@@ -208,18 +208,20 @@ If you have completed this step for PAS, proceed to [Step 5: Assign Networks Pag
 1. Click **Save**. If you do not have **Enable ICMP checks** selected, you may see red warnings which you can safely ignore.
 
 
-## <a id="assign-azs"></a> Step 5: Assign Networks Page
+## <a id="assign-azs"></a> Step 5: Assign AZs and Networks Page
 
-1. Select **Assign Networks**.
+1. Select **Assign AZs and Networks**.
 
 	<%= image_tag("../common/images/azure/assign-networks-azs.png") %>
 
-1. Make your selection in the **Network** dropdown.
+<!-- 1. Make your selection in the **Network** dropdown.
   1. If you are configuring Ops Manager on PAS, use the dropdown to select the `management` network for your BOSH Director.
-  1. If you are configuring Ops Manager on PKS, use the dropdown to select the `pks-infrastructure-network` network for your BOSH Director.
+  1. If you are configuring Ops Manager on PKS, use the dropdown to select the `pks-infrastructure-network` network for your BOSH Director. -->
+1. (Optional) Under **Singleton Availability Zone**, select one of the Availability Zones (AZs) from the dropdown. You do not need to specify an AZ if you configured Ops Manager to use an Availability Set in the [Azure Config](azure-config) pane.
+
+1. Under **Network**, select your preferred network from the dropdown.
 
 1. Click **Save**.
-
 
 ## <a id='security'></a> Step 6: Security Page
 
