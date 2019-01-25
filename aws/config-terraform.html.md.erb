@@ -28,12 +28,11 @@ To complete the procedures in this topic, you must have access to the output fro
     * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external identity server maintains your user database.
     * [LDAP Server](#ldap): If you use a LDAP Server, an external identity server maintains your user database.
 
-
     <%= image_tag("../common/images/select-authentication.png") %>
 
 ### <a id='internal'></a> Internal Authentication
 
-1.  When redirected to the **Internal Authentication** page, you must complete the following steps:
+1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
     * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/2-5/customizing/pcf-director-proxy-settings.html) topic.
@@ -97,7 +96,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
     <%= image_tag("../common/images/cloudform/create-az.png") %>
 
-1. Use the following steps to create three Availability Zones for your apps to use:
+1. To create three Availability Zones for your apps to use, do the following:
     1. Click **Add** three times.
     1. For **Amazon Availability Zone**, enter the values corresponding
     to the key `management_subnet_availability_zones` from the Terraform output.
@@ -111,7 +110,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
 1. (Optional) Select **Enable ICMP checks** to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
 
-1. Perform the following steps to add the network configuration you created for your VPC:
+1. To add the network configuration you created for your VPC, do the following:
     1. Click **Add Network**.
     1. For **Name**, enter `pcf-management-network`.
     1. Create a subnet for each availability zone by clicking **Add Subnet**. Refer to the table below for the information required to create all three subnets:
@@ -153,7 +152,7 @@ To complete the procedures in this topic, you must have access to the output fro
     <br><br>
     1. Click **Add Network**.
     1. For **Name**, enter `pcf-pas-network`.
-    1. Create a subnet for each availability zone by clicking **Add Subnet**. Refer to the table below for the information required to create all three subnets:
+    1. Create a subnet for each availability zone by clicking **Add Subnet**. See the table below for the information required to create all three subnets:
          <table>
           <tr>
           <th>VPC Subnet ID</th>
