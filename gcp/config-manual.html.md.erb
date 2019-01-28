@@ -30,7 +30,7 @@ function openDocs(evt, tabId) {
 
 This topic describes how to configure the BOSH Director for Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/2-5/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
 
 ## <a id='access-om'></a> Step 1: Access Ops Manager
@@ -52,7 +52,7 @@ This topic describes how to configure the BOSH Director for Pivotal Cloud Foundr
 1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/2-5/customizing/pcf-director-proxy-settings.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -92,7 +92,7 @@ This topic describes how to configure the BOSH Director for Pivotal Cloud Foundr
 
 ## <a id='az'></a> Step 4: Create Availability Zones Page
 
-<p class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation of PAS. For an example of a three availability zone deployment, see <a href="https://docs.pivotal.io/pivotalcf/2-5/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</p>
+<p class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation of PAS. For an example of a three availability zone deployment, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</p>
 
 1. Select **Create Availability Zones**.
 
@@ -117,7 +117,7 @@ This topic describes how to configure the BOSH Director for Pivotal Cloud Foundr
 1. Use the **Add Network** button to create the following three networks:
     <p class="note"><strong>Note:</strong> To use a shared VPC network, enter the shared VPC host project name before the network name in the format <code>VPC-PROJECT-NAME/NETWORK-NAME/SUBNET-NAME/REGION-NAME</code>.
     For example, <code>vpc-project/opsmgr/central/us-central1</code>.
-    For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-5/customizing/gcp-shared-vpc.html">Configuring a Shared VPC on GCP</a>.</p>
+    For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp-shared-vpc.html">Configuring a Shared VPC on GCP</a>.</p>
 
 1. Select the runtime you are installing from the following table to determine which networks you need to create:
     <div class="tab">
@@ -126,7 +126,7 @@ This topic describes how to configure the BOSH Director for Pivotal Cloud Foundr
     </div>
     <div id="PAS-networks" class="tabcontent" style="display:none">
       <p>If you intend to deploy Pivotal Application Service (PAS), or PAS plus additional runtimes, create networks according to the table below.
-      For more information about the runtimes you can deploy to PCF, see <a href="https://docs.pivotal.io/pivotalcf/2-5/customizing/runtimes.html">Installing Runtimes</a>.<br>
+      For more information about the runtimes you can deploy to PCF, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html">Installing Runtimes</a>.<br>
         <table>
           <tr>
             <th>Network Name</th>
