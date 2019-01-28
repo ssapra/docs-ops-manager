@@ -20,11 +20,11 @@ Before you perform the procedures in this topic, you must have completed the pro
 * [Preparing to Deploy PCF on Azure](prepare-env-manual.html)
 * [Launching a BOSH Director Instance on Azure](deploy-manual.html)
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/2-4/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
 ### <a id="stack-gov-prereqs"></a> Prerequisites for Azure Stack or Azure Government Cloud
 
-f you are using Azure Government Cloud, you must set custom VM types for a successful deployment. You can set custom VM types with the Ops Manager API. For more information, see [Using the Ops Manager API](https://docs.pivotal.io/pivotalcf/2-4/customizing/ops-man-api.html).
+f you are using Azure Government Cloud, you must set custom VM types for a successful deployment. You can set custom VM types with the Ops Manager API. For more information, see [Using the Ops Manager API](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html).
 
 To set custom VM types, see the following information.
 
@@ -82,7 +82,7 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/2-4/customizing/pcf-director-proxy-settings.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -270,9 +270,9 @@ In this procedure, you create three networks.
 
 1. Click the **Installation Dashboard** link to return to the Installation Dashboard.
 
-1. When Ops Manager finishes deploying, you can optionally [deploy BOSH Add-Ons](https://docs.pivotal.io/pivotalcf/2-4/customizing/add-ons.html) to your system, and then [install one or more PCF runtime environments](https://docs.pivotal.io/pivotalcf/2-4/customizing/runtimes.html) to complete your PCF installation.
+1. When Ops Manager finishes deploying, you can optionally [deploy BOSH Add-Ons](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/add-ons.html) to your system, and then [install one or more PCF runtime environments](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html) to complete your PCF installation.
 
 
 ## <a id="next"></a> What to Do Next
 
-After you complete this procedure, follow the instructions in the [Deploying PAS on Azure](https://docs.pivotal.io/pivotalcf/2-4/customizing/azure-er-config.html) topic.
+After you complete this procedure, follow the instructions in the [Deploying PAS on Azure](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-er-config.html) topic.
