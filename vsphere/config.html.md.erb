@@ -19,14 +19,14 @@ instead of performing the procedure described in this topic.</p>
 </br>
 For example:
     <ul>
-    <li> To install Pivotal Application Service (PAS), see [Deploying PAS on vSphere](https://docs.pivotal.io/pivotalcf/2-3/customizing/config-er-vmware.html).
+    <li> To install Pivotal Application Service (PAS), see [Deploying PAS on vSphere](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/config-er-vmware.html).
     <li> To install PKS, see [Installing PKS on vSphere](https://docs.pivotal.io/runtimes/pks/1-2/installing-pks-vsphere.html).
     </ul>
     <p class="note"><strong>Note</strong>: We strongly recommend installing PAS and PKS on separate instances of Ops Manager for security reasons. For more information, see <a href="https://docs.pivotal.io/runtimes/pks/pas-and-pks.html">PAS and PKS Deployments with Ops Manager</a>.</p>
 
-See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/2-3/customizing/runtimes.html) for more information about Pivotal Cloud Foundry (PCF) runtimes.
+See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html) for more information about Pivotal Cloud Foundry (PCF) runtimes.
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-3/customizing/ops-man-api.html">Using the Ops Manager API</a>.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.</p>
 
 ## <a id="set-up"></a> Step 1: Set Up Ops Manager
 
@@ -44,7 +44,7 @@ See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/2-3/customizing/runt
 1.  When redirected to the **Internal Authentication** page, you must complete the following steps:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/2-3/customizing/pcf-director-proxy-settings.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -81,7 +81,7 @@ Configure the one or more vCenters that host your PCF foundation. Use the **Add 
     * **vCenter Username**: A vCenter username with create and delete privileges for virtual machines (VMs) and folders.
     * **vCenter Password**: The password for the vCenter user specified above.
     * **Datacenter Name**: The name of the datacenter as it appears in vCenter.
-    * **Virtual Disk Type**: The Virtual Disk Type to provision for all VMs. For guidance about the virtual disk type to select, see [Provisioning a Virtual Disk in vSphere](https://docs.pivotal.io/pivotalcf/2-3/customizing/disk-format.html).
+    * **Virtual Disk Type**: The Virtual Disk Type to provision for all VMs. For guidance about the virtual disk type to select, see [Provisioning a Virtual Disk in vSphere](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/disk-format.html).
     <p class="note"><strong>Note:</strong> The following fields do not allow whitespace. Including whitespace characters in datastore or datastore folder names causes an error.</p>
     * **Ephemeral Datastore Names (comma delimited)**: The names of the datastores that store ephemeral VM disks deployed by Ops Manager.
     * **Persistent Datastore Names (comma delimited)**: The names of the datastores that store persistent VM disks deployed by Ops Manager.
@@ -113,7 +113,7 @@ Configure the one or more vCenters that host your PCF foundation. Use the **Add 
 1. Click **Save**.
   <p class="note"><strong>Note:</strong> After your initial deployment, you cannot edit the VM Folder, Template Folder, and Disk path Folder names.</p>
 
-1. (Optional) Click **Add vCenter Config** toward the top of the form to configure additional vCenters. Once you click **Save**, your multiple vCenter Configs are listed in the **vCenter Configs** pane. For more information about multiple vCenter configs, see [Managing Multiple Data Centers](https://docs.pivotal.io/pivotalcf/2-3/customizing/multiple-datacenters.html).
+1. (Optional) Click **Add vCenter Config** toward the top of the form to configure additional vCenters. Once you click **Save**, your multiple vCenter Configs are listed in the **vCenter Configs** pane. For more information about multiple vCenter configs, see [Managing Multiple Data Centers](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/multiple-datacenters.html).
 
 
 ## <a id='dir-config'></a> Step 3: Director Config Page
@@ -140,7 +140,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
     * **(Optional)** Enter the name of a **Resource Pool** in the vCenter cluster that you specified above. The jobs running in this AZ share the CPU and memory resources defined by the pool.
     * **(Optional)** Click **Add Cluster** to create another set of **Cluster** and **Resource Pool** fields. You can add multiple clusters. Click the trash icon to delete a cluster. The first cluster cannot be deleted.
     <p class="note"><strong>Note:</strong> For the PAS runtime, see
-<a href="https://docs.pivotal.io/pivotalcf/2-3/customizing/understand-az.html">Availability Zones in vSphere</a> for additional information.</p>
+<a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/understand-az.html">Availability Zones in vSphere</a> for additional information.</p>
 
 1. Click **Save**.
 
@@ -264,7 +264,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
 1. Click **Save**.
     <p class="note"><strong>Note:</strong> Multiple networks allow you to place vCenter on a private network and the rest of your deployment on a public network. Isolating vCenter in this manner denies access to it from outside sources and reduces possible security vulnerabilities.
     </p>
-    <p class='note'><strong>Note:</strong> If you use the Cisco Nexus 1000v Switch, see to <a href="https://docs.pivotal.io/pivotalcf/2-3/customizing/nexus-switch.html">Using the Cisco Nexus 1000v Switch with Ops Manager</a> for more information.</p><%= vars.expand_network_azs %>
+    <p class='note'><strong>Note:</strong> If you use the Cisco Nexus 1000v Switch, see to <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/nexus-switch.html">Using the Cisco Nexus 1000v Switch with Ops Manager</a> for more information.</p><%= vars.expand_network_azs %>
 
 ## <a id='assign-azs'></a> Step 6: Assign AZs and Networks Page
 
@@ -311,6 +311,6 @@ Pivotal recommends that you use at least three AZs for a highly available instal
 
 1. Click the **Installation Dashboard** link to return to the Installation Dashboard.
 
-1. Click **Review Pending Changes**. Select the product that you intend to deploy and review the changes. For more information, see [Reviewing Pending Product Changes](https://docs.pivotal.io/pivotalcf/2-3/customizing/review-pending-changes.html).
+1. Click **Review Pending Changes**. Select the product that you intend to deploy and review the changes. For more information, see [Reviewing Pending Product Changes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/review-pending-changes.html).
 
-1. After you complete this procedure, follow the instructions in [Deploying PAS on vSphere](https://docs.pivotal.io/pivotalcf/2-3/customizing/config-er-vmware.html). If you are installing PKS, proceed to [Installing PKS on vSphere](https://docs.pivotal.io/runtimes/pks/1-2/installing-pks-vsphere.html).
+1. After you complete this procedure, follow the instructions in [Deploying PAS on vSphere](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/config-er-vmware.html). If you are installing PKS, proceed to [Installing PKS on vSphere](https://docs.pivotal.io/runtimes/pks/1-2/installing-pks-vsphere.html).
