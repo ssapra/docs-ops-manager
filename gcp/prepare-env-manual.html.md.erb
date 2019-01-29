@@ -612,23 +612,28 @@ To create a global HTTP load balancer PCF on GCP, do the following:
        1. Click **Reserve**.
    * **Port**: `80`
 
-1. If you use a trusted SSL certificate or already have a self-signed certificate, proceed to step 5.
-
-1. If you want to use a self-signed certificate generated during [PAS network configuration](https://docs.pivotal.io/pivotalcf/2-5/customizing/gcp-er-config.html#networking), skip over the next step of adding the HTTPS frontend configuration until after you generate the certificate in PAS. After you generate the certificate, return to step 5 using the following guidelines:
-   * Copy and paste the generated contents of the **Router SSL Termination Certificate and Private Key** fields from PAS into the public certificate and private key fields.
-   * Since you are using a self-signed certificate, do not enter a value in the **Certificate Chain** field.
-
 1. Click **Add Frontend IP and port** and add the following:
+  <div class="note"><strong>Note:</strong> If you do not already have either a trusted SSL certificate or a self-signed certificate, 
+  generate a certificate using either the PAS or PKS runtime. 
+    <ul>
+      <li>For instructions on generating a self-signed certificate using PAS, see <a href="https://docs.pivotal.io/pivotalcf/customizing/gcp-er-config.html#networking">PAS network configuration</a>. </li>
+      <li>For instructions on generating a self-signed certificate using PKS, see <a href="https://docs-pcf-staging.cfapps.io/runtimes/pks/installing-pks-gcp.html#pks-api">PKS API</a>.</li>
+    </ul>
+  Return here and complete Ops Manager certificate configuration after you have generated a certificate.
+  </div>
   * **Name**: `MY-PCF-cf-lb-https`
   * **Protocol**: `HTTPS`
   * **IP address**: Select the `MY-PCF-global-pcf` address you create for the previous **Frontend IP and Port**.
   * **Port**: `443`
-  * **Certificate**: Select **Create a new certificate**. In the next dialog, perform the following steps:
-     * In the **Name** field, enter a name for the certificate.
+  * Select **Create a new certificate**. The **Create a New Certificate** dialog is displayed.
+  * In the **Name** field, enter a name for the certificate.
      <%= image_tag "../common/images/gcp/lb_frontend_cert.png" %>
-     * In the **Public key certificate** field, copy in the contents of your public certificate, or upload your certificate as a .pem file.
-     * In the **Certificate chain** field, enter or upload your certificate chain in the .pem format. If you use a self-signed certificate, you do not need to populate this field.
-     * In the **Private key** field, copy in the contents or upload the .pem file of the private key for the certificate.
+  * In the **Public key certificate** field, copy in the contents of your public certificate, or upload your certificate as a .pem file. 
+     If the certificate is runtime-generated, copy and paste the generated contents from the runtime's Certificate field into the Ops Manager **Public key certificate** field.
+  * In the **Certificate chain** field, enter or upload your certificate chain in the .pem format. 
+  If you are using a self-signed certificate, such as a PAS or PKS-generated certificate, do not enter a value in the **Certificate Chain** field.
+  * In the **Private key** field, copy in the contents or upload the .pem file of the private key for the certificate. 
+  If the certificate is runtime-generated, copy and paste the generated contents from the runtime's Private Key field into the Ops Manager **Private key** field.
 
 1. Review the completed frontend configuration.
 
