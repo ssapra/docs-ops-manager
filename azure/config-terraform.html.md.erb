@@ -213,18 +213,21 @@ If you have completed this step for PAS, proceed to [Step 5: Assign AZs and Netw
 
 ## <a id="assign-azs"></a> Step 5: Assign AZs and Networks Page
 
-1. Select **Assign AZs and Networks**.
-
-	<%= image_tag("../common/images/azure/assign-networks-azs.png") %>
-
-<!-- 1. Make your selection in the **Network** dropdown.
-  1. If you are configuring Ops Manager on PAS, use the dropdown to select the `management` network for your BOSH Director.
-  1. If you are configuring Ops Manager on PKS, use the dropdown to select the `pks-infrastructure-network` network for your BOSH Director. -->
-1. (Optional) Under **Singleton Availability Zone**, select one of the Availability Zones (AZs) from the dropdown. You do not need to specify an AZ if you configured Ops Manager to use an Availability Set in the [Azure Config](#azure-config) pane.
-
-1. Under **Network**, select your preferred network from the dropdown.
-
-1. Click **Save**.
+<ol>
+  <li>Select <strong>Assign AZs and Networks</strong>.<br/>
+  <p class="note"><strong>Note</strong>: The appearance of this page changes based on whether you are using Availability Zones or Availability sets. For more information, see <a href="#azure-config">Step 2: Azure Config Page</a>.</p>
+    <ul>
+    <li>If you are using Availability Zones:<br/> 
+      <ol>
+        <li>Choose one of the three available zones from the <strong>Singleton Availability Zone</strong> dropdown.</li>
+        <li>Choose a network from the <strong>Networks</strong> dropdown. The networks that appear in this list are networks you created earlier in this procedure.</li>
+      </ol>
+    </li>
+    <li>If you are using Availability Sets, choose a network from the <strong>Networks</strong> dropdown. The networks that appear in this list are networks you created earlier in this procedure.</li>
+    </ul>
+  </li>
+  <li>Click <strong>Save</strong>.</li>  
+</ol>
 
 ## <a id='security'></a> Step 6: Security Page
 
