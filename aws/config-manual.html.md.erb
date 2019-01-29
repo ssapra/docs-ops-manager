@@ -8,7 +8,7 @@ iaas: AWS
 
 This topic describes how to configure Ops Manager to deploy Pivotal Cloud Foundry (PCF) on Amazon Web Services (AWS).
 
-Before beginning this procedure, ensure that you have successfully completed all of the steps in the [Installing PCF on AWS Manually](prepare-env-manual.html) topic. After completing the procedures in this topic, proceed to the [Deploying PAS on AWS](https://docs.pivotal.io/pivotalcf/2-1/customizing/pcf-aws-manual-er-config.html) topic to continue deploying PCF.
+Before beginning this procedure, ensure that you have successfully completed all of the steps in the [Installing PCF on AWS Manually](prepare-env-manual.html) topic. After completing the procedures in this topic, proceed to the [Deploying PAS on AWS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-aws-manual-er-config.html) topic to continue deploying PCF.
 
 ## <a id='pcfaws-om-access'></a> Step 1: Access Ops Manager
 
@@ -31,7 +31,7 @@ Before beginning this procedure, ensure that you have successfully completed all
 1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/2-1/customizing/pcf-director-proxy-settings.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -62,7 +62,7 @@ Before beginning this procedure, ensure that you have successfully completed all
     * **SSH Private Key**: Open the AWS key pair `pcf-ops-manager-keys.pem` file you generated in the [Step 3: Create an IAM User for PCF](prepare-env-manual.html#create-iam) section of the _Installing PCF on AWS Manually_ topic. Copy the contents of the `.pem` file and paste it into the **SSH Private Key** field.
     * **Region**: Select the region where you deployed Ops Manager.
 <<<<<<< HEAD
-    * **Encrypt EBS Volumes**: Select this checkbox to enable full encryption on persistent disks of all BOSH-deployed VMs except the Ops Manager VM and Director VM. See the [Configuring Amazon EBS Encryption for PCF on AWS](https://docs.pivotal.io/pivotalcf/2-1/customizing/cloudform-om-ebs-config.html) topic for details about using EBS encryption.
+    * **Encrypt EBS Volumes**: Select this checkbox to enable full encryption on persistent disks of all BOSH-deployed VMs except the Ops Manager VM and Director VM. See the [Configuring Amazon EBS Encryption for PCF on AWS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/cloudform-om-ebs-config.html) topic for details about using EBS encryption.
     <p class="note"><strong>Note</strong>: Enabling EBS encryption only encrypts Linux VMs. The Windows VMs deployed with Pivotal Application Service (PAS) for Windows or PAS for Windows 2012R2 are not encrypted.</p>
 =======
     * **Encrypt EBS Volumes**: Select this checkbox to enable full encryption on persistent disks of all BOSH-deployed VMs except the Ops Manager VM and Director VM. See the [Configuring Amazon EBS Encryption for PCF on AWS](https://docs.pivotal.io/pivotalcf/2-2/customizing/cloudform-om-ebs-config.html) topic for details about using EBS encryption.
@@ -87,7 +87,7 @@ Before beginning this procedure, ensure that you have successfully completed all
 1. Leave the **Bosh HM Forwarder IP Address** field blank.
   <p class="note"><strong>Note:</strong> Starting from PCF v2.0, BOSH-reported component metrics are available in the Loggregator Firehose by default. Therefore, if you continue to use the BOSH HM Forwarder for consuming them, you may receive duplicate data. To prevent this, leave the <strong>Bosh HM Forwarder IP Address</strong> field blank. For additional guidance, see <a href="http://docs.pivotal.io/pivotalcf/2-0/pcf-release-notes/runtime-rn.html#bosh-metrics">BOSH System Metrics Available in Loggregator Firehose</a>.</p>
 
-1. Select the **Enable VM Resurrector Plugin** checkbox to enable the Ops Manager Resurrector functionality and increase Pivotal Application Service (PAS) availability. For more information, see the [Using Ops Manager Resurrector on VMware vSphere](https://docs.pivotal.io/pivotalcf/2-1/customizing/resurrector.html) topic.
+1. Select the **Enable VM Resurrector Plugin** checkbox to enable the Ops Manager Resurrector functionality and increase Pivotal Application Service (PAS) availability. For more information, see the [Using Ops Manager Resurrector on VMware vSphere](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/resurrector.html) topic.
 
 1. Select **Enable Post Deploy Scripts** to run a post-deploy script after deployment. This script allows the job to execute additional commands against a deployment.
 <p class="note"><strong>Note:</strong> You must enable post-deploy scripts to install PKS.
@@ -156,7 +156,7 @@ Before beginning this procedure, ensure that you have successfully completed all
 
 1. (Optional) To add a custom URL for your BOSH Director, enter a valid hostname in **Director Hostname**. You can also use this field to configure [a load balancer in front of your BOSH Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director).
      <p class="note warning"><strong>WARNING:</strong> In Ops Manager v2.1.17 and earlier, if you change the <strong>Director
-     Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/opsmanager-rn.html#2-1-18">Ops Manager v2.1.18</a> and later.</p>
+     Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/pcf-release-notes/opsmanager-rn.html#2-1-18">Ops Manager v2.1.18</a> and later.</p>
 
 1. <%= partial "../common/exclude-recursors" %>
 
@@ -366,4 +366,4 @@ Before beginning this procedure, ensure that you have successfully completed all
 
     <%= image_tag("../common/images/aws/vpc-step16.png") %>
 
-1. Proceed to the [Deploying PAS on AWS](https://docs.pivotal.io/pivotalcf/2-1/customizing/pcf-aws-manual-er-config.html) topic to continue deploying PCF.
+1. Proceed to the [Deploying PAS on AWS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-aws-manual-er-config.html) topic to continue deploying PCF.
