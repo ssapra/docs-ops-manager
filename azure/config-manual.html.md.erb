@@ -135,8 +135,8 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 
 1. For **SSH Private Key**, copy and paste the contents of your private key in the `opsman` file.
 
-1. For **Availability Mode**, choose whether to use **Availability Sets** or **Availability Zones**. New installations of Ops Manager v2.5 use **Availability Zones** by default. You can further configure this option in the [**Assign AZs and Networks**](#assign-networks) form.
-   <p class="note"><strong>Note</strong>: You can only change this setting for staged Ops Manager instances. Once you have deployed Ops Manager, you cannot change between Availability Zones and Availability Sets.</p>
+1. For **Availability Mode**, choose whether to use **Availability Sets** or **Availability Zones**. New installations of Ops Manager v2.5 use **Availability Zones** by default, but you can choose **Availability Sets** if you prefer. If you're upgrading from v2.4, you must use **Availability Sets**. You can further configure this option in the [**Assign AZs and Networks**](#assign-networks) form.
+   <p class="note"><strong>Note</strong>: Availability Zones are only available on new installations of Ops Manager v2.5, and you can only choose between Availability Zones and Availability Sets for staged Ops Manager instances that have not yet been deployed. Once you have deployed Ops Manager, you cannot change between Availability Zones and Availability Sets.</p>
 
 1. <%= partial "../common/azure-environment" %>
 
