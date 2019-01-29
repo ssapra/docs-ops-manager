@@ -10,13 +10,13 @@ This topic provides instructions for deploying Ops Manager to VMware vSphere.
 <p class="note warning"><strong>WARNING:</strong> If you are installing Pivotal Container Service (PKS)
 on vSphere with NSX-T integration, follow the instructions in
 <a href="https://docs.pivotal.io/runtimes/pks/1-2/vsphere-nsxt-om-deploy.html">Deploying Ops Manager with NSX-T for PKS</a>
-instead of performing the steps described in this topic.</p>
+instead of performing the steps provided in this topic.</p>
 
 <p class="note"><strong>Note</strong>: The instructions in this topic are based on vSphere 6.5.</p>
 
 ## <a id="deploy"></a> Deploy Ops Manager
 
-1. Download [Pivotal Cloud Foundry](https://network.pivotal.io/products/pivotal-cf) (PCF) Ops Manager for vSphere from [Pivotal Network](https://network.pivotal.io). 
+1. Download Pivotal Cloud Foundry Ops Manager for vSphere from [Pivotal Network](https://network.pivotal.io/products/ops-manager).
 
 1. Log in to vCenter.
 
@@ -65,11 +65,11 @@ instead of performing the steps described in this topic.</p>
 
      <p class="note"><strong>Note</strong>: It is normal to experience a brief delay before the interface is accessible while the web server and VM start up.</p>
 
-1. Create a DNS entry for the IP address that you used for Ops Manager. You must use this fully qualified domain name when you log into Ops Manager in the [Installing Pivotal Cloud Foundry on vSphere](https://docs.pivotal.io/pivotalcf/2-2/customizing/vsphere.html#paas) topic.
-    <p class="note"><strong>Note</strong>: Ops Manager security features require you to create a fully qualified domain name to access Ops Manager during the <a href="https://docs.pivotal.io/pivotalcf/2-2/customizing/vsphere.html#paas">initial configuration.</a></p>
+1. Create a DNS entry for the IP address that you used for Ops Manager. You must use this fully qualified domain name when you log in to Ops Manager
+as described in the [Set Up Ops Manager](config.html#set-up) section of _Configuring BOSH Director on vSphere_.
 
 ## <a id="next-steps"></a> Next Steps
 
-To configure the BOSH Director tile on vSphere, follow the instructions in [Configuring BOSH Director on vSphere](config.html).
+After you complete this procedure, follow the instructions in [Configuring BOSH Director on vSphere](config.html).
 
 [Return to the Installing Pivotal Cloud Foundry Guide](https://docs.pivotal.io/installing/2-2/customizing/index.html)
