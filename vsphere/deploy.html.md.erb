@@ -42,7 +42,11 @@ instead of performing the steps provided in this topic.</p>
             <p class="note"><strong>Note</strong>: The selected folder is the one you created.</p>
     1. **Select a resource**
         1. Select the resource you want to use to launch the VM and click **Next**.
-            <p class="note"><strong>Note</strong>: Hardware virtualization must be off if your vSphere host does not support VT-X/EPT. Refer to the <a href="https://docs.pivotal.io/pivotalcf/2-1/customizing/vsphere.html#vsphere-reqs">Installing Pivotal Cloud Foundry on vSphere</a> topic for more information.</p>
+            <p class="note"><strong>Note</strong>: If your vSphere hosts do not support VT-X/EPT,
+            hardware virtualization must be disabled.
+            If you leave hardware virtualization enabled and the VM hosts do not support VT-x/EPT,
+            then each VM requires manual intervention in vCenter to continue powering on without the Intel virtualized VT-x/EPT.
+            For more information, see the vCenter help topic at [Configuring Virtual Machines > Setting Virtual Processors and Memory > Set Advanced Processor Options](http://pubs.vmware.com/fusion-6/index.jsp?topic=%2Fcom.vmware.fusion.help.doc%2FGUID-38178690-1234-4843-B135-4063F9AA73E4.html).</p>
     1. **Review Details**
         1. Verify the template details and click **Next**. 
     1. **Select storage**
