@@ -10,14 +10,14 @@ This guide describes the preparation steps required to install Pivotal Cloud Fou
 In addition to fulfilling the installation prerequisites for your desired runtime, 
 you must create resources in GCP such as a new network, firewall rules, load balancers, 
 and a service account before deploying Ops Manager.<br><br>
-To verify the prerequisites for PAS, see [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-2/customizing/gcp.html).<br><br>
+To verify the prerequisites for PAS, see [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp.html).<br><br>
 To verify the prerequisites for PKS, see [GCP Prerequisites and Resource Requirements](https://docs.pivotal.io/runtimes/pks/1-2/gcp-requirements.html).
 
 ## <a id="config-components"></a> Configuration and Components
 
 This section outlines high-level infrastructure options for PCF on GCP. For more information, 
 review the deployment options and recommendations in 
-[Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-2/refarch/gcp/gcp_ref_arch.html).
+[Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html).
 
 When deploying PCF on GCP, Pivotal recommends using the following GCP components:
 
@@ -25,7 +25,7 @@ When deploying PCF on GCP, Pivotal recommends using the following GCP components
   * [NAT Gateway Instances](https://cloud.google.com/solutions/connecting-securely#natgateway) to limit the number of virtual machines (VMs) with public IP addresses
   * [Google Cloud Storage](https://cloud.google.com/storage/) for external filestorage
 
-For more information, review the different deployment options and recommendations in [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/refarch/2-2/customizing//gcp/gcp_ref_arch.html).
+For more information, review the different deployment options and recommendations in [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/refarch/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing//gcp/gcp_ref_arch.html).
 
 
 ## <a id="iam_account"></a> Step 1: Set up an IAM Service Account
@@ -164,7 +164,7 @@ Use NAT instances when you want to expose only a minimal number of public IP add
 Creating NAT instances permits Internet access from cluster VMs.
 You might, for example, need this Internet access for pulling Docker images or enabling Internet access for your workloads.
 
-For more information, see [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/refarch/2-2/customizing//gcp/gcp_ref_arch.html#common_network) and [GCP documentation](https://cloud.google.com/solutions/connecting-securely#natgateway).
+For more information, see [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/refarch/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing//gcp/gcp_ref_arch.html#common_network) and [GCP documentation](https://cloud.google.com/solutions/connecting-securely#natgateway).
 
 1. In the console, navigate to **Compute Engine** > **VM instances**.
   ![Compute Instance](../common/images/gcp/gcp-vm-instances.png)
@@ -564,7 +564,7 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
 
 1. If you use a trusted SSL certificate or already have a self-signed certificate, proceed to step 5.
 
-1. If you want to use a self-signed certificate generated during [PAS network configuration](https://docs.pivotal.io/pivotalcf/2-2/customizing/gcp-er-config.html#networking), skip over the next step of adding the HTTPS frontend configuration until after you generate the certificate in PAS. After you generate the certificate, return to step 5 using the following guidelines:
+1. If you want to use a self-signed certificate generated during [PAS network configuration](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp-er-config.html#networking), skip over the next step of adding the HTTPS frontend configuration until after you generate the certificate in PAS. After you generate the certificate, return to step 5 using the following guidelines:
    * Copy and paste the generated contents of the **Router SSL Termination Certificate and Private Key** fields from PAS into the public certificate and private key fields.
    * Since you are using a self-signed certificate, do not enter a value in the **Certificate Chain** field.
 

@@ -18,13 +18,13 @@ See the following sections to prepare for configuring BOSH Director on Azure.
 Before you perform the procedures in this topic, you must have completed the procedures in the following topics:
 
 * [Preparing to Deploy PCF on Azure](prepare-env-manual.html)
-* Either [Launching a BOSH Director Instance with an ARM Template](https://docs.pivotal.io/pivotalcf/2-2/customizing/azure-arm-template.html) or [Launching a BOSH Director Instance on Azure without an ARM Template](deploy-manual.html)
+* Either [Launching a BOSH Director Instance with an ARM Template](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-arm-template.html) or [Launching a BOSH Director Instance on Azure without an ARM Template](deploy-manual.html)
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/2-2/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
 ### <a id="stack-gov-prereqs"></a> Prerequisites for Azure Stack or Azure Government Cloud
 
-If you are using Azure Stack or Azure Government Cloud, you must set custom VM types for a successful deployment. You can set custom VM types with the Ops Manager API. For more information, see [Using the Ops Manager API](https://docs.pivotal.io/pivotalcf/2-2/customizing/ops-man-api.html).
+If you are using Azure Stack or Azure Government Cloud, you must set custom VM types for a successful deployment. You can set custom VM types with the Ops Manager API. For more information, see [Using the Ops Manager API](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html).
 
 To set custom VM types, see the following information.
 
@@ -86,7 +86,7 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 
 ## <a id='access-om'></a> Step 1: Access Ops Manager
 
-1. In a web browser, navigate to the fully qualified domain name (FQDN) of Ops Manager that you set up in either the [Launching a BOSH Director Instance with an ARM Template](https://docs.pivotal.io/pivotalcf/2-2/customizing/azure-arm-template.html) topic or the [Launching a BOSH Director Instance on Azure without an ARM Template](deploy-manual.html) topic.
+1. In a web browser, navigate to the fully qualified domain name (FQDN) of Ops Manager that you set up in either the [Launching a BOSH Director Instance with an ARM Template](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-arm-template.html) topic or the [Launching a BOSH Director Instance on Azure without an ARM Template](deploy-manual.html) topic.
 
 1. When Ops Manager starts for the first time, you must choose one of the following:
     * [Use an Identity Provider](#idp): If you use an Identity Provider, an external identity server maintains your user database.
@@ -103,7 +103,7 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable if lost.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/2-2/customizing/pcf-aws-manual-er-config.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-aws-manual-er-config.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -144,7 +144,7 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 1. (Optional) Enter your **Default Security Group**. For more information about Network Security Groups, see [Filter network traffic with network security groups](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-nsg) in Microsoft Azure's documentation.
     <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
 
-1. For **SSH Public Key**, copy and paste the contents of your public key in the `opsman.pub` file. You created this file in either the [Launching a BOSH Director Instance with an ARM Template](https://docs.pivotal.io/pivotalcf/2-2/customizing/azure-arm-template.html) topic or the [Launching a BOSH Director Instance on Azure without an ARM Template](deploy-manual.html) topic.
+1. For **SSH Public Key**, copy and paste the contents of your public key in the `opsman.pub` file. You created this file in either the [Launching a BOSH Director Instance with an ARM Template](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-arm-template.html) topic or the [Launching a BOSH Director Instance on Azure without an ARM Template](deploy-manual.html) topic.
 
 1. For **SSH Private Key**, copy and paste the contents of your private key in the `opsman` file.
 
@@ -228,7 +228,7 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 
 1. (Optional) To add a custom URL for your BOSH Director, enter a valid hostname in **Director Hostname**. You can also use this field to configure [a load balancer in front of your BOSH Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director).
      <p class="note warning"><strong>WARNING:</strong> In Ops Manager v2.2.7 and earlier, if you change the <strong>Director
-  Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/2-2/pcf-release-notes/opsmanager-rn.html#2-2-8">Ops Manager v2.2.8</a> and later.</p>
+  Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/pcf-release-notes/opsmanager-rn.html#2-2-8">Ops Manager v2.2.8</a> and later.</p>
 
      <%= image_tag("../common/images/director_workers.png") %>
 
@@ -360,9 +360,9 @@ In this procedure, you create three networks.
 
 1. Click the **Installation Dashboard** link to return to the Installation Dashboard.
 
-1. When Ops Manager finishes deploying, you can optionally [deploy BOSH Add-Ons](https://docs.pivotal.io/pivotalcf/2-2/customizing/add-ons.html) to your system, and then [install one or more PCF runtime environments](https://docs.pivotal.io/pivotalcf/2-2/customizing/runtimes.html) to complete your PCF installation.
+1. When Ops Manager finishes deploying, you can optionally [deploy BOSH Add-Ons](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/add-ons.html) to your system, and then [install one or more PCF runtime environments](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html) to complete your PCF installation.
 
 
 ## <a id="next"></a> What to Do Next
 
-After you complete this procedure, follow the instructions in the [Deploying PAS on Azure](https://docs.pivotal.io/pivotalcf/2-2/customizing/azure-er-config.html) topic.
+After you complete this procedure, follow the instructions in the [Deploying PAS on Azure](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-er-config.html) topic.

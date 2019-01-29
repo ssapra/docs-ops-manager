@@ -29,7 +29,7 @@ function openDocs(evt, tabId) {
 
 This topic describes how to configure the BOSH Director for Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/2-2/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
 
 ## <a id='access-om'></a> Step 1: Access Ops Manager
@@ -52,7 +52,7 @@ This topic describes how to configure the BOSH Director for Pivotal Cloud Foundr
 1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable if lost.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/2-2/customizing/pcf-aws-manual-er-config.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-aws-manual-er-config.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -146,7 +146,7 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
 
 1. (Optional) To add a custom URL for your BOSH Director, enter a valid hostname in **Director Hostname**. You can also use this field to configure [a load balancer in front of your BOSH Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director).
      <p class="note warning"><strong>WARNING:</strong> In Ops Manager v2.2.7 and earlier, if you change the <strong>Director
-  Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/2-2/pcf-release-notes/opsmanager-rn.html#2-2-8">Ops Manager v2.2.8</a> and later.</p>
+  Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/pcf-release-notes/opsmanager-rn.html#2-2-8">Ops Manager v2.2.8</a> and later.</p>
 
      <%= image_tag("../common/images/director_workers.png") %>
 
@@ -167,7 +167,7 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
 
 ## <a id='az'></a> Step 4: Create Availability Zones Page
 
-<p class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation of PAS. For an example of a three availability zone deployment, see <a href="https://docs.pivotal.io/refarch/2-2/customizing//gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</p>
+<p class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation of PAS. For an example of a three availability zone deployment, see <a href="https://docs.pivotal.io/refarch/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing//gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</p>
 
 1. Select **Create Availability Zones**.
 
@@ -192,8 +192,8 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
 1. Use the **Add Network** button to create the following three networks:
     <p class="note"><strong>Note:</strong> To use a shared VPC network, enter the shared VPC host project name before the network name in the format <code>VPC-PROJECT-NAME/NETWORK-NAME/SUBNET-NAME/REGION-NAME</code>.
     For example, <code>vpc-project/opsmgr/central/us-central1</code>.
-    For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-2/customizing/gcp-shared-vpc.html">Configuring a Shared VPC on GCP</a>.</p>
-    <p class="note"><strong>Note:</strong> If you disabled BOSH DNS for a PAS installation, enter <code>8.8.8.8</code> into the **DNS Servers** field of the PAS tile. For more information, see step 29g in the <em>Configure Networking</em> section of the <a href="https://docs.pivotal.io/pivotalcf/2-2/customizing/gcp-er-config.html#dns-servers">Deploying PAS on GCP</a> topic.</p>
+    For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp-shared-vpc.html">Configuring a Shared VPC on GCP</a>.</p>
+    <p class="note"><strong>Note:</strong> If you disabled BOSH DNS for a PAS installation, enter <code>8.8.8.8</code> into the **DNS Servers** field of the PAS tile. For more information, see step 29g in the <em>Configure Networking</em> section of the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp-er-config.html#dns-servers">Deploying PAS on GCP</a> topic.</p>
 
 1. Select the runtime you are installing from the following table to determine which networks you need to create:
     <div class="tab">
@@ -202,7 +202,7 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
     </div>
     <div id="PAS-networks" class="tabcontent" style="display:none">
       <p>If you intend to deploy Pivotal Application Service (PAS), or PAS plus additional runtimes, create networks according to the table below.
-      For more information about the runtimes you can deploy to PCF, see <a href="https://docs.pivotal.io/pivotalcf/2-2/customizing/runtimes.html">Installing Runtimes</a>.<br>
+      For more information about the runtimes you can deploy to PCF, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html">Installing Runtimes</a>.<br>
         <table>
           <tr>
             <th>Network Name</th>
@@ -437,6 +437,6 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
 
 After you complete this procedure, follow the instructions for the runtime you intend to install.
 <ul>
-  <li>To deploy PAS, see [Deploying PAS on GCP](https://docs.pivotal.io/pivotalcf/2-2/customizing/gcp-er-config.html).</li>
+  <li>To deploy PAS, see [Deploying PAS on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp-er-config.html).</li>
   <li>To deploy PKS, see Installing PKS on [Google Cloud Platform (GCP)](https://docs.pivotal.io/runtimes/pks/1-2/gcp-index.html).</li>
 <ul>
