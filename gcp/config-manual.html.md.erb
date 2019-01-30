@@ -92,7 +92,12 @@ This topic describes how to configure the BOSH Director for Pivotal Cloud Foundr
 
 ## <a id='az'></a> Step 4: Create Availability Zones Page
 
-<p class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation of PAS. For an example of a three availability zone deployment, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</p>
+  <div class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation. 
+    <ul>
+      <li>For configuring a PAS deployment with multiple availability zones, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</li>
+      <li>For PKS best practices for distributing workloads across multiple availability zones and clusters, see <a href="https://docs.pivotal.io/runtimes/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
+    </ul>
+  </div>
 
 1. Select **Create Availability Zones**.
 
@@ -366,6 +371,6 @@ Dashboard.
 
 After you complete this procedure, follow the instructions for the runtime you intend to install.
 <ul>
-  <li>To deploy PAS, see [Deploying PAS on GCP](https://docs.pivotal.io/pivotalcf/customizing/gcp-er-config.html).</li>
-  <li>To deploy PKS, see Installing PKS on [Google Cloud Platform (GCP)](https://docs.pivotal.io/runtimes/pks/gcp-index.html).</li>
-<ul>
+  <li>To deploy PAS, see [Deploying PAS on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp-er-config.html).</li>
+  <li>To deploy PKS, see [Creating Service Accounts in GCP for PKS](https://docs.pivotal.io/runtimes/pks/gcp-service-accounts.html).</li>
+</Configure Front Endul>
