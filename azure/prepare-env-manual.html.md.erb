@@ -11,7 +11,7 @@ This topic describes how to prepare to deploy Pivotal Cloud Foundry (PCF) on Azu
 After you complete this procedure, follow the instructions in one of the following topics:
 
 * [Launching a BOSH Director Instance on Azure using Terraform](deploy-manual.html)
-* [Launching a BOSH Director Instance with an ARM Template](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-arm-template.html)
+* [Launching a BOSH Director Instance with an ARM Template](https://docs.pivotal.io/pivotalcf/2-1/customizing/azure-arm-template.html)
 * [Launching a BOSH Director Instance on Azure without an ARM Template](deploy-manual.html)
 
 ##<a id="install"></a> Step 1: Install and Configure the Azure CLI
@@ -28,7 +28,7 @@ After you complete this procedure, follow the instructions in one of the followi
     $ az cloud set --name AzureCloud
     </pre>
 
-    <p class="note"><strong>Note</strong>: For more information on installing PCF in the China Region, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/offline_installation.html#install_china">Install in the China Region</a>.</p>
+    <p class="note"><strong>Note</strong>: For more information on installing PCF in the China Region, see <a href="https://docs.pivotal.io/pivotalcf/2-1/customizing/offline_installation.html#install_china">Install in the China Region</a>.</p>
 
 1. Log in:
 
@@ -137,7 +137,7 @@ After you complete this procedure, follow the instructions in one of the followi
     * For `SERVICE-PRINCIPAL-NAME`, use any value of `Service Principal Names` from the output above, such as `YOUR-APPLICATION-ID`.
     * For `SUBSCRIPTION-ID`, use the ID of the default subscription that you recorded in [Step 2](#default-subscription).
 
-    <p class="note"><strong>Note</strong>: If you need to use multiple resource groups for your PCF deployment on Azure, you can define custom roles for your Service Principal. These roles allow BOSH to deploy PCF to pre-existing network resources outside the PCF resource group. For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/azure/azure_ref_arch.html#multiple_resource_groups">Reference Architecture for Pivotal Cloud Foundry on Azure</a>.</p>
+    <p class="note"><strong>Note</strong>: If you need to use multiple resource groups for your PCF deployment on Azure, you can define custom roles for your Service Principal. These roles allow BOSH to deploy PCF to pre-existing network resources outside the PCF resource group. For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-1/refarch/azure/azure_ref_arch.html#multiple_resource_groups">Reference Architecture for Pivotal Cloud Foundry on Azure</a>.</p>
 
     For more information about Azure Role-Based Access Control, refer to the <a href="https://azure.microsoft.com/en-us/documentation/articles/role-based-access-built-in-roles/">RBAC: Built-in roles</a> topic in the Azure documentation.
 
@@ -198,6 +198,6 @@ If you cannot log in, the service principal is invalid. Create a new service pri
 
 After you complete this topic, continue to one of the following topics:
 
-* [Launching a BOSH Director Instance on Azure using Terraform](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-terraform.html): Perform the procedures in this topic to deploy BOSH Director using Terraform. Pivotal recommends using Terraform.
-* [Launching a BOSH Director Instance with an ARM Template](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-arm-template.html): Perform the procedures in this topic to deploy BOSH Director with an Azure Resource Manager (ARM) template.
+* [Launching a BOSH Director Instance on Azure using Terraform](https://docs.pivotal.io/pivotalcf/2-1/customizing/azure-terraform.html): Perform the procedures in this topic to deploy BOSH Director using Terraform. Pivotal recommends using Terraform.
+* [Launching a BOSH Director Instance with an ARM Template](https://docs.pivotal.io/pivotalcf/2-1/customizing/azure-arm-template.html): Perform the procedures in this topic to deploy BOSH Director with an Azure Resource Manager (ARM) template.
 * [Launching a BOSH Director Instance on Azure without an ARM Template](deploy-manual.html): Perform the procedures in this topic to deploy BOSH Director manually.

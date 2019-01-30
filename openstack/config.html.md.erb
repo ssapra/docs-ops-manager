@@ -6,11 +6,11 @@ iaas: OpenStack
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to configure the BOSH Director after deploying [Pivotal Cloud Foundry](https://network.pivotal.io/products/pivotal-cf) (PCF) on OpenStack. Use this topic when [Installing Pivotal Cloud Foundry on OpenStack](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/openstack.html).
+This topic describes how to configure the BOSH Director after deploying [Pivotal Cloud Foundry](https://network.pivotal.io/products/pivotal-cf) (PCF) on OpenStack. Use this topic when [Installing Pivotal Cloud Foundry on OpenStack](https://docs.pivotal.io/pivotalcf/2-1/customizing/openstack.html).
 
-Before beginning this procedure, ensure that you have successfully completed all steps in the [Provisioning the OpenStack Infrastructure](./setup.html) topic. After you complete this procedure, follow the instructions in [Deploying PAS on OpenStack](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/openstack-er-config.html).
+Before beginning this procedure, ensure that you have successfully completed all steps in the [Provisioning the OpenStack Infrastructure](./setup.html) topic. After you complete this procedure, follow the instructions in [Deploying PAS on OpenStack](https://docs.pivotal.io/pivotalcf/2-1/customizing/openstack-er-config.html).
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/2-1/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
 
 ## <a id='log-in'></a> Step 1: Access Ops Manager
@@ -34,7 +34,7 @@ Before beginning this procedure, ensure that you have successfully completed all
 1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/2-1/customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -163,7 +163,7 @@ Before beginning this procedure, ensure that you have successfully completed all
 
 1. (Optional) **Director Hostname**: Enter a valid hostname to add a custom URL for your BOSH Director. You can also use this field to configure a load balancer in front of your BOSH Director. For more information, see [How to Set Up a Load Balancer in Front of Operations Manager Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director) in the Pivotal Support documentation.
      <p class="note warning"><strong>WARNING:</strong> In Ops Manager v2.1.17 and earlier, if you change the <strong>Director
-     Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/pcf-release-notes/opsmanager-rn.html#2-1-18">Ops Manager v2.1.18</a> and later.</p>
+     Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/opsmanager-rn.html#2-1-18">Ops Manager v2.1.18</a> and later.</p>
 
 1. <%= partial "../common/exclude-recursors" %>
 
@@ -175,7 +175,7 @@ Before beginning this procedure, ensure that you have successfully completed all
 
 1. Click **Save**.
 
-<p class='note'><strong>Note:</strong> If you select to use an internal database, <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/backup-restore/index.html">back up</a> your data frequently to ensure you have saved the latest copy. </p>
+<p class='note'><strong>Note:</strong> If you select to use an internal database, <a href="https://docs.pivotal.io/pivotalcf/2-1/customizing/backup-restore/index.html">back up</a> your data frequently to ensure you have saved the latest copy. </p>
 
 
 ## <a id='az-config'></a> Step 5: Complete the Create Availability Zones Page
@@ -251,7 +251,7 @@ Before beginning this procedure, ensure that you have successfully completed all
 1. Click **Save**.
 
 
-## <a id="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/custom-vm-extensions"></a> Step 11: (Optional) Add Custom VM Extensions
+## <a id="https://docs.pivotal.io/pivotalcf/2-1/customizing/custom-vm-extensions"></a> Step 11: (Optional) Add Custom VM Extensions
 
 <%= partial "../common/vm-extension-config"  %>
 
@@ -267,8 +267,8 @@ Before beginning this procedure, ensure that you have successfully completed all
 
     <%= image_tag("../common/images/openstack/om-installed.png") %>
 
-1. After you complete this procedure, follow the instructions in [Deploying PAS on OpenStack](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/openstack-er-config.html).
+1. After you complete this procedure, follow the instructions in [Deploying PAS on OpenStack](https://docs.pivotal.io/pivotalcf/2-1/customizing/openstack-er-config.html).
 
 ---
 
-Return to [Installing Pivotal Cloud Foundry on OpenStack](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/openstack.html).
+Return to [Installing Pivotal Cloud Foundry on OpenStack](https://docs.pivotal.io/pivotalcf/2-1/customizing/openstack.html).
