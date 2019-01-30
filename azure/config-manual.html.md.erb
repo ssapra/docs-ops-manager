@@ -20,11 +20,11 @@ Before you perform the procedures in this topic, you must have completed the pro
 * [Preparing to Deploy PCF on Azure](prepare-env-manual.html)
 * [Launching a BOSH Director Instance on Azure](deploy-manual.html)
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/2-5/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
 ### <a id="stack-gov-prereqs"></a> Prerequisites for Azure Stack or Azure Government Cloud
 
-If you are using Azure Government Cloud, you must set custom VM types for a successful deployment. You can set custom VM types with the Ops Manager API. For more information, see [Using the Ops Manager API](https://docs.pivotal.io/pivotalcf/2-5/customizing/ops-man-api.html).
+If you are using Azure Government Cloud, you must set custom VM types for a successful deployment. You can set custom VM types with the Ops Manager API. For more information, see [Using the Ops Manager API](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html).
 
 To set custom VM types, see the following information.
 
@@ -82,7 +82,7 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/2-5/customizing/pcf-director-proxy-settings.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -135,8 +135,8 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 
 1. For **SSH Private Key**, copy and paste the contents of your private key in the `opsman` file.
 
-1. For **Availability Mode**, choose whether to use **Availability Sets** or **Availability Zones**. New installations of Ops Manager v2.5 use **Availability Zones** by default. You can further configure this option in the [**Assign AZs and Networks**](#assign-networks) form.
-   <p class="note"><strong>Note</strong>: You can only change this setting for staged Ops Manager instances. Once you have deployed Ops Manager, you cannot change between Availability Zones and Availability Sets.</p>
+1. For **Availability Mode**, choose whether to use **Availability Sets** or **Availability Zones**. New installations of Ops Manager v2.5 use **Availability Zones** by default, but you can choose **Availability Sets** if you prefer. If you're upgrading from v2.4, you must use **Availability Sets**. You can further configure this option in the [**Assign AZs and Networks**](#assign-networks) form.
+   <p class="note"><strong>Note</strong>: Availability Zones are only available on new installations of Ops Manager v2.5, and you can only choose between Availability Zones and Availability Sets for staged Ops Manager instances that have not yet been deployed. Once you have deployed Ops Manager, you cannot change between Availability Zones and Availability Sets.</p>
 
 1. <%= partial "../common/azure-environment" %>
 
@@ -220,17 +220,22 @@ In this procedure, you create three networks.
 
 ## <a id='assign-networks'></a> Step 5: Assign AZs and Networks
 
-<p class="note"><strong>Note</strong>: </p>
-
 1. Select **Assign AZs and Networks**.
-
-	<%= image_tag("../common/images/azure/assign-networks-azs.png") %>
-
-1. (Optional) Under **Singleton Availability Zone**, select one of the Availability Zones (AZs) from the dropdown. You do not need to specify an AZ if you configured Ops Manager to use an Availability Set in the [Azure Config](#azure-config) pane.
-
-1. Under **Network**, select your preferred network from the dropdown.
-
-1. Click **Save**.
+<ol>
+  <li>Select <strong>Assign AZs and Networks</strong>.<br/>
+  <p class="note"><strong>Note</strong>: The appearance of this page changes based on whether you are using Availability Zones or Availability sets. For more information, see <a href="#azure-config">Step 2: Azure Config Page</a>.</p>
+    <ul>
+    <li>If you are using Availability Zones:<br/> 
+      <ol>
+        <li>Choose one of the three available zones from the <strong>Singleton Availability Zone</strong> dropdown.</li>
+        <li>Choose a network from the <strong>Networks</strong> dropdown. The networks that appear in this list are networks you created earlier in this procedure.</li>
+      </ol>
+    </li>
+    <li>If you are using Availability Sets, choose a network from the <strong>Networks</strong> dropdown. The networks that appear in this list are networks you created earlier in this procedure.</li>
+    </ul>
+  </li>
+  <li>Click <strong>Save</strong>.</li>  
+</ol>
 
 
 ## <a id='security'></a> Step 6: Security Page
@@ -277,9 +282,9 @@ In this procedure, you create three networks.
 
 1. Click the **Installation Dashboard** link to return to the Installation Dashboard.
 
-1. When Ops Manager finishes deploying, you can optionally [deploy BOSH Add-Ons](https://docs.pivotal.io/pivotalcf/2-5/customizing/add-ons.html) to your system, and then [install one or more PCF runtime environments](https://docs.pivotal.io/pivotalcf/2-5/customizing/runtimes.html) to complete your PCF installation.
+1. When Ops Manager finishes deploying, you can optionally [deploy BOSH Add-Ons](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/add-ons.html) to your system, and then [install one or more PCF runtime environments](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html) to complete your PCF installation.
 
 
 ## <a id="next"></a> What to Do Next
 
-After you complete this procedure, follow the instructions in the [Deploying PAS on Azure](https://docs.pivotal.io/pivotalcf/2-5/customizing/azure-er-config.html) topic.
+After you complete this procedure, follow the instructions in the [Deploying PAS on Azure](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-er-config.html) topic.

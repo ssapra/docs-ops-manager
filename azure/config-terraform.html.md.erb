@@ -7,9 +7,9 @@ install_type: terraform
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to configure the BOSH Director for Pivotal Cloud Foundry (PCF) on Azure after [Deploying Ops Manager to Azure Using Terraform](./prepare-env-terraform.html).
+This topic describes how to configure the BOSH Director tile within Ops Manager on Azure after [Deploying Ops Manager to Azure](./prepare-env-terraform.html).
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/2-5/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
 
 ## <a id='prereq'></a> Prerequisite
@@ -27,7 +27,7 @@ For more information, see <a href="https://docs.pivotal.io/runtimes/pks/pas-and-
 1. In a web browser, navigate to the fully qualified domain name (FQDN) of the BOSH Director. Use the `ops_manager_dns` value from running `terraform output`.
 
 1. When Ops Manager starts for the first time, you must choose one of the following:
-    * [Internal Authentication](#internal): If you use Internal Authentication, PCF maintains your user database.
+    * [Internal Authentication](#internal): If you use Internal Authentication, Ops Manager maintains your user database.
     * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external identity server maintains your user database.
     * [LDAP Server](#ldap): If you use a LDAP Server, an external identity server maintains your user database.
 
@@ -39,7 +39,7 @@ For more information, see <a href="https://docs.pivotal.io/runtimes/pks/pas-and-
 1.  When redirected to the **Internal Authentication** page, you must complete the following steps:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/2-5/customizing/pcf-director-proxy-settings.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -68,10 +68,10 @@ For more information, see <a href="https://docs.pivotal.io/runtimes/pks/pas-and-
 
     <%= image_tag("../common/images/azure/azure-config.png") %>
 
-1. Complete the following fields with information you obtained in the [Preparing to Deploy PCF on Azure](./prepare-env-manual.html) topic. If you are deploying PKS on Azure, refer to [Preparing to Deploy PKS on Azure](https://docs.pivotal.io/runtimes/pks/1-3/azure-prepare-env.html).
+1. Complete the following fields with information you obtained in the [Preparing Azure](./prepare-env-manual.html) topic. If you are deploying PKS on Azure, refer to [Preparing to Deploy PKS on Azure](https://docs.pivotal.io/runtimes/pks/1-3/azure-prepare-env.html).
 	* **Subscription ID**: Enter the ID of your Azure subscription.
 	* **Tenant ID**: Enter your `TENANT_ID`.
-	* **Application ID**: Enter the `APPLICATION_ID` that you created in the [Create an Azure Active Directory Application](./prepare-env-manual.html#create-aad) step of the _Preparing to Deploy PCF on Azure_ topic. For information on obtaining the `APPLICATION_ID` for PKS, see [Preparing to Deploy PKS on Azure](https://docs.pivotal.io/runtimes/pks/1-3/azure-prepare-env.html#create-aad).
+	* **Application ID**: Enter the `APPLICATION_ID` that you created in the [Create an Azure Active Directory Application](./prepare-env-manual.html#create-aad) step of the _Preparing Azure_ topic. For information on obtaining the `APPLICATION_ID` for PKS, see [Preparing to Deploy PKS on Azure](https://docs.pivotal.io/runtimes/pks/1-3/azure-prepare-env.html#create-aad).
 	* **Client Secret**: Enter your `CLIENT_SECRET`.
 
 1. Complete the following fields:
@@ -92,6 +92,9 @@ For more information, see <a href="https://docs.pivotal.io/runtimes/pks/pas-and-
 1. For **SSH Public Key**, enter the `ops_manager_ssh_public_key` output from Terraform.
 
 1. For **SSH Private Key**, enter the `ops_manager_ssh_private_key` output from Terraform.
+
+1. For **Availability Mode**, choose whether to use **Availability Sets** or **Availability Zones**. New installations of Ops Manager v2.5 use **Availability Zones** by default, but you can choose **Availability Sets** if you prefer. If you're upgrading from v2.4, you must use **Availability Sets**. You can further configure this option in the [**Assign AZs and Networks**](#assign-networks) form.
+   <p class="note"><strong>Note</strong>: Availability Zones are only available on new installations of Ops Manager v2.5, and you can only choose between Availability Zones and Availability Sets for staged Ops Manager instances that have not yet been deployed. Once you have deployed Ops Manager, you cannot change between Availability Zones and Availability Sets.</p>
 
 1. <%= partial "../common/azure-environment" %>
 
@@ -210,18 +213,21 @@ If you have completed this step for PAS, proceed to [Step 5: Assign AZs and Netw
 
 ## <a id="assign-azs"></a> Step 5: Assign AZs and Networks Page
 
-1. Select **Assign AZs and Networks**.
-
-	<%= image_tag("../common/images/azure/assign-networks-azs.png") %>
-
-<!-- 1. Make your selection in the **Network** dropdown.
-  1. If you are configuring Ops Manager on PAS, use the dropdown to select the `management` network for your BOSH Director.
-  1. If you are configuring Ops Manager on PKS, use the dropdown to select the `pks-infrastructure-network` network for your BOSH Director. -->
-1. (Optional) Under **Singleton Availability Zone**, select one of the Availability Zones (AZs) from the dropdown. You do not need to specify an AZ if you configured Ops Manager to use an Availability Set in the [Azure Config](#azure-config) pane.
-
-1. Under **Network**, select your preferred network from the dropdown.
-
-1. Click **Save**.
+<ol>
+  <li>Select <strong>Assign AZs and Networks</strong>.<br/>
+  <p class="note"><strong>Note</strong>: The appearance of this page changes based on whether you are using Availability Zones or Availability sets. For more information, see <a href="#azure-config">Step 2: Azure Config Page</a>.</p>
+    <ul>
+    <li>If you are using Availability Zones:<br/> 
+      <ol>
+        <li>Choose one of the three available zones from the <strong>Singleton Availability Zone</strong> dropdown.</li>
+        <li>Choose a network from the <strong>Networks</strong> dropdown. The networks that appear in this list are networks you created earlier in this procedure.</li>
+      </ol>
+    </li>
+    <li>If you are using Availability Sets, choose a network from the <strong>Networks</strong> dropdown. The networks that appear in this list are networks you created earlier in this procedure.</li>
+    </ul>
+  </li>
+  <li>Click <strong>Save</strong>.</li>  
+</ol>
 
 ## <a id='security'></a> Step 6: Security Page
 
@@ -246,7 +252,7 @@ If you have completed this step for PAS, proceed to [Step 5: Assign AZs and Netw
     <p class="note"><strong>Note:</strong> If you install PAS for Windows,
     provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
 
-1. (Optional) For **Load Balancers**, enter your Azure application gateway name for each associated job. To create an application gateway, follow the procedures in [Create an application gateway with SSL termination using Azure PowerShell](https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-arm) from the Azure documentation. When you create the application gateway, associate the gateway's IP with your PCF system domain.
+1. (Optional) For **Load Balancers**, enter your Azure application gateway name for each associated job. To create an application gateway, follow the procedures in [Create an application gateway with SSL termination using Azure PowerShell](https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-arm) from the Azure documentation. When you create the application gateway, associate the gateway's IP with your system domain.
 
 1. Click **Save**.
 
@@ -267,5 +273,5 @@ If you have completed this step for PAS, proceed to [Step 5: Assign AZs and Netw
     <%= image_tag("../common/images/cloudform/ops-manager-complete.png") %>
 
 1. After you complete this procedure, do one of the following:
-  - If you are deploying PAS, follow the procedures in [Deploying PAS on Azure Using Terraform](https://docs.pivotal.io/pivotalcf/2-5/customizing/azure-er-config-terraform.html).
+  - If you are deploying PAS, follow the procedures in [Deploying PAS on Azure Using Terraform](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-er-config-terraform.html).
   - If you are deploying PKS, follow the procedures in [Creating Managed Identities in Azure for PKS](https://docs.pivotal.io/runtimes/pks/1-3/azure-managed-identities.html).
