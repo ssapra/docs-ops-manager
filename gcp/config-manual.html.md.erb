@@ -166,9 +166,12 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
 
 
 ## <a id='az'></a> Step 4: Create Availability Zones Page
-
-<p class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation of PAS. For an example of a three availability zone deployment, see <a href="https://docs.pivotal.io/refarch/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing//gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</p>
-
+  <div class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation. 
+    <ul>
+      <li>For configuring a PAS deployment with multiple availability zones, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</li>
+      <li>For PKS best practices for distributing workloads across multiple availability zones and clusters, see <a href="https://docs.pivotal.io/runtimes/pks/1-2/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
+    </ul>
+  </div>
 1. Select **Create Availability Zones**.
 
 1. Click **Add**.
