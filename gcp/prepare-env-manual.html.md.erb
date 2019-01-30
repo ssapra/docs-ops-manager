@@ -9,12 +9,12 @@ This guide describes the preparation steps required to install Pivotal Cloud Fou
 In addition to fulfilling the installation prerequisites for your desired runtime, 
 you must create resources in GCP such as a new network, firewall rules, load balancers, 
 and a service account before deploying Ops Manager.<br><br>
-To verify the prerequisites for PAS, see [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-5/customizing/gcp.html).<br><br>
-To verify the prerequisites for PKS, see [GCP Prerequisites and Resource Requirements](https://docs.pivotal.io/runtimes/pks/1-3/gcp-requirements.html).
+To verify the prerequisites for PAS, see [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp.html).<br><br>
+To verify the prerequisites for PKS, see [GCP Prerequisites and Resource Requirements](https://docs.pivotal.io/runtimes/pks/gcp-requirements.html).
 
 ## <a id="config-components"></a> Configuration and Components
 
-This section outlines high-level infrastructure options for PCF on GCP. For more information, review the deployment options and recommendations in [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-5/refarch/gcp/gcp_ref_arch.html).
+This section outlines high-level infrastructure options for PCF on GCP. For more information, review the deployment options and recommendations in [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html).
 
 
 You can deploy PCF in one of two main configurations on a GCP virtual private cloud (VPC):
@@ -22,7 +22,7 @@ You can deploy PCF in one of two main configurations on a GCP virtual private cl
   * A _single-project_ configuration that gives PCF full access to VPC resources
   * A _shared VPC_ configuration in which PCF shares VPC resources
 
-See [Shared vs Single-Project VPCs](https://docs.pivotal.io/pivotalcf/2-5/refarch/gcp/gcp_ref_arch.html#shared-vs-single) in the _Reference Architecture for Pivotal Cloud Foundry on GCP_ topic for a full discussion and recommendations.
+See [Shared vs Single-Project VPCs](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html#shared-vs-single) in the _Reference Architecture for Pivotal Cloud Foundry on GCP_ topic for a full discussion and recommendations.
 
 When deploying PCF on GCP, Pivotal recommends using the following GCP components:
 
@@ -115,7 +115,8 @@ Ops Manager manages GCP resources using the Google Compute Engine and Cloud Reso
         </tr>
         <tr>
           <th>Region</th>
-          <td>A region that supports three availability zones. For help selecting the correct region for your deployment, see the <a href="https://cloud.google.com/compute/docs/regions-zones/regions-zones">Google documentation about regions and zones.</td>
+          <td>A region that supports three availability zones. For help selecting the correct region for your deployment, 
+            see the <a href="https://cloud.google.com/compute/docs/regions-zones/regions-zones">Google documentation about regions and zones</a>.</td>
         </tr>
         <tr>
         <th>IP address range</th>
@@ -175,7 +176,7 @@ Use NAT instances when you want to expose only a minimal number of public IP add
 Creating NAT instances permits Internet access from cluster VMs.
 You might, for example, need this Internet access for pulling Docker images or enabling Internet access for your workloads.
 
-For more information, see [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-5/refarch/gcp/gcp_ref_arch.html#common_network) and [GCP documentation](https://cloud.google.com/solutions/connecting-securely#natgateway).
+For more information, see [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html#common_network) and [GCP documentation](https://cloud.google.com/solutions/connecting-securely#natgateway).
 
 1. In the GCP console, with your single project or shared-VPC host project selected, navigate to **Compute Engine** > **VM instances**.
   ![Compute Instance](../common/images/gcp/gcp-vm-instances.png)
@@ -313,7 +314,6 @@ This step assigns tags and firewall rules to Ops Manager components and VMs that
 1. Apply the firewall rules in the following table:
        <table>
         <tr><th colspan="2" style="text-align: center;">Firewall Rules</th></tr>
-         <tr>
           <tr>
             <th>Rule 1</th>
             <td>
@@ -501,7 +501,7 @@ To create an internal load balancer for PCF on GCP, do the following.
 
 1. Assign private IP addresses to the load balancers.
 
-1. After you have deployed Ops Manager, follow instructions in [Create or Update a VM Extension](https://docs.pivotal.io/pivotalcf/2-5/customizing/custom-vm-extensions.html#create-vm-extension) to add a custom VM extension that applies internal load balancing to all VMs deployed by BOSH.
+1. After you have deployed Ops Manager, follow instructions in [Create or Update a VM Extension](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/custom-vm-extensions.html#create-vm-extension) to add a custom VM extension that applies internal load balancing to all VMs deployed by BOSH.
   - For example, the following manifest code adds a VM extension `backend-pool` to PCF VMs:
 
     ```
@@ -613,14 +613,9 @@ To create a global HTTP load balancer PCF on GCP, do the following:
    * **Port**: `80`
 
 1. Click **Add Frontend IP and port** and add the following:
-  <div class="note"><strong>Note:</strong> If you do not already have either a trusted SSL certificate or a self-signed certificate, 
-  generate a certificate using either the PAS or PKS runtime. 
-    <ul>
-      <li>For instructions on generating a self-signed certificate using PAS, see <a href="https://docs.pivotal.io/pivotalcf/customizing/gcp-er-config.html#networking">PAS network configuration</a>. </li>
-      <li>For instructions on generating a self-signed certificate using PKS, see <a href="https://docs-pcf-staging.cfapps.io/runtimes/pks/installing-pks-gcp.html#pks-api">PKS API</a>.</li>
-    </ul>
-  Return here and complete Ops Manager certificate configuration after you have generated a certificate.
-  </div>
+  <p class="note"><strong>Note:</strong> Skip this step if you do not have either a self-signed or trusted SSL certificate. 
+     When you configure the tile for your chosen runtime, you are given the opportunity to create a new self-signed certificate. 
+     Upon creating a certificate, you can complete the **Add Frontend IP and port** section. </p>
   * **Name**: `MY-PCF-cf-lb-https`
   * **Protocol**: `HTTPS`
   * **IP address**: Select the `MY-PCF-global-pcf` address you create for the previous **Frontend IP and Port**.
