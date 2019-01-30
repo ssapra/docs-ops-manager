@@ -113,7 +113,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
 1. To add the network configuration you created for your VPC, do the following:
   1. Click **Add Network**.
-  1. For **Name**, enter `MY-ENVIRONMENT-infrastructure-network`, where `MY-ENVIRONMENT` is an identifier for your environment.
+  1. For **Name**, enter `infrastructure`.
   1. Create a subnet for each availability zone by clicking **Add Subnet**. Refer to the table below for the information required to create all three subnets:
     <table>
       <tr>
@@ -201,9 +201,7 @@ To complete the procedures in this topic, you must have access to the output fro
     \* If you set a VPC CIDR other than recommended, enter the second IP in your VPC CIDR. For example, for a `10.0.0.0/24` VPC CIDR, enter `10.0.0.2` in each subnet.
   <br><br>
   1. Click **Add Network**.
-  1. For **Name**, enter `MY-ENVIRONMENT-RUNTIME-network`, where:
-      - `MY-ENVIRONMENT` is an identifier for your environment.
-      - `RUNTIME` is the runtime you are deploying. For example, `pas` or `pks`.
+  1. For **Name**, enter the name of your runtime. For example, `pas` or `pks`.
   1. Create a subnet for each availability zone by clicking **Add Subnet**. Refer to the table below for the information required to create all three subnets:
     <table>
       <tr>
@@ -211,7 +209,7 @@ To complete the procedures in this topic, you must have access to the output fro
       </tr>
       <tr>
         <th>VPC Subnet ID</th>
-        <td>The first value of <code>RUNTIME_subnet_ids</code> from the Terraform output.</td>
+        <td>The first value of <code>RUNTIME_subnet_ids</code> from the Terraform output, where <code>RUNTIME</code> is either <code>pas</code> or <code>pks</code>.</td>
       </tr>
       <tr>
         <th>CIDR</th>
@@ -291,7 +289,7 @@ To complete the procedures in this topic, you must have access to the output fro
     \* If you set a VPC CIDR other than recommended, enter the second IP in your VPC CIDR. For example, for a `10.0.0.0/24` VPC CIDR, enter `10.0.0.2` in each subnet.
   <br><br>
   1. Click **Add Network**.
-  1. For **Name**, enter `MY-ENVIRONMENT-services-network`,  where `MY-ENVIRONMENT` is an identifier for your environment.
+  1. For **Name**, enter `services`.
   1. Create a subnet for each availability zone by clicking **Add Subnet**. Refer to the table below for the information required to create all three subnets:
     <table>
       <tr>
@@ -384,9 +382,9 @@ To complete the procedures in this topic, you must have access to the output fro
 
 1. Select **Assign AZs and Networks**.
 
-1. Use the dropdown to select a **Singleton Availability Zone**. The BOSH Director installs in this Availability Zone.
+1. Use the dropdown to select a **Singleton Availability Zone**. The BOSH Director installs in this availability zone (AZ).
 
-1. Use the dropdown to select `MY-ENVIRONMENT-infrastructure-network` for your BOSH Director.
+1. Use the dropdown to select the `infrastructure` network for your BOSH Director.
 
 1. Click **Save**.
 
