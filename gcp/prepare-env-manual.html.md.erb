@@ -573,16 +573,22 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
    * Since you are using a self-signed certificate, do not enter a value in the **Certificate Chain** field.
 
 1. Click **Add Frontend IP and port** and add the following:
+  <p class="note"><strong>Note:</strong> Skip this step if you do not have either a self-signed or trusted SSL certificate. 
+     When you configure the tile for your chosen runtime, you are given the opportunity to create a new self-signed certificate. 
+     Upon creating a certificate, you can complete the **Add Frontend IP and port** section. </p>
   * **Name**: `MY-PCF-cf-lb-https`
   * **Protocol**: `HTTPS`
   * **IP address**: Select the `MY-PCF-global-pcf` address you create for the previous **Frontend IP and Port**.
   * **Port**: `443`
-  * **Certificate**: Select **Create a new certificate**. In the next dialog, perform the following steps:
-     * In the **Name** field, enter a name for the certificate.
+  * Select **Create a new certificate**. The **Create a New Certificate** dialog is displayed.
+  * In the **Name** field, enter a name for the certificate.
      <%= image_tag "../common/images/gcp/lb_frontend_cert.png" %>
-     * In the **Public key certificate** field, copy in the contents of your public certificate, or upload your certificate as a .pem file.
-     * In the **Certificate chain** field, enter or upload your certificate chain in the .pem format. If you use a self-signed certificate, you do not need to populate this field.
-     * In the **Private key** field, copy in the contents or upload the .pem file of the private key for the certificate.
+  * In the **Public key certificate** field, copy in the contents of your public certificate, or upload your certificate as a .pem file. 
+     If the certificate is runtime-generated, copy and paste the generated contents from the runtime's Certificate field into the Ops Manager **Public key certificate** field.
+  * In the **Certificate chain** field, enter or upload your certificate chain in the .pem format. 
+  If you are using a self-signed certificate, such as a PAS or PKS-generated certificate, do not enter a value in the **Certificate Chain** field.
+  * In the **Private key** field, copy in the contents or upload the .pem file of the private key for the certificate. 
+  If the certificate is runtime-generated, copy and paste the generated contents from the runtime's Private Key field into the Ops Manager **Private key** field.
 
 1. Review the completed front end configuration.
 
