@@ -273,13 +273,13 @@ Azure for PCF uses multiple general-purpose Azure storage accounts. The BOSH and
         --backend-pool-name pcf-lb-be-pool \
         --probe-name http8080
         </pre>
-    1. Optionally, for Private IPs. Create a load balancer named `pcf-lb`.
-    <pre class="terminal">
-    $ az network lb create --name pcf-lb \
-    --resource-group $RESOURCE_GROUP --location $LOCATION \
-    --backend-pool-name pcf-lb-be-pool --frontend-ip-name pcf-lb-fe-ip \
-    --private-ip-address 10.0.0.6 --sku Standard
-    </pre>
+    1. (Optional) For private IPs, create a load balancer named `pcf-lb`.
+        <pre class="terminal">
+        $ az network lb create --name pcf-lb \
+        --resource-group $RESOURCE_GROUP --location $LOCATION \
+        --backend-pool-name pcf-lb-be-pool --frontend-ip-name pcf-lb-fe-ip \
+        --private-ip-address 10.0.0.6 --sku Standard
+        </pre>
     1. (Optional) For private IPs, add a probe to the load balancer.
         <pre class="terminal">
         $ az network lb probe create --lb-name pcf-lb \
@@ -434,7 +434,7 @@ Azure for PCF uses multiple general-purpose Azure storage accounts. The BOSH and
     --resource-group $RESOURCE_GROUP \
     --name opsman-nic --location $LOCATION
     </pre>
-    <p class='note'><strong>Note:</strong> If you do not want use a public IP for Ops Manager, remove the <code>--public-ip-address ops-manager-ip</code flag and value.</p>
+    <p class='note'><strong>Note:</strong> If you do not want use a public IP for Ops Manager, remove the <code>--public-ip-address ops-manager-ip</code> flag and value.</p>
 
 1. Create a keypair on your local machine with the username `ubuntu`. For example, enter the following command:
    <pre class="terminal">
