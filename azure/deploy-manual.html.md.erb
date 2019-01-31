@@ -64,7 +64,7 @@ Before you perform the procedures in this topic, you must have completed the pro
     --protocol Tcp --priority 400 \
     --destination-port-range '2222'
     </pre>
-    <p class='note'><strong>Note:</strong> If you do not want to allow traffic from the public Internet, you can postpend <code>--source-address-range AzureLoadBalancer</code> to allow traffic from only the Azure load balancer or <code>--source-address-range VirtualNetwork</code> to only allow traffic from the virtual network. If you want to allow traffic from both the Azure load balancer and the virtual network, you must create duplicates of each rule, one specifying <code>--source-address-range AzureLoadBalancer</code> and one specifying <code>--source-address-range VirtualNetwork</code>.</p>
+    <p class='note'><strong>Note:</strong> To block traffic from the public Internet, append <code>--source-address-range AzureLoadBalancer</code> to allow traffic from only the Azure load balancer or <code>--source-address-range VirtualNetwork</code> to only allow traffic from the virtual network. To allow traffic from both the Azure load balancer and the virtual network, create duplicates of each rule, one specifying <code>--source-address-range AzureLoadBalancer</code> and one specifying <code>--source-address-range VirtualNetwork</code>.</p>
 
 1. Create a network security group named `opsmgr-nsg`.
     <pre class="terminal">
@@ -96,7 +96,7 @@ Before you perform the procedures in this topic, you must have completed the pro
     --protocol Tcp --priority 300 \
     --destination-port-range 22
     </pre>
-    <p class='note'><strong>Note:</strong> If you do not want to allow traffic from the public Internet, you can postpend <code>--source-address-range AzureLoadBalancer</code> to allow traffic from only the Azure load balancer or <code>--source-address-range VirtualNetwork</code> to only allow traffic from the virtual network. If you want to allow traffic from both the Azure load balancer and the virtual network, you must create duplicates of each rule, one specifying <code>--source-address-range AzureLoadBalancer</code> and one specifying <code>--source-address-range VirtualNetwork</code>.</p>
+    <p class='note'><strong>Note:</strong> To block traffic from the public Internet, append <code>--source-address-range AzureLoadBalancer</code> to allow traffic from only the Azure load balancer or <code>--source-address-range VirtualNetwork</code> to only allow traffic from the virtual network. To allow traffic from both the Azure load balancer and the virtual network, create duplicates of each rule, one specifying <code>--source-address-range AzureLoadBalancer</code> and one specifying <code>--source-address-range VirtualNetwork</code>.</p>
     Optionally, if you want to use private IP ranges with Ops Manager and allow all internal traffic, you can create the Network Security Groups to allow all internal traffic.
     <pre class="terminal">
     $ az network nsg rule create --name internal-virtual-network \
@@ -421,7 +421,7 @@ Azure for PCF uses multiple general-purpose Azure storage accounts. The BOSH and
       }
     }
     </pre>
-    <p class='note'><strong>Note:</strong> If you do not want to use a public IP for Ops Manager, you can skip this step.</p>
+    <p class='note'><strong>Note:</strong> If you do not want to use a public IP for Ops Manager, skip this step.</p>
 
 1. Record the `ipAddress` from the output above. This is the public IP address of Ops Manager.
 
@@ -434,7 +434,7 @@ Azure for PCF uses multiple general-purpose Azure storage accounts. The BOSH and
     --resource-group $RESOURCE_GROUP \
     --name opsman-nic --location $LOCATION
     </pre>
-    <p class='note'><strong>Note:</strong> If you do not want use a public IP for Ops Manager, you can remove the <code>--public-ip-address ops-manager-ip</code flag and value.</p>
+    <p class='note'><strong>Note:</strong> If you do not want use a public IP for Ops Manager, remove the <code>--public-ip-address ops-manager-ip</code flag and value.</p>
 
 1. Create a keypair on your local machine with the username `ubuntu`. For example, enter the following command:
    <pre class="terminal">
