@@ -20,7 +20,7 @@ You may also find it helpful to review different deployment options in the
 In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cloud Foundry on Azure](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure.html) topic, ensure you have the following: 
 
 * The [Terraform CLI](https://www.terraform.io/intro/getting-started/install.html)
-* In your Azure project, ensure you have completed the steps in [Preparing Azure](./prepare-env-manual.html) to create a service principal.
+* In your Azure project, ensure you have completed the steps in [Preparing to Deploy Ops Manager on Azure Using Terraform](./prepare-azure-terraform.html) to create a service principal.
 
 ## <a id="download"></a>Step 1: Download Templates and Edit Variables File
 
@@ -64,7 +64,7 @@ the Terraform files for your runtime.
     ```
 
 1. Edit the values in the file according to the table below. For information
-about locating your Azure service principal values, see [Preparing Azure](prepare-env-manual.html).
+about locating your Azure service principal values, see [Preparing to Deploy Ops Manager on Azure Manually](prepare-env-manual.html).
   <table>
     <tr>
       <th style="width: 35%">Value to replace</th>
@@ -139,7 +139,7 @@ Follow these steps to use the Terraform CLI to create resources on Azure:
 It may take several minutes for Terraform to create all the resources in Azure.
   <pre class="terminal">$ terraform apply plan</pre>
 
-## <a id="dns"></a>Step 5: Create DNS Record ##
+## <a id="dns"></a>Step 4: Create DNS Record ##
 
 1. In a browser, navigate to the DNS provider for the DNS suffix you entered in your `terraform.tfvars` file.
 
