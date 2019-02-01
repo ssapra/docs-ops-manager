@@ -141,7 +141,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
 1. (Optional) To add a custom URL for your BOSH Director, enter a valid hostname in **Director Hostname**. You can also use this field to configure a load balancer in front of your BOSH Director. For more information, see [How to set up a load balancer in front of BOSH Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director) in the Pivotal Knowledge Base.
      <p class="note warning"><strong>WARNING:</strong> In Ops Manager v2.1.17 and earlier, if you change the <strong>Director
-     Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/opsmanager-rn.html#2-1-18">Ops Manager v2.1.18</a> and later.</p>
+     Hostname</strong> after your initial deployment, VMs become unavailable. This causes downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/opsmanager-rn.html#2-1-18">Ops Manager v2.1.18</a> and later.</p>
 1. <%= partial "../common/exclude-recursors" %>
 
 1. (Optional) To disable BOSH DNS, select the **Disable BOSH DNS server for troubleshooting purposes** checkbox. For more information about the BOSH DNS service discovery mechanism, see [BOSH DNS Service Discovery for Application Containers](https://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/runtime-rn.html#bosh-dns) in the PAS Release Notes.
@@ -240,7 +240,7 @@ Select **Create Networks** and follow the procedures in this section to add the 
     <p class="note"><strong>Note:</strong> If you set a field to <strong>Automatic</strong> and the recommended resource allocation changes in a future version, Ops Manager automatically uses the new recommended allocation.</p>
     <p class="note"><strong>Note:</strong> If you install PAS for Windows, provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
 
-1. (Optional) For **Load Balancers**, enter your Azure application gateway name for each associated job. To create an application gateway, follow the procedures in [Create an application gateway with SSL termination using Azure PowerShell](https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-arm) from the Azure documentation. When you create the application gateway, associate the gateway's IP with your PCF system domain.
+1. (Optional) For **Load Balancers**, enter your Azure application gateway name for each associated job. To create an application gateway, follow the procedures in [Create an application gateway with SSL termination using Azure PowerShell](https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-arm) from the Azure documentation. When you create the application gateway, associate the gateway's IP with your system domain.
 
 1. Click **Save**.
 
