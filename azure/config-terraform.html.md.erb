@@ -6,7 +6,7 @@ iaas: Azure
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to configure the BOSH Director for Pivotal Cloud Foundry (PCF) on Azure after [Launching a BOSH Director Instance on Azure Using Terraform](./prepare-env-terraform.html).
+This topic describes how to configure the BOSH Director tile within Ops Manager on Azure after [Deploying Ops Manager to Azure Using Terraform](./prepare-env-terraform.html).
 
 <p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
@@ -24,7 +24,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
 1. When Ops Manager starts for the first time, you must choose one of the following:
     * [Use an Identity Provider](#idp): If you use an Identity Provider, an external identity server maintains your user database.
-    * [Internal Authentication](#internal): If you use Internal Authentication, PCF maintains your user database.
+    * [Internal Authentication](#internal): If you use Internal Authentication, Ops Manager maintains your user database.
 
     <%= image_tag("../common/images/select-authentication.png") %>
 
@@ -61,7 +61,7 @@ To complete the procedures in this topic, you must have access to the output fro
 1. Complete the following fields with information you obtained in the [Preparing to Deploy Ops Manager on Azure Manually](./prepare-env-manual.html) topic.
 	* **Subscription ID**: Enter the ID of your Azure subscription.
 	* **Tenant ID**: Enter your `TENANT_ID`.
-	* **Application ID**: Enter the `APPLICATION_ID` that you created in the [Create an Azure Active Directory Application](./prepare-env-manual.html#create-aad) step of the _Preparing to Deploy PCF on Azure_ topic.
+	* **Application ID**: Enter the `APPLICATION_ID` that you created in the [Create an Azure Active Directory Application](./prepare-env-manual.html#create-aad) step of the _Preparing to Deploy Ops Manager on Azure Manually_ topic.
 	* **Client Secret**: Enter your `CLIENT_SECRET`.
 
 1. Complete the following fields:
@@ -142,7 +142,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
 1. (Optional) To add a custom URL for your BOSH Director, enter a valid hostname in **Director Hostname**. You can also use this field to configure a load balancer in front of your BOSH Director. For more information, see [How to set up a load balancer in front of BOSH Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director) in the Pivotal Knowledge Base.
     <p class="note warning"><strong>WARNING:</strong> In Ops Manager v2.2.7 and earlier, if you change the <strong>Director
-  Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/pcf-release-notes/opsmanager-rn.html#2-2-8">Ops Manager v2.2.8</a> and later.</p>
+  Hostname</strong> after your initial deployment, VMs become unavailable. This causes downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/pcf-release-notes/opsmanager-rn.html#2-2-8">Ops Manager v2.2.8</a> and later.</p>
 
 1. <%= partial "../common/exclude-recursors" %>
 
