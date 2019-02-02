@@ -6,7 +6,8 @@ iaas: AWS
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to configure the BOSH Director for Pivotal Cloud Foundry (PCF) on Amazon Web Services (AWS) after [Preparing to Deploy PCF on AWS Using Terraform](./prepare-env-terraform.html).
+This topic describes how to configure the BOSH Director tile in Ops Manager on
+Amazon Web Services (AWS) after [Preparing AWS Using Terraform](./prepare-env-terraform.html).
 
 <p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
@@ -18,9 +19,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
 ## <a id='access-om'></a> Step 1: Access Ops Manager
 
-<p class="note"><strong>Note:</strong> For security, Ops Manager v1.7 and later require that you log in using a fully qualified domain name.</p>
-
-1. In a web browser, navigate to the fully qualified domain name (FQDN) of the BOSH Director. Use the `ops_manager_dns` value from running `terraform output`.
+1. In a web browser, navigate to the fully qualified domain name (FQDN) of Ops Manager. Use the `ops_manager_dns` value from running `terraform output`.
 
 1. When Ops Manager starts for the first time, you must choose one of the following:
     * [Use an Identity Provider](#idp): If you use an Identity Provider, an external identity server maintains your user database.
@@ -71,9 +70,9 @@ To complete the procedures in this topic, you must have access to the output fro
     * **Region**: Select the region where you deployed Ops Manager.
     * **Encrypt EBS Volumes**: Select this checkbox to enable full encryption
       on persistent disks of all BOSH-deployed virtual machines (VMs), except
-      for the Ops Manager VM and Director VM. See the [Configuring Amazon EBS Encryption](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/cloudform-om-ebs-config.html) topic for
+      for the Ops Manager VM and BOSH Director VM. See the [Configuring Amazon EBS Encryption](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/cloudform-om-ebs-config.html) topic for
       details about using Elastic Block Store (EBS) encryption.
-      <p class="note"><strong>Note:</strong> Enabling EBS encryption only encrypts Linux VMs. The Windows VMs deployed with Pivotal Application Service (PAS) for Windows are not encrypted.</p>
+      <p class="note"><strong>Note:</strong> Enabling EBS encryption only encrypts Linux VMs. The Windows VMs deployed with Pivotal Application Service for Windows (PASW) are not encrypted.</p>
       * **Custom Encryption Key (Optional)** Once you enable EBS encryption, you may want to specify a custom Key Management Service (KMS) encryption key. If you don't enter a value, your custom encryption key will default to the account key. For more information, see [Configuring Amazon EBS Encryption](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/cloudform-om-ebs-config.html).
 
 1. Click **Save**.
@@ -479,8 +478,8 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
 1. Adjust any values as necessary for your deployment. Under the **Instances**, **Persistent Disk Type**, and **VM Type** fields, choose **Automatic** from the dropdown to allocate the recommended resources for the job. If the **Persistent Disk Type** field reads **None**, the job does not require persistent disk space.
     <p class="note"><strong>Note:</strong> Pivotal recommends provisioning a BOSH Director VM with at least 8&nbsp;GB memory.</p>
     <p class="note"><strong>Note:</strong> If you set a field to <strong>Automatic</strong> and the recommended resource allocation changes in a future version, Ops Manager automatically uses the new recommended allocation.</p>
-    <p class="note"><strong>Note:</strong> If you install PAS for Windows, provision your <strong>Master Compilation Job</strong>
-    with at least 128&nbsp;GB of disk space.
+    <p class="note"><strong>Note:</strong> If you install PASW, provision your <strong>Master Compilation Job</strong>
+    with at least 100&nbsp;GB of disk space.
 
 1. (Optional) Enter your AWS target group name in the **Load Balancers** column for each job. Prepend the name with `alb:`. For example, enter `alb:target-group-name`.
     To create an Application Load Balancer (ALB) and target group, follow the procedures in [Getting Started with Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancer-getting-started.html) in the AWS documentation. Then navigate to **Target Groups** in the **EC2 Dashboard** menu to find your target group **Name**.
