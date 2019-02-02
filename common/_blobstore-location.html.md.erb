@@ -1,8 +1,8 @@
 Select a **Blobstore Location** to either configure the blobstore as an internal server or an external endpoint. Because the internal server is unscalable and less secure, Pivotal recommends that you configure an external blobstore.
   <p class="note"><strong>Note:</strong> After you deploy Ops Manager, you cannot change the blobstore location.</p>![Blobstore location options in the Director Config pane](../common/images/gcp/blobstore.png)
   * **Internal**: Select this option to use an internal blobstore. Ops Manager creates a new VM for blob storage. No additional configuration is required.
-      * **Enable TLS**: Select this checkbox to enable TLS.
-        <p class='note'><strong>Note:</strong> If you are using PAS for Windows 2016, make sure you have downloaded <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/stemcells/windows-stemcell-v1709x.html#1709.10">Windows stemcell v1709.10 or higher</a> before enabling TLS.</p>
+      * **Enable TLS**: Select this checkbox to enable TLS to the blobstore.
+      <p class='note'><strong>Note:</strong> If you are using PASW 2016, make sure you have downloaded <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/stemcells/windows-stemcell-v1709x.html#1709.10">Windows stemcell v1709.10 or higher</a> before enabling TLS.</p>
   <% if current_page.data.iaas == "AWS" %>
   * **S3 Compatible Blobstore**: Select this option to use an external S3-compatible endpoint. When you have created an S3 bucket, complete the following steps:
   <% else %>
