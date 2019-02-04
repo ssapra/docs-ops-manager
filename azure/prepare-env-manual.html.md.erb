@@ -6,7 +6,7 @@ owner: Ops Manager
 <strong><%= modified_date %></strong>
 <html class="list-style-none"></html>
 
-This topic describes how to prepare to deploy Pivotal Cloud Foundry (PCF) on Azure by manually creating a service principal to access resources in your Azure subscription. See [Preparing to Deploy PCF on Azure using Terraform](./prepare-env-terraform.html) for how to install PCF on Azure using Terraform templates.
+This topic describes how to prepare to deploy Ops Manager on Azure by manually creating a service principal to access resources in your Azure subscription. See [Preparing to Deploy Ops Manager on Azure using Terraform](./prepare-env-terraform.html) for how to install Ops Manager on Azure using Terraform templates.
 
 After you complete this procedure, follow the instructions in one of the following topics:
 
@@ -18,10 +18,10 @@ After you complete this procedure, follow the instructions in one of the followi
 
 1. Install the Azure CLI 2.0 by following the instructions for your operating system in the [Azure documentation](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
 
-1. Set your cloud with the `--name` value corresponding to the Azure environment you are installing PCF on:
+1. Set your cloud with the `--name` value corresponding to the Azure environment you are installing Ops Manager on:
   - **Azure**: `AzureCloud`
   - **Azure China**: `AzureChinaCloud`. If logging in to <code>AzureChinaCloud</code> fails with a <code>CERT_UNTRUSTED</code> <a href="https://github.com/Azure/azure-xplat-cli/issues/2725">error</a>, use the latest version of node, 4.x or later.
-  - **Azure Government Cloud**: `AzureUSGovernment`. Azure Government Cloud is only supported in PCF v1.10 and later.
+  - **Azure Government Cloud**: `AzureUSGovernment`. Azure Government Cloud is only supported in Ops Manager v1.10 and later.
   - **Azure Germany**: `AzureGermanCloud`
 
     <pre class="terminal">
@@ -74,7 +74,7 @@ After you complete this procedure, follow the instructions in one of the followi
     ]
     </pre>
  
-1. Locate your default subscription by finding the subscription with `isDefault` set to `true`. If your default subscription is not where you want to deploy PCF, run `az account set --subscription SUBSCRIPTION_ID` to set a new default, where `SUBSCRIPTION_ID` is the value of the `id` field. For example: `"87654321-1234-5678-1234-567891234567"`.
+1. Locate your default subscription by finding the subscription with `isDefault` set to `true`. If your default subscription is not where you want to deploy Ops Manager, run `az account set --subscription SUBSCRIPTION_ID` to set a new default, where `SUBSCRIPTION_ID` is the value of the `id` field. For example: `"87654321-1234-5678-1234-567891234567"`.
 
     <pre class="terminal">
     $ az account set --subscription SUBSCRIPTION_ID
@@ -129,7 +129,7 @@ After you complete this procedure, follow the instructions in one of the followi
     }
     </pre>
 
-1. You must have the Contributor role on your service principal to deploy PCF. Run the following command to assign this role:
+1. You must have the Contributor role on your service principal to deploy Ops Manager. Run the following command to assign this role:
     <pre class="terminal">
     $ az role assignment create --assignee "SERVICE-PRINCIPAL-NAME" \
     --role "Contributor" --scope /subscriptions/SUBSCRIPTION-ID
@@ -137,7 +137,7 @@ After you complete this procedure, follow the instructions in one of the followi
     * For `SERVICE-PRINCIPAL-NAME`, use any value of `Service Principal Names` from the output above, such as `YOUR-APPLICATION-ID`.
     * For `SUBSCRIPTION-ID`, use the ID of the default subscription that you recorded in [Step 2](#default-subscription).
 
-    <p class="note"><strong>Note</strong>: If you need to use multiple resource groups for your PCF deployment on Azure, you can define custom roles for your Service Principal. These roles allow BOSH to deploy PCF to pre-existing network resources outside the PCF resource group. For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-1/refarch/azure/azure_ref_arch.html#multiple_resource_groups">Reference Architecture for Pivotal Cloud Foundry on Azure</a>.</p>
+    <p class="note"><strong>Note</strong>: If you need to use multiple resource groups for your deployment on Azure, you can define custom roles for your Service Principal. These roles allow BOSH to deploy Ops Manager to pre-existing network resources outside the resource group. For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-1/refarch/azure/azure_ref_arch.html#multiple_resource_groups">Reference Architecture for Pivotal Cloud Foundry on Azure</a>.</p>
 
     For more information about Azure Role-Based Access Control, refer to the <a href="https://azure.microsoft.com/en-us/documentation/articles/role-based-access-built-in-roles/">RBAC: Built-in roles</a> topic in the Azure documentation.
 

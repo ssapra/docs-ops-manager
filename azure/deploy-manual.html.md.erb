@@ -5,20 +5,20 @@ owner: Ops Manager
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to deploy BOSH and Ops Manager for Pivotal Cloud Foundry (PCF) on Azure by using individual commands to create resources. Pivotal recommends this manual procedure for deploying to Azure China, Azure Germany, and Azure Government Cloud.
+This topic describes how to deploy BOSH and Ops Manager on Azure by using individual commands to create resources. Pivotal recommends this manual procedure for deploying to Azure China, Azure Germany, and Azure Government Cloud.
 
 As an alternative to this procedure, you can use an Azure Resource Manager (ARM) template to create resources automatically. For information about using the ARM template, see the [Deploying BOSH and Ops Manager to Azure with ARM](https://docs.pivotal.io/pivotalcf/2-1/customizing/azure-arm-template.html) topic.
 
 Before you perform the procedures in this topic, you must have completed the procedures in the [Preparing to Deploy Ops Manager on Azure Manually](prepare-env-manual.html) topic. After you complete the procedures in this topic, follow the instructions in the [Configuring BOSH Director on Azure](config-manual.html) topic.
 
-<p class="note"><strong>Note:</strong> Azure Stack is in beta for this release. Pivotal does not recommend using Azure Stack for a production deployment. For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/breaking-changes.html#azure-stack">Azure Stack Support is in Beta for Ops Manager</a>. If you choose to deploy PCF on Azure Stack regardless of its beta status, complete the procedures in <a href="https://docs.microsoft.com/en-us/azure/azure-stack/user/azure-stack-connect-cli">Install and configure CLI for use with Azure Stack</a> in the Microsoft documentation before following the procedures in this topic.</p>
+<p class="note"><strong>Note:</strong> Azure Stack is in beta for this release. Pivotal does not recommend using Azure Stack for a production deployment. For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/breaking-changes.html#azure-stack">Azure Stack Support is in Beta for Ops Manager</a>. If you choose to deploy Ops Manager on Azure Stack regardless of its beta status, complete the procedures in <a href="https://docs.microsoft.com/en-us/azure/azure-stack/user/azure-stack-connect-cli">Install and configure CLI for use with Azure Stack</a> in the Microsoft documentation before following the procedures in this topic.</p>
 
 <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
 
 
 ## <a id='network'></a> Step 1: Create Network Resources
 
-1. Navigate to the Azure portal, click **Resource groups**, and click **Add** to create a new resource group for your PCF deployment.
+1. Navigate to the Azure portal, click **Resource groups**, and click **Add** to create a new resource group for your deployment.
 
 1. Enter a **Resource group name**, select your **Subscription**, and select a **Resource group location**. Click **Create**.
 

@@ -6,7 +6,7 @@ iaas: Azure
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to use Pivotal Cloud Foundry (PCF) Ops Manager to configure the BOSH Director on Azure.
+This topic describes how to use Ops Manager to configure the BOSH Director on Azure.
 
 
 ## <a id="prerequisites"></a> Prerequisites
@@ -95,7 +95,7 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 
 1. When Ops Manager starts for the first time, you must choose one of the following:
     * [Use an Identity Provider](#idp): If you use an Identity Provider, an external identity server maintains your user database.
-    * [Internal Authentication](#internal): If you use Internal Authentication, PCF maintains your user database.
+    * [Internal Authentication](#internal): If you use Internal Authentication, Ops Manager maintains your user database.
 
     <%= image_tag("../common/images/select-authentication.png") %>
 
@@ -132,7 +132,7 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 1. Complete the following fields with information you obtained in the [Preparing to Deploy Ops Manager on Azure Manually](./prepare-env-manual.html) topic.
 	* **Subscription ID**: Enter the ID of your Azure subscription.
 	* **Tenant ID**: Enter your `TENANT_ID`.
-	* **Application ID**: Enter the `APPLICATION_ID` that you created in the [Create an Azure Active Directory Application](./prepare-env-manual.html#create-aad) step of the _Preparing to Deploy PCF on Azure_ topic.
+	* **Application ID**: Enter the `APPLICATION_ID` that you created in the [Create an Azure Active Directory Application](./prepare-env-manual.html#create-aad) step of the _Preparing to Deploy Ops Manager on Azure Manually_ topic.
 	* **Client Secret**: Enter your `CLIENT_SECRET`.
 
 1. Complete the following fields:
@@ -225,7 +225,7 @@ To check that you have successfully set your custom VM types, `GET` from the `/a
 
 1. (Optional) To add a custom URL for your BOSH Director, enter a valid hostname in **Director Hostname**. You can also use this field to configure [a load balancer in front of your BOSH Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director).
      <p class="note warning"><strong>WARNING:</strong> In Ops Manager v2.1.17 and earlier, if you change the <strong>Director
-  Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/opsmanager-rn.html#2-1-18">Ops Manager v2.1.18</a> and later.</p>
+  Hostname</strong> after your initial deployment, VMs become unavailable. This causes downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/opsmanager-rn.html#2-1-18">Ops Manager v2.1.18</a> and later.</p>
 
      <%= image_tag("../common/images/director_workers.png") %>
 
@@ -336,7 +336,7 @@ In this procedure, you create three networks.
     <p class="note"><strong>Note:</strong> If you install PAS for Windows,
     provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
 
-1. (Optional) For **Load Balancers**, enter your Azure application gateway name for each associated job. To create an application gateway, follow the procedures in [Configure an application gateway for SSL offload by using Azure Resource Manager](https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-arm) from the Azure documentation. When you create the application gateway, associate the gateway's IP with your PCF system domain.
+1. (Optional) For **Load Balancers**, enter your Azure application gateway name for each associated job. To create an application gateway, follow the procedures in [Configure an application gateway for SSL offload by using Azure Resource Manager](https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-arm) from the Azure documentation. When you create the application gateway, associate the gateway's IP with your system domain.
 <p class="note warning"><strong>WARNING:</strong> This feature is not recommended for production use. The Azure load balancer does not support an override port in the healthcheck configuration.</p>
 
 1. Click **Save**.
@@ -354,7 +354,7 @@ In this procedure, you create three networks.
 
 1. Click the **Installation Dashboard** link to return to the Installation Dashboard.
 
-1. When Ops Manager finishes deploying, you can optionally [deploy BOSH Add-Ons](https://docs.pivotal.io/pivotalcf/2-1/customizing/add-ons.html) to your system, and then [install one or more PCF runtime environments](https://docs.pivotal.io/pivotalcf/2-1/customizing/runtimes.html) to complete your PCF installation.
+1. When Ops Manager finishes deploying, you can optionally [deploy BOSH Add-Ons](https://docs.pivotal.io/pivotalcf/2-1/customizing/add-ons.html) to your system, and then [install one or more runtime environments](https://docs.pivotal.io/pivotalcf/2-1/customizing/runtimes.html) to complete your Ops Manager installation.
 
 
 ## <a id="next"></a> What to Do Next
