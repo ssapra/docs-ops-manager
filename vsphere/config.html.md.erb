@@ -6,31 +6,21 @@ iaas: vSphere
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to configure the BOSH Director for VMware vSphere.
+This topic describes how to configure the BOSH Director tile for VMware vSphere.
+You can also perform the procedures in this topic using the Ops Manager API.
+For more information, see
+[Using the Ops Manager API](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html).
 
 <p class="note warning"><strong>WARNING:</strong> If you are installing Pivotal Container Service (PKS)
 on vSphere with NSX-T integration, follow the instructions in
 <a href="https://docs.pivotal.io/runtimes/pks/1-1/vsphere-nsxt-om-config.html">Configuring BOSH Director with NSX-T for PKS</a>
-instead of performing the procedure described in this topic.</p>
+instead of performing the steps provided in this topic.</p>
 
-* Before you begin this procedure, you must complete all steps in [Deploying BOSH and Ops Manager to vSphere](./deploy.html).
-* After you complete this procedure, follow the configuration instructions for the runtime you choose to install.
-</br>
-</br>
-    For example:
-    <ul>
-    For example:
-        </br>
-            <ul>
-                    <li> To install Pivotal Application Service (PAS), see [Deploying PAS on vSphere](https://docs.pivotal.io/pivotalcf/2-1/customizing/config-er-vmware.html).</li>
-                    <li> To install PKS, see [Installing PKS on vSphere
-                    ](https://docs.pivotal.io/runtimes/pks/1-1/installing-pks-vsphere.html).</li>
-            </ul>
-    </ul>
-    <p class="note"><strong>Note</strong>: We strongly recommend installing PAS and PKS on separate instances of Ops Manager for security reasons. For more information, see <a href="https://docs.pivotal.io/runtimes/pks/pas-and-pks.html">PAS and PKS Deployments with Ops Manager</a>.</p>
+## <a id="prerequisites"></a> Prerequisites
 
-See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/2-2/customizing/runtimes.html) for more information about Pivotal Cloud Foundry (PCF) runtimes.
+Before you begin this procedure, you must complete all steps in [Deploying BOSH and Ops Manager to vSphere](./deploy.html).
 
+<p class="note"><strong>Note</strong>: Pivotal strongly recommends installing PAS and PKS on separate instances of Ops Manager for security reasons. For more information, see <a href="https://docs.pivotal.io/runtimes/pks/pas-and-pks.html">PAS and PKS Deployments with Ops Manager</a>.</p>
 
 ## <a id="set-up"></a> Step 1: Set Up Ops Manager
 
@@ -38,7 +28,7 @@ See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/2-2/customizing/runt
 
 1. The first time you start Ops Manager, you must choose one of the following:
     * [Use an Identity Provider](#idp): If you use an Identity Provider, an external identity server maintains your user database.
-    * [Internal Authentication](#internal): If you use Internal Authentication, PCF maintains your user database.
+    * [Internal Authentication](#internal): If you use Internal Authentication, Pivotal Cloud Foundry (PCF) maintains your user database.
 
 <%= image_tag("../common/images/select-authentication.png") %>
 
@@ -373,4 +363,14 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
 
 1. Click **Apply Changes** on the right navigation.
 
-1. After you complete this procedure, follow the instructions in [Deploying PAS on vSphere](https://docs.pivotal.io/pivotalcf/2-2/customizing/config-er-vmware.html). If you are installing PKS, proceed to [Installing PKS on vSphere](https://docs.pivotal.io/runtimes/pks/1-1/installing-pks-vsphere.html).
+## <a id="next"></a> Next Steps
+
+After you complete this procedure, follow the instructions for the runtime you intend to install.
+
+<ul>
+  <li>To install PAS, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/config-er-vmware.html">Deploying PAS on vSphere</a>.</li>
+  <li>To install PKS, see <a href="https://docs.pivotal.io/runtimes/pks/1-1/installing-pks-vsphere.html">Installing PKS on vSphere</a>.</li>
+</ul>
+
+For more information about PCF runtimes,
+see [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html).
