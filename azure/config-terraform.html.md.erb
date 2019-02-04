@@ -58,10 +58,10 @@ To complete the procedures in this topic, you must have access to the output fro
 
     <%= image_tag("../common/images/azure/azure-config.png") %>
 
-1. Complete the following fields with information you obtained in the [Preparing to Deploy Ops Manager on Azure Manually](./prepare-env-manual.html) topic.
-	* **Subscription ID**: Enter the ID of your Azure subscription. 
+1. Complete the following fields with information you obtained in the [Preparing to Deploy Ops Manager on Azure Using Terraform](prepare-azure-terraform.html) topic.
+	* **Subscription ID**: Enter the ID of your Azure subscription.
 	* **Tenant ID**: Enter your `TENANT_ID`.
-	* **Application ID**: Enter the `APPLICATION_ID` that you created in the [Create an Azure Active Directory Application](./prepare-env-manual.html#create-aad) step of the _Preparing to Deploy Ops Manager on Azure Manually_ topic.
+	* **Application ID**: Enter the `APPLICATION_ID` that you created in the [Create an AAD Application](prepare-azure-terraform.html)#create-aad) step of the _Preparing Azure_ topic.
 	* **Client Secret**: Enter your `CLIENT_SECRET`.
 
 1. Complete the following fields:
@@ -147,7 +147,7 @@ To complete the procedures in this topic, you must have access to the output fro
 1. (Optional) To disable BOSH DNS, select the **Disable BOSH DNS server for troubleshooting purposes** checkbox. For more information about the BOSH DNS service discovery mechanism, see [BOSH DNS Service Discovery for Application Containers](https://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/runtime-rn.html#bosh-dns) in the PAS Release Notes.
   <p class="note breaking"><strong>Breaking Change:</strong> Do not disable BOSH DNS without consulting Pivotal Support. For more information about disabling BOSH DNS, see <a href="https://discuss.pivotal.io/hc/en-us/articles/115015720428-Disabling-or-Opting-Out-of-BOSH-DNS-in-PCF">Disabling or Opting Out of BOSH DNS in PCF</a> in the Pivotal Knowledge Base.</p>
 
-1. (Optional) To set a custom banner that users see when logging in to the Director using SSH, enter text in the **Custom SSH Banner** field.
+1. (Optional) To set a custom banner that users see when logging in to the Director using SSH, enter text in the **Custom SSH Banner** field.  
   <%= image_tag("../common/images/disable-bosh-dns.png") %>
 
 1. Click **Save**.
@@ -260,4 +260,6 @@ Select **Create Networks** and follow the procedures in this section to add the 
 
     <%= image_tag("../common/images/cloudform/ops-manager-complete.png") %>
 
-1. After you complete this procedure, follow the instructions in the [Deploying PAS on Azure Using Terraform](https://docs.pivotal.io/pivotalcf/2-1/customizing/azure-er-config-terraform.html) topic.
+##<a id='next'></a> Next Steps
+
+After you complete this procedure, follow the procedures in [Deploying PAS on Azure Using Terraform](https://docs.pivotal.io/pivotalcf/2-1/customizing/azure-er-config-terraform.html).</li>
