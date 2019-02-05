@@ -6,7 +6,7 @@ owner: Ops Manager
 <strong><%= modified_date %></strong>
 <html class="list-style-none"></html>
 
-This topic describes how to prepare to deploy Pivotal Cloud Foundry (PCF) on Azure by manually creating a service principal to access resources in your Azure subscription. See [Preparing to Deploy PCF on Azure using Terraform](./prepare-env-terraform.html) for how to install PCF on Azure using Terraform templates.
+This topic describes how to prepare Azure to deploy Ops Manager. You must deploy Ops Manager to deploy Pivotal Application Service (PAS) or Pivotal Container Service (PKS).
 
 After you complete this procedure, follow the instructions in one of the following topics:
 
@@ -18,17 +18,19 @@ After you complete this procedure, follow the instructions in one of the followi
 
 1. Install the Azure CLI 2.0 by following the instructions for your operating system in the [Azure documentation](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
 
-1. Set your cloud with the `--name` value corresponding to the Azure environment you are installing PCF on:
-  - **Azure**: `AzureCloud`
+1. Set your cloud with the `--name` value corresponding to the Azure environment on which you are installing Ops Manager:
+  - **Azure**: `AzureCloud`.
   - **Azure China**: `AzureChinaCloud`. If logging in to <code>AzureChinaCloud</code> fails with a <code>CERT_UNTRUSTED</code> <a href="https://github.com/Azure/azure-xplat-cli/issues/2725">error</a>, use the latest version of node, 4.x or later.
-  - **Azure Government Cloud**: `AzureUSGovernment`. Azure Government Cloud is only supported in PCF v1.10 and later.
-  - **Azure Germany**: `AzureGermanCloud`
+  - **Azure Government Cloud**: `AzureUSGovernment`. Azure Government Cloud is only supported in Ops Manager v1.10 and later.
+  - **Azure Germany**: `AzureGermanCloud`.
 
     <pre class="terminal">
     $ az cloud set --name AzureCloud
     </pre>
 
-    <p class="note"><strong>Note</strong>: For more information on installing PCF in the China Region, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/offline_installation.html#install_china">Install in the China Region</a>.</p>
+    <p class="note"><strong>Note</strong>: For more information about installing Ops Manager in the China
+    Region, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/offline_installation.html#install_china">Install in the China Region</a>
+    in <em>Installing PCF in Airgapped Environments</em> in the Pivotal documentation.</p>
 
 1. Log in:
 
@@ -40,7 +42,7 @@ After you complete this procedure, follow the instructions in one of the followi
 
 ##<a id="default-subscription"></a> Step 2: Set Your Default Subscription
 
-1. Run `az account list` to list your Azure subscriptions:
+1. To list your Azure subscriptions, run the following command:
 
     <pre class="terminal">
     $ az account list
@@ -74,7 +76,9 @@ After you complete this procedure, follow the instructions in one of the followi
     ]
     </pre>
  
-1. Locate your default subscription by finding the subscription with `isDefault` set to `true`. If your default subscription is not where you want to deploy PCF, run `az account set --subscription SUBSCRIPTION_ID` to set a new default, where `SUBSCRIPTION_ID` is the value of the `id` field. For example: `"87654321-1234-5678-1234-567891234567"`.
+ 1. Identify your default subscription in the output of this command by locating the subscription
+ listed that has `isDefault` set to `true`. To deploy Ops Manager to a different subscription, you must set
+ the other subscription as the default. To set a new default subscription, run the following command:
 
     <pre class="terminal">
     $ az account set --subscription SUBSCRIPTION_ID
@@ -90,8 +94,13 @@ After you complete this procedure, follow the instructions in one of the followi
     <pre class="terminal">$ az ad app create --display-name "Service Principal for BOSH" \
     --password "PASSWORD" --homepage "<span>http:</span>//BOSHAzureCPI" \
     --identifier-uris "<span>http</span>://BOSHAzureCPI"
+
     </pre>
-    <p class="note"><strong>Note</strong>: You can provide any string for the <code>home-page</code> and <code>identifier-uris</code> flags, but the value of <code>identifer-uris</code> must be unique within the organization associated with your Azure subscription. For the <code>home-page</code>, Pivotal recommends using <code><span>http:</span>//BOSHAzureCPI</code>, as shown in the example above.
+     <p class="note"><strong>Note</strong>: You can provide any string for the
+     <code>homepage</code> and <code>identifier-uris</code> flags, but the value of
+     <code>identifer-uris</code> must be unique within the organization associated with your Azure
+     subscription. For the <code>homepage</code>, Pivotal recommends using
+     <code><span>http:</span>//BOSHAzureCPI</code> as shown in the example above.
     </p>
 
 1. Record the value of `appId` from the output. This is your `APPLICATION_ID` for creating a service principal. 
@@ -129,7 +138,8 @@ After you complete this procedure, follow the instructions in one of the followi
     }
     </pre>
 
-1. You must have the Contributor role on your service principal to deploy PCF. Run the following command to assign this role:
+1. You must have the Contributor role on your service principal to deploy Ops Manager to Azure. To assign
+ the Contributor role on your service principal, run the following command:
     <pre class="terminal">
     $ az role assignment create --assignee "SERVICE-PRINCIPAL-NAME" \
     --role "Contributor" --scope /subscriptions/SUBSCRIPTION-ID
@@ -137,7 +147,13 @@ After you complete this procedure, follow the instructions in one of the followi
     * For `SERVICE-PRINCIPAL-NAME`, use any value of `Service Principal Names` from the output above, such as `YOUR-APPLICATION-ID`.
     * For `SUBSCRIPTION-ID`, use the ID of the default subscription that you recorded in [Step 2](#default-subscription).
 
-    <p class="note"><strong>Note</strong>: If you need to use multiple resource groups for your PCF deployment on Azure, you can define custom roles for your Service Principal. These roles allow BOSH to deploy PCF to pre-existing network resources outside the PCF resource group. For more information, see <a href="https://docs.pivotal.io/refarch/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing//azure/azure_ref_arch.html#multiple_resource_groups">Reference Architecture for Pivotal Cloud Foundry on Azure</a>.</p>
+    <p class="note"><strong>Note:</strong> If you need to use multiple resource groups for your
+    deployment on Azure, you can define custom roles for your Service Principal. These roles allow
+    BOSH to deploy to pre-existing network resources outside of the resource group. For
+    more information, see
+    <a href="https://docs.pivotal.io/pivotalcf/refarch/azure/azure_ref_arch.html#multiple_resource_groups">Multiple Resource Group Deployment</a>
+    in <em>Reference Architecture for Pivotal Cloud Foundry on Azure</em> in the Pivotal
+    documentation.</p>
 
     For more information about Azure Role-Based Access Control, refer to the <a href="https://azure.microsoft.com/en-us/documentation/articles/role-based-access-built-in-roles/">RBAC: Built-in roles</a> topic in the Azure documentation.
 
@@ -195,6 +211,8 @@ If you cannot log in, the service principal is invalid. Create a new service pri
 
 1. Register your subscription with Microsoft.Compute:
   <pre class="terminal">$ az provider register --namespace Microsoft.Compute</pre>
+
+##<a id='next'></a> Next Steps
 
 After you complete this topic, continue to one of the following topics:
 
