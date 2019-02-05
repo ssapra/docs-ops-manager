@@ -244,7 +244,7 @@ Azure for PCF uses multiple general-purpose Azure storage accounts. The BOSH and
 Your load balancer configuration depends on whether you want apps to be available from public IP addresses, private IP addresses, or both.
 
 1. **Required:** PAS Load Balancer
-    1. Create a load balancer named `pcf-lb`. A static IP address will be automatically created for Standard SKU load balancers.
+    1. Create a load balancer named `pcf-lb`. A static IP address will be automatically created for Standard SKU load balancers unless specified otherwise with `--public-ip-address-allocation Dynamic`.
         <pre class="terminal">
         $ az network lb create --name pcf-lb \
         --resource-group $RESOURCE_GROUP --location $LOCATION \
