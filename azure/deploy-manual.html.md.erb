@@ -4,19 +4,23 @@ owner: Ops Manager
 ---
 
 <strong><%= modified_date %></strong>
+<html class="list-style-none"></html>
 
 This topic describes how to deploy BOSH and Ops Manager for Pivotal Cloud Foundry (PCF) on Azure by using individual commands to create resources. Pivotal recommends this manual procedure for deploying to Azure China, Azure Germany, and Azure Government Cloud.
 
 Before you perform the procedures in this topic, you must have completed the procedures in the [Preparing to Deploy Ops Manager on Azure Manually](prepare-env-manual.html) topic. After you complete the procedures in this topic, follow the instructions in the [Configuring BOSH Director on Azure](config-manual.html) topic.
 
-<p class="note"><strong>Note:</strong> If you are deploying PCF on Azure Stack, complete the procedures in <a href="https://docs.microsoft.com/en-us/azure/azure-stack/user/azure-stack-connect-cli">Install and configure CLI for use with Azure Stack</a> in the Microsoft documentation before following the procedures in this topic.</p>
+<p class="note"><strong>Note:</strong> If you are deploying BOSH and Ops Manager on Azure Stack,
+complete the procedures in
+<a href="https://docs.microsoft.com/en-us/azure/azure-stack/user/azure-stack-connect-cli">Install and configure CLI for use with Azure Stack</a> in the Microsoft documentation before following the
+procedures in this topic.</p>
 
 <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
 
 
 ## <a id='network'></a> Step 1: Create Network Resources
 
-1. Navigate to the Azure portal, click **Resource groups**, and click **Add** to create a new resource group for your PCF deployment.
+1. Navigate to the Azure portal, click **Resource groups**, and click **Add** to create a new resource group for your deployment.
 
 1. Enter a **Resource group name**, select your **Subscription**, and select a **Resource group location**. Click **Create**.
 
@@ -120,7 +124,7 @@ Before you perform the procedures in this topic, you must have completed the pro
     --address-prefixes 10.0.0.0/16
     </pre>
 
-1. Add subnets to the network for Ops Manager, BOSH director and PCF VMs and attach the Network Security Group.
+1. Add subnets to the network for Ops Manager, BOSH director, and PCF VMs, and attach the Network Security Group.
     <pre class="terminal">
     $ az network vnet subnet create --name Management \
     --vnet-name PCF \
@@ -142,7 +146,7 @@ Before you perform the procedures in this topic, you must have completed the pro
 
 ## <a id='storage'></a> Step 2: Create BOSH and Deployment Storage Accounts
 
-Azure for PCF uses multiple general-purpose Azure storage accounts. The BOSH and Ops Manager VMs use one main BOSH account, and the other components share five or more deployment storage accounts.
+PCF on Azure uses multiple general-purpose Azure storage accounts. The BOSH and Ops Manager VMs use one main BOSH account, and the other components share five or more deployment storage accounts.
 
 1. Choose a name for your BOSH storage account, and export it as the environment variable `$STORAGE_NAME`. Storage account names must be globally unique across Azure, between 3 and 24 characters in length, and contain only lowercase letters and numbers.
     <pre class="terminal">
