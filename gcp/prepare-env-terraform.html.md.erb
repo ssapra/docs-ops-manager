@@ -13,7 +13,6 @@ The Terraform template for PCF on GCP describes a set of GCP resources and prope
 
 You may also find it helpful to review different deployment options in the [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html).
 
-
 ## <a id="prereqs"></a> Prerequisites
 
 In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp.html) topic, ensure you have the following: 
@@ -33,16 +32,16 @@ In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cl
 To use the Terraform templates to create the necessary infrastructure
 resources for PCF, you need a service account key file. 
 <br><br>
-To create an account key file, follow the procedure corresponding to your own use case: 
+To create an account key file, follow the procedure below corresponding to your own use case.  
   
   <ul>
-    <li>**I already have a service account I want to use**</li>
+    <li>**I already have a service account I want to use:**</li>
     <ol>
-      <li>Navigate to the GCP console</li>
+      <li>Navigate to the GCP console.</li>
       <li>Select **IAM** and locate your service account.</li>
       <li>From the **Options** column, open the dropdown and click **Create Key**.</li>
     </ol>
-    <li>**I want to create a new service account**</li>
+    <li>**I want to create a new service account:**</li>
     <ol>
       <li>Open a terminal window.</li>
       <li>To create a service account using the gcloud CLI, run the following command:</li>
@@ -53,6 +52,17 @@ To create an account key file, follow the procedure corresponding to your own us
       <pre>gcloud projects add-iam-policy-binding PROJECT-ID --member 'serviceAccount&#58;ACCOUNT-NAME&#64;PROJECT-ID.iam.gserviceaccount.com' --role 'roles/owner'</pre>
     </ol>
   </ul>
+
+    Where: 
+    <ol>
+      <li><pre>ACCOUNT-NAME</pre> is the name you want to apply to the new account.</li>
+      <li><pre>PROJECT-ID</pre> is your Google Cloud Platform Project ID. </li>
+    </ol>  
+
+    Where:   
+    * `ACCOUNT-NAME` is the name you want to apply to the new account.  
+    * `PROJECT-ID` is your Google Cloud Platform Project ID.  
+
 
 ## <a id="download"></a> Step 2: Download Templates and Edit Variables File
 
@@ -207,7 +217,7 @@ ISO_SEG_SSL_KEY
     external_database = true
     ```
 
-1. If you want to specify a single host from which users can connect to the Ops Manager and runtime database, add the following to your `terraform.tfvars` file.
+1. If you want to specify a single host from which users can connect to the Ops Manager and runtime databases, add the following to your `terraform.tfvars` file.
 
     ```
     opsman_sql_db_host = HOST-IP-ADDRESS
@@ -258,4 +268,4 @@ Follow these steps to use the Terraform CLI to create resources on GCP:
 
 ## <a id="next"></a> Next Steps
 
-Proceed to the next step in the deployment, [Configuring BOSH Director on GCP (Terraform)](./config-terraform.html).
+After you complete this procedure, follow the instructions in the [Configuring BOSH Director on GCP Using Terraform](./config-terraform.html) topic.
