@@ -50,18 +50,15 @@ To create an account key file, follow the procedure below corresponding to your 
       <pre>gcloud iam service-accounts keys create "terraform.key.json" --iam-account "ACCOUNT-NAME&#64;PROJECT-ID.iam.gserviceaccount.com"</pre>
       <li>To bind the service account to your project and give it the owner role, run the following command:</li>
       <pre>gcloud projects add-iam-policy-binding PROJECT-ID --member 'serviceAccount&#58;ACCOUNT-NAME&#64;PROJECT-ID.iam.gserviceaccount.com' --role 'roles/owner'</pre>
+      <br>
+      Where: 
+      <ul>
+        <li><code>ACCOUNT-NAME</code> is the name you want to apply to the new account.</li>
+        <li><code>PROJECT-ID</code> is your Google Cloud Platform Project ID. </li>
+      </ul> 
     </ol>
   </ul>
 
-    Where: 
-    <ol>
-      <li><pre>ACCOUNT-NAME</pre> is the name you want to apply to the new account.</li>
-      <li><pre>PROJECT-ID</pre> is your Google Cloud Platform Project ID. </li>
-    </ol>  
-
-    Where:   
-    * `ACCOUNT-NAME` is the name you want to apply to the new account.  
-    * `PROJECT-ID` is your Google Cloud Platform Project ID.  
 
 
 ## <a id="download"></a> Step 2: Download Templates and Edit Variables File
