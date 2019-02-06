@@ -109,7 +109,7 @@ instead of performing the steps described in this topic.</p>
 
 1. Use the **Recent Tasks** panel at the bottom of the vCenter dashboard to check the progress of the OVA import and deployment. 
    <br/><br/>
-   If the import or deployment is unsuccessful, check the configuration for errors. Fix any errors and redo the deploment process.
+   If the import or deployment is unsuccessful, check the configuration for errors. Fix any errors and redo the deployment process.
 
 ## <a id="deploy"></a> Start Ops Manager
 
@@ -127,45 +127,6 @@ instead of performing the steps described in this topic.</p>
 
 1. Navigate to the fully qualified domain of your Ops Manager in a web browser.
   <p class="note"><strong>Note</strong>: It is normal to experience a brief delay before the interface is accessible while the web server and VM start up.</p>
-
-## <a id="set-up"></a> Set Up Ops Manager Authentication
-
-1. When Ops Manager starts for the first time, you must choose one of the following:
-    * [Internal Authentication](#internal): If you use Internal Authentication, PCF maintains your user database.
-    * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external identity server maintains your user database.
-    * [LDAP Server](#ldap): If you use a LDAP Server, an external identity server maintains your user database.
-
-    <%= image_tag("../common/images/select-authentication.png") %>
-
-### <a id='internal'></a> Internal Authentication
-
-1. Select **Internal Authentication** and provide the following information:
-   * **Username**, **Password**, and **Password confirmation** to create an Admin user.
-   * **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-   * **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/customizing/pcf-director-proxy-settings.html).
-   * Read the **End User License Agreement**, and select the checkbox to accept the terms.
-   * Click **Setup Authentication**. It will take a few minutes to initialize the database.
-
-   <%= image_tag("../common/images/vsphere/vsphere_om-deploy-09.png") %>
-
-1. Log in to Ops Manager with the user name and password you created.
-
-    <%= image_tag("../common/images/om-login.png") %>
-    <%= image_tag("../common/images/cf-login.png") %>
-
-1. Verify success.
-
-	You should be able to log in, and you should see the BOSH Director tile is present and ready for configuration, indicated by the orange color.
-
-    <%= image_tag("../common/images/vsphere/vsphere_bosh-config-01.png") %>
-
-### <a id='saml'></a> SAML Identity Provider
-
-<%= partial '../common/using_saml_idp_ops_manager' %>
-
-### <a id='ldap'></a> LDAP Server
-
-<%= partial '../common/using_ldap_server_ops_manager' %>
 
 ## <a id="next-steps"></a> Next Steps
 
