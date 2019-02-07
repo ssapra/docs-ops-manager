@@ -180,10 +180,10 @@ In your `terraform.tfvars` file, specify the appropriate variables from the sect
 
 ### <a id="subnet_cidr"></a> CIDR Ranges for Subnets
 
-If you want to change the CIDR ranges for the management, your runtime, or services networks that Terraform creates, add the following variables to your `terraform.tfvars` file, replacing `YOUR-MANAGEMENT-CIDR`, `YOUR-RUNTIME-CIDR` and `YOUR-SERVICES-CIDR` with your desired values.
+If you want to change the CIDR ranges for the infrastructure, your runtime, or services networks that Terraform creates, add the following variables to your `terraform.tfvars` file, replacing `YOUR-INFRASTRUCTURE-CIDR`, `YOUR-RUNTIME-CIDR` and `YOUR-SERVICES-CIDR` with your desired values.
 
 ```
-management_cidr = YOUR-MANAGEMENT-CIDR
+infrastructure_cidr = YOUR-INFRASTRUCTURE-CIDR
 pas_cidr = YOUR-RUNTIME-CIDR
 services_cidr = YOUR-SERVICES-CIDR
 ```
