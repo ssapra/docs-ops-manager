@@ -6,15 +6,17 @@ owner: Ops Manager
 <strong><%= modified_date %></strong>
 <html class="list-style-none"></html>
 
-This topic describes how to deploy BOSH Director for Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
+This topic describes how to deploy Ops Manager for Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
 
-After you complete this procedure, follow the instructions in [Configuring BOSH Director on GCP](./config-manual.html).
+Before you deploy Ops Manager, see the preparation steps in [Preparing to Deploy Ops Manager on GCP Manually](prepare-env-manual.html).
 
-## <a id='select-tgz'></a>Step 1: Locate the Pivotal Ops Manager Installation File ##
+After you complete this procedure, follow the instructions in [Configuring BOSH Director on GCP Manually](./config-manual.html).
 
-1. Log in to the [Pivotal Network](https://network.pivotal.io/products/pivotal-cf), and click on **Pivotal Cloud Foundry Operations Manager**.
+## <a id='select-tgz'></a>Step 1: Locate the Ops Manager Installation File ##
 
-1. From the **Releases** drop-down, select the release to install.
+1. Log in to the [Pivotal Network](https://network.pivotal.io/products/pivotal-cf), and click **Pivotal Cloud Foundry Operations Manager**.
+
+1. From the **Releases** dropdown, select the release to install.
 
 1. Select one of the following download files:
     * **Pivotal Cloud Foundry Ops Manager for GCP**
@@ -34,7 +36,7 @@ After you complete this procedure, follow the instructions in [Configuring BOSH 
 1. Click **Create Image**.
 
 1. Complete the following fields:
-  * **Name**: Enter a name. For example, `opsman-pcf-gcp-2-0`.
+  * **Name**: Enter a name. For example, `om-pcf`.
   * **Encryption**: Leave **Automatic (recommended)** selected.
   * **Source**: Choose **Cloud Storage file**.
   * **Cloud Storage file**: Paste in the Google Cloud Storage filepath you copied from the PDF file in the [previous step](#select-tgz). 
@@ -61,7 +63,7 @@ After you complete this procedure, follow the instructions in [Configuring BOSH 
         |Memory| 8&nbsp;GB |
   * **Boot disk**: Click **Change**, then perform the following steps:
      * Click **Custom images** if it is not already selected. 
-     * Select the **Boot disk type**. If you have an Ops Manager environment with high performance needs, select **SSD**. As an example, environments used to [develop PCF tiles](http://docs.pivotal.io/tiledev/) may benefit from a higher performing Ops Manager VM boot disk. For most environments, however, you can select **Standard**.
+     * Select the **Boot disk type**. If your environment has high performance needs, select **SSD**. As an example, environments used to [develop PCF tiles](http://docs.pivotal.io/tiledev/) may benefit from a higher performing Ops Manager VM boot disk. For most environments, you can select **Standard**.
      * Set the **Size (GB)** of the boot disk to the minimum or higher.
 
             | **Machine Spec** | **Minimum Value** |
@@ -70,26 +72,25 @@ After you complete this procedure, follow the instructions in [Configuring BOSH 
      * Select the Ops Manager image you created in the previous step if it is not already selected.<br> 
         <%= image_tag("../common/images/gcp/boot_image.png") %>
      * Click **Select** to save.
-  * Under **Identity and API access**, choose the **Service account** you created when preparing your environment during the step [Set up an IAM Service Account](./prepare-env-manual.html#iam_account). 
+  * Under **Identity and API access**, choose the **Service account** you created when preparing your environment during the step [Set up IAM Service Accounts](./prepare-env-manual.html#iam_account). 
   * **Allow HTTP traffic**: Leave this checkbox unselected.  
   * **Allow HTTPS traffic**: Leave this checkbox unselected. 
   * **Networking**: Select the **Networking** tab, and perform the following steps:
      * Under **Network interfaces**, perform the following steps:
         * Remove the `default` network interface if this interface still exists.
-        * Select the network (for example, `MY-PCF-virt-network`) you created when preparing your environment in the [Create a GCP Network with Subnet](./prepare-env-manual.html#create_network) section of the _Preparing to Deploy PCF on GCP_ topic. 
-        * Under **Subnetwork**, select the `MY-PCF-subnet-infrastructure-MY-GCP-REGION` subnet that you created when preparing your environment in the [Create a GCP Network with Subnet](./prepare-env-manual.html#create_network) section of the _Preparing to Deploy PCF on GCP_ topic. 
+        * Select the network you created when preparing your environment in the [Create a GCP Network with Subnet](./prepare-env-manual.html#create_network) section of the _Preparing to Deploy Ops Manager on GCP Manually_ topic. For example, `pcf-virt-net`.
+        * Under **Subnetwork**, select the `pcf-subnet-infrastructure-GCP-REGION` subnet that you created when preparing your environment in the [Create a GCP Network with Subnet](./prepare-env-manual.html#create_network) section of the _Preparing to Deploy Ops Manager on GCP Manually_ topic.
         * For **Primary internal IP**, select **Ephemeral (Custom)**. Enter an IP address (for example, `192.168.101.5`) in the **Custom ephemeral IP address** field. Specify the next available internal IP address located within the reserved IP range that you will [configure in BOSH Director](./config-manual.html#network). Do not use the **Gateway IP**, for example `192.168.101.1`.
-        * For **External IP**, select **Create IP address**. In the next form, enter a name for the static IP. For example, `om-public-ip`. Click **Reserve**. In the **External IP** drop-down, select the static IP address you just reserved.
-     * For **Network tags**, enter `MY-PCF-opsman` and `allow-https`. These tags tag apply the firewall rules you created in [Create Firewall Rules for the Network](prepare-env-manual.html#firewall_rules) to the Ops Manager VM.
+        * For **External IP**, select **Create IP address**. In the next form, enter a name for the static IP. For example, `om-public-ip`. Click **Reserve**. In the **External IP** dropdown, select the static IP address you just reserved.
+     * For **Network tags**, enter `pcf-opsman` and `allow-https`. These tags apply the firewall rules you created in [Create Firewall Rules for the Network](prepare-env-manual.html#firewall_rules) to the Ops Manager VM.
     
 1. Click **Create** to deploy the new Ops Manager VM. This may take a few moments.
 
-1. Navigate to your DNS provider, and create an entry that points a fully qualified domain name (FQDN) `opsman.MY-DOMAIN` to the `MY-PCF-opsman` static IP address of Ops Manager that you created in a previous step. 
-
-   <p class="note"><strong>Note</strong>: In order to set up Ops Manager authentication correctly, Pivotal recommends using a Fully Qualified Domain Name (FQDN) to access Ops Manager. Using an ephemeral IP address to access Ops Manager can cause authentication errors upon subsequent access.</p>
+1. Navigate to your DNS provider, and create an entry that points a fully qualified domain name (FQDN) `opsman.MY-DOMAIN` to the `pcf-opsman` static IP address of Ops Manager that you created in a previous step.
+   <p class="note"><strong>Note</strong>: In order to set up Ops Manager authentication correctly, Pivotal recommends using an FQDN to access Ops Manager. Using an ephemeral IP address to access Ops Manager can cause authentication errors upon subsequent access.</p>
 
 ## <a id="next"></a> Next Steps
 
-After you complete this procedure, follow the instructions in the [Configuring BOSH Director on GCP](./config-manual.html) topic.
+After you complete this procedure, follow the instructions in the [Configuring BOSH Director on GCP Manually](./config-manual.html) topic.
 
 Later on, if you need to SSH into the Ops Manager VM to perform diagnostic troubleshooting, see [SSH into Ops Manager](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/trouble-advanced.html#ssh).
