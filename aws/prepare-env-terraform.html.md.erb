@@ -1,5 +1,5 @@
 ---
-title: Preparing AWS Using Terraform
+title: Deploying Ops Manager on AWS Using Terraform
 owner: Ops Manager
 ---
 
@@ -13,7 +13,12 @@ If you are deploying Pivotal Application Service (PAS), you may also find it hel
 
 ## <a id="prereqs"></a> Prerequisites
 
-In addition to fulfilling the prerequisites listed in the [PCF on AWS Requirements](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/aws.html) topic, ensure you have the following:
+Before you deploy Ops Manager on AWS, review the following:
+
+* If you intend to install PAS, see [PCF on AWS Requirements](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/aws.html).
+* If you intend to install Pivotal Container Service (PKS), see [AWS Prerequisites and Resource Requirements](https://docs.pivotal.io/runtimes/pks/1-2/aws-requirements.html).
+
+In addition to reviewing the prerequisites for your runtime, ensure you have the following:
 
 * The [Terraform CLI](https://www.terraform.io/intro/getting-started/install.html)
 * In your AWS account, ensure you have an IAM user with the following permissions:
@@ -108,7 +113,7 @@ for your runtime.
     </tr>
     <tr>
       <td><code>YOUR-DNS-SUFFIX</code></td>
-      <td>Enter a domain name to use as part of the system domain for your PCF deployment. Terraform creates DNS records in AWS using <code>YOUR-ENVIRONMENT-NAME</code> and <code>YOUR-DNS-SUFFIX</code>. For example, if you enter <code>example.com</code> for your DNS suffix and have <code>pcf</code> as your environment name, Terraform will create DNS records at <code>pcf.example.com</code>.</td>
+      <td>Enter a domain name to use as part of the system domain for your deployment. Terraform creates DNS records in AWS using <code>YOUR-ENVIRONMENT-NAME</code> and <code>YOUR-DNS-SUFFIX</code>. For example, if you enter <code>example.com</code> for your DNS suffix and have <code>pcf</code> as your environment name, Terraform will create DNS records at <code>pcf.example.com</code>.</td>
     </tr>
     <tr>
       <td><code>YOUR-CERTIFICATE</code></td>
@@ -127,7 +132,7 @@ for your runtime.
 
 ## <a id="download"></a> Step 2: Add Optional Variables
 
-Complete this step if you want to do any of the following in Pivotal Application Service (PAS):
+Complete this step if you want to do any of the following in PAS:
 
 - Use an RDS for your deployment
 - Deploy the Isolation Segment tile
@@ -200,7 +205,7 @@ Follow these steps to use the Terraform CLI to create resources on AWS:
 
 1. In a browser, navigate to the DNS provider for the DNS suffix you entered in your `terraform.tfvars` file.
 
-1. Create a new NS record for your PCF system domain. Your system domain is `YOUR-ENVIRONMENT-NAME.YOUR-DNS-SUFFIX`.
+1. Create a new NS record for your system domain. Your system domain is `YOUR-ENVIRONMENT-NAME.YOUR-DNS-SUFFIX`.
 
 1. In this record, enter the name servers included in `env_dns_zone_name_servers` from your Terraform output.
 
