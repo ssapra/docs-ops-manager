@@ -56,7 +56,7 @@ To prevent this, leave the <strong>Bosh HM Forwarder IP Address</strong> field b
 
 
 
-1. Select the **Enable VM Resurrector Plugin** checkbox to enable the Ops Manager
+1. Select the **Enable VM Resurrector Plugin** checkbox to enable the BOSH
 Resurrector functionality and increase your runtime availability. <% if current_page.data.iaas == "vSphere" %>If you intend to install PAS,
   see [Using BOSH Resurrector and vSphere HA](https://docs.pivotal.io/pivotalcf/customizing/resurrector.html) for more information about the Resurrector plugin.<% end %>
 
@@ -88,7 +88,7 @@ BOSH operations up to five times.
 after a failed deployment for troubleshooting purposes.
 
 
-1. Select **HM Pager Duty Plugin** to enable Health Monitor integration with PagerDuty.
+1. Select **HM Pager Duty Plugin** to enable Health Monitor integration with PagerDuty.<br>
     <%= image_tag("../common/images/director_hm_pager.png") %>
     * **Service Key**: Enter your API service key from PagerDuty.
     * **HTTP Proxy**: Enter an HTTP proxy for use with PagerDuty.
