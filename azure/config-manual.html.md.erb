@@ -76,7 +76,7 @@ or [Deploying BOSH and Ops Manager to Azure Manually](deploy-manual.html).
 
 1. When Ops Manager starts for the first time, you must choose one of the following:
     * [Use an Identity Provider](#idp): If you use an Identity Provider, an external identity server maintains your user database.
-    * [Internal Authentication](#internal): If you use Internal Authentication, PCF maintains your user database.
+    * [Internal Authentication](#internal): If you use Internal Authentication, Ops Manager maintains your user database.
 
     <%= image_tag("../common/images/select-authentication.png") %>
 
@@ -216,7 +216,7 @@ topic or [Deploying BOSH and Ops Manager to Azure Manually](deploy-manual.html).
 
 1. (Optional) To add a custom URL for your BOSH Director, enter a valid hostname in **Director Hostname**. You can also use this field to configure [a load balancer in front of your BOSH Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director).
      <p class="note warning"><strong>WARNING:</strong> In Ops Manager v2.2.7 and earlier, if you change the <strong>Director
-  Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/pcf-release-notes/opsmanager-rn.html#2-2-8">Ops Manager v2.2.8</a> and later.</p>
+  Hostname</strong> after your initial deployment, VMs become unavailable. This causes downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This issue is resolved in <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/pcf-release-notes/opsmanager-rn.html#2-2-8">Ops Manager v2.2.8</a> and later.</p>
 
      <%= image_tag("../common/images/director_workers.png") %>
 
