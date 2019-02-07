@@ -8,7 +8,7 @@ Select a **Blobstore Location** to either configure the blobstore as an internal
   * **S3 Compatible Blobstore**: Select this option to use an external S3-compatible endpoint. Follow the procedures in [Sign up for Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/gsg/SigningUpforS3.html) and [Creating a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) in the AWS documentation. When you have created an S3 bucket, complete the following steps:
   <% end %>
       1. **S3 Endpoint**: Navigate to the [Regions and Endpoints](http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) topic in the AWS documentation.
-          1. Locate the endpoint for your region in the **Amazon Simple Storage Service (S3)** table and construct a URL using your region's endpoint. For example, if you are using the `us-west-2` region, the URL you create would be <code>http<span>s://</span>s3-us-west-2.amazonaws.com</code>. Enter this URL into the **S3 Endpoint** field. 
+          1. Locate the endpoint for your region in the **Amazon Simple Storage Service (S3)** table and construct a URL using your region's endpoint. For example, if you are using the `us-west-2` region, the URL you create would be <code>http<span>s://</span>s3-us-west-2.amazonaws.com</code>. Enter this URL into the **S3 Endpoint** field.
           1. On a command line, run `ssh ubuntu@OPS-MANAGER-FQDN` to SSH into the Ops Manager VM. Replace `OPS-MANAGER-FQDN` with the fully qualified domain name of Ops Manager.
           1. Copy the custom public CA certificate you used to sign the S3 endpoint into `/etc/ssl/certs` on the Ops Manager VM.
           1. On the Ops Manager VM, run `sudo update-ca-certificates -f -v` to import the custom CA certificate into the Ops Manager VM truststore.
@@ -31,5 +31,5 @@ Select a **Blobstore Location** to either configure the blobstore as an internal
         <% if current_page.data.iaas == "GCP" %>
         1. **Service Account Key**: Enter the contents of the JSON file that you downloaded in the [Set Up an IAM Service Account](./prepare-env-manual.html#iam_account) section of _Preparing GCP_.
         <% else %>
-        1. **Service Account Key**: Follow the steps in the [Set Up an IAM Service Account](../gcp/prepare-env-manual.html#iam_account) section of _Preparing GCP_ to download a JSON file with a private key. Enter the contents of the JSON file into the field.
+        1. **Service Account Key**: Follow the steps in the [Set up IAM Service Accounts](../gcp/prepare-env-manual.html#iam_account) section of _Preparing to Deploy Ops Manager on GCP Manually_ to download a JSON file with a private key. Enter the contents of the JSON file into the field.
         <% end %>
