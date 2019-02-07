@@ -1,5 +1,5 @@
 ---
-title: Deploying BOSH and Ops Manager to vSphere
+title: Deploying Ops Manager to vSphere
 owner: Ops Manager
 ---
 
@@ -7,14 +7,20 @@ owner: Ops Manager
 
 This topic provides instructions for deploying Pivotal Cloud Foundry (PCF) Ops Manager to VMware vSphere.
 
-<p class="note"><strong>Note</strong>: The instructions in this topic are based on vSphere 6.5 using the vSphere Client (HTML5) interface.</p>
+The instructions in this topic are based on vSphere 6.5 using the vSphere Client (HTML5) interface.
 
-<p class="note warning"><strong>WARNING:</strong> If you are installing Pivotal Container Service (PKS)
-on vSphere with NSX-T integration, follow the instructions in
+## <a id="pas_and_pks"></a> Runtime Considerations
+
+For security purposes, VMware requires a dedicated instance of Ops Manager for use with Pivotal Container Service (PKS). 
+
+Do not deploy Pivotal Application Service (PAS) on the same instance of Ops Manager as PKS. 
+For more information, 
+see <a href="https://docs.pivotal.io/runtimes/pks/pas-and-pks.html">PAS and PKS Deployments with Ops Manager</a>.
+
+<p class="note warning"><strong>IMPORTANT:</strong> If you are installing PKS on vSphere with NSX-T integration, 
+follow the instructions in
 <a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-om-deploy.html">Deploying Ops Manager with NSX-T for PKS</a>
 instead of performing the steps described in this topic.</p>
-
-<p class="note"><strong>Note</strong>: For security purposes, VMware requires a dedicated instance of Ops Manager for use with PKS. Do not deploy Pivotal Application Service (PAS) on the same instance of Ops Manager as PKS. For more information, see <a href="https://docs.pivotal.io/runtimes/pks/pas-and-pks.html">PAS and PKS Deployments with Ops Manager</a>.</p>
 
 ## <a id="deploy"></a> Prepare vSphere
 
@@ -22,31 +28,36 @@ instead of performing the steps described in this topic.</p>
 
 1. Select the vSphere Datacenter where you are deploying Ops Manager.
 
-1. Create a vSphere cluster. A vSphere cluster is a collection of ESXi hosts and associated virtual machines (VMs) with shared resources and a shared management interface.<br/><br/>
-	 To create a vSphere cluster for PKS:
+1. Create one or more vSphere clusters. A vSphere cluster is a collection of ESXi hosts and associated virtual machines (VMs) 
+with shared resources and a shared management interface.<br/><br/>
+	 To create a vSphere cluster:
     1. Right-click the vSphere Datacenter object.
     1. Select **New Cluster**.
     1. Name the Cluster.
-    1. Turn ON DRS.
-    1. Turn ON vSphere HA.
+    1. Select **Turn ON vSphere DRS** to enable DRS. Set DRS Automation to be **Partially Automated** or **Full Automated**.
+    1. Select **Turn ON vSphere HA** to enable vSphere HA.
 
-1. Create a resource pool. Resource pools are vSphere objects used to organize resources. 
-    <p class="note"><strong>Note:</strong> If you are deploying Ops Manager for use with PKS, it is recommended that you create a resource pool for the PKS Management Plane, which includes Ops Manager, BOSH Director, the PKS control plane, and Harbor (optional). Refer to the PKS documentation for details.</p>
+    <p class="note"><strong>Note</strong>: For highly available, production-ready environments, you need to create more than one cluster. Create as many vSphere clusters as needed for the type of environment you are building. For more information, see <a href="../refarch/vsphere/vsphere_ref_arch.html#high-availability">Compute and HA Considerations</a> and <a href="../refarch/vsphere/vsphere_ref_arch.html#scaling">Scaling and Capacity Managment</a> sections of the vSphere Reference Architecture.</p>
+
+1. Create a resource pool for the management components in your deployment. Resource pools are vSphere objects used to organize resources. 
+    <p class="note"><strong>Note:</strong> The management resource pool separates non-HA components such as Ops Manager and BOSH Director. 
+    For example, if you are deploying Ops Manager for use with PKS, the PKS management plane includes Ops Manager, BOSH Director, 
+    the PKS control plane, and Harbor (optional).</p>
     
     To create a vSphere resource pool:
     1. Right-click the vSphere cluster object you created.
     1. Select **New Resource Pool**.
     1. Name the resource pool.
-    1. Review the default CPU and Memory settings and adjust if necessary (not common).
+    1. Review the default CPU and Memory settings and adjust if necessary. This is not common.
     1. Click **OK**.
 
 ## <a id="deploy"></a> Deploy Ops Manager
 
   Ops Manager for vSphere is provided as an OVA file. An OVA file is a template for a virtual machine (VM). To deploy Ops Manager on vSphere, you import the OVA file into your vSphere environment.
 
-1. Download the [Pivotal Cloud Foundry Operations Manager for vSphere](https://network.pivotal.io/products/ops-manager) OVA file from [Pivotal Network](https://network.pivotal.io). Use the **Releases** dropdown menu to select the supported Ops Manager release.
+1. Download the [Pivotal Cloud Foundry Operations Manager for vSphere](https://network.pivotal.io/products/ops-manager) OVA file from [Pivotal Network](https://network.pivotal.io). Use the **Releases** dropdown menu to select an Ops Manager release.
 
-1. Right-click the resource pool you created and select **Deploy OVF Template**. Alternatively, from the vCenter menu, select **Actions** > **Deploy OVF Template**.
+1. Right-click the management resource pool you created and select **Deploy OVF Template**. Alternatively, from the vCenter menu, select **Actions** > **Deploy OVF Template**.
 
 1. At the **Select an OVF template** screen, click **Browse**.
 
@@ -62,20 +73,19 @@ instead of performing the steps described in this topic.</p>
     <%= image_tag("../common/images/vsphere/vsphere_om-deploy-01.png") %>
 
 1. At the **Select a compute resource** screen, select the compute resource where the Ops Manager VM will run and click **Next**.
-    If you are using PKS, select the Resource Pool for the PKS Management Plane components.
+    Select the Resource Pool for the management components.
 
     <%= image_tag("../common/images/vsphere/vsphere_om-deploy-02.png") %>
 
-    <p class="note"><strong>Note</strong>: Hardware virtualization must be turned off if your vSphere host does not support VT-X/EPT. Refer to the <a href="https://docs.pivotal.io/pivotalcf/2-3/customizing/vsphere.html#vsphere-reqs">Installing Pivotal Cloud Foundry on vSphere</a> topic for more information.</p>
+    <p class="note"><strong>Note</strong>: Hardware virtualization must be turned off if your vSphere host does not support VT-X/EPT. Refer to the <a href="../customizing/vsphere.html#vsphere-reqs">Installing Pivotal Cloud Foundry on vSphere</a> topic for more information.</p>
 
 1. At the **Review Details** screen, confirm the configuration up to this point and click **Next**.
 
     <%= image_tag("../common/images/vsphere/vsphere_om-deploy-03.png") %>
 
 1. At the **Select Storage** screen, select the virtual disk format. For information about disk formats, see [vSphere Virtual Disk Types](https://docs.pivotal.io/pivotalcf/customizing/disk-format.html) in the Pivotal Cloud Foundry (PCF) documentation.
-    1. Select **Thin Provision**.
     1. Choose the desired Datastore. 
-        * If you are using vSAN, select the vSAN datastore. 
+        * If you are using vSAN, select the vSAN datastore. Selecting vSAN also applies the default Storage Policy for your datastore.
         * If you are using a dedicated disk, select **Thin Provision**. 
     1. Click **Next**. 
 
@@ -93,13 +103,12 @@ instead of performing the steps described in this topic.</p>
    * **Default Gateway**: The default gateway for Ops Manager to use. For example, `10.0.0.1`.
    * **DNS**: One or more DNS servers for the Ops Manager VM to use. For example, `10.20.20.1`.
    * **NTP Servers**: The IP address of one or more NTP servers for Ops Manager. For example, `10.113.60.176`.
-   * **Admin Password**: A default password for the `ubuntu` user. If you do not enter a password, Ops Manager will not boot.
+   * **Admin Password**: A default password for the `ubuntu` user. 
    * **Public SSH Key**: (Optional) Enter pre-existing public SSH key value to allow SSH access to the Ops Manager VM.
+     <p class="note warning"><strong>Warning</strong>: You must specify a default password, an SSH key, or both. If you do not have either of these fields configured, Ops Manager will not boot up.</p>
    * **Custom hostname**: The hostname for the Ops Manager VM. For example, `ops-manager`.
     <%= image_tag("../common/images/vsphere/vsphere_om-deploy-06.png") %>
     <%= image_tag("../common/images/vsphere/vsphere_om-deploy-07.png") %>
-
-    <p class="note"><strong>Note</strong>: You must specify a default password, an SSH key, or both. If you do not have either of these fields configured, Ops Manager will not boot up.</p>
 
 1. At the **Ready to complete** screen, review the configuration settings and click **Finish**.
 
@@ -117,7 +126,7 @@ instead of performing the steps described in this topic.</p>
 
 	You must use this fully qualified domain name when you log into Ops Manager.
 
-    <p class="note"><strong>Note</strong>: Ops Manager security features require you to create a fully qualified domain name to access Ops Manager during the <a href="https://docs.pivotal.io/pivotalcf/2-3/customizing/vsphere.html#paas">initial configuration.</a></p>
+    <p class="note"><strong>Note</strong>: Ops Manager security features require you to create a fully qualified domain name to access Ops Manager during the <a href="../customizing/vsphere.html#paas">initial configuration.</a></p>
 
 1. Select the Ops Manager VM and click **Actions** > **Power** > **Power On**. 
 
@@ -130,6 +139,6 @@ instead of performing the steps described in this topic.</p>
 
 ## <a id="next-steps"></a> Next Steps
 
-To configure the BOSH Director tile on vSphere, follow the instructions in [Configuring BOSH Director on vSphere](config.html).
+After you complete this procedure, follow the instructions in [Configuring BOSH Director on vSphere](config.html).
 
-[Return to the Installing Pivotal Cloud Foundry Guide](https://docs.pivotal.io/pivotalcf/2-5/installing/index.html)
+[Return to the Installing Pivotal Cloud Foundry Guide](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/installing/index.html)
