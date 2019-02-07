@@ -28,19 +28,18 @@ function openDocs(evt, tabId) {
 <strong><%= modified_date %></strong>
 <html class="list-style-none"></html>
 
-This topic describes how to configure the Ops Manager Director for Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
+This topic describes how to configure the BOSH Director in Ops Manager for Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
 
 <p class="note"><strong>Note</strong>: You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/2-0/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
 ## <a id='access-om'></a>Step 1: Access Ops Manager ##
 
-1. In a web browser, navigate to the fully qualified domain name (FQDN) of Ops Manager that you set up in [Launching an Ops Manager Director Instance on GCP](./deploy-manual.html).
-
-    <p class="note"><strong>Note</strong>: In order to set up Ops Manager authentication correctly, Pivotal recommends using a Fully Qualified Domain Name (FQDN) to access Ops Manager. Using an ephemeral IP address to access Ops Manager can cause authentication errors upon subsequent access.</p>
+1. In a web browser, navigate to the fully qualified domain name (FQDN) of Ops Manager that you set up in [Deploying Ops Manager on GCP Manually](./deploy-manual.html).
+    <p class="note"><strong>Note:</strong> In order to set up Ops Manager authentication correctly, Pivotal recommends using a Fully Qualified Domain Name (FQDN) to access Ops Manager. Using an ephemeral IP address to access Ops Manager can cause authentication errors upon subsequent access.</p>
 
 1. When Ops Manager starts for the first time, you must choose one of the following:
     * [Use an Identity Provider](#idp): If you use an Identity Provider, an external identity server maintains your user database.
-    * [Internal Authentication](#internal): If you use Internal Authentication, PCF maintains your user database.
+    * [Internal Authentication](#internal): If you use Internal Authentication, Ops Manager maintains your user database.
 
     <%= image_tag("../common/images/select-authentication.png") %>
 
@@ -68,11 +67,10 @@ This topic describes how to configure the Ops Manager Director for Pivotal Cloud
 1. Click the **Google Cloud Platform** tile within the **Installation Dashboard**.
     <%= image_tag("../common/images/gcp/gcp-om-config.png") %>
 1. Select **Google Config**. Complete the following fields:
-    * **Project ID**: Enter your GCP project ID in all lower case, such as: <code>your-gcp-project-id</code>.
-    * **Default Deployment Tag**: Enter the `MY-PCF` prefix that you used when creating the GCP resources for this PCF installation.
-    * Select **AuthJSON** and in the field below enter the contents of the JSON file that you downloaded in the [Set up an IAM Service Account](./prepare-env-manual.html#iam_account) section of the _Preparing to Deploy PCF on GCP_ topic.
-        <p class="note"><strong>Note</strong>:
-       As an alternative, you can select <strong>The Ops Manager VM Service Account</strong> option to use the service account automatically created by GCP for the Ops Manager VM. To use this option, the project-wide service account that you set up in [Set up an IAM Service Account](./prepare-env-manual.html#iam_account) must be assigned the **Service Account Actor** role.</p>
+    * **Project ID**: Enter your GCP project ID in all lower case, such as: `your-gcp-project-id`.
+    * **Default Deployment Tag**: Enter the prefix that you used when creating the GCP resources for this PCF installation. For example, `pcf`.
+    * Select **AuthJSON** and in the field below enter the contents of the JSON file that you downloaded in the [Set up an IAM Service Account](./prepare-env-manual.html#iam_account) section of the _Preparing to Deploy Ops Manager on GCP Manually_ topic.
+        <p class="note"><strong>Note:</strong> As an alternative, you can select <strong>The Ops Manager VM Service Account</strong> option to use the service account automatically created by GCP for the Ops Manager VM. To use this option, the project-wide service account that you set up in [Set up an IAM Service Account](./prepare-env-manual.html#iam_account) must be assigned the **Service Account Actor** role.</p>
        <%= image_tag("../common/images/gcp/google_config.png") %>
 1. Click **Save**.
 
@@ -161,8 +159,8 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
 1. Click **Add**.
 1. For **Google Availability Zone**:
     * Enter one of the zones that you associated to the backend service instance groups of the HTTP(S) Load Balancer. For example, if you are using the `us-central1` region and selected `us-central1-a` as one of the zones for your HTTP(S) Load Balancer instance groups, enter `us-central1-a`.
-    * Click **Add**
-    * Repeat the above step for all the availability zones that you associated to instance groups in [Preparing to Deploy PCF on GCP](./prepare-env-manual.html#create-http-and-instance-group).
+    * Click **Add**.
+    * Repeat the above step for all the availability zones that you associated to instance groups in [Preparing to Deploy Ops Manager on GCP Manually](./prepare-env-manual.html#create-http-and-instance-group).
     <%= image_tag("../common/images/gcp/availability_zones_multiple.png") %>
     * Click **Save**.
 
@@ -201,7 +199,7 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
                 <tr>
                   <th>Google Network Name</th>
                   <td>Enter the name of the infrastructure network you created when preparing your GCP environment.
-                  <br>The format is: <code>MY-PCF-virt-net/MY-PCF-subnet-infrastructure-MY-REGION/MY-GCP-REGION</code></td>
+                  <br>The format is: <code>pcf-virt-net/pcf-subnet-infrastructure-MY-REGION/MY-GCP-REGION</code></td>
                 </tr>
                 <tr>
                   <th>CIDR</th>
@@ -238,7 +236,7 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
               <tr>
               <th>Google Network Name</th>
               <td>Enter the name of the runtime network you created when preparing your GCP environment.
-              <br>The format is: <code>MY-PCF-virt-net/MY-PCF-subnet-pas-MY-REGION/MY-GCP-REGION</code></td>
+              <br>The format is: <code>pcf-virt-net/pcf-subnet-pas-MY-REGION/MY-GCP-REGION</code></td>
               </tr>
               <tr>
               <th>CIDR</th>
@@ -275,7 +273,7 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
               <tr>
               <th>Google Network Name</th>
               <td>Enter the name of the services network you created when preparing your GCP environment.
-              <br>The format is: <code>MY-PCF-virt-net/MY-PCF-subnet-services-MY-REGION/MY-GCP-REGION</code></td>
+              <br>The format is: <code>pcf-virt-net/pcf-subnet-services-MY-REGION/MY-GCP-REGION</code></td>
               </tr>
               <tr>
               <th>CIDR</th>
@@ -317,7 +315,7 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
           </tr>
           <tr>
             <td>Google Network Name</td>
-            <td><code>MY-PCF-virt-net/MY-PKS-subnet-pks-GCP-REGION/GCP-REGION</code></td>
+            <td><code>pcf-virt-net/MY-PKS-subnet-pks-GCP-REGION/GCP-REGION</code></td>
           </tr>
           <tr>
             <td>CIDR</td>
@@ -346,7 +344,7 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
           </tr>
           <tr>
             <td>Google Network Name</td>
-            <td><code>MY-PCF-virt-net/MY-PKS-subnet-services-GCP-REGION/GCP-REGION</code></td>
+            <td><code>pcf-virt-net/MY-PKS-subnet-services-GCP-REGION/GCP-REGION</code></td>
           </tr>
           <tr>
             <td>CIDR</td>
@@ -387,7 +385,7 @@ Manager Resurrector functionality and increase Pivotal Application Service (PAS)
 
 1. Select **Resource Config**.
 
-1. Ensure that the **Internet Connected** checkboxes are not selected for any jobs. The checkbox gives VMs a public IP address that enables outbound Internet access. In [Preparing to Deploy PCF on GCP](./prepare-env-manual.html), you provisioned a Network Address Translation (NAT) box to provide Internet connectivity to your VMs. For more information about using NAT in GCP, see the <a href="https://cloud.google.com/compute/docs/networking">GCP documentation</a>.
+1. Ensure that the **Internet Connected** checkboxes are not selected for any jobs. The checkbox gives VMs a public IP address that enables outbound Internet access. In [Preparing to Deploy Ops Manager on GCP Manually](./prepare-env-manual.html), you provisioned a Network Address Translation (NAT) box to provide Internet connectivity to your VMs. For more information about using NAT in GCP, see the <a href="https://cloud.google.com/compute/docs/networking">GCP documentation</a>.
 
 ## <a id='complete'></a>Step 10: Complete the Ops Manager Director Installation ##
 
@@ -405,4 +403,7 @@ Dashboard.
 ### <a id="next"></a> What to Do Next ###
 
 After you complete this procedure, follow the instructions for the runtime you intend to install.
-For example, see [Deploying PAS on GCP](https://docs.pivotal.io/pivotalcf/2-0/customizing/gcp-er-config.html) to deploy PAS.
+<ul>
+  <li>To deploy PAS, see [Deploying PAS on GCP](https://docs.pivotal.io/pivotalcf/2-1/customizing/gcp-er-config.html).</li>
+  <li>To deploy PKS, see Installing PKS on [Google Cloud Platform (GCP)](https://docs.pivotal.io/runtimes/pks/1-1/gcp-index.html).</li>
+<ul>
