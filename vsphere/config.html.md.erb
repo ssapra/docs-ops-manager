@@ -1,5 +1,5 @@
 ---
-title: Configuring BOSH Directors on vSphere
+title: Configuring BOSH Director on vSphere
 owner: Ops Manager
 iaas: vSphere
 ---
@@ -15,7 +15,7 @@ on vSphere with NSX-T integration, follow the instructions in
 <a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-om-config.html">Configuring BOSH Director with NSX-T for PKS</a>
 instead of performing the procedure described in this topic.</p>
 
-* Before you begin this procedure, you must complete all steps in [Deploying sOps Manager to vSphere](./deploy.html).
+* Before you begin this procedure, you must complete all steps in [Deploying Ops Manager to vSphere](./deploy.html).
 * After you complete this procedure, follow the configuration instructions for the runtime you choose to install.
 </br>
 </br>
@@ -28,7 +28,7 @@ For example:
       for security reasons. 
       For more information, see <a href="https://docs.pivotal.io/runtimes/pks/pas-and-pks.html">PAS and PKS Deployments with Ops Manager</a>.</p>
 
-See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/2-3/customizing/runtimes.html) for more information about Pivotal Cloud Foundry (PCF) runtimes.
+See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html) for more information about Pivotal Cloud Foundry (PCF) runtimes.
 
 ##<a id='prerequisites'></a>Prerequisite
 
@@ -51,8 +51,8 @@ Before you begin this procedure, ensure that you have successfully completed <a 
    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html).
    * Read the **End User License Agreement**, and select the checkbox to accept the terms.
    * Click **Setup Authentication**. It takes a few minutes to initialize the database.
-
-   <%= image_tag("../common/images/vsphere/vsphere_om-deploy-09.png") %>
+    
+        <%= image_tag("../common/images/om-login.png") %>
 
 1. Log in to Ops Manager with the user name and password you created.
 
@@ -91,11 +91,12 @@ Before you begin this procedure, ensure that you have successfully completed <a 
     * **Persistent Datastore Names (comma delimited)**: The names of the datastores that store persistent VM disks deployed by Ops Manager.
 
 1. Select a network configuration from one of the following:
-    * **Standard vCenter Networking**: This is the default option when upgrading Ops Manager. If you plan to deploy PKS using this BOSH Director, select this option. Do not choose **NSX Networking** if you are using PKS. You choose the container network interface (CNI), either Flanel or NSX-T, when you configure the PKS tile. <br/><br/> For information on how to configure BOSH for PKS with NSX-T, see [Intalling PKS on vSphere with NSX-T Data Center](https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-index.html). 
+    * **Standard vCenter Networking**: This is the default option when upgrading Ops Manager. If you plan to deploy PKS using this BOSH Director, select this option. Do not choose **NSX Networking** if you plan to deploy PKS on vSphere without NSX-T. When you configure the PKS tile later on, you will choose the container network interface (CNI), either Flannel or NSX-T. <br/><br/>For information on how to configure BOSH Director for PKS with NSX-T, see [Intalling PKS on vSphere with NSX-T Data Center](https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-index.html).
 
-    <%= image_tag("../common/images/vsphere/vsphere_bosh-config-03.png") %>
-    * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization for non-PKS deployments such as Pivotal Application Service (PAS).
-    <%= image_tag("../common/images/NSXdirectorconfig.png") %>
+        <%= image_tag("../common/images/vsphere/vsphere_bosh-config-03.png") %>
+    * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization for non-PKS runtimes such as Pivotal Application Service (PAS).
+
+        <%= image_tag("../common/images/NSXdirectorconfig.png") %>
     Configure NSX networking by entering the following information:
         * **NSX Mode**: Select either **NSX-V** or **NSX-T**.
         * **NSX Address**: The address of the NSX manager.
@@ -111,9 +112,9 @@ Before you begin this procedure, ensure that you have successfully completed <a 
 
 
 1. Configure the following folder names:
-    * **VM Folder**: The vSphere datacenter folder where Ops Manager places VMs. Enter `[YOUR-DEPLOYMENT]_vms` where `YOUR-DEPLOYMENT` corresponds to a descriptive name for your deployment. For example, `pks_vms`.
-    * **Template Folder**: The vSphere datacenter folder where Ops Manager places VMs. Enter `[YOUR-DEPLOYMENT]_templates`. For example, `pks_templates`.
-    * **Disk path Folder**: The vSphere datastore folder where Ops Manager creates attached disk images. You must not nest this folder. Enter `[YOUR-DEPLOYMENT]_disk`. For example, `pks_disk`.
+    * **VM Folder**: The vSphere datacenter folder where Ops Manager places VMs. Enter `[YOUR-DEPLOYMENT]_vms` where `YOUR-DEPLOYMENT` corresponds to a descriptive name for your deployment. For example, `my_pcf_vms`.
+    * **Template Folder**: The vSphere datacenter folder where Ops Manager places VMs. Enter `[YOUR-DEPLOYMENT]_templates`. For example, `my_pcf_templates`.
+    * **Disk path Folder**: The vSphere datastore folder where Ops Manager creates attached disk images. You must not nest this folder. Enter `[YOUR-DEPLOYMENT]_disk`. For example, `my_pcf_disk`.
     <p class="note"><strong>Note</strong>: After initial deployment, you cannot edit folder names.</p>
 
 1. Click **Save**.
@@ -123,26 +124,36 @@ Before you begin this procedure, ensure that you have successfully completed <a 
 <%= partial "../common/director-config" %>
 
 ## <a id='create-az'></a>Step 4: Create Availability Zones
-Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and resource pools. Multiple AZs allow you to provide high availability and load balancing to your applications. When you run more than one instance of an application, Ops Manager balances those instances across all of the AZs assigned to the application. At least three AZs are recommended for a highly available installation of your chosen runtime.
-  <p class="note"><strong>Note</strong>: For more information about using AZs in vSphere, see <a href="https://docs.pivotal.io/pivotalcf/customizing/understand-az.html">Understanding Availability Zones in VMware Installations</a> in the PCF documentation.</p>
+
+Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and resource pools. 
+
+Multiple AZs allow you to provide high availability and load balancing to your applications. 
+When you run more than one instance of an application, Ops Manager balances those instances 
+across all of the AZs assigned to the application. 
+
+Pivotal recommends that you use at least three AZs for a highly available installation of your chosen runtime.
+
+<p class="note"><strong>Note</strong>: For more information about AZs and high availability in vSphere, see 
+  <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#high-availability">vSphere Reference Architecture</a>.</p>
 
 1. Select **Create Availability Zones**.
 
-    <%= image_tag("../common/images/vsphere/vsphere_bosh-config-07.png") %>
+    <%= image_tag("../common/images/create-az.png", :alt => "The 'Create Availability Zones' pane shows a list of two availability zones: 'first-az' and 'second-az' with a button to the right to 'Add'. The 'first-az' is expanded and shows the fields 'Name' and 'IaaS Configuration'. Below that, still in the expanded 'first-az', a subhead called 'Clusters' lists a group of two fields, 'Cluster' and 'Resource Pool' with a button to the right to 'Add Cluster'.") %>
 
-1. Use the following steps to create one or more AZs for PKS to use:
-    * Click **Add** and create the PKS Management AZ.
-    * Enter a unique **Name** for the AZ, such as `AZ-MGMT`.
-    * Select the IaaS configuration, `vSphere` or `vCenter`.
-    * Enter the name of an existing vCenter **Cluster** to use as an AZ, such as `COMP-Cluster-1`.
-    * Enter the name of the PKS Management **Resource Pool** in the vCenter cluster that you specified above, such as `RP-MGMT-PKS`. The jobs running in this AZ share the CPU and memory resources defined by the pool.
-    * Click **Add Cluster** and create at least one PKS Compute AZ.
-    * Specify the **Cluster** and the **Resource Pool**, such as `RP-PKS-AZ`.
-    * Add additional clusters as necessary. Click the trash icon to delete a cluster. The first cluster cannot be deleted.
+1. Use the following steps to create the first AZ.
+    * Create **Add** to create the AZ. 
+    * Enter a unique **Name** for the AZ.
+    * Select a vCenter config name from the **IaaS Configuration** dropdown to associate your AZ with a vCenter. If you have only one vCenter config, or if you are creating your first AZ, IaaS Configuration defaults to the first vCenter and cannot be configured.
+    * Enter the name of the vCenter **Cluster** where you deployed Ops Manager. You created this cluster in [Deploying Ops Manager to vSphere](./deploy.html#prepare-vsphere). For example, `Cluster1`.
+    * Enter the name of the **Resource Pool** that you created in [Deploying Ops Manager to vSphere](./deploy.html#prepare-vsphere) to organize management components like Ops Manager and BOSH Director. 
+    For example, `RP-MGMT`. The jobs running in this AZ share the CPU and memory resources defined by the pool. 
+    You only need to specify this resource group in one AZ.
+    * (Optional) Click **Add Cluster** to add more clusters to the AZ as required by your installation size and high availability requirements.
 
-    <%= image_tag("../common/images/vsphere/vsphere_bosh-config-08.png") %>
-
-    <%= image_tag("../common/images/vsphere/vsphere_bosh-config-09.png") %>
+1. (Optional) Use the following steps to create additional AZs.
+    * Click **Add**.
+    * Specify **Cluster** and optionally, a **Resource Pool**.
+    * Click **Add Cluster** to assign more clusters to the AZ as necessary for high availability. Click the trash icon to delete a cluster. The first cluster cannot be deleted.
 
 1. Click **Save**.
 
@@ -152,23 +163,106 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
 
 1. Select **Create Networks**.
 
-    <%= image_tag("../common/images/create-network.png") %>
-
 1. Select **Enable ICMP checks** to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
 
-
 1. Depending on the runtime you are deploying, do one of the following:
-
-  1. For PAS, use the following steps to create one or more Ops Manager networks:
-      * Click **Add Network**.
-      * Enter a unique **Name** for the network.
-      * Click **Add Subnet** to create one or more subnets for the network.
-      * Enter the full path and **vSphere Network Name** as it displays in vCenter. For example, enter `YOUR-DIRECTORY-NAME/YOUR-NETWORK-NAME`. If your vSphere Network Name contains a forward slash character, replace the forward slash with the URL-encoded forward slash character `%2f`.
-      * For **CIDR**, enter a valid CIDR block in which to deploy VMs. For example, enter `192.0.2.0/24`.
-      * For **Reserved IP Ranges**, enter any IP addresses from the **CIDR**
+  * For PAS, click **Add Network** and create the following networks:
+      * `pas-infrastructure`: This network is for Ops Manager and the BOSH Director.
+      * `pas-deployment`: This network is for all the PAS VMs including Gorouter, Diego cells and Cloud Controller.
+      * `pas-services`: This network is for any service tiles to be deployed alongside PAS.   <br/><br/> 
+    Use the values from the following table as a guide when you create each network, replacing the IP addresses with ranges that are available in your vSphere environment:
+     <table>
+     <tr>
+      <th rowspan="7">Infrastructure<br> Network</th>
+      <th>Field</th>
+      <th>Configuration</th>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td><code>pas-infrastructure</code></td>
+    </tr>
+    <tr>
+      <td>vSphere Network Name <sup>&#42;</sup></td>
+      <td><code>MY-PAS-virt-net/MY-PAS-subnet-infrastructure</code></td>
+    </tr>
+    <tr>
+      <td>CIDR</td>
+      <td><code>192.168.101.0/26</code></td>
+    </tr>
+    <tr>
+      <td>Reserved IP Ranges <sup id="note2">&#8224;</sup></td>
+      <td><code>192.168.101.1-192.168.101.9</code></td>
+    </tr>
+    <tr>
+      <td>DNS</td>
+      <td><code>192.168.101.2</code></td>
+    </tr>
+    <tr>
+      <td>Gateway</td>
+      <td><code>192.168.101.1</code></td>
+    </tr>
+      <tr>
+      <th rowspan="7">Deployment Network</th>
+      <th>Field</th>
+      <th>Configuration</th>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td><code>pas-deployment</code></td>
+    </tr>
+    <tr>
+      <td>vSphere Network Name  <sup>&#42;</sup></td>
+      <td><code>MY-PAS-virt-net/MY-PAS-subnet-pas</code></td>
+    </tr>
+    <tr>
+      <td>CIDR</td>
+      <td><code>192.168.16.0/24</code></td>
+    </tr>
+    <tr>
+      <td>Reserved IP Ranges <sup id="note2">&#8224;</sup></td>
+      <td><code>192.168.16.1-192.168.16.9</code></td>
+    </tr>
+    <tr>
+      <td>DNS</td>
+      <td><code>192.168.16.2</code></td>
+    </tr>
+    <tr>
+      <td>Gateway</td>
+      <td><code>192.168.16.1</code></td>
+    </tr>
+    <tr>
+      <th rowspan="7">Services Network</th>
+      <th>Field</th>
+      <th>Configuration</th>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td><code>pas-services</code></td>
+    </tr>
+    <tr>
+      <td>vSphere Network Name <sup>&#42;</sup></td>
+      <td><code>MY-PAS-virt-net/MY-PAS-subnet-services</code></td>
+    </tr>
+    <tr>
+      <td>CIDR</td>
+      <td><code>192.168.20.0/24</code></td>
+    </tr>
+    <tr>
+      <td>Reserved IP Ranges <sup id="note2">&#8224;</sup></td>
+      <td><code>192.168.20.1-192.168.20.9</code></td>
+    </tr>
+    <tr>
+      <td>DNS</td>
+      <td><code>192.168.20.2</code></td>
+    </tr>
+    <tr>
+      <td>Gateway</td>
+      <td><code>192.168.20.1</code></td>
+    </tr>
+  </table><br/>
+  <sup id="note1">&#42;</sup> In **vSphere Network Name**, enter the full path of the network as it displays in vCenter. For example, enter `YOUR-DIRECTORY-NAME/YOUR-NETWORK-NAME`. If your vSphere Network Name contains a forward slash character, replace the forward slash with the URL-encoded forward slash character `%2f`.<br/>
+  <sup id="note2">&#8224;</sup> For **Reserved IP Ranges**, enter any IP addresses from the **CIDR**
       that you want to blacklist from the installation. Ops Manager will not deploy VMs to any address in this range.
-      * Enter your **DNS** and **Gateway** IP addresses.
-      * Select which **Availability Zones** to use with the network.
 
   1. For PKS, click **Add Network** and create the following networks:
       * `pks-infrastructure`: This network is for Ops Manager, the BOSH Director, the PKS broker, and the PKS API.
@@ -180,14 +274,14 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
     <tr>
       <th rowspan="7">Infrastructure<br> Network</th>
       <th>Field</th>
-      <th>Configuration</th>
+      <th>Configuration Example</th>
     </tr>
     <tr>
       <td>Name</td>
       <td><code>pks-infrastructure</code></td>
     </tr>
     <tr>
-      <td>vSphere Network Name</td>
+      <td>vSphere Network Name <sup>&#42;</sup></td>
       <td><code>MY-PKS-virt-net/MY-PKS-subnet-infrastructure</code></td>
     </tr>
     <tr>
@@ -195,7 +289,7 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
       <td><code>192.168.101.0/26</code></td>
     </tr>
     <tr>
-      <td>Reserved IP Ranges</td>
+      <td>Reserved IP Ranges <sup>&#8224;</sup></td>
       <td><code>192.168.101.1-192.168.101.9</code></td>
     </tr>
     <tr>
@@ -209,14 +303,14 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
       <tr>
       <th rowspan="7">Main Network (Optional)</th>
       <th>Field</th>
-      <th>Configuration</th>
+      <th>Configuration Example</th>
     </tr>
     <tr>
       <td>Name</td>
       <td><code>pks-main</code></td>
     </tr>
     <tr>
-      <td>vSphere Network Name</td>
+      <td>vSphere Network Name <sup>&#42;</sup></td>
       <td><code>MY-PKS-virt-net/MY-PKS-subnet-pks</code></td>
     </tr>
     <tr>
@@ -224,7 +318,7 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
       <td><code>192.168.16.0/26</code></td>
     </tr>
     <tr>
-      <td>Reserved IP Ranges</td>
+      <td>Reserved IP Ranges <sup>&#8224;</sup></td>
       <td><code>192.168.16.1-192.168.16.9</code></td>
     </tr>
     <tr>
@@ -245,7 +339,7 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
       <td><code>pks-services</code></td>
     </tr>
     <tr>
-      <td>vSphere Network Name</td>
+      <td>vSphere Network Name <sup>&#42;</sup></td>
       <td><code>MY-PKS-virt-net/MY-PKS-subnet-services</code></td>
     </tr>
     <tr>
@@ -253,7 +347,7 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
       <td><code>192.168.20.0/22</code></td>
     </tr>
     <tr>
-      <td>Reserved IP Ranges</td>
+      <td>Reserved IP Ranges <sup>&#8224;</sup></td>
       <td><code>192.168.20.1-192.168.20.9</code></td>
     </tr>
     <tr>
@@ -264,9 +358,15 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
       <td>Gateway</td>
       <td><code>192.168.20.1</code></td>
     </tr>
-  </table>
+  </table><br/>
+  <sup id="note1">&#42;</sup> In **vSphere Network Name**, enter the full path of the network as it displays in vCenter. For example, enter `YOUR-DIRECTORY-NAME/YOUR-NETWORK-NAME`. If your vSphere Network Name contains a forward slash character, replace the forward slash with the URL-encoded forward slash character `%2f`.<br/>
+  <sup id="note2">&#8224;</sup> For **Reserved IP Ranges**, enter any IP addresses from the **CIDR**
+      that you want to blacklist from the installation. Ops Manager will not deploy VMs to any address in this range.
 
-1. Select which **Availability Zones** to use with the network.
+1. For each network you create, select the **Availability Zones** to use with the network. 
+Assign as many AZs to your network as needed by your deployment. For more information, 
+    see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#high-availability">Compute and HA Considerations</a> and <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#scaling">Scaling and Capacity Managment</a> sections of the vSphere Reference Architecture.
+
 1. Click **Save**.
 
 ## <a id='assign-azs'></a>Step 6: Assign AZs and Networks
@@ -274,13 +374,12 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
 1. Select **Assign AZs and Networks**.
 <%= image_tag("../common/images/assign-az.png") %>
 
-1. Use the dropdown to select a **Singleton Availability Zone**. The BOSH Director installs in this Availability Zone.
-
+1. Use the dropdown to select a **Singleton Availability Zone**. The BOSH Director installs as a single instance in this Availability Zone.
 1. Use the dropdown to select a **Network** for your BOSH Director.
 
 1. Click **Save**.
 
-## <a id='security-config'></a> Step 7: Security Page
+## <a id='security'></a> Step 7: Security Page
 
 <%= partial "../common/security-pane" %>
 
@@ -312,12 +411,16 @@ Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and res
 
 1. Click the **Installation Dashboard** link to return to the Installation Dashboard.
 
-1. Click **Review Pending Changes**. Select the product that you intend to deploy and review the changes. For more information, see [Reviewing Pending Product Changes](https://docs.pivotal.io/pivotalcf/2-3/customizing/review-pending-changes.html).
+1. Click **Review Pending Changes**. Select the product that you intend to deploy and review the changes. For more information, see [Reviewing Pending Product Changes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/review-pending-changes.html).
 
-1. After you complete this procedure, follow the instructions in [Deploying PAS on vSphere](https://docs.pivotal.io/pivotalcf/2-3/customizing/config-er-vmware.html). If you are installing PKS, proceed to [Installing PKS on vSphere](https://docs.pivotal.io/runtimes/pks/1-2/installing-pks-vsphere.html).
+## <a id="next"></a> Next Steps
 
-##<a id='next'></a> Next Steps
+After you complete this procedure, follow the instructions for the runtime you intend to install.
 
-To install PKS on vSphere <strong>without</strong> NSX-T integration, perform the procedures in [Installing PKS on vSphere](installing-pks-vsphere.html).
+<ul>
+  <li>To install PAS, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/config-er-vmware.html">Deploying PAS on vSphere</a>.</li>
+  <li>To install PKS, see <a href="https://docs.pivotal.io/runtimes/pks/1-3/installing-pks-vsphere.html">Installing PKS on vSphere</a>.</li>
+</ul>
 
-To use Harbor to store and manage container images, see [Installing and Integrating VMware Harbor Registry](https://docs.pivotal.io/partners/vmware-harbor/).
+For more information about PCF runtimes,
+see [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html).
