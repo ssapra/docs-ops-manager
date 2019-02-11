@@ -10,7 +10,9 @@ This topic describes how to deploy BOSH and Ops Manager for Pivotal Cloud Foundr
 
 As an alternative to this procedure, you can use an Azure Resource Manager (ARM) template to create resources automatically. For information about using the ARM template, see the [Deploying BOSH and Ops Manager to Azure with ARM](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-arm-template.html) topic.
 
-Before you perform the procedures in this topic, you must have completed the procedures in the [Preparing to Deploy Ops Manager on Azure Manually](prepare-env-manual.html) topic. After you complete the procedures in this topic, follow the instructions in the [Configuring BOSH Director on Azure](config-manual.html) topic.
+Before you perform the procedures in this topic, you must have completed the procedures in
+[Preparing to Deploy Ops Manager on Azure Manually](prepare-env-manual.html). After you complete
+the procedures in this topic, follow the instructions in [Configuring BOSH Director on Azure Manually](config-manual.html).
 
 <p class="note"><strong>Note:</strong> If you are deploying BOSH and Ops Manager on Azure Stack,
 complete the procedures in
@@ -519,4 +521,4 @@ Your load balancer configuration depends on whether you want apps to be availabl
 
 1. Navigate to your DNS provider, and create an entry that points a fully qualified domain name (FQDN) to the public IP address of Ops Manager. As a best practice, always use the FQDN to access Ops Manager.
 
-1. Continue to the [Configuring BOSH Director on Azure](config-manual.html) topic.
+1. Continue to [Configuring BOSH Director on Azure Manually](config-manual.html).
