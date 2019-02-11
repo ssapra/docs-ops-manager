@@ -91,7 +91,9 @@ Before you begin this procedure, ensure that you have successfully completed <a 
     * **Persistent Datastore Names (comma delimited)**: The names of the datastores that store persistent VM disks deployed by Ops Manager.
 
 1. Select a network configuration from one of the following:
-    * **Standard vCenter Networking**: This is the default option when upgrading Ops Manager. If you plan to deploy PKS using this BOSH Director, select this option. Do not choose **NSX Networking** if you plan to deploy PKS on vSphere without NSX-T. When you configure the PKS tile later on, you will choose the container network interface (CNI), either Flannel or NSX-T. <br/><br/>For information on how to configure BOSH Director for PKS with NSX-T, see [Intalling PKS on vSphere with NSX-T Data Center](https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-index.html).
+    * **Standard vCenter Networking**: This is the default option when upgrading Ops Manager.
+    <p class="note warning"><strong>Warning</strong>: 
+    If you intend to deploy PKS using Flannel as the CNI (as opposed to NSX-T), then select this option to configure the BOSH Director. Do not choose **NSX Networking**. When you configure the PKS tile later on, you will configure Flannel as the container network interface (CNI). <br/><br/>If you intend to deploy PKS with NSX-T, see <a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-index.html">Intalling PKS on vSphere with NSX-T Data Center</a>.</p>
 
         <%= image_tag("../common/images/vsphere/vsphere_bosh-config-03.png") %>
     * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization for non-PKS runtimes such as Pivotal Application Service (PAS).
@@ -157,8 +159,6 @@ Pivotal recommends that you use at least three AZs for a highly available instal
 
 1. Click **Save**.
 
-    <%= image_tag("../common/images/vsphere/vsphere_bosh-config-10.png") %>
-
 ## <a id='create-networks'></a>Step 5: Create Networks Page
 
 1. Select **Create Networks**.
@@ -187,7 +187,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
     </tr>
     <tr>
       <td>CIDR</td>
-      <td><code>192.168.101.0/26</code></td>
+      <td><code>192.168.101.0/24</code></td>
     </tr>
     <tr>
       <td>Reserved IP Ranges <sup id="note2">&#8224;</sup></td>
