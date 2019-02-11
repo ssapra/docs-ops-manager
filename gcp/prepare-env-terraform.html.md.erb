@@ -1,6 +1,8 @@
 ---
-title: Preparing to Deploy PCF on GCP using Terraform
+title: Deploying Ops Manager on GCP Using Terraform
 owner: Ops Manager
+iaas: GCP
+install_type: terraform
 ---
 
 <strong><%= modified_date %></strong>
@@ -9,12 +11,11 @@ This guide describes the preparation steps required to install Pivotal Cloud Fou
 
 The Terraform template for PCF on GCP describes a set of GCP resources and properties. For more information about how Terraform creates resources in GCP, see the [Google Cloud Provider](https://www.terraform.io/docs/providers/google/index.html) topic on the Terraform site. 
 
-You may also find it helpful to review different deployment options in the [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-3/refarch/gcp/gcp_ref_arch.html).
-
+You may also find it helpful to review different deployment options in the [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html).
 
 ## <a id="prereqs"></a> Prerequisites
 
-In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/2-3/customizing/gcp.html) topic, ensure you have the following: 
+In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp.html) topic, ensure you have the following: 
 
 * The [Terraform CLI](https://www.terraform.io/intro/getting-started/install.html)
 * The [Google Cloud SDK](https://cloud.google.com/sdk/docs/quickstarts)
@@ -25,25 +26,39 @@ In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cl
   * [Cloud SQL API](https://console.developers.google.com/apis/api/sqladmin/overview)
   * [Compute Engine API](https://console.developers.google.com/apis/api/compute/overview)
 
- To avoid this upgrade issue, ensure that </code>
-
 
 ## <a id="svc-key"></a> Step 1: Obtain a GCP Service Account Key File
 
-To use the Terraform templates to create the necessary infrastructure resources for PCF, you need a service account key file. Follow the procedure that corresponds to your use case: 
+To use the Terraform templates to create the necessary infrastructure
+resources for PCF, you need a service account key file. 
+<br><br>
+To create an account key file, follow the procedure below corresponding to your own use case.  
+  
+  <ul>
+    <li>**I already have a service account I want to use:**</li>
+    <ol>
+      <li>Navigate to the GCP console.</li>
+      <li>Select **IAM** and locate your service account.</li>
+      <li>From the **Options** column, open the dropdown and click **Create Key**.</li>
+    </ol>
+    <li>**I want to create a new service account:**</li>
+    <ol>
+      <li>Open a terminal window.</li>
+      <li>To create a service account using the gcloud CLI, run the following command:</li>
+      <pre>gcloud iam service-accounts create ACCOUNT-NAME</pre>
+      <li>To create a key file for your service account, run the following command:</li>
+      <pre>gcloud iam service-accounts keys create "terraform.key.json" --iam-account "ACCOUNT-NAME&#64;PROJECT-ID.iam.gserviceaccount.com"</pre>
+      <li>To bind the service account to your project and give it the owner role, run the following command:</li>
+      <pre>gcloud projects add-iam-policy-binding PROJECT-ID --member 'serviceAccount&#58;ACCOUNT-NAME&#64;PROJECT-ID.iam.gserviceaccount.com' --role 'roles/owner'</pre>
+      <br>
+      Where: 
+      <ul>
+        <li><code>ACCOUNT-NAME</code> is the name you want to apply to the new account.</li>
+        <li><code>PROJECT-ID</code> is your Google Cloud Platform Project ID. </li>
+      </ul> 
+    </ol>
+  </ul>
 
-* **I already have a service account I want to use**
-  1. Navigate to the GCP console
-  1. Select **IAM** and locate your service account. 
-  1. From the **Options** column, open the dropdown and click **Create Key**.
-* **I want to create a new service account**
-  1. Open a terminal window. 
-  1. Create a service account using the gcloud CLI:
-    <pre class="terminal">$ gcloud iam service-accounts create ACCOUNT-NAME</pre>
-  1. Create a key file for your service account:
-    <pre class="terminal">$ gcloud iam service-accounts keys create "terraform.key.json" --iam-account "some-account-name&#64;yourproject.iam.gserviceaccount.com"</pre>
-  1. Bind the service account to your project and give it the owner role:
-    <pre class="terminal">$ gcloud projects add-iam-policy-binding PROJECT&#95;ID --member 'serviceAccount&#58;some-account-name@PROJECT&#95;ID.iam.gserviceaccount.com' --role 'roles/owner'</pre>  
 
 
 ## <a id="download"></a> Step 2: Download Templates and Edit Variables File
@@ -165,10 +180,10 @@ In your `terraform.tfvars` file, specify the appropriate variables from the sect
 
 ### <a id="subnet_cidr"></a> CIDR Ranges for Subnets
 
-If you want to change the CIDR ranges for the management, your runtime, or services networks that Terraform creates, add the following variables to your `terraform.tfvars` file, replacing `YOUR-MANAGEMENT-CIDR`, `YOUR-RUNTIME-CIDR` and `YOUR-SERVICES-CIDR` with your desired values.
+If you want to change the CIDR ranges for the infrastructure, your runtime, or services networks that Terraform creates, add the following variables to your `terraform.tfvars` file, replacing `YOUR-INFRASTRUCTURE-CIDR`, `YOUR-RUNTIME-CIDR` and `YOUR-SERVICES-CIDR` with your desired values.
 
 ```
-management_cidr = YOUR-MANAGEMENT-CIDR
+infrastructure_cidr = YOUR-INFRASTRUCTURE-CIDR
 pas_cidr = YOUR-RUNTIME-CIDR
 services_cidr = YOUR-SERVICES-CIDR
 ```
@@ -199,12 +214,14 @@ ISO_SEG_SSL_KEY
     external_database = true
     ```
 
-1. If you want to specify a single host from which users can connect to the Ops Manager and runtime database, add the following variables to your `terraform.tfvars` file. Replace `HOST_IP_ADDRESS` with your desired IP addresses.
+1. If you want to specify a single host from which users can connect to the Ops Manager and runtime databases, add the following to your `terraform.tfvars` file.
 
     ```
-    opsman_sql_db_host = HOST_IP_ADDRESS
-    pas_sql_db_host = HOST_IP_ADDRESS
+    opsman_sql_db_host = HOST-IP-ADDRESS
+    pas_sql_db_host = HOST-IP-ADDRESS
     ```
+
+    Where `HOST-IP-ADDRESS` is your desired IP address(es).
 
 ### <a id="gcs"></a> External Storage Buckets
 
@@ -228,14 +245,14 @@ create_blobstore_service_account_key = false
 Follow these steps to use the Terraform CLI to create resources on GCP:
 
 1. From the directory that contains the Terraform files, run the following command to initialize the directory based on the information you specified in the `terraform.tfvars` file. 
-  <pre class="terminal">$ terraform init</pre>
+    <pre>terraform init</pre>
 
 1. Run the following command to create the execution plan for Terraform.
-  <pre class="terminal">$ terraform plan -out=plan</pre>
+    <pre>terraform plan -out=plan</pre>
 
-1. Run the following command to execute the plan from the previous step.
-It may take several minutes for Terraform to create all the resources in GCP.
-  <pre class="terminal">$ terraform apply plan</pre>
+1. To execute the plan from the previous step, run the following command:
+    <pre>terraform apply plan</pre>
+    <p class="note"><strong>Note:</strong> It may take several minutes for Terraform to create all the resources in GCP.
 
 
 ## <a id="dns"></a> Step 5: Create DNS Record
@@ -246,6 +263,6 @@ It may take several minutes for Terraform to create all the resources in GCP.
   1. In this record, enter the name servers included in `env_dns_zone_name_servers` from your Terraform output.
 
 
-## <a id="next"></a> What to Do Next
+## <a id="next"></a> Next Steps
 
-Proceed to the next step in the deployment, [Configuring BOSH Director on GCP (Terraform)](./config-terraform.html).
+After you complete this procedure, follow the instructions in the [Configuring BOSH Director on GCP Using Terraform](./config-terraform.html) topic.

@@ -1,19 +1,24 @@
 ---
-title: Preparing to Deploy PCF on AWS Using Terraform
+title: Deploying Ops Manager on AWS Using Terraform
 owner: Ops Manager
 ---
 
 <strong><%= modified_date %></strong>
 
-This guide describes the preparation steps required to install Pivotal Cloud Foundry (PCF) on Amazon Web Services (AWS) using Terraform templates. 
+This guide describes the preparation steps required to deploy Ops Manager on Amazon Web Services (AWS) using Terraform templates.
 
-The Terraform template for PCF on AWS describes a set of AWS resources and properties. For more information about how Terraform creates resources in AWS, see the [AWS Provider](https://www.terraform.io/docs/providers/aws/index.html) topic on the Terraform site. 
+The Terraform template for Ops Manager on AWS describes a set of AWS resources and properties. For more information about how Terraform creates resources in AWS, see the [AWS Provider](https://www.terraform.io/docs/providers/aws/index.html) topic on the Terraform site.
 
-You may also find it helpful to review different deployment options in the [Reference Architecture for Pivotal Cloud Foundry on AWS](https://docs.pivotal.io/pivotalcf/2-3/refarch/aws/aws_ref_arch.html).
+If you are deploying Pivotal Application Service (PAS), you may also find it helpful to review different deployment options in the [Reference Architecture for Pivotal Cloud Foundry on AWS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/aws/aws_ref_arch.html).
 
 ## <a id="prereqs"></a> Prerequisites
 
-In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cloud Foundry on AWS](https://docs.pivotal.io/pivotalcf/2-3/customizing/aws.html) topic, ensure you have the following: 
+Before you deploy Ops Manager on AWS, review the following:
+
+* If you intend to install PAS, see [PCF on AWS Requirements](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/aws.html).
+* If you intend to install Pivotal Container Service (PKS), see [AWS Prerequisites and Resource Requirements](https://docs.pivotal.io/runtimes/pks/1-2/aws-requirements.html).
+
+In addition to reviewing the prerequisites for your runtime, ensure you have the following:
 
 * The [Terraform CLI](https://www.terraform.io/intro/getting-started/install.html)
 * In your AWS account, ensure you have an IAM user with the following permissions:
@@ -29,13 +34,12 @@ In addition to fulfilling the prerequisites listed in the [Installing Pivotal Cl
 ## <a id="download"></a> Step 1: Download Templates and Edit Variables File
 
 Before you can run Terraform commands to provision infrastructure resources,
-you must download the AWS Terraform Templates and create a Terraform template variables
+you must download the AWS Terraform templates and create a Terraform template variables
 file as described below:
 
-1. On [Pivotal Network](https://network.pivotal.io), navigate to the Pivotal Application Service (PAS) release.
+1. On [Pivotal Network](https://network.pivotal.io), navigate to the **Pivotal Application Service (formerly Elastic Runtime)** release.
 
-1. Download the AWS Terraform Templates ZIP file. You can use the templates to deploy PAS or Pivotal
-Container Service (PKS).
+1. Download the AWS Terraform templates ZIP file.
 
 1. Extract the contents of the ZIP file.
 
@@ -85,7 +89,7 @@ for your runtime.
     </tr>
     <tr>
       <td><code>YOUR-ENVIRONMENT-NAME</code></td>
-      <td>Enter a name to use to identify resources in AWS. Terraform prepends the names of the resources it creates with this environment name. Example: <code>pcf</code>.</td>
+      <td>Enter a name to use to identify resources in AWS. Terraform prepends the names of the resources it creates with this environment name. Examples: <code>pcf</code>, <code>pas</code>, <code>pks</code>.</td>
     </tr>
     <tr>
       <td><code>YOUR-ACCESS-KEY</code></td>
@@ -109,7 +113,7 @@ for your runtime.
     </tr>
     <tr>
       <td><code>YOUR-DNS-SUFFIX</code></td>
-      <td>Enter a domain name to use as part of the system domain for your PCF deployment. Terraform creates DNS records in AWS using <code>YOUR-ENVIRONMENT-NAME</code> and <code>YOUR-DNS-SUFFIX</code>. For example, if you enter <code>example.com</code> for your DNS suffix and have <code>pcf</code> as your environment name, Terraform will create DNS records at <code>pcf.example.com</code>.</td>
+      <td>Enter a domain name to use as part of the system domain for your deployment. Terraform creates DNS records in AWS using <code>YOUR-ENVIRONMENT-NAME</code> and <code>YOUR-DNS-SUFFIX</code>. For example, if you enter <code>example.com</code> for your DNS suffix and have <code>pcf</code> as your environment name, Terraform will create DNS records at <code>pcf.example.com</code>.</td>
     </tr>
     <tr>
       <td><code>YOUR-CERTIFICATE</code></td>
@@ -128,7 +132,7 @@ for your runtime.
 
 ## <a id="download"></a> Step 2: Add Optional Variables
 
-Complete this step if you want to do any of the following in Pivotal Application Service (PAS):
+Complete this step if you want to do any of the following in PAS:
 
 - Use an RDS for your deployment
 - Deploy the Isolation Segment tile
@@ -201,7 +205,7 @@ Follow these steps to use the Terraform CLI to create resources on AWS:
 
 1. In a browser, navigate to the DNS provider for the DNS suffix you entered in your `terraform.tfvars` file.
 
-1. Create a new NS record for your PCF system domain. Your system domain is `YOUR-ENVIRONMENT-NAME.YOUR-DNS-SUFFIX`.
+1. Create a new NS record for your system domain. Your system domain is `YOUR-ENVIRONMENT-NAME.YOUR-DNS-SUFFIX`.
 
 1. In this record, enter the name servers included in `env_dns_zone_name_servers` from your Terraform output.
 

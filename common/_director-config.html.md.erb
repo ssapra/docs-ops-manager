@@ -46,36 +46,25 @@ field, separated by a comma: `0.amazon.pool.ntp.org,1.amazon.pool.ntp.org,2.amaz
 
 
 1. Leave the **JMX Provider IP Address** field blank.
-<p class="note"><strong>Note:</strong> Starting in PCF v2.0, BOSH-reported component metrics are
-available in the Loggregator Firehose by default. If you continue to use PCF JMX Bridge to consume
-these component metrics outside of the Firehose, you may receive duplicate data. To prevent this,
-leave the <strong>JMX Provider IP Address</strong> field blank. For additional guidance, see
-<a href="http://docs.pivotal.io/pivotalcf/2-0/pcf-release-notes/runtime-rn.html#bosh-metrics">BOSH System Metrics Available in Loggregator Firehose</a>
-in the PCF v2.0 Release Notes.</p>
-
 
 
 1. Leave the **Bosh HM Forwarder IP Address** field blank.
-<p class="note"><strong>Note:</strong> Starting in PCF v2.0, BOSH-reported component
+<p class="note"><strong>Note:</strong> Starting in PAS v2.0, BOSH-reported component
 metrics are available in the Loggregator Firehose by default. If you continue to use
 the BOSH HM Forwarder to consume these component metrics, you may receive duplicate data.
-To prevent this, leave the <strong>Bosh HM Forwarder IP Address</strong> field blank. For
-additional guidance, see
-<a href="http://docs.pivotal.io/pivotalcf/2-0/pcf-release-notes/runtime-rn.html#bosh-metrics">BOSH System Metrics Available in Loggregator Firehose</a>
-in the PCF v2.0 Release Notes.</p>
+To prevent this, leave the <strong>Bosh HM Forwarder IP Address</strong> field blank.</p>
 
 
 
-1. Select the **Enable VM Resurrector Plugin** checkbox to enable the Ops Manager
-Resurrector functionality and increase your runtime availability. <% if current_page.data.iaas == "vSphere" %>For more information,
-  see [Using BOSH Resurrector and vSphere HA](https://docs.pivotal.io/pivotalcf/customizing/resurrector.html).<% end %>
+1. Select the **Enable VM Resurrector Plugin** checkbox to enable the BOSH
+Resurrector functionality and increase your runtime availability. <% if current_page.data.iaas == "vSphere" %>If you intend to install PAS,
+  see [Using BOSH Resurrector and vSphere HA](https://docs.pivotal.io/pivotalcf/customizing/resurrector.html) for more information about the Resurrector plugin.<% end %>
 
 
 
 1. Select **Enable Post Deploy Scripts** to run a post-deploy script after deployment.
 This script allows the job to execute additional commands against a deployment.
-<p class="note"><strong>Note:</strong> You must enable post-deploy scripts to install PKS.
-</p>
+<p class="note"><strong>Note:</strong> If you intend to install PKS, you must enable post-deploy scripts.</p>
 
 
 1. Select **Recreate all VMs** to force BOSH to recreate all VMs on the next deploy.
@@ -99,7 +88,7 @@ BOSH operations up to five times.
 after a failed deployment for troubleshooting purposes.
 
 
-1. Select **HM Pager Duty Plugin** to enable Health Monitor integration with PagerDuty.
+1. Select **HM Pager Duty Plugin** to enable Health Monitor integration with PagerDuty.<br>
     <%= image_tag("../common/images/director_hm_pager.png") %>
     * **Service Key**: Enter your API service key from PagerDuty.
     * **HTTP Proxy**: Enter an HTTP proxy for use with PagerDuty.
@@ -146,10 +135,10 @@ after a failed deployment for troubleshooting purposes.
   also use this field to configure a load balancer in front
   of your BOSH Director. For more information, see [How to Set Up a Load Balancer in Front of Operations Manager Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director) in Pivotal Support.
   <p class="note warning"><strong>WARNING: </strong>In Ops Manager v2.3.2 and earlier, if you change the <strong>Director
-  Hostname</strong> after your initial deployment, VMs become unavailable. This causes PCF
+  Hostname</strong> after your initial deployment, VMs become unavailable. This causes
   downtime. To restore VM availability, enable **Recreate All VMs** and redeploy. This
   issue is resolved in <a
-  href="https://docs.pivotal.io/pivotalcf/2-3/pcf-release-notes/opsmanager-rn.html#2-3-3">Ops
+  href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/pcf-release-notes/opsmanager-rn.html#2-3-3">Ops
   Manager 2.3.3</a> and later.</p>
     <%= image_tag("../common/images/director_workers.png") %>
 

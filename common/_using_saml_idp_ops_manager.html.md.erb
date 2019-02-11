@@ -8,8 +8,9 @@
     <p class="note"><strong>Note:</strong> The same IdP metadata URL or XML is applied for the BOSH Director. If you use a separate IdP for BOSH, copy the metadata XML or URL from that IdP and enter it into the BOSH IdP Metadata text box in the Ops Manager login page.</p>
 
 1. Enter values for the fields listed below. Failure to provide values in these fields results in a `500` error.
+    <p class="note"><strong>Note</strong>: These attributes are case-sensitive.</p>
     * **SAML admin group**: Enter the name of the SAML group that contains all Ops Manager administrators.
-    * **SAML groups attribute**: Enter the groups attribute tag name with which you configured the SAML server.
+    * **SAML groups attribute**: Enter the groups attribute tag name with which you configured the SAML server. This attribute is case sensitive.
 
 1. Enter your **Decryption passphrase**. Read the **End User License Agreement**, and select the checkbox to accept the terms.
 
@@ -34,5 +35,3 @@ If your IdP does not support importing, provide the values below.
     * SAML authentication requests are always signed
 
 1. Return to the **BOSH Director** tile, and continue with the configuration steps below.
-
-<p class="note"><strong>Note:</strong> For an example of configuring SAML integration between Ops Manager and your IdP, see <a href="https://docs.pivotal.io/pivotalcf/2-3/opsguide/adfs-sso-configuration.html">Configuring Active Directory Federation Services as an Identity Provider</a>.</p>
