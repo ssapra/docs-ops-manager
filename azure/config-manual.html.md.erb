@@ -7,7 +7,7 @@ iaas: Azure
 <strong><%= modified_date %></strong>
 <html class="list-style-none"></html>
 
-This topic describes how to configure the BOSH Director tile within Ops Manager on Azure after [Deploying BOSH and Ops Manager to Azure Manually](./deploy-manual.html).
+This topic describes how to configure the BOSH Director tile within Ops Manager on Azure after [Deploying Ops Manager on Azure Manually](./deploy-manual.html).
 
 ## <a id="prerequisites"></a> Prerequisites
 
@@ -18,7 +18,7 @@ See the following sections to prepare for configuring BOSH Director on Azure.
 Before you perform the procedures in this topic, you must have completed the procedures in the following topics:
 
 * [Preparing to Deploy Ops Manager on Azure Manually](prepare-env-manual.html)
-* Either [Deploying BOSH and Ops Manager to Azure with ARM](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-arm-template.html) or [Deploying BOSH and Ops Manager to Azure Manually](deploy-manual.html).
+* Either [Deploying BOSH and Ops Manager to Azure with ARM](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-arm-template.html) or [Deploying Ops Manager on Azure Manually](deploy-manual.html).
 
 <p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
@@ -72,7 +72,7 @@ Manager API endpoint.
 
 1. In a web browser, navigate to the fully qualified domain name (FQDN) of Ops Manager that you set up in either
 [Deploying BOSH and Ops Manager to Azure with ARM](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-arm-template.html)
-or [Deploying BOSH and Ops Manager to Azure Manually](deploy-manual.html).
+or [Deploying Ops Manager on Azure Manually](deploy-manual.html).
 
 1. When Ops Manager starts for the first time, you must choose one of the following:
     * [Use an Identity Provider](#idp): If you use an Identity Provider, an external identity server maintains your user database.
@@ -132,7 +132,7 @@ or [Deploying BOSH and Ops Manager to Azure Manually](deploy-manual.html).
 
 1. For **SSH Public Key**, copy and paste the contents of your public key in the `opsman.pub` file.
 You created this file in either [Deploying BOSH and Ops Manager to Azure with ARM](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-arm-template.html)
-topic or [Deploying BOSH and Ops Manager to Azure Manually](deploy-manual.html).
+topic or [Deploying Ops Manager on Azure Manually](deploy-manual.html).
 
 1. For **SSH Private Key**, copy and paste the contents of your private key in the `opsman` file.
 
