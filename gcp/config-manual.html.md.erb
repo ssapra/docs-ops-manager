@@ -68,7 +68,7 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
     <%= image_tag("../common/images/gcp/director-tile-gcp.png") %>
 
 1. Select **Google Config**. Complete the following fields:
-    * **Project ID**: Enter your GCP project ID in all lower case, such as: `your-gcp-project-id`.
+    * **Project ID**: Enter your GCP project ID in lowercase, such as: `your-gcp-project-id`.
     * **Default Deployment Tag**: Enter the prefix that you used when creating the GCP resources for this PCF installation. For example, `pcf`.
     * Select **AuthJSON** and in the field below enter the contents of the JSON file that you downloaded in the [Set up an IAM Service Account](./prepare-env-manual.html#iam_account) section of the _Preparing to Deploy Ops Manager on GCP Manually_ topic.
         <p class="note"><strong>Note:</strong> As an alternative, you can select <strong>The Ops Manager VM Service Account</strong> option to use the service account automatically created by GCP for the Ops Manager VM. To use this option, the project-wide service account that you set up in [Set up an IAM Service Account](./prepare-env-manual.html#iam_account) must be assigned the **Service Account Actor** role.</p>
@@ -88,17 +88,17 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
     <p class="note"><strong>Note:</strong> The NTP server configuration only updates after VM recreation. Ensure that you select the <strong>Recreate all VMs</strong> checkbox if you modify the value of this field.</p>
 
 1. Leave the **JMX Provider IP Address** field blank.
-    <p class="note"><strong>Note:</strong> Starting from PCF v2.0, BOSH-reported component metrics are available in the Loggregator Firehose by default. Therefore, if you continue to use PCF JMX Bridge for consuming them outside of the Firehose, you may receive duplicate data. To prevent this, leave the <strong>JMX Provider IP Address</strong> field blank. For additional guidance, see <a href="http://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/runtime-rn.html#bosh-metrics">BOSH System Metrics Available in Loggregator Firehose</a>.</p>
+    <p class="note"><strong>Note:</strong> Starting from PCF v2.0, BOSH-reported component metrics are available in the Loggregator Firehose by default. Therefore, if you continue to use PCF JMX Bridge for consuming them outside of the Firehose, you might receive duplicate data. To prevent this, leave the <strong>JMX Provider IP Address</strong> field blank. For additional guidance, see <a href="http://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/runtime-rn.html#bosh-metrics">BOSH System Metrics Available in Loggregator Firehose</a>.</p>
 
 1. Leave the **Bosh HM Forwarder IP Address** field blank.
-    <p class="note"><strong>Note:</strong> Starting from PCF v2.0, BOSH-reported component metrics are available in the Loggregator Firehose by default. Therefore, if you continue to use the BOSH HM Forwarder for consuming them, you may receive duplicate data. To prevent this, leave the <strong>Bosh HM Forwarder IP Address</strong> field blank. For additional guidance, see <a href="http://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/runtime-rn.html#bosh-metrics">BOSH System Metrics Available in Loggregator Firehose</a>.</p>
+    <p class="note"><strong>Note:</strong> Starting from PCF v2.0, BOSH-reported component metrics are available in the Loggregator Firehose by default. Therefore, if you continue to use the BOSH HM Forwarder for consuming them, you might receive duplicate data. To prevent this, leave the <strong>Bosh HM Forwarder IP Address</strong> field blank. For additional guidance, see <a href="http://docs.pivotal.io/pivotalcf/2-1/pcf-release-notes/runtime-rn.html#bosh-metrics">BOSH System Metrics Available in Loggregator Firehose</a>.</p>
 
 1. Select the **Enable VM Resurrector Plugin** checkbox to enable the Ops Manager Resurrector functionality and increase Pivotal Application Service (PAS) availability.
 
 1. Select **Enable Post Deploy Scripts** to run a post-deploy script after deployment. This script allows the job to execute additional commands against a deployment.
   <p class="note"><strong>Note:</strong> You must enable post-deploy scripts to install PKS.</p>
 
-1. (Optional) Select **Recreate all VMs** to force BOSH to recreate all VMs on the next deploy. This process does not destroy any persistent disk data.
+1. (Optional) Select **Recreate all VMs** to force BOSH to re-create all VMs on the next deploy. This process does not destroy any persistent disk data.
 
 1. Select **Enable bosh deploy retries** for Ops Manager to retry failed BOSH operations up to five times.
 
@@ -180,7 +180,7 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
 
 1. Make sure **Enable ICMP checks** is not selected. GCP routers do not respond to ICMP pings.
 
-1. Use the **Add Network** button to create the following three networks:
+1. Click **Add Network** to create the following three networks:
     <p class="note"><strong>Note:</strong> To use a shared VPC network, enter the shared VPC host project name before the network name in the format <code>VPC-PROJECT-NAME/NETWORK-NAME/SUBNET-NAME/REGION-NAME</code>.
     For example, <code>vpc-project/opsmgr/central/us-central1</code>.
     For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-1/customizing/gcp-shared-vpc.html">Configuring a Shared VPC on GCP</a>.</p>
@@ -402,7 +402,7 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
 
 1. Select **Resource Config**.
 
-1. Ensure that the **Internet Connected** checkboxes are not selected for any jobs. The checkbox gives VMs a public IP address that enables outbound Internet access. In [Preparing to Deploy Ops Manager on GCP Manually](./prepare-env-manual.html), you provisioned a Network Address Translation (NAT) box to provide Internet connectivity to your VMs. For more information about using NAT in GCP, see the <a href="https://cloud.google.com/compute/docs/networking">GCP documentation</a>.
+1. Ensure that the **Internet Connected** checkboxes are not selected for any jobs. The checkbox gives VMs a public IP address that enables outbound internet access. In [Preparing to Deploy Ops Manager on GCP Manually](./prepare-env-manual.html), you provisioned a Network Address Translation (NAT) box to provide internet connectivity to your VMs. For more information about using NAT in GCP, see the <a href="https://cloud.google.com/compute/docs/networking">GCP documentation</a>.
 
 <p class="note"><strong>Note:</strong> If you install PAS for Windows, provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
 
@@ -415,11 +415,11 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
 
 1. Click the **Installation Dashboard** link to return to the Installation Dashboard.
 
-1. Click **Apply Changes**. If the following ICMP error message appears, return to the [Network Config](#network) screen, and make sure you have deselected the **Enable ICMP Checks** box. Then click **Apply Changes** again.
+1. Click **Apply Changes**. If the following ICMP error message appears, return to the [Network Config](#network) screen, and ensure you have deselected the **Enable ICMP Checks** box. Then click **Apply Changes** again.
 
     <%= image_tag("../common/images/cloudform/install-error.png") %>
 
-1. BOSH Director installs. This may take a few moments. When the installation process successfully completes, the **Changes Applied** window appears.
+1. BOSH Director installs. This might take a few moments. When the installation process successfully completes, the **Changes Applied** window appears.
 
     <%= image_tag("../common/images/cloudform/ops-manager-complete.png") %>
 
