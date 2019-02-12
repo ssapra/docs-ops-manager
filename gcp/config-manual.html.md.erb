@@ -4,26 +4,6 @@ owner: Ops Manager
 iaas: GCP
 ---
 
-<script>
-function openDocs(evt, tabId) {
-   // Declare all variables
-   var i, tabcontent, tablinks;
-   // Get all elements with class="tabcontent" and hide them
-   tabcontent = document.getElementsByClassName("tabcontent");
-   for (i = 0; i < tabcontent.length; i++) {
-       tabcontent[i].style.display = "none";
-   }
-   // Get all elements with class="tablinks" and remove the class "active"
-   tablinks = document.getElementsByClassName("tablinks");
-   for (i = 0; i < tablinks.length; i++) {
-       tablinks[i].className = tablinks[i].className.replace(" active", "");
-   }
-   // Show the current tab, and add an "active" class to the button that opened the tab
-   document.getElementById(tabId).style.display = "block";
-   evt.currentTarget.className += " active";
-}
-</script>
-
 <strong><%= modified_date %></strong>
 
 This topic describes how to configure the BOSH Director in Ops Manager for Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
@@ -183,200 +163,113 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
 1. Click **Add Network** to create the following three networks:
     <p class="note"><strong>Note:</strong> To use a shared VPC network, enter the shared VPC host project name before the network name in the format <code>VPC-PROJECT-NAME/NETWORK-NAME/SUBNET-NAME/REGION-NAME</code>.
     For example, <code>vpc-project/opsmgr/central/us-central1</code>.
-    For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-1/customizing/gcp-shared-vpc.html">Configuring a Shared VPC on GCP</a>.</p>
-    <p class="note"><strong>Note:</strong> If you disabled BOSH DNS for a PAS installation, enter <code>8.8.8.8</code> into the **DNS Servers** field of the PAS tile. For more information, see step 29g in the <em>Configure Networking</em> section of the <a href="https://docs.pivotal.io/pivotalcf/2-1/customizing/gcp-er-config.html#dns-servers">Deploying PAS on GCP</a> topic.</p>
-
-1. Select the runtime you are installing from the following table to determine which networks you need to create:
-    <div class="tab">
-      <button aria-label="Expand install table for PAS and Other Runtimes" aria-controls="PAS-networks" class="tablinks" onclick="openDocs(event, 'PAS-networks')">PAS and Other Runtimes</button>
-      <button aria-label="Expand install table for PKS Only" aria-controls="PKS-networks" class="tablinks" onclick="openDocs(event, 'PKS-networks')">PKS Only</button>
-    </div>
-    <div id="PAS-networks" class="tabcontent" style="display:none">
-      <p>If you intend to deploy Pivotal Application Service (PAS), or PAS plus additional runtimes, create networks according to the table below.
-      For more information about the runtimes you can deploy to PCF, see <a href="https://docs.pivotal.io/pivotalcf/2-1/customizing/runtimes.html">Installing Runtimes</a>.<br>
-        <table>
-          <tr>
-            <th>Network Name</th>
-            <th>Configuration</th>
-          </tr>
-          <tr>
-            <td><code>infrastructure</code></td>
-            <td>
-              <table>
-                <tr>
-                  <th>Name</th>
-                  <td><code>infrastructure</code></td>
-                </tr>
-                <tr>
-                  <th>Google Network Name</th>
-                  <td>Enter the name of the infrastructure network you created when preparing your GCP environment.
-                  <br>The format is: <code>pcf-virt-net/pcf-subnet-infrastructure-MY-REGION/MY-GCP-REGION</code></td>
-                </tr>
-                <tr>
-                  <th>CIDR</th>
-                  <td>Enter the name of the CIDR ending in <code>/26</code> you used when creating the infrastructure subnet in GCP.
-                  <br>Example: <code>192.168.101.0/26</code></td>
-                </tr>
-                <tr>
-                  <th>Reserved IP Ranges</th>
-                  <td>Enter the first <code>.1</code> through <code>.9</code> addresses from the CIDR. For example, if the CIDR is <code>192.168.101.0/26</code>, enter the range <code>192.168.101.1-192.168.101.9</code>.</td>
-                </tr>
-                <tr>
-                  <th>DNS</th>
-                  <td><code>169.254.169.254</code></td>
-                </tr>
-                <tr>
-                  <th>Gateway</th>
-                  <td>Enter the first <code>.1</code> address from the CIDR. For example, if the CIDR is <code>192.168.101.0/26</code>, enter <code>192.168.101.1</code>.</td>
-                </tr>
-                <tr>
-                  <th>Availability Zones</th>
-                  <td>Select all three availability zones.</td>
-                </tr>
-              </table>
-            </td>
-          </tr>
-          <tr>
-            <td><code>pas</code></td>
-            <td>
-              <table>
-              <tr>
-              <th>Name</th>
-              <td><code>pas</code></td>
-              </tr>
-              <tr>
-              <th>Google Network Name</th>
-              <td>Enter the name of the runtime network you created when preparing your GCP environment.
-              <br>The format is: <code>pcf-virt-net/pcf-subnet-pas-MY-REGION/MY-GCP-REGION</code></td>
-              </tr>
-              <tr>
-              <th>CIDR</th>
-              <td>Enter the name of the CIDR ending in <code>/22</code> you used when creating the PAS subnet in GCP.
-              <br>Example: <code>192.168.16.0/22</code></td>
-              </tr>
-              <tr>
-              <th>Reserved IP Ranges</th>
-              <td>Enter the first <code>.1</code> through <code>.9</code> addresses from the CIDR. For example, if the CIDR is <code>192.168.16.0/22</code>, enter the range <code>192.168.16.1-192.168.16.9</code>.</td>
-              </tr>
-              <tr>
-              <th>DNS</th>
-              <td><code>169.254.169.254</code></td>
-              </tr>
-              <tr>
-              <th>Gateway</th>
-              <td>Enter the first <code>.1</code> address from the CIDR. For example, if the CIDR is <code>192.168.16.0/22</code>, enter <code>192.168.16.1</code>.</td>
-              </tr>
-              <tr>
-              <th>Availability Zones</th>
-              <td>Select all three availability zones.</td>
-              </tr>
-              </table>
-              </td>
-              </tr>
-              <tr>
-              <td><code>services-1</code></td>
-              <td>
-              <table>
-              <tr>
-              <th>Name</th>
-              <td><code>services-1</code></td>
-              </tr>
-              <tr>
-              <th>Google Network Name</th>
-              <td>Enter the name of the services network you created when preparing your GCP environment.
-              <br>The format is: <code>pcf-virt-net/pcf-subnet-services-MY-REGION/MY-GCP-REGION</code></td>
-              </tr>
-              <tr>
-              <th>CIDR</th>
-              <td>Enter the name of the CIDR ending in <code>/22</code> you used when creating the services subnet in GCP.
-              <br>Example: <code>192.168.20.0/22</code></td>
-              </tr>
-              <tr>
-              <th>Reserved IP Ranges</th>
-              <td>Enter the first <code>.1</code> through <code>.9</code> addresses from the CIDR. For example, if the CIDR is <code>192.168.20.0/22</code>, enter the range <code>192.168.20.1-192.168.20.9</code>.</td>
-              </tr>
-              <tr>
-              <th>DNS</th>
-              <td><code>169.254.169.254</code></td>
-              </tr>
-              <tr>
-              <th>Gateway</th>
-              <td>Enter the first <code>.1</code> address from the CIDR. For example, if the CIDR is <code>192.168.20.0/22</code>, enter <code>192.168.20.1</code>.</td>
-              </tr>
-              <tr>
-              <th>Availability Zones</th>
-              <td>Select all three availability zones.</td>
-              </tr>
-              </table>
-            </td>
-          </tr>
-        </table>
-      </p>
-    </div>
-    <div id="PKS-networks" class="tabcontent" style="display:none">
-     <p>If you intend to deploy only Pivotal Container Service (PKS) to this Ops Manager instance, create the following networks:
-        <table>
-          <tr>
-            <th rowspan="7" width="21%">Main<br> Network</th>
-            <th>Field</th>
-            <th>Configuration</th>
-          </tr>
-          <tr>
-            <td>Name</td>
-            <td><code>pks-main</code></td>
-          </tr>
-          <tr>
-            <td>Google Network Name</td>
-            <td><code>pcf-virt-net/MY-PKS-subnet-pks-GCP-REGION/GCP-REGION</code></td>
-          </tr>
-          <tr>
-            <td>CIDR</td>
-            <td><code>192.168.16.0/22</code></td>
-          </tr>
-          <tr>
-            <td>Reserved IP Ranges</td>
-            <td><code>192.168.16.1-192.168.16.9</code></td>
-          </tr>
-          <tr>
-            <td>DNS</td>
-            <td><code>169.254.169.254</code></td>
-          </tr>
-          <tr>
-            <td>Gateway</td>
-            <td><code>192.168.16.1</code></td>
-          </tr>
-          <tr>
-            <th rowspan="7" width="21%">Service Network</th>
-            <th>Field</th>
-            <th>Configuration</th>
-          </tr>
-          <tr>
-            <td>Name</td>
-            <td><code>pks-services</code></td>
-          </tr>
-          <tr>
-            <td>Google Network Name</td>
-            <td><code>pcf-virt-net/MY-PKS-subnet-services-GCP-REGION/GCP-REGION</code></td>
-          </tr>
-          <tr>
-            <td>CIDR</td>
-            <td><code>192.168.20.0/22</code></td>
-          </tr>
-          <tr>
-            <td>Reserved IP Ranges</td>
-            <td><code>192.168.20.1-192.168.20.9</code></td>
-          </tr>
-          <tr>
-            <td>DNS</td>
-            <td><code>169.254.169.254</code></td>
-          </tr>
-          <tr>
-            <td>Gateway</td>
-            <td><code>192.168.20.1</code></td>
-          </tr>
-        </table>
-     </p>
-    </div>
+    For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp-shared-vpc.html">Configuring a Shared VPC on GCP</a>.</p>
+      <table>
+        <tr>
+          <th rowspan="8" width="21%">Infrastructure<br> Network</th>
+          <th>Field</th>
+          <th>Configuration</th>
+        </tr>
+        <tr>
+          <td>Name</td>
+          <td><code>infrastructure</code></td>
+        </tr>
+        <tr>
+          <td>Google Network Name</td>
+          <td>Enter the name of the infrastructure network you created when <a href="prepare-env-manual.html#create_network">preparing your GCP environment</a>.
+          <br>The format is: <code>pcf-virt-net/pcf-subnet-infrastructure-MY-REGION/MY-GCP-REGION</code></td>
+        <tr>
+          <td>CIDR</td>
+          <td>Enter the name of the CIDR ending in <code>/26</code> you used when creating the infrastructure subnet in GCP.
+          <br>Example: <code>192.168.101.0/26</code></td>
+        </tr>
+        <tr>
+          <td>Reserved IP Ranges</td>
+          <td>Enter the first <code>.1</code> through <code>.9</code> addresses from the CIDR. For example, if the CIDR is <code>192.168.101.0/26</code>, enter the range <code>192.168.101.1-192.168.101.9</code>.</td>
+        </tr>
+        <tr>
+          <td>DNS</td>
+          <td><code>169.254.169.254</code></td>
+        </tr>
+        <tr>
+          <td>Gateway</td>
+          <td>Enter the first <code>.1</code> address from the CIDR. For example, if the CIDR is <code>192.168.101.0/26</code>, enter <code>192.168.101.1</code>.</td>
+        </tr>
+        <tr>
+          <td>Availability Zones</td>
+          <td>Select all three availability zones.</td>
+        </tr>
+        <tr>
+          <th rowspan="8" width="21%">Runtime Network</th>
+          <th>Field</th>
+          <th>Configuration</th>
+        </tr>
+        <tr>
+          <td>Name</td>
+          <td>Enter the name of the runtime you intend to deploy in this environment. For example, <code>pas</code> or <code>pks</code>.</td>
+        </tr>
+        <tr>
+          <td>Google Network Name</td>
+          <td>Enter the name of the runtime network you created when preparing your GCP environment.
+          <br>The format is: <code>pcf-virt-net/pcf-subnet-RUNTIME-MY-REGION/MY-GCP-REGION</code></td>
+        </tr>
+        <tr>
+          <td>CIDR</td>
+          <td>Enter the name of the CIDR ending in <code>/22</code> you used when creating the runtime subnet in GCP.
+          <br>Example: <code>192.168.16.0/22</code></td>
+        </tr>
+        <tr>
+          <td>Reserved IP Ranges</td>
+          <td>Enter the first <code>.1</code> through <code>.9</code> addresses from the CIDR. For example, if the CIDR is <code>192.168.16.0/22</code>, enter the range <code>192.168.16.1-192.168.16.9</code>.</td>
+        </tr>
+        <tr>
+          <td>DNS</td>
+          <td><code>169.254.169.254</code></td>
+        </tr>
+        <tr>
+          <td>Gateway</td>
+          <td>Enter the first <code>.1</code> address from the CIDR. For example, if the CIDR is <code>192.168.16.0/22</code>, enter <code>192.168.16.1</code>.</td>
+        </tr>
+        <tr>
+          <td>Availability Zones</td>
+          <td>Select all three availability zones.</td>
+        </tr>
+        <tr>
+          <th rowspan="8" width="21%">Services Network</th>
+          <th>Field</th>
+          <th>Configuration</th>
+        </tr>
+        <tr>
+          <td>Name</td>
+          <td><code>services</code></td>
+        </tr>
+        <tr>
+          <td>Google Network Name</td>
+          <td>Enter the name of the services network you created when preparing your GCP environment.
+          <br>The format is: <code>pcf-virt-net/pcf-subnet-services-MY-REGION/MY-GCP-REGION</code></td>
+        </tr>
+        <tr>
+          <td>CIDR</td>
+          <td>Enter the name of the CIDR ending in <code>/22</code> you used when creating the services subnet in GCP.
+          <br>Example: <code>192.168.20.0/22</code></td>
+        </tr>
+        <tr>
+          <td>Reserved IP Ranges</td>
+          <td>Enter the first <code>.1</code> through <code>.9</code> addresses from the CIDR. For example, if the CIDR is <code>192.168.20.0/22</code>, enter the range <code>192.168.20.1-192.168.20.9</code>.</td>
+        </tr>
+        <tr>
+          <td>DNS</td>
+          <td><code>169.254.169.254</code></td>
+        </tr>
+        <tr>
+          <td>Gateway</td>
+          <td>Enter the first <code>.1</code> address from the CIDR. For example, if the CIDR is <code>192.168.16.0/22</code>, enter <code>192.168.16.1</code>.</td>
+        </tr>
+        <tr>
+          <td>Availability Zones</td>
+          <td>Select all three availability zones.</td>
+        </tr>
+      </table>
    <%= vars.expand_network_azs %>
 
 ## <a id="assign-azs"></a>Step 6: Assign AZs and Networks Page##
@@ -427,6 +320,6 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
 
 After you complete this procedure, follow the instructions for the runtime you intend to install.
 <ul>
-  <li>To deploy PAS, see [Deploying PAS on GCP](https://docs.pivotal.io/pivotalcf/2-1/customizing/gcp-er-config.html).</li>
-  <li>To deploy PKS, see Installing PKS on [Google Cloud Platform (GCP)](https://docs.pivotal.io/runtimes/pks/1-1/gcp-index.html).</li>
+  <li>To deploy PAS, see [Deploying PAS on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp-er-config.html).</li>
+  <li>To prepare to deploy PKS, see Installing PKS on [Google Cloud Platform (GCP)](https://docs.pivotal.io/runtimes/pks/1-2/gcp-index.html).</li>
 <ul>
