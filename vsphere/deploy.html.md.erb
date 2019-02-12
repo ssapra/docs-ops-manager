@@ -1,72 +1,141 @@
 ---
-title: Deploying BOSH and Ops Manager to vSphere
+title: Deploying Ops Manager to vSphere
 owner: Ops Manager
 ---
 
 <strong><%= modified_date %></strong>
 
-This topic provides instructions for deploying Ops Manager to VMware vSphere.
+This topic provides instructions for deploying Pivotal Cloud Foundry (PCF) Ops Manager to VMware vSphere.
 
-<p class="note warning"><strong>WARNING:</strong> If you are installing Pivotal Container Service (PKS)
-on vSphere with NSX-T integration, follow the instructions in
+The instructions in this topic are based on vSphere 6.5 using the vSphere Client (HTML5) interface.
+
+## <a id="pas_and_pks"></a> Runtime Considerations
+
+For security purposes, VMware requires a dedicated instance of Ops Manager for use with Pivotal Container Service (PKS). 
+
+Do not deploy Pivotal Application Service (PAS) on the same instance of Ops Manager as PKS. 
+For more information, 
+see <a href="https://docs.pivotal.io/runtimes/pks/pas-and-pks.html">PAS and PKS Deployments with Ops Manager</a>.
+
+<p class="note warning"><strong>IMPORTANT:</strong> If you are installing PKS on vSphere with NSX-T integration, 
+follow the instructions in
 <a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-om-deploy.html">Deploying Ops Manager with NSX-T for PKS</a>
-instead of performing the steps provided in this topic.</p>
+instead of performing the steps described in this topic.</p>
 
-<p class="note"><strong>Note</strong>: The instructions in this topic are based on vSphere 6.5.</p>
+## <a id="prepare-vsphere"></a> Prepare vSphere
+
+1. Log into vCenter using the vSphere Client (HTML5).
+
+1. Select the vSphere Datacenter where you are deploying Ops Manager.
+
+1. Create one or more vSphere clusters. A vSphere cluster is a collection of ESXi hosts and associated virtual machines (VMs) 
+with shared resources and a shared management interface.<br/><br/>
+     To create a vSphere cluster:
+    1. Right-click the vSphere Datacenter object.
+    1. Select **New Cluster**. 
+    1. Name the Cluster. For example, `Cluster1`.
+    1. Select **Turn ON vSphere DRS** to enable DRS. Set DRS Automation to be **Partially Automated** or **Full Automated**.
+    1. Select **Turn ON vSphere HA** to enable vSphere HA.
+
+    <p class="note"><strong>Note</strong>: For highly available, production-ready environments, you need to create more than one cluster. Create as many vSphere clusters as needed for the type of environment you are building. For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#high-availability">Compute and HA Considerations</a> and <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#scaling">Scaling and Capacity Managment</a> sections of the vSphere Reference Architecture.</p>
+
+1. Create a resource pool for the management components in your deployment. Resource pools are vSphere objects used to organize resources. 
+    <p class="note"><strong>Note:</strong> The management resource pool separates non-HA components such as Ops Manager and BOSH Director. 
+    For example, if you are deploying Ops Manager for use with PKS, the PKS management plane includes Ops Manager, BOSH Director, 
+    the PKS control plane, and Harbor (optional).</p>
+    
+    To create a vSphere resource pool:
+    1. Right-click the vSphere cluster object you created.
+    1. Select **New Resource Pool**.
+    1. Name the resource pool. For example, `RP-MGMT`.
+    1. Review the default CPU and Memory settings and adjust if necessary. This is not common.
+    1. Click **OK**.
 
 ## <a id="deploy"></a> Deploy Ops Manager
 
-1. Download Pivotal Cloud Foundry Ops Manager for vSphere from [Pivotal Network](https://network.pivotal.io/products/ops-manager).
+  Ops Manager for vSphere is provided as an OVA file. An OVA file is a template for a virtual machine (VM). To deploy Ops Manager on vSphere, you import the OVA file into your vSphere environment.
 
-1. Log in to vCenter.
+1. Download the [Pivotal Cloud Foundry Operations Manager for vSphere](https://network.pivotal.io/products/ops-manager) OVA file from [Pivotal Network](https://network.pivotal.io). Use the **Releases** dropdown menu to select an Ops Manager release.
 
-1. In the **Navigator**, click the **VMs and Templates** tab.
-    ![vms and templates folder creation](../common/images/vms-templates.png)
+1. Right-click the management resource pool you created and select **Deploy OVF Template**. Alternatively, from the vCenter menu, select **Actions** > **Deploy OVF Template**.
 
-1. Right click your datacenter. 
-    1. Select **New Folder** > **New VM and Template Folder**.
-        ![New folder creation](../common/images/new-folder.png)
-    1. Name the folder `pivotal_cf`. 
-    1. Click **Ok**.
+1. At the **Select an OVF template** screen, click **Browse**.
 
-1. Click your newly created folder.
+1. Select the Ops Manager OVA file you downloaded and click **Open**.
 
-1. Click the **Deploy OVF Template** icon and complete the following steps:
-    <p class="note"><strong>Note</strong>: The vSphere Web Client requires Flash. If the **Deploy OVF Template** button is unresponsive, ensure you have Flash enabled in your browser and reload the page.</p>
-    ![Ova form fill](../common/images/ova.png)
-    1. **Select template**
-        1. Click **Browse** and select the `.ova` file you downloaded from Pivotal Network.
-        1. Click **Next**.
-    1. **Select name and location**
-        1. Name the virtual machine and click **Next**.
-            <p class="note"><strong>Note</strong>: The selected folder is the one you created.</p>
-    1. **Select a resource**
-        1. Select the resource you want to use to launch the VM and click **Next**.
-            <p class="note"><strong>Note</strong>: Hardware virtualization must be off if your vSphere host does not support VT-x/EPT.</p>
-    1. **Review Details**
-        1. Verify the template details and click **Next**. 
-    1. **Select storage**
-        1. Select a disk format. For information about disk formats, see [Provisioning a Virtual Disk](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/disk-format.html).
-            <p class="note warning"><strong>Warning</strong>: Ops Manager requires a Director VM with at least 8&nbsp;GB memory.</p>
-        1. Select a storage destination.
-        1. Click **Next**.
-    1. **Select networks**
-        1. Select a network from the drop down list and click **Next**.
-    1. **Customize template**
-        1. In the **Admin Password** field, enter a default password for the account with the username `ubuntu`. Alternatively, you can enter a pre-existing SSH key value in the **Public SSH Key** field. 
-            <p class="note"><strong>Note</strong>: You must specify a default password, an SSH key, or both. If you do not have either of these fields configured, Ops Manager will not boot up.</p>
-        1. Complete the remaining network information and passwords for the Ops Manager VM admin user.
-            <p class="note"><strong>Note</strong>: Record this network information. The IP Address will be the location of the Ops Manager interface.</p>
-        1. Click **Next**.
-    1. **Ready to complete**
-        1. Review the configuration data and click **Finish**. 
+1. Review template selection and click **Next**.
 
-1. With the VM selected, click **Actions** > **Power** > **Power On**. Once the VM boots, the interface is available at the IP address you specified.
+1. At the **Select a name and folder** screen: 
+    * Enter a name for the Ops Manager virtual machine, or use the default name.
+    * Select the **Datacenter** object.
+    * Click **Next**.
+    
+    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-01.png") %>
 
-     <p class="note"><strong>Note</strong>: It is normal to experience a brief delay before the interface is accessible while the web server and VM start up.</p>
+1. At the **Select a compute resource** screen, select the compute resource where the Ops Manager VM will run and click **Next**.
+    Select the Resource Pool for the management components.
 
-1. Create a DNS entry for the IP address that you used for Ops Manager. You must use this fully qualified domain name when you log in to Ops Manager
-as described in the [Set Up Ops Manager](config.html#set-up) section of _Configuring BOSH Director on vSphere_.
+    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-02.png") %>
+
+    <p class="note"><strong>Note</strong>: Hardware virtualization must be turned off if your vSphere host does not support VT-X/EPT. Refer to the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/vsphere.html#vsphere-reqs">Installing Pivotal Cloud Foundry on vSphere</a> topic for more information.</p>
+
+1. At the **Review Details** screen, confirm the configuration up to this point and click **Next**.
+
+    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-03.png") %>
+
+1. At the **Select Storage** screen, select the virtual disk format. 
+    1. Choose the desired Datastore. 
+        * If you are using vSAN, select the vSAN datastore and apply the default storage policy.
+        * If you are using a dedicated disk, select the appropriate disk format for your deployment needs. If in doubt, choose **Thin Provision**. For more information about disk formats, see [vSphere Virtual Disk Types](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/disk-format.html).
+    1. Click **Next**. 
+
+    <p class="note warning"><strong>Warning</strong>: Ops Manager requires a VM with at least 8&nbsp;GB memory.</p>
+
+    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-04.png") %>
+
+1. At the **Select Networks** screen, select the standard **VM Network**, and click **Next**.
+
+    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-05.png") %>
+
+1. At the **Customize template** screen, enter the following information, and click **Next**.
+   * **IP Address**: The IP address of the Ops Manager network interface. For example, `10.0.0.2`.
+   * **Netmask**: The network mask for Ops Manager. For example, `255.255.255.0`.
+   * **Default Gateway**: The default gateway for Ops Manager to use. For example, `10.0.0.1`.
+   * **DNS**: One or more DNS servers for the Ops Manager VM to use. For example, `10.20.20.1`.
+   * **NTP Servers**: The IP address of one or more NTP servers for Ops Manager. For example, `10.113.60.176`.
+   * **Admin Password**: A default password for the `ubuntu` user. 
+   * **Public SSH Key**: (Optional) Enter pre-existing public SSH key value to allow SSH access to the Ops Manager VM.
+     <p class="note warning"><strong>Warning</strong>: You must specify a default password, an SSH key, or both. If you do not have either of these fields configured, Ops Manager will not boot up.</p>
+   * **Custom hostname**: The hostname for the Ops Manager VM. For example, `ops-manager`.
+    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-06.png") %>
+    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-07.png") %>
+
+1. At the **Ready to complete** screen, review the configuration settings and click **Finish**.
+
+    This action begins the OVA import and deployment process.
+
+    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-08.png") %>
+
+1. Use the **Recent Tasks** panel at the bottom of the vCenter dashboard to check the progress of the OVA import and deployment. 
+   <br/><br/>
+   If the import or deployment is unsuccessful, check the configuration for errors. Fix any errors and redo the deployment process.
+
+## <a id="deploy"></a> Start Ops Manager
+
+1. Create a DNS entry for the IP address that you used for Ops Manager. 
+
+    You must use this fully qualified domain name when you log into Ops Manager.
+
+    <p class="note"><strong>Note</strong>: Ops Manager security features require you to create a fully qualified domain name to access Ops Manager during the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/vsphere.html#paas">initial configuration.</a></p>
+
+1. Select the Ops Manager VM and click **Actions** > **Power** > **Power On**. 
+
+    Once the VM boots, the Ops Manager web interface is available at the IP address you specified.
+
+    <p class="note"><strong>Note</strong>: It is normal to experience a brief delay before the interface is accessible while the web server and VM start up.</p>
+
+1. Navigate to the fully qualified domain of your Ops Manager in a web browser.
+  <p class="note"><strong>Note</strong>: It is normal to experience a brief delay before the interface is accessible while the web server and VM start up.</p>
 
 ## <a id="next-steps"></a> Next Steps
 
