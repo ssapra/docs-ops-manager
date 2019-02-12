@@ -35,6 +35,8 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
 
 ## <a id="set-up"></a>Step 1: Set Up Ops Manager Authentication
 
+1. In a web browser, navigate to the fully qualified domain of your Ops Manager.
+
 1. When Ops Manager starts for the first time, you must choose one of the following:
     * [Internal Authentication](#internal): If you use Internal Authentication, Ops Manager maintains your user database.
     * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external identity server maintains your user database.
@@ -45,7 +47,7 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
 ### <a id='internal'></a> Internal Authentication
 
 1. When redirected to the **Internal Authentication** page, you must complete the following steps:
-   * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
+   * Enter a **Username**, **Password**, and **Password confirmation** to create a user with administrative privileges.
    * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html).
    * Read the **End User License Agreement**, and select the checkbox to accept the terms.
@@ -53,7 +55,7 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
     
         <%= image_tag("../common/images/om-login.png") %>
 
-1. Log in to Ops Manager with the user name and password you created.
+1. Log in to Ops Manager with the username and password you created in the previous step.
 
     <%= image_tag("../common/images/cf-login.png") %>
 
@@ -120,9 +122,9 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
     * **Disk path Folder**: The vSphere datastore folder where Ops Manager creates attached disk images. You must not nest this folder. Enter `[YOUR-DEPLOYMENT]_disk`. For example, `my_pcf_disk`.
     <p class="note"><strong>Note</strong>: After initial deployment, you cannot edit folder names.</p>
 
-1.  (Optional) Use the **Add vCenter Config** option to configure multiple datacenters, which supports spreading instances across regions within a single PCF foundation.
-
 1. Click **Save**.
+
+1. (Optional) Click **Add vCenter Config** toward the top of the form to configure additional vCenters. After you click **Save**, multiple vCenter Configs are listed in the **vCenter Configs** pane. For more information about multiple vCenter configs, see [Managing Multiple Data Centers](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/multiple-datacenters.html).
 
 ## <a id='dir-config'></a>Step 3: Configure BOSH Director
 
@@ -378,6 +380,7 @@ Assign as many AZs to your network as needed by your deployment. For more inform
 <%= image_tag("../common/images/assign-az.png") %>
 
 1. Use the dropdown to select a **Singleton Availability Zone**. The BOSH Director installs as a single instance in this Availability Zone.
+
 1. Use the dropdown to select a **Network** for your BOSH Director.
 
 1. Click **Save**.
