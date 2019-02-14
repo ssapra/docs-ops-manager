@@ -158,119 +158,94 @@ To complete the procedures in this topic, you must have access to the output fro
     For example, <code>vpc-project/opsmgr/central/us-central1</code>. For more information, see <a href="https://docs.pivotal.io/pivotalcf/2-1/customizing/gcp-shared-vpc.html">Configuring a Shared VPC on GCP</a>.</p>
     <p class="note"><strong>Note:</strong> If you disabled BOSH DNS, enter <code>8.8.8.8</code> into the **DNS Servers** field of the PAS tile. For more information, see step 29g in the <em>Configure Networking</em> section of the <a href="https://docs.pivotal.io/pivotalcf/2-1/customizing/gcp-er-config-terraform.html#dns-servers">Deploying PAS on GCP Using Terraform</a> topic.</p>
     <table>
-        <tr>
-            <th>Network Name</th>
-            <th>Configuration</th>
-        </tr>
-        <tr>
-            <td><code>management</code></td>
-            <td>
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <td><code>management</code></td>
-                    </tr>
-                    <tr>
-                        <th>Google Network Name</th>
-                        <td>Use the <code>network\_name</code>, <code>management\_subnet\_name</code>, and <code>region</code> fields from your Terraform output to enter the name of the management network created by Terraform. 
-                        <br>The format is: <code>network\_name/management\_subnet\_name/region</code></td>
-                    </tr>
-                    <tr>
-                        <th>CIDR</th>
-                        <td>Enter the value of <code>management\_subnet\_cidrs</code> from your Terraform output. 
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Reserved IP Ranges</th>
-                        <td>Enter the first <code>.1</code> through <code>.9</code> addresses from the CIDR. For example, if the CIDR is <code>192.168.101.0/26</code>, enter the range <code>192.168.101.1-192.168.101.9</code>.</td>
-                    </tr>
-                    <tr>
-                        <th>DNS</th>
-                        <td><code>169.254.169.254</code></td>
-                    </tr>
-                    <tr>
-                        <th>Gateway</th>
-                        <td>Enter the value of <code>management\_subnet\_gateway</code> from your Terraform output.</td>
-                    </tr>
-                    <tr>
-                        <th>Availability Zones</th>
-                        <td>Select all three availability zones.</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td><code>pas</code></td>
-            <td>
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <td><code>pas</code></td>
-                    </tr>
-                    <tr>
-                        <th>Google Network Name</th>
-                        <td>Use the <code>network\_name</code>, <code>pas\_subnet\_name</code>, and <code>region</code> fields from your Terraform output to enter the name of the PAS network created by Terraform. 
-                        <br>The format is: <code>network\_name/pas\_subnet\_name/region</code></td>
-                    </tr>
-                    <tr>
-                        <th>CIDR</th>
-                        <td>Enter the value of <code>pas\_subnet\_cidrs</code> from your Terraform output.</td>
-                    </tr>
-                    <tr>
-                        <th>Reserved IP Ranges</th>
-                        <td>Enter the first <code>.1</code> through <code>.9</code> addresses from the CIDR. For example, if the CIDR is <code>192.168.16.0/22</code>, enter the range <code>192.168.16.1-192.168.16.9</code>.</td>
-                    </tr>
-                    <tr>
-                        <th>DNS</th>
-                        <td><code>169.254.169.254</code></td>
-                    </tr>
-                    <tr>
-                        <th>Gateway</th>
-                        <td>Enter the value of <code>pas\_subnet\_gateway</code> from your Terraform output.</td>
-                    </tr>
-                    <tr>
-                        <th>Availability Zones</th>
-                        <td>Select all three availability zones.</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td><code>services</code></td>
-            <td>
-                <table>
-                    <tr>
-                        <th>Name</th>
-                        <td><code>services</code></td>
-                    </tr>
-                    <tr>
-                        <th>Google Network Name</th>
-                        <td>Use the <code>network\_name</code>, <code>services\_subnet\_name</code>, and <code>region</code> fields from your Terraform output to enter the name of the services network created by Terraform. 
-                        <br>The format is: <code>network\_name/services\_subnet\_name/region</code></td>
-                    </tr>
-                    <tr>
-                        <th>CIDR</th>
-                        <td>Enter the value of <code>services\_subnet\_cidrs</code> from your Terraform output.</td>
-                    </tr>
-                    <tr>
-                        <th>Reserved IP Ranges</th>
-                        <td>Enter the first <code>.1</code> through <code>.9</code> addresses from the CIDR. For example, if the CIDR is <code>192.168.16.0/22</code>, enter the range <code>192.168.20.1-192.168.20.9</code>.</td>
-                    </tr>
-                    <tr>
-                        <th>DNS</th>
-                        <td><code>169.254.169.254</code> </td>
-                    </tr>
-                    <tr>
-                        <th>Gateway</th>
-                        <td>Enter the value of <code>services\_subnet\_gateway</code> from your Terraform output.</td>
-                    </tr>
-                    <tr>
-                        <th>Availability Zones</th>
-                        <td>Select all three availability zones.</td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
+      <tr>
+        <th>Network Name</th>
+        <td><code>management</code></td>
+      </tr>
+      <tr>
+        <th>Google Network Name</th>
+        <td>Use the <code>network\_name</code>, <code>management\_subnet\_name</code>, and <code>region</code> fields from your Terraform output to enter the name of the management network created by Terraform.<br>The format is: <code>network\_name/management\_subnet\_name/region</code></td>
+      </tr>
+      <tr>
+        <th>CIDR</th>
+        <td>Enter the value of <code>management\_subnet\_cidrs</code> from your Terraform output.</td>
+      </tr>
+      <tr>
+        <th>Reserved IP Ranges</th>
+        <td>Enter the first <code>.1</code> through <code>.9</code> addresses from the CIDR. For example, if the CIDR is <code>192.168.101.0/26</code>, enter the range <code>192.168.101.1-192.168.101.9</code>.</td>
+      </tr>
+      <tr>
+        <th>DNS</th>
+        <td><code>169.254.169.254</code></td>
+      </tr>
+      <tr>
+        <th>Gateway</th>
+        <td>Enter the value of <code>management\_subnet\_gateway</code> from your Terraform output.</td>
+      </tr>
+      <tr>
+        <th>Availability Zones</th>
+        <td>Select all three availability zones.</td>
+       </tr>
+     </table>
+    <table>
+      <tr>
+        <th>Network Name</th>
+        <td><code>pas</code></td>
+      </tr>
+      <tr>
+        <th>Google Network Name</th>
+        <td>Use the <code>network\_name</code>, <code>pas\_subnet\_name</code>, and <code>region</code> fields from your Terraform output to enter the name of the PAS network created by Terraform.<br>The format is: <code>network\_name/pas\_subnet\_name/region</code></td>
+      </tr>
+      <tr>
+        <th>CIDR</th>
+        <td>Enter the value of <code>pas\_subnet\_cidrs</code> from your Terraform output.</td>
+      </tr>
+      <tr>
+        <th>Reserved IP Ranges</th>
+        <td>Enter the first <code>.1</code> through <code>.9</code> addresses from the CIDR. For example, if the CIDR is <code>192.168.16.0/22</code>, enter the range <code>192.168.16.1-192.168.16.9</code>.</td>
+      </tr>
+      <tr>
+        <th>DNS</th>
+        <td><code>169.254.169.254</code></td>
+      </tr>
+      <tr>
+        <th>Gateway</th>
+        <td>Enter the value of <code>pas\_subnet\_gateway</code> from your Terraform output.</td>
+      </tr>
+      <tr>
+        <th>Availability Zones</th>
+        <td>Select all three availability zones.</td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th>Network Name</th>
+        <td><code>services</code></td>
+      </tr>
+      <tr>
+        <th>Google Network Name</th>
+        <td>Use the <code>network\_name</code>, <code>services\_subnet\_name</code>, and <code>region</code> fields from your Terraform output to enter the name of the services network created by Terraform.<br>The format is: <code>network\_name/services\_subnet\_name/region</code></td>
+      </tr>
+      <tr>
+        <th>CIDR</th>
+        <td>Enter the value of <code>services\_subnet\_cidrs</code> from your Terraform output.</td>
+      </tr>
+      <tr>
+        <th>Reserved IP Ranges</th>
+        <td>Enter the first <code>.1</code> through <code>.9</code> addresses from the CIDR. For example, if the CIDR is <code>192.168.16.0/22</code>, enter the range <code>192.168.20.1-192.168.20.9</code>.</td>
+      </tr>
+      <tr>
+        <th>DNS</th>
+        <td><code>169.254.169.254</code> </td>
+      </tr>
+      <tr>
+        <th>Gateway</th>
+        <td>Enter the value of <code>services\_subnet\_gateway</code> from your Terraform output.</td>
+      </tr>
+      <tr>
+        <th>Availability Zones</th>
+        <td>Select all three availability zones.</td>
+      </tr>
     </table>
     <%= vars.expand_network_azs %>
 
