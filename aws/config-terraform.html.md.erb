@@ -274,7 +274,7 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
     \* If you set a VPC CIDR other than recommended, enter the second IP in your VPC CIDR. For example, for a `10.0.0.0/24` VPC CIDR, enter `10.0.0.2` in each subnet.
   <br><br>
   1. Click **Add Network**.
-  1. For **Name**, enter the name of your runtime. For example, `pas` or `pks`.
+  1. For **Name**, enter the name of your runtime. For example, `pas`.
   1. Create a subnet for each availability zone by clicking **Add Subnet**. Refer to the table below for the information required to create all three subnets:
     <table>
       <tr>
@@ -282,7 +282,7 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
       </tr>
       <tr>
         <th>VPC Subnet ID</th>
-        <td>The first value of <code>RUNTIME_subnet_ids</code> from the Terraform output, where <code>RUNTIME</code> is either <code>pas</code> or <code>pks</code>.</td>
+        <td>The first value of <code>pas_subnet_ids</code> from the Terraform output.</td>
       </tr>
       <tr>
         <th>CIDR</th>
@@ -302,14 +302,14 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
       </tr>
       <tr>
         <th>Availability Zones</th>
-        <td>The first value of <code>RUNTIME_subnet_availability_zones</code> from the Terraform output.</td>
+        <td>The first value of <code>pas_subnet_availability_zones</code> from the Terraform output.</td>
       </tr>
        <tr>
         <th rowspan="7" width="21%">Second<br>Subnet</th>
       </tr>
       <tr>
         <th>VPC Subnet ID</th>
-        <td>The second value of <code>RUNTIME_subnet_ids</code> from the Terraform output.</td>
+        <td>The second value of <code>pas_subnet_ids</code> from the Terraform output.</td>
       </tr>
       <tr>
         <th>CIDR</th>
@@ -329,7 +329,7 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
       </tr>
       <tr>
         <th>Availability Zones</th>
-        <td>The second value of <code>RUNTIME_subnet_availability_zones</code> from the Terraform output.</td>
+        <td>The second value of <code>pas_subnet_availability_zones</code> from the Terraform output.</td>
       </tr>
       <tr>
         <th rowspan="7" width="21%">Third<br>Subnet</th>
@@ -356,7 +356,7 @@ In addition, if you selected the **Enable TLS for Director Database** checkbox, 
       </tr>
       <tr>
         <th>Availability Zones</th>
-        <td>The third value of <code>RUNTIME_subnet_availability_zones</code> from the Terraform output.</td>
+        <td>The third value of <code>pas_subnet_availability_zones</code> from the Terraform output.</td>
       </tr>
     </table>
     \* If you set a VPC CIDR other than recommended, enter the second IP in your VPC CIDR. For example, for a `10.0.0.0/24` VPC CIDR, enter `10.0.0.2` in each subnet.
