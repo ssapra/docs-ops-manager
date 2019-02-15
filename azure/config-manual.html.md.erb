@@ -147,7 +147,7 @@ You created this file in [Deploying Ops Manager on Azure Manually](deploy-manual
 
 In this procedure, you create three networks.
 
-### <a id='infra'></a> Create the Management Network
+### <a id='infra'></a> Create the Infrastructure Network
 
 1. Select **Create Networks**.
 
@@ -155,10 +155,10 @@ In this procedure, you create three networks.
 
 1. Select **Enable ICMP checks** if you want to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
 
-1. For **Name**, enter the name of the network you want to create. For example, `Management`.
+1. For **Name**, enter the name of the network you want to create. For example, `infrastructure`.
 
 1. Under **Subnets**, complete the following fields:
-   * **Azure Network Name**: Enter `PCF/Management`. You can use either the `NETWORK-NAME/SUBNET-NAME` format or the `RESOURCE-GROUP/NETWORK-NAME/SUBNET-NAME` format. If you specify a resource group, it must exist under the same subscription ID you provided in the [Azure Config Page](#azure-config).
+   * **Azure Network Name**: Enter `pcf-virtual-network/pcf-infrastructure-subnet`. You can use either the `NETWORK-NAME/SUBNET-NAME` format or the `RESOURCE-GROUP/NETWORK-NAME/SUBNET-NAME` format. If you specify a resource group, it must exist under the same subscription ID you provided in the [Azure Config Page](#azure-config).
      <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
    * **CIDR**: Enter `10.0.4.0/26`.
    * **Reserved IP Ranges**: Enter the first 9 IP addresses of the subnet. For example, `10.0.4.1-10.0.4.9`.
@@ -168,16 +168,16 @@ In this procedure, you create three networks.
 
 1. Click **Save**.<%= vars.expand_network_azs %>
 
-### <a id='pas'></a> Create the Deployment or PAS Network
+### <a id='pas'></a> Create the Deployment Network
 
 1. Click **Add Network**.
 
 1. Select **Enable ICMP checks** if you want to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
 
-1. For **Name**, enter the name of the network you want to create. For example, `PAS`.
+1. For **Name**, enter the name of the network you want to create. For example, `pas` or `pks`.
 
 1. Under **Subnets**, complete the following fields:
-   * **Azure Network Name**: Enter `PCF/PAS`. You can use either the `NETWORK-NAME/SUBNET-NAME` format or the `RESOURCE-GROUP/NETWORK-NAME/SUBNET-NAME` format. If you specify a resource group, it must exist under the same subscription ID you provided in the [Azure Config Page](#azure-config).
+   * **Azure Network Name**: Enter `pcf-virtual-network/pcf-pas-subnet` or `pcf-virtual-network/pcf-pks-subnet`, depending on your runtime. You can use either the `NETWORK-NAME/SUBNET-NAME` format or the `RESOURCE-GROUP/NETWORK-NAME/SUBNET-NAME` format. If you specify a resource group, it must exist under the same subscription ID you provided in the [Azure Config Page](#azure-config).
      <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
    * **CIDR**: Enter `10.0.12.0/22`.
    * **Reserved IP Ranges**: Enter the first 9 IP addresses of the subnet. For example, `10.0.12.1-10.0.12.9`.
@@ -193,10 +193,10 @@ In this procedure, you create three networks.
 
 1. Select **Enable ICMP checks** if you want to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
 
-1. For **Name**, enter the name of the network you want to create. For example, `Services`.
+1. For **Name**, enter the name of the network you want to create. For example, `services`.
 
 1. Under **Subnets**, complete the following fields:
-   * **Azure Network Name**: Enter `PCF/Services`. You can use either the `NETWORK-NAME/SUBNET-NAME` format or the `RESOURCE-GROUP/NETWORK-NAME/SUBNET-NAME` format. If you specify a resource group, it must exist under the same subscription ID you provided in the [Azure Config Page](#azure-config).
+   * **Azure Network Name**: Enter `pcf-virtual-network/pcf-services-subnet`. You can use either the `NETWORK-NAME/SUBNET-NAME` format or the `RESOURCE-GROUP/NETWORK-NAME/SUBNET-NAME` format. If you specify a resource group, it must exist under the same subscription ID you provided in the [Azure Config Page](#azure-config).
     <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
    * **CIDR**: Enter `10.0.8.0/22`.
    * **Reserved IP Ranges**: Enter the first 9 IP addresses of the subnet. For example, `10.0.8.1-10.0.8.9`.
