@@ -173,15 +173,15 @@ In addition, if you selected **External MySQL Database**, you can fill out the f
     <table>
       <tr>
         <th>Network Name</th>
-        <td><code>management</code></td>
+        <td><code>infrastructure</code></td>
       </tr>
       <tr>
         <th>Google Network Name</th>
-        <td>Use the <code>network\_name</code>, <code>management\_subnet\_name</code>, and <code>region</code> fields from your Terraform output to enter the name of the management network created by Terraform. <br>The format is: <code>network\_name/management\_subnet\_name/region</code></td>
+        <td>Use the <code>network_name</code>, <code>infrastructure_subnet_name</code>, and <code>region</code> fields from your Terraform output to enter the name of the infrastructure network created by Terraform.<br>The format is: <code>network_name/infrastructure_subnet_name/region</code></td>
       </tr>
       <tr>
         <th>CIDR</th>
-        <td>Enter the value of <code>management\_subnet\_cidrs</code> from your Terraform output.</td>
+        <td>Enter the value of <code>infrastructure_subnet_cidrs</code> from your Terraform output.</td>
       </tr>
       <tr>
         <th>Reserved IP Ranges</th>
@@ -193,7 +193,7 @@ In addition, if you selected **External MySQL Database**, you can fill out the f
       </tr>
       <tr>
         <th>Gateway</th>
-        <td>Enter the value of <code>management\_subnet\_gateway</code> from your Terraform output.</td>
+        <td>Enter the value of <code>infrastructure_subnet_gateway</code> from your Terraform output.</td>
       </tr>
       <tr>
         <th>Availability Zones</th>
@@ -207,11 +207,11 @@ In addition, if you selected **External MySQL Database**, you can fill out the f
       </tr>
       <tr>
         <th>Google Network Name</th>
-        <td>Use the <code>network\_name</code>, <code>pas\_subnet\_name</code>, and <code>region</code> fields from your Terraform output to enter the name of the PAS network created by Terraform.<br>The format is: <code>network\_name/pas\_subnet\_name/region</code></td>
+        <td>Use the <code>network_name</code>, <code>pas_subnet_name</code>, and <code>region</code> fields from your Terraform output to enter the name of the PAS network created by Terraform.<br>The format is: <code>network_name/pas_subnet_name/region</code></td>
       </tr>
       <tr>
         <th>CIDR</th>
-        <td>Enter the value of <code>pas\_subnet\_cidrs</code> from your Terraform output.</td>
+        <td>Enter the value of <code>pas_subnet_cidrs</code> from your Terraform output.</td>
       </tr>
       <tr>
         <th>Reserved IP Ranges</th>
@@ -223,7 +223,7 @@ In addition, if you selected **External MySQL Database**, you can fill out the f
       </tr>
       <tr>
         <th>Gateway</th>
-        <td>Enter the value of <code>pas\_subnet\_gateway</code> from your Terraform output.</td>
+        <td>Enter the value of <code>pas_subnet_gateway</code> from your Terraform output.</td>
       </tr>
       <tr>
         <th>Availability Zones</th>
@@ -237,11 +237,11 @@ In addition, if you selected **External MySQL Database**, you can fill out the f
       </tr>
       <tr>
         <th>Google Network Name</th>
-        <td>Use the <code>network\_name</code>, <code>services\_subnet\_name</code>, and <code>region</code> fields from your Terraform output to enter the name of the services network created by Terraform.<br>The format is: <code>network\_name/services\_subnet\_name/region</code></td>
+        <td>Use the <code>network_name</code>, <code>services_subnet_name</code>, and <code>region</code> fields from your Terraform output to enter the name of the services network created by Terraform.<br>The format is: <code>network_name/services_subnet_name/region</code></td>
       </tr>
       <tr>
         <th>CIDR</th>
-        <td>Enter the value of <code>services\_subnet\_cidrs</code> from your Terraform output.</td>
+        <td>Enter the value of <code>services_subnet_cidrs</code> from your Terraform output.</td>
       </tr>
       <tr>
         <th>Reserved IP Ranges</th>
@@ -253,7 +253,7 @@ In addition, if you selected **External MySQL Database**, you can fill out the f
       </tr>
       <tr>
         <th>Gateway</th>
-        <td>Enter the value of <code>services\_subnet\_gateway</code> from your Terraform output.</td>
+        <td>Enter the value of <code>services_subnet_gateway</code> from your Terraform output.</td>
       </tr>
       <tr>
         <th>Availability Zones</th>
@@ -268,7 +268,7 @@ In addition, if you selected **External MySQL Database**, you can fill out the f
 
 1. Use the dropdown to select a **Singleton Availability Zone**. The BOSH Director installs in this Availability Zone.
 
-1. Under **Network**, select the `management` network for your BOSH Director.
+1. Under **Network**, select the `infrastructure` network for your BOSH Director.
 
 1. Click **Save**.
 
