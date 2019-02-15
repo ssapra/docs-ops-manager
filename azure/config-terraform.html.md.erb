@@ -111,23 +111,23 @@ To complete the procedures in this topic, you must have access to the output fro
 
 Select **Create Networks** and follow the procedures in this section to add the network configuration you created for your VPC.
 
-If you are completing this step for PAS, proceed to [Create the PAS Management Network](config-terraform.html#management).
+If you are completing this step for PAS, proceed to [Create the Infrastructure Network for PAS](config-terraform.html#management).
 
 If you are completing this step for PKS, proceed to [Create the Infrastructure Network for PKS](config-terraform.html#pks-infrastructure).
 
 
-### <a id='management'></a> Create the PAS Management Network
+### <a id='management'></a> Create the Infrastructure Network for PAS
 
 1. Click **Add Network**.
 
 1. (Optional) Select **Enable ICMP checks** to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
 
-1. For **Name**, enter the name of the network you want to create. For example, `Management`.
+1. For **Name**, enter the name of the network you want to create. For example, `Infrastructure`.
 
 1. Under **Subnets**, complete the following fields:
-   * **Azure Network Name**: Enter `NETWORK-NAME/SUBNET-NAME`, where `NETWORK-NAME` is the `network_name` output from Terraform and `SUBNET-NAME` is the `management_subnet_name` output from Terraform.
+   * **Azure Network Name**: Enter `NETWORK-NAME/SUBNET-NAME`, where `NETWORK-NAME` is the `network_name` output from Terraform and `SUBNET-NAME` is the `infrastructure_subnet_name` output from Terraform.
      <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
-   * **CIDR**: Enter the CIDR listed under `management_subnet_cidrs` output from Terraform. For example, `10.0.8.0/26`.
+   * **CIDR**: Enter the CIDR listed under `infrastructure_subnet_cidrs` output from Terraform. For example, `10.0.8.0/26`.
    * **Reserved IP Ranges**: Enter the first 9 IP addresses of the subnet. For example, `10.0.8.1-10.0.8.9`.
    * **DNS**: Enter `168.63.129.16`.
    * **Gateway**: Enter the first IP address of the subnet. For example, `10.0.8.1`.
@@ -153,7 +153,7 @@ If you are completing this step for PKS, proceed to [Create the Infrastructure N
 
 1. Click **Save**.
 
-### <a id='services'></a> Create the PAS Services Network
+### <a id='services'></a> Create the Services Network for PAS
 
 1. (Optional) Select **Enable ICMP checks** to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
 
@@ -178,8 +178,8 @@ If you have completed this step for PAS, proceed to [Step 5: Assign AZs and Netw
 1. For **Name**, enter `pks-infrastructure-network`.
 
 1. Under **Subnets**, complete the following fields:
- * **Azure Network Name**: Enter `NETWORK-NAME/SUBNET-NAME`, where `NETWORK-NAME` is the `network_name` output from Terraform and `SUBNET-NAME` is the `management_subnet_name` output from Terraform.
-   * **CIDR**: Enter the CIDR listed under `management_subnet_cidrs` output from Terraform. For example, `10.0.8.0/26`.
+ * **Azure Network Name**: Enter `NETWORK-NAME/SUBNET-NAME`, where `NETWORK-NAME` is the `network_name` output from Terraform and `SUBNET-NAME` is the `infrastructure_subnet_name` output from Terraform.
+   * **CIDR**: Enter the CIDR listed under `infrastructure_subnet_cidrs` output from Terraform. For example, `10.0.8.0/26`.
    * **Reserved IP Ranges**: Enter the first 9 IP addresses of the subnet. For example, `10.0.8.1-10.0.8.9`.
    * **DNS**: Enter `168.63.129.16`.
    * **Gateway**: Enter the first IP address of the subnet. For example, `10.0.8.1`.
