@@ -118,27 +118,27 @@ the procedures in this topic, follow the instructions in [Configuring BOSH Direc
     --source-address-range AzureLoadBalancer
     </pre>
 
-1. Create a virtual network named `PCF`.
+1. Create a virtual network named `pcf-virtual-network`.
     <pre class="terminal">
-    $ az network vnet create --name PCF \
+    $ az network vnet create --name pcf-virtual-network \
     --resource-group $RESOURCE_GROUP --location $LOCATION \
     --address-prefixes 10.0.0.0/16
     </pre>
 
 1. Add subnets to the network for Ops Manager, BOSH director, and PCF VMs, and attach the Network Security Group.
     <pre class="terminal">
-    $ az network vnet subnet create --name Management \
-    --vnet-name PCF \
+    $ az network vnet subnet create --name infrastructure \
+    --vnet-name pcf-virtual-network \
     --resource-group $RESOURCE_GROUP \
     --address-prefix 10.0.4.0/26 \
     --network-security-group pcf-nsg
-    $ az network vnet subnet create --name Deployment \
-    --vnet-name PCF \
+    $ az network vnet subnet create --name pas \
+    --vnet-name pcf-virtual-network \
     --resource-group $RESOURCE_GROUP \
     --address-prefix 10.0.12.0/22 \
     --network-security-group pcf-nsg
-    $ az network vnet subnet create --name Services \
-    --vnet-name PCF \
+    $ az network vnet subnet create --name services \
+    --vnet-name pcf-virtual-network \
     --resource-group $RESOURCE_GROUP \
     --address-prefix 10.0.8.0/22 \
     --network-security-group pcf-nsg
@@ -437,7 +437,7 @@ Your load balancer configuration depends on whether you want apps to be availabl
 1. Create a network interface for Ops Manager.
     <pre class="terminal">
     $ az network nic create --vnet-name PCF \
-    --subnet Management --network-security-group opsmgr-nsg \
+    --subnet infrastructure --network-security-group opsmgr-nsg \
     --private-ip-address 10.0.4.4 \
     --public-ip-address ops-manager-ip \
     --resource-group $RESOURCE_GROUP \
