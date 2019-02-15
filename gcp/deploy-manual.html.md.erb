@@ -22,7 +22,7 @@ After you complete this procedure, follow the instructions in [Configuring BOSH 
     * **Pivotal Cloud Foundry Ops Manager for GCP**
     * **Pivotal Cloud Foundry Ops Manager YAML for GCP**
 
-    When you click the download link, your browser downloads or opens the <code>OpsManager\_VERSION\_onGCP.pdf</code> or <code>OpsManager\_VERSION\_onGCP.yml</code> file. <br/><br/>
+    When you click the download link, your browser downloads or opens the <code>OpsManager_VERSION_onGCP.pdf</code> or <code>OpsManager_VERSION_onGCP.yml</code> file. <br/><br/>
    These documents provide the GCP location of the Ops Manager `.tar.gz` installation file based on the geographic location of your installation.
 
 1. Copy the filepath string of the Ops Manager image based on your deployment location.
@@ -79,7 +79,7 @@ After you complete this procedure, follow the instructions in [Configuring BOSH 
      * Under **Network interfaces**, perform the following steps:
         * Remove the `default` network interface if this interface still exists.
         * Select the network you created when preparing your environment in the [Create a GCP Network with Subnet](./prepare-env-manual.html#create_network) section of the _Preparing to Deploy Ops Manager on GCP Manually_ topic. For example, `pcf-virt-net`.
-        * Under **Subnetwork**, select the `pcf-subnet-infrastructure-GCP-REGION` subnet that you created when preparing your environment in the [Create a GCP Network with Subnet](./prepare-env-manual.html#create_network) section of the _Preparing to Deploy Ops Manager on GCP Manually_ topic.
+        * Under **Subnetwork**, select the `pcf-infrastructure-subnet-GCP-REGION` subnet that you created when preparing your environment in the [Create a GCP Network with Subnet](./prepare-env-manual.html#create_network) section of the _Preparing to Deploy Ops Manager on GCP Manually_ topic.
         * For **Primary internal IP**, select **Ephemeral (Custom)**. Enter an IP address (for example, `192.168.101.5`) in the **Custom ephemeral IP address** field. Specify the next available internal IP address located within the reserved IP range that you [configure later in BOSH Director](./config-manual.html#network). Do not use the **Gateway IP**, for example `192.168.101.1`.
         * For **External IP**, select **Create IP address**. In the next form, enter a name for the static IP. For example, `om-public-ip`. Click **Reserve**. In the **External IP** dropdown, select the static IP address you just reserved.
      * For **Network tags**, enter `pcf-opsman` and `allow-https`. These tags apply the firewall rules you created in [Create Firewall Rules for the Network](prepare-env-manual.html#firewall_rules) to the Ops Manager VM.
