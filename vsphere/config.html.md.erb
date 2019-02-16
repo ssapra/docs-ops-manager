@@ -11,12 +11,12 @@ This topic describes how to configure the BOSH Director tile for VMware vSphere.
 You can also perform the procedures in this topic using the Ops Manager API. For more information,
 see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.
 
-<p class="note warning"><strong>IMPORTANT:</strong> If you are installing Pivotal Container Service
+<p class="note warning"><strong>Warning:</strong> If you are installing Pivotal Container Service
 (PKS) on vSphere with NSX-T integration, follow the instructions in
 <a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-om-config.html">Configuring BOSH Director with NSX-T for PKS</a> instead of performing the procedure described in this topic.</p>
 
-After you complete this procedure, follow the configuration instructions for the runtime you choose
-to install.
+After you complete this procedure, follow the configuration instructions for the runtime that you
+choose to install.
 </br>
 </br>
 For example:
@@ -89,7 +89,9 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
 1. Select **vCenter Config**. Configure the one or more vCenters that host your PCF foundation.
 
 1. Enter the following information:
-    * **Name**: A name you provide for your vCenter configuration. This field is used to identify the datacenter configuration in Ops Manager if you are configuring multiple datacenters.
+    * **Name**: A name that you provide for your vCenter configuration. This field is used to
+      identify the datacenter configuration in Ops Manager if you are configuring multiple
+      datacenters.
     * **vCenter Host**: The hostname of the vCenter that manages ESXi/vSphere.
     * **vCenter Username**: A vCenter username with create and delete privileges for virtual machines (VMs) and folders.
     * **vCenter Password**: The password for the vCenter user specified above.
@@ -177,7 +179,7 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
 
 1. Select **Enable ICMP checks** to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
 
-1. Depending on the runtime you are deploying, do one of the following:
+1. Depending on the runtime that you are deploying, do one of the following:
   * For PAS, click **Add Network** and create the following networks:
       * `pas-infrastructure`: This network is for Ops Manager and the BOSH Director.
       * `pas-deployment`: This network is for all the PAS VMs including Gorouter, Diego cells and Cloud Controller.
@@ -375,7 +377,7 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
   <sup id="note2">&#8224;</sup> For **Reserved IP Ranges**, enter any IP addresses from the **CIDR**
       that you want to blacklist from the installation. Ops Manager will not deploy VMs to any address in this range.
 
-1. For each network you create, select the **Availability Zones** to use with the network. 
+1. For each network that you create, select the **Availability Zones** to use with the network. 
 Assign as many AZs to your network as needed by your deployment. For more information, 
     see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#high-availability">Compute and HA Considerations</a> and <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#scaling">Scaling and Capacity Managment</a> sections of the vSphere Reference Architecture.
 
@@ -432,7 +434,8 @@ Assign as many AZs to your network as needed by your deployment. For more inform
 
 ## <a id="next"></a> Next Steps
 
-After you complete this procedure, follow the instructions for the runtime you intend to install.
+After you complete this procedure, follow the instructions for the runtime that you intend to
+install.
 
 <ul>
   <li>To install PAS, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html">Configuring PAS</a>.</li>
