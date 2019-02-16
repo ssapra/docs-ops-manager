@@ -8,26 +8,28 @@ iaas: vSphere
 
 This topic describes how to configure the BOSH Director tile for VMware vSphere.
 
-You can also perform the procedures in this topic using the Ops Manager API. For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.
+You can also perform the procedures in this topic using the Ops Manager API. For more information,
+see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.
 
-<p class="note warning"><strong>IMPORTANT:</strong> If you are installing Pivotal Container Service (PKS)
-on vSphere with NSX-T integration, follow the instructions in
-<a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-om-config.html">Configuring BOSH Director with NSX-T for PKS</a>
-instead of performing the procedure described in this topic.</p>
+<p class="note warning"><strong>Warning:</strong> If you are installing Pivotal Container Service
+(PKS) on vSphere with NSX-T integration, follow the instructions in
+<a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-om-config.html">Configuring BOSH Director with NSX-T for PKS</a> instead of performing the procedure described in this topic.</p>
 
-After you complete this procedure, follow the configuration instructions for the runtime you choose to install.
+After you complete this procedure, follow the configuration instructions for the runtime that you
+choose to install.
 </br>
 </br>
 For example:
-    <ul>
-    <li> To install Pivotal Application Service (PAS), see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/config-er-vmware.html">Deploying PAS on vSphere</a>.
-    <li> To install PKS, see [Installing PKS on vSphere](https://docs.pivotal.io/runtimes/pks/1-3/installing-pks-vsphere.html).
-    </ul>
-    <p class="note"><strong>Note</strong>: We strongly recommend installing PAS and PKS on separate instances of Ops Manager 
-      for security reasons. 
-      For more information, see <a href="https://docs.pivotal.io/runtimes/pks/pas-and-pks.html">PAS and PKS Deployments with Ops Manager</a>.</p>
+<ul>
+  <li> To install Pivotal Application Service (PAS), see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/config-er-vmware.html">Deploying PAS on vSphere</a>.</li>
+  <li> To install PKS, see [Installing PKS on vSphere](https://docs.pivotal.io/runtimes/pks/1-3/installing-pks-vsphere.html).</li>
+</ul>
+<p class="note"><strong>Note</strong>: We strongly recommend installing PAS and PKS on separate
+instances of Ops Manager for security reasons. For more information, see
+<a href="https://docs.pivotal.io/runtimes/pks/pas-and-pks.html">PAS and PKS Deployments with Ops Manager</a>.</p>
 
-See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html) for more information about Pivotal Cloud Foundry (PCF) runtimes.
+See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html) for more
+information about Pivotal Cloud Foundry (PCF) runtimes.
 
 ##<a id='prerequisites'></a>Prerequisite
 
@@ -38,9 +40,12 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
 1. In a web browser, navigate to the fully qualified domain of your Ops Manager.
 
 1. When Ops Manager starts for the first time, you must choose one of the following:
-    * [Internal Authentication](#internal): If you use Internal Authentication, Ops Manager maintains your user database.
-    * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external identity server maintains your user database.
-    * [LDAP Server](#ldap): If you use a LDAP Server, an external identity server maintains your user database.
+    * [Internal Authentication](#internal): If you use Internal Authentication, Ops Manager
+      maintains your user database.
+    * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external
+      identity server maintains your user database.
+    * [LDAP Server](#ldap): If you use a LDAP Server, an external identity server maintains your
+      user database.
 
     <%= image_tag("../common/images/select-authentication.png") %>
 
@@ -51,7 +56,7 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
    * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html).
    * Read the **End User License Agreement**, and select the checkbox to accept the terms.
-   * Click **Setup Authentication**. It takes a few minutes to initialize the database.
+   * Click **Setup Authentication**.
     
         <%= image_tag("../common/images/om-login.png") %>
 
@@ -82,7 +87,9 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
 1. Select **vCenter Config**. Configure the one or more vCenters that host your PCF foundation.
 
 1. Enter the following information:
-    * **Name**: A name you provide for your vCenter configuration. This field is used to identify the datacenter configuration in Ops Manager if you are configuring multiple datacenters.
+    * **Name**: A name that you provide for your vCenter configuration. This field is used to
+      identify the datacenter configuration in Ops Manager if you are configuring multiple
+      datacenters.
     * **vCenter Host**: The hostname of the vCenter that manages ESXi/vSphere.
     * **vCenter Username**: A vCenter username with create and delete privileges for virtual machines (VMs) and folders.
     * **vCenter Password**: The password for the vCenter user specified above.
@@ -96,7 +103,7 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
 1. Select a network configuration from one of the following:
     * **Standard vCenter Networking**: This is the default option when upgrading Ops Manager.
     <p class="note warning"><strong>Warning</strong>: 
-    If you intend to deploy PKS using Flannel as the CNI (as opposed to NSX-T), then select this option to configure the BOSH Director. Do not choose **NSX Networking**. When you configure the PKS tile later on, you will configure Flannel as the container network interface (CNI). <br/><br/>If you intend to deploy PKS with NSX-T, see <a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-index.html">Intalling PKS on vSphere with NSX-T Data Center</a>.</p>
+    If you intend to deploy PKS using Flannel as the CNI (as opposed to NSX-T), then select this option to configure the BOSH Director. Do not choose **NSX Networking**. When you configure the PKS tile later on, you will configure Flannel as the container network interface (CNI). <br/><br/>If you intend to deploy PKS with NSX-T, see <a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-index.html">Installing PKS on vSphere with NSX-T Data Center</a>.</p>
 
         <%= image_tag("../common/images/vsphere/vsphere_bosh-config-03.png") %>
     * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization for non-PKS runtimes such as Pivotal Application Service (PAS).
@@ -114,7 +121,6 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
             openssl s_client -showcerts -connect NSX-MANAGER-ADDRESS:443 < /dev/null 2> /dev/null | openssl x509
             ```
             Where `NSX-MANAGER-ADDRESS` is the address of the NSX manager.
-
 
 1. Configure the following folder names:
     * **VM Folder**: The vSphere datacenter folder where Ops Manager places VMs. Enter `[YOUR-DEPLOYMENT]_vms` where `YOUR-DEPLOYMENT` corresponds to a descriptive name for your deployment. For example, `my_pcf_vms`.
@@ -140,10 +146,11 @@ across all of the AZs assigned to the application.
 
 Pivotal recommends that you use at least three AZs for a highly available installation of your chosen runtime.
 
-<p class="note"><strong>Note</strong>: For more information about AZs and high availability in vSphere, see 
-  <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#high-availability">vSphere Reference Architecture</a>.</p>
+<p class="note"><strong>Note</strong>: For more information about AZs and high availability in
+vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#high-availability">Compute and HA Considerations</a> in
+<em>vSphere Reference Architecture</em>.</p>
 
-1. Select **Create Availability Zones**.
+1. Select **Create Availability Zones** to navigate to the pane.
 
     <%= image_tag("../common/images/create-az.png", :alt => "The 'Create Availability Zones' pane shows a list of two availability zones: 'first-az' and 'second-az' with a button to the right to 'Add'. The 'first-az' is expanded and shows the fields 'Name' and 'IaaS Configuration'. Below that, still in the expanded 'first-az', a subhead called 'Clusters' lists a group of two fields, 'Cluster' and 'Resource Pool' with a button to the right to 'Add Cluster'.") %>
 
@@ -151,8 +158,8 @@ Pivotal recommends that you use at least three AZs for a highly available instal
     * Click **Add**. 
     * Enter a unique **Name** for the AZ.
     * Select a vCenter config name from the **IaaS Configuration** dropdown to associate your AZ with a vCenter. If you have only one vCenter config, or if you are creating your first AZ, IaaS Configuration defaults to the first vCenter and cannot be configured.
-    * Enter the name of the vCenter **Cluster** where you deployed Ops Manager. You created this cluster in [Deploying Ops Manager to vSphere](./deploy.html#prepare-vsphere). For example, `Cluster1`.
-    * Enter the name of the **Resource Pool** that you created in [Deploying Ops Manager to vSphere](./deploy.html#prepare-vsphere) to organize management components like Ops Manager and BOSH Director. 
+    * Enter the name of the vCenter **Cluster** where you deployed Ops Manager. You created this cluster in the [Prepare vSphere](./deploy.html#prepare-vsphere) step of _Deploying Ops Manager to vSphere_. For example, `Cluster1`.
+    * Enter the name of the **Resource Pool** that you created in the [Prepare vSphere](./deploy.html#prepare-vsphere) step of _Deploying Ops Manager to vSphere_ to organize management components like Ops Manager and BOSH Director. 
     For example, `RP-MGMT`. The jobs running in this AZ share the CPU and memory resources defined by the pool. 
     You only need to specify this resource group in one AZ.
     * (Optional) Click **Add Cluster** to add more clusters to the AZ as required by your installation size and high availability requirements.
@@ -170,7 +177,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
 
 1. Select **Enable ICMP checks** to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
 
-1. Depending on the runtime you are deploying, do one of the following:
+1. Depending on the runtime that you are deploying, do one of the following:
   * For PAS, click **Add Network** and create the following networks:
       * `pas-infrastructure`: This network is for Ops Manager and the BOSH Director.
       * `pas-deployment`: This network is for all the PAS VMs including Gorouter, Diego cells and Cloud Controller.
@@ -368,7 +375,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
   <sup id="note2">&#8224;</sup> For **Reserved IP Ranges**, enter any IP addresses from the **CIDR**
       that you want to blacklist from the installation. Ops Manager will not deploy VMs to any address in this range.
 
-1. For each network you create, select the **Availability Zones** to use with the network. 
+1. For each network that you create, select the **Availability Zones** to use with the network. 
 Assign as many AZs to your network as needed by your deployment. For more information, 
     see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#high-availability">Compute and HA Considerations</a> and <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#scaling">Scaling and Capacity Managment</a> sections of the vSphere Reference Architecture.
 
@@ -421,7 +428,8 @@ Assign as many AZs to your network as needed by your deployment. For more inform
 
 ## <a id="next"></a> Next Steps
 
-After you complete this procedure, follow the instructions for the runtime you intend to install.
+After you complete this procedure, follow the instructions for the runtime that you intend to
+install.
 
 <ul>
   <li>To install PAS, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/config-er-vmware.html">Deploying PAS on vSphere</a>.</li>
