@@ -181,9 +181,9 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
 
 1. Depending on the runtime that you are deploying, do one of the following:
   * For PAS, click **Add Network** and create the following networks:
-      * `pas-infrastructure`: This network is for Ops Manager and the BOSH Director.
-      * `pas-deployment`: This network is for all the PAS VMs including Gorouter, Diego cells and Cloud Controller.
-      * `pas-services`: This network is for any service tiles to be deployed alongside PAS.   <br/><br/> 
+      * `infrastructure`: This network is for Ops Manager and the BOSH Director.
+      * `pas`: This network is for all the PAS VMs including Gorouter, Diego cells, and Cloud Controller.
+      * `services`: This network is for any service tiles to be deployed alongside PAS.   <br/><br/> 
     Use the values from the following table as a guide when you create each network, replacing the IP addresses with ranges that are available in your vSphere environment:
      <table>
      <tr>
@@ -193,11 +193,11 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
     </tr>
     <tr>
       <td>Name</td>
-      <td><code>pas-infrastructure</code></td>
+      <td><code>infrastructure</code></td>
     </tr>
     <tr>
       <td>vSphere Network Name <sup>&#42;</sup></td>
-      <td><code>MY-PAS-virt-net/MY-PAS-subnet-infrastructure</code></td>
+      <td><code>pcf-virt-net/infrastructure</code></td>
     </tr>
     <tr>
       <td>CIDR</td>
@@ -222,11 +222,11 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
     </tr>
     <tr>
       <td>Name</td>
-      <td><code>pas-deployment</code></td>
+      <td><code>pas</code></td>
     </tr>
     <tr>
       <td>vSphere Network Name  <sup>&#42;</sup></td>
-      <td><code>MY-PAS-virt-net/MY-PAS-subnet-pas</code></td>
+      <td><code>pcf-virt-net/pcf-pas-subnet</code></td>
     </tr>
     <tr>
       <td>CIDR</td>
@@ -251,11 +251,11 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
     </tr>
     <tr>
       <td>Name</td>
-      <td><code>pas-services</code></td>
+      <td><code>services</code></td>
     </tr>
     <tr>
       <td>vSphere Network Name <sup>&#42;</sup></td>
-      <td><code>MY-PAS-virt-net/MY-PAS-subnet-services</code></td>
+      <td><code>pcf-virt-net/pcf-services-subnet</code></td>
     </tr>
     <tr>
       <td>CIDR</td>
@@ -279,9 +279,9 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
       that you want to blacklist from the installation. Ops Manager will not deploy VMs to any address in this range.
 
   1. For PKS, click **Add Network** and create the following networks:
-      * `pks-infrastructure`: This network is for Ops Manager, the BOSH Director, the PKS broker, and the PKS API.
-      * `pks-main`: If you have a large deployment with multiple tiles, you can choose to deploy the PKS broker and PKS API to a separate network named `pks-main`. See the table below for more information.
-      * `pks-services`: Network for creating the master and worker VMs for Kubernetes clusters. The CIDR should not conflict with the pod overlay network `10.200.0.0/16` or the reserved Kubernetes services CIDR of `10.100.200.0/24`.
+      * `infrastructure`: This network is for Ops Manager, the BOSH Director, the PKS broker, and the PKS API.
+      * `pks`: If you have a large deployment with multiple tiles, you can choose to deploy the PKS broker and PKS API to a separate network named `pks`. See the table below for more information.
+      * `services`: Network for creating the master and worker VMs for Kubernetes clusters. The CIDR should not conflict with the pod overlay network `10.200.0.0/16` or the reserved Kubernetes services CIDR of `10.100.200.0/24`.
       <p class="note"><strong>Note</strong>: Multiple networks allow you to place vCenter on a private network and the rest of your deployment on a public network. Isolating vCenter in this manner denies access to it from outside sources and reduces possible security vulnerabilities.</p>
   Use the values from the following table as a guide when you create each network, replacing the IP addresses with ranges that are available in your vSphere environment:
   <table>
@@ -292,11 +292,11 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
     </tr>
     <tr>
       <td>Name</td>
-      <td><code>pks-infrastructure</code></td>
+      <td><code>infrastructure</code></td>
     </tr>
     <tr>
       <td>vSphere Network Name <sup>&#42;</sup></td>
-      <td><code>MY-PKS-virt-net/MY-PKS-subnet-infrastructure</code></td>
+      <td><code>pcf-virt-net/pks-infrastructure-subnet</code></td>
     </tr>
     <tr>
       <td>CIDR</td>
@@ -321,11 +321,11 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
     </tr>
     <tr>
       <td>Name</td>
-      <td><code>pks-main</code></td>
+      <td><code>pks</code></td>
     </tr>
     <tr>
       <td>vSphere Network Name <sup>&#42;</sup></td>
-      <td><code>MY-PKS-virt-net/MY-PKS-subnet-pks</code></td>
+      <td><code>pcf-virt-net/pks-subnet</code></td>
     </tr>
     <tr>
       <td>CIDR</td>
@@ -350,11 +350,11 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
     </tr>
     <tr>
       <td>Name</td>
-      <td><code>pks-services</code></td>
+      <td><code>services</code></td>
     </tr>
     <tr>
       <td>vSphere Network Name <sup>&#42;</sup></td>
-      <td><code>MY-PKS-virt-net/MY-PKS-subnet-services</code></td>
+      <td><code>pcf-virt-net/pks-service-subnet</code></td>
     </tr>
     <tr>
       <td>CIDR</td>
