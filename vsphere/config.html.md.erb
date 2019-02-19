@@ -18,7 +18,7 @@ instead of performing the steps provided in this topic.</p>
 
 ## <a id="prerequisites"></a> Prerequisites
 
-Before you begin this procedure, you must complete all steps in [Deploying BOSH and Ops Manager to vSphere](./deploy.html).
+Before you begin this procedure, you must complete all steps in [Deploying Ops Manager on vSphere](./deploy.html).
 
 <p class="note"><strong>Note</strong>: Pivotal strongly recommends installing PAS and PKS on separate instances of Ops Manager for security reasons. For more information, see <a href="https://docs.pivotal.io/runtimes/pks/pas-and-pks.html">PAS and PKS Deployments with Ops Manager</a>.</p>
 
@@ -27,8 +27,10 @@ Before you begin this procedure, you must complete all steps in [Deploying BOSH 
 1. In a web browser, navigate to the fully qualified domain of your Ops Manager.
 
 1. When Ops Manager starts for the first time, you must choose one of the following:
-    * [Use an Identity Provider](#idp): If you choose **Use an Identity Provider**, an external identity server maintains your user database.
-    * [Internal Authentication](#internal): If you choose **Internal Authentication**, Pivotal Cloud Foundry (PCF) maintains your user database.
+    * [Use an Identity Provider](#idp): If you choose **Use an Identity Provider**, an external
+      identity server maintains your user database.
+    * [Internal Authentication](#internal): If you choose **Internal Authentication**, Ops Manager
+      maintains your user database.
 
     <%= image_tag("../common/images/select-authentication.png") %>
 
@@ -41,7 +43,7 @@ Before you begin this procedure, you must complete all steps in [Deploying BOSH 
 1.  When redirected to the **Internal Authentication** page, you must complete the following steps:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-aws-manual-er-config.html).
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html).
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -49,7 +51,7 @@ Before you begin this procedure, you must complete all steps in [Deploying BOSH 
 
 ## <a id='vcenter-config'></a> Step 2: vCenter Configs Page
 
-1. Log in to Ops Manager with the Admin username and password you created in the previous step.
+1. Log in to Ops Manager with the Admin username and password that you created in the previous step.
 
     <%= image_tag("../common/images/cf-login.png") %>
 
@@ -62,7 +64,7 @@ Before you begin this procedure, you must complete all steps in [Deploying BOSH 
     <%= image_tag("../common/images/vcenter-config.png") %>
 
 1. Enter the following information:
-    * **Name**: A name you provide for your vCenter configuration.
+    * **Name**: A name that you provide for your vCenter configuration.
     * **vCenter Host**: The hostname of the vCenter that manages ESXi/vSphere.
     * **vCenter Username**: A vCenter username with create and delete privileges for virtual machines (VMs) and folders.
     * **vCenter Password**: The password for the vCenter user specified above.
@@ -81,10 +83,9 @@ Before you begin this procedure, you must complete all steps in [Deploying BOSH 
     <%= image_tag("../common/images/NSXdirectorconfig.png") %>
     Configure NSX networking by entering the following information:
         * **NSX Mode**: Select either **NSX-V** or **NSX-T**.
-        <p class="note"><strong>Note:</strong> If you want to configure <strong>NSX Networking</strong> for PKS,
-        you must select <strong>NSX-T</strong>. For instructions on how to configure <strong>NSX Networking</strong> for PKS, see
-        the <a href="https://docs.pivotal.io/runtimes/pks/1-2/vsphere-nsxt-om-config.html#vcenter-config">Configure vCenter for PKS</a>
-        section in <em>Configuring BOSH Director with NSX-T for PKS</em>.</p>
+        <p class="note"><strong>Note:</strong> If you want to configure NSX Networking for PKS,
+        you must select <strong>NSX-T</strong>. For more information about NSX Networking for PKS,
+        see the <a href="https://docs.pivotal.io/runtimes/pks/1-2/vsphere-nsxt-om-config.html#vcenter-config">Configure vCenter for PKS</a> section of <em>Configuring BOSH Director with NSX-T for PKS</em>.</p>
         * **NSX Address**: The address of the NSX manager.
         * **NSX Username**: The username to connect to the NSX manager.
         * **NSX Password**: The password for the username specified above.
@@ -99,7 +100,7 @@ Before you begin this procedure, you must complete all steps in [Deploying BOSH 
 1. Click **Save**.
   <p class="note"><strong>Note:</strong> After your initial deployment, you cannot edit the VM Folder, Template Folder, and Disk path Folder names.</p>
 
-1. (Optional) Click **Add vCenter Config** toward the top of the form to configure additional vCenters. Once you click **Save**, your multiple vCenter Configs are listed in the **vCenter Configs** pane. For more information about multiple vCenter configs, see [Adding Multiple vSphere vCenters](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/multiple-datacenters.html).
+1. (Optional) Click **Add vCenter Config** toward the top of the form to configure additional vCenters. Once you click **Save**, your multiple vCenter Configs are listed in the **vCenter Configs** pane. For more information about multiple vCenter configs, see [Managing Multiple Data Centers](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/multiple-datacenters.html).
 
 
 ## <a id='dir-config'></a> Step 3: Director Config Page
@@ -120,7 +121,9 @@ Before you begin this procedure, you must complete all steps in [Deploying BOSH 
 1. Leave the **Bosh HM Forwarder IP Address** field blank.
     <p class="note"><strong>Note:</strong> Starting in PCF v2.0, BOSH-reported component metrics are available in the Loggregator Firehose by default. If you continue to use the BOSH HM Forwarder to consume these component metrics, you may receive duplicate data. To prevent this, leave the <strong>Bosh HM Forwarder IP Address</strong> field blank. For additional guidance, see <a href="https://docs.pivotal.io/pivotalcf/2-0/pcf-release-notes/runtime-rn.html#bosh-metrics">BOSH System Metrics Available in Loggregator Firehose</a> in the PCF v2.0 Release Notes.</p>
 
-1. Select the **Enable VM Resurrector Plugin** to enable Ops Manager Resurrector functionality and increase your runtime availability. If you intend to install PAS, see the [Using Ops Manager Resurrector on VMware vSphere](https://docs.pivotal.io/pivotalcf/2-2/customizing/resurrector.html) topic for more information about the Resurrector plugin.
+1. Select the **Enable VM Resurrector Plugin** to enable Ops Manager Resurrector functionality and
+increase your runtime availability. If you intend to install PAS, see [Using BOSH Resurrector and vSphere HA](https://docs.pivotal.io/pivotalcf/2-2/customizing/resurrector.html) for more
+information about the Resurrector plugin.
 
 1. Select **Enable Post Deploy Scripts** to run a post-deploy script after deployment. This script allows the job to execute additional commands against a deployment.
   <p class="note"><strong>Note:</strong> You must enable post-deploy scripts to install PKS.</p>
@@ -220,7 +223,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
 
 1. Select **Enable ICMP checks** to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
 
-1. Depending on the runtime you are deploying, do one of the following:
+1. Depending on the runtime that you are deploying, do one of the following:
 
   1. For PAS, use the following steps to create one or more Ops Manager networks:
       * Click **Add Network**.
@@ -383,7 +386,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
 
 ## <a id="next"></a> Next Steps
 
-After you complete this procedure, follow the instructions for the runtime you intend to install.
+After you complete this procedure, follow the instructions for the runtime that you intend to install.
 
 <ul>
   <li>To install PAS, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/config-er-vmware.html">Deploying PAS on vSphere</a>.</li>

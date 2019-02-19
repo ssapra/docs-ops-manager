@@ -1,11 +1,11 @@
 ---
-title: Deploying BOSH and Ops Manager to vSphere
+title: Deploying Ops Manager on vSphere
 owner: Ops Manager
 ---
 
 <strong><%= modified_date %></strong>
 
-This topic provides instructions for deploying Ops Manager to VMware vSphere.
+This topic provides instructions for deploying Ops Manager on VMware vSphere.
 
 <p class="note warning"><strong>WARNING:</strong> If you are installing Pivotal Container Service (PKS)
 on vSphere with NSX-T integration, follow the instructions in
@@ -32,16 +32,16 @@ instead of performing the steps provided in this topic.</p>
 1. Click your newly created folder.
 
 1. Click the **Deploy OVF Template** icon and complete the following steps:
-    <p class="note"><strong>Note</strong>: The vSphere Web Client requires Flash. If the **Deploy OVF Template** button is unresponsive, ensure you have Flash enabled in your browser and reload the page.</p>
+    <p class="note"><strong>Note</strong>: The vSphere Web Client requires Flash. If the **Deploy OVF Template** button is unresponsive, ensure that you have Flash enabled in your browser and reload the page.</p>
     ![Ova form fill](../common/images/ova.png)
     1. **Select template**
-        1. Click **Browse** and select the `.ova` file you downloaded from Pivotal Network.
+        1. Click **Browse** and select the `.ova` file that you downloaded from Pivotal Network.
         1. Click **Next**.
     1. **Select name and location**
         1. Name the virtual machine and click **Next**.
-            <p class="note"><strong>Note</strong>: The selected folder is the one you created.</p>
+            <p class="note"><strong>Note</strong>: The selected folder is the one that you created.</p>
     1. **Select a resource**
-        1. Select the resource you want to use to launch the VM and click **Next**.
+        1. Select the resource that you want to use to launch the VM and click **Next**.
             <p class="note"><strong>Note</strong>: Hardware virtualization must be off if your vSphere host does not support VT-x/EPT.</p>
     1. **Review Details**
         1. Verify the template details and click **Next**. 
@@ -61,7 +61,7 @@ instead of performing the steps provided in this topic.</p>
     1. **Ready to complete**
         1. Review the configuration data and click **Finish**. 
 
-1. With the VM selected, click **Actions** > **Power** > **Power On**. Once the VM boots, the interface is available at the IP address you specified.
+1. With the VM selected, click **Actions** > **Power** > **Power On**. Once the VM boots, the interface is available at the IP address that you specified.
 
      <p class="note"><strong>Note</strong>: It is normal to experience a brief delay before the interface is accessible while the web server and VM start up.</p>
 
