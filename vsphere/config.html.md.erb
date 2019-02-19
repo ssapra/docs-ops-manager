@@ -236,9 +236,9 @@ Pivotal recommends that you use at least three AZs for a highly available instal
       * Enter your **DNS** and **Gateway** IP addresses.
       * Select which **Availability Zones** to use with the network.
   1. For PKS, create the following Ops Manager networks:
-      * `pks-infrastructure`: This network is for Ops Manager, the BOSH Director, the PKS broker, and the PKS API.
-      * `pks-main`: If you have a large deployment with multiple tiles, you can choose to deploy the PKS broker and PKS API to a separate network named `pks-main`. See the table below for more information.
-      * `pks-services`: Network for creating the master and worker VMs for Kubernetes clusters. The CIDR should not conflict with the pod overlay network `10.200.0.0/16` or the reserved Kubernetes services CIDR of `10.100.200.0/24`.
+      * `infrastructure`: This network is for Ops Manager, the BOSH Director, the PKS broker, and the PKS API.
+      * `pks`: If you have a large deployment with multiple tiles, you can choose to deploy the PKS broker and PKS API to a separate network named `main`. See the table below for more information.
+      * `services`: Network for creating the master and worker VMs for Kubernetes clusters. The CIDR should not conflict with the pod overlay network `10.200.0.0/16` or the reserved Kubernetes services CIDR of `10.100.200.0/24`.
       <br><br>
       Use the values from the following table as a guide when you create each network, replacing the IP addresses with ranges that are available in your vSphere environment:
       <table>
@@ -249,11 +249,11 @@ Pivotal recommends that you use at least three AZs for a highly available instal
         </tr>
         <tr>
           <td>Name</td>
-          <td><code>pks-infrastructure</code></td>
+          <td><code>infrastructure</code></td>
         </tr>
         <tr>
           <td>vSphere Network Name</td>
-          <td><code>MY-PKS-virt-net/MY-PKS-subnet-infrastructure</code></td>
+          <td><code>pcf-virt-net/pcf-infrastructure-subnet</code></td>
         </tr>
         <tr>
           <td>CIDR</td>
@@ -278,11 +278,11 @@ Pivotal recommends that you use at least three AZs for a highly available instal
         </tr>
         <tr>
           <td>Name</td>
-          <td><code>pks-main</code></td>
+          <td><code>pks</code></td>
         </tr>
         <tr>
           <td>vSphere Network Name</td>
-          <td><code>MY-PKS-virt-net/MY-PKS-subnet-pks</code></td>
+          <td><code>pcf-virt-net/pcf-pks-subnet</code></td>
         </tr>
         <tr>
           <td>CIDR</td>
@@ -307,11 +307,11 @@ Pivotal recommends that you use at least three AZs for a highly available instal
         </tr>
         <tr>
           <td>Name</td>
-          <td><code>pks-services</code></td>
+          <td><code>services</code></td>
         </tr>
         <tr>
           <td>vSphere Network Name</td>
-          <td><code>MY-PKS-virt-net/MY-PKS-subnet-services</code></td>
+          <td><code>pcf-virt-net/pcf-services-subnet</code></td>
         </tr>
         <tr>
           <td>CIDR</td>
