@@ -128,7 +128,7 @@ procedures in this topic.</p>
     --address-prefixes 10.0.0.0/16
     </pre>
 
-1. Add subnets to the network for Ops Manager, BOSH director, and PCF VMs, and attach the Network Security Group.
+1. Add subnets to the network for Ops Manager, BOSH director, and the VMs for your runtime, and attach the Network Security Group.
     <pre class="terminal">
     $ az network vnet subnet create --name infrastructure \
     --vnet-name pcf-virtual-network \
