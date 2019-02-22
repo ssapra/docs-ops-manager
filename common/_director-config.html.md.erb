@@ -21,10 +21,7 @@ delimited)** field. For example, `us.pool.ntp.org`.
 
 <%# For GCP: %>
 <% elsif current_page.data.iaas == "GCP" %>
-1. In the **NTP Servers (comma delimited)** field, enter `metadata.google.internal`.
-    <p class="note"><strong>Note:</strong> To resolve <code>metadata.google.internal</code>
-    as the NTP server hostname, you must provide the two IP addresses for DNS configuration as
-    described in <a href="#network">Step 5: Create Networks Page</a> of this procedure.</p>
+1. In the **NTP Servers (comma delimited)** field, enter `169.254.169.254` to designate the `metadata.google.internal` host as NTP server.
 
 
 
