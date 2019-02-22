@@ -63,8 +63,7 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
 
     <%= image_tag("../common/images/gcp/director_gcp.png") %>
 
-1. In the **NTP Servers (comma delimited)** field, enter `metadata.google.internal`.
-    <p class="note"><strong>Note:</strong> To resolve <code>metadata.google.internal</code> as the NTP server hostname, you must provide the two IP addresses for DNS configuration as described in <a href="#network">Step 5: Create Networks Page</a> of this procedure.</p>
+1. In the **NTP Servers (comma delimited)** field, enter `169.254.169.254` to designate the `metadata.google.internal` host as NTP server.
     <p class="note"><strong>Note:</strong> The NTP server configuration only updates after VM recreation. Ensure that you select the <strong>Recreate all VMs</strong> checkbox if you modify the value of this field.</p>
 
 1. Leave the **JMX Provider IP Address** field blank.
@@ -272,6 +271,9 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
         </tr>
       </table>
    <%= vars.expand_network_azs %>
+
+    <p class="note"><strong>Note:</strong> Ensure <code>169.254.169.254</code>, the IP address of the <code>metadata.google.internal</code> metadata server, 
+    is always specified at the beginning of this step's DNS resolver lists.</p>     
 
 ## <a id="assign-azs"></a>Step 6: Assign AZs and Networks Page##
 
