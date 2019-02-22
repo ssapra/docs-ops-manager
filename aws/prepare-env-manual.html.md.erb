@@ -20,9 +20,9 @@ Log in to the AWS Management Console, and file a ticket with Amazon to ensure th
 
 <p class="note"><strong>Note:</strong> To deploy PCF to AWS GovCloud (US), log in to the <a href="https://console.amazonaws-us-gov.com/">AWS GovCloud (US) Console</a> instead of the standard AWS Management Console and select the <code>us-gov-west-1</code> region.</p>
 
-<p class="note"><strong>Note</strong>: To deploy PCF to AWS China, set up an <a href="http://www.amazonaws.cn/en/products/">AWS China</a> account and contact the Platform Architect assigned for your Pivotal account.</p>
+<p class="note"><strong>Note:</strong> To deploy PCF to AWS China, set up an <a href="http://www.amazonaws.cn/en/products/">AWS China</a> account and contact the Platform Architect assigned for your Pivotal account.</p>
 
-You can check the limits on your account by visiting the EC2 Dashboard on the AWS Management Console and clicking <strong>Limits</strong> on the left navigation.
+You can check the limits on your account by visiting the EC2 Dashboard on the AWS Management Console and clicking **Limits** on the left navigation.
 
 
 ## <a id='create-s3'></a> Step 2: Create S3 Buckets
@@ -57,7 +57,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
 1. Click **Next: Permissions**.
 
 1. Click **Next: Review** and review your choices.
-    <p class="note"><strong>Note:</strong> On the <b>Review</b> page you may see a warning that the user has no permissions. You can disregard this message. You do not need to set user permissions.</p>
+    <p class="note"><strong>Note:</strong> On the <strong>Review</strong> page you may see a warning that the user has no permissions. You can disregard this message. You do not need to set user permissions.</p>
 
 1. Click **Create user**.
 
@@ -67,7 +67,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
 1. Click **Close**.
 
 1. On the **Users** page, click the user name to access the user details page.
-    <p class="note"><strong>Note:</strong> On the <b>Users</b> page you may see a warning that the user has no permissions. You can disregard this message. You do not need to set user permissions.</p>
+    <p class="note"><strong>Note:</strong> On the <strong>Users</strong> page you may see a warning that the user has no permissions. You can disregard this message. You do not need to set user permissions.</p>
 
 1. Click **Add inline policy**. You can review your existing inline policies by clicking the down arrow.
 
@@ -197,7 +197,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
      </table>
 
 
-##<a id='pcfaws-om-secgrp'></a> Step 5: Configure a Security Group for Ops Manager
+## <a id='pcfaws-om-secgrp'></a> Step 5: Configure a Security Group for Ops Manager
 
 1. Return to the EC2 Dashboard.
 
@@ -302,7 +302,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
 1. For **VPC**, select the VPC where you want to deploy this Elastic Load Balancer (ELB).
 
 1. Click the **Inbound** tab and add rules to allow traffic to ports `80`, `443`, and `4443` from `0.0.0.0/0`, as the table and image show.
-    <p class="note"><b>Note</b>: Allow traffic to port `4443` only if you are in an AWS cloud region that does not support AWS ALBs. For example, the GovCloud region. For more information about AWS regoins and availability zones, see <a href="https://aws.amazon.com/about-aws/global-infrastructure/">AWS Global Infrastructure</a>.</p>
+    <p class="note"><strong>Note</strong>: Allow traffic to port `4443` only if you are in an AWS cloud region that does not support AWS ALBs. For example, the GovCloud region. For more information about AWS regoins and availability zones, see <a href="https://aws.amazon.com/about-aws/global-infrastructure/">AWS Global Infrastructure</a>.</p>
 
     <p class="note"><strong>Note:</strong> For finer control over what can reach PAS, change <code>0.0.0.0/0</code> to be more restrictive. This security group governs external access to PAS from apps such as the cf CLI and app URLs.</p>
 
@@ -497,7 +497,6 @@ To launch an Amazon Machine Image (AMI) for Ops Manager, do the following:
 
 1. Open the PDF and identify the AMI ID for your region.
 
-
 1. Return to the EC2 Dashboard.
 
 1. Click **AMIs** from the **Images** menu. 
@@ -524,8 +523,8 @@ To launch an Amazon Machine Image (AMI) for Ops Manager, do the following:
 
 1. Configure the following for your instance:
     * **Network**: Select the VPC that you created.
-    * **Subnet**: Select `pcf-public-subnet-az0`.
-    * **Auto-assign for Public IP**: Select **Enable**.
+    * **Subnet**: Select `pcf-public-subnet-az0` to allow traffic from public IP addresses, or `pcf-management-subnet-az0` to allow traffic only from private IP addresses.
+    * **Auto-assign for Public IP**: Select **Enable** to allow traffic from public IP addresses, or **Disable** to allow traffic only from private IP addresses.
     * **IAM role**: Select the IAM role associated with your pcf-user profile. If you have not created one, click **Create new IAM role** and follow the [Guidelines for Creating User Roles on AWS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/aws-iaas-user-roles.html).
     * For all other fields, accept the default values.
 
@@ -536,7 +535,7 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
 
     <%= image_tag("../common/images/pcfaws/pcf_aws_add_storage.png") %>
 
-1. Click **Next: Tag Instance** 
+1. Click **Next: Tag Instance**.
 
 1. On the **Add Tags** page, add a tag with the key `Name` and value `pcf-ops-manager`. 
 
@@ -600,6 +599,7 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
 
 1. For **Step 6: Review**, review the load balancer details and then click **Create**. A message appears to confirm AWS successfully created the load balancer.
 
+
 ## <a id='pcfaws-ssh-lb'></a> Step 14: Create SSH Load Balancer
 
 1. From the **Load Balancers** page, click **Create Load Balancer**. 
@@ -609,7 +609,7 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
 1. Configure the load balancer with the following information:
     * **Load Balancer name**: Enter `pcf-ssh-elb`.
     * **Create LB Inside**: Select the `pcf-vpc` VPC that you created in [Step 4: Create a VPC](#pcfaws-vpc).
-    * Ensure that the **Create an internal load balancer** checkbox is not selected.
+    * If you want to allow traffic from public IP addresses, ensure that the **Create an internal load balancer** checkbox is not selected. If you want to allow traffic only from private IP addresses, select this checkbox.
     <%= image_tag("../common/images/pcfaws/config_elb.png") %>
 
 1. Under **Listener Configuration**, add the following rules:
@@ -629,7 +629,7 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
     </tr>
     </table>
 
-1. Under **Select Subnets**, select the public subnets you configured in [Step 4: Create a VPC](#pcfaws-vpc), and click **Next: Assign Security Groups**.
+1. Under **Select Subnets**, select either the public or private subnets you configured in [Step 4: Create a VPC](#pcfaws-vpc), and click **Next: Assign Security Groups**.
 
 1. On the **Assign Security Groups** page, select the security group `pcf-ssh-elb-security-group` you configured in [Step 8: Configure a Security Group for the SSH ELB](#pcfaws-om-sshelbsecgrp), and click **Next: Configure Security Settings**.
 
@@ -665,7 +665,7 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
 1. Configure the load balancer with the following information:
     * **Load Balancer name**: Enter `pcf-tcp-elb`.
     * **Create LB Inside**: Select the `pcf-vpc` VPC that you created in [Step 4: Create a VPC](#pcfaws-vpc).
-    * Ensure that the **Create an internal load balancer** checkbox is not selected.
+    * If you want to allow traffic from public IP addresses, ensure that the **Create an internal load balancer** checkbox is not selected. If you want to allow traffic only from private IP addresses, select this checkbox.
 
     <%= image_tag("../common/images/pcfaws/config_elb.png") %>
 
@@ -713,7 +713,7 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
       <br>
       The `...` entry above indicates that you must add listening rules for each port between 1026 and 1123.
 
-1. Under **Select Subnets**, select the public subnets you configured in [Step 4: Create a VPC](#pcfaws-vpc), and click **Next: Assign Security Groups**.
+1. Under **Select Subnets**, select either the public or private subnets you configured in [Step 4: Create a VPC](#pcfaws-vpc), and click **Next: Assign Security Groups**.
 
 1. On the **Assign Security Groups** page, select the security group `pcf-tcp-elb-security-group` you configured in [Step 9: Configure a Security Group for the TCP ELB](#pcfaws-om-tcpelbsecgrp), and click **Next: Configure Security Settings**.
 
@@ -863,11 +863,8 @@ See [Step 3: Create an IAM User for PCF](#create-iam).
 
 ### <a id='key-pair'></a> Key Pair
 
-You must generate a key pair named `pcf-ops-manager-key`.
-For more information about setting up a key pair, see [Amazon EC2 Key
-Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
-in the AWS documentation.
-
+You must generate a key pair named `pcf-ops-manager-key`. For more information about setting up a key pair, see [Amazon EC2 Key
+Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the AWS documentation.
 
 ### <a id='vpc'></a> VPC (Public and Private Subnets)
 
