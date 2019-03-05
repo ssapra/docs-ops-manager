@@ -207,8 +207,50 @@ To create an Ops Manager image in OpenStack, do the following:
     * **Allocated**: Make sure **Ops Manager** is selected.
       <%= image_tag("../common/images/openstack/instance-source.png") %>
 
-1. In the **Flavor** tab, click the plus button for **m1.large**.
-      <%= image_tag("../common/images/openstack/instance-flavor.png") %>
+1. In the **Flavor** tab, configure the OpenStack VM flavors as follows:
+  <p class="note"><strong>Note:</strong> Do not change the names of the VM flavors.</p>
+  <table class='nice' border='1'>
+    <tr>
+      <th><strong>ID</strong></th>
+      <th><strong>Name</strong></th>
+      <th><strong>Memory_MB</strong></th>
+      <th><strong>Disk</strong></th>
+      <th><strong>Ephemeral</strong></th>
+      <th><strong>VCPUs</strong></th>
+    </tr>
+      <tr>
+      <td>1</td>
+      <td>m1.small</td>
+      <td>2048</td>
+      <td>20</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>m1.medium</td>
+      <td>4096</td>
+      <td>40</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>m1.large</td>
+      <td>8192</td>
+      <td>80</td>
+      <td>0</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>m1.xlarge</td>
+      <td>16384</td>
+      <td>160</td>
+      <td>0</td>
+      <td>8</td>
+    </tr>
+  </table>      
 
 1. In the **Networks** tab, select a private subnet. You add a Floating IP
    to this network in a later step.
