@@ -27,6 +27,8 @@ Select a **Blobstore Location** to either configure the blobstore as an internal
         1. **Storage Class**: Select the storage class for your GCS bucket. See [Storage Classes](https://cloud.google.com/storage/docs/storage-classes) in the GCP documentation for more information.
         <% if current_page.data.iaas == "GCP" %>
         1. **Service Account Key**: Enter the contents of the JSON file that you downloaded in the [Set up IAM Service Accounts](../gcp/prepare-env-manual.html#iam_account) section of _Preparing to Deploy Ops Manager on GCP Manually_.
+        <p class='note'><strong>Note:</strong> The Pivotal Application Service for Windows (PASW) tile is incompatible with GCP configured with a GCS bucket. 
+        If you are deploying PASW in your GCP environment, it is recommended that you select the S3 Compatible Blobstore for your environment.</p>
         <% else %>
         1. **Service Account Key**: Follow the steps in the [Set up IAM Service Accounts](../gcp/prepare-env-manual.html#iam_account) section of _Preparing to Deploy Ops Manager on GCP Manually_ to download a JSON file with a private key. Enter the contents of the JSON file into the field.
         <% end %>
