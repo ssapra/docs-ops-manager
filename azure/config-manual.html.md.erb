@@ -147,69 +147,155 @@ You created this file in [Deploying Ops Manager on Azure Manually](deploy-manual
 
 <%= partial "../common/director-config" %>
 
-## <a id='create-networks'></a> Step 4: Create Networks Page
+## <a id='network'></a> Step 4: Create Networks Page
 
-In this procedure, you create three networks.
+Create the following three networks:
 
-### <a id='infra'></a> Create the Infrastructure Network
+* [Infrastructure Network](#infrastructure-network)
+* [Runtime Network](#runtime-network)
+* [Services Network](#services-network)
+
+<p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources
+with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name
+of a resource.</p>
+
+### <a id='infrastructure-network'></a> Infrastructure Network
+
+Follow the steps below to create the infrastructure network.
 
 1. Select **Create Networks**.
 
-1. Click **Add Network**.
+1. (Optional) Select **Enable ICMP checks** if you want to enable ICMP on your networks. Ops
+Manager uses ICMP checks to confirm that components within your network are reachable.
 
-1. Select **Enable ICMP checks** if you want to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
+1. Click **Add Network**. For name, enter `infrastructure`.
 
-1. For **Name**, enter the name of the network you want to create. For example, `infrastructure`.
+1. Under **Subnets**, create a subnet using the information in the following table:
 
-1. Under **Subnets**, complete the following fields:
-   * **Azure Network Name**: Enter `pcf-virtual-network/pcf-infrastructure-subnet`. You can use either the `NETWORK-NAME/SUBNET-NAME` format or the `RESOURCE-GROUP/NETWORK-NAME/SUBNET-NAME` format. If you specify a resource group, it must exist under the same subscription ID you provided in the [Azure Config Page](#azure-config).
-     <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
-   * **CIDR**: Enter `10.0.4.0/26`.
-   * **Reserved IP Ranges**: Enter the first nine IP addresses of the subnet. For example, `10.0.4.1-10.0.4.9`.
-   * **DNS**: Enter `168.63.129.16`.
-   * **Gateway**: Enter the first IP address of the subnet. For example, `10.0.4.1`.
-     <%= image_tag("../common/images/azure/create-networks-management.png") %>
+    <table>
+      <tr>
+        <th>Network Name</th>
+        <td><code>infrastructure</code></td>
+      </tr>
+      <tr>
+        <th>Azure Network Name</th>
+        <td>Enter <code>pcf-virtual-network/pcf-infrastructure-subnet</code>. You can use either
+        the <code>NETWORK-NAME/SUBNET-NAME</code> format or the
+        <code>RESOURCE-GROUP/NETWORK-NAME/SUBNET-NAME</code> format. If you specify a resource
+        group, it must exist under the same subscription ID that you provided in the
+        <a href="#azure-config">Azure Config Page</a>.</td>
+      </tr>
+      <tr>
+        <th>CIDR</th>
+        <td>Enter <code>10.0.4.0/26</code>.</td>
+      </tr>
+      <tr>
+        <th>Reserved IP Ranges</th>
+        <td>Enter the first nine IP addresses of the subnet. For example,
+          <code>10.0.4.1-10.0.4.9</code>.</td>
+      </tr>
+      <tr>
+        <th>DNS</th>
+        <td>Enter <code>168.63.129.16</code>.</td>
+      </tr>
+      <tr>
+        <th>Gateway</th>
+        <td>Enter the first IP address of the subnet. For example, <code>10.0.4.1</code>.
+      </tr>
+    </table>
+    <%= image_tag("../common/images/azure/create-networks-management.png") %>
 
 1. Click **Save**.<%= vars.expand_network_azs %>
 
-### <a id='pas'></a> Create the Deployment Network
+### <a id='runtime-network'></a> Runtime Network
 
-1. Click **Add Network**.
+Follow the steps below to create the runtime network.
 
-1. Select **Enable ICMP checks** if you want to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
+1. Click **Add Network**. For **Name**, enter the name of the runtime that you intend to deploy in
+this environment. For example, `pas` or `pks`.
 
-1. For **Name**, enter the name of the network you want to create. For example, `pas` or `pks`.
+1. Under **Subnets**, create a subnet using the information in the following table:
 
-1. Under **Subnets**, complete the following fields:
-   * **Azure Network Name**: Enter `pcf-virtual-network/pcf-pas-subnet` or `pcf-virtual-network/pcf-pks-subnet`, depending on your runtime. You can use either the `NETWORK-NAME/SUBNET-NAME` format or the `RESOURCE-GROUP/NETWORK-NAME/SUBNET-NAME` format. If you specify a resource group, it must exist under the same subscription ID you provided in the [Azure Config Page](#azure-config).
-     <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
-   * **CIDR**: Enter `10.0.12.0/22`.
-   * **Reserved IP Ranges**: Enter the first nine IP addresses of the subnet. For example, `10.0.12.1-10.0.12.9`.
-   * **DNS**: Enter `168.63.129.16`.
-   * **Gateway**: Enter the first IP address of the subnet. For example, `10.0.12.1`.
-     <%= image_tag("../common/images/azure/create-networks-deployment.png") %>
+    <table>
+      <tr>
+        <th>Network Name</th>
+        <td><code>pas</code> or <code>pks</code></td>
+      </tr>
+      <tr>
+        <th>Azure Network Name</th>
+        <td>Enter <code>pcf-virtual-network/pcf-pas-subnet</code> or
+        <code>pcf-virtual-network/pcf-pks-subnet</code>, depending on your runtime. You can use
+        either the <code>NETWORK-NAME/SUBNET-NAME</code> format or the
+        <code>RESOURCE-GROUP/NETWORK-NAME/SUBNET-NAME</code> format. If you specify a resource
+        group, it must exist under the same subscription ID that you provided in the
+        <a href="#azure-config">Azure Config Page</a>.</td>
+      </tr>
+      <tr>
+        <th>CIDR</th>
+        <td>Enter <code>10.0.12.0/22</code>.</td>
+      </tr>
+      <tr>
+        <th>Reserved IP Ranges</th>
+        <td>Enter the first nine IP addresses of the subnet. For example,
+          <code>10.0.12.1-10.0.12.9</code>.</td>
+      </tr>
+      <tr>
+        <th>DNS</th>
+        <td>Enter <code>168.63.129.16</code>.</td>
+      </tr>
+      <tr>
+        <th>Gateway</th>
+        <td>Enter the first IP address of the subnet. For example, <code>10.0.12.1</code>.
+      </tr>
+    </table>
+    <%= image_tag("../common/images/azure/create-networks-deployment.png") %>
 
 1. Click **Save**.
 
-### <a id='services'></a> Create the Services Network
 
-1. Click **Add Network**.
+### <a id='services-network'></a> Services Network
 
-1. Select **Enable ICMP checks** if you want to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
+Follow the steps below to create the services network.
 
-1. For **Name**, enter the name of the network you want to create. For example, `services`.
+1. Click **Add Network**. For **Name**, enter `services`.
 
-1. Under **Subnets**, complete the following fields:
-   * **Azure Network Name**: Enter `pcf-virtual-network/pcf-services-subnet`. You can use either the `NETWORK-NAME/SUBNET-NAME` format or the `RESOURCE-GROUP/NETWORK-NAME/SUBNET-NAME` format. If you specify a resource group, it must exist under the same subscription ID you provided in the [Azure Config Page](#azure-config).
-    <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
-   * **CIDR**: Enter `10.0.8.0/22`.
-   * **Reserved IP Ranges**: Enter the first nine IP addresses of the subnet. For example, `10.0.8.1-10.0.8.9`.
-   * **DNS**: Enter `168.63.129.16`.
-   * **Gateway**: Enter the first IP address of the subnet. For example, `10.0.8.1`.
-     <%= image_tag("../common/images/azure/create-networks-services.png") %>
+1. Under **Subnets**, create a subnet using the information in the following table:
 
-1. Click **Save**. If you do not have **Enable ICMP checks** selected, you may see red warnings which you can safely ignore.
+    <table>
+      <tr>
+        <th>Network Name</th>
+        <td><code>services</code></td>
+      </tr>
+      <tr>
+        <th>Azure Network Name</th>
+        <td>Enter <code>pcf-virtual-network/pcf-services-subnet</code>. You can use
+        either the <code>NETWORK-NAME/SUBNET-NAME</code> format or the
+        <code>RESOURCE-GROUP/NETWORK-NAME/SUBNET-NAME</code> format. If you specify a resource
+        group, it must exist under the same subscription ID that you provided in the
+        <a href="#azure-config">Azure Config Page</a>.</td>
+      </tr>
+      <tr>
+        <th>CIDR</th>
+        <td>Enter <code>10.0.8.0/22</code>.</td>
+      </tr>
+      <tr>
+        <th>Reserved IP Ranges</th>
+        <td>Enter the first nine IP addresses of the subnet. For example,
+          <code>10.0.8.1-10.0.8.9</code>.</td>
+      </tr>
+      <tr>
+        <th>DNS</th>
+        <td>Enter <code>168.63.129.16</code>.</td>
+      </tr>
+      <tr>
+        <th>Gateway</th>
+        <td>Enter the first IP address of the subnet. For example, <code>10.0.8.1</code>.
+      </tr>
+    </table>
+    <%= image_tag("../common/images/azure/create-networks-services.png") %>
 
+1. Click **Save**. If **Enable ICMP checks** is not selected, you may see red warnings. You can
+ignore these warnings.
 
 ## <a id='assign-networks'></a> Step 5: Assign AZs and Networks
 
@@ -217,13 +303,9 @@ In this procedure, you create three networks.
 <li>Select <strong>Assign AZs and Networks</strong>.<br/>
   <p class="note"><strong>Note</strong>: The appearance of this page changes based on whether you are using Availability Zones or Availability Sets. For more information, see <a href="#azure-config">Azure Config Page</a>.</p>
     <ul>
-    <li>If you are using Availability Zones:<br/> 
-      <ol>
-        <li>Choose one of the three available zones from the <strong>Singleton Availability Zone</strong> dropdown.</li>
-        <li>Choose a network from the <strong>Networks</strong> dropdown. The networks that appear in this list are networks you created earlier in this procedure.</li>
-      </ol>
+    <li>If you use Availability Zones, select one of the three available zones from the <strong>Singleton Availability Zone</strong> dropdown, then select a network from the <strong>Networks</strong> dropdown. The networks that appear in this list are networks that you created earlier in this procedure.
     </li>
-    <li>If you are using Availability Sets, choose a network from the <strong>Networks</strong> dropdown. The networks that appear in this list are networks you created earlier in this procedure.</li>
+    <li>If you use Availability Sets, select a network from the <strong>Networks</strong> dropdown. The networks that appear in this list are networks that you created earlier in this procedure.</li>
     </ul>
   </li>
 <li>Click <strong>Save</strong>.</li>  
