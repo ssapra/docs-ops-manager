@@ -7,15 +7,18 @@ install_type: terraform
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to configure the BOSH Director tile within Ops Manager on Azure after [Deploying Ops Manager to Azure](./prepare-env-terraform.html).
+This topic describes how to configure the BOSH Director tile within Ops Manager on Azure after
+[Deploying Ops Manager to Azure](./prepare-env-terraform.html).
 
 <p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
 
-## <a id='prereq'></a> Prerequisite
+## <a id='prerequisites'></a> Prerequisite
 
 To complete the procedures in this topic, you must have access to the output generated when you ran
-`terraform apply` to create resources for this deployment. To view this output, run `terraform output` in the directory where you ran `terraform apply`. You use the values in this output to configure the BOSH Director tile.
+`terraform apply` to create resources for this deployment. To view this output, run
+`terraform output` in the directory where you ran `terraform apply`. You use the values in this
+output to configure the BOSH Director tile.
 
 ## <a id='access-om'></a> Step 1: Access Ops Manager
 
@@ -182,7 +185,7 @@ checks to confirm that components within your network are reachable.
 
 1. Click **Save**.<%= vars.expand_network_azs %>
 
-#### <a id='pas-runtime'></a> PAS Runtime Network
+#### <a id='pas-runtime-network'></a> PAS Runtime Network
 
 1. Click **Add Network**.
 
@@ -229,7 +232,7 @@ checks to confirm that components within your network are reachable.
 
 1. Click **Save**.
 
-#### <a id='services'></a> Create the Services Network for PAS
+#### <a id='pas-services-network'></a> PAS Services Network
 
 1. Click **Add Network**.
 
@@ -277,7 +280,7 @@ checks to confirm that components within your network are reachable.
 1. Click **Save**. If **Enable ICMP checks** is not selected, you may see red warnings. You can
 ignore these warnings.
 
-If you have completed this step for PAS, proceed to
+If you complete this step for PAS, proceed to
 [Assign AZs and Networks Page](#assign-networks).
 
 ### <a id='pks-network'></a> Create Network for PKS
@@ -343,7 +346,7 @@ checks to confirm that components within your network are reachable.
 
 1. Click **Save**.
 
-#### <a id='pks-infrastructure-network'></a> PKS Infrastructure Network
+#### <a id='pks-runtime-network'></a> PKS Runtime Network
 
 1. Click **Add Network**.
 
@@ -391,7 +394,7 @@ checks to confirm that components within your network are reachable.
 
 1. Click **Save**.
 
-### <a id='pks-services'></a> PKS Services Network
+### <a id='pks-services-network'></a> PKS Services Network
 
 1. Click **Add Network**.
 
