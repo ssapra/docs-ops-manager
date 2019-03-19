@@ -12,12 +12,11 @@ This topic describes how to configure the BOSH Director tile within Ops Manager 
 
 <p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
-
 ## <a id='prerequisites'></a> Prerequisite
 
 To complete the procedures in this topic, you must have access to the output generated when you ran
 `terraform apply` to create resources for this deployment. To view this output, run
-`terraform output` in the directory where you ran `terraform apply`. You use the values in this
+`terraform output` in the directory where you ran `terraform apply`. You use tidhe values in this
 output to configure the BOSH Director tile.
 
 ## <a id='access-om'></a> Step 1: Access Ops Manager
@@ -96,7 +95,7 @@ output to configure the BOSH Director tile.
 
 1. For **SSH Private Key**, enter the `ops_manager_ssh_private_key` output from Terraform.
 
-1. For **Availability Mode**, choose whether to use **Availability Sets** or **Availability Zones**. You can further configure this option in the [**Assign AZs and Networks**](#assign-networks) form.
+1. For **Availability Mode**, choose whether to use **Availability Sets** or **Availability Zones**. You can further configure this option in the [**Assign AZs and Networks Page**](#assign-networks).
    * **For new installations of Ops Manager v2.5**: **Availability Zones** are selected by default, but you can choose **Availability Sets**. 
    * **If you are upgrading from v2.4**: You must use **Availability Sets**. 
     <p class="note"><strong>Note</strong>: You can only choose between Availability Zones and Availability Sets in a staged BOSH Director tile that has not yet deployed. After you click <strong>Apply Changes</strong> and the BOSH Director deploys successfully, you cannot switch between Availability Zones and Availability Sets.</p>
@@ -117,9 +116,6 @@ configuration that you created for your VPC.
 
 * [Create Network for PAS](#pas-network)
 * [Create Network for PKS](#pks-network)
-
-If you complete this step for PKS, proceed to
-[Create the Infrastructure Network for PKS](config-terraform.html#pks-infrastructure).
 
 ### <a id='pas-network'></a> Create Network for PAS
 
@@ -469,7 +465,7 @@ ignore these warnings.
 
 <%= partial '../common/syslog_bosh' %>
 
-## <a id='pcfaws-om-rscestem'></a> Step 9: Resource Config Page
+## <a id='resource'></a> Step 9: Resource Config Page
 
 1. Select **Resource Config**.
     <%= image_tag("../common/images/azure/om-resource-config.png") %>
