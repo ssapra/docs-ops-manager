@@ -75,7 +75,9 @@ disks for the BOSH Director and all tiles. This process does not destroy any per
 1. Select **Enable bosh deploy retries** to instruct Ops Manager to retry failed
 BOSH operations up to five times.
 
+1. Select **Skip Director Drain Lifecycle** to prevent drain scripts from running when the BOSH Director is recreated.
 
+1. Select **Store BOSH Job Credentials on tmpfs** to store credentials for BOSH jobs on tmpFS memory, rather than on disk.
 
 1. <%= partial '../common/legacy-deploys' %>
 
