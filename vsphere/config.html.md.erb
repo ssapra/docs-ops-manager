@@ -160,6 +160,7 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
     * Enter the name of the **Resource Pool** that you created in the [Prepare vSphere](./deploy.html#prepare-vsphere) step of _Deploying Ops Manager to vSphere_ to organize management components like Ops Manager and BOSH Director. 
     For example, `RP-MGMT`. The jobs running in this AZ share the CPU and memory resources defined by the pool. 
     You only need to specify this resource group in one AZ.
+    * (Optional) Enter the name of a **Host Group** for the AZ to use. The host group must be within the cluster you designated in the **Clusters** field.
     * (Optional) Click **Add Cluster** to add more clusters to the AZ as required by your installation size and high availability requirements.
 
 1. (Optional) Use the following steps to create additional AZs.
