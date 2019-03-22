@@ -77,7 +77,7 @@ BOSH operations up to five times.
 
 1. Select **Skip Director Drain Lifecycle** to prevent drain scripts from running when the BOSH Director is recreated.
 
-1. Select **Store BOSH Job Credentials on tmpfs** to store credentials for BOSH jobs on tmpfs memory, rather than on disk.
+1. Select **Store BOSH Job Credentials on tmpfs (beta)** to store credentials for BOSH jobs on temporary file storage (tmpfs) memory, rather than on disk. You must recreate all VMs for this setting to take effect.
 
 1. <%= partial '../common/legacy-deploys' %>
 
