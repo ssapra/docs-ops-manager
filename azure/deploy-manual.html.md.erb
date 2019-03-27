@@ -262,7 +262,7 @@ Your load balancer configuration depends on whether you want apps to be availabl
         <pre class="terminal">
         $ az network lb probe create --lb-name pcf-lb \
         --name http8080 --resource-group $RESOURCE_GROUP \
-        --protocol Http --port 8080
+        --protocol Http --port 8080 --path \
         </pre>
     1. Add a load balancing rule for HTTP.
         <pre class="terminal">
