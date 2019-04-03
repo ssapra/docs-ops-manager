@@ -564,7 +564,7 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
 1. Under **Application Load Balancer**, click **Create**.
 
 1. For **Step 1: Configure Load Balancer**, do the following:
-  1. Under **Basic Configuration**, enter `pcf-web-elb` for **Name**.
+  1. Under **Basic Configuration**, enter `pcf-web-elb` for **Name**. For **Scheme**, select **internet-facing** to allow traffic from public IP addresses, or **internal** to allow traffic only from private IP addresses. For **IP address type**, select the type of IP addresses you want to allow.
   1. Under **Listeners**, click **Add listener**. For **Load Balancer Protocol**, select **HTTPS**.
   1. Under **Availability Zones**, select all availability zones.
   1. Click **Next: Configure Security Settings**.
