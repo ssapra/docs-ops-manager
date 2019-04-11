@@ -8,7 +8,7 @@ iaas: AWS
 
 This topic describes how to configure Ops Manager to deploy Pivotal Cloud Foundry (PCF) on Amazon Web Services (AWS).
 
-Before beginning this procedure, ensure that you have successfully completed all of the steps in the [Installing PCF on AWS Manually](prepare-env-manual.html) topic. After completing the procedures in this topic, proceed to the [Deploying PAS on AWS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-aws-manual-er-config.html) topic to continue deploying PCF.
+Before beginning this procedure, ensure that you have successfully completed all of the steps in the [Installing PCF on AWS Manually](prepare-env-manual.html) topic.
 
 
 ## <a id='pcfaws-om-access'></a> Step 1: Access Ops Manager
@@ -430,3 +430,12 @@ choose **Automatic** from the dropdown to allocate the recommended resources for
     <%= image_tag("../common/images/aws/vpc-step16.png") %>
 
 1. Proceed to the [Deploying PAS on AWS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-aws-manual-er-config.html) topic to continue deploying PCF.
+
+## <a id="next"></a> Next Steps
+
+After completing the procedures in this topic, you must configure a runtime for PCF. You can install PCF on AWS with the Pivotal Application Service (PAS) or Pivotal Container Service (PKS) runtime. 
+
+To configure a runtime, do one of the following:
+
+* Configure PAS. See [Configuring PAS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html). 
+* Configure PKS. See [Installing PKS on AWS](https://docs.pivotal.io/runtimes/pks/installing-pks-aws.html).
