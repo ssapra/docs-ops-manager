@@ -93,7 +93,7 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
     * **vCenter Password**: The password for the vCenter user specified above.
     * **Datacenter Name**: The name of the datacenter as it appears in vCenter.
     * **Virtual Disk Type**: The Virtual Disk Type to provision for all VMs. For guidance on selecting a virtual disk type, see [vSphere Virtual Disk Types](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/disk-format.html).
-    <p class="note"><strong>Note:</strong> The following fields do not allow whitespace. Including whitespace characters in datastore or datastore folder names causes an error.</p>
+    <p class="note"><strong>Note:</strong> Datastores do not support whitespace characters in their names. Including whitespace characters in datastore names causes an error.</p>
     * **Ephemeral Datastore Names (comma delimited)**: The names of the datastores that store ephemeral VM disks deployed by Ops Manager.
     * **Persistent Datastore Names (comma delimited)**: The names of the datastores that store persistent VM disks deployed by Ops Manager.
 
