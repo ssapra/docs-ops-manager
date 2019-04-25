@@ -3,7 +3,7 @@ title: Deploying Ops Manager on Azure Manually
 owner: Ops Manager
 ---
 
-<strong><%= modified_date %></strong>
+
 <html class="list-style-none"></html>
 
 This topic describes how to deploy BOSH and Ops Manager for Pivotal Cloud Foundry (PCF) on Azure by using individual commands to create resources. Pivotal recommends this manual procedure for deploying to Azure China, Azure Germany, and Azure Government Cloud.
@@ -108,13 +108,13 @@ procedures in this topic.</p>
     $ az network nsg rule create --name internal-virtual-network \
     --nsg-name internal-traffic --resource-group $RESOURCE_GROUP \
     --protocol Tcp --priority 100 \
-    --destination-port-range *
+    --destination-port-range * \
     --source-address-range VirtualNetwork
 
     $ az network nsg rule create --name internal-from-lb \
     --nsg-name internal-traffic --resource-group $RESOURCE_GROUP \
     --protocol Tcp --priority 110 \
-    --destination-port-range *
+    --destination-port-range * \
     --source-address-range AzureLoadBalancer
     </pre>
 
@@ -261,7 +261,7 @@ Your load balancer configuration depends on whether you want apps to be availabl
         <pre class="terminal">
         $ az network lb probe create --lb-name pcf-lb \
         --name http8080 --resource-group $RESOURCE_GROUP \
-        --protocol Http --port 8080
+        --protocol Http --port 8080 --path health
         </pre>
     1. Add a load balancing rule for HTTP.
         <pre class="terminal">

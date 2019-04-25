@@ -3,7 +3,7 @@ title: Installing PCF on AWS Manually
 owner: Ops Manager
 ---
 
-<strong><%= modified_date %></strong>
+
 
 This topic describes how to manually configure the Amazon Web Services (AWS) components that you need to run [Pivotal Cloud Foundry](https://network.pivotal.io/products/pivotal-cf) (PCF) on AWS.
 
@@ -563,7 +563,10 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
 1. Under **Application Load Balancer**, click **Create**.
 
 1. For **Step 1: Configure Load Balancer**, do the following:
-  1. Under **Basic Configuration**, enter `pcf-web-elb` for **Name**.
+  1. Under **Basic Configuration**, do the following:
+      * For **Name**, enter `pcf-web-elb`.
+      * For **Scheme**, select **internet-facing** to allow traffic from public IP addresses, or **internal** to allow traffic only from private IP addresses.
+      * For **IP address type**, select the type of IP addresses you want to allow.
   1. Under **Listeners**, click **Add listener**. For **Load Balancer Protocol**, select **HTTPS**.
   1. Under **Availability Zones**, select all availability zones.
   1. Click **Next: Configure Security Settings**.
