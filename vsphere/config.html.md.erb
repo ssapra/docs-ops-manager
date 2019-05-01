@@ -12,8 +12,8 @@ You can also perform the procedures in this topic using the Ops Manager API. For
 see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.
 
 <p class="note warning"><strong>Warning:</strong> If you are installing Pivotal Container Service
-(PKS) on vSphere with NSX-T integration, follow the instructions in
-<a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-om-config.html">Configuring BOSH Director with NSX-T for PKS</a> instead of performing the procedure described in this topic.</p>
+(<%= vars.pks_product_short %>) on vSphere with NSX-T integration, follow the instructions in
+<a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-om-config.html">Configuring BOSH Director with NSX-T for <%= vars.pks_product_short %></a> instead of performing the procedure described in this topic.</p>
 
 After you complete this procedure, follow the configuration instructions for the runtime that you
 choose to install.
@@ -22,7 +22,7 @@ choose to install.
 For example:
 <ul>
   <li> To install Pivotal Application Service (PAS), see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html">Configuring PAS</a>.</li>
-  <li> To install PKS, see [Installing PKS on vSphere](https://docs.pivotal.io/runtimes/pks/1-3/installing-pks-vsphere.html).</li>
+  <li> To install <%= vars.pks_product_short %>, see [Installing <%= vars.pks_product_short %> on vSphere](https://docs.pivotal.io/runtimes/pks/1-3/installing-pks-vsphere.html).</li>
 </ul>
 
 See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html) for more
@@ -101,10 +101,10 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
 1. Select a network configuration from one of the following:
     * **Standard vCenter Networking**: This is the default option when upgrading Ops Manager.
     <p class="note warning"><strong>Warning</strong>: 
-    If you intend to deploy PKS using Flannel as the CNI (as opposed to NSX-T), then select this option to configure the BOSH Director. Do not choose **NSX Networking**. When you configure the PKS tile later on, you will configure Flannel as the container network interface (CNI). <br/><br/>If you intend to deploy PKS with NSX-T, see <a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-index.html">Installing PKS on vSphere with NSX-T Data Center</a>.</p>
+    If you intend to deploy <%= vars.pks_product_short %> using Flannel as the CNI (as opposed to NSX-T), then select this option to configure the BOSH Director. Do not choose **NSX Networking**. When you configure the <%= vars.pks_product_short %> tile later on, you will configure Flannel as the container network interface (CNI). <br/><br/>If you intend to deploy <%= vars.pks_product_short %> with NSX-T, see <a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-index.html">Installing <%= vars.pks_product_short %> on vSphere with NSX-T Data Center</a>.</p>
 
         <%= image_tag("../common/images/vsphere/vsphere_bosh-config-03.png") %>
-    * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization for non-PKS runtimes such as Pivotal Application Service (PAS).
+    * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization for non-<%= vars.pks_product_short %> runtimes such as Pivotal Application Service (PAS).
 
         <%= image_tag("../common/images/NSXdirectorconfig.png") %>
     Configure NSX networking by entering the following information:
@@ -275,9 +275,9 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
   <sup id="note2">&#8224;</sup> For **Reserved IP Ranges**, enter any IP addresses from the **CIDR**
       that you want to blacklist from the installation. Ops Manager will not deploy VMs to any address in this range.
 
-  1. For PKS, click **Add Network** and create the following networks:
-      * `infrastructure`: This network is for Ops Manager, the BOSH Director, the PKS broker, and the PKS API.
-      * `pks`: If you have a large deployment with multiple tiles, you can choose to deploy the PKS broker and PKS API to a separate network named `pks`. See the table below for more information.
+  1. For <%= vars.pks_product_short %>, click **Add Network** and create the following networks:
+      * `infrastructure`: This network is for Ops Manager, the BOSH Director, the <%= vars.pks_product_short %> broker, and the <%= vars.pks_product_short %> API.
+      * `pks`: If you have a large deployment with multiple tiles, you can choose to deploy the <%= vars.pks_product_short %> broker and <%= vars.pks_product_short %> API to a separate network named `pks`. See the table below for more information.
       * `services`: Network for creating the master and worker VMs for Kubernetes clusters. The CIDR should not conflict with the pod overlay network `10.200.0.0/16` or the reserved Kubernetes services CIDR of `10.100.200.0/24`.
       <p class="note"><strong>Note</strong>: Multiple networks allow you to place vCenter on a private network and the rest of your deployment on a public network. Isolating vCenter in this manner denies access to it from outside sources and reduces possible security vulnerabilities.</p>
   Use the values from the following table as a guide when you create each network, replacing the IP addresses with ranges that are available in your vSphere environment:
@@ -436,7 +436,7 @@ install.
 
 <ul>
   <li>To install PAS, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html">Configuring PAS</a>.</li>
-  <li>To install PKS, see <a href="https://docs.pivotal.io/runtimes/pks/1-3/installing-pks-vsphere.html">Installing PKS on vSphere</a>.</li>
+  <li>To install <%= vars.pks_product_short %>, see <a href="https://docs.pivotal.io/runtimes/pks/1-3/installing-pks-vsphere.html">Installing <%= vars.pks_product_short %> on vSphere</a>.</li>
 </ul>
 
 For more information about PCF runtimes,
