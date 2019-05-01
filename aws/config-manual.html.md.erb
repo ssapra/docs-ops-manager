@@ -366,9 +366,9 @@ Record your VPC CIDR if you set a CIDR other than the recommendation!
 
 1. Click **Save**.
 
-    <p class="note"><strong>Note</strong>&#58; If you are deploying PKS with a PKS workload load balancer,
+    <p class="note"><strong>Note</strong>&#58; If you are deploying <%= vars.pks_product_full %> with a PKS workload load balancer,
     you must tag each AWS subnet with your PKS Kubernetes cluster unique identifier before you create the load balancer. 
-    For more information about tagging subnets with a PKS cluster unique identifier, 
+    For more information about tagging subnets with a <%= vars.pks_product_short %> cluster unique identifier, 
     see <a href="https://docs.pivotal.io/runtimes/pks/deploy-workloads.html#aws">AWS Prerequisites</a>.</p>
 
     <%= vars.expand_network_azs %>
@@ -435,9 +435,9 @@ choose **Automatic** from the dropdown to allocate the recommended resources for
 
 ## <a id="next"></a> Next Steps
 
-After completing the procedures in this topic, you must configure a runtime for PCF. You can install PCF on AWS with the Pivotal Application Service (PAS) or Pivotal Container Service (PKS) runtime. 
+After completing the procedures in this topic, you must configure a runtime for PCF. You can install PCF on AWS with the Pivotal Application Service (PAS) or <%= vars.pks_product_full %> runtime. 
 
 To configure a runtime, do one of the following:
 
 * Configure PAS. See [Configuring PAS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html). 
-* Configure PKS. See [Installing PKS on AWS](https://docs.pivotal.io/runtimes/pks/installing-pks-aws.html).
+* Configure <%= vars.pks_product_short %>. See [Installing PKS on AWS](https://docs.pivotal.io/runtimes/pks/installing-pks-aws.html).
