@@ -60,7 +60,7 @@ Manager API endpoint.
     * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external identity server maintains your user database.
     * [LDAP Server](#ldap): If you use a LDAP Server, an external identity server maintains your user database.
 
-    <%= image_tag("../common/images/select-authentication.png", :alt => "") %>
+    <%= image_tag("../common/images/select-authentication.png", :alt => "The Pivotal logo is at the top of the image in teal letters. Underneath the logo are the words 'Welcome to Ops Manager', underneath which are the words 'Select an Authentication System'. Underneath 'Select an Authentication System' are three blue, rectangular buttons in a vertical row labeled, from top to bottom, 'Internal Authentication', 'SAML Identity Provider', and 'LDAP Server'. Underneath those buttons is a horizontal line, underneath which are the words 'Upgrading to Ops Manager?' Undeneath 'Upgrading to Ops Manager?' is another blue, rectangular button labeled 'Import Existing Installation'.") %>
 
 ### <a id='internal'></a> Internal Authentication
 
@@ -71,11 +71,11 @@ Manager API endpoint.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
-    <%= image_tag("../common/images/om-login.png", :alt => "") %>
+    <%= image_tag("../common/images/om-login.png", :alt => "The Pivotal logo is at the top of the image in teal letters. Underneath the logo are the words 'Internal Authentication', underneath which are a vertical row of text fields labeled, from top to bottom, 'Username', 'Password', 'Password confirmation', 'Decryption passphrase', 'Decryption passphrase confirmation', 'Http proxy', 'Https proxy', and 'No proxy'. Underneath these fields is a checkbox labeled 'I agree to the terms and conditions of the End User License Agreement'. 'End User License Agreement' is underlined and in gray, signifying it is a link. At the bottom of the image is a blue, rectangular button labeled 'Setup Authentication'.") %>
 
 1. Log in to Ops Manager with the Admin username and password you created in the previous step.
 
-    <%= image_tag("../common/images/cf-login.png", :alt => "") %>
+    <%= image_tag("../common/images/cf-login.png", :alt => "The Pivotal logo is at the top of the image in teal letters. Underneath the logo is the word 'Welcome!', underneath which are a vertical row of text fields labeled, from top to bottom, 'Email' and 'Password'. At the bottom of the image is a blue, rectangular button labeled 'Sign In'.") %>
 
 ### <a id='saml'></a> SAML Identity Provider
 
@@ -90,11 +90,11 @@ Manager API endpoint.
 
 1. Click the **BOSH Director** tile.
 
-    <%= image_tag("../common/images/azure/director-tile-azure.png", :alt => "") %>
+    <%= image_tag("../common/images/azure/director-tile-azure.png", :alt => "The blue Azure logo is in the middle of the image. Underneath the logo are the words 'BOSH Director for Azure'. A teal rectangle spanning the width of the tile is at the bottom of the image.") %>
 
 1. Select **Azure Config**.
 
-    <%= image_tag("../common/images/azure/azure-config.png", :alt => "") %>
+    <%= image_tag("../common/images/azure/azure-config.png", :alt => "At the top of the image are the words 'BOSH Director for Azure', underneath which are three tabs in a horizontal row labeled 'Settings', 'Status', and 'Credentials'. The Settings tab is highlighted in light gray to show that it is selected, while the others are dark gray. Underneath the Settings tab is a list of panes on the left labeled, from top to bottom: 'Azure Config', 'Director Config', 'Create Networks', 'Assign AZs and Networks', 'Security', 'BOSH DNS Config', 'Syslog', and 'Resource Config'. Each pane has a green circle with a checkmark inside to the left of its label. 'Azure Config' is highlighted in dark gray to show that it is selected. To the right of the image are the words 'Azure Config', underneath which are text fields labeled, from top to bottom: 'Subscription ID', 'Tenant ID', 'Application ID', 'Client Secret', 'Resource Group Name', and 'BOSH Storage Account Name'. All of these fields are marked with red asterisks to denote that they are mandatory fields. The 'Client Secret' field contains eight asterisks, while the word 'Change' in blue letters is underneath the text field. Underneath 'BOSH Storage Account Name' are the words 'Cloud Storage Type' with two options underneath: a selected round button labeled 'Use Managed Disks', beneath which is a dropdown labeled 'Storage Account Type' with 'Premium_LRS' selected; and a round button labeled 'Use Storage Accounts', beneath which is a grayed-out text field labeled 'Deployments Storage Account Name'. Underneath this are more text fields, labeled 'Default Security Group' and 'SSH Public Key', the latter of which has a red asterisk. Next is a text area labeled 'SSH Private Key' with a red asterisk. Underneath the text area are the words 'Availability Mode' with two options underneath: a round button labeled 'Availability Sets' and a selected round button labeled 'Availability Zones'. Underneath these are the words 'Azure Environment' with five options underneath: a selected round button labeled 'Azure Commercial Cloud', and four more round buttons labeled, from top to bottom, 'Azure US Gov Cloud', 'Azure Germany Cloud', 'Azure China Cloud', and 'Azure Stack'. Underneath 'Azure Stack' are several grayed-out text fields and one text area, labeled, from top to bottom: 'Tenant Management Resource Endpoint', 'Domain', 'Authentication', 'Azure Stack Endpoint Prefix', and 'Azure Stack CA Certificate'. All of these have red asterisks to denote they are mandatory fields when the 'Azure Stack' option is selected. Underneath the 'Azure Stack CA Certificate' text area is a blue, rectangular button labeled 'Save'.") %>
 
 1. Complete the following fields with information you obtained in [Preparing to Deploy Ops Manager on Azure Manually](./prepare-env-manual.html).
 	* **Subscription ID**: Enter the ID of your Azure subscription.
@@ -108,9 +108,9 @@ Manager API endpoint.
 
 1. For **Cloud Storage Type**, select one of the following options based on your Azure VM storage settings.
 	* **Use Managed Disks**: Select this option if you use Azure Managed Disks. See [Azure Managed Disks Overview](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview) in the Microsoft documentation for more information. For **Storage Account Type**, select the storage option that corresponds with your Azure subscription. Select **Standard_LRS** for HDD-based storage or **Premium_LRS** for SSD-based storage.
-        <%= image_tag("../common/images/azure/azure-managed-disk.png", :alt => "") %>
+        <%= image_tag("../common/images/azure/azure-managed-disk.png", :alt => "The words 'Cloud Storage Type' with two options underneath. The first option is a selected round button labeled 'Use Managed Disks', beneath which is a dropdown labeled 'Storage Account Type' with 'Premium_LRS' selected. To the right of the dropdown is the help text 'Storage Account Type to use with managed disks'. The second option is a round button labeled 'Use Storage Accounts', beneath which is a grayed-out text field labeled 'Deployments Storage Account Name'.") %>
 	* **Use Storage Accounts**: Select this option if you use storage accounts to store your Azure VMs. Enter the base storage name that you used to create your deployment storage accounts, prepended and appended with the wildcard character `*`. For example, if you created accounts named  `xyzdeploymentstorage1`, `xyzdeploymentstorage2`, and `xyzdeploymentstorage3`, enter `*deploymentstorage*`. Ops Manager requires that you specify an asterisk at both the beginning and the end of the base storage account name.
-        <%= image_tag("../common/images/azure/storage-accounts.png", :alt => "") %>
+        <%= image_tag("../common/images/azure/storage-accounts.png", :alt => "The selected round button 'Use Storage Accounts', underneath which is a text field labeled 'Deployments Storage Account Name'. To the right of the text field is the help text 'A Storage Account into which Ops Manager will deploy other VMs. Name must contain only lower-case letters and numbers, may start AND end with an asterisk. Required if Cloud Storage Type is set to 'Storage Accounts'.'") %>
     <p class="note warning"><strong>WARNING:</strong> You can update your deployment from using storage accounts to using managed disks. However, after you select <strong>Use Managed Disks</strong> and deploy Ops Manager, you cannot change your deployment back to use storage accounts.</p>
 
 1. (Optional) Enter your **Default Security Group**. For more information about Network Security Groups, see [Filter network traffic with network security groups](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-nsg) in Microsoft Azure's documentation.
@@ -194,7 +194,7 @@ To create the infrastructure network, do the following:
         <td>Enter the first IP address of the subnet. For example, <code>10.0.4.1</code>.</td>
       </tr>
     </table>
-    <%= image_tag("../common/images/azure/create-networks-management.png", :alt => "") %>
+    <%= image_tag("../common/images/azure/create-networks-management.png", :alt => "At the top of the image are the words 'Create Networks' with a horizontal line underneath. Below the line are the words 'Warning: Pivotal recommends keeping the IP settings throughout the life of your installation. Ops Manager may prevent you from changing them in the future. Contact Pivotal support for help completing such a change.' Underneath this text are the words 'Verification Settings', underneath which is a checkbox labeled 'Enable ICMP checks'. Underneath this checkbox is the word 'Networks', across from which is a gray, rectangular button labeled 'Add Network'. Underneath 'Networks' are the words 'One or many IP ranges upon which your products will be deployed', underneath which is a gray, rectangular button labeled 'infrastructure' with a small, downward-pointing triangle to the left of it. The image of a gray trashcan is directly across from the 'infrastructure' button. Underneath the 'infrastructure' button is a text field labeled 'Name' with a red asterisk to denote that it is a mandatory field, filled with the text 'infrastructure'. Underneath this text field is the word 'Subnets', across from which is a gray, rectangular button labeled 'Add Subnet'. Underneath 'Subnets' are text fields labeled, from top to bottom, 'Azure Network Name' with a red asterisk, 'CIDR' with a red asterisk, 'Reserved IP Ranges', 'DNS' with a red asterisk, and 'Gateway' with a red asterisk. 'Azure Network Name' is filled with the text 'pcf-virtual-network/pcf-infrastructure-subnet'. 'CIDR' is filled with the text '10.0.4.0/26'. 'Reserved IP Ranges' is filled with the text '10.0.4.1-10.0.4.9'. 'DNS' is filled with the text '168.63.129.16'. 'Gateway' is filled with the text '10.0.4.1'.") %>
 
 1. Click **Save**.<%= vars.expand_network_azs %>
 
@@ -238,7 +238,7 @@ To create the runtime network, do the following:
         <td>Enter the first IP address of the subnet. For example, <code>10.0.12.1</code>.</td>
       </tr>
     </table>
-    <%= image_tag("../common/images/azure/create-networks-deployment.png", :alt => "") %>
+    <%= image_tag("../common/images/azure/create-networks-deployment.png", :alt => "At the top of the image is a gray, rectangular button labeled 'pas' with a small, downward-pointing triangle to the left of it. The image of a gray trashcan is directly across from the 'pas' button. Underneath the 'pas' button is a text field labeled 'Name' with a red asterisk to denote that it is a mandatory field, filled with the text 'pas'. Underneath this text field is the word 'Subnets', across from which is a gray, rectangular button labeled 'Add Subnet'. Underneath 'Subnets' are text fields labeled, from top to bottom, 'Azure Network Name' with a red asterisk, 'CIDR' with a red asterisk, 'Reserved IP Ranges', 'DNS' with a red asterisk, and 'Gateway' with a red asterisk. 'Azure Network Name' is filled with the text 'pcf-virtual-network/pcf-pas-subnet'. 'CIDR' is filled with the text '10.0.12.0/22'. 'Reserved IP Ranges' is filled with the text '10.0.12.1-10.0.12.9'. 'DNS' is filled with the text '168.63.129.16'. 'Gateway' is filled with the text '10.0.12.1'.") %>
 
 1. Click **Save**.
 
@@ -281,7 +281,7 @@ To create the services network, do the following:
         <td>Enter the first IP address of the subnet. For example, <code>10.0.8.1</code>.</td>
       </tr>
     </table>
-    <%= image_tag("../common/images/azure/create-networks-services.png", :alt => "") %>
+    <%= image_tag("../common/images/azure/create-networks-services.png", :alt => "At the top of the image is a gray, rectangular button labeled 'services' with a small, downward-pointing triangle to the left of it. The image of a gray trashcan is directly across from the 'services' button. Underneath the 'services' button is a text field labeled 'Name' with a red asterisk to denote that it is a mandatory field, filled with the text 'services'. Underneath this text field is the word 'Subnets', across from which is a gray, rectangular button labeled 'Add Subnet'. Underneath 'Subnets' are text fields labeled, from top to bottom, 'Azure Network Name' with a red asterisk, 'CIDR' with a red asterisk, 'Reserved IP Ranges', 'DNS' with a red asterisk, and 'Gateway' with a red asterisk. 'Azure Network Name' is filled with the text 'pcf-virtual-network/pcf-services-subnet'. 'CIDR' is filled with the text '10.0.8.0/22'. 'Reserved IP Ranges' is filled with the text '10.0.8.1-10.0.8.9'. 'DNS' is filled with the text '168.63.129.16'. 'Gateway' is filled with the text '10.0.8.1'") %>
 
 1. Click **Save**. If **Enable ICMP checks** is not selected, you may see red warnings. You can ignore these warnings.
 
