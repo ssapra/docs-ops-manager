@@ -22,7 +22,7 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
     * [Internal Authentication](#internal): If you use internal authentication, Ops Manager maintains your user database.
     * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external identity server maintains your user database.
     * [LDAP Server](#ldap): If you use an LDAP server, an external identity server maintains your user database.<br>
-    <%= image_tag("../common/images/select-authentication.png") %>
+    <%= image_tag("../common/images/select-authentication.png", :alt => "") %>
 
 ### <a id='internal'></a> Internal Authentication
 
@@ -33,11 +33,11 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
-    <%= image_tag("../common/images/om-login.png") %>
+    <%= image_tag("../common/images/om-login.png", :alt => "") %>
 
 1. Log in to Ops Manager with the Admin username and password that you created in the previous step.
 
-    <%= image_tag("../common/images/cf-login.png") %>
+    <%= image_tag("../common/images/cf-login.png", :alt => "") %>
 
 ### <a id='saml'></a> SAML Identity Provider
 
@@ -51,7 +51,7 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
 ## <a id='gcp-config'></a> Step 2: Google Cloud Platform Config
 
 1. Click the **Google Cloud Platform** tile within the **Installation Dashboard**.
-    <%= image_tag("../common/images/gcp/director-tile-gcp.png") %>
+    <%= image_tag("../common/images/gcp/director-tile-gcp.png", :alt => "") %>
 
 1. Select **Google Config**. Complete the following fields:
     * **Project ID**: Enter your GCP project ID in lowercase, such as: `your-gcp-project-id`.
@@ -59,7 +59,7 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
     * Select **AuthJSON** and in the field below enter the contents of the JSON file that you downloaded in the [Set up IAM Service Accounts](./prepare-env-manual.html#iam_account) section of _Preparing to Deploy Ops Manager on GCP Manually_.
         <p class="note"><strong>Note:</strong>
        As an alternative, you can select <strong>The Ops Manager VM Service Account</strong> option to use the service account automatically created by GCP for the Ops Manager VM. To use this option, the project-wide service account that you set up in [Set up IAM Service Accounts](./prepare-env-manual.html#iam_account) must be assigned the **Service Account Actor** role.</p>
-       <%= image_tag("../common/images/gcp/google_config.png") %>
+       <%= image_tag("../common/images/gcp/google_config.png", :alt => "") %>
 1. Click **Save**.
 
 
@@ -84,7 +84,7 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
     * Enter one of the zones that you associated to the backend service instance groups of the HTTP(S) Load Balancer. For example, if you are using the `us-central1` region and selected `us-central1-a` as one of the zones for your HTTP(S) Load Balancer instance groups, enter `us-central1-a`.
     * Click **Add**.
     * Repeat the above step for all the availability zones that you associated to instance groups in [Preparing to Deploy Ops Manager on GCP Manually](./prepare-env-manual.html#create-http-and-instance-group).
-    <%= image_tag("../common/images/gcp/availability_zones_multiple.png") %>
+    <%= image_tag("../common/images/gcp/availability_zones_multiple.png", :alt => "") %>
     * Click **Save**.
 
 1. Repeat the above step for all the availability zones you are using in your deployment. When you are done, click **Save**.
@@ -242,11 +242,11 @@ Dashboard.
 
 1. Click **Review Pending Changes**, then **Apply Changes**. If the following ICMP error message appears, return to the [Network Config](#network) screen, and ensure you have deselected the **Enable ICMP Checks**. Click **Review Pending Changes**, then **Apply Changes** again.
 
-    <%= image_tag("../common/images/cloudform/install-error.png") %>
+    <%= image_tag("../common/images/cloudform/install-error.png", :alt => "") %>
 
 1. BOSH Director installs. This might take a few moments. When the installation process successfully completes, the **Changes Applied** window appears.
 
-    <%= image_tag("../common/images/cloudform/ops-manager-complete.png") %>
+    <%= image_tag("../common/images/cloudform/ops-manager-complete.png", :alt => "") %>
 
 ## <a id="next"></a> Next Steps
 

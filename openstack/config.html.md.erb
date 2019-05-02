@@ -22,8 +22,7 @@ This topic describes how to configure BOSH Director after deploying [Pivotal Clo
     * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external identity server maintains your user database.
     * [LDAP Server](#ldap): If you use a LDAP Server, an external identity server maintains your user database.
 
-
-    <%= image_tag("../common/images/select-authentication.png") %>
+    <%= image_tag("../common/images/select-authentication.png", :alt => "") %>
 
 ### <a id='internal'></a> Internal Authentication
 
@@ -34,11 +33,11 @@ This topic describes how to configure BOSH Director after deploying [Pivotal Clo
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
-    <%= image_tag("../common/images/om-login.png") %>
+    <%= image_tag("../common/images/om-login.png", :alt => "") %>
 
 1. Log in to Ops Manager with the Admin username and password you created in the previous step.
 
-    <%= image_tag("../common/images/cf-login.png") %>
+    <%= image_tag("../common/images/cf-login.png", :alt => "") %>
 
 ### <a id='saml'></a> SAML Identity Provider
 
@@ -55,11 +54,11 @@ This topic describes how to configure BOSH Director after deploying [Pivotal Clo
 
 1. Record the **Service Endpoint** for the **Identity** service. You use this Service Endpoint as the Authentication URL for Ops Manager in a later step.
 
-    <%= image_tag("../common/images/openstack/record-endpoint.png") %>
+    <%= image_tag("../common/images/openstack/record-endpoint.png", :alt => "") %>
 
 1. In the PCF Ops Manager Installation Dashboard, click the **BOSH Director** tile.
 
-    <%= image_tag("../common/images/openstack/director-tile-openstack.png") %>
+    <%= image_tag("../common/images/openstack/director-tile-openstack.png", :alt => "") %>
 
 1. Select **OpenStack Configs**.
 
@@ -73,14 +72,13 @@ This topic describes how to configure BOSH Director after deploying [Pivotal Clo
         For more information about Keystone domains in OpenStack, see 
         [Domains](https://docs.openstack.org/security-guide/identity/domains.html)
         in the _OpenStack documentation_.
-    
-        <%= image_tag("../common/images/openstack/om-config-name.png") %>             
+        <%= image_tag("../common/images/openstack/om-config-name.png", :alt => "") %>             
     * **Username**: Enter your OpenStack Horizon username. The `PrimaryProject` for the user must be the project you are using to deploy PCF. For more information, see [Manage projects and users](https://docs.openstack.org/horizon/rocky/admin/manage-projects-and-users.html) in the OpenStack documentation. 
     * **Password**: Enter your OpenStack Horizon password.      
     * **Tenant**: Enter your OpenStack tenant name.  
     * **Region**: Enter `RegionOne`, or another region if recommended by your
       OpenStack administrator.  
-    <%= image_tag("../common/images/openstack/om-config-username.png") %>      
+    <%= image_tag("../common/images/openstack/om-config-username.png", :alt => "") %>      
     * **Select OpenStack Network Type**: Select either **Nova**, the legacy
       OpenStack networking model, or **Neutron**, the newer networking model.   
     * **Ignore Server Availability Zone**: Do not select the checkbox.    
@@ -90,7 +88,7 @@ This topic describes how to configure BOSH Director after deploying [Pivotal Clo
     * **Key Pair Name**: Enter the name of the key pair that you created in the
       [Configure Security](./setup.html#security) step of
       _Provisioning the OpenStack Infrastructure_. 
-    <%= image_tag("../common/images/openstack/om-config-network.png") %>            
+    <%= image_tag("../common/images/openstack/om-config-network.png", :alt => "") %>            
     * **SSH Private Key**: In a text editor, open the key pair file that you
       downloaded in the [Configure Security](./setup.html#security)
       step of _Provisioning the OpenStack
@@ -101,7 +99,7 @@ This topic describes how to configure BOSH Director after deploying [Pivotal Clo
     * **Disable DHCP**: Do not select the checkbox unless your configuration
       requires it.  
     * **Boot From Volume**: Enable to boot VMs from a Cinder volume.  
-  <%= image_tag("../common/images/openstack/om-config-ssh.png") %>  
+  <%= image_tag("../common/images/openstack/om-config-ssh.png", :alt => "") %>  
 1. Click **Save**.
 
 1. (Optional) Click **Add OpenStack Config** to configure additional data centers. Click **Save** for each additional OpenStack config to add it successfully. For more information, see [Managing Multiple Data Centers](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/multiple-datacenters.html).
@@ -112,7 +110,7 @@ This topic describes how to configure BOSH Director after deploying [Pivotal Clo
 <p class='note'><strong>Note:</strong> This is an advanced option. Most users leave this field blank.</p>
 
 1. In Ops Manager, select **Advanced Infrastructure Config**.
-    <%= image_tag("../common/images/openstack/om-advanced-infra.png") %>
+    <%= image_tag("../common/images/openstack/om-advanced-infra.png", :alt => "") %>
 
 1. If your OpenStack environment requires specific connection options, enter them in the **Connection Options** field in JSON format. For example: `'connection_options' => { 'read_timeout' => 200 }`
     <p class="note"><strong>Note: </strong> Your connection options apply to all of your OpenStack configs.</p>
@@ -128,7 +126,7 @@ This topic describes how to configure BOSH Director after deploying [Pivotal Clo
 
 1. In Ops Manager, select **Create Availability Zones**.
 
-    <%= image_tag("../common/images/openstack/create-az.png") %>
+    <%= image_tag("../common/images/openstack/create-az.png", :alt => "") %>
 
 1. Enter the name of the availability zone that you selected in the [Launch Ops Manager VM](./setup.html#launch-om-vm) step of _Provisioning the OpenStack Infrastructure_.
 
@@ -151,11 +149,11 @@ with a different OpenStack config.
 
 1. Click the name of the network that contains the private subnet where you deployed the Ops Manager VM. The OpenStack Network Detail page displays your network settings.
 
-    <%= image_tag("../common/images/openstack/view-network-info.png") %>
+    <%= image_tag("../common/images/openstack/view-network-info.png", :alt => "") %>
 
 1. In Ops Manager, select **Create Networks**.
 
-    <%= image_tag("../common/images/openstack/om-create-networks-config.png") %>
+    <%= image_tag("../common/images/openstack/om-create-networks-config.png", :alt => "") %>
 
 1. Select **Enable ICMP checks** to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
 Review the [Configure Security](setup.html#security) step of _Deploying BOSH and Ops Manager to OpenStack_ to ensure you have configured ICMP in your Security Group.
@@ -177,7 +175,7 @@ Review the [Configure Security](setup.html#security) step of _Deploying BOSH and
 
 1. Select **Assign Availability Zones**.
 
-    <%= image_tag("../common/images/openstack/assign-az.png") %>
+    <%= image_tag("../common/images/openstack/assign-az.png", :alt => "") %>
 
 1. From the **Singleton Availability Zone** dropdown, select the availability zone that you created in a previous step. The BOSH Director installs in this Availability Zone.
 
@@ -201,7 +199,7 @@ Review the [Configure Security](setup.html#security) step of _Deploying BOSH and
 ## <a id='resource-config'></a> Step 11: Resource Config Page
 
 1. Select **Resource Config**.
-    <%= image_tag("../common/images/openstack/om-resource-config.png") %>
+    <%= image_tag("../common/images/openstack/om-resource-config.png", :alt => "") %>
 
 1. Adjust any values as necessary for your deployment, such as increasing the persistent disk size. Select **Automatic** from the dropdown to provision the amount of persistent disk predefined by the job. If the persistent disk field reads **None**, the job does not require persistent disk space.
     <p class="note"><strong>Note:</strong> Ops Manager requires a Director VM with at least 8&nbsp;GB memory.</p>
@@ -220,11 +218,11 @@ Review the [Configure Security](setup.html#security) step of _Deploying BOSH and
 
 1. Click **Review Pending Changes**, then **Apply Changes**. If the following ICMP error message appears, click **Ignore errors and start the install**.
 
-    <%= image_tag("../common/images/openstack/icmp-error.png") %>
+    <%= image_tag("../common/images/openstack/icmp-error.png", :alt => "") %>
 
 1. BOSH Director installs. The image shows the **Changes Applied** message that Ops Manager displays when the installation process successfully completes.
 
-    <%= image_tag("../common/images/openstack/om-installed.png") %>
+    <%= image_tag("../common/images/openstack/om-installed.png", :alt => "") %>
 
 1. After you complete this procedure, follow the instructions in [Configuring PAS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html).
 
