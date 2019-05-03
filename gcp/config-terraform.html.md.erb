@@ -28,7 +28,6 @@ Use the `ops_manager_dns` value from running `terraform output`.
     * [Internal Authentication](#internal): If you use internal authentication, Ops Manager maintains your user database.
     * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external identity server maintains your user database.
     * [LDAP Server](#ldap): If you use an LDAP Server, an external identity server maintains your user database.
-    <%= image_tag("../common/images/select-authentication.png", :alt => "") %>
 
 ### <a id='internal'></a> Internal Authentication
 
@@ -39,11 +38,7 @@ Use the `ops_manager_dns` value from running `terraform output`.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
-    <%= image_tag("../common/images/om-login.png", :alt => "") %>
-
 1. Log in to Ops Manager with the Admin username and password you created in the previous step.
-
-    <%= image_tag("../common/images/cf-login.png", :alt => "") %>
 
 ### <a id='saml'></a> SAML Identity Provider
 
@@ -57,14 +52,13 @@ Use the `ops_manager_dns` value from running `terraform output`.
 ## <a id='gcp-config'></a> Step 2: Google Cloud Platform Config
 
 1. Click the **Google Cloud Platform** tile within the **Installation Dashboard**.
-    <%= image_tag("../common/images/gcp/director-tile-gcp.png", :alt => "") %>
 
 1. Select **Google Config**. Complete the following fields:
     * **Project ID**: Enter the value of `project` from your `terraform.tfvars` file.
     * **Default Deployment Tag**: Enter the value of `env_name` from your `terraform.tfvars` file.
     * Select **AuthJSON** and in the field below enter the contents of the JSON file for you service account key.
         <p class="note"><strong>Note:</strong> As an alternative, you can select <strong>The Ops Manager VM Service Account</strong> option to use the service account automatically created by GCP for the Ops Manager VM.</p>
-       <%= image_tag("../common/images/gcp/google_config.png", :alt => "") %>
+       <%= image_tag("../common/images/gcp/google_config.png", :alt => "At the top of the image is the header 'Google Cloud Platform Config', underneath which is a horizonal line. Below the line are two text fields: one labeled 'Project ID' with a red asterisk to denote that it is a required field, and another labeled 'Default Deployment Tag'. Below this are two options: one selected radio button labeled 'The Ops Manager VM Service Account', and another button labeled 'AuthJSON'. Underneath 'AuthJSON' is a blank text area. At the bottom of the image is a blue, rectangular button labeled 'Save'.") %>
 
 1. Click **Save**.
 
@@ -231,11 +225,11 @@ Use the `ops_manager_dns` value from running `terraform output`.
 
 1. Click **Review Pending Changes**, then **Apply Changes**. If the following ICMP error message appears, return to the [Network Config](#network) screen, and make sure you have deselected the **Enable ICMP Checks** box. Click **Review Pending Changes**, then **Apply Changes** again.
 
-    <%= image_tag("../common/images/cloudform/install-error.png", :alt => "") %>
+    <%= image_tag("../common/images/cloudform/install-error.png", :alt => "At the top of the image is the rectangular, dark green Ops Manager header, with a teal square containing a capital P on the far left, the words 'PCF Ops Manager' to the right of the square, and the words 'pivotal-cf' beside a downward-pointing carat on the far right. Below the header is an error message with a red background. To the left on the error message is a red triangle containing an exclamation point beside the words 'Please review the errors below'. Below 'Please review the errors below' is a bullet list with two items: 'Cannot reach gateway with IP 10.0.16.1 (ignorable if ICMP is disabled)' and 'Cannot reach DNS with IP 10.0.0.2 (ignorable if ICMP is disabled)'. To the right of this list are two buttons: a white, rectangular button labeled 'Ignore errors and start the install' in red letters on the left, and a red, rectangular button labeled 'Stop and fix errors' in white letters on the right.") %>
 
 1. BOSH Director installs. This may take a few moments. When the installation process successfully completes, the **Changes Applied** window appears.
 
-    <%= image_tag("../common/images/cloudform/ops-manager-complete.png", :alt => "") %>
+    <%= image_tag("../common/images/cloudform/ops-manager-complete.png", :alt => "A pop-up window with a round, gray X button in the upper-right corner and the words 'Changed Applied' next to a round, green circle containing a checkmark. Below 'Changed Applied' are the words 'Ops Manager Director was successfully installed. We recommend that you export a backup of this installation from the actions menu.' Below this text and to the right of the pop-up window are a gray, rectangular button labeled 'Close' next to a blue, rectangular button labeled 'Return to Installation Dashboard'.") %>
 
 
 ## <a id="next"></a> Next Steps

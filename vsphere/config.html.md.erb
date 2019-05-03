@@ -38,8 +38,6 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
     * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external identity server maintains your user database.
     * [LDAP Server](#ldap): If you use a LDAP Server, an external identity server maintains your user database.
 
-    <%= image_tag("../common/images/select-authentication.png") %>
-
 ### <a id='internal'></a> Internal Authentication
 
 1.  When redirected to the **Internal Authentication** page, you must complete the following steps:
@@ -49,17 +47,11 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
-    <%= image_tag("../common/images/om-login.png") %>
-
 1. Log in to Ops Manager with the username and password you created in the previous step.
-
-    <%= image_tag("../common/images/cf-login.png") %>
 
 1. Verify success.<br/><br/>
 
     You should be able to log in, and you should see the BOSH Director tile is present and ready for configuration, indicated by the orange color.
-
-    <%= image_tag("../common/images/vsphere/vsphere_bosh-config-01.png") %>
 
 ### <a id='saml'></a> SAML Identity Provider
 
@@ -73,8 +65,6 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
 ## <a id='vcenter-config'></a> Step 2: Configure vCenter
 
 1. Click the **BOSH Director for vSphere** tile.
-
-    <%= image_tag("../common/images/vsphere/vsphere_bosh-config-01.png", :alt => "") %>
 
 1. Select **vCenter Config**. Configure the one or more vCenters that host your PCF foundation.
 
@@ -366,7 +356,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
 ## <a id='assign-azs'></a>Step 6: Assign AZs and Networks
 
 1. Select **Assign AZs and Networks**.
-<%= image_tag("../common/images/assign-az.png", :alt => "") %>
+<%= image_tag("../common/images/assign-az.png", :alt => "At the top of the image is the header 'Create Availability Zones' with a horizontal line underneath. Below the line is the header 'Availability Zones' with a gray button directly across from them labeled 'Add'. Below Availability Zones are the words 'us-west-1c' with a small, downward-pointing triangle to the left of them, indicating an expandable area. Below that is a text field labeled 'Amazon Availability Zone' with a red asterisk to denote that it is a mandatory field, filled with the text 'us-west-1c'. The help text beside the text field says 'The Amazon availability Zone name (ex: 'us-east-1b')'. There is a button with the image of a gray trashcan in the upper right corner of the 'us-west-1c' area, directly underneath the gray Add button. At the bottom-left of the image is a blue rectangular button labeled 'Save'.") %>
 
 1. Use the dropdown to select a **Singleton Availability Zone**. The BOSH Director installs as a single instance in this Availability Zone.
 
