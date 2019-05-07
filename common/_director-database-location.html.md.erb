@@ -101,9 +101,7 @@ For **Database Location**, select **Internal**.
 
 <%# For all other IaaSes such as OpenStack, vSphere and manual Azure: %>
 <% else %>
-Select a **Database Location**. By default, Ops Manager deploys and manages an **Internal** database for you.
-If you choose to use an **External MySQL Database**, complete the associated fields with information
-obtained from your external MySQL Database provider: **Host**, **Port**, **Username**, **Password**, and **Database**.
+Select a **Database Location**. By default, Ops Manager deploys and manages an **Internal** database for you. If you choose to use an **External MySQL Database**, complete the associated fields with information obtained from your external MySQL Database provider: **Host**, **Port**, **Username**, **Password**, and **Database**.
     <%= image_tag("../common/images/director_database.png", :alt=> "At the top of the image are the words 'Database Location', underneath which are two options: one selected radio button labeled 'Internal', and one radio button labeled 'External MySQL Database'. Below these are five grayed-out text fields labeled, from top to bottom, 'Host', 'Port', 'Username', 'Password', and 'Database'. All have red asterisks, to denote that they are required fields when 'External MySQL Database' is selected.") %>
     In addition, if you selected the **Enable TLS for Director Database** checkbox, you can complete the following optional fields:
     * **Enable TLS:** Select this checkbox enables TLS communication between the BOSH Director and the database.
