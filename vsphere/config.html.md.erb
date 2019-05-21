@@ -79,14 +79,10 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
 
 1. Click the **BOSH Director for vSphere** tile.
 
-    <%= image_tag("../common/images/vsphere/vsphere_bosh-config-01.png") %>
-
-1. Select **vCenter Config**. Configure the one or more vCenters that host your PCF foundation.
-
-1. Enter the following information:
-    * **Name**: A name that you provide for your vCenter configuration. This field is used to
-      identify the datacenter configuration in Ops Manager if you are configuring multiple
-      datacenters.
+1. Select **vCenter Config**. Configure the one or more vCenters that host your PCF foundation. The following image shows the **vCenter Config** pane.
+    <%= image_tag("../common/images/vcenter-config.png", :alt => "At the top of the image is the header 'vCenter Config', across from which on the far right is a gray, rectangular button labeled 'Add vCenter Config'. Underneath these is a horizonal line. Below the line are text fields labeled, from top to bottom, 'Name', 'vCenter Host', 'vCenter Username', 'vCenter Password', and 'Datacenter Name'. All of these text fields have red asterisks, to denote that they are required fields. The Name field contains the text 'first-vcenter'. The vCenter Host field contains the text '10.87.41.6'. The vCenter Username field contains the text 'opsmgr@vsphere.local'. The vCenter Password field contains eight asterisks and has the word 'Change' underneath in blue letters to indicate that it is clickable. The Datacenter Name field contains the text 'six'. Below the Datacenter Name field is a dropdown labeled 'Virtual Disk Type', with a red asterisk and the 'thin' option selected. Below this dropdown is a text field labeled 'Ephemeral Datastore Names (comma delimited)', with a red asterisk and containing the text 'freenas-smurfs'. Below this field is the text 'NOTE: Removing an Ephemeral Datastore after an initial deploy can result in a system outage and/or data loss.' Below this text is another text field labeled 'Persistent Datastore Names (comma delimited)', with a red asterisk and containing the text 'freenas-smurfs'. Below this field is the text 'NOTE: Removing a Persistent Datastore after an initial deploy can result in a system outage and/or data loss.' Below this text are two radio buttons, one selected radio button labeled 'Standard vCenter Networking', and one radio button labeled 'NSX Networking'. Below these radio buttons are the grayed-out words 'NSX Mode' with a red asterisk and two grayed-out options underneath: one selected radio button labeled 'NSX-V', and one radio button labeled 'NSX-T'. Below these are three grayed-out text fields with red asterisks and one grayed-out text area, labeled, from top to bottom: 'NSX Address', 'NSX Username', 'NSX Password', and 'NSX CA Cert'.") %>
+1. Complete the fields on the **vCenter Config** pane as follows:
+    * **Name**: A name that you provide for your vCenter configuration. This field is used to identify the datacenter configuration in Ops Manager if you are configuring multiple datacenters.
     * **vCenter Host**: The hostname of the vCenter that manages ESXi/vSphere.
     * **vCenter Username**: A vCenter username with create and delete privileges for virtual machines (VMs) and folders.
     * **vCenter Password**: The password for the vCenter user specified above.
@@ -96,16 +92,16 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
     * **Ephemeral Datastore Names (comma delimited)**: The names of the datastores that store ephemeral VM disks deployed by Ops Manager.
     * **Persistent Datastore Names (comma delimited)**: The names of the datastores that store persistent VM disks deployed by Ops Manager.
 
-        <%= image_tag("../common/images/vcenter-config.png") %>
 1. Select a network configuration from one of the following:
     * **Standard vCenter Networking**: This is the default option when upgrading Ops Manager.
     <p class="note warning"><strong>Warning</strong>: 
     If you intend to deploy <%= vars.pks_product_short %> using Flannel as the CNI (as opposed to NSX-T), then select this option to configure the BOSH Director. Do not choose **NSX Networking**. When you configure the <%= vars.pks_product_short %> tile later on, you will configure Flannel as the container network interface (CNI). <br/><br/>If you intend to deploy <%= vars.pks_product_short %> with NSX-T, see <a href="https://docs.pivotal.io/runtimes/pks/1-4/vsphere-nsxt-index.html">Installing <%= vars.pks_product_short %> on vSphere with NSX-T Data Center</a>.</p>
-
-        <%= image_tag("../common/images/vsphere/vsphere_bosh-config-03.png") %>
     * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization for non-<%= vars.pks_product_short %> runtimes such as Pivotal Application Service (PAS).
-
-        <%= image_tag("../common/images/NSXdirectorconfig.png") %>
+        
+1. Select a network configuration from one of the following:
+    * **Standard vCenter Networking**: This is the default option when upgrading Ops Manager.
+    <p class="note warning"><strong>Warning:</strong> If you intend to deploy PKS using Flannel as the CNI (as opposed to NSX-T), then select this option to configure the BOSH Director. Do not choose **NSX Networking**. When you configure the PKS tile later on, you will configure Flannel as the container network interface (CNI). <br/><br/>If you intend to deploy PKS with NSX-T, see <a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-index.html">Installing PKS on vSphere with NSX-T Data Center</a>.</p>  
+    * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization for non-PKS runtimes such as Pivotal Application Service (PAS).    
     Configure NSX networking by entering the following information:
         * **NSX Mode**: Select either **NSX-V** or **NSX-T**.
         * **NSX Address**: The address of the NSX manager.
