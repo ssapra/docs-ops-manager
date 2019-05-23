@@ -20,6 +20,10 @@ Select a **Blobstore Location** to either configure the blobstore as an internal
       1. **Access Key** and **Secret Key**: Enter the keys you generated when creating your S3 bucket.
       1. Select **V2 Signature** or **V4 Signature**. If you select **V4 Signature**, enter your **Region**.
         <p class="note"><strong>Note</strong>: AWS recommends using Signature Version 4. For more information about AWS S3 Signatures, see <a href="http://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html">Authenticating Requests</a> in the AWS documentation.</p>
+      1. **S3 Backup Strategy**: Select one of the following to configure whether and how to back up the BOSH Director's S3 blobstore:
+          - **No backups**
+          - **Use a versioned bucket**: This option uses blobstore bucket versioning to save backups.  It requires an S3 blobstore that supports versioning.
+          - **Copy into an additional bucket**: This option saves blobstore backups to a separate bucket, which is useful with blobstores that do not support versioning.  The option requires you to fill in **Backup Bucket Region** and **Backup Bucket Name**.
   * **GCS Blobstore**: Select this option to use an external Google Cloud Storage (GCS) endpoint.
   ![At the top of the image, the 'GCP Blobstore' radio button is selected. Below this radio button is a text field labeled 'Bucket Name' with a red asterisk. Below this text field is a dropdown labeled 'Storage Class' with a red asterisk and the 'Regional' option selected. Below this dropdown is a text area labeled 'Service Account Key' with a red asterisk.  Below the 'Service Account Key' field is a control group labeled 'GCS Backup Strategy with two radio button options: 'No Backups' and 'Copy into an additional bucket'. The additional bucket option has a text field underneath, 'Backup Button Name'.](../common/images/gcp/blobstore-gcp.png)  
   Follow the procedures in [Creating Storage Buckets](https://cloud.google.com/storage/docs/creating-buckets) in the GCS documentation to create a GCS bucket.
@@ -36,3 +40,6 @@ Select a **Blobstore Location** to either configure the blobstore as an internal
         <% else %>
         1. **Service Account Key**: Follow the steps in the [Set up IAM Service Accounts](../gcp/prepare-env-manual.html#iam_account) section of _Preparing to Deploy Ops Manager on GCP Manually_ to download a JSON file with a private key. Enter the contents of the JSON file into the field.
         <% end %>
+      1. **GCS Backup Strategy**: Select one of the following to configure whether and where to back up the BOSH Director's GCS blobstore:
+          - **No backups**
+          - **Copy into an additional bucket**: This option saves blobstore backups to a bucket separate from the blobstore itself, and requires you to fill in **Backup Bucket Region** and **Backup Bucket Name**.
