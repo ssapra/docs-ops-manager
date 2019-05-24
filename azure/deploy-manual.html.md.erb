@@ -3,24 +3,20 @@ title: Deploying Ops Manager on Azure Manually
 owner: Ops Manager
 ---
 
-<strong><%= modified_date %></strong>
 <html class="list-style-none"></html>
 
 This topic describes how to deploy Ops Manager on Azure by using individual commands to create resources. Pivotal recommends this manual procedure for deploying to Azure China, Azure Germany, and Azure Government Cloud.
 
-Before you perform the procedures in this topic, you must have completed the procedures in
-[Preparing to Deploy Ops Manager on Azure Manually](prepare-env-manual.html). After you complete
-the procedures in this topic, follow the instructions in [Configuring BOSH Director on Azure Manually](config-manual.html).
+Before you perform the procedures in this topic, you must have completed the procedures in [Preparing to Deploy Ops Manager on Azure Manually](prepare-env-manual.html). After you complete the procedures in this topic, follow the instructions in [Configuring BOSH Director on Azure](config-manual.html).
 
-<p class="note"><strong>Note:</strong> If you are deploying BOSH and Ops Manager on Azure Stack,
-complete the procedures in
-<a href="https://docs.microsoft.com/en-us/azure/azure-stack/user/azure-stack-connect-cli">Install and configure CLI for use with Azure Stack</a> in the Microsoft documentation before following the
-procedures in this topic.</p>
+<p class="note"><strong>Note:</strong> If you are deploying BOSH and Ops Manager on Azure Stack, complete the procedures in <a href="https://docs.microsoft.com/en-us/azure/azure-stack/user/azure-stack-connect-cli">Install and configure CLI for use with Azure Stack</a> in the Microsoft documentation before following the procedures in this topic.</p>
 
 <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
 
 
 ## <a id='network'></a> Step 1: Create Network Resources
+
+To create network resources for your deployment, do the following:
 
 1. Navigate to the Azure portal, click **Resource groups**, and click **Add** to create a new resource group for your deployment.
 
@@ -36,7 +32,7 @@ procedures in this topic.</p>
     <pre class="terminal">
     $ export LOCATION=westus
     </pre>
-    <p class="note"><strong>Note:</strong> For a list of available locations, run <code>az account list-locations</code>.</p>
+    For a list of available locations, run `az account list-locations`.
 
 1. Create a network security group named `pcf-nsg`.
     <pre class="terminal">
@@ -103,8 +99,9 @@ procedures in this topic.</p>
     --protocol Tcp --priority 300 \
     --destination-port-range 22
     </pre>
-    <p class='note'><strong>Note:</strong> To block traffic from the public Internet, append <code>--source-address-range AzureLoadBalancer</code> to allow traffic from only the Azure load balancer or <code>--source-address-range VirtualNetwork</code> to only allow traffic from the virtual network. To allow traffic from both the Azure load balancer and the virtual network, create duplicates of each rule, one specifying <code>--source-address-range AzureLoadBalancer</code> and one specifying <code>--source-address-range VirtualNetwork</code>.</p>
-    Optionally, if you want to use private IP ranges with Ops Manager and allow all internal traffic, you can create the Network Security Groups to allow all internal traffic.
+    * To block traffic from the public Internet, append `--source-address-range AzureLoadBalancer` to allow traffic from only the Azure load balancer or `--source-address-range VirtualNetwork` to only allow traffic from the virtual network.
+    * To allow traffic from both the Azure load balancer and the virtual network, create duplicates of each rule, one specifying `--source-address-range AzureLoadBalancer` and one specifying `--source-address-range VirtualNetwork`.
+    * Optionally, if you want to use private IP ranges with Ops Manager and allow all internal traffic, you can create the Network Security Groups to allow all internal traffic.
     <pre class="terminal">
     $ az network nsg rule create --name internal-virtual-network \
     --nsg-name internal-traffic --resource-group $RESOURCE_GROUP \
@@ -149,6 +146,8 @@ procedures in this topic.</p>
 ## <a id='storage'></a> Step 2: Create BOSH and Deployment Storage Accounts
 
 PCF on Azure uses multiple general-purpose Azure storage accounts. The BOSH and Ops Manager VMs use one main BOSH account, and the other components share five or more deployment storage accounts.
+
+To create storage accounts for BOSH and your deployment, do the following:
 
 1. Choose a name for your BOSH storage account, and export it as the environment variable `$STORAGE_NAME`. Storage account names must be globally unique across Azure, between 3 and 24 characters in length, and contain only lowercase letters and numbers.
     <pre class="terminal">
@@ -201,7 +200,7 @@ PCF on Azure uses multiple general-purpose Azure storage accounts. The BOSH and 
 
 1. Choose a set of unique names for five or more deployment storage accounts. As with the BOSH storage account above, the names must be unique, alphanumeric, lowercase, and 3-24 characters long. The account names must also be sequential or otherwise identical except for the last character. For example: `xyzdeploystorage1`, `xyzdeploystorage2`, `xyzdeploystorage3`, `xyzdeploystorage4`, and `xyzdeploystorage5`.
 
-1. Decide which type of storage to use and run the corresponding command below:
+1. Decide which type of storage to use and run the corresponding command below.
     <p class="note"><strong>Note:</strong> Pivotal recommends five Premium storage accounts, which provides a reasonable amount of initial storage capacity. You can use either Premium or Standard storage accounts, but they have very different scalability metrics. Pivotal recommends creating 1 Standard storage account for every 30 VMs, or 1 Premium storage account for every 150 VMs. You can increase the number of storage accounts later by provisioning more and following the naming sequence.</p>
     * To use Premium storage (recommended):
     <pre class="terminal">
@@ -212,7 +211,7 @@ PCF on Azure uses multiple general-purpose Azure storage accounts. The BOSH and 
     $ export STORAGE\_TYPE="Standard_LRS"
     </pre>
 
-1. For **each deployment storage account**, do the following:
+1. For each deployment storage account you create, do the following:
     1. Create the storage account with the following command, replacing `MY_DEPLOYMENT_STORAGE_X` with one of your deployment storage account names.
     <pre class="terminal">
     $ az storage account create --name MY\_DEPLOYMENT\_STORAGE\_X \
@@ -247,6 +246,8 @@ PCF on Azure uses multiple general-purpose Azure storage accounts. The BOSH and 
 
 Your load balancer configuration depends on whether you want apps to be available from public IP addresses, private IP addresses, or both.
 
+To create load balancers, do the following:
+
 1. **Required:** PAS Load Balancer
     1. Create a load balancer named `pcf-lb`. A static IP address will be automatically created for Standard SKU load balancers unless specified otherwise with `--public-ip-address-allocation Dynamic`.
         <pre class="terminal">
@@ -256,8 +257,8 @@ Your load balancer configuration depends on whether you want apps to be availabl
         --public-ip-address pcf-lb-ip --public-ip-address-allocation Static \
         --sku Standard
         </pre>
-        <p class="note"><strong>Note:</strong> If the Standard SKU is not available in Azure China, you can change to use the Basic SKU.</p>
-        <p class="note"><strong>Note:</strong> This back end pool is empty when you create it.</p>
+        <p class="note"><strong>Note:</strong> If the Standard SKU is not available in Azure China, you can use the Basic SKU.</p>
+        This back end pool is empty when you create it.
     1. Add a probe to the load balancer.
         <pre class="terminal">
         $ az network lb probe create --lb-name pcf-lb \
@@ -314,10 +315,9 @@ Your load balancer configuration depends on whether you want apps to be availabl
         --backend-pool-name pcf-lb-be-pool \
         --probe-name http8080
         </pre>
-    <p class="note"><strong>Note:</strong> If the Standard SKU is not available in Azure China, you can change to use the Basic SKU.</p>
-    <p class="note"><strong>Note:</strong> This back end pool is empty when you create it.</p>
-    1.  Navigate to your DNS provider, and create an entry that points `*.YOUR-SUBDOMAIN` to the public IP address of your load balancer. For example, create an entry that points `azure.example.com` to `198.51.100.1`.
-        <p class="note"><strong>Note:</strong> You can retrieve it by <code>az network public-ip show --name pcf-lb-ip --resource-group $RESOURCE_GROUP</code>.</p>
+        <p class="note"><strong>Note:</strong> If the Standard SKU is not available in Azure China, you can use the Basic SKU.</p>
+        This back end pool is empty when you create it.
+    1.  Navigate to your DNS provider and create an entry that points `*.YOUR-SUBDOMAIN` to the public IP address of your load balancer. For example, create an entry that points `azure.example.com` to `198.51.100.1`. You can retrieve it by running `az network public-ip show --name pcf-lb-ip --resource-group $RESOURCE_GROUP`.
 
 1. **Optional:** Diego SSH Load Balancer
     1. Create a load balancer named `pcf-ssh-lb`.
@@ -328,9 +328,9 @@ Your load balancer configuration depends on whether you want apps to be availabl
         --public-ip-address pcf-ssh-lb-ip --public-ip-address-allocation Static \
         --sku Standard
         </pre>
-        <p class="note"><strong>Note:</strong> If the Standard SKU is not available in Azure China, you can change to use the Basic SKU.</p>
-        <p class="note"><strong>Note:</strong> This back end pool is empty when you create it.</p>
-        1. (Optional) For private IPs, create a load balancer named `pcf-ssh-lb`.
+        <p class="note"><strong>Note:</strong> If the Standard SKU is not available in Azure China, you can use the Basic SKU.</p>
+        This back end pool is empty when you create it.
+    1. (Optional) For private IPs, create a load balancer named `pcf-ssh-lb`.
         <pre class="terminal">
         $ az network lb create --name pcf-ssh-lb \
         --resource-group $RESOURCE_GROUP --location $LOCATION \
@@ -339,7 +339,7 @@ Your load balancer configuration depends on whether you want apps to be availabl
         --sku Standard
         </pre>
         <p class="note"><strong>Note:</strong> If the Standard SKU is not available in Azure China, you can change to use the Basic SKU.</p>
-        <p class="note"><strong>Note:</strong> This back end pool is empty when you create it.</p>
+        This back end pool is empty when you create it.
     1. Add a probe to the load balancer.
         <pre class="terminal">
         $ az network lb probe create --lb-name pcf-ssh-lb \
@@ -355,11 +355,12 @@ Your load balancer configuration depends on whether you want apps to be availabl
         --backend-pool-name pcf-ssh-lb-be-pool \
         --probe-name tcp2222
         </pre>
-    1.  Navigate to your DNS provider, and create an entry that points `ssh.sys.YOUR-SUBDOMAIN` to the public IP address of your load balancer. For example, create an entry that points `azure.example.com` to `198.51.100.1`.
-        <p class="note"><strong>Note:</strong> You can retrieve it by <code>az network public-ip show --name pcf-ssh-lb-ip --resource-group $RESOURCE_GROUP</code>.</p>
+    1.  Navigate to your DNS provider, and create an entry that points `ssh.sys.YOUR-SUBDOMAIN` to the public IP address of your load balancer. For example, create an entry that points `azure.example.com` to `198.51.100.1`. You can retrieve it by running `az network public-ip show --name pcf-ssh-lb-ip --resource-group $RESOURCE_GROUP`.
 
 
 ## <a id='boot'></a> Step 4: Boot Ops Manager
+
+To boot Ops Manager, do the following:
 
 1. Navigate to [Pivotal Network](https://network.pivotal.io/products/ops-manager) and download the latest release of **Pivotal Cloud Foundry Ops Manager for Azure**.
 
@@ -368,7 +369,7 @@ Your load balancer configuration depends on whether you want apps to be availabl
 1. Export the Ops Manager image URL as an environment variable.
     <pre class="terminal">$ export OPS\_MAN\_IMAGE\_URL="YOUR-OPS-MAN-IMAGE-URL"</pre>
 
-1. Download the Ops Manager image. For compatibility when upgrading to future versions of Ops Manager, choose a unique name for the image that includes the Ops Manager version number. For example, replace <code>opsman-image-2.3.x</code> in the following examples with <code>opsman-image-2.3.1</code>.
+1. Download the Ops Manager image. For compatibility when upgrading to future versions of Ops Manager, choose a unique name for the image that includes the Ops Manager version number. For example, replace `opsman-image-2.3.x` in the following examples with `opsman-image-2.3.1`.
   * If you use unmanaged disks, perform the following steps:
   <p class="note"><strong>Note:</strong> Azure Stack requires unmanaged disks.</p>
       1. Download the Ops Manager image to your local machine. The image size is 10&nbsp;GB.
@@ -431,7 +432,7 @@ Your load balancer configuration depends on whether you want apps to be availabl
       }
     }
     </pre>
-    <p class='note'><strong>Note:</strong> If you do not want to use a public IP for Ops Manager, skip this step.</p>
+    If you do not want to use a public IP for Ops Manager, skip this step.
 
 1. Record the `ipAddress` from the output above. This is the public IP address of Ops Manager.
 
@@ -444,13 +445,13 @@ Your load balancer configuration depends on whether you want apps to be availabl
     --resource-group $RESOURCE_GROUP \
     --name opsman-nic --location $LOCATION
     </pre>
-    <p class='note'><strong>Note:</strong> If you do not want use a public IP address for Ops Manager, remove the <code>--public-ip-address ops-manager-ip</code> flag and value.</p>
+   If you do not want use a public IP address for Ops Manager, remove the `--public-ip-address ops-manager-ip` flag and value.
 
 1. Create a keypair on your local machine with the username `ubuntu`. For example, enter the following command:
-   <pre class="terminal">
-   $ ssh-keygen -t rsa -f opsman -C ubuntu
-   </pre>
-   <br>
+    <pre class="terminal">
+    $ ssh-keygen -t rsa -f opsman -C ubuntu
+    </pre>
+    <br>
    When prompted for a passphrase, press the `enter` key to provide an empty passphrase.
 
 1. Create the Ops Manager VM.
@@ -516,6 +517,8 @@ Your load balancer configuration depends on whether you want apps to be availabl
 
 
 ## <a id='post-deploy'></a> Step 5: Complete BOSH Director Configuration
+
+To finish configuring BOSH Director, do the following:
 
 1. Navigate to your DNS provider, and create an entry that points a fully qualified domain name (FQDN) to the public IP address of Ops Manager. As a best practice, always use the FQDN to access Ops Manager.
 
