@@ -106,8 +106,13 @@ To create network resources for your deployment, do the following:
     $ az network nsg rule create --name internal-virtual-network \
     --nsg-name internal-traffic --resource-group $RESOURCE_GROUP \
     --protocol Tcp --priority 100 \
+<<<<<<< HEAD
     --destination-port-range *
     --source-address-range VirtualNetwork
+=======
+    --destination-port-ranges '*' \
+    --source-address-prefixes VirtualNetwork
+>>>>>>> 85e6333... Formatting
     $ az network nsg rule create --name internal-from-lb \
     --nsg-name internal-traffic --resource-group $RESOURCE_GROUP \
     --protocol Tcp --priority 110 \
