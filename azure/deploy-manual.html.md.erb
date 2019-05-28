@@ -41,7 +41,7 @@ To create network resources for your deployment, do the following:
     --location $LOCATION
     </pre>
 
-1. * Add network security group rules to the `pcf-nsg` group to allow traffic to known ports from the public Internet.
+1. Add network security group rules to the `pcf-nsg` group to allow traffic to known ports from the public Internet.
     <pre class="terminal">
     $ az network nsg rule create --name ssh \
     --nsg-name pcf-nsg --resource-group $RESOURCE\_GROUP \
