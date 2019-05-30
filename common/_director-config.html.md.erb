@@ -8,7 +8,7 @@ This partial is called in all IaaS-specific BOSH Director configuration topics.
 
 1. In Ops Manager, select **Director Config**.
 
-    <%= image_tag("../common/images/director-config.png", :width => "500", :alt => "At the top of the image is the header 'Director Config' with a horizonal line underneath. Below the line are three text fields labeled, from top to bottom, 'NTP Servers (comma delimited)', 'JMX Provider IP Address', and 'Bosh HM Forwarder IP Address'. The NTP Servers (comma delimited) field has a red asterisk, to denote that it is a required field. Below these text fields are five checkboxes. The first checkbox is labeled 'Enable VM Resurrector Plugin'. The second checkbox is labeled 'Enable Post Deploy Scripts'. The third checkbox is labeled 'Recreate All VMs', underneath which is the text 'This will force BOSH to recreate all VMs on the next deploy. Persistent disk will be preserved'. The fourth checkbox is labeled 'Recreate All Persistent Disks', underneath which is the text 'Checking this box will recreate all Persistent Disks for the Director and all other Tiles'. The fifth checkbox is labeled 'Enable bosh deploy retries', underneath which is the text 'This will attempt to re-deploy a failed deployment up to 5 times.'") %>
+    <%= image_tag("../common/images/director-config.png", :width => "500", :alt => "At the top of the image is the header 'Director Config' with a horizonal line underneath. Below the line are three text fields labeled, from top to bottom, 'NTP Servers (comma delimited)', and 'Bosh HM Forwarder IP Address'. The NTP Servers (comma delimited) field has a red asterisk, to denote that it is a required field. Below these text fields are five checkboxes. The first checkbox is labeled 'Enable VM Resurrector Plugin'. The second checkbox is labeled 'Enable Post Deploy Scripts'. The third checkbox is labeled 'Recreate All VMs', underneath which is the text 'This will force BOSH to recreate all VMs on the next deploy. Persistent disk will be preserved'. The fourth checkbox is labeled 'Recreate All Persistent Disks', underneath which is the text 'Checking this box will recreate all Persistent Disks for the Director and all other Tiles'. The fifth checkbox is labeled 'Enable bosh deploy retries', underneath which is the text 'This will attempt to re-deploy a failed deployment up to 5 times.'") %>
 
 <%# **NTP Servers** field, differentiated by IaaS %>
 
@@ -33,8 +33,6 @@ This partial is called in all IaaS-specific BOSH Director configuration topics.
 <% end %>
 
     <p class="note"><strong>Note:</strong> The NTP server configuration only updates after VM recreation. Ensure that you select the <strong>Recreate all VMs</strong> checkbox if you modify the value of this field.</p>
-
-1. Leave the **JMX Provider IP Address** field blank.
 
 1. Leave the **Bosh HM Forwarder IP Address** field blank.
 <p class="note"><strong>Note:</strong> Starting in PAS v2.0, BOSH-reported component metrics are available in the Loggregator Firehose by default. If you continue to use the BOSH HM Forwarder to consume these component metrics, you may receive duplicate data. To prevent this, leave the <strong>Bosh HM Forwarder IP Address</strong> field blank.</p>
@@ -94,7 +92,7 @@ This partial is called in all IaaS-specific BOSH Director configuration topics.
     <%= image_tag("../common/images/director_workers.png", :alt => "Three text fields labeled 'Director Workers', 'Max Threads', and 'Director Hostname'. The Director Workers field contains the text '5'. The Director Hostname field contains the text 'opsdirector.example.com'.") %>
 
 1. (Optional) To set a custom banner that users see when logging in to the Director using SSH, enter text in the **Custom SSH Banner** field.
-    
+
 
 
 
