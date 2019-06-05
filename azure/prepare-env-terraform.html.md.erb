@@ -103,7 +103,7 @@ about locating your Azure service principal values, see [Preparing to Deploy Ops
       <td>
         Enter the URL for the Ops Manager Azure image you want to boot. You can find this code in the PDF included with the Ops Manager release on <a href="https://network.pivotal.io/">Pivotal Network</a>.
         <br><br>
-        Setting this value to an empty string (<code>""</code>) will not create an Ops Manager VM. When using <a href="https://docs.pivotal.io/platform-automation">Platform Automation</a> it is required to disable the creation of the Ops Manager VM from terraform. Platform Automation tools can create, delete, and upgrade an Ops Manager VM.
+        To prevent the creation of an Ops Manager VM, set this value to an empty string (<code>""</code>). When using <a href="https://docs.pivotal.io/platform-automation">Platform Automation</a>, you must disable the creation of the Ops Manager VM from Terraform. Platform Automation tools can create, delete, and upgrade an Ops Manager VM.
       </td>
     </tr>
     <tr>
