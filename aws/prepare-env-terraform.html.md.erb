@@ -89,7 +89,7 @@ for your runtime.
     </tr>
     <tr>
       <td><code>YOUR-ENVIRONMENT-NAME</code></td>
-      <td>Enter a name to use to identify resources in AWS. Terraform prepends the names of the resources it creates with this environment name. Examples: <code>pcf</code>, <code>pas</code>, <code>pks</code>.</td>
+      <td>Enter a name to use to identify resources in AWS. Terraform prepends the names of the resources it creates with this environment name. *Note* Only lowercase alphanumeric characters and hyphens allowed in "identifier". Examples: <code>pcf</code>, <code>pas</code>, <code>pks</code>.</td>
     </tr>
     <tr>
       <td><code>YOUR-ACCESS-KEY</code></td>
@@ -110,9 +110,9 @@ for your runtime.
     <tr>
       <td><code>YOUR-OPS-MAN-IMAGE-AMI</code></td>
       <td>
-        Enter the source code for the Ops Manager Amazon Machine Image (AMI) you want to boot. You can find this code in the PDF included with the Ops Manager release on <a href="https://network.pivotal.io/">Pivotal Network</a>.
+        Enter the source code for the Ops Manager Amazon Machine Image (AMI) you want to boot. You can find this code in the PDF included with the Ops Manager release on <a href="https://network.pivotal.io/products/ops-manager">Pivotal Network</a>.
         <br><br>
-        If you want to encrypt your Ops Manager VM, create an encrypted AMI copy from the AWS EC2 dashboard and enter the source code for the coped Ops Manager image instead. For more information about copying an AMI, see step 9 of [Launch an Ops Manager AMI](config-manual.html#pcfaws-om-ami) in the manual AWS configuration topic.
+        If you want to encrypt your Ops Manager VM, create an encrypted AMI copy from the AWS EC2 dashboard and enter the source code for the copied Ops Manager image instead. For more information about copying an AMI, see step 9 of [Launch an Ops Manager AMI](prepare-env-manual.html#pcfaws-om-ami) in the manual AWS configuration topic.
         <br><br>
         To prevent the creation of an Ops Manager VM, set this value to an empty string (<code>""</code>). When using Platform Automation, you must disable the creation of the Ops Manager VM from Terraform. For more information, see <a href="https://docs.pivotal.io/platform-automation">Platform Automation</a>.
       </td>
@@ -180,7 +180,7 @@ ISO_SEG_SSL_KEY
 1. If you want to specify a username for RDS authentication, add the following variable to your `terraform.tfvars` file.
 
     ```
-    rds_db_username = username
+    rds_db_username = "your-database-name"
     ```
 
 
