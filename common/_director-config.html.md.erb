@@ -79,12 +79,7 @@ BOSH operations up to five times.
 
 1. Select **Store BOSH Job Credentials on tmpfs (beta)** to store credentials for BOSH jobs on temporary file storage (tmpfs) memory, rather than on disk. You must recreate all VMs for this setting to take effect.
 
-1. <%= partial '../common/legacy-deploys' %>
-
-
-1. Select **Keep Unreachable Director VMs** if you want to preserve BOSH Director VMs
-after a failed deployment for troubleshooting purposes.
-
+1. Select **Keep Unreachable Director VMs** if you want to preserve BOSH Director VMs after a failed deployment for troubleshooting purposes.
 
 1. Select **HM Pager Duty Plugin** to enable Health Monitor integration with PagerDuty.<br>
     <%= image_tag("../common/images/director_hm_pager.png") %>
