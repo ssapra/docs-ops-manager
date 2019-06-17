@@ -413,29 +413,33 @@ To complete the procedures in this topic, you must have access to the output fro
 1. Adjust any values as necessary for your deployment. Under the **Instances**, **Persistent Disk Type**, and **VM Type** fields, choose **Automatic** from the dropdown to allocate the recommended resources for the job. If the **Persistent Disk Type** field reads **None**, the job does not require persistent disk space.
     <p class="note"><strong>Note:</strong> Pivotal recommends provisioning a BOSH Director VM with at least 8&nbsp;GB memory.</p>
     <p class="note"><strong>Note:</strong> If you set a field to <strong>Automatic</strong> and the recommended resource allocation changes in a future version, Ops Manager automatically uses the new recommended allocation.</p>
-    <p class="note"><strong>Note:</strong> If you install PASW, provision your <strong>Master Compilation Job</strong>
-    with at least 100&nbsp;GB of disk space.
-
-1. (Optional) Enter your AWS target group name in the **Load Balancers** column for each job. Prepend the name with `alb:`. For example, enter `alb:target-group-name`.
-
-    To create an Application Load Balancer (ALB) and target group, follow the procedures in [Getting Started with Application Load Balancers](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancer-getting-started.html) in the AWS documentation. Then navigate to **Target Groups** in the **EC2 Dashboard** menu to find your target group **Name**.
-    <div class="note">
-      <p><strong>Note:</strong> To configure an ALB, you must have the following AWS IAM permissions.</p>
-      <pre>"elasticloadbalancing:DescribeLoadBalancers",
-"elasticloadbalancing:DeregisterInstancesFromLoadBalancer",
-"elasticloadbalancing:RegisterInstancesWithLoadBalancer",
-"elasticloadbalancing:DescribeTargetGroups",
-"elasticloadbalancing:RegisterTargets"</pre>
-    </div>
+    <p class="note"><strong>Note:</strong> If you install PASW, provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
+    <p class="note"><strong>Note:</strong> Ignore the Load Balancers field. See [Step 11](#load-balancer-vm-extensions) for details.</p>
 
 1. Click **Save**.
 
+## <a id="load-balancer-vm-extensions"></a> Step 11: Add VM Extensions for Load Balancers
+Each of your load balancer VMs will need to be assigned to the correct AWS target groups and security groups. It's possible to configure the target groups via the `Resource Config` section of the PAS tile, however `om` is required to configure the security groups. Since `om` can configure both, we'll opt to configure both using `om`:
 
-## <a id="custom-vm-extensions"></a> Step 11: (Optional) Add Custom VM Extensions
+```sh
+om -k create-vm-extension \
+--name "web-lb-security-groups" \
+--cloud-properties '{ "security_groups": ["web_lb_security_group", "vms_security_group"], "target_groups":["web-lb-target-groups"] }'
+
+om -k create-vm-extension \
+--name "ssh-lb-security-groups" \
+--cloud-properties '{ "security_groups": ["ssh_lb_security_group", "vms_security_group"], "target_groups":["ssh-lb-target-groups"] }'
+
+om -k create-vm-extension \
+--name "tcp-lb-security-groups" \
+--cloud-properties '{ "security_groups": ["tcp_lb_security_group", "vms_security_group"], "target_groups":["tcp-lb-target-groups"] }'
+```
+
+## <a id="custom-vm-extensions"></a> Step 12: (Optional) Add Custom VM Extensions
 
 <%= partial "../common/vm-extension-config"  %>
 
-## <a id='complete'></a> Step 11: Complete the BOSH Director Installation
+## <a id='complete'></a> Step 13: Complete the BOSH Director Installation
 
 1. Click the **Installation Dashboard** link to return to the Installation Dashboard.
 
