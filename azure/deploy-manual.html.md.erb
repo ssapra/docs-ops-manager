@@ -68,8 +68,8 @@ To create network resources for your deployment, do the following:
     --protocol Tcp --priority 400 \
     --destination-port-range '2222'
     </pre>
-   * To block traffic from the public Internet, append `--source-address-range AzureLoadBalancer` to allow traffic from only the Azure load balancer or `--source-address-range VirtualNetwork` to only allow traffic from the virtual network.
-   * To allow traffic from both the Azure load balancer and the virtual network, create duplicates of each rule, one specifying `--source-address-range AzureLoadBalancer` and one specifying `--source-address-range VirtualNetwork`.
+   * To block traffic from the public Internet, append `--source-address-prefixes AzureLoadBalancer` to allow traffic from only the Azure load balancer or `--source-address-prefixes VirtualNetwork` to only allow traffic from the virtual network.
+   * To allow traffic from both the Azure load balancer and the virtual network, create duplicates of each rule, one specifying `--source-address-prefixes AzureLoadBalancer` and one specifying `--source-address-prefixes VirtualNetwork`.
 
 1. Create a network security group named `opsmgr-nsg`.
     <pre class="terminal">
@@ -101,8 +101,8 @@ To create network resources for your deployment, do the following:
     --protocol Tcp --priority 300 \
     --destination-port-range 22
     </pre>
-    * To block traffic from the public Internet, append `--source-address-range AzureLoadBalancer` to allow traffic from only the Azure load balancer or `--source-address-range VirtualNetwork` to only allow traffic from the virtual network.
-    * To allow traffic from both the Azure load balancer and the virtual network, create duplicates of each rule, one specifying `--source-address-range AzureLoadBalancer` and one specifying `--source-address-range VirtualNetwork`.
+    * To block traffic from the public Internet, append `--source-address-prefixes AzureLoadBalancer` to allow traffic from only the Azure load balancer or `--source-address-prefixes VirtualNetwork` to only allow traffic from the virtual network.
+    * To allow traffic from both the Azure load balancer and the virtual network, create duplicates of each rule, one specifying `--source-address-prefixes AzureLoadBalancer` and one specifying `--source-address-prefixes VirtualNetwork`.
     * Optionally, if you want to use private IP ranges with Ops Manager and allow all internal traffic, you can create the Network Security Groups to allow all internal traffic.
     <pre class="terminal">
     $ az network nsg rule create --name internal-virtual-network \
@@ -114,7 +114,7 @@ To create network resources for your deployment, do the following:
     --nsg-name internal-traffic --resource-group $RESOURCE_GROUP \
     --protocol Tcp --priority 110 \
     --destination-port-range *
-    --source-address-range AzureLoadBalancer
+    --source-address-prefixes AzureLoadBalancer
     </pre>
 
 1. Create a virtual network named `pcf-virtual-network`.
