@@ -420,21 +420,35 @@ To complete the procedures in this topic, you must have access to the output fro
 1. Click **Save**.
 
 ## <a id="load-balancer-vm-extensions"></a> Step 11: Add VM Extensions for Load Balancers
-Each of your load balancer VMs will need to be assigned to the correct AWS target groups and security groups. It's possible to configure the target groups via the `Resource Config` section of the PAS tile, however `om` is required to configure the security groups. Since `om` can configure both, we'll opt to configure both using `om`:
 
-```sh
-om -k create-vm-extension \
---name "web-lb-security-groups" \
---cloud-properties '{ "security_groups": ["web_lb_security_group", "vms_security_group"], "target_groups":["web-lb-target-groups"] }'
+You must assign each of your load balancer VMs to the correct AWS target groups and security groups. The following steps use the `om` CLI to configure both target groups and security groups. For more information, see [pivotalcf/om](https://github.com/pivotal-cf/om) in GitHub. 
 
-om -k create-vm-extension \
---name "ssh-lb-security-groups" \
---cloud-properties '{ "security_groups": ["ssh_lb_security_group", "vms_security_group"], "target_groups":["ssh-lb-target-groups"] }'
+To assign your load balancer VMs to the correct target groups and security groups, do the following:
 
-om -k create-vm-extension \
---name "tcp-lb-security-groups" \
---cloud-properties '{ "security_groups": ["tcp_lb_security_group", "vms_security_group"], "target_groups":["tcp-lb-target-groups"] }'
-```
+1. Run the following command to create a VM extension for the web VM:
+
+    ```sh
+    om -k create-vm-extension \
+    --name "web-lb-security-groups" \
+    --cloud-properties '{ "security_groups": ["web_lb_security_group", "vms_security_group"], "target_groups":["web-lb-target-groups"] }'
+    ```
+
+1. Run the following command to create a VM extension for the SSH VM:
+    
+    ```
+    om -k create-vm-extension \
+    --name "ssh-lb-security-groups" \
+    --cloud-properties '{ "security_groups": ["ssh_lb_security_group", "vms_security_group"], "target_groups":["ssh-lb-target-groups"] }'
+    ```
+
+
+1. Run the following command to create a VM extension for the TCP VM:
+
+    ```
+    om -k create-vm-extension \
+    --name "tcp-lb-security-groups" \
+    --cloud-properties '{ "security_groups": ["tcp_lb_security_group", "vms_security_group"], "target_groups":["tcp-lb-target-groups"] }'
+    ```
 
 ## <a id="custom-vm-extensions"></a> Step 12: (Optional) Add Custom VM Extensions
 
