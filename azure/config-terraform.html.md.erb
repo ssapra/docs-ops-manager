@@ -64,7 +64,7 @@ To complete the procedures in this topic, you must have access to the output gen
 
 1. For **Cloud Storage Type**, select **Use Managed Disks**. For **Storage Account Type**, select **Premium_LRS** which corresponds to SSD-based storage. See [Azure Managed Disks Overview](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview) in the Microsoft documentation for more information. 
         <%= image_tag("../common/images/azure/azure-managed-disk.png", :alt => "The words 'Cloud Storage Type' with two options underneath. The first option is a selected radio button labeled 'Use Managed Disks', below which is a dropdown labeled 'Storage Account Type' with 'Premium_LRS' selected. To the right of the dropdown is the help text 'Storage Account Type to use with managed disks'. The second option is a radio button labeled 'Use Storage Accounts', below which is a grayed-out text field labeled 'Deployments Storage Account Name'.") %>
-    <p class="note warning"><strong>WARNING:</strong> You can update your deployment from using storage accounts to using managed disks. However, after you select <strong>Use Managed Disks</strong> and deploy Ops Manager, you cannot change your deployment back to use storage accounts.</p>
+    <p class="note warning"><strong>Warning:</strong> You can update your deployment from using storage accounts to using managed disks. However, after you select <strong>Use Managed Disks</strong> and deploy Ops Manager, you cannot change your deployment back to use storage accounts.</p>
 
 1. For **Default Security Group**, enter the `bosh_deployed_vms_security_group_name` output from Terraform.
 
@@ -78,6 +78,7 @@ To complete the procedures in this topic, you must have access to the output gen
     <p class="note"><strong>Note:</strong> You can only choose between Availability Zones and Availability Sets in a staged BOSH Director tile that has not yet deployed. After you click <strong>Apply Changes</strong> and the BOSH Director deploys successfully, you cannot switch between Availability Zones and Availability Sets.</p>
 
 1. <%= partial "../common/azure-environment" %>
+    <p class="note"><b>Note: </b> To deploy PCF on Azure using Active Directory Federation Services (ADFS), select <b>Azure Stack</b>. For more information about enabling ADFS for Azure, see <a href="https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/opsmanager-rn.html#adfs-auth-azure">ADFS Authentication Available for Microsoft Azure</a>.</p>
 
 1. Click **Save**.
 
