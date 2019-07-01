@@ -15,7 +15,7 @@ Before you prepare your Ops Manager installation, do the following depending on 
 
 - If you are deploying Pivotal Application Service (PAS), see [PCF on GCP Requirements](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp.html).
 
-- If you are deploying Pivotal Container Service (PKS), see [GCP Prerequisites and Resource Requirements](https://docs.pivotal.io/runtimes/pks/gcp-requirements.html).
+- If you are deploying Enterprise Pivotal Container Service (PKS), see [GCP Prerequisites and Resource Requirements](https://docs.pivotal.io/runtimes/pks/gcp-requirements.html).
 
 ## <a id="config-components"></a> Configuration and Components
 
@@ -182,7 +182,7 @@ Use NAT instances when you want to expose only a minimal number of public IP add
 Creating NAT instances permits internet access from cluster VMs.
 You might, for example, need this internet access for pulling Docker images or enabling internet access for your workloads.
 
-For more information, see [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html#common_network) and [GCP documentation](https://cloud.google.com/solutions/connecting-securely#natgateway).
+For more information, see [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html#common_network) and the [GCP documentation](https://cloud.google.com/solutions/connecting-securely#natgateway).
 
 1. In the GCP console, with your single project or shared-VPC host project selected, navigate to **Compute Engine** > **VM instances**.
   ![Compute Instance](../common/images/gcp/gcp-vm-instances.png)
@@ -227,7 +227,7 @@ For more information, see [Reference Architecture for Pivotal Cloud Foundry on G
 
 1. Click **Create** to finish creating the NAT instance.
 
-1. Repeat steps 2-6 to create two additional NAT instances with the names and zones specified in the table below. The rest of the configuration remains the same.
+1. Repeat steps 2&ndash;6 to create two additional NAT instances with the names and zones specified in the table below. The rest of the configuration remains the same.
     <table>
       <tr>
         <th rowspan="3" width="15%">Instance 2</th>
@@ -291,7 +291,7 @@ For more information, see [Reference Architecture for Pivotal Cloud Foundry on G
 
 1. Click **Create** to finish creating the route.
 
-1. Repeat steps 2-4 to create two additional routes with the names and next hop instances specified in the table below. The rest of the configuration remains the same.
+1. Repeat steps 2&ndash;4 to create two additional routes with the names and next hop instances specified in the table below. The rest of the configuration remains the same.
   <table>
     <tr>
       <th>Route 2</th>
@@ -312,7 +312,7 @@ For more information, see [Reference Architecture for Pivotal Cloud Foundry on G
 
 ## <a id="firewall_rules"></a> Step 5: Create Firewall Rules for the Network
 
-GCP lets you assign tags to VM instances and create firewall rules that apply to VMs based on their tags. For more information about tags, see [Labeling Resources](https://cloud.google.com/compute/docs/labeling-resources) in the Google Cloud documentation.
+GCP lets you assign tags to VM instances and create firewall rules that apply to VMs based on their tags. For more information about tags, see [Labeling Resources](https://cloud.google.com/compute/docs/labeling-resources) in the GCP documentation.
 This step assigns tags and firewall rules to Ops Manager components and VMs that handle incoming traffic.
 
 1. With your single project or shared-VPC host project selected, navigate to the **Networking** > **VPC network** pane and select **Firewall rules**.
@@ -495,16 +495,16 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
 
 For load balancing, you can use a global HTTP load balancer or an internal, regional load balancer with a private IP address.
 
-Single-project, standalone installations typically use a global HTTP load balancer. See [Create HTTP Load Balancer](#http_loadbalancer) for how to set this up.
+Single-project, standalone installations typically use a global HTTP load balancer. See [Create HTTP Load Balancer](#http_loadbalancer) below for how to set this up.
 
-Shared-VPC installation typically use an internal TCP/UDP load balancer to minimize public IP addresses. See [Create Internal Load Balancer](#internal_loadbalancer) for how to set this up.
+Shared-VPC installation typically use an internal TCP/UDP load balancer to minimize public IP addresses. See [Create Internal Load Balancer](#internal_loadbalancer) below for how to set this up.
 
 ### <a id="internal_loadbalancer"></a> Create Internal Load Balancer
 
 To create an internal load balancer for Ops Manager on GCP, do the following.
 
 1. Create an internal-facing TCP/UDP load balancer for each region of your PCF deployment.
-<p class="note"><strong>Note</strong>: GCP Internal Load Balancer (iLB) is a regional product. Within the same VPC/network, client VMs in a different region from the iLB cannot access the iLB. See <a href="https://cloud.google.com/load-balancing/docs/internal/setting-up-internal#global_routing_issue">Global Routing Issue</a> in the Google Cloud <em>Setting Up Internal Load Balancing</em> documentation.</p>
+<p class="note"><strong>Note</strong>: GCP Internal Load Balancer (iLB) is a regional product. Within the same VPC/network, client VMs in a different region from the iLB cannot access the iLB. For more information, see the <a href="https://cloud.google.com/load-balancing/docs/internal/setting-up-internal#global_routing_issue">GCP documentation</a>.</p>
 
 1. Assign private IP addresses to the load balancers.
 
