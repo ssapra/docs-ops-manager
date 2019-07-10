@@ -7,8 +7,8 @@ iaas: Azure
 <strong><%= modified_date %></strong>
 <html class="list-style-none"></html>
 
-This topic describes how to configure the BOSH Director tile within Ops Manager on Azure after
-[Deploying Ops Manager on Azure Manually](./deploy-manual.html).
+This topic describes how to configure the BOSH Director tile within Ops Manager on Azure after [Deploying Ops Manager on Azure Manually](./deploy-manual.html).
+
 
 ## <a id="prerequisites"></a> Prerequisites
 
@@ -49,22 +49,17 @@ PUT -H "Authorization: bearer UAA-ACCESS-TOKEN"
 {"name": "Standard_F8", "ram": 16384, "cpu": 8,  "ephemeral_disk": 131072}]}'
     </pre>
 
-To verify that you have successfully set your custom VM types, use the `GET /api/v0/vm_types` Ops
-Manager API endpoint.
+To verify that you have successfully set your custom VM types, use the `GET /api/v0/vm_types` Ops Manager API endpoint.
+
 
 ## <a id='access-om'></a> Step 1: Access Ops Manager
 
-1. In a web browser, navigate to the fully qualified domain name (FQDN) of Ops Manager that you
-created in [Deploying Ops Manager on Azure Manually](deploy-manual.html).
+1. In a web browser, navigate to the fully qualified domain name (FQDN) of Ops Manager that you created in [Deploying Ops Manager on Azure Manually](deploy-manual.html).
 
 1. When Ops Manager starts for the first time, you must choose one of the following:
-    * [Internal Authentication](#internal): If you use Internal Authentication, Ops Manager
-      maintains your user database.
-    * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external
-      identity server maintains your user database.
-    * [LDAP Server](#ldap): If you use a LDAP Server, an external identity server maintains your
-      user database.
-
+    * [Internal Authentication](#internal): If you use Internal Authentication, Ops Manager maintains your user database.
+    * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external identity server maintains your user database.
+    * [LDAP Server](#ldap): If you use a LDAP Server, an external identity server maintains your user database.
 
     <%= image_tag("../common/images/select-authentication.png") %>
 
@@ -117,7 +112,7 @@ created in [Deploying Ops Manager on Azure Manually](deploy-manual.html).
         <%= image_tag("../common/images/azure/azure-managed-disk.png") %>
 	* **Use Storage Accounts**: Select this option if you use storage accounts to store your Azure VMs. Enter the base storage name that you used to create your deployment storage accounts, prepended and appended with the wildcard character `*`. For example, if you created accounts named  `xyzdeploymentstorage1`, `xyzdeploymentstorage2`, and `xyzdeploymentstorage3`, enter `*deploymentstorage*`. Ops Manager requires that you specify an asterisk at both the beginning and the end of the base storage account name.
         <%= image_tag("../common/images/azure/storage-accounts.png") %>
-    <p class="note warning"><strong>WARNING:</strong> You can update your deployment from using storage accounts to using managed disks. However, after you select <strong>Use Managed Disks</strong> and deploy Ops Manager, you cannot change your deployment back to use storage accounts.</p>
+    <p class="note warning"><strong>Warning:</strong> You can update your deployment from using storage accounts to using managed disks. However, after you select <strong>Use Managed Disks</strong> and deploy Ops Manager, you cannot change your deployment back to use storage accounts.</p>
 
 1. (Optional) Enter your **Default Security Group**. For more information about Network Security Groups, see [Filter network traffic with network security groups](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-nsg) in Microsoft Azure's documentation.
     <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
@@ -127,7 +122,16 @@ You created this file in [Deploying Ops Manager on Azure Manually](deploy-manual
 
 1. For **SSH Private Key**, copy and paste the contents of your private key in the `opsman` file.
 
+<<<<<<< HEAD
+=======
+1. For **Availability Mode**, choose whether to use **Availability Sets** or **Availability Zones**. You can further configure this option in the **Assign AZs and Networks** pane. For more information, see [Assign AZs and Networks](#assign-networks).
+   * **For new installations of Ops Manager v2.5**: **Availability Zones** are selected by default, but you can choose **Availability Sets**. 
+   * **If you are upgrading from v2.4**: You must use **Availability Sets**. 
+    <p class="note"><strong>Note:</strong> You can only choose between Availability Zones and Availability Sets in a staged BOSH Director tile that has not yet deployed. After you click <strong>Apply Changes</strong> and the BOSH Director deploys successfully, you cannot switch between Availability Zones and Availability Sets.</p>
+
+>>>>>>> 039b672... Added note; other minor style fixes [#167073316]
 1. <%= partial "../common/azure-environment" %>
+    <p class="note"><strong>Note:</strong> To deploy PCF on Azure using Active Directory Federation Services (ADFS), select <strong>Azure Stack</strong>. For more information about ADFS for Azure, see <a href="https://docs.pivotal.io/pivotalcf/2-4/pcf-release-notes/opsmanager-rn.html#additional-cpi-settings">IaaS-Specific Global CPI Properties Are Configurable From the API</a>.</p>
 
 1. (Optional) If you selected `Azure Stack` for your **Azure Environment**, complete the following Azure Stack-only fields:
   1. For **Domain**, enter the domain for your Azure Stack deployment. For example, `local.azurestack.external`.
