@@ -4,10 +4,8 @@ owner: Ops Manager
 iaas: GCP
 ---
 
+This topic describes the preparation steps required to install Ops Manager for Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
 
-
-This topic describes the preparation steps required to install Ops Manager for
-Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
 
 ## <a id="prerequisites"></a> Prerequisites
 
@@ -17,12 +15,12 @@ Before you prepare your Ops Manager installation, do the following depending on 
 
 - If you are deploying Pivotal Container Service (PKS), see [GCP Prerequisites and Resource Requirements](https://docs.pivotal.io/runtimes/pks/gcp-requirements.html).
 
+
 ## <a id="config-components"></a> Configuration and Components
 
 This section outlines high-level infrastructure options for PCF on GCP. A PCF deployment includes Ops Manager and your chosen runtime. For example, both Ops Manager with PAS
 and Ops Manager with PKS are PCF deployments. For more information, review the deployment
 options and recommendations in [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html).
-
 
 You can deploy PCF using one of two main configurations on a GCP virtual private cloud (VPC):
 
@@ -64,6 +62,9 @@ Ops Manager uses IAM service accounts to access GCP resources.
     <%= image_tag("../common/images/gcp/iam_account_2.png") %>
 
 1. Click **Create**. Your browser automatically downloads a JSON file with a private key for this account. Save this file in a secure location.
+
+<p class='note'><strong>Note:</strong> You can use this service account to configure file storage for PAS. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pas-file-storage.html#gcp">GCP</a> section of the <em>Configuring File Storage for PAS</em> topic.</p>
+
 
 ## <a id="enable_compute_resource_api"></a> Step 2: Enable Google Cloud APIs
 
