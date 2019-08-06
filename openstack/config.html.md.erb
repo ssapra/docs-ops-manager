@@ -54,28 +54,28 @@ This topic describes how to configure BOSH Director after deploying [Pivotal Clo
 
 1. Select **OpenStack Configs**.
 
-1. Complete the **OpenStack Management Console Config** page with the following information:        
+1. Complete the **OpenStack Management Console Config** page with the following information:
     * **Name**: Enter a unique name for the OpenStack config.
     * **Authentication URL**: Enter the Service Endpoint for the Identity service that you recorded in a previous step.
-    * **Keystone Version**: Choose a Keystone version, either **v2** or **v3**. 
+    * **Keystone Version**: Choose a Keystone version, either **v2** or **v3**.
       * If you choose **v3**, enter the OpenStack Keystone domain to authenticate against in the **Domain** field. For more information about Keystone domains in OpenStack, see [Domains](https://docs.openstack.org/security-guide/identity/domains.html) in the _OpenStack documentation_.
 
-        <%= image_tag("../common/images/openstack/om-config-name.png", :alt => "At the top of the image is the header 'OpenStack Config', underneath which is a horizontal line. Below the line are two text fields labeled 'Name' and 'Authentication URL', both with red asterisks to denote that they are required fields. The Name field contains the text 'default'. The Authentication URL field contains the text 'http://10.87.16.4:5000/v2.0'. Below the Authentication URL field are the words 'Keystone Version', below which are two options: a selected radio button labeled 'v2', and a radio button labeled 'v3'. Below these buttons is a grayed-out text field labeled 'Domain'.") %>             
-    * **Username**: Enter your OpenStack Horizon username. The `PrimaryProject` for the user must be the project you are using to deploy PCF. For more information, see [Manage projects and users](https://docs.openstack.org/horizon/rocky/admin/manage-projects-and-users.html) in the OpenStack documentation. 
-    * **Password**: Enter your OpenStack Horizon password.      
-    * **Tenant**: Enter your OpenStack tenant name.  
-    * **Region**: Enter `RegionOne`, or another region if recommended by your OpenStack administrator.  
-    <%= image_tag("../common/images/openstack/om-config-username.png", :alt => "Four text fields labeled, from top to bottom, 'Username', 'Password', 'Tenant', and 'Region', all with red asterisks to denote that they are required fields. The Username field contains the text 'admin'. The Password field contains eight asterisks and has the word 'Change' in blue letters underneath. The Tenant field contains the text 'loam'. The Region field contains the text 'RegionOne'.") %>      
-    * **Select OpenStack Network Type**: Select either **Nova**, the legacy OpenStack networking model, or **Neutron**, the newer networking model.   
-    * **Ignore Server Availability Zone**: Do not select the checkbox.    
-    * **Security Group Name**: Enter `opsmanager`. You created this Security Group in the [Configure Security](./setup.html#security) step of _Provisioning the OpenStack Infrastructure_.  
-    * **Key Pair Name**: Enter the name of the key pair that you created in the [Configure Security](./setup.html#security) step of _Provisioning the OpenStack Infrastructure_. 
-    <%= image_tag("../common/images/openstack/om-config-network.png", :alt => "At the top of the image is a dropdown labeled 'Select Openstack Network Type', with a red asterisk to denote that it is required and the 'Neutron' option selected. Below this is a checkbox labeled 'Ignore Server Availability Zone'. Below this are two text fields labeled, from top to bottom, 'Security Group Name' and 'Key Pair Name'. The Security Group Name field contains the text 'opsmanager'. The Key Pair Name field has a red asterisk and contains the text 'pcf'.") %>            
-    * **SSH Private Key**: In a text editor, open the key pair file that you downloaded in the [Configure Security](./setup.html#security) step of _Provisioning the OpenStack Infrastructure_. Copy and paste the contents of the key pair file into the field.  
-    * (Optional) **API SSL Certificate**: If you configured API SSL termination in your OpenStack Dashboard, enter your **API SSL Certificate**.  
-    * **Disable DHCP**: Do not select the checkbox unless your configuration requires it.  
-    * **Boot From Volume**: Enable to boot VMs from a Cinder volume.  
-    <%= image_tag("../common/images/openstack/om-config-ssh.png", :alt => "At the top of the image is a text area labeled 'SSH Private Key', with a red asterisk to denote that it is a required field. It contains eight asterisks and has the word 'Change' in blue letters underneath. Below this is another text area labeled 'API SSL Certificate' with the words 'API SSL Certificate' in small black letters underneath. Below the API SSL Certificate text area are two checkboxes: one labeled 'Disable DHCP', and one selected checkbox labeled 'Boot From Volume'.") %>  
+        <%= image_tag("../common/images/openstack/om-config-name.png", :alt => "At the top of the image is the header 'OpenStack Config', underneath which is a horizontal line. Below the line are two text fields labeled 'Name' and 'Authentication URL', both with red asterisks to denote that they are required fields. The Name field contains the text 'default'. The Authentication URL field contains the text 'http://10.87.16.4:5000/v2.0'. Below the Authentication URL field are the words 'Keystone Version', below which are two options: a selected radio button labeled 'v2', and a radio button labeled 'v3'. Below these buttons is a grayed-out text field labeled 'Domain'.") %>
+    * **Username**: Enter your OpenStack Horizon username. The `PrimaryProject` for the user must be the project you are using to deploy PCF. For more information, see [Manage projects and users](https://docs.openstack.org/horizon/rocky/admin/manage-projects-and-users.html) in the OpenStack documentation.
+    * **Password**: Enter your OpenStack Horizon password.
+    * **Tenant**: Enter your OpenStack tenant name.
+    * **Region**: Enter `RegionOne`, or another region if recommended by your OpenStack administrator.
+    <%= image_tag("../common/images/openstack/om-config-username.png", :alt => "Four text fields labeled, from top to bottom, 'Username', 'Password', 'Tenant', and 'Region', all with red asterisks to denote that they are required fields. The Username field contains the text 'admin'. The Password field contains eight asterisks and has the word 'Change' in blue letters underneath. The Tenant field contains the text 'loam'. The Region field contains the text 'RegionOne'.") %>
+    * **Select OpenStack Network Type**: Select either **Nova**, the legacy OpenStack networking model, or **Neutron**, the newer networking model.
+    * **Ignore Server Availability Zone**: Do not select the checkbox.
+    * **Security Group Name**: Enter `opsmanager`. You created this Security Group in the [Configure Security](./setup.html#security) step of _Provisioning the OpenStack Infrastructure_.
+    * **Key Pair Name**: Enter the name of the key pair that you created in the [Configure Security](./setup.html#security) step of _Provisioning the OpenStack Infrastructure_.
+    <%= image_tag("../common/images/openstack/om-config-network.png", :alt => "At the top of the image is a dropdown labeled 'Select Openstack Network Type', with a red asterisk to denote that it is required and the 'Neutron' option selected. Below this is a checkbox labeled 'Ignore Server Availability Zone'. Below this are two text fields labeled, from top to bottom, 'Security Group Name' and 'Key Pair Name'. The Security Group Name field contains the text 'opsmanager'. The Key Pair Name field has a red asterisk and contains the text 'pcf'.") %>
+    * **SSH Private Key**: In a text editor, open the key pair file that you downloaded in the [Configure Security](./setup.html#security) step of _Provisioning the OpenStack Infrastructure_. Copy and paste the contents of the key pair file into the field.
+    * (Optional) **API SSL Certificate**: If you configured API SSL termination in your OpenStack Dashboard, enter your **API SSL Certificate**.
+    * **Disable DHCP**: Do not select the checkbox unless your configuration requires it.
+    * **Boot From Volume**: Enable to boot VMs from a Cinder volume.
+    <%= image_tag("../common/images/openstack/om-config-ssh.png", :alt => "At the top of the image is a text area labeled 'SSH Private Key', with a red asterisk to denote that it is a required field. It contains eight asterisks and has the word 'Change' in blue letters underneath. Below this is another text area labeled 'API SSL Certificate' with the words 'API SSL Certificate' in small black letters underneath. Below the API SSL Certificate text area are two checkboxes: one labeled 'Disable DHCP', and one selected checkbox labeled 'Boot From Volume'.") %>
 1. Click **Save**.
 
 1. (Optional) Click **Add OpenStack Config** to configure additional data centers. Click **Save** for each additional OpenStack config to add it successfully. For more information, see [Managing Multiple Data Centers](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/multiple-datacenters.html).
