@@ -97,7 +97,6 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
     <p class="note warning"><strong>Warning:</strong> If you intend to deploy Enterprise PKS using Flannel as the CNI (as opposed to NSX-T), then select this option to configure the BOSH Director. Do not select **NSX Networking**. When you configure the Enterprise PKS tile later on, you will configure Flannel as the container network interface (CNI). <br/><br/>If you intend to deploy PKS with NSX-T, see <a href="https://docs.pivotal.io/runtimes/pks/1-4/vsphere-nsxt-index.html">Installing PKS on vSphere with NSX-T Data Center</a>.</p>  
     * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization for non-PKS runtimes such as Pivotal Application Service (PAS). Configure NSX networking by entering the following information:
         * **NSX Mode**: Select either **NSX-V** or **NSX-T**.
-          <p class="note"><b>Note:</b> If you enable <b>NSX-T</b> mode, you cannot SSH into Windows and Linux apps on your deployment.</p>
         * **NSX Address**: The address of the NSX manager.
         * **NSX Username**: The username to connect to the NSX manager.
         * **NSX Password**: The password for the username specified above.
