@@ -94,7 +94,8 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
             ```
             openssl s_client -showcerts -connect NSX-MANAGER-ADDRESS:443 < /dev/null 2> /dev/null | openssl x509
             ```
-            Where `NSX-MANAGER-ADDRESS` is the address of the NSX manager.
+            Where `NSX-MANAGER-ADDRESS` is the address of the NSX manager.  
+            The [**Resource Config**](#resource-config) pane lets you enter NSX-T or NSX-V load balancer and security group configuration information.
 
 1. Configure the following folder names:
     * **VM Folder**: The vSphere datacenter folder where Ops Manager places VMs. Enter `[YOUR-DEPLOYMENT]_vms` where `YOUR-DEPLOYMENT` corresponds to a descriptive name for your deployment. For example, `my_pcf_vms`.
@@ -107,11 +108,11 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
 1. (Optional) Click **Add vCenter Config** toward the top of the form to configure additional vCenters. Once you click **Save**, your multiple vCenter Configs are listed in the **vCenter Configs** pane. For more information about multiple vCenter configs, see [Managing Multiple Data Centers](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/multiple-datacenters.html).
 
 
-## <a id='dir-config'></a> Step 3: Director Config Page
+## <a id='dir-config'></a> Step 3: Director Config Pane
 
 <%= partial "../common/director-config" %>
 
-## <a id='create-az'></a> Step 4: Create Availability Zones Page
+## <a id='create-az'></a> Step 4: Create Availability Zones Pane
 
 Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and resource pools.
 
@@ -143,7 +144,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
 1. Click **Save**.
 
 
-## <a id='create-networks'></a> Step 5: Create Networks Page
+## <a id='create-networks'></a> Step 5: Create Networks Pane
 
 1. Select **Create Networks**.
 
@@ -363,21 +364,21 @@ Pivotal recommends that you use at least three AZs for a highly available instal
 1. Click **Save**.
 
 
-## <a id='security'></a> Step 7: Security Page
+## <a id='security'></a> Step 7: Security Pane
 
 <%= partial "../common/security-pane" %>
 
-## <a id="bosh-dns"></a> Step 8: BOSH DNS Config Page
+## <a id="bosh-dns"></a> Step 8: BOSH DNS Config Pane
 
 <%= partial '../common/bosh-dns-config'  %>
 
-## <a id='syslog'></a> Step 9: Syslog Page
+## <a id='syslog'></a> Step 9: Syslog Pane
 
 <p class="note"><strong>Note:</strong> BOSH Director logs contain sensitive information that should be considered privileged. For example, these logs may contain cloud provider credentials. If you choose to forward logs to an external syslog endpoint, use TLS encryption to prevent information from being intercepted by a third party.</p>
 
 <%= partial '../common/syslog_bosh' %>
 
-## <a id='resource-config'></a> Step 10: Resource Config Page
+## <a id='resource-config'></a> Step 10: Resource Config Pane
 
 1. Select **Resource Config**.
 
@@ -388,7 +389,8 @@ Pivotal recommends that you use at least three AZs for a highly available instal
     <p class="note"><strong>Note:</strong> If you set a field to <strong>Automatic</strong> and the recommended resource allocation changes in a future version, Ops Manager automatically uses the updated recommended allocation.</p>
     <p class="note"><strong>Note:</strong> If you install Pivotal Application Service for Windows (PASW), provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
 
-1. (Optional) Select the triangle icon next to each job name to reveal the **NSX-T Configuration** and **NSX-V Configuration** columns. If you are using NSX-T or NSX-V in your deployment, enter the values from your NSX-T or NSX-V configuration in these fields for each job.
+1. (Optional) If you are using NSX-T or NSX-V networking, as specified on the [**vCenter Config**](#vcenter-config) pane under **NSX Networking** > **NSX Mode**, select the triangle icon next to each **JOB** name to reveal the **NSX-T Configuration** and **NSX-V Configuration** columns.  
+Enter your NSX-T or NSX-V configuration values in these fields.
 
 1. Click **Save**.
 
