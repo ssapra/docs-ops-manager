@@ -10,7 +10,7 @@ You can also perform the procedures in this topic using the Ops Manager API. For
 see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.
 
 <p class="note warning"><strong>WARNING:</strong> If you are installing Pivotal Container Service
-(PKS) on vSphere with NSX-T integration, follow the instructions in <a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-om-config.html">Configuring BOSH Director with NSX-T for PKS</a> instead of performing the procedure described in this topic.</p>
+(PKS) on vSphere with NSX-T integration, follow the instructions in <a href="https://docs.pivotal.io/pks/1-3/vsphere-nsxt-om-config.html">Configuring BOSH Director with NSX-T for PKS</a> instead of performing the procedure described in this topic.</p>
 
 After you complete this procedure, follow the configuration instructions for the runtime that you choose to install.
 </br>
@@ -18,7 +18,7 @@ After you complete this procedure, follow the configuration instructions for the
 For example:
 <ul>
   <li> To install Pivotal Application Service (PAS), see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html">Configuring PAS</a>.</li>
-  <li> To install PKS, see [Installing PKS on vSphere](https://docs.pivotal.io/runtimes/pks/1-3/installing-pks-vsphere.html).</li>
+  <li> To install PKS, see [Installing PKS on vSphere](https://docs.pivotal.io/pks/installing-pks-vsphere.html).</li>
 </ul>
 
 See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html) for more information about Pivotal Cloud Foundry (PCF) runtimes.
@@ -81,7 +81,7 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
         
 1. Select a network configuration from one of the following:
     * **Standard vCenter Networking**: This is the default option when upgrading Ops Manager.
-    <p class="note warning"><strong>Warning:</strong> If you intend to deploy PKS using Flannel as the CNI (as opposed to NSX-T), then select this option to configure the BOSH Director. Do not choose **NSX Networking**. When you configure the PKS tile later on, you will configure Flannel as the container network interface (CNI). <br/><br/>If you intend to deploy PKS with NSX-T, see <a href="https://docs.pivotal.io/runtimes/pks/1-3/vsphere-nsxt-index.html">Installing PKS on vSphere with NSX-T Data Center</a>.</p>  
+    <p class="note warning"><strong>Warning:</strong> If you intend to deploy PKS using Flannel as the CNI (as opposed to NSX-T), then select this option to configure the BOSH Director. Do not choose **NSX Networking**. When you configure the PKS tile later on, you will configure Flannel as the container network interface (CNI). <br/><br/>If you intend to deploy PKS with NSX-T, see <a href="https://docs.pivotal.io/pks/vsphere-nsxt-index.html">Installing PKS on vSphere with NSX-T Data Center</a>.</p>  
     * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization for non-PKS runtimes such as Pivotal Application Service (PAS).    
     Configure NSX networking by entering the following information:
         * **NSX Mode**: Select either **NSX-V** or **NSX-T**.
@@ -408,7 +408,7 @@ After you complete this procedure, follow the instructions for the runtime that 
 
 <ul>
   <li>To install PAS, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html">Configuring PAS</a>.</li>
-  <li>To install PKS, see <a href="https://docs.pivotal.io/runtimes/pks/1-3/installing-pks-vsphere.html">Installing PKS on vSphere</a>.</li>
+  <li>To install PKS, see <a href="https://docs.pivotal.io/pks/installing-pks-vsphere.html">Installing PKS on vSphere</a>.</li>
 </ul>
 
 For more information about PCF runtimes, see [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html).
