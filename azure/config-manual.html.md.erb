@@ -319,7 +319,7 @@ To create the services network, do the following:
     provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
 
 1. (Optional) To add a load balancer to the BOSH Director:
-  1. Select the triangle icon next to the **BOSH Director** job name to reveal the **Load Balancers** field and **Internet Connected** checkbox.
+  1. Select the icon next to the **BOSH Director** job name to see the **Load Balancers** field and **Internet Connected** checkbox.
   1. Ensure that the **Internet Connected** checkbox is not selected.
   1. For **Load Balancers**, enter your Azure application gateway name for each associated job. To create an application gateway, follow the procedures in [Configure an application gateway for SSL offload by using Azure Resource Manager](https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-arm) from the Azure documentation. When you create the application gateway, associate the gateway's IP address with your system domain.
     <p class="note warning"><strong>Warning:</strong> This feature is not recommended for production use. The Azure load balancer does not support an override port in the healthcheck configuration.</p>
