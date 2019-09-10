@@ -3,9 +3,7 @@ title: Deploying Ops Manager on vSphere
 owner: Ops Manager
 ---
 
-
-
-This topic provides instructions for deploying Pivotal Cloud Foundry (PCF) Ops Manager to VMware
+This topic provides instructions for deploying Pivotal Operations Manager to VMware
 vSphere.
 
 The instructions in this topic are based on vSphere 6.5 using the vSphere Client (HTML5) interface.
@@ -65,7 +63,7 @@ vSphere objects used to organize resources.
 
 Ops Manager for vSphere is provided as an OVA file. An OVA file is a template for a VM. To deploy Ops Manager on vSphere, you import the OVA file into your vSphere environment.
 
-1. Download the [Pivotal Cloud Foundry Operations Manager for vSphere](https://network.pivotal.io/products/ops-manager) OVA file from [Pivotal Network](https://network.pivotal.io). Use the **Releases** dropdown menu to select an Ops Manager release.
+1. Download the [Pivotal Operations Manager for vSphere](https://network.pivotal.io/products/ops-manager) OVA file from [Pivotal Network](https://network.pivotal.io). Use the **Releases** dropdown menu to select an Ops Manager release.
 
 1. Right-click the management resource pool that you created and select **Deploy OVF Template**. Alternatively, from the vCenter menu, select **Actions** > **Deploy OVF Template**.
 
@@ -87,7 +85,7 @@ Ops Manager for vSphere is provided as an OVA file. An OVA file is a template fo
     <%= image_tag("../common/images/vsphere/vsphere_om-deploy-02.png") %>
 
     <p class="note"><strong>Note</strong>: Hardware virtualization must be turned off if your
-    vSphere host does not support VT-X/EPT. Refer to <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/vsphere.html#vsphere-reqs">vSphere Requirements</a> in <em>PCF on vSphere Requirements</em> for more information.</p>
+    vSphere host does not support VT-X/EPT. Refer to <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/vsphere.html#vsphere-reqs">vSphere Requirements</a> in <em><%= vars.product_name %> on vSphere Requirements</em> for more information.</p>
 
 1. At the **Review Details** screen, confirm the configuration up to this point and click **Next**.
 
@@ -133,7 +131,7 @@ Ops Manager for vSphere is provided as an OVA file. An OVA file is a template fo
 
 1. Create a DNS entry for the IP address that you used for Ops Manager. You must use this fully qualified domain name when you log into Ops Manager.
 
-    <p class="note"><strong>Note</strong>: Ops Manager security features require you to create a fully qualified domain name to access Ops Manager during the initial configuration. For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/vsphere.html">PCF on vSphere Requirements</a>.</p>
+    <p class="note"><strong>Note</strong>: Ops Manager security features require you to create a fully qualified domain name to access Ops Manager during the initial configuration. For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/vsphere.html"><%= vars.product_name %> on vSphere Requirements</a>.</p>
 
 1. Select the Ops Manager VM and click **Actions** > **Power** > **Power On**. 
 

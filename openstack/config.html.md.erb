@@ -4,13 +4,13 @@ owner: Ops Manager
 iaas: OpenStack
 ---
 
-This topic describes how to configure BOSH Director after deploying [Pivotal Cloud Foundry](https://network.pivotal.io/products/pivotal-cf) (PCF) on OpenStack. Use this topic when [Installing Pivotal Cloud Foundry on OpenStack](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/openstack.html).
+This topic describes how to configure BOSH Director after deploying [<%= vars.product_name %>](https://network.pivotal.io/products/pivotal-cf) on OpenStack. Use this topic when [Installing <%= vars.product_name %> on OpenStack](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/openstack.html).
 
 * Before beginning this procedure, ensure that you have successfully completed all steps in [Provisioning the OpenStack Infrastructure](./setup.html).
 
 * After you complete this procedure, follow the instructions in [Configuring PAS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html).
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Pivotal Operations Manager API. For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.</p>
 
 
 ## <a id='log-in'></a> Step 1: Access Ops Manager
@@ -50,7 +50,7 @@ This topic describes how to configure BOSH Director after deploying [Pivotal Clo
 
     <%= image_tag("../common/images/openstack/record-endpoint.png", :alt => "At the top of the image is the header 'Access & Security'. Below this header are four tabs labeled, from left to right, 'Security Groups', 'Key Pairs', 'Floating IPs', and 'API Access'. API Access is selected. Below the API Access tab are four rectangular buttons labeled, from left to right, 'Download OpenStack RC File v2.0', 'Download OpenStack RC File v3', 'Download EC2 Credentials', and 'View Credentials'. Below these buttons are two columns labeled 'Service' and 'Service Endpoint'. Under the Service column are thirteen rows labeled, from top to bottom, 'Network', 'S3', 'Cloudformation', 'Object Store', 'Artifact', 'Compute_Legacy', 'Volumev3', 'Compute', 'Image', 'Volumev2', 'Identity', 'Volume', and 'Orchestration'. Below Orchestration are the words 'Displaying 13 items'. Under the Service Endpoint column are several HTTP addresses with some or all of the addresses redacted with charcoal gray boxes. The Identity row, together with the service endpoint address, is circled in red.") %>
 
-1. In the PCF Ops Manager Installation Dashboard, click the **BOSH Director** tile.
+1. In the Ops Manager Installation Dashboard, click the **BOSH Director** tile.
 
 1. Select **OpenStack Configs**.
 
@@ -61,7 +61,7 @@ This topic describes how to configure BOSH Director after deploying [Pivotal Clo
       * If you choose **v3**, enter the OpenStack Keystone domain to authenticate against in the **Domain** field. For more information about Keystone domains in OpenStack, see [Domains](https://docs.openstack.org/security-guide/identity/domains.html) in the _OpenStack documentation_.
 
         <%= image_tag("../common/images/openstack/om-config-name.png", :alt => "At the top of the image is the header 'OpenStack Config', underneath which is a horizontal line. Below the line are two text fields labeled 'Name' and 'Authentication URL', both with red asterisks to denote that they are required fields. The Name field contains the text 'default'. The Authentication URL field contains the text 'http://10.87.16.4:5000/v2.0'. Below the Authentication URL field are the words 'Keystone Version', below which are two options: a selected radio button labeled 'v2', and a radio button labeled 'v3'. Below these buttons is a grayed-out text field labeled 'Domain'.") %>
-    * **Username**: Enter your OpenStack Horizon username. The `PrimaryProject` for the user must be the project you are using to deploy PCF. For more information, see [Manage projects and users](https://docs.openstack.org/horizon/rocky/admin/manage-projects-and-users.html) in the OpenStack documentation.
+    * **Username**: Enter your OpenStack Horizon username. The `PrimaryProject` for the user must be the project you are using to deploy <%= vars.product_name %>. For more information, see [Manage projects and users](https://docs.openstack.org/horizon/rocky/admin/manage-projects-and-users.html) in the OpenStack documentation.
     * **Password**: Enter your OpenStack Horizon password.
     * **Tenant**: Enter your OpenStack tenant name.
     * **Region**: Enter `RegionOne`, or another region if recommended by your OpenStack administrator.
@@ -193,7 +193,7 @@ This topic describes how to configure BOSH Director after deploying [Pivotal Clo
 
 1. Click **Review Pending Changes**, then **Apply Changes**. If the following ICMP error message appears, click **Ignore errors and start the install**.
 
-    <%= image_tag("../common/images/openstack/icmp-error.png", :alt => "At the top of the image is the rectangular, dark green Ops Manager header, with a teal square containing a capital P on the far left, the words 'PCF Ops Manager' to the right of the square, and the words 'pivotal-cf' beside a downward-pointing carat on the far right. Below the header is an error message with a red background. To the left on the error message is a red triangle containing an exclamation point beside the words 'Please review the errors below'. Below 'Please review the errors below' is a bullet list with two items: 'Cannot reach gateway with IP 10.0.16.1 (ignorable if ICMP is disabled)' and 'Cannot reach DNS with IP 10.0.0.2 (ignorable if ICMP is disabled)'. To the right of this list are two buttons: a white, rectangular button labeled 'Ignore errors and start the install' in red letters on the left, and a red, rectangular button labeled 'Stop and fix errors' in white letters on the right.") %>
+    <%= image_tag("../common/images/openstack/icmp-error.png", :alt => "At the top of the image is the rectangular, dark green Ops Manager header, with a teal square containing a capital P on the far left, the words 'Pivotal Ops Manager' to the right of the square, and the words 'pivotal-cf' beside a downward-pointing carat on the far right. Below the header is an error message with a red background. To the left on the error message is a red triangle containing an exclamation point beside the words 'Please review the errors below'. Below 'Please review the errors below' is a bullet list with two items: 'Cannot reach gateway with IP 10.0.16.1 (ignorable if ICMP is disabled)' and 'Cannot reach DNS with IP 10.0.0.2 (ignorable if ICMP is disabled)'. To the right of this list are two buttons: a white, rectangular button labeled 'Ignore errors and start the install' in red letters on the left, and a red, rectangular button labeled 'Stop and fix errors' in white letters on the right.") %>
 
 1. BOSH Director installs. The image shows the **Changes Applied** message that Ops Manager displays when the installation process successfully completes.
 
@@ -203,4 +203,4 @@ This topic describes how to configure BOSH Director after deploying [Pivotal Clo
 
 ---
 
-Return to [Installing Pivotal Cloud Foundry on OpenStack](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/openstack.html).
+Return to [Installing <%= vars.product_name %> on OpenStack](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/openstack.html).

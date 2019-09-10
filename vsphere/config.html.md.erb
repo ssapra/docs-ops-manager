@@ -6,7 +6,7 @@ iaas: vSphere
 
 This topic describes how to configure the BOSH Director tile for VMware vSphere.
 
-You can also perform the procedures in this topic using the Ops Manager API. For more information,
+You can also perform the procedures in this topic using the Pivotal Operations Manager API. For more information,
 see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.
 
 <p class="note warning"><strong>WARNING:</strong> If you are installing Pivotal Container Service
@@ -21,7 +21,7 @@ For example:
   <li> To install PKS, see [Installing PKS on vSphere](https://docs.pivotal.io/pks/installing-pks-vsphere.html).</li>
 </ul>
 
-See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html) for more information about Pivotal Cloud Foundry (PCF) runtimes.
+See [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html) for more information about <%= vars.product_name %> runtimes.
 
 
 ## <a id='prerequisites'></a> Prerequisite
@@ -66,7 +66,7 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
 
 1. Click the **BOSH Director for vSphere** tile.
 
-1. Select **vCenter Config**. Configure the one or more vCenters that host your PCF foundation. The following image shows the **vCenter Config** pane.
+1. Select **vCenter Config**. Configure the one or more vCenters that host your <%= vars.product_name %> foundation. The following image shows the **vCenter Config** pane.
     <%= image_tag("../common/images/vcenter-config.png", :alt => "At the top of the image is the header 'vCenter Config', across from which on the far right is a gray, rectangular button labeled 'Add vCenter Config'. Underneath these is a horizonal line. Below the line are text fields labeled, from top to bottom, 'Name', 'vCenter Host', 'vCenter Username', 'vCenter Password', and 'Datacenter Name'. All of these text fields have red asterisks, to denote that they are required fields. The Name field contains the text 'first-vcenter'. The vCenter Host field contains the text '10.87.41.6'. The vCenter Username field contains the text 'opsmgr@vsphere.local'. The vCenter Password field contains eight asterisks and has the word 'Change' underneath in blue letters to indicate that it is clickable. The Datacenter Name field contains the text 'six'. Below the Datacenter Name field is a dropdown labeled 'Virtual Disk Type', with a red asterisk and the 'thin' option selected. Below this dropdown is a text field labeled 'Ephemeral Datastore Names (comma delimited)', with a red asterisk and containing the text 'freenas-smurfs'. Below this field is the text 'NOTE: Removing an Ephemeral Datastore after an initial deploy can result in a system outage and/or data loss.' Below this text is another text field labeled 'Persistent Datastore Names (comma delimited)', with a red asterisk and containing the text 'freenas-smurfs'. Below this field is the text 'NOTE: Removing a Persistent Datastore after an initial deploy can result in a system outage and/or data loss.' Below this text are two radio buttons, one selected radio button labeled 'Standard vCenter Networking', and one radio button labeled 'NSX Networking'. Below these radio buttons are the grayed-out words 'NSX Mode' with a red asterisk and two grayed-out options underneath: one selected radio button labeled 'NSX-V', and one radio button labeled 'NSX-T'. Below these are three grayed-out text fields with red asterisks and one grayed-out text area, labeled, from top to bottom: 'NSX Address', 'NSX Username', 'NSX Password', and 'NSX CA Cert'.") %>
 1. Complete the fields on the **vCenter Config** pane as follows:
     * **Name**: A name that you provide for your vCenter configuration. This field is used to identify the datacenter configuration in Ops Manager if you are configuring multiple datacenters.
@@ -417,4 +417,4 @@ After you complete this procedure, follow the instructions for the runtime that 
   <li>To install PKS, see <a href="https://docs.pivotal.io/pks/installing-pks-vsphere.html">Installing PKS on vSphere</a>.</li>
 </ul>
 
-For more information about PCF runtimes, see [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html).
+For more information about <%= vars.product_name %> runtimes, see [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html).

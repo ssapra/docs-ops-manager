@@ -5,7 +5,7 @@ owner: Ops Manager
 
 <html class="list-style-none"></html>
 
-This topic describes how to deploy BOSH and Ops Manager for Pivotal Cloud Foundry (PCF) on Azure by using individual commands to create resources. Pivotal recommends this manual procedure for deploying to Azure China, Azure Germany, and Azure Government Cloud.
+This topic describes how to deploy BOSH and Pivotal Operations Manager for <%= vars.product_name %> on Azure by using individual commands to create resources. Pivotal recommends this manual procedure for deploying to Azure China, Azure Germany, and Azure Government Cloud.
 
 Before you perform the procedures in this topic, you must have completed the procedures in [Preparing to Deploy Ops Manager on Azure Manually](prepare-env-manual.html). After you complete the procedures in this topic, follow the instructions in [Configuring BOSH Director on Azure](config-manual.html).
 
@@ -144,7 +144,7 @@ To create network resources for your deployment, do the following:
 
 ## <a id='storage'></a> Step 2: Create BOSH and Deployment Storage Accounts
 
-PCF on Azure uses multiple general-purpose Azure storage accounts. The BOSH and Ops Manager VMs use one main BOSH account, and the other components share five or more deployment storage accounts.
+<%= vars.product_name %> on Azure uses multiple general-purpose Azure storage accounts. The BOSH and Ops Manager VMs use one main BOSH account, and the other components share five or more deployment storage accounts.
 
 To create storage accounts for BOSH and your deployment, do the following:
 
@@ -361,7 +361,7 @@ To create load balancers, do the following:
 
 To boot Ops Manager, do the following:
 
-1. Navigate to [Pivotal Network](https://network.pivotal.io/products/ops-manager) and download the latest release of **Pivotal Cloud Foundry Ops Manager for Azure**.
+1. Navigate to [Pivotal Network](https://network.pivotal.io/products/ops-manager) and download the latest release of **Pivotal Ops Manager for Azure**.
 
 1. View the downloaded PDF and locate the Ops Manager image URL appropriate for your region.
 

@@ -6,7 +6,7 @@ owner: Ops Manager
 
 <html class="list-style-none"></html>
 
-This topic describes how to prepare Azure to deploy Ops Manager. You must deploy Ops Manager to deploy Pivotal Application Service (PAS) or Pivotal Container Service (PKS).
+This topic describes how to prepare Azure to deploy Pivotal Operations Manager. You must deploy Ops Manager to deploy Pivotal Application Service (PAS) or Pivotal Container Service (PKS).
 
 ##<a id="install"></a> Step 1: Install and Configure the Azure CLI
 
@@ -37,7 +37,7 @@ Microsoft Azure documentation.
 
     <p class="note"><strong>Note</strong>: For more information about installing Ops Manager in the China
     Region, see <a href="https://docs.pivotal.io/pivotalcf/customizing/offline_installation.html#install_china">Install in the China Region</a>
-    in <em>Installing PCF in Airgapped Environments</em> in the Pivotal documentation.</p>
+    in <em>Installing <%= vars.product_name %> in Airgapped Environments</em> in the Pivotal documentation.</p>
 
 1. To log in, run the following command:
 
@@ -206,7 +206,7 @@ the Contributor role on your service principal, run the following command:
     <p class="note"><strong>Note:</strong> If you need to use multiple resource groups for your 
     deployment on Azure, you can define custom roles for your Service Principal. These roles allow
     BOSH to deploy to pre-existing network resources outside of the resource group. For
-    more information, see <a href="https://docs.pivotal.io/pivotalcf/refarch/azure/azure_ref_arch.html#multiple_resource_groups">Multiple Resource Group Deployment</a> in <em>Reference Architecture for Pivotal Cloud Foundry on Azure</em> in the Pivotal documentation.</p>
+    more information, see <a href="https://docs.pivotal.io/pivotalcf/refarch/azure/azure_ref_arch.html#multiple_resource_groups">Multiple Resource Group Deployment</a> in <em>Reference Architecture for <%= vars.product_name %> on Azure</em> in the Pivotal documentation.</p>
 
     For more information about Azure Role-Based Access Control, refer to <a href="https://azure.microsoft.com/en-us/documentation/articles/role-based-access-built-in-roles/">Built-in roles for Azure resource</a> the Microsoft Azure documentation.
 

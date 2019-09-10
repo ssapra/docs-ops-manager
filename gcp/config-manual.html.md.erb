@@ -7,7 +7,7 @@ install_type: manual
 
 <html class="list-style-none"></html>
 
-This topic describes how to configure the BOSH Director in Ops Manager for Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
+This topic describes how to configure the BOSH Director in Pivotal Operations Manager for <%= vars.product_name %> on Google Cloud Platform (GCP).
 
 <p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
@@ -48,7 +48,7 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
 
 1. Select **Google Config**. Complete the following fields:
     * **Project ID**: Enter your GCP project ID in lowercase, such as: `your-gcp-project-id`.
-    * **Default Deployment Tag**: Enter the prefix that you used when creating the GCP resources for this PCF installation. For example, `pcf`.
+    * **Default Deployment Tag**: Enter the prefix that you used when creating the GCP resources for this <%= vars.product_name %> installation. For example, `pcf`.
     * Select **AuthJSON** and in the field below enter the contents of the JSON file that you downloaded in the [Set up IAM Service Accounts](./prepare-env-manual.html#iam_account) section of _Preparing to Deploy Ops Manager on GCP Manually_.
         <p class="note"><strong>Note:</strong>
        As an alternative, you can select <strong>The Ops Manager VM Service Account</strong> option to use the service account automatically created by GCP for the Ops Manager VM. To use this option, the project-wide service account that you set up in [Set up IAM Service Accounts](./prepare-env-manual.html#iam_account) must be assigned the **Service Account Actor** role.</p>
@@ -64,7 +64,7 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
 
   <div class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation.
     <ul>
-      <li>For configuring a PAS deployment with multiple availability zones, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</li>
+      <li>For configuring a PAS deployment with multiple availability zones, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for <%= vars.product_name %> on GCP</a>.</li>
       <li>For PKS best practices for distributing workloads across multiple availability zones and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
     </ul>
   </div>
@@ -236,7 +236,7 @@ Dashboard.
 
 1. Click **Review Pending Changes**, then **Apply Changes**. If the following ICMP error message appears, return to the [Network Config](#network) screen, and ensure you have deselected the **Enable ICMP Checks**. Click **Review Pending Changes**, then **Apply Changes** again.
 
-    <%= image_tag("../common/images/cloudform/install-error.png", :alt => "At the top of the image is the rectangular, dark green Ops Manager header, with a teal square containing a capital P on the far left, the words 'PCF Ops Manager' to the right of the square, and the words 'pivotal-cf' beside a downward-pointing carat on the far right. Below the header is an error message with a red background. To the left on the error message is a red triangle containing an exclamation point beside the words 'Please review the errors below'. Below 'Please review the errors below' is a bullet list with two items: 'Cannot reach gateway with IP 10.0.16.1 (ignorable if ICMP is disabled)' and 'Cannot reach DNS with IP 10.0.0.2 (ignorable if ICMP is disabled)'. To the right of this list are two buttons: a white, rectangular button labeled 'Ignore errors and start the install' in red letters on the left, and a red, rectangular button labeled 'Stop and fix errors' in white letters on the right.") %>
+    <%= image_tag("../common/images/cloudform/install-error.png", :alt => "At the top of the image is the rectangular, dark green Ops Manager header, with a teal square containing a capital P on the far left, the words 'Pivotal Ops Manager' to the right of the square, and the words 'pivotal-cf' beside a downward-pointing carat on the far right. Below the header is an error message with a red background. To the left on the error message is a red triangle containing an exclamation point beside the words 'Please review the errors below'. Below 'Please review the errors below' is a bullet list with two items: 'Cannot reach gateway with IP 10.0.16.1 (ignorable if ICMP is disabled)' and 'Cannot reach DNS with IP 10.0.0.2 (ignorable if ICMP is disabled)'. To the right of this list are two buttons: a white, rectangular button labeled 'Ignore errors and start the install' in red letters on the left, and a red, rectangular button labeled 'Stop and fix errors' in white letters on the right.") %>
 
 1. BOSH Director installs. This might take a few moments. When the installation process successfully completes, the **Changes Applied** window appears.
 

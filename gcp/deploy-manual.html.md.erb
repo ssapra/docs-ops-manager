@@ -6,7 +6,7 @@ owner: Ops Manager
 
 <html class="list-style-none"></html>
 
-This topic describes how to deploy Ops Manager for Pivotal Cloud Foundry (PCF) on Google Cloud Platform (GCP).
+This topic describes how to deploy Pivotal Operations Manager for <%= vars.product_name %> on Google Cloud Platform (GCP).
 
 Before you deploy Ops Manager, see the preparation steps in [Preparing to Deploy Ops Manager on GCP Manually](prepare-env-manual.html).
 
@@ -14,13 +14,13 @@ After you complete this procedure, follow the instructions in [Configuring BOSH 
 
 ## <a id='select-tgz'></a>Step 1: Locate the Ops Manager Installation File ##
 
-1. Log in to the [Pivotal Network](https://network.pivotal.io/products/pivotal-cf), and click **Pivotal Cloud Foundry Operations Manager**.
+1. Log in to the [Pivotal Network](https://network.pivotal.io/products/pivotal-cf), and click **Pivotal Operations Manager**.
 
 1. From the **Releases** dropdown, select the release to install.
 
 1. Select one of the following download files:
-    * **Pivotal Cloud Foundry Ops Manager for GCP**
-    * **Pivotal Cloud Foundry Ops Manager YAML for GCP**
+    * **Pivotal Ops Manager for GCP**
+    * **Pivotal Ops Manager YAML for GCP**
 
     When you click the download link, your browser downloads or opens the <code>OpsManager_VERSION_onGCP.pdf</code> or <code>OpsManager_VERSION_onGCP.yml</code> file. <br/><br/>
    These documents provide the GCP location of the Ops Manager `.tar.gz` installation file based on the geographic location of your installation.
@@ -63,7 +63,7 @@ After you complete this procedure, follow the instructions in [Configuring BOSH 
         |Memory| 8&nbsp;GB |
   * **Boot disk**: Click **Change**, then perform the following steps:
      * Click **Custom images** if it is not already selected.
-     * Select the **Boot disk type**. If your environment has high performance needs, select **SSD**. As an example, environments used to [develop PCF tiles](http://docs.pivotal.io/tiledev/) might benefit from a higher performing Ops Manager VM boot disk. For most environments, you can select **Standard**.
+     * Select the **Boot disk type**. If your environment has high performance needs, select **SSD**. As an example, environments used to [develop <%= vars.product_name %> tiles](http://docs.pivotal.io/tiledev/) might benefit from a higher performing Ops Manager VM boot disk. For most environments, you can select **Standard**.
      * Set the **Size (GB)** of the boot disk to the minimum or higher.
 
             | **Machine Spec** | **Minimum Value** |
