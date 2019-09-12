@@ -37,7 +37,7 @@ This partial is called in all IaaS-specific BOSH Director configuration topics.
 1. Leave the **Bosh HM Forwarder IP Address** field blank.
 <p class="note"><strong>Note:</strong> Starting in PAS v2.0, BOSH-reported component metrics are available in the Loggregator Firehose by default. If you continue to use the BOSH HM Forwarder to consume these component metrics, you may receive duplicate data. To prevent this, leave the <strong>Bosh HM Forwarder IP Address</strong> field blank.</p>
 
-1. Select the **Enable VM Resurrector Plugin** checkbox to enable the BOSH Resurrector functionality and increase your runtime availability. <% if current_page.data.iaas == "vSphere" %>If you intend to install PAS, see [Using BOSH Resurrector and vSphere HA](https://docs.pivotal.io/pivotalcf/customizing/resurrector.html) for more information about the Resurrector plugin.<% end %>
+1. Select the **Enable VM Resurrector Plugin** checkbox to enable the BOSH Resurrector functionality and increase your runtime availability. <% if current_page.data.iaas == "vSphere" %>If you intend to install PAS, see [Using BOSH Resurrector and vSphere HA](https://docs.pivotal.io/platform/customizing/resurrector.html) for more information about the Resurrector plugin.<% end %>
 
 1. Select **Enable Post Deploy Scripts** to run a post-deploy script after deployment. This script allows the job to execute additional commands against a deployment.
 <p class="note"><strong>Note:</strong> If you intend to install PKS, you must enable post-deploy scripts.</p>
