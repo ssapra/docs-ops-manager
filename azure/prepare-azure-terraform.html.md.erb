@@ -130,18 +130,11 @@ account to log in to your Azure subscription.
     --password "Swordfish" --homepage "http<span>:</span>//BOSHAzureCPI" \
     --identifier-uris "http<span>:</span>//BOSHAzureCPI"
     </pre>
-    <p class="note"><strong>Note</strong>: You can provide any string for the
-    <code>homepage</code> and <code>identifier-uris</code> flags, but the value of
-    <code>identifer-uris</code> must be unique within the organization associated with your Azure
-    subscription. For the <code>homepage</code>, Pivotal recommends using
-    <code><span>http:</span>//BOSHAzureCPI</code> as shown in the example above.
-    </p>
+    <p class="note"><strong>Note</strong>: You can provide any string for the <code>homepage</code> and <code>identifier-uris</code> flags, but the value of <code>identifer-uris</code> must be unique within the organization associated with your Azure subscription. For the <code>homepage</code>, Pivotal recommends using <code><span>http:</span>//BOSHAzureCPI</code> as shown in the example above.</p>
 
-1. From the output of the `az ad app create` that you ran in the previous step, locate and record
-the value of `appId`. This is your `APPLICATION_ID` for creating a service principal.
+1. From the output of the `az ad app create` that you ran in the previous step, locate and record the value of `appId`. This is your `APP_ID` for creating a service principal.
 
-    The following example output shows `"5c552e8f-b977-45f5-a50b-981cfe17cb9d"` as the value of
-    `appId`.
+    The following example output shows `"5c552e8f-b977-45f5-a50b-981cfe17cb9d"` as the value of `appId`.
     <pre class="terminal">
     {
       "appId": "5c552e8f-b977-45f5-a50b-981cfe17cb9d",
@@ -163,10 +156,9 @@ the value of `appId`. This is your `APPLICATION_ID` for creating a service princ
 1. To create a service principal, run the following command:
 
     ```
-    az ad sp create --id YOUR-APPLICATION-ID
+    az ad sp create --id YOUR-APP-ID
     ```
-    Where `YOUR-APPLICATION-ID` is the `APPLICATION_ID` that you recorded in
-    [Create an AAD Application](#create-aad).
+    Where `YOUR-APP-ID` is the `APP_ID` that you recorded in [Create an AAD App](#create-aad).
 
     For example:
     <pre class="terminal">
@@ -191,10 +183,8 @@ the Contributor role on your service principal, run the following command:
     --role "Contributor" --scope /subscriptions/SUBSCRIPTION-ID
     ```
     Where:
-    * `SERVICE-PRINCIPAL-NAME` is any value of `servicePrincipalNames` from the output above, such
-      as `YOUR-APPLICATION-ID`.
-    * `SUBSCRIPTION-ID` is the value of the `id` of the default subscription that you recorded in
-      [Set Your Default Subscription](#default-subscription).
+    * `SERVICE-PRINCIPAL-NAME` is any value of `servicePrincipalNames` from the output above, such as `YOUR-APP-ID`.
+    * `SUBSCRIPTION-ID` is the value of the `id` of the default subscription that you recorded in [Set Your Default Subscription](#default-subscription).
 
     For example:
     <pre class="terminal">
@@ -214,8 +204,7 @@ the Contributor role on your service principal, run the following command:
     ```
     az role assignment list --assignee "SERVICE-PRINCIPAL-NAME"
     ```
-    Where `"SERVICE-PRINCIPAL-NAME"` is any value of `servicePrincipalNames` from the output above,
-    such as `YOUR-APPLICATION-ID`.
+    Where `"SERVICE-PRINCIPAL-NAME"` is any value of `servicePrincipalNames` from the output above, such as `YOUR-APP-ID`.
 
     For example:
     <pre class="terminal">
@@ -241,16 +230,14 @@ the Contributor role on your service principal, run the following command:
 To verify your service principal, run the following command to log in to your service principal:
 
 ```
-az login --username APPLICATION_ID --password CLIENT_SECRET \
+az login --username APP_ID --password CLIENT_SECRET \
 --service-principal --tenant TENANT_ID 
 ```
 Where:
 
-* `APPLICATION_ID` is the `APPLICATION_ID` that you recorded in
-  [Create an AAD Application](#create-aad).
-* `CLIENT_SECRET` is the password that you provided in [Create an AAD Application](#create-aad).
-* `TENANT_ID` is the value of `tenantID` of the default subscription that you recorded in
-  [Set Your Default Subscription](#default-subscription).
+* `APP_ID` is the `APP_ID` that you recorded in [Create an AAD App](#create-aad).
+* `CLIENT_SECRET` is the password that you provided in [Create an AAD App](#create-aad).
+* `TENANT_ID` is the value of `tenantID` of the default subscription that you recorded in [Set Your Default Subscription](#default-subscription).
 
 For example:
 <pre class="terminal">
