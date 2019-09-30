@@ -22,15 +22,16 @@ In addition to reviewing the prerequisites for your runtime, ensure you have the
 
 * The [Terraform CLI](https://www.terraform.io/intro/getting-started/install.html)
 * In your AWS account, ensure you have an IAM user with the following permissions:
-  * AmazonEC2FullAccess
-  * AmazonRDSFullAccess
-  * AmazonRoute53FullAccess
-  * AmazonS3FullAccess
-  * AmazonVPCFullAccess
-  * IAMFullAccess
-  * AWSKeyManagementServicePowerUser
-  * and a policy with kms:UpdateKeyDescription action allowed.
-
+  * **IAM policies**:
+      * AmazonEC2FullAccess
+      * AmazonRDSFullAccess
+      * AmazonRoute53FullAccess
+      * AmazonS3FullAccess
+      * AmazonVPCFullAccess
+      * IAMFullAccess
+      * AWSKeyManagementServicePowerUser
+  * **Key policies**:
+      * kms:UpdateKeyDescription action allowed
 
 ## <a id="download"></a> Step 1: Download Templates and Edit Variables File
 
