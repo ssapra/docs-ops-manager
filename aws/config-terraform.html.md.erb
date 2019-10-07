@@ -417,11 +417,42 @@ Enter your AWS target group name in the **Load Balancers** field for the **BOSH 
 
 1. Click **Save**.
 
-## <a id="custom-vm-extensions"></a> Step 11: (Optional) Add Custom VM Extensions
+## <a id="load-balancer-vm-extensions"></a> Step 11: Add VM Extensions for Load Balancers
+
+You must assign each of your load balancer VMs to the correct AWS target groups and security groups. The following steps use the `om` CLI to configure both target groups and security groups. For more information, see [pivotalcf/om](https://github.com/pivotal-cf/om) in GitHub. 
+
+To assign your load balancer VMs to the correct target groups and security groups, do the following:
+
+1. Run the following command to create a VM extension for the web VM:
+
+    ```sh
+    om -k create-vm-extension \
+    --name "web-lb-security-groups" \
+    --cloud-properties '{ "security_groups": ["web_lb_security_group", "vms_security_group"], "target_groups":["web-lb-target-groups"] }'
+    ```
+
+1. Run the following command to create a VM extension for the SSH VM:
+    
+    ```
+    om -k create-vm-extension \
+    --name "ssh-lb-security-groups" \
+    --cloud-properties '{ "security_groups": ["ssh_lb_security_group", "vms_security_group"], "target_groups":["ssh-lb-target-groups"] }'
+    ```
+
+
+1. Run the following command to create a VM extension for the TCP VM:
+
+    ```
+    om -k create-vm-extension \
+    --name "tcp-lb-security-groups" \
+    --cloud-properties '{ "security_groups": ["tcp_lb_security_group", "vms_security_group"], "target_groups":["tcp-lb-target-groups"] }'
+    ```
+
+## <a id="custom-vm-extensions"></a> Step 12: (Optional) Add Custom VM Extensions
 
 <%= partial "../common/vm-extension-config"  %>
 
-## <a id='complete'></a> Step 12: Complete the BOSH Director Installation
+## <a id='complete'></a> Step 13: Complete the BOSH Director Installation
 
 1. Click the **Installation Dashboard** link to return to the Installation Dashboard.
 
