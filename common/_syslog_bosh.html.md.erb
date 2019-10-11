@@ -1,4 +1,12 @@
-1. Select **Syslog**. 
+1. Select **Syslog**.
+
+	<% if vars.service_name == 'Redis for PCF' %>
+
+	<%= image_tag("syslog-forwarding.png",
+	:alt => "Syslog configuration with Yes selected for the Do you want to configure Syslog forwarding radio button.",
+	:width => "450") %>
+
+	<% end %>
 
 1. (Optional) Select **Yes** to send BOSH Director system logs to a remote server.
 
