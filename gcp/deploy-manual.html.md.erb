@@ -2,6 +2,7 @@
 title: Deploying Ops Manager on GCP Manually
 owner: Ops Manager
 ---
+<%= partial '/pcf/deprecation-notice' %>
 
 <strong><%= modified_date %></strong>
 <html class="list-style-none"></html>
@@ -58,7 +59,8 @@ After you complete this procedure, follow the instructions in [Configuring BOSH 
     * Click **Customize** to manually configure the vCPU and memory. An Ops Manager VM instance requires the following minimum specifications:
 
         | **Machine Spec** | **Minimum Value** |
-        |------------------|----------------------|
+        |---
+<%= partial '/pcf/deprecation-notice' %>---------------|----------------------|
         |CPU |2&nbsp;vCPUs |
         |Memory| 8&nbsp;GB |
   * **Boot disk**: Click **Change**, then perform the following steps:
@@ -67,7 +69,8 @@ After you complete this procedure, follow the instructions in [Configuring BOSH 
      * Set the **Size (GB)** of the boot disk to the minimum or higher.
 
             | **Machine Spec** | **Minimum Value** |
-            |------------------|----------------------|
+            |---
+<%= partial '/pcf/deprecation-notice' %>---------------|----------------------|
             |Boot disk|100&nbsp;GB|
      * Select the Ops Manager image you created in the previous step if it is not already selected.<br>
         <%= image_tag("../common/images/gcp/boot_image.png") %>
