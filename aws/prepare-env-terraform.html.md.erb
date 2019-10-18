@@ -2,7 +2,6 @@
 title: Preparing to Deploy PCF on AWS Using Terraform
 owner: Ops Manager
 ---
-<%= partial '/pcf/deprecation-notice' %>
 
 <strong><%= modified_date %></strong>
 
@@ -56,19 +55,15 @@ Before you can run Terraform commands to create infrastructure resources, you mu
     dns_suffix         = "YOUR-DNS-SUFFIX"
 
     ssl_cert = <<SSL_CERT
-    ---
-<%= partial '/pcf/deprecation-notice' %>--BEGIN CERTIFICATE-----
+    -----BEGIN CERTIFICATE-----
     YOUR-CERTIFICATE
-    ---
-<%= partial '/pcf/deprecation-notice' %>--END CERTIFICATE-----
+    -----END CERTIFICATE-----
     SSL_CERT
 
     ssl_private_key = <<SSL_KEY
-    ---
-<%= partial '/pcf/deprecation-notice' %>--BEGIN EXAMPLE RSA PRIVATE KEY-----
+    -----BEGIN EXAMPLE RSA PRIVATE KEY-----
     YOUR-PRIVATE-KEY
-    ---
-<%= partial '/pcf/deprecation-notice' %>--END EXAMPLE RSA PRIVATE KEY-----
+    -----END EXAMPLE RSA PRIVATE KEY-----
     SSL_KEY
 
     ```
@@ -143,19 +138,15 @@ This causes terraform to create an additional HTTP load balancer across three av
 create_isoseg_resources = 1
 
 iso_seg_ssl_cert = <<ISO_SEG_SSL_CERT
----
-<%= partial '/pcf/deprecation-notice' %>--BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
 YOUR-CERTIFICATE
----
-<%= partial '/pcf/deprecation-notice' %>--END CERTIFICATE-----
+-----END CERTIFICATE-----
 ISO_SEG_SSL_CERT
 
 iso_seg_ssl_cert_private_key = <<ISO_SEG_SSL_KEY
----
-<%= partial '/pcf/deprecation-notice' %>--BEGIN EXAMPLE RSA PRIVATE KEY-----
+-----BEGIN EXAMPLE RSA PRIVATE KEY-----
 YOUR-PRIVATE-KEY
----
-<%= partial '/pcf/deprecation-notice' %>--END EXAMPLE RSA PRIVATE KEY-----
+-----END EXAMPLE RSA PRIVATE KEY-----
 ISO_SEG_SSL_KEY
 ```
 

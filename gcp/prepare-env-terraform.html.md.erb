@@ -4,7 +4,6 @@ owner: Ops Manager
 iaas: GCP
 install_type: terraform
 ---
-<%= partial '/pcf/deprecation-notice' %>
 
 <strong><%= modified_date %></strong>
 <html class="list-style-none"></html>
@@ -72,19 +71,15 @@ Before you can run Terraform commands to create infrastructure resources, you mu
     dns_suffix       = "YOUR-DNS-SUFFIX"
 
     ssl_cert = <<SSL_CERT
-    ---
-<%= partial '/pcf/deprecation-notice' %>--BEGIN CERTIFICATE-----
+    -----BEGIN CERTIFICATE-----
     YOUR-CERTIFICATE
-    ---
-<%= partial '/pcf/deprecation-notice' %>--END CERTIFICATE-----
+    -----END CERTIFICATE-----
     SSL_CERT
 
     ssl_private_key = <<SSL_KEY
-    ---
-<%= partial '/pcf/deprecation-notice' %>--BEGIN EXAMPLE RSA PRIVATE KEY-----
+    -----BEGIN EXAMPLE RSA PRIVATE KEY-----
     YOUR-PRIVATE-KEY
-    ---
-<%= partial '/pcf/deprecation-notice' %>--END EXAMPLE RSA PRIVATE KEY-----
+    -----END EXAMPLE RSA PRIVATE KEY-----
     SSL_KEY
 
     service_account_key = <<SERVICE_ACCOUNT_KEY
@@ -171,19 +166,15 @@ If you plan to deploy the Isolation Segment tile, add the following variables to
 ```
 isolation_segment = true
 iso_seg_ssl_cert = <<ISO_SEG_SSL_CERT
----
-<%= partial '/pcf/deprecation-notice' %>--BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
 YOUR-CERTIFICATE
----
-<%= partial '/pcf/deprecation-notice' %>--END CERTIFICATE-----
+-----END CERTIFICATE-----
 ISO_SEG_SSL_CERT
 
 iso_seg_ssl_private_key = <<ISO_SEG_SSL_KEY
----
-<%= partial '/pcf/deprecation-notice' %>--BEGIN EXAMPLE RSA PRIVATE KEY-----
+-----BEGIN EXAMPLE RSA PRIVATE KEY-----
 YOUR-PRIVATE-KEY
----
-<%= partial '/pcf/deprecation-notice' %>--END EXAMPLE RSA PRIVATE KEY-----
+-----END EXAMPLE RSA PRIVATE KEY-----
 ISO_SEG_SSL_KEY
 ```
 
