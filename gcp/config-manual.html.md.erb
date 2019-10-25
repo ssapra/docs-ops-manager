@@ -214,7 +214,7 @@ This topic describes how to configure the BOSH Director in Pivotal Operations Ma
 
 ## <a id='syslog'></a> Step 9: Syslog Page
 
-<%= partial '../common/syslog_bosh' %>
+<%= partial(:"../common/syslog_bosh", :locals => { :syslog_context => 'BOSH Director' }) %>
 
 ## <a id='resource-config'></a> Step 10: Resource Config Page
 
