@@ -94,7 +94,7 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
             ```
             openssl s_client -showcerts -connect NSX-MANAGER-ADDRESS:443 < /dev/null 2> /dev/null | openssl x509
             ```
-            Where `NSX-MANAGER-ADDRESS` is the address of the NSX manager.  
+            Where `NSX-MANAGER-ADDRESS` is the address of the NSX manager.
             The [**Resource Config**](#resource-config) pane lets you enter NSX-T or NSX-V load balancer and security group configuration information.
 
 1. Configure the following folder names:
@@ -376,7 +376,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
 
 <p class="note"><strong>Note:</strong> BOSH Director logs contain sensitive information that should be considered privileged. For example, these logs may contain cloud provider credentials. If you choose to forward logs to an external syslog endpoint, use TLS encryption to prevent information from being intercepted by a third party.</p>
 
-<%= partial '../common/syslog_bosh' %>
+<%= partial(:"../common/syslog_bosh", :locals => { :syslog_context => 'BOSH Director' }) %>
 
 ## <a id='resource-config'></a> Step 10: Resource Config Pane
 
