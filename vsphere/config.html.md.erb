@@ -78,11 +78,11 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
     <p class="note"><strong>Note:</strong> Datastores do not support whitespace characters in their names. Including whitespace characters in datastore names causes an error.</p>
     * **Ephemeral Datastore Names (comma delimited)**: The names of the datastores that store ephemeral VM disks deployed by Ops Manager.
     * **Persistent Datastore Names (comma delimited)**: The names of the datastores that store persistent VM disks deployed by Ops Manager.
-        
+
 1. Select a network configuration from one of the following:
     * **Standard vCenter Networking**: This is the default option when upgrading Ops Manager.
-    <p class="note warning"><strong>Warning:</strong> If you intend to deploy PKS using Flannel as the CNI (as opposed to NSX-T), then select this option to configure the BOSH Director. Do not choose **NSX Networking**. When you configure the PKS tile later on, you will configure Flannel as the container network interface (CNI). <br/><br/>If you intend to deploy PKS with NSX-T, see <a href="https://docs.pivotal.io/pks/vsphere-nsxt-index.html">Installing PKS on vSphere with NSX-T Data Center</a>.</p>  
-    * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization for non-PKS runtimes such as Pivotal Application Service (PAS).    
+    <p class="note warning"><strong>Warning:</strong> If you intend to deploy PKS using Flannel as the CNI (as opposed to NSX-T), then select this option to configure the BOSH Director. Do not choose **NSX Networking**. When you configure the PKS tile later on, you will configure Flannel as the container network interface (CNI). <br/><br/>If you intend to deploy PKS with NSX-T, see <a href="https://docs.pivotal.io/pks/vsphere-nsxt-index.html">Installing PKS on vSphere with NSX-T Data Center</a>.</p>
+    * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization for non-PKS runtimes such as Pivotal Application Service (PAS).
     Configure NSX networking by entering the following information:
         * **NSX Mode**: Select either **NSX-V** or **NSX-T**.
         * **NSX Address**: The address of the NSX manager.
@@ -113,9 +113,9 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
 
 ## <a id='create-az'></a> Step 4: Create Availability Zones Page
 
-Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and resource pools. 
+Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and resource pools.
 
-Multiple AZs allow you to provide high availability and load balancing to your applications. When you run more than one instance of an application, Ops Manager balances those instances across all of the AZs assigned to the application. 
+Multiple AZs allow you to provide high availability and load balancing to your applications. When you run more than one instance of an application, Ops Manager balances those instances across all of the AZs assigned to the application.
 
 Pivotal recommends that you use at least three AZs for a highly available installation of your chosen runtime.
 
@@ -125,12 +125,12 @@ Pivotal recommends that you use at least three AZs for a highly available instal
     <%= image_tag("../common/images/create-az.png", :alt => "The 'Create Availability Zones' pane shows a list of two availability zones: 'first-az' and 'second-az' with a button to the right to 'Add'. The 'first-az' is expanded and shows the fields 'Name' and 'IaaS Configuration'. Below that, still in the expanded 'first-az', a subhead called 'Clusters' lists a group of two fields, 'Cluster' and 'Resource Pool' with a button to the right to 'Add Cluster'.") %>
 
 1. Use the following steps to create the first AZ.
-    * Click **Add**. 
+    * Click **Add**.
     * Enter a unique **Name** for the AZ.
     * Select a vCenter config name from the **IaaS Configuration** dropdown to associate your AZ with a vCenter. If you have only one vCenter config, or if you are creating your first AZ, IaaS Configuration defaults to the first vCenter and cannot be configured.
     * Enter the name of the vCenter **Cluster** where you deployed Ops Manager. You created this cluster in the [Prepare vSphere](./deploy.html#prepare-vsphere) step of _Deploying Ops Manager to vSphere_. For example, `Cluster1`.
-    * Enter the name of the **Resource Pool** that you created in the [Prepare vSphere](./deploy.html#prepare-vsphere) step of _Deploying Ops Manager to vSphere_ to organize management components like Ops Manager and BOSH Director. 
-    For example, `RP-MGMT`. The jobs running in this AZ share the CPU and memory resources defined by the pool. 
+    * Enter the name of the **Resource Pool** that you created in the [Prepare vSphere](./deploy.html#prepare-vsphere) step of _Deploying Ops Manager to vSphere_ to organize management components like Ops Manager and BOSH Director.
+    For example, `RP-MGMT`. The jobs running in this AZ share the CPU and memory resources defined by the pool.
     You only need to specify this resource group in one AZ.
     * (Optional) Enter the name of a **Host Group** for the AZ to use. The host group must be within the cluster you designated in the **Clusters** field.
     * (Optional) Click **Add Cluster** to add more clusters to the AZ as required by your installation size and high availability requirements.
@@ -153,7 +153,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
   * For PAS, click **Add Network** and create the following networks:
       * `infrastructure`: This network is for Ops Manager and the BOSH Director.
       * `pas`: This network is for all the PAS VMs including Gorouter, Diego cells, and Cloud Controller.
-      * `services`: This network is for any service tiles to be deployed alongside PAS.   <br/><br/> 
+      * `services`: This network is for any service tiles to be deployed alongside PAS.   <br/><br/>
     Use the values from the following table as a guide when you create each network, replacing the IP addresses with ranges that are available in your vSphere environment:
      <table>
      <tr>
@@ -375,7 +375,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
 
 <p class="note"><strong>Note:</strong> BOSH Director logs contain sensitive information that should be considered privileged. For example, these logs may contain cloud provider credentials. If you choose to forward logs to an external syslog endpoint, use TLS encryption to prevent information from being intercepted by a third party.</p>
 
-<%= partial '../common/syslog_bosh' %>
+<%= partial(:'../common/syslog_bosh', :locals => { :syslog_context => 'BOSH Director' }) %>
 
 ## <a id='resource-config'></a> Step 10: Resource Config Page
 

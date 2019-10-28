@@ -391,7 +391,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
 ## <a id='syslog'></a> Step 9: Syslog Page
 
-<%= partial '../common/syslog_bosh' %>
+<%= partial(:'../common/syslog_bosh', :locals => { :syslog_context => 'BOSH Director' }) %>
 
 ## <a id='pcfaws-om-rscestem'></a> Step 10: Resource Config Page
 
@@ -408,7 +408,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
 ## <a id="load-balancer-vm-extensions"></a> Step 11: Add VM Extensions for Load Balancers
 
-You must assign each of your load balancer VMs to the correct AWS target groups and security groups. The following steps use the `om` CLI to configure both target groups and security groups. For more information, see [pivotalcf/om](https://github.com/pivotal-cf/om) in GitHub. 
+You must assign each of your load balancer VMs to the correct AWS target groups and security groups. The following steps use the `om` CLI to configure both target groups and security groups. For more information, see [pivotalcf/om](https://github.com/pivotal-cf/om) in GitHub.
 
 To assign your load balancer VMs to the correct target groups and security groups, do the following:
 
@@ -421,7 +421,7 @@ To assign your load balancer VMs to the correct target groups and security group
     ```
 
 1. Run the following command to create a VM extension for the SSH VM:
-    
+
     ```
     om -k create-vm-extension \
     --name "ssh-lb-security-groups" \

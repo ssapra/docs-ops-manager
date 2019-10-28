@@ -189,8 +189,8 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
     </table>
    <%= vars.expand_network_azs %>
 
-    <p class="note"><strong>Note:</strong> Ensure <code>169.254.169.254</code>, the IP address of the <code>metadata.google.internal</code> metadata server, 
-    is always specified at the beginning of this step's DNS resolver lists.</p>   
+    <p class="note"><strong>Note:</strong> Ensure <code>169.254.169.254</code>, the IP address of the <code>metadata.google.internal</code> metadata server,
+    is always specified at the beginning of this step's DNS resolver lists.</p>
 
 ## <a id="assign-azs"></a> Step 6: Assign AZs and Networks Page
 
@@ -214,7 +214,7 @@ This topic describes how to configure the BOSH Director in Ops Manager for Pivot
 
 ## <a id='syslog'></a> Step 9: Syslog Page
 
-<%= partial '../common/syslog_bosh' %>
+<%= partial(:'../common/syslog_bosh', :locals => { :syslog_context => 'BOSH Director' }) %>
 
 ## <a id='resource-config'></a> Step 10: Resource Config Page
 

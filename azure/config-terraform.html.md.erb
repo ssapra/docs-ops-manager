@@ -62,7 +62,7 @@ To complete the procedures in this topic, you must have access to the output gen
 	* **Resource Group Name**: Enter the name of your resource group, which is exported from Terraform as the output `pcf_resource_group_name`.
 	* **BOSH Storage Account Name**: Enter the name of your storage account, which is exported from Terraform as the output `bosh_root_storage_account`.
 
-1. For **Cloud Storage Type**, select **Use Managed Disks**. For **Storage Account Type**, select **Premium_LRS** which corresponds to SSD-based storage. See [Azure Managed Disks Overview](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview) in the Microsoft documentation for more information. 
+1. For **Cloud Storage Type**, select **Use Managed Disks**. For **Storage Account Type**, select **Premium_LRS** which corresponds to SSD-based storage. See [Azure Managed Disks Overview](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview) in the Microsoft documentation for more information.
         <%= image_tag("../common/images/azure/azure-managed-disk.png", :alt => "The words 'Cloud Storage Type' with two options underneath. The first option is a selected radio button labeled 'Use Managed Disks', below which is a dropdown labeled 'Storage Account Type' with 'Premium_LRS' selected. To the right of the dropdown is the help text 'Storage Account Type to use with managed disks'. The second option is a radio button labeled 'Use Storage Accounts', below which is a grayed-out text field labeled 'Deployments Storage Account Name'.") %>
     <p class="note warning"><strong>Warning:</strong> You can update your deployment from using storage accounts to using managed disks. However, after you select <strong>Use Managed Disks</strong> and deploy Ops Manager, you cannot change your deployment back to use storage accounts.</p>
 
@@ -73,8 +73,8 @@ To complete the procedures in this topic, you must have access to the output gen
 1. For **SSH Private Key**, enter the `ops_manager_ssh_private_key` output from Terraform.
 
 1. For **Availability Mode**, choose whether to use **Availability Sets** or **Availability Zones**. You can further configure this option in the [**Assign AZs and Networks Page**](#assign-networks).
-   * **For new installations of Ops Manager**: **Availability Zones** are selected by default, but you can choose **Availability Sets**. 
-   * **If you are upgrading from v2.4**: You must use **Availability Sets**. 
+   * **For new installations of Ops Manager**: **Availability Zones** are selected by default, but you can choose **Availability Sets**.
+   * **If you are upgrading from v2.4**: You must use **Availability Sets**.
     <p class="note"><strong>Note:</strong> You can only choose between Availability Zones and Availability Sets in a staged BOSH Director tile that has not yet deployed. After you click <strong>Apply Changes</strong> and the BOSH Director deploys successfully, you cannot switch between Availability Zones and Availability Sets.</p>
 
 1. <%= partial "../common/azure-environment" %>
@@ -418,7 +418,7 @@ To create the infrastructure network, do the following:
     <li>If you use Availability Sets, choose a network from the <strong>Networks</strong> dropdown. The networks that appear in this list are networks you created earlier in this procedure.</li>
     </ul>
   </li>
-  <li>Click <strong>Save</strong>.</li>  
+  <li>Click <strong>Save</strong>.</li>
 </ol>
 
 
@@ -432,7 +432,7 @@ To create the infrastructure network, do the following:
 
 ## <a id='syslog'></a> Step 8: Syslog Page
 
-<%= partial '../common/syslog_bosh' %>
+<%= partial(:'../common/syslog_bosh', :locals => { :syslog_context => 'BOSH Director' }) %>
 
 ## <a id='resource'></a> Step 9: Resource Config Page
 
