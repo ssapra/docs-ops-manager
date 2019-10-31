@@ -295,7 +295,7 @@ To create load balancers, do the following:
         <pre class="terminal">
         $ az network lb probe create --lb-name pcf-lb \
         --name http8080 --resource-group $RESOURCE_GROUP \
-        --protocol Http --port 8080
+        --protocol Http --port 8080 --path health
         </pre>
         * Add a load balancing rule for HTTP.
         <pre class="terminal">
