@@ -24,12 +24,12 @@ The following sections describe the reference architecture for PAS on vSphere wi
 
 PAS on vSphere with NSX-T supports the following SDN features:
 
-* Virtualized, encapsulated networks and encapsulated broadcast domains
-* VLAN exhaustion avoidance with the use of virtualized Logical Networks
-* DNAT/SNAT services to create separate, non-routable network spaces for the PAS installation
-* Load balancing services to pass traffic thru (at layer 4) to pools of platform routers (at layer 7)
+* Virtualized, encapsulated networks and broadcast domains
+* VLAN exhaustion avoidance with the use of virtualized, encapsulated logical networks
+* DNAT/SNAT services to create separate, non-routable network ranges for the PAS installation
+* Load balancing services to pass traffic thru to pools of platform routers
 * SSL termination at the load balancer at layer 7 with the option to forward on at layer 4 or 7 with unique certificates
-* Virtual, distributed routing and firewalling services native to the hypervisor
+* Virtual, distributed routing and firewalling services for east-west traffic native to the hypervisor
 
 
 ### <a id="pas-nsx-t-diagram"></a> Architecture
@@ -40,11 +40,9 @@ The following reference architecture diagram describes the architecture for PAS 
 
 [View a larger version of this diagram](../images/v2/export/PAS_vSphere_NSX-T.png).
 
-As shown in the diagram above, PAS deployments with NSX-T are deployed with three clusters and three availability zones (AZs). 
+As shown in the diagram above, PAS deployments with NSX-T are ideally deployed with three clusters and three availability zones (AZs). 
 
-A NSX-T Tier-0 router is on the front end of the PAS deployment. This router is a central logical router into the PAS platform. You can configure static or dynamic routing using BGP from the routed IP backbone through the Tier-0 router with the gateway Edge.
-
-Several Tier-1 routers, such as the router for the PAS and infrastructure subnets, connect to the Tier-0 router. 
+A NSX-T Tier-0 router is on the entry boundary of the PAS deployment. This router is the central logical router into/out of the PAS platform. Routing configuration on the IP backbone can be static or dynamic using BGP on the Tier-0 router. Several Tier-1 routers, such as the router for the PAS and infrastructure subnets, connect to the Tier-0 router as child routing points to/from other child T1 routers and from the routed IP backbone. 
 
 ### <a id="pas-nsx-t-pas"></a> NSX-T Container Plugin Requirement
 
@@ -61,12 +59,11 @@ The following sections describe networking requirements and recommendations for 
 
 #### <a id="pas-nsx-t-routable-ip"></a> Routable IPs 
 
-The Tier-0 router must have routable external IP address space to advertise on the BGP network with its peers.
-Select a network range for the Tier-0 router with enough space so that the network can be separated into the following two jobs:
+The Tier-0 router must have routable external IP address space assigned to peer with other routers on that backbone (BGP routing) or simply be a addressable routing point (static routing). Select a network range for the Tier-0 router with enough addresses, as the network will be separated into the following two jobs:
 
-* Routing incoming and outgoing traffic. 
-* DNATs and SNATs, load balancer VIPs, and other <%= vars.product_name %> components.
- 
+* Routing incoming and outgoing traffic on the IP backbone. 
+* DNAT(s) and SNAT(s), load balancer VIPs, and other <%= vars.product_name %> components.
+
 
 <p class="note"><b>Note: </b> Compared to NSX-V, NSX-T consumes much more address space for SNATs.</p>
 
@@ -80,13 +77,13 @@ For more information about DNS requirements for PAS, see the [Domain Names](../i
 
 The following are load balancing requirements and recommendations for PAS on vSphere with NSX-T deployments:
 
-* You must configure NSX-T load balancers for the Gorouters. 
+* You must configure load balancers for the Gorouters, which NSX-T can provide. 
   * The domains for the PAS system and apps must resolve to the load balancer VIP. 
   * You must assign either a private or a public IP address assigned to the domains for the PAS system and apps.
-* Pivotal recommends that you configure Layer 4 NSX-V load balancers for the Gorouters. With Layer 4 load balancers, traffic passes through the load balancers and SSL is terminated at the Gorouters. This approach reduces overhead processing.
-<p class='note'><b>Note:</b> It is possible to use Layer 7 load balancers and terminate SSL at the load balancers. However, this approach adds additional overhead processing and is not recommended.</p>
-* Any TCP Gorouters and SSH Proxies within the platofrm also require NSX-T load balancers.
-* Layer 4 and Layer 7 NSX-T load balancers are created automatically during app deployment.
+* Pivotal recommends that you configure load balancers at layer 4 for the Gorouters. With layer 4 load balancers, HTTP/HTTPS traffic passes through the load balancers and SSL is terminated at the Gorouters. This approach reduces overhead at the NSX load balancers due to processing encryption/decryption. This burden is better shared amongst a number of Gorouters as compared to a single, logical NSX load balancer.
+<p class='note'><b>Note:</b> NSX load balancers can operate at layer 7 and terminate/initiate SSL. However, this use adds additional burden on the NSX Edge that hosts the load balancer, which may have other jobs and processing needs, which brings the requirement for well resourced Edge(s) that may not be available or grow with increasing demands and is not recommended.</p>
+* Any TCP Gorouters and SSH Proxies within the platform also require load balancers, which NSX-T can provide.
+* Additional Layer 4 and Layer 7 NSX-T load balancers are created automatically during app deployment.
 
 
 #### <a id="pas-nsx-t-networking-subnets-ip"></a> Networking, Subnets, and IP Spacing
@@ -94,8 +91,8 @@ The following are load balancing requirements and recommendations for PAS on vSp
 The following are requirements and recommendations related to networks, subnets, and IP spacing for PAS on vSphere with NSX-T deployments:
 
 * PAS requires statically-defined networks to host PAS component VMs. 
-* The client side of a NSX-T deployment uses a series of non-routable address blocks when using DNAT/SNAT at the Tier-0 interface.
-* The reference architecture for PAS on vSphere with NSX-T deployments uses a pattern in which all networks are calculated on the `/24` 8-bit network boundary. The network octet is numerically sequential.
+* The tenant side of a NSX-T deployment (on the right side of the diagram) uses a series of non-routable address ranges when using DNAT/SNAT at the Tier-0 interface.
+* The reference architecture for PAS on vSphere with NSX-T deployments uses a pattern in which all networks are calculated on the `/24` network boundary for simplicity. The network octet is numerically sequential commonly starting at one and incrementing by one for each subsequent network needed.
 * NSX-T dynamically assigns PAS org networks and adds a Tier-1 router. These org networks are automatically instantiated based on a non-overlapping block of address space. You can configure the block of address space in the **NCP Configuration** section of the NSX-T tile in Pivotal Operations Manager. The default is `/24`. This means that every org in PAS is assigned a new `/24` network.
 
 For more information about PAS subnets, see the [Required Subnets](../index.html#pas-network) section in _Platform Architecture and Planning Overview_.
