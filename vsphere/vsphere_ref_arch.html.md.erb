@@ -7,16 +7,107 @@ This topic provides reference architectures for <%= vars.product_name  %> on vSp
 
 See [Installing <%= vars.product_name %> on vSphere](../../customizing/vsphere.html) for additional requirements and installation instructions for <%= vars.product_name %> on vSphere.
 
+## <a id="overview"></a> Before You Begin
+
+Our products contain feature sets, that when used, will impact designs in this reference architecture.
+
+### <a id="overview"></a> Isolation Segments
+
+Isolation segments are delivered as a tile in Pivotal Operations Manager. They are used to create smaller individual deployments of PAS components, Gorouters and Diego cells, to help isolate workloads. 
+The isolation criteria could include capacity management or audit compliance to name a couple. Isolation segments can be also be patched independently from the PAS tile or other isolation segments.
+We recommend that when using isolation segments, you should deploy all containers to an isolation segment and leave the PAS tile to only system-level components. 
+By moving all application workloads to an isolation segment, you get finer-grained control over the network usage, capacity planning, firewalling, and business continuity.
+
+### <a id="overview"></a> Host Groups
+
+Host groups allow you create virtual PaaS failure domains independently of phsyical IaaS capacity. 
+In PAS or PKS on vSphere, this amounts to creating multiple Availability Zones that do not have to align 1:1 with vSphere constructs (i.e clusters or pools).
+You can use host groups to gain PaaS high availability with IaaS capacity that is undersized.
+Alternatively, host groups can be used to create availability zones that can grow in an elastic way as the IaaS grows.
+
+### <a id="overview"></a> Multiple vCenter Support
+
+Multiple vCenter Support can allow you to use PAS in a mature vSphere environment. 
+Coupled with host groups, a brown field deployment strategy can happen as hosts in existing vSphere clusters can be set aside for PAS/PKS.
+PAS/PKS can also be stretched geographically without needing to stretch IaaS elements.
+
 ## <a id="overview"></a> Overview
 
+### <a id="pas-nsx-t-ha"></a> High Availability
+
+For information about high availability requirements and recommendations for PAS on vSphere, see the [High Availability](../index.html#pas-ha) section of _Platform Architecture and Planning Overview_.
+
+### <a id="pas-nsx-t-shared-storage"></a> Shared Storage
+
+Shared storage is a requirement for <%= vars.product_name %>. You can allocate networked storage to the host clusters following one of two common approaches: horizontal or vertical. The approach you follow reflects how your data center arranges its storage and host blocks in its physical layout.
+
+#### Horizontal Shared Storage
+
+With the horizontal shared storage approach, you grant all hosts access to all datastores and assign a subset to each <%= vars.product_name %> installation. 
+
+For example, with six datastores `ds01` through `ds06`, you grant all nine hosts access to all six datastores. You then provision your first <%= vars.product_name %> installation to use stores `ds01` through `ds03`  and your second <%= vars.product_name %> installation to use `ds04` through `ds06`.
+
+#### Vertical Shared Storage
+
+With the vertical shared storage approach, you grant each cluster its own datastores, creating a cluster-aligned storage strategy. vSphere VSAN is an example of this architecture. 
+
+For example, with six datastores `ds01` through `ds06`, you assign datastores `ds01` and `ds02` to a cluster, `ds03` and `ds04` to a second cluster, and `ds05` and `ds06` to a third cluster. You then provision your first <%= vars.product_name %> installation to use `ds01`, `ds03`, and `ds05`, and your second <%= vars.product_name %> installation to use `ds02`, `ds04`, and `ds06`. 
+
+With this arrangement, all VMs in the same installation and cluster share a dedicated datastore.
+
+### <a id="pas-nsx-t-storage-capacity"></a> Storage Capacity
+
+Pivotal recommends the following storage capacity allocation for production and non-production PAS environments:
+
+* **Production environments**: Configure at least 8 TB of data storage. You can configure this as either one 8 TB store or a number of smaller volumes that sum to 8 TB. Frequently-used developments may require significantly more storage to accommodate new code and buildpacks. 
+* **Non-production environments**: Configure 4 to 6 TB of data storage.
+
+<p class="note"><strong>Note</strong>: <%= vars.product_name %> does not support using vSphere Storage Clusters with the <a href="#overview">latest versions of <%= vars.product_name %></a> validated for the reference architecture. Datastores should be listed in the vSphere tile by their native name, not the cluster name created by vCenter for the storage cluster.</p>
+
+<p class="note"><b>Note:</b> If a datastore is part of a vSphere Storage Cluster using DRS storage (sDRS), you must disable the s-vMotion feature on any datastores used by <%= vars.product_name %>. Otherwise, s-vMotion activity can rename independent disks and cause BOSH to malfunction. For more information, see <a href="./vsphere_migrate_datastore.html">How to Migrate <%= vars.product_name %> to a New Datastore in vSphere</a>.</p>
+
+For more information about general storage requirements and recommendations for PAS, see the
+[Storage](../index.html#pas-storage) section of _Platform Architecture and Planning Overview_.
+
+### <a id="pas-nsx-t-sql"></a> SQL Server
+
+An internal MySQL database is sufficient for use in production environments. 
+
+However, an external database provides more control over database management for large environments that require multiple data centers. 
+
+For information about configuring system databases on PAS, see the [Configure System Databases](https://docs.pivotal.io/platform/2-7/customizing/configure-pas.html#sys-db) section of _Configuring PAS_.
+
+### <a id="pas-nsx-t-securty"></a> Security
+
+For information about security requirements and recommendations for PAS deployments, see the [Security](../index.html#pas-security) section of _Platform Architecture and Planning Overview_.
+
+### <a id="pas-nsx-t-blobstore"></a> Blobstore Storage
+
+PAS ships with an internal blobstore. It is recommended for POC deployments. 
+Pivotal recommends that you use the following blobstore storage for production and non-production PAS environments:
+
+* **Production/Test environments**: Use an external S3 storage appliance as the blobstore such as (Dell ECS, Minio, any other S3 compatible datastore in your environment).
+* **POC environments**: Use internal blobstore.
+
+<p class="note"><b>Note:</b> For POC environments, the internal blobstore can be the primary consumer of storage, as the internal blobstore must be actively maintained. There will be down time for deployment during events such as storage upgrades or migrations to new disks. </p>  
+
+For more information about blobstore storage requirements and recommendations, see the [Configure File Storage](https://docs.pivotal.io/platform/2-7/upgrading/configuring.html#file-storage) section of _Configuring PAS for Upgrades_.
+
+### <a id="pas-nsx-v-dns"></a> DNS
+
+PAS requires a system domain, app domain, and several wildcard domains. 
+
+For more information about DNS requirements for PAS, see the [Domain Names](../index.html#pas-domains) section in _Platform Planning and Architecture_.
+
+### <a id="networking"></a> Networking
 The vSphere reference architecture for the Pivotal Application Service (PAS) and Pivotal Container Service (PKS) runtimes is based on software-defined networking (SDN) infrastructure. vSphere offers NSX-T and NSX-V to support SDN infrastructure. 
 
 <%= vars.product_name %> supports the following configurations for <%= vars.product_name %> on vSphere deployments:
 
 * PAS on vSphere with NSX-T. See [PAS on vSphere with NSX-T](#pas-nsx-t).
 * PAS on vSphere with NSX-V. See [PAS on vSphere with NSX-V](#pas-nsx-v).
-* PKS on vSphere with  NSX-T. See [PKS on vSphere with NSX-T](#pks-nsx-t)
-
+* PAS on vSphere without SDN. See [PAS on vSphere without SDN](#pas-routed).
+* PKS on vSphere with  NSX-T. See [PKS on vSphere with NSX-T](#pks-nsx-t).
 
 ## <a id="pas-nsx-t"></a> PAS on vSphere with NSX-T
 
@@ -30,7 +121,6 @@ PAS on vSphere with NSX-T supports the following SDN features:
 * Load balancing services to pass traffic thru to pools of platform routers
 * SSL termination at the load balancer at layer 7 with the option to forward on at layer 4 or 7 with unique certificates
 * Virtual, distributed routing and firewalling services for east-west traffic native to the hypervisor
-
 
 ### <a id="pas-nsx-t-diagram"></a> Architecture
 
@@ -67,12 +157,6 @@ The Tier-0 router must have routable external IP address space assigned to peer 
 
 <p class="note"><b>Note: </b> Compared to NSX-V, NSX-T consumes much more address space for SNATs.</p>
 
-#### <a id="pas-nsx-t-dns"></a> DNS
-
-PAS requires a system domain, app domain, and several wildcard domains. 
-
-For more information about DNS requirements for PAS, see the [Domain Names](../index.html#pas-domains) section in _Platform Planning and Architecture_.
-
 #### <a id="pas-nsx-t-load-balancing"></a> Load Balancing
 
 The following are load balancing requirements and recommendations for PAS on vSphere with NSX-T deployments:
@@ -88,79 +172,21 @@ The following are load balancing requirements and recommendations for PAS on vSp
 
 #### <a id="pas-nsx-t-networking-subnets-ip"></a> Networking, Subnets, and IP Spacing
 
-The following are requirements and recommendations related to networks, subnets, and IP spacing for PAS on vSphere with NSX-T deployments:
+The following are requirements and recommendations related to networks, subnets, and IP spacing for PAS on vSphere:
 
 * PAS requires statically-defined networks to host PAS component VMs. 
-* The tenant side of a NSX-T deployment (on the right side of the diagram) uses a series of non-routable address ranges when using DNAT/SNAT at the Tier-0 interface.
-* The reference architecture for PAS on vSphere with NSX-T deployments uses a pattern in which all networks are calculated on the `/24` network boundary for simplicity. The network octet is numerically sequential commonly starting at one and incrementing by one for each subsequent network needed.
+* The tenant side (on the right side of the diagram) uses a series of non-routable address ranges when using NAT.
 * NSX-T dynamically assigns PAS org networks and adds a Tier-1 router. These org networks are automatically instantiated based on a non-overlapping block of address space. You can configure the block of address space in the **NCP Configuration** section of the NSX-T tile in Pivotal Operations Manager. The default is `/24`. This means that every org in PAS is assigned a new `/24` network.
 
 For more information about PAS subnets, see the [Required Subnets](../index.html#pas-network) section in _Platform Architecture and Planning Overview_.
 
-
-### <a id="pas-nsx-t-ha"></a> High Availability
-
-For information about high availability requirements and recommendations for PAS on vSphere, see the [High Availability](../index.html#pas-ha) section of _Platform Architecture and Planning Overview_.
-
-### <a id="pas-nsx-t-shared-storage"></a> Shared Storage
-
-Shared storage is a requirement for <%= vars.product_name %>. You can allocate networked storage to the host clusters following one of two common approaches: horizontal or vertical. The approach you follow reflects how your data center arranges its storage and host blocks in its physical layout.
-
-#### Horizontal Shared Storage
-
-With the horizontal shared storage approach, you grant all hosts access to all datastores and assign a subset to each <%= vars.product_name %> installation. 
-
-For example, with six datastores `ds01` through `ds06`, you grant all nine hosts access to all six datastores. You then provision your first <%= vars.product_name %> installation to use stores `ds01` through `ds03`  and your second <%= vars.product_name %> installation to use `ds04` through `ds06`.
-
-#### Vertical Shared Storage
-
-With the vertical shared storage approach, you grant each cluster its own datastores, creating a cluster-aligned storage strategy. vSphere VSAN is an example of this architecture. 
-
-For example, with six datastores `ds01` through `ds06`, you assign datastores `ds01` and `ds02` to a cluster, `ds03` and `ds04` to a second cluster, and `ds05` and `ds06` to a third cluster. You then provision your first <%= vars.product_name %> installation to use `ds01`, `ds03`, and `ds05`, and your second <%= vars.product_name %> installation to use `ds02`, `ds04`, and `ds06`. 
-
-With this arrangement, all VMs in the same installation and cluster share a dedicated datastore.
-
-
-### <a id="pas-nsx-t-storage-capacity"></a> Storage Capacity
-
-Pivotal recommends the following storage capacity allocation for production and non-production PAS environments:
-
-* **Production environments**: Configure at least 8 TB of data storage. You can configure this as either one 8 TB store or a number of smaller volumes that sum to 8 TB. Frequently-used developments may require significantly more storage to accommodate new code and buildpacks. 
-* **Non-production environments**: Configure 4 to 6 TB of data storage.
-
-<p class="note"><strong>Note</strong>: <%= vars.product_name %> does not support using vSphere Storage Clusters with the <a href="#overview">latest versions of <%= vars.product_name %></a> validated for the reference architecture. Datastores should be listed in the vSphere tile by their native name, not the cluster name created by vCenter for the storage cluster.</p>
-
-<p class="note"><b>Note:</b> If a datastore is part of a vSphere Storage Cluster using DRS storage (sDRS), you must disable the s-vMotion feature on any datastores used by <%= vars.product_name %>. Otherwise, s-vMotion activity can rename independent disks and cause BOSH to malfunction. For more information, see <a href="./vsphere_migrate_datastore.html">How to Migrate <%= vars.product_name %> to a New Datastore in vSphere</a>.</p>
-
-For more information about general storage requirements and recommendations for PAS, see the
-[Storage](../index.html#pas-storage) section of _Platform Architecture and Planning Overview_.
-
-
-### <a id="pas-nsx-t-sql"></a> SQL Server
-
-An internal MySQL database is sufficient for use in production environments. 
-
-However, an external database provides more control over database management for large environments that require multiple data centers. 
-
-For information about configuring system databases on PAS, see the [Configure System Databases](https://docs.pivotal.io/platform/2-7/customizing/configure-pas.html#sys-db) section of _Configuring PAS_.
-
-
-### <a id="pas-nsx-t-securty"></a> Security
-
-For information about security requirements and recommendations for PAS deployments, see the [Security](../index.html#pas-security) section of _Platform Architecture and Planning Overview_.
-
-
-### <a id="pas-nsx-t-blobstore"></a> Blobstore Storage
-
-Pivotal recommends that you use the following blobstore storage for production and non-production PAS environments:
-
-* **Production environments**: Use a S3 storage appliance as the blobstore.
-* **Non-production environments**: Use a NFS/WebDAV blobstore.
-
-<p class="note"><b>Note:</b> For non-production environments, the NFS/WebDAV blobstore can be the primary consumer of storage, as the NFS/WebDAV blobstore must be actively maintained. There will be down time for deployment during events such as storage upgrades or migrations to new disks. </p>  
-
-For more information about blobstore storage requirements and recommendations, see the [Configure File Storage](https://docs.pivotal.io/platform/2-7/upgrading/configuring.html#file-storage) section of _Configuring PAS for Upgrades_.
-
+Example Subnet layout with NAT:
+* Infrastructure - 192.168.1.0/24
+* Deployment - 192.168.2.0/24
+* Services - 192.168.3.0/24
+* On-Demand Service - 192.168.4.0 - 192.168.9.255 (in /24 segments)
+* Isolation segments - 192.168.10.0 - 192.168.127.255 (in /24 segments)
+* On-Demand Orgs - 192.168.128.0/17 (in /24 segments - auto allocated by NSX-T only)
 
 ## <a id="pas-nsx-v"></a> PAS on vSphere with NSX-V
 
@@ -194,12 +220,6 @@ The following sections describe networking requirements and recommendations for 
 #### <a id="pas-nsx-v-routable-ip"></a> Routable IPs
 
 You must assign routable external IPs on the server side, such as routable IPs for NATs and load balancers, to the Edge router.
-
-#### <a id="pas-nsx-v-dns"></a> DNS
-
-PAS requires a system domain, app domain, and several wildcard domains. 
-
-For more information about DNS requirements for PAS, see the [Domain Names](../index.html#pas-domains) section in _Platform Planning and Architecture_.
 
 #### <a id="pas-nsx-v-load-balancing"></a> Load Balancing
 
@@ -256,15 +276,41 @@ For information about security requirements and recommendations for PAS on vSphe
 
 ### <a id="pas-nsx-v-blobstore"></a> Blobstore Storage
 
+PAS ships with an internal blobstore. It is recommended for POC deployments. 
 Pivotal recommends that you use the following blobstore storage for production and non-production PAS environments:
 
-* **Production environments**: Use a S3 storage appliance as the blobstore.
-* **Non-production environments**: Use a NFS/WebDAV blobstore.
+* **Production/Test environments**: Use an external S3 storage appliance as the blobstore such as (Dell ECS, Minio, any other S3 compatible datastore in your environment).
+* **POC environments**: Use internal blobstore.
 
-<p class="note"><b>Note:</b> For non-production environments, the NFS/WebDAV blobstore can be the primary consumer of storage, as the NFS/WebDAV blobstore must be actively maintained. There will be down time for deployment during events such as storage upgrades or migrations to new disks. </p>  
+<p class="note"><b>Note:</b> For POC environments, the internal blobstore can be the primary consumer of storage, as the internal blobstore must be actively maintained. There will be down time for deployment during events such as storage upgrades or migrations to new disks. </p>  
 
 For more information about blobstore storage requirements and recommendations, see the [Configure File Storage](https://docs.pivotal.io/platform/2-7/upgrading/configuring.html#file-storage) section of _Configuring PAS for Upgrades_.
 
+## <a id="pas-routed"></a> PAS on vSphere without SDN
+<p class="note"><b>Note:</b> Please refer to 
+
+The following sections describe the reference architecture for PAS on vSphere without software-defined networking deployements.
+
+### <a id="pas-routed-networking"></a> Networking
+
+Without an SDN, IP allocations will all come from routed network space. Discussions and planning within your organization will be essential to acquiring the needed amount of 
+IP space for a PAS deployment now with future growth considerations because in our experience:
+
+* Routed IP address space is a premium resource
+* Adding more later is difficult, costly, and time consuming
+
+The following is a best-guess layout for IP space utilization in a single PAS deployment.
+
+* Infrastructure - /28
+* PAS Deployment - /23 (This size is almost completly dependent on the estimated desired capacity for containers.  It can go smaller, but we do not recommend you go larger in a single deployment)
+* Services - /23 (This size is almost completly dependent on the estimated desired capacity for services. Resize as necessary.)
+
+### <a id="pas-routed-iso-seg"></a> Isolation Segments
+
+Isolation segments can help with the IP address space needs in a routed netork design.
+
+* Build smaller groups of Gorouters and Deigo cells aligned to a particular service
+* Smaller groups will use less IP address space
 
 ## <a id="pks-nsx-t"></a> PKS on vSphere with NSX-T
 
