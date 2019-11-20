@@ -102,6 +102,15 @@ For more information about DNS requirements for PAS, see the [Domain Names](../i
 ### <a id="networking"></a> Networking
 The vSphere reference architecture for the Pivotal Application Service (PAS) and Pivotal Container Service (PKS) runtimes is based on software-defined networking (SDN) infrastructure. vSphere offers NSX-T and NSX-V to support SDN infrastructure. 
 
+Pivotal recommends using an SDN to take advantage opf features:
+
+* Virtualized, encapsulated networks and broadcast domains
+* VLAN exhaustion avoidance with the use of virtualized, encapsulated logical networks
+* DNAT/SNAT services to create separate, non-routable network ranges for the PAS installation
+* Load balancing services to pass traffic thru to pools of platform routers
+* SSL termination at the load balancer at layer 7 with the option to forward on at layer 4 or 7 with unique certificates
+* Virtual, distributed routing and firewalling services for east-west traffic native to the hypervisor
+
 <%= vars.product_name %> supports the following configurations for <%= vars.product_name %> on vSphere deployments:
 
 * PAS on vSphere with NSX-T. See [PAS on vSphere with NSX-T](#pas-nsx-t).
@@ -112,15 +121,6 @@ The vSphere reference architecture for the Pivotal Application Service (PAS) and
 ## <a id="pas-nsx-t"></a> PAS on vSphere with NSX-T
 
 The following sections describe the reference architecture for PAS on vSphere with NSX-T deployments. They also provide requirements and recommendations for deploying PAS on vSphere with NSX-T, such as network, load balancing, and storage capacity requirements and recommendations.
-
-PAS on vSphere with NSX-T supports the following SDN features:
-
-* Virtualized, encapsulated networks and broadcast domains
-* VLAN exhaustion avoidance with the use of virtualized, encapsulated logical networks
-* DNAT/SNAT services to create separate, non-routable network ranges for the PAS installation
-* Load balancing services to pass traffic thru to pools of platform routers
-* SSL termination at the load balancer at layer 7 with the option to forward on at layer 4 or 7 with unique certificates
-* Virtual, distributed routing and firewalling services for east-west traffic native to the hypervisor
 
 ### <a id="pas-nsx-t-diagram"></a> Architecture
 
