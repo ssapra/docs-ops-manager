@@ -42,7 +42,7 @@ The following are general requirements and recommendations related to networking
 * You must have separate subscriptions for each resource group. This includes the following:
 	* The central network resource group. This is the hub.
 	* Each workspace where workloads run. These are the spokes.
-* Use ExpressRoutes for a dedicated connection from an on-premises datacenter to VDC. See [ExpressRoute Documentation](https://docs.microsoft.com/en-us/azure/expressroute/). As a back up for when ExpressRoutes goes down, you can use Azure VPN Gateways, whichi pass encrypted data into VDC through the Internet.
+* Use ExpressRoutes for a dedicated connection from an on-premises datacenter to VDC. See [ExpressRoute Documentation](https://docs.microsoft.com/en-us/azure/expressroute/). As a back up for when ExpressRoutes goes down, you can use Azure VPN Gateways, which pass encrypted data into VDC through the Internet.
 * Use a central firewall in the hub resource group and a network appliance to prevent data infiltration and exfiltration.
 * You can place network resources, such as DNS and NTP servers, either on-premises or on Azure Cloud.
 
@@ -54,7 +54,7 @@ Azure DNS supports DNS delegation, which allows sub-level domains to be hosted w
 
 Azure DNS does not support recursion. To properly configure Azure DNS, do the following:
 
-1. Create a `NS `record with your registrar that points to the four name servers supplied by your Azure DNS Zone configuration.
+1. Create an `NS` record with your registrar that points to the four name servers supplied by your Azure DNS Zone configuration.
 1. Create the required wildcard `A` records for the <%= vars.product_name %> app and system domains, as well as any other records desired for your <%= vars.product_name %> deployments.
 
 You do not need to make any configuration changes in <%= vars.product_name %> to support Azure DNS.
