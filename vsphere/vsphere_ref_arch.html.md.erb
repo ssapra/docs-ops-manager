@@ -198,13 +198,13 @@ PAS on vSphere with NSX-V enables services provided by NSX on the PAS platform, 
 
 The following reference architecture diagram describes the architecture for PAS on vSphere with NSX-V deployments.
 
-![The diagram shows the archiecture for a PAS on vSphere with NSX-V deployment. For more information about the components and networking demonstrated by the diagram, read the description below this diagram.](../images/v2/export/PAS_vSphere_NSX-V.png)
+![The diagram shows the architecture for a PAS on vSphere with NSX-V deployment. For more information about the components and networking demonstrated by the diagram, read the description below this diagram.](../images/v2/export/PAS_vSphere_NSX-V.png)
 
 [View a larger version of this diagram](../images/v2/export/PAS_vSphere_NSX-V.png).
 
 As shown in the diagram above, PAS deployments with NSX-V are deployed with three clusters and three availability zones (AZs).
 
-PAS deployments with NSX-V also include a Edge Service Gateway (ESG) as a router on the front end. North/South traffic in NSX-V is handled by an ESG and traffic entering and leaving a PAS installation as a tenent behind an ESG is considered North/South while traffic between the networks deployed on the tenant side of an ESG is considered East/West, which could be routed by the ESG or by a DLR. Compared to NSX-T architecture, NSX-V architecture does not use the Tier-0 / Tier-1 router construct to connect the central router to the various subnets for the PAS deployment.
+PAS deployments with NSX-V also include a Edge Service Gateway (ESG) as a router on the front end. North/South traffic in NSX-V is handled by an ESG and traffic entering and leaving a PAS installation as a tenant behind an ESG is considered North/South while traffic between the networks deployed on the tenant side of an ESG is considered East/West, which could be routed by the ESG or by a DLR. Compared to NSX-T architecture, NSX-V architecture does not use the Tier-0 / Tier-1 router construct to connect the central router to the various subnets for the PAS deployment.
 
 For more information about using ESG on vSphere, see [Using Edge Services Gateway on VMware NSX](./vsphere_nsx_cookbook.html).
 
@@ -224,10 +224,10 @@ Load Balancing services are available in the Edge Services Gateway (ESG). These 
 * ESG load balances can be configured as either layer 4 (encryption pass-thru) or layer 7 (encryption termination/initiation). It is recommended to use layer 4 services at the ESG in order to reduce processing overhead in the ESG.
 <p class='note'><b>Note:</b> It is possible to use Layer 7 load balancers and terminate SSL at the load balancers. However, this approach adds additional overhead processing and is not recommended.</p>
 * The domains for the PAS system and apps must resolve to the load balancer. If the ESG is also the load balancer, these domains will resolve to a VIP on that ESG.
-* If you are also using features such as TCP routing or a proxy for SSH, you can deply a load balancer service for them in the same, or a different ESG.
+* If you are also using features such as TCP routing or a proxy for SSH, you can deploy a load balancer service for them in the same, or a different ESG.
 * If you do not want to use load balancing services in NSX-V, or use load balancing services external to NSX-V in addition to those included, they should be deployed external to (on the provider side of) the NSX-V installation.
 
-A high performance alternative to load balancing in the ESG that is also the boundary router is to deploy ESGs as dediated load balancer service nodes on a separate network on the tenant side (behind the NAT) of the routing ESG. These specific ESG LBs would act as "one-arm load balancers", where they are connected to the separate network with a single interface and act as both a load balancer VIP and as the owner of the pool being balanced to all thru that connection. Multiples of these can be deployed to ensure compute resources are dedicated to these load balancing needs with no overhead from any other job. The key differentiator here from the typical approach is VIP and pool are both aligned to a single network connection while typical would be VIP on the provider interface and pool on the tenant interface.
+A high performance alternative to load balancing in the ESG that is also the boundary router is to deploy ESGs as dedicated load balancer service nodes on a separate network on the tenant side (behind the NAT) of the routing ESG. These specific ESG LBs would act as "one-arm load balancers", where they are connected to the separate network with a single interface and act as both a load balancer VIP and as the owner of the pool being balanced to all thru that connection. Multiples of these can be deployed to ensure compute resources are dedicated to these load balancing needs with no overhead from any other job. The key differentiator here from the typical approach is VIP and pool are both aligned to a single network connection while typical would be VIP on the provider interface and pool on the tenant interface.
 
 
 #### <a id="pas-nsx-v-ip-spacing"></a> Networks, Subnets, and IP Spacing
@@ -286,7 +286,7 @@ For more information about blobstore storage requirements and recommendations, s
 ## <a id="pas-routed"></a> PAS on vSphere without SDN
 <p class="note"><b>Note:</b> Please refer to
 
-The following sections describe the reference architecture for PAS on vSphere without software-defined networking deployements.
+The following sections describe the reference architecture for PAS on vSphere without software-defined networking deployments.
 
 ### <a id="pas-routed-networking"></a> Networking
 
@@ -299,14 +299,14 @@ IP space for a PAS deployment now with future growth considerations because in o
 The following is a best-guess layout for IP space utilization in a single PAS deployment.
 
 * Infrastructure - /28
-* PAS Deployment - /23 (This size is almost completly dependent on the estimated desired capacity for containers.  It can go smaller, but we do not recommend you go larger in a single deployment)
-* Services - /23 (This size is almost completly dependent on the estimated desired capacity for services. Resize as necessary.)
+* PAS Deployment - /23 (This size is almost completely dependent on the estimated desired capacity for containers.  It can go smaller, but we do not recommend you go larger in a single deployment)
+* Services - /23 (This size is almost completely dependent on the estimated desired capacity for services. Resize as necessary.)
 
 ### <a id="pas-routed-iso-seg"></a> Isolation Segments
 
-Isolation segments can help with the IP address space needs in a routed netork design.
+Isolation segments can help with the IP address space needs in a routed network design.
 
-* Build smaller groups of Gorouters and Deigo cells aligned to a particular service
+* Build smaller groups of Gorouters and Diego cells aligned to a particular service
 * Smaller groups will use less IP address space
 
 ## <a id="pks-nsx-t"></a> PKS on vSphere with NSX-T
@@ -317,7 +317,7 @@ The following sections describe the reference architecture for PKS on vSphere wi
 
 The following reference architecture diagram describes the architecture for PKS on vSphere with NSX-T deployments.
 
-![The diagram shows the archiecture for a PKS on vSphere with NSX-T deployment. For more information about the components and networking demonstrated by the diagram, read the description below this diagram.](../images/v2/export/PKS_vSphere_NSX-T.png)
+![The diagram shows the architecture for a PKS on vSphere with NSX-T deployment. For more information about the components and networking demonstrated by the diagram, read the description below this diagram.](../images/v2/export/PKS_vSphere_NSX-T.png)
 
 [View a larger version of this diagram](../images/v2/export/PKS_vSphere_NSX-T.png).
 
