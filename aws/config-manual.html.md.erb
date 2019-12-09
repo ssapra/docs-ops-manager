@@ -361,9 +361,9 @@ Before beginning this procedure, ensure that you have successfully completed all
 
 1. Click **Save**.
 
-    <p class="note"><strong>Note</strong>&#58; If you are deploying <%= vars.pks_product_full %> with a <%= vars.pks_product_short %> workload load balancer,
-    you must tag each AWS subnet with your <%= vars.pks_product_short %> Kubernetes cluster unique identifier before you create the load balancer.
-    For more information about tagging subnets with a <%= vars.pks_product_short %> cluster unique identifier,
+    <p class="note"><strong>Note</strong>&#58; If you are deploying <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>) with a <%= vars.k8s_runtime %> workload load balancer,
+    you must tag each AWS subnet with your <%= vars.k8s_runtime %> Kubernetes cluster unique identifier before you create the load balancer.
+    For more information about tagging subnets with a <%= vars.k8s_runtime %> cluster unique identifier,
     see <a href="https://docs.pivotal.io/pks/deploy-workloads.html#aws">AWS Prerequisites</a>.</p>
 
     <%= vars.expand_network_azs %>
@@ -430,9 +430,9 @@ choose **Automatic** from the dropdown to allocate the recommended resources for
 
 ## <a id="next"></a> Next Steps
 
-After completing the procedures in this topic, you must configure a runtime for PCF. You can install PCF on AWS with the Pivotal Application Service (PAS) or <%= vars.pks_product_full %> runtime.
+After completing the procedures in this topic, you must configure a runtime for PCF. You can install PCF on AWS with the Pivotal Application Service (PAS) or <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>) runtime.
 
 To configure a runtime, do one of the following:
 
 * Configure PAS. See [Configuring PAS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html).
-* Configure <%= vars.pks_product_short %>. See [Installing <%= vars.pks_product_short %> on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html).
+* Configure <%= vars.k8s_runtime %>. See [Installing <%= vars.k8s_runtime %> on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html).
