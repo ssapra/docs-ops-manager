@@ -14,66 +14,39 @@ This partial is called in all IaaS-specific BOSH Director configuration topics.
 
 <%# For OpenStack: %>
 <% if current_page.data.iaas == "OpenStack" %>
-1. Enter one or more NTP servers in the **NTP Servers (comma
-delimited)** field. For example, `us.pool.ntp.org`.
-
-
+1. Enter one or more NTP servers in the **NTP Servers (comma delimited)** field. For example, `us.pool.ntp.org`.
 
 <%# For GCP: %>
 <% elsif current_page.data.iaas == "GCP" %>
 1. In the **NTP Servers (comma delimited)** field, enter `169.254.169.254` to designate the `metadata.google.internal` host as NTP server.
 
-
-
 <%# For AWS: %>
 <% elsif current_page.data.iaas == "AWS" %>
-1. Enter at least two of the following NTP servers in the **NTP Servers (comma delimited)**
-field, separated by a comma: `0.amazon.pool.ntp.org,1.amazon.pool.ntp.org,2.amazon.pool.ntp.org,3.amazon.pool.ntp.org`.
-
-
+1. Enter at least two of the following NTP servers in the **NTP Servers (comma delimited)** field, separated by a comma: `0.amazon.pool.ntp.org,1.amazon.pool.ntp.org,2.amazon.pool.ntp.org,3.amazon.pool.ntp.org`.
 
 <%# For other IaaSes such as vSphere and Azure: %>
 <% else %>
 1. In the **NTP Servers (comma delimited)** field, enter a comma-separated list of valid NTP servers.
 <% end %>
 
-    <p class="note"><strong>Note:</strong> The NTP server configuration only updates
-    after VM recreation. Ensure that you select the <strong>Recreate all VMs</strong> checkbox
-    if you modify the value of this field.</p>
-
+    <p class="note"><strong>Note:</strong> The NTP server configuration only updates after VM recreation. Ensure that you select the <strong>Recreate all VMs</strong> checkbox if you modify the value of this field.</p>
 
 1. Leave the **JMX Provider IP Address** field blank.
 
-
 1. Leave the **Bosh HM Forwarder IP Address** field blank.
-<p class="note"><strong>Note:</strong> Starting in PAS v2.0, BOSH-reported component
-metrics are available in the Loggregator Firehose by default. If you continue to use
-the BOSH HM Forwarder to consume these component metrics, you may receive duplicate data.
-To prevent this, leave the <strong>Bosh HM Forwarder IP Address</strong> field blank.</p>
+    <p class="note"><strong>Note:</strong> Starting in PAS v2.0, BOSH-reported component metrics are available in the Loggregator Firehose by default. If you continue to use the BOSH HM Forwarder to consume these component metrics, you may receive duplicate data. To prevent this, leave the <strong>Bosh HM Forwarder IP Address</strong> field blank.</p>
 
+1. Select the **Enable VM Resurrector Plugin** checkbox to enable the BOSH Resurrector functionality and increase your runtime availability. <% if current_page.data.iaas == "vSphere" %>If you intend to install PAS, see [Using the BOSH Resurrector](https://docs.pivotal.io/pivotalcf/customizing/resurrector.html) for more information about the Resurrector plugin.<% end %>
 
-
-1. Select the **Enable VM Resurrector Plugin** checkbox to enable the BOSH
-Resurrector functionality and increase your runtime availability. <% if current_page.data.iaas == "vSphere" %>If you intend to install PAS,
-  see [Using the BOSH Resurrector](https://docs.pivotal.io/pivotalcf/customizing/resurrector.html) for more information about the Resurrector plugin.<% end %>
-
-
-
-1. Select **Enable Post Deploy Scripts** to run a post-deploy script after deployment.
-This script allows the job to execute additional commands against a deployment.
-<p class="note"><strong>Note:</strong> If you intend to install <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>), you must enable post-deploy scripts.</p>
-
+1. Select **Enable Post Deploy Scripts** to run a post-deploy script after deployment. This script allows the job to execute additional commands against a deployment.
+    <p class="note"><strong>Note:</strong> If you intend to install Pivotal Container Service (PKS), you must enable post-deploy scripts.</p>
 
 1. Select **Recreate all VMs** to force BOSH to recreate all VMs on the next deploy.
 This process does not destroy any persistent disk data.
 
+1. Select **Recreate All Persistent Disks** to force BOSH to migrate and recreate persistent disks for the BOSH Director and all tiles. This process does not destroy any persistent disk data.
 
-1. Select **Recreate All Persistent Disks** to force BOSH to migrate and recreate persistent
-disks for the BOSH Director and all tiles. This process does not destroy any persistent disk data.
-
-
-1. Select **Enable bosh deploy retries** to instruct Ops Manager to retry failed
-BOSH operations up to five times.
+1. Select **Enable bosh deploy retries** to instruct Ops Manager to retry failed BOSH operations up to five times.
 
 1. Select **Skip Director Drain Lifecycle** to prevent drain scripts from running when the BOSH Director is recreated.
 
@@ -85,8 +58,6 @@ BOSH operations up to five times.
     <%= image_tag("../common/images/director_hm_pager.png") %>
     * **Service Key**: Enter your API service key from PagerDuty.
     * **HTTP Proxy**: Enter an HTTP proxy for use with PagerDuty.
-
-
 
 1. Select **HM Email Plugin** to enable Health Monitor integration with email.
 
@@ -101,44 +72,20 @@ BOSH operations up to five times.
     * **Enable TLS**: Select this checkbox to enable Transport Layer Security to the email host.
 1. <%= partial "../common/credhub-encryption" %>
 
-
-
 1. <%= partial "../common/blobstore-location" %>
-
-
 
 1. <%= partial "../common/director-database-location" %>
 
+1. (Optional) Modify the **Director Workers** value, which sets the number of workers available to execute BOSH Director tasks. This field defaults to `5`.
 
+1. (Optional) **Max Threads** sets the maximum number of threads that the BOSH Director can run simultaneously. Pivotal recommends that you leave the field blank to use the default value, unless doing so results in rate limiting or errors on your IaaS.
 
-1. (Optional) Modify the **Director Workers** value,
-  which sets the number of workers available to execute
-  Director tasks. This field defaults to `5`.
-
-
-
-1. (Optional) **Max Threads** sets the maximum number of
-  threads that the BOSH Director can run simultaneously. Pivotal
-  recommends that you leave the field blank to use the default
-  value, unless doing so results in rate limiting or errors on your IaaS.
-
-
-
-1. (Optional) To add a custom URL for your BOSH Director,
-  enter a valid hostname in **Director Hostname**. You can
-  also use this field to configure a load balancer in front
-  of your BOSH Director. For more information, see [How to Set Up a Load Balancer in Front of Operations Manager Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director) in the Pivotal Support Knowlege Base.<br/>
+1. (Optional) To add a custom URL for your BOSH Director, enter a valid hostname in **Director Hostname**. You can also use this field to configure a load balancer in front of your BOSH Director. For more information, see [How to Set Up a Load Balancer in Front of Operations Manager Director](https://community.pivotal.io/s/article/How-to-Set-Up-a-Load-Balancer-in-Front-of-Ops-Manager-Director) in the Pivotal Support Knowlege Base.<br/>
 
     <%= image_tag("../common/images/director_workers.png") %>
 
-
-1. (Optional) To set a custom banner that users see when logging in to the Director using SSH, enter text in the **Custom SSH Banner** field.
-    
-
-
+1. (Optional) To set a custom banner that users see when logging in to the BOSH Director using SSH, enter text in the **Custom SSH Banner** field.
 
 1. <%= partial "../common/identification-tags" %>
-
-
 
 1. Click **Save**.
