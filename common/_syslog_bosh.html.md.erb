@@ -1,3 +1,5 @@
+To configure the **Syslog** pane:
+
 1. Select **Syslog**.
 
 	<% if vars.service_name == 'Redis for Pivotal Platform' %>
@@ -12,10 +14,10 @@
 
 1. Select **TCP** or **UDP** from the **Transport Protocol** dropdown. This selection determines which transport protocol is used to send the logs to the remote server.
 
-1. (Optional) Select the **Enable TLS** checkbox to send encrypted logs to remote server with TLS. After you select the checkbox, do the following:
+1. (Optional) Select the **Enable TLS** checkbox to send encrypted logs to remote server with TLS. After you select the checkbox:
 	1. Enter either the name or SHA1 fingerprint of the remote peer in **Permitted Peer**.
 	1. Enter the SSL certificate for the remote server in **SSL Certificate**.
-<p class="note"><strong>Note:</strong> Pivotal strongly recommends that you enable TLS encryption when you are forwarding logs. Logs can contain sensitive information, such as cloud provider credentials.</p>
+	<p class="note"><strong>Note:</strong> Pivotal strongly recommends that you enable TLS encryption when you are forwarding logs. Logs can contain sensitive information, such as cloud provider credentials.</p>
 
 1. (Optional) Enter an integer in **Queue Size**. This value specifies the number of log messages held in the buffer. The default value is 100,000.
 
@@ -23,4 +25,4 @@
 
 1. (Optional) Enter configuration details for rsyslog in the **Custom rsyslog Configuration** field. This field requires the rainerscript syntax.
 
-1. Click **Save Syslog Settings**.
+1. Click **Save**.
