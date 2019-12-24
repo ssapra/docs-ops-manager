@@ -67,12 +67,12 @@ To configure your GCP tile:
 
 ## <a id='az'></a> Step 4: Configure Create Availability Zones
 
-  <div class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones (AZs) for a highly available installation.
-    <ul>
-      <li>For configuring a PAS deployment with multiple AZs, see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for <%= vars.platform_name %> on GCP</a>.</li>
-      <li>For PKS best practices for distributing workloads across multiple AZs and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
-    </ul>
-  </div>
+<div class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones (AZs) for a highly available installation.
+  <ul>
+    <li>For configuring a PAS deployment with multiple AZs, see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for <%= vars.platform_name %> on GCP</a>.</li>
+    <li>For PKS best practices for distributing workloads across multiple AZs and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
+  </ul>
+</div>
 
 To configure the **Create Availability Zones** pane:
 
@@ -108,7 +108,7 @@ To configure the **Create Networks** pane:
       </tr>
       <tr>
         <th>Google Network Name</th>
-        <td>Enter the name of the infrastructure network that you created in the <a href="prepare-env-manual.html#create_network">Create a GCP Network with Subnets</a> step of <em>Preparing to Deploy Ops Manager on GCP Manually</em>. <br>The format is: <code>pcf-virt-net/pcf-infrastructure-subnet-MY-REGION/MY-GCP-REGION</code></td>
+        <td>Enter the name of the infrastructure network that you created in the <a href="prepare-env-manual.html#create_network">Create a GCP Network with Subnets</a> section of the <em>Preparing to Deploy Ops Manager on GCP Manually</em> topic. <br>The format is: <code>pcf-virt-net/pcf-infrastructure-subnet-MY-REGION/MY-GCP-REGION</code></td>
       </tr>
       <tr>
         <th>CIDR</th>
@@ -197,7 +197,10 @@ To configure the **Create Networks** pane:
 
     <p class="note"><strong>Note:</strong> Ensure <code>169.254.169.254</code>, the IP address of the <code>metadata.google.internal</code> metadata server, is always specified at the beginning of this step's DNS resolver lists.</p>
 
-## <a id="assign-azs"></a> Step 6: Assign AZs and Networks Page
+
+## <a id="assign-azs"></a> Step 6: Configure Assign AZs and Networks
+
+To configure the **Assign AZs and Networks** pane:
 
 1. Select **Assign AZs and Networks**.
     <%= image_tag("../common/images/assign-az.png", :alt => "At the top of the image is the header 'Assign AZs and Networks' with a horizontal line underneath. Below the line are the words 'The BOSH Director is a single instance. Choose the availability zone in which to place that instance. It is highly recommended that you backup this VM on a regular basis to preserve settings.' Below this text is a dropdown labeled 'Singleton Availability Zone', with 'AZ-MGMT' selected. Below this is another dropdown labeled 'Network', with 'Infrastructure' selected.") %>
