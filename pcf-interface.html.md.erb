@@ -249,6 +249,8 @@ Manager. When you select **Yes** and fill the following fields, Ops Manager prod
 sends all syslog entries from the Ops Manager VM to the configured syslog endpoint. Ops Manager also sends BOSH Director
 access events to the syslog endpoint.
 
+<p class="note"><strong>Note:</strong> Ops Manager syslog entries are sent in RFC 3164 format.</p>
+
 To configure a custom syslog endpoint for Ops Manager logs:
 
 <%= partial(:"/common/syslog_bosh", :locals => { :syslog_context => 'Ops Manager' }) %>
