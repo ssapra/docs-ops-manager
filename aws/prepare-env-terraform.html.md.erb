@@ -3,10 +3,6 @@ title: Deploying Ops Manager on AWS Using Terraform
 owner: Ops Manager
 ---
 
-<<<<<<< HEAD
-
-=======
->>>>>>> c552fae... Formatting/style sweep
 This guide describes the preparation steps required to deploy Ops Manager on Amazon Web Services (AWS) using Terraform templates.
 
 The Terraform template for Ops Manager on AWS describes a set of AWS resources and properties. For more information about how Terraform creates resources in AWS, see [AWS Provider](https://www.terraform.io/docs/providers/aws/index.html) in the Terraform documentation.
@@ -19,12 +15,8 @@ If you are deploying Pivotal Application Service (PAS), review different deploym
 Before you deploy Ops Manager on AWS:
 
 * If you intend to install PAS, see [PCF on AWS Requirements](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/aws.html).
-<<<<<<< HEAD
-* If you intend to install <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>), see [AWS Prerequisites and Resource Requirements](https://docs.pivotal.io/pks/aws-requirements.html).
-=======
 
 * If you intend to install Pivotal Container Service (PKS), see [AWS Prerequisites and Resource Requirements](https://docs.pivotal.io/pks/aws-requirements.html).
->>>>>>> c552fae... Formatting/style sweep
 
 In addition to reviewing the prerequisites for your runtime, ensure you have:
 
@@ -132,7 +124,7 @@ Before you can run Terraform commands to provision infrastructure resources, you
     </tr>
     <tr>
       <td><code>YOUR-CERTIFICATE</code></td>
-      <td>Enter a certificate to use for HTTP load balancing. For production environments, use a certificate from a Certificate Authority (CA). For test environments, you can use a self-signed certificate. 
+      <td>Enter a certificate to use for HTTP load balancing. For production environments, use a certificate from a Certificate Authority (CA). For test environments, you can use a self-signed certificate.
 
       Your certificate must specify your system domain as the common name. Your system domain is <code>YOUR-ENVIRONMENT-NAME.YOUR-DNS-SUFFIX</code>.
 
