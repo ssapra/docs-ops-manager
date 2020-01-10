@@ -82,7 +82,7 @@ Ops Manager for vSphere is provided as an OVA file. An OVA file is a template fo
 
 1. At the **Select a compute resource** screen, select the compute resource where the Ops Manager VM will run and click **Next**. Select the Resource Pool for the management components.
 
-    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-02.png") %>
+    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-10.png") %>
 
     <p class="note"><strong>Note</strong>: Hardware virtualization must be turned off if your
     vSphere host does not support VT-X/EPT. Refer to <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/vsphere.html#vsphere-reqs">vSphere Requirements</a> in <em>PCF on vSphere Requirements</em> for more information.</p>
@@ -101,9 +101,9 @@ Ops Manager for vSphere is provided as an OVA file. An OVA file is a template fo
 
     <%= image_tag("../common/images/vsphere/vsphere_om-deploy-04.png") %>
 
-1. At the **Select Networks** screen, select the standard **VM Network**, and click **Next**.
+1. At the **Select Networks** screen, either select the default **VM Network** or ideally create an **Infrastructure** Network, and click **Next**.
 
-    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-05.png") %>
+    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-12.png") %>
 
 1. At the **Customize template** screen, enter the following information, and click **Next**.
    * **IP Address**: The IP address of the Ops Manager network interface. For example, `10.0.0.2`.
