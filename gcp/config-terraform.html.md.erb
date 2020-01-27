@@ -131,11 +131,11 @@ Use the `ops_manager_dns` value from running `terraform output`.
       </tr>
       <tr>
         <th>Google Network Name</th>
-        <td>Use the <code>network_name</code>, <code>pas_subnet_name</code>, and <code>region</code> fields from your Terraform output to enter the name of the runtime network created by Terraform. <br>The format is: <code>network_name/pas_subnet_name/region</code></td>
+        <td>Use the <code>network_name</code>, <code>pas_subnet_name</code> or <code>pks_subnet_name</code>, and <code>region</code> fields from your Terraform output to enter the name of the runtime network created by Terraform. <br>The format is: <code>network_name/pas_subnet_name/region</code></td>
       </tr>
       <tr>
         <th>CIDR</th>
-        <td>Enter the value of <code>pas_subnet_cidrs</code> from your Terraform output.</td>
+        <td>Enter the value of <code>pas_subnet_cidrs</code> or <code>pks_subnet_cidrs</code> from your Terraform output.</td>
       </tr>
       <tr>
         <th>Reserved IP Ranges</th>
@@ -147,7 +147,7 @@ Use the `ops_manager_dns` value from running `terraform output`.
       </tr>
       <tr>
         <th>Gateway</th>
-        <td>Enter the value of <code>pas_subnet_gateway</code> from your Terraform output.</td>
+        <td>Enter the value of <code>pas_subnet_gateway</code> or <code>pks_subnet_gateway</code> from your Terraform output.</td>
       </tr>
       <tr>
         <th>Availability Zones</th>
