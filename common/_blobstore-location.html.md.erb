@@ -5,8 +5,7 @@ Select a **Blobstore Location** to either configure the blobstore as an internal
   * **S3 Compatible Blobstore**: Select this option to use an external S3-compatible endpoint. When you have created an S3 bucket, complete the following steps:
   <% else %>
   * **S3 Compatible Blobstore**: Select this option to use an external S3-compatible endpoint.
-  <% end %>
-   <br>![At the top of the image are the words 'Blobstore Location', with a selected radio button underneath labeled 'Internal'. Below this checkbox is a radio button labeled 'S3 Compatible Blobstore'. Below this radio button are four text fields labeled, from top to bottom, 'S3 Endpoint', 'Bucket Name', 'Access Key', and 'Secret Key'. The S3 Endpoint and Bucket Name fields have red asterisks, to denote that they are required fields when 'S3 Compatible Blobstore' is selected. The Access Key and Secret Key fields have red asterisks, to denote that they are required fields. Below the Secret Key field is a control group labeled 'S3 Signature Version.' The group contains two radio buttons labeled 'V2 Signature' and 'V4 Signature', and a text field labeled 'Region' with a red asterisk. Below the 'S3 Signature Version' group is another control group labeled 'S3 Backup Strategy with three radio button options: 'No Backups', 'Use a versioned bucket', and 'Copy into an additional bucket'. The additional bucket option has two text fields underneath, 'Backup Bucket Region' and 'Backup Button Name'.](../common/images/gcp/blobstore-s3.png)  
+  <% end %> 
    Follow the procedures in [Sign up for Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/gsg/SigningUpforS3.html) and [Creating a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) in the AWS documentation. When you have created an S3 bucket, complete the following steps:
       1. **S3 Endpoint**: Do one of the following:
           1. **If you are using a public S3 endpoint**:
