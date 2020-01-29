@@ -228,6 +228,8 @@ To create a DNS record for your deployment:
 
 1. In this record, enter the name servers included in `env_dns_zone_name_servers` from your Terraform output.
 
+<p class="note"><strong>Note:</strong> Terraform creates a Route 53 recordset for the domain prefixed with the environment name. If your base domain is registered with AWS, ensure that the NS record from the terraform created recordset is replicated in the domain recordset as well before proceeding.</p>
+
 
 ## <a id="next"></a> Next Steps
 
