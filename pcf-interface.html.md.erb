@@ -216,9 +216,6 @@ For more information about changing your IdP to SAML or LDAP, view the following
 * OpenStack. See [Configuring BOSH Director on OpenStack](../om/openstack/config.html).
 * vSphere. See [Configuring BOSH Director on vSphere](../om/vsphere/config.html).
 
-<%= image_tag("settings-ssl-cert.png", :alt => "The 'Settings' page shows the 'SSL
-      Certificate' pane highlighted on the left-hand tabular layout to indicate selection. The body shows a header titled 'SSL Certificate' with an option to 'Revert to self-signed certificate' followed by help text and two required fields: 'Certificate' and 'Private key'. The 'Add Certificate' button is at the bottom of the body.") %>
-
 ### SSL Certificate
 
 You can use the **SSL Certificate** pane to configure Ops Manager to use a custom SSL certificate for all Ops Manager traffic both through the UI and API.
@@ -230,10 +227,8 @@ This pane includes the following fields:
 
 If you leave the fields blank, Ops Manager uses an auto-generated self-signed certificate rather than your own custom certificate and private key. If you wish to replace a custom certificate with a self-signed certificate, select **Revert to self-signed certificate**.
 
-  <%= image_tag("settings-pivotal-network.png", :alt => "The 'Settings' page shows the
-          'Pivotal Network Settings' pane highlighted on the left-hand tabular layout to
-indicate selection. The body shows a header titled 'Pivotal Network Settings' with help
-text beneath and one field: 'Set API Token'. A button labeled 'Add Token' is at the bottom of the body.") %>
+<%= image_tag("settings-ssl-cert.png", :alt => "The 'Settings' page shows the 'SSL
+      Certificate' pane highlighted on the left-hand tabular layout to indicate selection. The body shows a header titled 'SSL Certificate' with an option to 'Revert to self-signed certificate' followed by help text and two required fields: 'Certificate' and 'Private key'. The 'Add Certificate' button is at the bottom of the body.") %>
 
 ### Pivotal Network Settings
 Enter your [Pivotal Network
