@@ -168,13 +168,6 @@ screen. As the first option of this menu, you can select 'Settings' to access th
 Page. Below 'Settings' you can access 'My Account' to view account information or 'Log
 out' to log out of the existing user account.") %>
 
-The Settings configuration screen displays.
-
-<%= image_tag("settings_menu.png", :width => "500", :alt => "The 'Settings' page is
-	      indicated by a header that says 'Settings' in large type at the top of the
-page. Below the header, on the left-hand side, there is a tabular layout. From top to
-bottom, the tabs are 'Change Decryption Passphrase,' 'SAML Settings', 'LDAP Settings', 'SSL Certificate', 'Pivotal Network Settings,' 'Proxy Settings', 'Custom Banner', 'Export Installation Settings', 'Syslog', and 'Advanced Options'. The top tab, 'Change Decryption Passphrase' is highlighted in gray to indicate that it is selected. To the right, the body shows fields that correspond to 'Change Decryption Passphrase.'") %>
-
 The following section describes each configuration pane:
 
 <p class="note"><strong>Note:</strong> Modifying these settings does not require you to
@@ -183,7 +176,18 @@ settings apply to the Ops Manager VM. The BOSH Director does not apply them to y
 deployment.</p>
 
 ### Change Decryption Passphrase
+
 Use this pane to reset your **decryption passphrase**.
+
+### Internal Authentication Settings
+
+You can use the **Internal Authentication Settings** pane to view and update the settings for your internal authentication methods. 
+
+This pane includes the following fields:
+
+* **Current Decryption Passphrase**: Update the decryption passphrase for your internal authentication method. 
+* **Admin Username**: Update the username for the admin user. 
+* **Admin Password** and **Admin Password Confirmation**: Update the password for the admin user. 
 
 ### SAML Settings
 To change your Identity Provider (IdP) to SAML, configure the following fields:
@@ -211,7 +215,13 @@ For more information about changing your IdP to SAML or LDAP, view the following
       Certificate' pane highlighted on the left-hand tabular layout to indicate selection. The body shows a header titled 'SSL Certificate' with an option to 'Revert to self-signed certificate' followed by help text and two required fields: 'Certificate' and 'Private key'. The 'Add Certificate' button is at the bottom of the body.") %>
 
 ### SSL Certificate
-Configure Ops Manager to use a custom SSL certificate for all Ops Manager traffic both through the UI and API.
+
+You can use the **SSL Certificate** pane to configure Ops Manager to use a custom SSL certificate for all Ops Manager traffic both through the UI and API.
+
+This pane includes the following fields:
+
+* **Certificate**: Enter a custom certificate.
+* **Private Key**: Enter the private key for the certificate.
 
 If you leave the fields blank, Ops Manager uses an auto-generated self-signed certificate rather than your own custom certificate and private key. If you wish to replace a custom certificate with a self-signed certificate, select **Revert to self-signed certificate**.
 
