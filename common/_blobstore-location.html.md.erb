@@ -1,5 +1,5 @@
 Select a **Blobstore Location** to either configure the blobstore as an internal server or an external endpoint. Because the internal server is unscalable and less secure, Pivotal recommends that you configure an external blobstore.
-  <p class="note"><strong>Note:</strong> After you deploy the BOSH Director, only Ops Manager users in Advanced Mode can change the blobstore location. For more information, see <a href="https://docs.pivotal.io/platform/2-9/customizing/lock-on-deploy.html"></a>.</p>
+  <p class="note"><strong>Note:</strong> After you deploy the BOSH Director, only Ops Manager users in Advanced Mode can change the blobstore location. For more information, see <a href="https://docs.pivotal.io/platform/2-9/customizing/lock-on-deploy.html">Ops Manager Fields That Lock On Deploy</a>.</p>
   * **Internal**: Select this option to use an internal blobstore. Ops Manager creates a new VM for blob storage. No additional configuration is required.
   <% if current_page.data.iaas == "AWS" %>
   * **S3 Compatible Blobstore**: Select this option to use an external S3-compatible endpoint. When you have created an S3 bucket, complete the following steps:
