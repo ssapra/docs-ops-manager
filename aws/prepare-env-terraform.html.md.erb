@@ -203,6 +203,7 @@ To use the Terraform CLI to create resources on AWS:
     ```
     terraform init
     ```
+<p class="note"><strong>Note:</strong> If the close of your heredoc(EOF or SSL_KEY) is the last line in your file, terraform will likely throw an error "HEREDOC doesn't terminate corretly". If you encounter this, ensure to add a blank line after this.</p>
 
 1. To create the execution plan for Terraform, run:
 
