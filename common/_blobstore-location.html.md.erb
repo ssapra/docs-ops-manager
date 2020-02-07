@@ -10,7 +10,7 @@ Select a **Blobstore Location** to either configure the blobstore as an internal
       1. **S3 Endpoint**: Do one of the following:
           1. **If you are using a public S3 endpoint**:
               1. Locate the endpoint for your region. To find the endpoint, see the **Amazon Simple Storage Service (S3)** table in [Regions and Endpoints](http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) in the AWS documentation. 
-              1. Construct a URL using your region's endpoint. For example, if you are using the `us-west-2` region, the URL you create would be <code>http<span>s://</span>s3-us-west-2.amazonaws.com</code>. Enter this URL into the **S3 Endpoint** field.
+              1. Construct a URL using your region's endpoint. For example, if you are using the `us-west-2` region, the URL you create would be <code>http<span>s://</span>s3.us-west-2.amazonaws.com</code>. Enter this URL into the **S3 Endpoint** field.
           1. **If you are using a non-public S3 compatible enpoint**:
               1. Enter the URL for the non-public endpoint.
               1. Run `ssh ubuntu@OPS-MANAGER-FQDN` to SSH into the Ops Manager VM. Replace `OPS-MANAGER-FQDN` with the fully qualified domain name of Ops Manager.
