@@ -10,30 +10,30 @@ For additional requirements and installation instructions for <%= vars.platform_
 
 ## <a id="overview"></a> Before You Begin
 
-Our products contain feature sets that, when used, impact designs in this reference architecture.
+<%= vars.platform_name %> products contain feature sets that, when used, impact designs in this reference architecture.
 
 ### <a id="overview"></a> Isolation Segments
 
-Isolation segments are delivered as a tile in Pivotal Operations Manager. They are used to create smaller individual deployments of PAS components, Gorouters and Diego cells, to help isolate workloads. The isolation criteria could include capacity management or audit compliance to name a couple. Isolation segments can be also be patched independently from the PAS tile or other isolation segments.
+Isolation segments are delivered as a tile in <%= vars.ops_manager_full %>. They are used to create smaller individual deployments of <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) components, Gorouters, and Diego Cells to help isolate workloads. For example, the isolation criteria could include capacity management or audit compliance. Isolation segments can be also be patched independently from the <%= vars.app_runtime_abbr %> tile or other isolation segments.
 
-We recommend that when using isolation segments, you should deploy all containers to an isolation segment and leave the PAS tile to only system-level components. By moving all application workloads to an isolation segment, you get finer-grained control over the network usage, capacity planning, firewalling, and business continuity.
+<%= vars.recommended_by %> recommends that when using isolation segments, you should deploy all containers to an isolation segment, and deploy only system-level components to the <%= vars.app_runtime_abbr %> tile. By moving all app workloads to an isolation segment, you get more control over the network usage, capacity planning, firewalling, and business continuity.
 
 ### <a id="overview"></a> Host Groups
 
-Host groups allow you create virtual PaaS failure domains independently of physical IaaS capacity. In PAS or PKS on vSphere, this amounts to creating multiple Availability Zones that do not have to align 1:1 with vSphere constructs (i.e clusters or pools).
+Host groups allow you create virtual PaaS failure domains independently of physical IaaS capacity. In <%= vars.app_runtime_abbr %> or <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>) on vSphere, this amounts to creating multiple Availability Zones (AZs) that do not have to align perfectly with vSphere constructs, such as clusters or pools.
 
-You can use host groups to gain PaaS high availability with IaaS capacity that is undersized. Alternatively, host groups can be used to create availability zones that can grow in an elastic way as the IaaS grows.
+You can use host groups to gain PaaS high availability (HA) with undersized IaaS capacity. Alternatively, host groups can be used to create AZs that can grow in an elastic way as the IaaS grows.
 
 ### <a id="overview"></a> Multiple vCenter Support
 
-Multiple vCenter Support can allow you to use PAS in a mature vSphere environment. Coupled with host groups, a brown field deployment strategy can happen as hosts in existing vSphere clusters can be set aside for PAS/PKS. PAS/PKS can also be stretched geographically without needing to stretch IaaS elements.
+Multiple vCenter Support can allow you to use <%= vars.app_runtime_abbr %> in a mature vSphere environment. Coupled with host groups, a brown field deployment strategy can happen as hosts in existing vSphere clusters can be set aside for <%= vars.app_runtime_abbr %> or <%= vars.k8s_runtime_abbr %>. You can also structure <%= vars.app_runtime_abbr %> or <%= vars.k8s_runtime_abbr %> geographically without needing to stretch IaaS elements.
 
 
 ## <a id="overview"></a> Overview
 
 ### <a id="pas-nsx-t-ha"></a> High Availability
 
-For information about high availability (HA) requirements and recommendations for <%= vars.app_runtime_abbr %> on vSphere, see [High Availability](../index.html#pas-ha) in _Platform Architecture and Planning Overview_.
+For information about HA requirements and recommendations for <%= vars.app_runtime_abbr %> on vSphere, see [High Availability](../index.html#pas-ha) in _Platform Architecture and Planning Overview_.
 
 ### <a id="pas-nsx-t-shared-storage"></a> Shared Storage
 
@@ -73,7 +73,7 @@ An internal MySQL database is sufficient for use in production environments.
 
 However, an external database provides more control over database management for large environments that require multiple data centers.
 
-For information about configuring system databases on <%= vars.app_runtime_abbr %>, see [Configure System Databases](../customizing/configure-pas.html#sys-db) in _Configuring <%= vars.app_runtime_abbr %>_.
+For information about configuring system databases on <%= vars.app_runtime_abbr %>, see [Configure System Databases](../../customizing/configure-pas.html#sys-db) in _Configuring <%= vars.app_runtime_abbr %>_.
 
 ### <a id="pas-nsx-t-security"></a> Security
 
@@ -89,7 +89,7 @@ For information about security requirements and recommendations for <%= vars.app
 
 <p class="note"><strong>Note:</strong> For POC environments, the internal blobstore can be the primary consumer of storage, as the internal blobstore must be actively maintained. <%= vars.app_runtime_abbr %> deployments experience downtime during events such as storage upgrades or migrations to new disks.</p>
 
-For more information about blobstore storage requirements and recommendations, see [Configure File Storage](../upgrading/configuring.html#file-storage) in _Configuring <%= vars.app_runtime_abbr %> for Upgrades_.
+For more information about blobstore storage requirements and recommendations, see [Configure File Storage](../../upgrading/configuring.html#file-storage) in _Configuring <%= vars.app_runtime_abbr %> for Upgrades_.
 
 ### <a id="pas-nsx-v-dns"></a> DNS
 
@@ -99,7 +99,7 @@ For more information about DNS requirements for <%= vars.app_runtime_abbr %>, se
 
 ### <a id="networking"></a> Networking
 
-The vSphere reference architecture for the <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) and <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>) runtimes is based on software-defined networking (SDN) infrastructure. vSphere offers NSX-T and NSX-V to support SDN infrastructure.
+The vSphere reference architecture for the <%= vars.app_runtime_abbr %> and <%= vars.k8s_runtime_abbr %> runtimes is based on software-defined networking (SDN) infrastructure. vSphere offers NSX-T and NSX-V to support SDN infrastructure.
 
 <%= vars.recommended_by %> recommends using an SDN to take advantage of features including:
 
@@ -136,7 +136,7 @@ The diagram below illustrates reference architecture for <%= vars.app_runtime_ab
 
 ![The diagram shows the architecture for a <%= vars.app_runtime_abbr %> on vSphere with NSX-T deployment. For more information about the components and networking demonstrated by the diagram, read the description below this diagram.](../images/v2/export/PAS_vSphere_NSX-T.png)
 
-<%= vars.app_runtime_abbr %> deployments with NSX-T are deployed with three clusters and three availability zones (AZs).
+<%= vars.app_runtime_abbr %> deployments with NSX-T are deployed with three clusters and three AZs.
 
 A NSX-T Tier-0 router is on the front end of the <%= vars.app_runtime_abbr %> deployment. This router is a central logical router into and out of the <%= vars.app_runtime_abbr %> platform. Routing configuration on the IP backbone can be static or dynamic using BGP on the Tier-0 router. Several Tier-1 routers, such as the router for the <%= vars.app_runtime_abbr %> and infrastructure subnets, connect to the Tier-0 router as child routing points to and from other child T1 routers and from the routed IP backbone.
 
@@ -212,7 +212,7 @@ The diagram below illustrates the reference architecture for <%= vars.app_runtim
 
 [View a larger version of this diagram](../images/v2/export/PAS_vSphere_NSX-V.png).
 
-<%= vars.app_runtime_abbr %> deployments with NSX-V are deployed with three clusters and three availability zones (AZs).
+<%= vars.app_runtime_abbr %> deployments with NSX-V are deployed with three clusters and three AZs.
 
 <%= vars.app_runtime_abbr %> deployments with NSX-V also include an NSX-V Edge router on the front end.
 
@@ -286,7 +286,7 @@ An internal MySQL database is sufficient for use in production environments.
 
 However, an external database provides more control over database management for large environments that require multiple data centers.
 
-For information about configuring system databases on <%= vars.app_runtime_abbr %>, see [Configure System Databases](../customizing/configure-pas.html#sys-db) in _Configuring <%= vars.app_runtime_abbr %>_.
+For information about configuring system databases on <%= vars.app_runtime_abbr %>, see [Configure System Databases](../../customizing/configure-pas.html#sys-db) in _Configuring <%= vars.app_runtime_abbr %>_.
 
 ### <a id="pas-nsx-v-security"></a> Security
 
@@ -302,7 +302,7 @@ For information about security requirements and recommendations for <%= vars.app
 
 <p class="note"><strong>Note:</strong> For POC environments, the internal blobstore can be the primary consumer of storage, as the internal blobstore must be actively maintained. <%= vars.app_runtime_abbr %> deployments experience downtime during events such as storage upgrades or migrations to new disks.</p>
 
-For more information about blobstore storage requirements and recommendations, see [Configure File Storage](../upgrading/configuring.html#file-storage) in _Configuring <%= vars.app_runtime_abbr %> for Upgrades_.
+For more information about blobstore storage requirements and recommendations, see [Configure File Storage](../../upgrading/configuring.html#file-storage) in _Configuring <%= vars.app_runtime_abbr %> for Upgrades_.
 
 
 ## <a id="pas-routed"></a> <%= vars.app_runtime_abbr %> on vSphere Without SDN
@@ -338,7 +338,7 @@ The diagram below illustrates the reference architecture for <%= vars.k8s_runtim
 
 [View a larger version of this diagram](../images/v2/export/PKS_vSphere_NSX-T.png).
 
-<%= vars.k8s_runtime_abbr %> deployments with NSX-T are deployed with three clusters and three availability zones (AZs).
+<%= vars.k8s_runtime_abbr %> deployments with NSX-T are deployed with three clusters and three AZs.
 
 An NSX-T Tier-0 router is on the front end of the <%= vars.k8s_runtime_abbr %> deployment. This router is a central logical router into the <%= vars.k8s_runtime_abbr %> platform. You can configure static or dynamic routing using BGP from the routed IP backbone through the Tier-0 router.
 
