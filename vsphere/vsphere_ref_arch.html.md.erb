@@ -138,7 +138,7 @@ The diagram below illustrates reference architecture for <%= vars.app_runtime_ab
 
 <%= vars.app_runtime_abbr %> deployments with NSX-T are deployed with three clusters and three AZs.
 
-A NSX-T Tier-0 router is on the front end of the <%= vars.app_runtime_abbr %> deployment. This router is a central logical router into and out of the <%= vars.app_runtime_abbr %> platform. Routing configuration on the IP backbone can be static or dynamic using BGP on the Tier-0 router. Several Tier-1 routers, such as the router for the <%= vars.app_runtime_abbr %> and infrastructure subnets, connect to the Tier-0 router as child routing points to and from other child T1 routers and from the routed IP backbone.
+An NSX-T Tier-0 router is on the front end of the <%= vars.app_runtime_abbr %> deployment. This router is a central logical router into and out of the <%= vars.app_runtime_abbr %> platform. Routing configuration on the IP backbone can be static or dynamic using BGP on the Tier-0 router. Several Tier-1 routers, such as the router for the <%= vars.app_runtime_abbr %> and infrastructure subnets, connect to the Tier-0 router as child routing points to and from other child T1 routers and from the routed IP backbone.
 
 ### <a id="pas-nsx-t-diagram"></a> NSX-T Container Plugin Requirement
 
