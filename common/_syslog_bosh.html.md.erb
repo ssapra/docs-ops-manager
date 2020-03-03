@@ -1,6 +1,6 @@
 1. Select **Syslog**.
 
-	<% if vars.service_name == 'Redis for Pivotal Platform' %>
+	<% if vars.product_short.include?("Redis") %>
     ![The Syslog configuration page in the Redis for PCF tile in Ops Manager.](syslog-forwarding.png)
 	<% end %>
 
