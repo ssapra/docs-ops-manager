@@ -5,7 +5,7 @@ iaas: GCP
 install_type: manual
 ---
 
-This topic describes how to configure the BOSH Director in Pivotal Operations Manager for <%= vars.platform_name %> on Google Cloud Platform (GCP).
+This topic describes how to configure the BOSH Director in Pivotal Operations Manager for <%= vars.platform_name_pivotal %> on Google Cloud Platform (GCP).
 
 <p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.</p>
 
@@ -54,7 +54,7 @@ To configure your GCP tile:
 
 1. Select **Google Config** and complete the following fields:
     * **Project ID**: Enter your GCP project ID in lowercase, such as: `your-gcp-project-id`.
-    * **Default Deployment Tag**: Enter the prefix that you used when creating the GCP resources for this <%= vars.platform_name %> installation.
+    * **Default Deployment Tag**: Enter the prefix that you used when creating the GCP resources for this <%= vars.platform_name_pivotal %> installation.
     * Select **AuthJSON**. In the field below, enter the contents of the JSON file that you downloaded in the [Set Up IAM Service Accounts](./prepare-env-manual.html#iam_account) section of the _Preparing to Deploy Ops Manager on GCP Manually_ topic.
         <p class="note"><strong>Note:</strong> As an alternative, you can select <strong>The Ops Manager VM Service Account</strong> option to use the service account automatically created by GCP for the Ops Manager VM. To use this option, the project-wide service account that you set up in the <a href="./prepare-env-manual.html#iam_account">Set Up IAM Service Accounts</a> section of the <em>Preparing to Deploy Ops Manager on GCP Manually</em> topic must be assigned the <strong>Service Account Actor</strong> role.</p>
        <%= image_tag("../common/images/gcp/google_config.png", :alt => "At the top of the image is the header 'Google Cloud Platform Config', underneath which is a horizonal line. Below the line are two text fields: one labeled 'Project ID' with a red asterisk to denote that it is a required field, and another labeled 'Default Deployment Tag'. Below this are two options: one selected radio button labeled 'The Ops Manager VM Service Account', and another button labeled 'AuthJSON'. Underneath 'AuthJSON' is a blank text area. At the bottom of the image is a blue, rectangular button labeled 'Save'.") %>
@@ -69,7 +69,7 @@ To configure your GCP tile:
 
 <div class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones (AZs) for a highly available installation.
   <ul>
-    <li>For configuring a PAS deployment with multiple AZs, see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for <%= vars.platform_name %> on GCP</a>.</li>
+    <li>For configuring a PAS deployment with multiple AZs, see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for <%= vars.platform_name_pivotal %> on GCP</a>.</li>
     <li>For PKS best practices for distributing workloads across multiple AZs and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
   </ul>
 </div>

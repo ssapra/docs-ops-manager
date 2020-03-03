@@ -4,7 +4,7 @@ owner: Ops Manager
 iaas: AWS
 ---
 
-This topic describes how to configure Pivotal Operations Manager to deploy <%= vars.platform_name %> on Amazon Web Services (AWS).
+This topic describes how to configure Pivotal Operations Manager to deploy <%= vars.platform_name_pivotal %> on Amazon Web Services (AWS).
 
 Before beginning this procedure, ensure that you have successfully completed all of the steps in [Deploying Ops Manager on AWS Manually](deploy-manual.html).
 
@@ -45,15 +45,15 @@ Before beginning this procedure, ensure that you have successfully completed all
     <%= image_tag("../common/images/cloudform/aws-config.png", :alt => "At the top of the image is the header 'AWS Management Console Config' with a horizontal line underneath. Below the line is a radio button labeled 'Use AWS Keys'. Below this button are grayed-out text fields labeled, from top to bottom, 'Access Key ID' and 'AWS Secret Key', both with red asterisks to denote that they are mandatory fields when the Use AWS Keys option is selected. Below this is another radio button labeled 'Use AWS Instance Profile', filled in with blue to show that it is selected. Below this button are text fields labeled, from top to bottom, 'AWS IAM Instance Profile', 'Security Group ID', and 'Key Pair Name', all with red asterisks. The 'AWS IAM Instance Profile' field is filled with the text 'pcf-user', and the 'Security Group ID' field is filled with the text 'sg-22bc9a56'. Below the Key Pair Name field is a text area labeled 'SSH Private Key' with a red asterisk. Underneath this text area is a dropdown labeled 'Region', with 'us-east-1' selected. Below is a selected checkbox labeled 'Encrypt Linux EBS Volumes', below which is a text field labeled 'Custom Encryption Key'. At the bottom of the image is a blue rectangular button labeled 'Save'.") %>
 
 1. Select **Use AWS Keys** or **Use AWS Instance Profile**.
-    * **Access Key ID** and **AWS Secret Key**: To retrieve your AWS key information, use the AWS Identity and Access Management (IAM) credentials that you generated in the [Step 3: Create an IAM User for <%= vars.platform_name %>](prepare-env-manual.html#create-iam) section of _Preparing to Deploy Ops Manager on AWS Manually_.
-    * **AWS IAM Instance Profile**: Enter the name of the IAM profile you created in the [Step 3: Create an IAM User for <%= vars.platform_name %>](prepare-env-manual.html#create-iam) section of _Preparing to Deploy Ops Manager on AWS Manually_.
+    * **Access Key ID** and **AWS Secret Key**: To retrieve your AWS key information, use the AWS Identity and Access Management (IAM) credentials that you generated in the [Step 3: Create an IAM User for <%= vars.platform_name_pivotal %>](prepare-env-manual.html#create-iam) section of _Preparing to Deploy Ops Manager on AWS Manually_.
+    * **AWS IAM Instance Profile**: Enter the name of the IAM profile you created in the [Step 3: Create an IAM User for <%= vars.platform_name_pivotal %>](prepare-env-manual.html#create-iam) section of _Preparing to Deploy Ops Manager on AWS Manually_.
 
 1. Complete the rest of the **AWS Management Console Config** page:
-    * **Security Group ID**: Enter the **Group ID** of the `pcf-vms-security-group` you created for your <%= vars.platform_name %> VMs in the [Step 6: Configure a Security Group for <%= vars.platform_name %> VMs](prepare-env-manual.html#pcfaws-om-ersecgrp) section of _Preparing to Deploy Ops Manager on AWS Manually_. Locate the Group ID in the **Security Groups** tab of your EC2 Dashboard.
+    * **Security Group ID**: Enter the **Group ID** of the `pcf-vms-security-group` you created for your <%= vars.platform_name_pivotal %> VMs in the [Step 6: Configure a Security Group for <%= vars.platform_name_pivotal %> VMs](prepare-env-manual.html#pcfaws-om-ersecgrp) section of _Preparing to Deploy Ops Manager on AWS Manually_. Locate the Group ID in the **Security Groups** tab of your EC2 Dashboard.
     * **Key Pair Name**: Enter `pcf-ops-manager-key`.
-    * **SSH Private Key**: Open the AWS key pair `pcf-ops-manager-keys.pem` file you generated in the [Step 3: Create an IAM User for <%= vars.platform_name %>](prepare-env-manual.html#create-iam) section of _Preparing to Deploy Ops Manager on AWS Manually_. Copy the contents of the `.pem` file and paste it into the **SSH Private Key** field.
+    * **SSH Private Key**: Open the AWS key pair `pcf-ops-manager-keys.pem` file you generated in the [Step 3: Create an IAM User for <%= vars.platform_name_pivotal %>](prepare-env-manual.html#create-iam) section of _Preparing to Deploy Ops Manager on AWS Manually_. Copy the contents of the `.pem` file and paste it into the **SSH Private Key** field.
     * **Region**: Select the region where you deployed Ops Manager.
-    * **Encrypt Linux EBS Volumes**: Select this checkbox to enable full encryption on persistent disks of all BOSH-deployed VMs except the Ops Manager VM and Director VM. See the [Configuring Amazon EBS Encryption for <%= vars.platform_name %> on AWS](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/cloudform-om-ebs-config.html) topic for details about using EBS encryption.
+    * **Encrypt Linux EBS Volumes**: Select this checkbox to enable full encryption on persistent disks of all BOSH-deployed VMs except the Ops Manager VM and Director VM. See the [Configuring Amazon EBS Encryption for <%= vars.platform_name_pivotal %> on AWS](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/cloudform-om-ebs-config.html) topic for details about using EBS encryption.
     <p class="note"><strong>Note:</strong> Enabling EBS encryption only encrypts Linux VMs. The Windows VMs deployed with Pivotal Application Service for Windows (PASW) or PASW 2012 R2 are not encrypted.</p>
 
 1. Click **Save**.
@@ -424,7 +424,7 @@ Enter your AWS target group name in the **Load Balancers** field for the **BOSH 
 
 ## <a id="next"></a> Next Steps
 
-After completing the procedures in this topic, you must configure a runtime for <%= vars.platform_name %>. You can install <%= vars.platform_name %> on AWS with the Pivotal Application Service (PAS) or Pivotal Container Service (PKS) runtime.
+After completing the procedures in this topic, you must configure a runtime for <%= vars.platform_name_pivotal %>. You can install <%= vars.platform_name_pivotal %> on AWS with the Pivotal Application Service (PAS) or Pivotal Container Service (PKS) runtime.
 
 To configure a runtime, do one of the following:
 
