@@ -40,7 +40,7 @@ To configure the **Director Config** pane:
 1. Select the **Enable VM Resurrector Plugin** checkbox to enable the BOSH Resurrector functionality and increase your runtime availability. <% if current_page.data.iaas == "vSphere" %>If you intend to install <%= vars.product_short %>, see [Using the BOSH Resurrector](https://docs.pivotal.io/platform/customizing/resurrector.html) for more information about the Resurrector plugin.<% end %>
 
 1. Select **Enable Post Deploy Scripts** to run a post-deploy script after deployment. This script allows the job to execute additional commands against a deployment.
-    <p class="note"><strong>Note:</strong> If you intend to install Pivotal Container Service (PKS), you must enable post-deploy scripts.</p>
+    <p class="note"><strong>Note:</strong> If you intend to install <%= vars.pks_product_full %> (<%= vars.pks_product_short %>), you must enable post-deploy scripts.</p>
 
 1. Select **Recreate all VMs** to force BOSH to recreate all VMs on the next deploy.
 This process does not destroy any persistent disk data.
