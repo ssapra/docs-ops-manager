@@ -18,15 +18,6 @@ During the backup, BBR stops the Cloud Controller API and the Cloud Controller w
 
 <div class="note warning">
   <strong>Warning:</strong>
-<<<<<<< HEAD
-  <ul>
-    <li><strong>Security:</strong> Backup artifacts can contain secrets. Secure backup artifacts by using encryption or other means.</li>
-    <li><strong>Compatibility:</strong> A BBR backup can only be restored to environments matching its source environment. To ensure that a restore environment is compatible with a backup, see <a href="./restore-pcf-bbr.html#compatibility">Compatibility of Restore</a>.</li>
-    <li><strong>Failed Restore:</strong> Restore is a destructive operation. BBR is designed to restore <%= vars.platform_name %> after a disaster. If a restore fails, the environment might be left in an unusable state and require re-provisioning. For more information, see <a href="restore-pcf-bbr.html">Restoring <%= vars.platform_name %> from Backup with BBR</a>.</li>
-    <li><strong>Service Data:</strong> BBR does not back up any service data.</li>
-    <li><strong>API Outage:</strong> The Cloud Controller API does not send or receive calls during <%= vars.platform_name %> restoration.</li>
-  </ul>
-=======
     <ul>
       <li><strong>Security:</strong> Backup artifacts can contain secrets. Secure backup artifacts by using encryption or other means.</li>
       <li><strong>Compatibility:</strong> A BBR backup can only be restored to environments matching its source environment. To ensure that a restore environment is compatible with a backup, see <a href="./restore-pcf-bbr.html#compatibility">Compatibility of Restore</a>.</li>
@@ -34,7 +25,6 @@ During the backup, BBR stops the Cloud Controller API and the Cloud Controller w
       <li><strong>Service Data:</strong> BBR does not back up any service data.</li>
       <li><strong>API Outage:</strong> The Cloud Controller API does not send or receive calls during <%= vars.platform_name %> restoration.</li>
     </ul>
->>>>>>> 127093dc... Style/formatting/variable sweep [#170966065]
 </div>
 
 
@@ -42,21 +32,13 @@ During the backup, BBR stops the Cloud Controller API and the Cloud Controller w
 
 <%= vars.recommended_by %> recommends:
 
-<<<<<<< HEAD
-* Follow the full procedure documented in this topic when creating a backup. This ensures that you always have a consistent backup of Pivotal Operations Manager and PAS to restore from.
-=======
 * Follow the full procedure documented in this topic when creating a backup. This ensures that you always have a consistent backup of <%= vars.ops_manager %> and <%= vars.app_runtime_abbr %> to restore from.
->>>>>>> 127093dc... Style/formatting/variable sweep [#170966065]
 
 * Back up frequently, especially before making any changes to your <%= vars.platform_name %> deployment, such as the configuration of any tiles in Ops Manager.
 
 * You can prune the BOSH blobstore by running `bosh clean-up --all` before you run a backup of the BOSH Director. The command removes all unused resources including packages compiled against older stemcell versions. If a lot of unused resources have accumulated over time, you create a smaller, faster backup of the BOSH Director. For more information see [Clean-Up](https://bosh.io/docs/cli-v2/#clean-up) in the BOSH documentation.
 
-<<<<<<< HEAD
-<p class="note"><strong>Note:</strong>The command `bosh clean-up --all` is a destructive operation and can remove resources that are unused but needed. For example, if an On-Demand Service Broker is deployed <strong>and</strong> no service instances have been created, the releases needed to create a service instance will be categorised as unused.</p>
-=======
 <p class="note"><strong>Note:</strong> Running the <code>bosh clean-up --all</code> command is a destructive operation and can remove resources that are unused but needed. For example, if an On-Demand Service Broker is deployed <strong>and</strong> no service instances have been created, the releases needed to create a service instance are categorized as unused.</p>
->>>>>>> 127093dc... Style/formatting/variable sweep [#170966065]
 
 
 ## <a id='supported'></a> Supported Components
@@ -108,7 +90,7 @@ The following table shows what types of external databases and blobstores you ca
     <th class="cell header" style="width: 12%; text-align: center;">2.7</th>
   </tr>
   <tr>
-    <td style="color: black;">PAS with External Database</td>
+    <td style="color: black;"><%= vars.app_runtime_abbr %> with External Database</td>
     <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
@@ -126,7 +108,7 @@ The following table shows what types of external databases and blobstores you ca
     <td class="cell green">Yes</td>
   </tr>
   <tr>
-    <td style="color: black;">PAS with Amazon S3 Blobstore<sup>*</sup></td>
+    <td style="color: black;"><%= vars.app_runtime_abbr %> with Amazon S3 Blobstore<sup>*</sup></td>
     <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
@@ -144,7 +126,7 @@ The following table shows what types of external databases and blobstores you ca
     <td class="cell green">Yes</td>
   </tr>
   <tr>
-    <td style="color: black;">PAS with S3-Compatible Blobstore</td>
+    <td style="color: black;"><%= vars.app_runtime_abbr %> with S3-Compatible Blobstore</td>
     <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
@@ -162,7 +144,7 @@ The following table shows what types of external databases and blobstores you ca
     <td class="cell green">Yes</td>
   </tr>
   <tr>
-    <td style="color: black;">PAS with Azure Blobstore</td>
+    <td style="color: black;"><%= vars.app_runtime_abbr %> with Azure Blobstore</td>
     <td class="cell pale-green">Add-on</td>
     <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
@@ -171,7 +153,7 @@ The following table shows what types of external databases and blobstores you ca
     <td class="cell green">Yes</td>
   </tr>
   <tr>
-    <td style="color: black;">PAS with GCS Blobstore</td>
+    <td style="color: black;"><%= vars.app_runtime_abbr %> with GCS Blobstore</td>
     <td class="cell peach">No</td>
     <td class="cell peach">No</td>
     <td class="cell peach">No</td>
