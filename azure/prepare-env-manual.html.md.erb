@@ -183,12 +183,12 @@ the value of `appId`. This is your `APPLICATION_ID` for creating a service princ
     }
     </pre>
 
-1. You must have the Contributor role on your service principal to deploy Ops Manager to Azure. To assign
-the Contributor role on your service principal, run the following command:
+1. You must have the Owner role on your service principal to deploy Ops Manager to Azure. To assign
+the Owner role on your service principal, run the following command:
 
     ```
     az role assignment create --assignee "SERVICE-PRINCIPAL-NAME" \
-    --role "Contributor" --scope /subscriptions/SUBSCRIPTION-ID
+    --role "Owner" --scope /subscriptions/SUBSCRIPTION-ID
     ```
     Where:
     * `SERVICE-PRINCIPAL-NAME` is any value of `servicePrincipalNames` from the output above, such
@@ -200,7 +200,7 @@ the Contributor role on your service principal, run the following command:
     <pre class="terminal">
     $ az role assignment create \
     --assignee "5c552e8f-b977-45f5-a50b-981cfe17cb9d" \
-    --role "Contributor" \
+    --role "Owner" \
     --scope /subscriptions/87654321-1234-5678-1234-567891234567
     </pre>
     <p class="note"><strong>Note:</strong> If you need to use multiple resource groups for your 
@@ -229,7 +229,7 @@ the Contributor role on your service principal, run the following command:
           "principalId": "cc13c685-4c3b-461e-ae96-7a0563960b83",
           "principalName": "http<span>:</span>//BOSHAzureCPI",
           "roleDefinitionId": "/subscriptions/995b7eed-77ef-45ff-a5c9-1a405ffb8243/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
-          "roleDefinitionName": "Contributor",
+          "roleDefinitionName": "Owner",
           "scope": "/subscriptions/995b7eed-77ef-45ff-a5c9-1a405ffb8243"
         },
         "type": "Microsoft.Authorization/roleAssignments"
