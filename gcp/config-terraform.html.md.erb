@@ -7,9 +7,9 @@ install_type: terraform
 
 
 
-This topic describes how to configure the BOSH Director for <%= vars.product_name %> on Google Cloud Platform (GCP) after [Preparing to Deploy Ops Manager on GCP Using Terraform](./prepare-env-terraform.html).
+This topic describes how to configure the BOSH Director for <%= vars.platform_name %> on Google Cloud Platform (GCP) after [Preparing to Deploy <%= vars.ops_manager %> on GCP Using Terraform](./prepare-env-terraform.html).
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Pivotal Operations Manager API. For more information, see the <a href="http://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the <%= vars.ops_manager %> API. For more information, see the <a href="http://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the <%= vars.ops_manager %> API</a> topic.</p>
 
 
 ## <a id='prereq'></a> Prerequisite
@@ -17,15 +17,15 @@ This topic describes how to configure the BOSH Director for <%= vars.product_nam
 To complete the procedures in this topic, you must have access to the output from when you ran `terraform apply` to create resources for this deployment. You can view this output at any time by running `terraform output`. You use the values in your Terraform output to configure the BOSH Director tile.
 
 
-## <a id='access-om'></a> Step 1: Access Ops Manager
+## <a id='access-om'></a> Step 1: Access <%= vars.ops_manager %>
 
-1. In a web browser, navigate to the fully qualified domain name (FQDN) of Ops Manager.
+1. In a web browser, navigate to the fully qualified domain name (FQDN) of <%= vars.ops_manager %>.
 Use the `ops_manager_dns` value from running `terraform output`.
 
-    <p class="note"><strong>Note:</strong> In order to set up Ops Manager authentication correctly, Pivotal recommends using a Fully Qualified Domain Name (FQDN) to access Ops Manager. Using an ephemeral IP address to access Ops Manager can cause authentication errors upon subsequent access.</p>
+    <p class="note"><strong>Note:</strong> In order to set up <%= vars.ops_manager %> authentication correctly, <%= vars.recommended_by %> recommends using a Fully Qualified Domain Name (FQDN) to access <%= vars.ops_manager %>. Using an ephemeral IP address to access <%= vars.ops_manager %> can cause authentication errors upon subsequent access.</p>
 
-1. When Ops Manager starts for the first time, you must choose one of the following:
-    * [Internal Authentication](#internal): If you use internal authentication, Ops Manager maintains your user database.
+1. When <%= vars.ops_manager %> starts for the first time, you must choose one of the following:
+    * [Internal Authentication](#internal): If you use internal authentication, <%= vars.ops_manager %> maintains your user database.
     * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external identity server maintains your user database.
     * [LDAP Server](#ldap): If you use an LDAP Server, an external identity server maintains your user database.
 
@@ -33,12 +33,12 @@ Use the `ops_manager_dns` value from running `terraform output`.
 
 1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
-    * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
+    * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the <%= vars.ops_manager %> datastore, and is not recoverable.
     * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](http://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
-1. Log in to Ops Manager with the Admin username and password you created in the previous step.
+1. Log in to <%= vars.ops_manager %> with the Admin username and password you created in the previous step.
 
 ### <a id='saml'></a> SAML Identity Provider
 
@@ -57,7 +57,7 @@ Use the `ops_manager_dns` value from running `terraform output`.
     * **Project ID**: Enter the value of `project` from your `terraform.tfvars` file.
     * **Default Deployment Tag**: Enter the value of `env_name` from your `terraform.tfvars` file.
     * Select **AuthJSON** and in the field below enter the contents of the JSON file for you service account key.
-        <p class="note"><strong>Note:</strong> As an alternative, you can select <strong>The Ops Manager VM Service Account</strong> option to use the service account automatically created by GCP for the Ops Manager VM.</p>
+        <p class="note"><strong>Note:</strong> As an alternative, you can select <strong>The <%= vars.ops_manager %> VM Service Account</strong> option to use the service account automatically created by GCP for the <%= vars.ops_manager %> VM.</p>
        <%= image_tag("../common/images/gcp/google_config.png", :alt => "At the top of the image is the header 'Google Cloud Platform Config', underneath which is a horizonal line. Below the line are two text fields: one labeled 'Project ID' with a red asterisk to denote that it is a required field, and another labeled 'Default Deployment Tag'. Below this are two options: one selected radio button labeled 'The Ops Manager VM Service Account', and another button labeled 'AuthJSON'. Underneath 'AuthJSON' is a blank text area. At the bottom of the image is a blue, rectangular button labeled 'Save'.") %>
 
 1. Click **Save**.
@@ -70,10 +70,10 @@ Use the `ops_manager_dns` value from running `terraform output`.
 
 ## <a id='az'></a> Step 4: Create Availability Zones Page
 
-  <div class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation.
+  <div class="note"><strong>Note:</strong> <%= vars.recommended_by %> recommends at least three availability zones for a highly available installation.
     <ul>
-      <li>For configuring a PAS deployment with multiple availability zones, see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for <%= vars.product_name %> on GCP</a>.</li>
-      <li>For PKS best practices for distributing workloads across multiple availability zones and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
+      <li>For configuring a <%= vars.app_runtime_abbr %> deployment with multiple availability zones, see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for <%= vars.platform_name %> on GCP</a>.</li>
+      <li>For <%= vars.k8s_runtime_abbr %> best practices for distributing workloads across multiple availability zones and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
     </ul>
   </div>
 
@@ -213,7 +213,7 @@ Use the `ops_manager_dns` value from running `terraform output`.
 
 1. To add a load balancer to the BOSH Director, select the icon next to the **BOSH Director** job name to see the **Load Balancers** field and **Internet Connected** checkbox. Ensure that the **Internet Connected** checkbox is not selected for any job. The Terraform templates do not provision a Network Address Translation (NAT) box for internet connectivity to your VMs, so instead VMs are provided with ephemeral public IP addresses to allow the jobs to reach the internet.
   <p class="note"><strong>Note:</strong> If you want to provision a Network Address Translation (NAT) box to provide internet connectivity to your VMs instead of providing them with public IP addresses, deselect the <strong>Internet Connected</strong> checkboxes. For more information about using NAT in GCP, see the <a href="https://cloud.google.com/compute/docs/networking">GCP documentation</a>.</p>
-  <p class="note"><strong>Note:</strong> If you install Pivotal Application Service for Windows (PASW), provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
+  <p class="note"><strong>Note:</strong> If you install <%= vars.windows_runtime_full %> (<%= vars.windows_runtime_abbr %>), provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
 
 ## <a id='custom-vm-extensions'></a> Step 10: (Optional) Add Custom VM Extensions
 
@@ -236,6 +236,6 @@ Use the `ops_manager_dns` value from running `terraform output`.
 
 After you complete this procedure, follow the instructions for the runtime you intend to install.
 <ul>
-  <li>To deploy PAS, see [Configuring PAS](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html).</li>
-  <li>To prepare to deploy PKS, see [Creating Service Accounts in GCP for PKS](https://docs.pivotal.io/pks/gcp-service-accounts.html).</li>
+  <li>To deploy <%= vars.app_runtime_abbr %>, see [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html).</li>
+  <li>To prepare to deploy <%= vars.k8s_runtime_abbr %>, see [Creating Service Accounts in GCP for <%= vars.k8s_runtime_abbr %>](https://docs.pivotal.io/pks/gcp-service-accounts.html).</li>
 </ul>
