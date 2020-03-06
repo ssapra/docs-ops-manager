@@ -15,7 +15,7 @@
 1. (Optional) Select the **Enable TLS** checkbox to send encrypted logs to remote server with TLS. After you select the checkbox:
 	1. Enter either the name or SHA1 fingerprint of the remote peer in **Permitted Peer**.
 	1. Enter the SSL certificate for the remote server in **SSL Certificate**.
-	<p class="note"><strong>Note:</strong> Pivotal strongly recommends that you enable TLS encryption when you are forwarding logs. Logs can contain sensitive information, such as cloud provider credentials.</p>
+	<p class="note"><strong>Note:</strong> <%= vars.recommended_by %> strongly recommends that you enable TLS encryption when you are forwarding logs. Logs can contain sensitive information, such as cloud provider credentials.</p>
 
 1. (Optional) Enter an integer in **Queue Size**. This value specifies the number of log messages held in the buffer. The default value is 100,000.
 
