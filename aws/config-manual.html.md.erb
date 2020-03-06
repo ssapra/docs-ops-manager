@@ -4,16 +4,16 @@ owner: Ops Manager
 iaas: AWS
 ---
 
-This topic describes how to configure Pivotal Operations Manager to deploy <%= vars.platform_name %> on Amazon Web Services (AWS).
+This topic describes how to configure BOSH Director to deploy <%= vars.platform_name %> on Amazon Web Services (AWS).
 
-Before beginning this procedure, ensure that you have successfully completed all of the steps in [Deploying Ops Manager on AWS Manually](deploy-manual.html).
+Before beginning this procedure, ensure that you have successfully completed all of the steps in [Deploying <%= vars.ops_manager %> on AWS Manually](deploy-manual.html).
 
-## <a id='pcfaws-om-access'></a> Step 1: Access Ops Manager
+## <a id='pcfaws-om-access'></a> Step 1: Access <%= vars.ops_manager %>
 
-1. In a web browser, navigate to the fully qualified domain you created in the [Configure DNS Records](./deploy-manual.html#pcfaws-dns) step of _Deploying Ops Manager on AWS Manually_.
+1. In a web browser, navigate to the fully qualified domain you created in the [Configure DNS Records](./deploy-manual.html#pcfaws-dns) step of _Deploying <%= vars.ops_manager %> on AWS Manually_.
 
-1. When Ops Manager starts for the first time, you must choose one of the following:
-    * [Internal Authentication](#internal): If you use Internal Authentication, Ops Manager maintains your user database.
+1. When <%= vars.ops_manager %> starts for the first time, you must choose one of the following:
+    * [Internal Authentication](#internal): If you use Internal Authentication, <%= vars.ops_manager %> maintains your user database.
     * [SAML Identity Provider](#saml): If you use a SAML Identity Provider (IdP), an external identity server maintains your user database.
     * [LDAP Server](#ldap): If you use a LDAP Server, an external identity server maintains your user database.
 
@@ -21,12 +21,12 @@ Before beginning this procedure, ensure that you have successfully completed all
 
 1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
-    * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
+    * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the <%= vars.ops_manager %> datastore, and is not recoverable.
     * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html) topic.
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
-1. Log in to Ops Manager with the Admin username and password you created in the previous step.
+1. Log in to <%= vars.ops_manager %> with the Admin username and password you created in the previous step.
 
 ### <a id='saml'></a> SAML Identity Provider
 
@@ -45,16 +45,16 @@ Before beginning this procedure, ensure that you have successfully completed all
     <%= image_tag("../common/images/cloudform/aws-config.png", :alt => "At the top of the image is the header 'AWS Management Console Config' with a horizontal line underneath. Below the line is a radio button labeled 'Use AWS Keys'. Below this button are grayed-out text fields labeled, from top to bottom, 'Access Key ID' and 'AWS Secret Key', both with red asterisks to denote that they are mandatory fields when the Use AWS Keys option is selected. Below this is another radio button labeled 'Use AWS Instance Profile', filled in with blue to show that it is selected. Below this button are text fields labeled, from top to bottom, 'AWS IAM Instance Profile', 'Security Group ID', and 'Key Pair Name', all with red asterisks. The 'AWS IAM Instance Profile' field is filled with the text 'pcf-user', and the 'Security Group ID' field is filled with the text 'sg-22bc9a56'. Below the Key Pair Name field is a text area labeled 'SSH Private Key' with a red asterisk. Underneath this text area is a dropdown labeled 'Region', with 'us-east-1' selected. Below is a selected checkbox labeled 'Encrypt Linux EBS Volumes', below which is a text field labeled 'Custom Encryption Key'. At the bottom of the image is a blue rectangular button labeled 'Save'.") %>
 
 1. Select **Use AWS Keys** or **Use AWS Instance Profile**.
-    * **Access Key ID** and **AWS Secret Key**: To retrieve your AWS key information, use the AWS Identity and Access Management (IAM) credentials that you generated in the [Step 3: Create an IAM User for <%= vars.platform_name %>](prepare-env-manual.html#create-iam) section of _Preparing to Deploy Ops Manager on AWS Manually_.
-    * **AWS IAM Instance Profile**: Enter the name of the IAM profile you created in the [Step 3: Create an IAM User for <%= vars.platform_name %>](prepare-env-manual.html#create-iam) section of _Preparing to Deploy Ops Manager on AWS Manually_.
+    * **Access Key ID** and **AWS Secret Key**: To retrieve your AWS key information, use the AWS Identity and Access Management (IAM) credentials that you generated in the [Step 3: Create an IAM User for <%= vars.platform_name %>](prepare-env-manual.html#create-iam) section of _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_.
+    * **AWS IAM Instance Profile**: Enter the name of the IAM profile you created in the [Step 3: Create an IAM User for <%= vars.platform_name %>](prepare-env-manual.html#create-iam) section of _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_.
 
 1. Complete the rest of the **AWS Management Console Config** page:
-    * **Security Group ID**: Enter the **Group ID** of the `pcf-vms-security-group` you created for your <%= vars.platform_name %> VMs in the [Step 6: Configure a Security Group for <%= vars.platform_name %> VMs](prepare-env-manual.html#pcfaws-om-ersecgrp) section of _Preparing to Deploy Ops Manager on AWS Manually_. Locate the Group ID in the **Security Groups** tab of your EC2 Dashboard.
+    * **Security Group ID**: Enter the **Group ID** of the `pcf-vms-security-group` you created for your <%= vars.platform_name %> VMs in the [Step 6: Configure a Security Group for <%= vars.platform_name %> VMs](prepare-env-manual.html#pcfaws-om-ersecgrp) section of _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_. Locate the Group ID in the **Security Groups** tab of your EC2 Dashboard.
     * **Key Pair Name**: Enter `pcf-ops-manager-key`.
-    * **SSH Private Key**: Open the AWS key pair `pcf-ops-manager-keys.pem` file you generated in the [Step 3: Create an IAM User for <%= vars.platform_name %>](prepare-env-manual.html#create-iam) section of _Preparing to Deploy Ops Manager on AWS Manually_. Copy the contents of the `.pem` file and paste it into the **SSH Private Key** field.
-    * **Region**: Select the region where you deployed Ops Manager.
-    * **Encrypt Linux EBS Volumes**: Select this checkbox to enable full encryption on persistent disks of all BOSH-deployed VMs except the Ops Manager VM and Director VM. See the [Configuring Amazon EBS Encryption for <%= vars.platform_name %> on AWS](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/cloudform-om-ebs-config.html) topic for details about using EBS encryption.
-    <p class="note"><strong>Note:</strong> Enabling EBS encryption only encrypts Linux VMs. The Windows VMs deployed with Pivotal Application Service for Windows (PASW) or PASW 2012 R2 are not encrypted.</p>
+    * **SSH Private Key**: Open the AWS key pair `pcf-ops-manager-keys.pem` file you generated in the [Step 3: Create an IAM User for <%= vars.platform_name %>](prepare-env-manual.html#create-iam) section of _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_. Copy the contents of the `.pem` file and paste it into the **SSH Private Key** field.
+    * **Region**: Select the region where you deployed <%= vars.ops_manager %>.
+    * **Encrypt Linux EBS Volumes**: Select this checkbox to enable full encryption on persistent disks of all BOSH-deployed VMs except the <%= vars.ops_manager %> VM and Director VM. See the [Configuring Amazon EBS Encryption for <%= vars.platform_name %> on AWS](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/cloudform-om-ebs-config.html) topic for details about using EBS encryption.
+    <p class="note"><strong>Note:</strong> Enabling EBS encryption only encrypts Linux VMs. The Windows VMs deployed with <%= vars.windows_runtime_full %> (<%= vars.windows_runtime_abbr %>) are not encrypted.</p>
 
 1. Click **Save**.
 
@@ -65,12 +65,12 @@ Before beginning this procedure, ensure that you have successfully completed all
 
 ## <a id='az'></a> Step 4: Create Availability Zones Page
 
-<p class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones (AZs) for a highly available installation of PAS. The procedures in <a href="prepare-env-manual.html">Preparing to Deploy Ops Manager on AWS Manually</a> use 3 AZs.</p>
+<p class="note"><strong>Note:</strong> <%= vars.recommended_by %> recommends at least three availability zones (AZs) for a highly available installation of <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>). The procedures in <a href="prepare-env-manual.html">Preparing to Deploy <%= vars.ops_manager %> on AWS Manually</a> use 3 AZs.</p>
 
 1. Select **Create Availability Zones**.
 <%= image_tag("../common/images/cloudform/create-az.png", :alt => "At the top of the image is the header 'Create Availability Zones' with a horizontal line underneath. Below the line is the header 'Availability Zones' with a gray button directly across from them labeled 'Add'. Below Availability Zones are the words 'us-west-1c' with a small, downward-pointing triangle to the left of them, indicating an expandable area. Below that is a text field labeled 'Amazon Availability Zone' with a red asterisk to denote that it is a mandatory field, filled with the text 'us-west-1c'. The help text beside the text field says 'The Amazon availability Zone name (ex: 'us-east-1b')'. There is a button with the image of a gray trashcan in the upper right corner of the 'us-west-1c' area, directly underneath the gray Add button. At the bottom-left of the image is a blue rectangular button labeled 'Save'.") %>
 
-1. To add the three AZs you specified in the [Step 4: Create a VPC](prepare-env-manual.html#pcfaws-vpc) section of _Preparing to Deploy Ops Manager on AWS Manually_:
+1. To add the three AZs you specified in the [Step 4: Create a VPC](prepare-env-manual.html#pcfaws-vpc) section of _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_:
     1. Click **Add**.
     1. For **Amazon Availability Zone**, enter the name of the AZ.
     1. Repeat until you have entered all three AZs, in the format `REGION-#a`, `REGION-#b`, and `REGION-#c`. For example, `us-west-2a`, `us-west-2b`, and `us-west-2c`.
@@ -83,9 +83,9 @@ Before beginning this procedure, ensure that you have successfully completed all
 1. Select **Create Networks**.
 <%= image_tag("../common/images/cloudform/create-networks.png", :alt => "At the top of the image is the header 'Create Networks' with a horizontal line underneath. Below the line are the words 'Warning: Pivotal recommends keeping the IP settings throughout the life of your installation. Ops Manager may prevent you from changing them in the future. Contact Pivotal support for help completing such a change.' Below this text is the header 'Verification Settings', below which is a checkbox labeled 'Enable ICMP checks'. After this checkbox is the header 'Networks', across from which is a gray, rectangular button labeled 'Add Network'. Below 'Networks' are the words 'One or many IP ranges upon which your products will be deployed'. Below this is a gray, rectangular button labeled 'infrastructure' with a small, downward-pointing triangle to the left of it, indicating an expandable area. The image of a gray trashcan is directly across from the 'infrastructure' button. Below the 'infrastructure' button is a text field labeled 'Name' with a red asterisk to denote that it is a mandatory field, filled with the text 'infrastructure'. Below this text field is subheader 'Subnets', across from which is a gray, rectangular button labeled 'Add Subnet'. Below the Subnets subheader are text fields labeled, from top to bottom, 'VPC Subnet ID' with a red asterisk, 'CIDR' with a red asterisk, 'Reserved IP Ranges', 'DNS' with a red asterisk, and 'Gateway' with a red asterisk. The VPC Subnet ID field contains the text 'pcf-infrastructure-subnet-az0'. The CIDR field contains the text '10.0.16.0/28'. The Reserved IP Ranges field contains the text '10.0.16.0-10.0.16.4'. The DNS field contains the text '10.0.16.2'. The Gateway field contains the text '10.0.16.1'. Below the Gateway field are the words 'Availability Zones' with a red asterisk, below which are three round buttons labeled, from top to bottom, 'us-west-2a', 'us-west-2b', and 'us-west-2c'. 'us-west-2a' is selected.") %>
 
-1. (Optional) Select **Enable ICMP checks** to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
+1. (Optional) Select **Enable ICMP checks** to enable ICMP on your networks. <%= vars.ops_manager %> uses ICMP checks to confirm that components within your network are reachable.
 
-1. Perform the following steps to add the network configuration that you created for your VPC in the [Create a VPC](prepare-env-manual.html#pcfaws-vpc) section of _Preparing to Deploy Ops Manager on AWS Manually_. Record your VPC CIDR if you set a CIDR other than the recommendation!
+1. Perform the following steps to add the network configuration that you created for your VPC in the [Create a VPC](prepare-env-manual.html#pcfaws-vpc) section of _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_. Record your VPC CIDR if you set a CIDR other than the recommendation!
     1. Click **Add Network**.
     1. For **Name**, enter `infrastructure`.
     1. Create a subnet for each availability zone by clicking **Add Subnet**. Refer to the table below for the information required to create all three subnets:
@@ -392,7 +392,7 @@ Before beginning this procedure, ensure that you have successfully completed all
 1. Adjust any values as necessary for your deployment. Under the **Instances**, **VM Type**, and **Persistent Disk Type** fields,
 choose **Automatic** from the dropdown to allocate the recommended resources for the job. If the **Persistent Disk Type** field reads **None**, the job does not require persistent disk space.
     <p class="note"><strong>Note:</strong> For the BOSH Director job, select a VM type with at least 8&nbsp;GB memory.</p>
-    <p class="note"><strong>Note:</strong> If you set a field to <strong>Automatic</strong> and the recommended resource allocation changes in a future version, Ops Manager automatically uses the new recommended allocation.</p>
+    <p class="note"><strong>Note:</strong> If you set a field to <strong>Automatic</strong> and the recommended resource allocation changes in a future version, <%= vars.ops_manager %> automatically uses the new recommended allocation.</p>
     <p class="note"><strong>Note:</strong> If you install PASW, provision your <strong>Master Compilation Job</strong>
     with at least 100&nbsp;GB of disk space.</p>
 
@@ -424,9 +424,9 @@ Enter your AWS target group name in the **Load Balancers** field for the **BOSH 
 
 ## <a id="next"></a> Next Steps
 
-After completing the procedures in this topic, you must configure a runtime for <%= vars.platform_name %>. You can install <%= vars.platform_name %> on AWS with the Pivotal Application Service (PAS) or Pivotal Container Service (PKS) runtime.
+After completing the procedures in this topic, you must configure a runtime for <%= vars.platform_name %>. You can install <%= vars.platform_name %> on AWS with the <%= vars.app_runtime_abbr %> or <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>) runtime.
 
 To configure a runtime, do one of the following:
 
-* Configure PAS. See [Configuring PAS](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html).
-* Configure PKS. See [Installing PKS on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html).
+* Configure <%= vars.app_runtime_abbr %>. See [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html).
+* Configure <%= vars.k8s_runtime_abbr %>. See [Installing <%= vars.k8s_runtime_abbr %> on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html).
