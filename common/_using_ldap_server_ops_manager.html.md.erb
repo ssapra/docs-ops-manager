@@ -1,4 +1,4 @@
-To configure Ops Manager to use an LDAP server for user authentication:
+To configure <%= vars.ops_manager %> to use an LDAP server for user authentication:
 
 1. For **Server URL**, enter the URL that points to your LDAP server. With multiple LDAP servers, separate their URLs with spaces. Each URL must include one of the following protocols:
     * `ldap://`: This specifies that the LDAP server uses an unencrypted connection.
@@ -6,7 +6,7 @@ To configure Ops Manager to use an LDAP server for user authentication:
 
 1. For **LDAP Username** and **LDAP Password**, enter the LDAP Distinguished Name (DN) and the password for binding to the LDAP Server. Example DN: `cn=administrator,ou=Users,dc=example,dc=com`
     <p class="note"><strong>Note:</strong> Pivotal recommends that you provide LDAP credentials that grant read-only permissions on the LDAP Search Base and the LDAP Group Search Base. In addition to this, if the bind user belongs to a different search base, you must use the full DN.</p>
-    <p class="note warning"><strong>WARNING:</strong> Pivotal recommends against reusing LDAP service accounts across environments. LDAP service accounts should not be subject to manual lockouts, such as lockouts that result from users utilizing the same account. Also, LDAP service accounts should not be subject to automated deletions, since disruption to these service accounts could prevent user logins.
+    <p class="note warning"><strong>WARNING:</strong> <%= vars.recommended_by %> recommends against reusing LDAP service accounts across environments. LDAP service accounts should not be subject to manual lockouts, such as lockouts that result from users utilizing the same account. Also, LDAP service accounts should not be subject to automated deletions, since disruption to these service accounts could prevent user logins.
     </p>
 
 1. For **User Search Base**, enter the location in the LDAP directory tree from which any LDAP User search begins. The typical LDAP Search Base matches your domain name. For example, a domain named "cloud.example.com" typically uses the following LDAP User Search Base: `ou=Users,dc=example,dc=com`
@@ -24,7 +24,7 @@ In addition to `cn`, other attributes commonly searched for and returned are `ma
 
 1. For **Email Attribute**, enter the attribute name in your LDAP directory that corresponds to the email address in each user record. For example, `mail`.
 
-1. For **LDAP RBAC Admin Group Name**, enter the DN of the LDAP group you want to have admin permissions in Ops Manager.
+1. For **LDAP RBAC Admin Group Name**, enter the DN of the LDAP group you want to have admin permissions in <%= vars.ops_manager %>.
 
 1. From the dropdown, select how the UAA handles LDAP server referrals out to other external user stores. The UAA can:
     * **Automatically follow any referrals**.
@@ -33,7 +33,7 @@ In addition to `cn`, other attributes commonly searched for and returned are `ma
 
 1. For **Server SSL Cert**, paste in the root certificate from your CA certificate or your self-signed certificate.
 
-1. Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
+1. Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the <%= vars.ops_manager %> datastore, and is not recoverable.
 
 1. If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html).
 
