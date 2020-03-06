@@ -3,20 +3,20 @@ title: Deploying Ops Manager on AWS Using Terraform
 owner: Ops Manager
 ---
 
-This guide describes the preparation steps required to deploy Pivotal Operations Manager on Amazon Web Services (AWS) using Terraform templates.
+This guide describes the preparation steps required to deploy <%= vars.ops_manager %> on Amazon Web Services (AWS) using Terraform templates.
 
-The Terraform template for Ops Manager on AWS describes a set of AWS resources and properties. For more information about how Terraform creates resources in AWS, see [AWS Provider](https://www.terraform.io/docs/providers/aws/index.html) in the Terraform documentation.
+The Terraform template for <%= vars.ops_manager %> on AWS describes a set of AWS resources and properties. For more information about how Terraform creates resources in AWS, see [AWS Provider](https://www.terraform.io/docs/providers/aws/index.html) in the Terraform documentation.
 
-If you are deploying Pivotal Application Service (PAS), review different deployment options in [Reference Architecture for <%= vars.platform_name %> on AWS](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/aws/aws_ref_arch.html).
+If you are deploying <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>), review different deployment options in [Reference Architecture for <%= vars.platform_name %> on AWS](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/aws/aws_ref_arch.html).
 
 
 ## <a id="prereqs"></a> Prerequisites
 
-Before you deploy Ops Manager on AWS:
+Before you deploy <%= vars.ops_manager %> on AWS:
 
-* If you intend to install PAS, see [<%= vars.platform_name %> on AWS Requirements](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/aws.html).
+* If you intend to install <%= vars.app_runtime_abbr %>, see [<%= vars.platform_name %> on AWS Requirements](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/aws.html).
 
-* If you intend to install Pivotal Container Service (PKS), see [AWS Prerequisites and Resource Requirements](https://docs.pivotal.io/pks/aws-requirements.html).
+* If you intend to install <%= vars.k8k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>), see [AWS Prerequisites and Resource Requirements](https://docs.pivotal.io/pks/aws-requirements.html).
 
 In addition to reviewing the prerequisites for your runtime, ensure you have:
 
@@ -39,7 +39,7 @@ In addition to reviewing the prerequisites for your runtime, ensure you have:
 
 Before you can run Terraform commands to provision infrastructure resources, you must download the AWS Terraform templates and create a Terraform template variables file. To download the templates and create a template variables file:
 
-1. On [Pivotal Network](https://network.pivotal.io), navigate to the **Pivotal Application Service (formerly Elastic Runtime)** release.
+1. On [Pivotal Network](https://network.pivotal.io), navigate to the **<%= vars.app_runtime_full %>** release.
 
 1. Download the AWS Terraform templates ZIP file.
 
@@ -111,11 +111,11 @@ Before you can run Terraform commands to provision infrastructure resources, you
     <tr>
       <td><code>YOUR-OPS-MAN-IMAGE-AMI</code></td>
       <td>
-        Enter the source code for the Ops Manager Amazon Machine Image (AMI) you want to boot. You can find this code in the PDF included with the Ops Manager release on Pivotal Network.
+        Enter the source code for the <%= vars.ops_manager %> Amazon Machine Image (AMI) you want to boot. You can find this code in the PDF included with the <%= vars.ops_manager %> release on Pivotal Network.
         <br><br>
-        If you want to encrypt your Ops Manager VM, create an encrypted AMI copy from the AWS EC2 dashboard and enter the source code for the copied Ops Manager image instead. For more information about copying an AMI, see the [Launch an Ops Manager AMI](deploy-manual.html#pcfaws-om-ami) section of the _Deploying Ops Manager on AWS Manually_ topic.
+        If you want to encrypt your <%= vars.ops_manager %> VM, create an encrypted AMI copy from the AWS EC2 dashboard and enter the source code for the copied <%= vars.ops_manager %> image instead. For more information about copying an AMI, see the [Launch an <%= vars.ops_manager %> AMI](deploy-manual.html#pcfaws-om-ami) section of the _Deploying <%= vars.ops_manager %> on AWS Manually_ topic.
         <br><br>
-        To prevent the creation of an Ops Manager VM, set this value to an empty string (<code>""</code>). When using Platform Automation, you must disable the creation of the Ops Manager VM from Terraform. For more information, see [Platform Automation](https://docs.pivotal.io/platform-automation).
+        To prevent the creation of an <%= vars.ops_manager %> VM, set this value to an empty string (<code>""</code>). When using Platform Automation, you must disable the creation of the <%= vars.ops_manager %> VM from Terraform. For more information, see [Platform Automation](https://docs.pivotal.io/platform-automation).
       </td>
     </tr>
     <tr>
@@ -141,9 +141,9 @@ Before you can run Terraform commands to provision infrastructure resources, you
 
 Complete this step if you want to:
 
-* Use an AWS Relational Database Service (RDS) for your PAS deployment. For more information, see [Getting started with Amazon RDS](https://aws.amazon.com/rds/resources/) in the AWS documentation.
+* Use an AWS Relational Database Service (RDS) for your <%= vars.app_runtime_abbr %> deployment. For more information, see [Getting started with Amazon RDS](https://aws.amazon.com/rds/resources/) in the AWS documentation.
 
-* Deploy the Isolation Segment tile.
+* Deploy the <%= vars.segment_runtime_full %> tile.
 
 In your `terraform.tfvars` file, specify the appropriate variables from the sections below.
 
@@ -151,7 +151,7 @@ In your `terraform.tfvars` file, specify the appropriate variables from the sect
 
 ### <a id="iso_seg"></a> Isolation Segments
 
-If you plan to deploy the Isolation Segment tile, add the variables below to your `terraform.tfvars` file, replacing `YOUR-CERTIFICATE` and `YOUR-PRIVATE-KEY` with a certificate and private key.
+If you plan to deploy the <%= vars.segment_runtime_full %> tile, add the variables below to your `terraform.tfvars` file, replacing `YOUR-CERTIFICATE` and `YOUR-PRIVATE-KEY` with a certificate and private key.
 
 ```
 create_isoseg_resources = 1
@@ -174,7 +174,7 @@ Where:
 * `YOUR-CERTIFICATE` is your certificate.
 * `YOUR-PRIVATE-KEY` is your private key.
 
-This causes Terraform to create an additional HTTP load balancer across three availability zones to use for the Isolation Segment tile.
+This causes Terraform to create an additional HTTP load balancer across three availability zones to use for the <%= vars.segment_runtime_full %> tile.
 
 ### <a id="cloudsql"></a> RDS
 
@@ -204,7 +204,7 @@ To use the Terraform CLI to create resources on AWS:
     terraform init
     ```
 
-    <p class="note"><strong>Note:</strong> If you see the error <code>heredoc not terminated</code>, 
+    <p class="note"><strong>Note:</strong> If you see the error <code>heredoc not terminated</code>,
     then open the <code>terraform.tfvars</code> file and delete any trailing spaces that follow
     heredoc terminators such as EOF.
     Then, run the <code>terraform init</code> command again.
