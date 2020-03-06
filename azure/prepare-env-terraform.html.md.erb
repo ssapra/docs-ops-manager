@@ -5,29 +5,29 @@ owner: Ops Manager
 
 <html class="list-style-none"></html>
 
-This guide describes the preparation steps required to deploy Pivotal Operations Manager to Azure using Terraform templates.
+This guide describes the preparation steps required to deploy <%= vars.ops_manager %>r to Azure using Terraform templates.
 
-The Azure Terraform templates describe a set of Azure resources and properties. For more information about how Terraform creates resources in Azure, see the [Azure Provider](https://www.terraform.io/docs/providers/azurerm/index.html) topic on the Terraform site. 
+The Azure Terraform templates describe a set of Azure resources and properties. For more information about how Terraform creates resources in Azure, see the [Azure Provider](https://www.terraform.io/docs/providers/azurerm/index.html) topic on the Terraform site.
 
-You may also find it helpful to review different deployment options in the [Reference Architecture for <%= vars.product_name %> on Azure](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/azure/azure_ref_arch.html).
+You may also find it helpful to review different deployment options in the [Reference Architecture for <%= vars.platform_name %> on Azure](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/azure/azure_ref_arch.html).
 
 
 ## <a id="prereqs"></a> Prerequisites
 
-In addition to fulfilling the prerequisites listed in the [Installing <%= vars.product_name %> on Azure](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure.html) topic, ensure you have the following: 
+In addition to fulfilling the prerequisites listed in the [Installing <%= vars.platform_name %> on Azure](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure.html) topic, ensure you have the following:
 
 * The Terraform CLI. For information about installing the Terraform CLI, see [Installing Terraform](https://www.terraform.io/intro/getting-started/install.html) in the Terraform documentation.
 
-* In your Azure project, ensure you have completed the steps in [Preparing to Deploy Ops Manager on Azure Using Terraform](./prepare-azure-terraform.html) to create a service principal.
+* In your Azure project, ensure you have completed the steps in [Preparing to Deploy <%= vars.ops_manager %> on Azure Using Terraform](./prepare-azure-terraform.html) to create a service principal.
 
 
 ## <a id="download"></a> Step 1: Download Templates and Edit Variables File
 
 Before you can run Terraform commands to provision infrastructure resources, you must download the Azure Terraform Templates and create a Terraform template variables file. To download the templates and create the template variables file:
 
-1. On [Pivotal Network](https://network.pivotal.io), navigate to the Pivotal Application Service (PAS) release.
+1. On [VMware Tanzu Network](https://network.pivotal.io), navigate to the <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) release.
 
-1. Download the Azure Terraform Templates ZIP file. You can use the templates to deploy PAS or Pivotal Container Service (PKS).
+1. Download the Azure Terraform Templates ZIP file. You can use the templates to deploy <%= vars.app_runtime_abbr %> or <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>).
 
 1. Extract the contents of the ZIP file.
 
@@ -59,7 +59,7 @@ Before you can run Terraform commands to provision infrastructure resources, you
     vm_admin_username     = "YOUR-ADMIN-USERNAME"
     ```
 
-1. Edit the values in the file according to the table below. For information about locating your Azure service principal values, see [Preparing to Deploy Ops Manager on Azure Using Terraform](prepare-azure-terraform.html).
+1. Edit the values in the file according to the table below. For information about locating your Azure service principal values, see [Preparing to Deploy <%= vars.ops_manager %> on Azure Using Terraform](prepare-azure-terraform.html).
   <table>
     <tr>
       <th style="width: 35%">Value to replace</th>
@@ -96,9 +96,9 @@ Before you can run Terraform commands to provision infrastructure resources, you
     <tr>
       <td><code>YOUR-OPS-MAN-IMAGE-URI</code></td>
       <td>
-        Enter the URL for the Ops Manager Azure image you want to boot. You can find this code in the PDF included with the Ops Manager release on <a href="https://network.pivotal.io/">Pivotal Network</a>.
+        Enter the URL for the <%= vars.ops_manager %> Azure image you want to boot. You can find this code in the PDF included with the <%= vars.ops_manager %> release on <a href="https://network.pivotal.io/">VMware Tanzu Network</a>.
         <br><br>
-        To prevent the creation of an Ops Manager VM, set this value to an empty string (<code>""</code>). When using Platform Automation, you must disable the creation of the Ops Manager VM from Terraform. For more information, see <a href="https://docs.pivotal.io/platform-automation">Platform Automation</a>.
+        To prevent the creation of an <%= vars.ops_manager %> VM, set this value to an empty string (<code>""</code>). When using Platform Automation, you must disable the creation of the <%= vars.ops_manager %> VM from Terraform. For more information, see <a href="https://docs.pivotal.io/platform-automation">Platform Automation</a>.
       </td>
     </tr>
     <tr>
@@ -107,7 +107,7 @@ Before you can run Terraform commands to provision infrastructure resources, you
     </tr>
     <tr>
       <td><code>YOUR-ADMIN-USERNAME</code></td>
-      <td>Enter the admin username you want to use for your Ops Manager deployment.</td>
+      <td>Enter the admin username you want to use for your <%= vars.ops_manager %> deployment.</td>
     </tr>
   </table>
 
