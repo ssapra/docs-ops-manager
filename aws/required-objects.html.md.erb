@@ -13,11 +13,11 @@ Use this topic to determine the resource requirements of <%= vars.platform_name 
 
 You must create the following S3 buckets from the S3 Dashboard:
 
-* `pcf-ops-manager-bucket`
-* `pcf-buildpacks-bucket`
-* `pcf-packages-bucket`
-* `pcf-resources-bucket`
-* `pcf-droplets-bucket`
+* `tanzu-ops-manager-bucket`
+* `tanzu-buildpacks-bucket`
+* `tanzu-packages-bucket`
+* `tanzu-resources-bucket`
+* `tanzu-droplets-bucket`
 
 These buckets must be empty when you install or reinstall <%= vars.platform_name %>.
 
@@ -25,13 +25,13 @@ See [Step 2: Create S3 Buckets](prepare-env-manual.html#create-s3) in _Preparing
 
 ## <a id='iam-user-pcf'></a> IAM User for <%= vars.platform_name %>
 
-You must create an IAM user for <%= vars.platform_name %> named `pcf-user` from the Identity and Access Management Dashboard, using the policy document included in the [<%= vars.platform_name %> for AWS Policy Document](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/policy-doc.html) topic.
+You must create an IAM user for <%= vars.platform_name %> named `tanzu-user` from the Identity and Access Management Dashboard, using the policy document included in the [<%= vars.platform_name %> for AWS Policy Document](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/policy-doc.html) topic.
 
 See [Step 3: Create an IAM User for <%= vars.platform_name %>](prepare-env-manual.html#create-iam) in _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_.
 
 ## <a id='key-pair'></a> Key Pair
 
-You must generate a key pair named `pcf-ops-manager-key`. For more information about setting up a key pair, see [Amazon EC2 Key
+You must generate a key pair named `tanzu-ops-manager-key`. For more information about setting up a key pair, see [Amazon EC2 Key
 Pairs](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) in the AWS documentation.
 
 ## <a id='vpc'></a> VPC (Public and Private Subnets)
@@ -47,77 +47,77 @@ The following table lists the subnets in CIDR block `10.0.0.0/16`.
    <th>IPv4 CIDR block</th>
  </tr>
  <tr>
-   <td>`pcf-public-subnet-az0`</td>
+   <td>`tanzu-public-subnet-az0`</td>
    <td>`REGION-#a` (for example, `us-west-2a`)</td>
    <td>`10.0.0.0/24`</td>
  </tr>
  <tr>
-   <td>`pcf-public-subnet-az1`</td>
+   <td>`tanzu-public-subnet-az1`</td>
    <td>`REGION-#b` (for example, `us-west-2b`)</td>
    <td>`10.0.1.0/24`</td>
  </tr>
  <tr>
-   <td>`pcf-public-subnet-az2`</td>
+   <td>`tanzu-public-subnet-az2`</td>
    <td>`REGION-#c` (for example, `us-west-2c`)</td>
    <td>`10.0.2.0/24`</td>
  </tr>
  <tr>
-   <td>`pcf-management-subnet-az0`</td>
+   <td>`tanzu-management-subnet-az0`</td>
    <td>`REGION-#a` (for example, `us-west-2a`)</td>
    <td>`10.0.16.0/28`</td>
  </tr>
  <tr>
-   <td>`pcf-management-subnet-az1`</td>
+   <td>`tanzu-management-subnet-az1`</td>
    <td>`REGION-#b` (for example, `us-west-2b`)</td>
    <td>`10.0.16.16/28`</td>
  </tr>
  <tr>
-   <td>`pcf-management-subnet-az2`</td>
+   <td>`tanzu-management-subnet-az2`</td>
    <td>`REGION-#c` (for example, `us-west-2c`)</td>
    <td>`10.0.16.32/28`</td>
  </tr>
  <tr>
-   <td>`pcf-ert-subnet-az0`</td>
+   <td>`tanzu-ert-subnet-az0`</td>
    <td>`REGION-#a` (for example, `us-west-2a`)</td>
    <td>`10.0.4.0/24`</td>
  </tr>
  <tr>
-   <td>`pcf-ert-subnet-az1`</td>
+   <td>`tanzu-ert-subnet-az1`</td>
    <td>`REGION-#b` (for example, `us-west-2b`)</td>
    <td>`10.0.5.0/24`</td>
  </tr>
  <tr>
-   <td>`pcf-ert-subnet-az2`</td>
+   <td>`tanzu-ert-subnet-az2`</td>
    <td>`REGION-#c` (for example, `us-west-2c`)</td>
    <td>`10.0.6.0/24`</td>
  </tr>
  <tr>
-   <td>`pcf-services-subnet-az0`</td>
+   <td>`tanzu-services-subnet-az0`</td>
    <td>`REGION-#a` (for example, `us-west-2a`)</td>
    <td>`10.0.8.0/24`</td>
  </tr>
  <tr>
-   <td>`pcf-services-subnet-az1`</td>
+   <td>`tanzu-services-subnet-az1`</td>
    <td>`REGION-#b` (for example, `us-west-2b`)</td>
    <td>`10.0.9.0/24`</td>
  </tr>
  <tr>
-   <td>`pcf-services-subnet-az2`</td>
+   <td>`tanzu-services-subnet-az2`</td>
    <td>`REGION-#c` (for example, `us-west-2c`)</td>
    <td>`10.0.10.0/24`</td>
  </tr>
  <tr>
-   <td>`pcf-rds-subnet-az0`</td>
+   <td>`tanzu-rds-subnet-az0`</td>
    <td>`REGION-#a` (for example, `us-west-2a`)</td>
    <td>`10.0.12.0/24`</td>
  </tr>
  <tr>
-   <td>`pcf-rds-subnet-az1`</td>
+   <td>`tanzu-rds-subnet-az1`</td>
    <td>`REGION-#b` (for example, `us-west-2b`)</td>
    <td>`10.0.13.0/24`</td>
  </tr>
  <tr>
-   <td>`pcf-rds-subnet-az2`</td>
+   <td>`tanzu-rds-subnet-az2`</td>
    <td>`REGION-#c` (for example, `us-west-2c`)</td>
    <td>`10.0.14.0/24`</td>
  </tr>
@@ -130,13 +130,13 @@ See [Step 4: Create a VPC](prepare-env-manual.html#pcfaws-vpc) in _Preparing to 
 You must create a NAT instance when creating a VPC. The NAT instance must have the following configuration:
 
 * **Instance type**: `t3.medium`
-* **Key pair name**: `pcf-ops-manager-key`
+* **Key pair name**: `tanzu-ops-manager-key`
 * **Enable DNS hostnames**: Yes
 * **Hardware tenancy**: Default
 
 See [Step 4: Create a VPC](prepare-env-manual.html#pcfaws-vpc) in _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_.
 
-You must also assign the NAT instance to the `pcf-nat-security-group`. See [Step 6: Secure the NAT Instance](deploy-manual.html#pcfaws-nat) in _Deploying <%= vars.ops_manager %> on AWS Manually_.
+You must also assign the NAT instance to the `tanzu-nat-security-group`. See [Step 6: Secure the NAT Instance](deploy-manual.html#pcfaws-nat) in _Deploying <%= vars.ops_manager %> on AWS Manually_.
 
 ## <a id='security-groups'></a> Security Groups
 
@@ -144,7 +144,7 @@ The following sections describe the security groups you must create from the EC2
 
 ### <%= vars.ops_manager %>
 
-The <%= vars.ops_manager %> Security Group must be named `pcf-ops-manager-security-group` and have the following inbound rules:
+The <%= vars.ops_manager %> Security Group must be named `tanzu-ops-manager-security-group` and have the following inbound rules:
 
 <table border="1" class="nice" >
 <tr>
@@ -189,7 +189,7 @@ See [Step 5: Configure a Security Group for <%= vars.ops_manager %>](prepare-env
 
 ### <%= vars.platform_name %> VMs
 
-The <%= vars.platform_name %> VMs Security Group must be named `pcf-vms-security-group` and have the following inbound rule:
+The <%= vars.platform_name %> VMs Security Group must be named `tanzu-vms-security-group` and have the following inbound rule:
 
 <table border="1" class="nice" >
 <tr>
@@ -211,7 +211,7 @@ See [Step 6: Configure a Security Group for <%= vars.platform_name %> VMs](prepa
 
 ### Web ELB
 
-The Web ELB Security Group must be named `pcf-web-elb-security-group` and have the following inbound rules:
+The Web ELB Security Group must be named `tanzu-web-elb-security-group` and have the following inbound rules:
 
 <table border="1" class="nice" >
 <tr>
@@ -247,7 +247,7 @@ See [Step 7: Configure a Security Group for the Web ELB](prepare-env-manual.html
 
 ### SSH ELB
 
-The SSH ELB Security Group must be named `pcf-ssh-elb-security-group` and have the following inbound rule:
+The SSH ELB Security Group must be named `tanzu-ssh-elb-security-group` and have the following inbound rule:
 
 <table border="1" class="nice" >
 <tr>
@@ -287,7 +287,7 @@ See [Step 8: Configure a Security Group for the SSH ELB](prepare-env-manual.html
 
 ### TCP ELB
 
-The TCP ELB Security Group must be named `pcf-tcp-elb-security-group` and have the following inbound rule:
+The TCP ELB Security Group must be named `tanzu-tcp-elb-security-group` and have the following inbound rule:
 
 <table border="1" class="nice" >
 <tr>
@@ -326,7 +326,7 @@ See [Step 9: Configure a Security Group for the TCP ELB](prepare-env-manual.html
 
 ### Outbound NAT
 
-The Outbound NAT Security Group must be named `pcf-nat-security-group` and have the following inbound rule:
+The Outbound NAT Security Group must be named `tanzu-nat-security-group` and have the following inbound rule:
 
 <table border="1" class="nice" >
 <tr>
@@ -348,7 +348,7 @@ See [Step 10: Configure a Security Group for the Outbound NAT](prepare-env-manua
 
 ### MySQL
 
-The MySQL Security Group must be named `pcf-mysql-security-group` and have the following inbound rules:
+The MySQL Security Group must be named `tanzu-mysql-security-group` and have the following inbound rules:
 
 <table border="1" class="nice" >
 <tr>
@@ -400,30 +400,30 @@ The following sections describe the ELBs you must create from the EC2 Dashboard.
 
 You must create a web ELB with the following configuration:
 
-* **Name**: `pcf-web-elb`
-* **LB Inside**: `pcf-vpc`
-* **Selected Subnet**: `pcf-public-subnet-az0`, `pcf-public-subnet-az1`, `pcf-public-subnet-az2`
-* **Security Group**: `pcf-elb-security-group`
+* **Name**: `tanzu-web-elb`
+* **LB Inside**: `tanzu-vpc`
+* **Selected Subnet**: `tanzu-public-subnet-az0`, `tanzu-public-subnet-az1`, `tanzu-public-subnet-az2`
+* **Security Group**: `tanzu-elb-security-group`
 * **Health Check**: TCP Port 8080, Path: `/health`
 
 See [Step 2: Create Web Load Balancer](deploy-manual.html#pcfaws-web-lb) in _Deploying <%= vars.ops_manager %> on AWS Manually_.
 
 ### SSH ELB
 
-* **Name**: `pcf-ssh-elb`
-* **LB Inside**: `pcf-vpc`
-* **Selected Subnet**: `pcf-public-subnet-az0`, `pcf-public-subnet-az1`, `pcf-public-subnet-az2`
-* **Security Group**: `pcf-ssh-security-group`
+* **Name**: `tanzu-ssh-elb`
+* **LB Inside**: `tanzu-vpc`
+* **Selected Subnet**: `tanzu-public-subnet-az0`, `tanzu-public-subnet-az1`, `tanzu-public-subnet-az2`
+* **Security Group**: `tanzu-ssh-security-group`
 * **Health Check**: TCP Port 2222
 
 See [Step 3: Create SSH Load Balancer](deploy-manual.html#pcfaws-ssh-lb) in _Deploying <%= vars.ops_manager %> on AWS Manually_.
 
 ### TCP ELB
 
-* **Name**: `pcf-tcp-elb`
-* **LB Inside**: `pcf-vpc`
-* **Selected Subnet**: `pcf-public-subnet-az0`, `pcf-public-subnet-az1`, `pcf-public-subnet-az2`
-* **Security Group**: `pcf-tcp-security-group`
+* **Name**: `tanzu-tcp-elb`
+* **LB Inside**: `tanzu-vpc`
+* **Selected Subnet**: `tanzu-public-subnet-az0`, `pcf-public-subnet-az1`, `tanzu-public-subnet-az2`
+* **Security Group**: `tanzu-tcp-security-group`
 * **Health Check**: TCP Port 80
 
 See [Step 4: Create TCP Load Balancer](deploy-manual.html#pcfaws-tcp-lb) in _Deploying <%= vars.ops_manager %> on AWS Manually_.
@@ -436,7 +436,7 @@ See [Step 5: Configure DNS Records](deploy-manual.html#pcfaws-dns) in _Deploying
 
 ## <a id='rds-subnet-group'></a> RDS Subnet Group
 
-You must create a subnet group for RDS named `pcf-rds-subnet-group` from the RDS Dashboard.
+You must create a subnet group for RDS named `tanzu-rds-subnet-group` from the RDS Dashboard.
 
 See [Step 7: Create RDS Subnet Group](deploy-manual.html#pcfaws-rds-subnet-group) in _Deploying <%= vars.ops_manager %> on AWS Manually_.
 
