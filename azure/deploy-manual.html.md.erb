@@ -5,11 +5,11 @@ owner: Ops Manager
 
 <html class="list-style-none"></html>
 
-This topic describes how to deploy BOSH and Pivotal Operations Manager for <%= vars.product_name %> on Azure by using individual commands to create resources. Pivotal recommends this manual procedure for deploying to Azure China, Azure Germany, and Azure Government Cloud.
+This topic describes how to deploy BOSH and <%= vars.ops_manager %> on Azure by using individual commands to create resources. <%= vars.recommended_by %> recommends this manual procedure for deploying to Azure China, Azure Germany, and Azure Government Cloud.
 
-Before you perform the procedures in this topic, you must have completed the procedures in [Preparing to Deploy Ops Manager on Azure Manually](prepare-env-manual.html). After you complete the procedures in this topic, follow the instructions in [Configuring BOSH Director on Azure](config-manual.html).
+Before you perform the procedures in this topic, you must have completed the procedures in [Preparing to Deploy <%= vars.ops_manager %> on Azure Manually](prepare-env-manual.html). After you complete the procedures in this topic, follow the instructions in [Configuring BOSH Director on Azure](config-manual.html).
 
-<p class="note"><strong>Note:</strong> If you are deploying BOSH and Ops Manager on Azure Stack, complete the procedures in <a href="https://docs.microsoft.com/en-us/azure/azure-stack/user/azure-stack-connect-cli">Install and configure CLI for use with Azure Stack</a> in the Microsoft documentation before following the procedures in this topic.</p>
+<p class="note"><strong>Note:</strong> If you are deploying BOSH and <%= vars.ops_manager %> on Azure Stack, complete the procedures in <a href="https://docs.microsoft.com/en-us/azure/azure-stack/user/azure-stack-connect-cli">Install and configure CLI for use with Azure Stack</a> in the Microsoft documentation before following the procedures in this topic.</p>
 
 <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name of a resource.</p>
 
@@ -76,7 +76,7 @@ To create network resources for your deployment, do the following:
     --location $LOCATION
     </pre>
 
-1. Add a network security group rule to the `opsmgr-nsg` group to allow HTTP traffic to the Ops Manager VM.
+1. Add a network security group rule to the `opsmgr-nsg` group to allow HTTP traffic to the <%= vars.ops_manager %> VM.
     <pre class="terminal">
     $ az network nsg rule create --name http \
     --nsg-name opsmgr-nsg --resource-group $RESOURCE_GROUP \
@@ -84,7 +84,7 @@ To create network resources for your deployment, do the following:
     --destination-port-range 80
     </pre>
 
-1. Add a network security group rule to the `opsmgr-nsg` group to allow HTTPS traffic to the Ops Manager VM.
+1. Add a network security group rule to the `opsmgr-nsg` group to allow HTTPS traffic to the <%= vars.ops_manager %> VM.
     <pre class="terminal">
     $ az network nsg rule create --name https \
     --nsg-name opsmgr-nsg --resource-group $RESOURCE_GROUP \
@@ -92,7 +92,7 @@ To create network resources for your deployment, do the following:
     --destination-port-range 443
     </pre>
 
-1. Add a network security group rule to the `opsmgr-nsg` group to allow SSH traffic to the Ops Manager VM.
+1. Add a network security group rule to the `opsmgr-nsg` group to allow SSH traffic to the <%= vars.ops_manager %> VM.
     <pre class="terminal">
     $ az network nsg rule create --name ssh \
     --nsg-name opsmgr-nsg --resource-group $RESOURCE_GROUP \
@@ -101,7 +101,7 @@ To create network resources for your deployment, do the following:
     </pre>
     * To block traffic from the public Internet, append `--source-address-prefixes AzureLoadBalancer` to allow traffic from only the Azure load balancer or `--source-address-prefixes VirtualNetwork` to only allow traffic from the virtual network.
     * To allow traffic from both the Azure load balancer and the virtual network, create duplicates of each rule, one specifying `--source-address-prefixes AzureLoadBalancer` and one specifying `--source-address-prefixes VirtualNetwork`.
-    * Optionally, if you want to use private IP ranges with Ops Manager and allow all internal traffic, you can create the Network Security Groups to allow all internal traffic.
+    * Optionally, if you want to use private IP ranges with <%= vars.ops_manager %> and allow all internal traffic, you can create the Network Security Groups to allow all internal traffic.
     <pre class="terminal">
     $ az network nsg rule create --name internal-virtual-network \
     --nsg-name internal-traffic --resource-group $RESOURCE_GROUP \
@@ -122,7 +122,7 @@ To create network resources for your deployment, do the following:
     --address-prefixes 10.0.0.0/16
     </pre>
 
-1. Add subnets to the network for Ops Manager, BOSH director, and the VMs for your runtime, and attach the Network Security Group.
+1. Add subnets to the network for <%= vars.ops_manager %>, BOSH director, and the VMs for your runtime, and attach the Network Security Group.
     <pre class="terminal">
     $ az network vnet subnet create --name pcf-infrastructure-subnet \
     --vnet-name pcf-virtual-network \
@@ -144,7 +144,7 @@ To create network resources for your deployment, do the following:
 
 ## <a id='storage'></a> Step 2: Create BOSH and Deployment Storage Accounts
 
-<%= vars.product_name %> on Azure uses multiple general-purpose Azure storage accounts. The BOSH and Ops Manager VMs use one main BOSH account, and the other components share five or more deployment storage accounts.
+<%= vars.platform_name %> on Azure uses multiple general-purpose Azure storage accounts. The BOSH and <%= vars.ops_manager %> VMs use one main BOSH account, and the other components share five or more deployment storage accounts.
 
 To create storage accounts for BOSH and your deployment, do the following:
 
@@ -153,7 +153,7 @@ To create storage accounts for BOSH and your deployment, do the following:
     $ export STORAGE_NAME="YOUR-BOSH-STORAGE-ACCOUNT-NAME"
     </pre>
 
-1. Create a Standard storage account for BOSH with the following command. This account will be used for BOSH bookkeeping and running the Ops Manager VM itself, but does not have to be used for running any other VMs.
+1. Create a Standard storage account for BOSH with the following command. This account will be used for BOSH bookkeeping and running the <%= vars.ops_manager %> VM itself, but does not have to be used for running any other VMs.
     <pre class="terminal">
     $ az storage account create --name $STORAGE\_NAME \
     --resource-group $RESOURCE\_GROUP \
@@ -200,7 +200,7 @@ To create storage accounts for BOSH and your deployment, do the following:
 1. Choose a set of unique names for five or more deployment storage accounts. As with the BOSH storage account above, the names must be unique, alphanumeric, lowercase, and 3-24 characters long. The account names must also be sequential or otherwise identical except for the last character. For example: `xyzdeploystorage1`, `xyzdeploystorage2`, `xyzdeploystorage3`, `xyzdeploystorage4`, and `xyzdeploystorage5`.
 
 1. Decide which type of storage to use and run the corresponding command below.
-    <p class="note"><strong>Note:</strong> Pivotal recommends five Premium storage accounts, which provides a reasonable amount of initial storage capacity. You can use either Premium or Standard storage accounts, but they have very different scalability metrics. Pivotal recommends creating 1 Standard storage account for every 30 VMs, or 1 Premium storage account for every 150 VMs. You can increase the number of storage accounts later by provisioning more and following the naming sequence.</p>
+    <p class="note"><strong>Note:</strong> <%= vars.recommended_by %> recommends five Premium storage accounts, which provides a reasonable amount of initial storage capacity. You can use either Premium or Standard storage accounts, but they have very different scalability metrics. <%= vars.recommended_by %> recommends creating 1 Standard storage account for every 30 VMs, or 1 Premium storage account for every 150 VMs. You can increase the number of storage accounts later by provisioning more and following the naming sequence.</p>
     * To use Premium storage (recommended):
     <pre class="terminal">
     $ export STORAGE\_TYPE="Premium_LRS"
@@ -357,21 +357,21 @@ To create load balancers, do the following:
     1.  Navigate to your DNS provider, and create an entry that points `ssh.sys.YOUR-SUBDOMAIN` to the public IP address of your load balancer. For example, create an entry that points `azure.example.com` to `198.51.100.1`. You can retrieve it by running `az network public-ip show --name pcf-ssh-lb-ip --resource-group $RESOURCE_GROUP`.
 
 
-## <a id='boot'></a> Step 4: Boot Ops Manager
+## <a id='boot'></a> Step 4: Boot <%= vars.ops_manager %>
 
-To boot Ops Manager, do the following:
+To boot <%= vars.ops_manager %>, do the following:
 
-1. Navigate to [Pivotal Network](https://network.pivotal.io/products/ops-manager) and download the latest release of **Pivotal Ops Manager for Azure**.
+1. Navigate to [VMware Tanzu Network](https://network.pivotal.io/products/ops-manager) and download the latest release of **<%= vars.ops_manager %> for Azure**.
 
-1. View the downloaded PDF and locate the Ops Manager image URL appropriate for your region.
+1. View the downloaded PDF and locate the <%= vars.ops_manager %> image URL appropriate for your region.
 
-1. Export the Ops Manager image URL as an environment variable.
+1. Export the <%= vars.ops_manager %> image URL as an environment variable.
     <pre class="terminal">$ export OPS\_MAN\_IMAGE\_URL="YOUR-OPS-MAN-IMAGE-URL"</pre>
 
-1. Download the Ops Manager image. For compatibility when upgrading to future versions of Ops Manager, choose a unique name for the image that includes the Ops Manager version number. For example, replace `opsman-image-2.6.x` in the following examples with `opsman-image-2.6.1`.
+1. Download the <%= vars.ops_manager %> image. For compatibility when upgrading to future versions of <%= vars.ops_manager %>, choose a unique name for the image that includes the <%= vars.ops_manager %> version number. For example, replace `opsman-image-2.6.x` in the following examples with `opsman-image-2.6.1`.
   * If you use unmanaged disks, perform the following steps:
   <p class="note"><strong>Note:</strong> Azure Stack requires unmanaged disks.</p>
-      1. Download the Ops Manager image to your local machine. The image size is 10&nbsp;GB.
+      1. Download the <%= vars.ops_manager %> image to your local machine. The image size is 10&nbsp;GB.
         <pre class="terminal">$ wget $OPS\_MAN\_IMAGE\_URL -O opsman-image-2.6.x.vhd</pre>
       1. Upload the image to your storage account using the Azure CLI.
         <pre class="terminal">
@@ -382,7 +382,7 @@ To boot Ops Manager, do the following:
         --file opsman-image-2.6.x.vhd
         </pre>
   * If you use managed disks, do the following:
-       1. Copy the Ops Manager image into your storage account using the Azure CLI.
+       1. Copy the <%= vars.ops_manager %> image into your storage account using the Azure CLI.
         <pre class="terminal">
         $ az storage blob copy start --source-uri $OPS\_MAN\_IMAGE\_URL \
         --connection-string $CONNECTION\_STRING \
@@ -431,11 +431,11 @@ To boot Ops Manager, do the following:
       }
     }
     </pre>
-    If you do not want to use a public IP for Ops Manager, skip this step.
+    If you do not want to use a public IP for <%= vars.ops_manager %>, skip this step.
 
-1. Record the `ipAddress` from the output above. This is the public IP address of Ops Manager.
+1. Record the `ipAddress` from the output above. This is the public IP address of <%= vars.ops_manager %>.
 
-1. Create a network interface for Ops Manager.
+1. Create a network interface for <%= vars.ops_manager %>.
     <pre class="terminal">
     $ az network nic create --vnet-name pcf-virtual-network \
     --subnet pcf-infrastructure-subnet --network-security-group opsmgr-nsg \
@@ -444,7 +444,7 @@ To boot Ops Manager, do the following:
     --resource-group $RESOURCE_GROUP \
     --name opsman-nic --location $LOCATION
     </pre>
-   If you do not want use a public IP address for Ops Manager, remove the `--public-ip-address ops-manager-ip` flag and value.
+   If you do not want use a public IP address for <%= vars.ops_manager %>, remove the `--public-ip-address ops-manager-ip` flag and value.
 
 1. Create a keypair on your local machine with the username `ubuntu`. For example, enter the following command:
     <pre class="terminal">
@@ -453,8 +453,8 @@ To boot Ops Manager, do the following:
     <br>
    When prompted for a passphrase, press the `enter` key to provide an empty passphrase.
 
-1. Create the Ops Manager VM.
-    * If you are using unmanaged disks, run the following command to create your Ops Manager VM, replacing `PATH-TO-PUBLIC-KEY` with the path to your public key .pub file:
+1. Create the <%= vars.ops_manager %> VM.
+    * If you are using unmanaged disks, run the following command to create your <%= vars.ops_manager %> VM, replacing `PATH-TO-PUBLIC-KEY` with the path to your public key .pub file:
         <pre class="terminal">
         $ az vm create --name opsman-2.6.x --resource-group $RESOURCE_GROUP \
         --location $LOCATION \
@@ -469,9 +469,9 @@ To boot Ops Manager, do the following:
         --admin-username ubuntu \
         --ssh-key-value PATH-TO-PUBLIC-KEY
         </pre>
-        Replace `my-azure-instance.com` with the URL of your Azure instance. Find the complete source URL in the Azure UI by viewing the **Blob properties** of the Ops Manager image you created earlier in this procedure.<br><br>
+        Replace `my-azure-instance.com` with the URL of your Azure instance. Find the complete source URL in the Azure UI by viewing the **Blob properties** of the <%= vars.ops_manager %> image you created earlier in this procedure.<br><br>
     * If you are using Azure managed disks, do the following:
-        1. Create a managed image from the Ops Manager VHD file:
+        1. Create a managed image from the <%= vars.ops_manager %> VHD file:
             <pre class="terminal">
             $ az image create --resource-group $RESOURCE_GROUP \
             --name opsman-image-2.6.x \
@@ -483,7 +483,7 @@ To boot Ops Manager, do the following:
             * For Azure China, use `blob.core.chinacloudapi.cn`. See the [Azure documentation](https://docs.microsoft.com/en-us/azure/china/china-get-started-developer-guide) for more information.
             * For Azure Government Cloud, use `blob.core.usgovcloudapi.net`. See the [Azure documentation](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-services-storage) for more information.
             * For Azure Germany, use `blob.core.cloudapi.de`. See the [Azure documentation](https://docs.microsoft.com/en-us/azure/germany/germany-developer-guide) for more information.
-        1. Create your Ops Manager VM, replacing `PATH-TO-PUBLIC-KEY` with the path to your public key `.pub` file.
+        1. Create your <%= vars.ops_manager %> VM, replacing `PATH-TO-PUBLIC-KEY` with the path to your public key `.pub` file.
             <pre class="terminal">
              $ az vm create --name opsman-2.6.x --resource-group $RESOURCE\_GROUP \
              --location $LOCATION \
@@ -497,8 +497,8 @@ To boot Ops Manager, do the following:
              --ssh-key-value PATH-TO-PUBLIC-KEY
             </pre>
 
-1. If you plan to install more than one tile in this Ops Manager installation, do the following to increase the size of the Ops Manager VM disk. You can repeat this process and increase the disk again at a later time if necessary.
-    <p class="note"><strong>Note:</strong> If you use Azure Stack, you must increase the Ops Manager VM disk size using the Azure Stack UI.</p>
+1. If you plan to install more than one tile in this <%= vars.ops_manager %> installation, do the following to increase the size of the <%= vars.ops_manager %> VM disk. You can repeat this process and increase the disk again at a later time if necessary.
+    <p class="note"><strong>Note:</strong> If you use Azure Stack, you must increase the <%= vars.ops_manager %> VM disk size using the Azure Stack UI.</p>
     1. Run the following command to stop the VM and detach the disk:
     <pre class="terminal">
     $ az vm deallocate --name opsman-2.6.x \
@@ -519,6 +519,6 @@ To boot Ops Manager, do the following:
 
 To finish configuring BOSH Director, do the following:
 
-1. Navigate to your DNS provider, and create an entry that points a fully qualified domain name (FQDN) to the public IP address of Ops Manager. As a best practice, always use the FQDN to access Ops Manager.
+1. Navigate to your DNS provider, and create an entry that points a fully qualified domain name (FQDN) to the public IP address of <%= vars.ops_manager %>. As a best practice, always use the FQDN to access <%= vars.ops_manager %>.
 
 1. Continue to the [Configuring BOSH Director on Azure Manually](config-manual.html) topic.
