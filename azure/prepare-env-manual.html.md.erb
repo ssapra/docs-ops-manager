@@ -6,7 +6,7 @@ owner: Ops Manager
 
 <html class="list-style-none"></html>
 
-This topic describes how to prepare Azure to deploy Pivotal Operations Manager. You must deploy Ops Manager to deploy Pivotal Application Service (PAS) or Pivotal Container Service (PKS).
+This topic describes how to prepare Azure to deploy <%= vars.ops_manager %>. You must deploy <%= vars.ops_manager %> to deploy <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) or <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>).
 
 ##<a id="install"></a> Step 1: Install and Configure the Azure CLI
 
@@ -20,7 +20,7 @@ Microsoft Azure documentation.
     az cloud set --name CLOUD-NAME
     ```
     Where `CLOUD-NAME` is one of the following values. Use the value that corresponds to the Azure
-    environment on which you are installing Ops Manager:
+    environment on which you are installing <%= vars.ops_manager %>:
     - **Azure**: `AzureCloud`.
     - **Azure China**: `AzureChinaCloud`. If logging in to <code>AzureChinaCloud</code> fails with
       a `CERT_UNTRUSTED`, use the latest version of node, 4.x or later. For more information about
@@ -35,9 +35,9 @@ Microsoft Azure documentation.
     $ az cloud set --name AzureCloud
     </pre>
 
-    <p class="note"><strong>Note</strong>: For more information about installing Ops Manager in the China
+    <p class="note"><strong>Note</strong>: For more information about installing <%= vars.ops_manager %> in the China
     Region, see <a href="https://docs.pivotal.io/platform/customizing/offline_installation.html#install_china">Install in the China Region</a>
-    in <em>Installing <%= vars.product_name %> in Airgapped Environments</em> in the Pivotal documentation.</p>
+    in <em>Installing <%= vars.platform_name %> in Air-Gapped Environments</em> in the VMware documentation.</p>
 
 1. To log in, run the following command:
 
@@ -72,7 +72,7 @@ Microsoft Azure documentation.
       "isDefault": true,
       "registeredProviders": [],
       "environmentName": "AzureCloud"
-   },      
+   },
    {
       "id": "87654321-1234-5678-1234-678912345678",
       "name": "Sample Subscription1",
@@ -88,9 +88,9 @@ Microsoft Azure documentation.
      }
     ]
     </pre>
- 
+
 1. Identify your default subscription in the output of this command by locating the subscription
-listed that has `isDefault` set to `true`. To deploy Ops Manager to a different subscription, you must set
+listed that has `isDefault` set to `true`. To deploy <%= vars.ops_manager %> to a different subscription, you must set
 the other subscription as the default. To set a new default subscription, run the following command:
 
     ```
@@ -133,7 +133,7 @@ account to log in to your Azure subscription.
     <p class="note"><strong>Note</strong>: You can provide any string for the
     <code>homepage</code> and <code>identifier-uris</code> flags, but the value of
     <code>identifer-uris</code> must be unique within the organization associated with your Azure
-    subscription. For the <code>homepage</code>, Pivotal recommends using
+    subscription. For the <code>homepage</code>, <%= vars.recommended_by %> recommends using
     <code><span>http:</span>//BOSHAzureCPI</code> as shown in the example above.
     </p>
 
@@ -158,7 +158,7 @@ the value of `appId`. This is your `APPLICATION_ID` for creating a service princ
     }
     </pre>
 
-##<a id="create-configure"></a> Step 4: Create and Configure a Service Principal 
+##<a id="create-configure"></a> Step 4: Create and Configure a Service Principal
 
 1. To create a service principal, run the following command:
 
@@ -183,7 +183,7 @@ the value of `appId`. This is your `APPLICATION_ID` for creating a service princ
     }
     </pre>
 
-1. You must have the Owner role on your service principal to deploy Ops Manager to Azure. To assign
+1. You must have the Owner role on your service principal to deploy <%= vars.ops_manager %> to Azure. To assign
 the Owner role on your service principal, run the following command:
 
     ```
@@ -203,10 +203,10 @@ the Owner role on your service principal, run the following command:
     --role "Owner" \
     --scope /subscriptions/87654321-1234-5678-1234-567891234567
     </pre>
-    <p class="note"><strong>Note:</strong> If you need to use multiple resource groups for your 
+    <p class="note"><strong>Note:</strong> If you need to use multiple resource groups for your
     deployment on Azure, you can define custom roles for your Service Principal. These roles allow
     BOSH to deploy to pre-existing network resources outside of the resource group. For
-    more information, see <a href="https://docs.pivotal.io/platform/refarch/azure/azure_ref_arch.html#multiple_resource_groups">Multiple Resource Group Deployment</a> in <em>Reference Architecture for <%= vars.product_name %> on Azure</em> in the Pivotal documentation.</p>
+    more information, see <a href="https://docs.pivotal.io/platform/refarch/azure/azure_ref_arch.html#multiple_resource_groups">Multiple Resource Group Deployment</a> in <em>Reference Architecture for <%= vars.product_name %> on Azure</em> in the VMWare documentation.</p>
 
     For more information about Azure Role-Based Access Control, refer to <a href="https://azure.microsoft.com/en-us/documentation/articles/role-based-access-built-in-roles/">Built-in roles for Azure resource</a> the Microsoft Azure documentation.
 
@@ -243,7 +243,7 @@ To verify your service principal, run the following command to log in to your se
 
 ```
 az login --username APPLICATION_ID --password CLIENT_SECRET \
---service-principal --tenant TENANT_ID 
+--service-principal --tenant TENANT_ID
 ```
 Where:
 
@@ -300,4 +300,4 @@ again.
 ##<a id='next'></a> Next Steps
 
 After you complete this procedure, follow the instructions in
-[Deploying Ops Manager on Azure Manually](deploy-manual.html).
+[Deploying <%= vars.ops_manager %> on Azure Manually](deploy-manual.html).
