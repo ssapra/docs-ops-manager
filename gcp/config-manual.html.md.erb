@@ -17,7 +17,7 @@ To configure BOSH Director, you must first access your <%= vars.ops_manager %> i
 To access <%= vars.ops_manager %>:
 
 1. In a web browser, navigate to the fully qualified domain name (FQDN) of <%= vars.ops_manager %> that you set up in [Deploying <%= vars.ops_manager %> on GCP Manually](./deploy-manual.html).
-  <p class="note"><strong>Note:</strong> In order to set up <%= vars.ops_manager %> authentication correctly, <%= vars.recommended_by %> recommends using an FQDN to access <%= vars.ops_manager %>. Using an ephemeral IP address to access <%= vars.ops_manager %> can cause authentication errors upon subsequent access.</p>
+  <p class="note"><strong>Note:</strong> In order to set up <%= vars.ops_manager %> authentication correctly, <%= vars.company_name %> recommends using an FQDN to access <%= vars.ops_manager %>. Using an ephemeral IP address to access <%= vars.ops_manager %> can cause authentication errors upon subsequent access.</p>
 
 1. When <%= vars.ops_manager %> starts for the first time, you must choose one of the following:
     * **Internal authentication:** If you use internal authentication, <%= vars.ops_manager %> maintains your user database. For more information, see [Internal Authentication](#internal).
@@ -69,7 +69,7 @@ To configure the **Director Config** pane in the BOSH Director tile, you must ha
 
 ## <a id='az'></a> Step 4: Configure Create Availability Zones
 
-<div class="note"><strong>Note:</strong> <%= vars.recommended_by %> recommends at least three availability zones (AZs) for a highly available installation.
+<div class="note"><strong>Note:</strong> <%= vars.company_name %> recommends at least three availability zones (AZs) for a highly available installation.
   <ul>
     <li>For configuring a <%= vars.app_runtime_abbr %> deployment with multiple AZs, see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for <%= vars.platform_name %> on GCP</a>.</li>
     <li>For <%= vars.k8s_runtime_abbr %> best practices for distributing workloads across multiple AZs and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
