@@ -3,7 +3,7 @@ title: Using the Ops Manager Interface
 owner: Ops Manager
 ---
 
-This topic describes key features of the Pivotal Operations Manager interface that is used
+This topic describes key features of the Ops Manager interface that is used
 to manage [<%= vars.product_name %>](https://network.pivotal.io/products/pivotal-cf).
 
 ## <a id="installation-dashboard"></a> Installation Dashboard Page
@@ -26,9 +26,9 @@ red letter. Click the image to see it at full size.
 The following list describes each labeled section of the Installation Dashboard:
 
 - **A**---**Import a Product**: Click this button to add a new product to Ops Manager. You
-can download <%= vars.product_name %>-compatible product files from [Pivotal
-Network](https://network.pivotal.io).
-  * If you have configured a [Pivotal Network
+can download <%= vars.product_name %>-compatible product files from
+[VMware Tanzu Network](https://network.pivotal.io).
+  * If you have configured a [VMware Tanzu Network
 API](../customizing/add-delete.html) token in the **Settings** section of Ops Manager, a
 list of the latest versions of already imported products appears automatically.
 
@@ -182,7 +182,7 @@ You can use the **Change Decryption Passphrase** pane to reset your decryption p
 <%= image_tag("settings_menu.png", :width => "500", :alt => "The 'Settings' page is
         indicated by a header that says 'Settings' in large type at the top of the
 page. Below the header, on the left-hand side, there is a tabular layout. From top to
-bottom, the tabs are 'Change Decryption Passphrase,' 'SAML Settings', 'LDAP Settings', 'SSL Certificate', 'Pivotal Network Settings,' 'Proxy Settings', 'Custom Banner', 'Export Installation Settings', 'Syslog', and 'Advanced Options'. The top tab, 'Change Decryption Passphrase' is highlighted in gray to indicate that it is selected. To the right, the body shows fields that correspond to 'Change Decryption Passphrase.'") %>
+bottom, the tabs are 'Change Decryption Passphrase,' 'SAML Settings', 'LDAP Settings', 'SSL Certificate', 'VMware Tanzu Network Settings,' 'Proxy Settings', 'Custom Banner', 'Export Installation Settings', 'Syslog', and 'Advanced Options'. The top tab, 'Change Decryption Passphrase' is highlighted in gray to indicate that it is selected. To the right, the body shows fields that correspond to 'Change Decryption Passphrase.'") %>
 
 ### Internal Authentication Settings
 
@@ -230,10 +230,10 @@ If you leave the fields blank, Ops Manager uses an auto-generated self-signed ce
 <%= image_tag("settings-ssl-cert.png", :alt => "The 'Settings' page shows the 'SSL
       Certificate' pane highlighted on the left-hand tabular layout to indicate selection. The body shows a header titled 'SSL Certificate' with an option to 'Revert to self-signed certificate' followed by help text and two required fields: 'Certificate' and 'Private key'. The 'Add Certificate' button is at the bottom of the body.") %>
 
-### Pivotal Network Settings
-Enter your [Pivotal Network
+### VMware Tanzu Network Settings
+Enter your [VMware Tanzu Network
 API](../customizing/add-delete.html#pivnet-api) token and click **Add Token** to connect your **Installation
-Dashboard** to Pivotal Network.
+Dashboard** to VMware Tanzu Network.
 
 ### Proxy Settings
 If you are using a proxy to connect to Ops Manager, update your
@@ -288,4 +288,4 @@ Click **Support** in the footer of any page in Ops Manager to access the **Suppo
 
 The **Support** page allows you to download a ZIP file that includes Ops Manager logs, deployed manifests and configurations, and BOSH deployment diagnostics.
 
-The contents of the ZIP file help Pivotal Support more quickly address any issues in your deployment.
+The contents of the ZIP file help Support more quickly address any issues in your deployment.
