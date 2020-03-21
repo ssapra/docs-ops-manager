@@ -121,7 +121,7 @@ The vSphere reference architecture for the <%= vars.app_runtime_abbr %> and <%= 
 
 * <%= vars.app_runtime_abbr %> on vSphere with NSX-V. For more information, see [<%= vars.app_runtime_abbr %> on vSphere with NSX-V](#pas-nsx-v).
 
-* <%= vars.app_runtime_abbr %> on vSphere without SDN. For more information, see [<%= vars.app_runtime_abbr %> on vSphere Without SDN](#pas-routed).
+* <%= vars.app_runtime_abbr %> on vSphere without SDN. For more information, see [<%= vars.app_runtime_abbr %> on vSphere without SDN](#pas-routed).
 
 * <%= vars.k8s_runtime_abbr %> on vSphere with NSX-T. For more information, see [<%= vars.k8s_runtime_abbr %> on vSphere with NSX-T](#pks-nsx-t)
 
@@ -305,9 +305,13 @@ For information about security requirements and recommendations for <%= vars.app
 For more information about blobstore storage requirements and recommendations, see [Configure File Storage](../../upgrading/configuring.html#file-storage) in _Configuring <%= vars.app_runtime_abbr %> for Upgrades_.
 
 
-## <a id="pas-routed"></a> <%= vars.app_runtime_abbr %> on vSphere Without SDN
+## <a id="pas-routed"></a> <%= vars.app_runtime_abbr %> on vSphere without SDN
 
-These sections describe the reference architecture for <%= vars.app_runtime_abbr %> on vSphere without software-defined networking deployments.
+These sections describe the architecture for <%= vars.app_runtime_abbr %> on vSphere without software-defined networking deployments.
+
+<p class="note"><strong>Note:</strong> This architecture was validated for earlier versions of <%= vars.app_runtime_abbr %>.
+However, it has not been validated for <%= vars.app_runtime_abbr %> <%= vars.current_major_version %>.
+</p>
 
 ### <a id="pas-routed-networking"></a> Networking
 
