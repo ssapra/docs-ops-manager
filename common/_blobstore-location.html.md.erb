@@ -32,7 +32,7 @@ Select a **Blobstore Location** to either configure the blobstore as an internal
           * **Use a versioned bucket:** This option uses blobstore bucket versioning to save backups. It requires an S3 blobstore that supports versioning.
           * **Copy into an additional bucket:** This option saves blobstore backups to a separate bucket, which is useful with blobstores that do not support versioning. This option requires you to configure the **Backup Bucket Region** and **Backup Bucket Name** fields.
   * **GCS Blobstore:** Select this option to use an external Google Cloud Storage (GCS) endpoint.
-    ![At the top of the image, the 'GCP Blobstore' radio button is selected. Below this radio button is a text field labeled 'Bucket Name' with a red asterisk. Below this text field is a dropdown labeled 'Storage Class' with a red asterisk and the 'Regional' option selected. Below this dropdown is a text area labeled 'Service Account Key' with a red asterisk.](../common/images/gcp/blobstore-gcp.png)
+    <img src="../common/images/gcp/blobstore-gcp.png" width="900" height="986" alt="At the top of the image, the 'GCP Blobstore' radio button is selected. Below this radio button is a text field labeled 'Bucket Name' with a red asterisk. Below this text field is a dropdown labeled 'Storage Class' with a red asterisk and the 'Regional' option selected. Below this dropdown is a text area labeled 'Service Account Key' with a red asterisk.">
     <br>
     To create a GCS bucket, follow the procedures in [Creating Storage Buckets](https://cloud.google.com/storage/docs/creating-buckets) in the GCS documentation.
     <% if current_page.data.iaas != "GCP" %>
