@@ -136,6 +136,7 @@ Multiple AZs allow you to provide high availability and load balancing to your a
     For example, `RP-MGMT`. The jobs running in this AZ share the CPU and memory resources defined by the pool.
     You only need to specify this resource group in one AZ.
     * (Optional) Enter the name of a **Host Group** for the AZ to use. The host group must be within the cluster you designated in the **Clusters** field.
+    * (Optional) In the **VM-Host Affinity Rule** dropdown, select **SHOULD**.  Selecting **SHOULD** allows vSphere to restart VMs in another host group in the event of an AZ failure.
     * (Optional) Click **Add Cluster** to add more clusters to the AZ as required by your installation size and high availability requirements.
 
 1. (Optional) Use the following steps to create additional AZs.
