@@ -137,11 +137,12 @@ Pivotal recommends that you use at least three AZs for a highly available instal
     You only need to specify this resource group in one AZ.
     * (Optional) Enter the name of a **Host Group** for the AZ to use. The host group must be within the cluster you designated in the **Clusters** field.
     * (Optional) In the **VM-Host Affinity Rule** dropdown, select **SHOULD**.  Selecting **SHOULD** allows vSphere to restart VMs in another host group in the event of an AZ failure.
+      <p class="note"><strong>Note:</strong> The value for <strong>VM-Host Affinity Rule</strong> only applies if you are using Host Groups. If you do not specify a <strong>Host Group</strong> for the cluster, then any changes you make to <strong>VM-Host Affinity Rule</strong> are ignored.</p></p>
     * (Optional) Click **Add Cluster** to add more clusters to the AZ as required by your installation size and high availability requirements.
 
 1. (Optional) Use the following steps to create additional AZs.
     * Click **Add**.
-    * Specify **Cluster** and optionally, a **Resource Pool**.
+    * Specify **Cluster** and optionally, a **Resource Pool**, a **Host Group** and a **VM-Host Affinity Rule**.
     * Click **Add Cluster** to assign more clusters to the AZ as necessary for high availability. Click the trash icon to delete a cluster. The first cluster cannot be deleted.
 
 1. Click **Save**.
