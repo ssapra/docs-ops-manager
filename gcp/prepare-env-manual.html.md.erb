@@ -485,11 +485,13 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
 1. With your single project or shared-VPC service project selected in the GCP console, select **Storage** > **Browser**.
 
 1. Using **CREATE BUCKET**, create buckets with the following names. For **Default storage class**, select **Multi-Regional**:
-  * `pcf-buildpacks`
-  * `pcf-droplets`
-  * `pcf-packages`
-  * `pcf-resources`
-  * `pcf-backup`
+  * `PREFIX-pcf-buildpacks`
+  * `PREFIX-pcf-droplets`
+  * `PREFIX-pcf-packages`
+  * `PREFIX-pcf-resources`
+  * `PREFIX-pcf-backup`
+
+    Where `PREFIX` is a prefix of your choice, required to make the bucket name unique.
 
 
 ## <a id="loadbalancer"></a> Step 8: Create HTTP Load Balancer
