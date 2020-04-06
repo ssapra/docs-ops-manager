@@ -246,7 +246,10 @@ To create the infrastructure network, do the following:
     </table>
     <%= image_tag("../common/images/azure/create-networks-services.png", :alt=> "At the top of the image is a gray, rectangular button labeled 'services' with a small, downward-pointing triangle to the left of it, indicating an expandable area. The image of a gray trashcan is directly across from the 'services' button. Below the 'services' button is a text field labeled 'Name' with a red asterisk to denote that it is a mandatory field, filled with the text 'services'. Below this text field is the subheader 'Subnets', across from which is a gray, rectangular button labeled 'Add Subnet'. Below the Subnets subheader are text fields labeled, from top to bottom, 'Azure Network Name' with a red asterisk, 'CIDR' with a red asterisk, 'Reserved IP Ranges', 'DNS' with a red asterisk, and 'Gateway' with a red asterisk. The Azure Network Name field contains the text 'pcf-virtual-network/pcf-services-subnet'. The CIDR field contains the text '10.0.8.0/22'. The Reserved IP Ranges field contains the text '10.0.8.1-10.0.8.9'. The DNS field contains the text '168.63.129.16'. The Gateway field contains the text '10.0.8.1'.") %>
 
-1. Click **Save**. If **Enable ICMP checks** is not selected, you may see red warnings. You can ignore these warnings.
+1. Click **Save**.
+
+1. You might see red warnings.
+   Ignore them only if **Enable ICMP checks** is not selected.
 
 If you complete this step for <%= vars.app_runtime_abbr %>, proceed to [Assign AZs and Networks Page](#assign-networks).
 
@@ -404,7 +407,10 @@ To create the infrastructure network, do the following:
       </tr>
     </table>
 
-1. Click **Save**. If **Enable ICMP checks** is not selected, you may see red warnings. You can ignore these warnings.
+1. Click **Save**.
+
+1. You might see red warnings.
+   Ignore them only if **Enable ICMP checks** is not selected.
 
 
 ## <a id="assign-networks"></a> Step 5: Assign AZs and Networks Page
