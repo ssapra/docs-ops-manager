@@ -282,10 +282,13 @@ The default persistent disk value is 50&nbsp;GB. <%= vars.company_name %> recomm
 1. On the **Description** tab, record the value for **IPv4 Public IP**.
 
 1. Navigate to your DNS provider and create the following CNAME and A records:
-  * CNAME: `*.apps.YOUR-SYSTEM-DOMAIN.com` and `*.system.YOUR-SYSTEM-DOMAIN.com` points to the DNS name of the `pcf-web-elb` load balancer.
-  * CNAME: `ssh.YOUR-SYSTEM-DOMAIN.com` points to the DNS name of the `pcf-ssh-elb` load balancer.
-  * CNAME: `tcp.YOUR-SYSTEM-DOMAIN.com` points to the DNS name of the `pcf-tcp-elb` load balancer.
-  * A: `pcf.YOUR-SYSTEM-DOMAIN.com` points to the public IP address of the `pcf-ops-manager` EC2 instance.
+  * CNAME: `*.apps.DOMAIN.com` and `*.system.DOMAIN.com` points to the DNS name of the `pcf-web-elb` load balancer.
+  * CNAME: `ssh.DOMAIN.com` points to the DNS name of the `pcf-ssh-elb` load balancer.
+  * CNAME: `tcp.DOMAIN.com` points to the DNS name of the `pcf-tcp-elb` load balancer.
+  * A: `pcf.DOMAIN.com` points to the public IP address of the `pcf-ops-manager` EC2 instance.
+  </br>
+  </br>
+  Where `DOMAIN` is a domain name. <%= vars.company_name %> recommends that you use the same domain name for each record. 
 
 
 ## <a id='pcfaws-nat'></a> Step 6: Secure the NAT Instance
