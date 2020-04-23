@@ -34,16 +34,16 @@ the source for this page in GitHub" at the bottom of the topic.
 **master**: The `master` branch is used to publish the pre-release v2.10 site. Create pull requests on `master` to
 contribute or correct technical inaccuracies in the Ops Manager v2.10 documentation.
 
-**2.9**: The `2.9` branch is used to publish the v2.9 site. Create pull requests on `master` to contribute or
+**2.9**: The `2.9` branch is used to publish the v2.9 site. Create pull requests on `2.9` to contribute or
 correct technical inaccuracies in the Ops Manager v2.9 documentation.
 
-**2.8**: The `2.8` branch is used to publish the v2.8 site. Create pull requests on `master` to contribute or
+**2.8**: The `2.8` branch is used to publish the v2.8 site. Create pull requests on `2.8` to contribute or
 correct technical inaccuracies in the Ops Manager v2.8 documentation.
 
-**2.7**: The `2.7` branch is used to publish the v2.7 site. Create pull requests on `master` to contribute or
+**2.7**: The `2.7` branch is used to publish the v2.7 site. Create pull requests on `2.7` to contribute or
 correct technical inaccuracies in the Ops Manager v2.7 documentation.
 
-**2.6**: The `2.6` branch is used to publish the v2.6 site. Create pull requests on `master` to contribute or
+**2.6**: The `2.6` branch is used to publish the v2.6 site. Create pull requests on `2.6` to contribute or
 correct technical inaccuracies in the Ops Manager v2.6 documentation.
 
 **2.5**: The `2.5` branch is used to publish the v2.5 site. The `2.5` branch has reached End of General Support and is
