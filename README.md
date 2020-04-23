@@ -1,7 +1,7 @@
 # Ops Manager Documentation
 
 This repository contains content for the Ops Manager documentation. We publish the Ops Manager documentation at
-https://docs.pivotal.io/platform/ops-manager/2-9/index.html.
+https://docs.pivotal.io/platform/ops-manager/index.html.
 
 ## How To Contribute
 
