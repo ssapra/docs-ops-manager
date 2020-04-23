@@ -11,15 +11,16 @@ or expertise.
 A common way to contribute is to file a pull request through GitHub.
 
 Every topic in the Ops Manager documentation has a corresponding file in the
-[https://github.com/pivotal-cf/docs-ops-manager] content repository in GitHub. To locate the source file for a topic,
-navigate to the topic on the Ops Manager documentation site and click "View the source for this page in GitHub" at the
-bottom of the topic.
+[https://github.com/pivotal-cf/docs-ops-manager](https://github.com/pivotal-cf/docs-ops-manager) content repository in
+GitHub. To locate the source file for a topic, navigate to the topic on the Ops Manager documentation site and click "View
+the source for this page in GitHub" at the bottom of the topic.
 
 ## Versions and Branching
 
 | **Branch Name** | **Content** | **Location** |
 |-----------------|-------------|--------------|
-| `master` | Ops Manager v2.9  | https://docs.pivotal.io/platform/ops-manager/2-9/index.html |
+| `master` | Ops Manager v2.10 pre-release  | https://docs-pcf-staging.cfapps.io/platform/ops-manager/2-10/ |
+| `2.9` | Ops Manager v2.9  | https://docs.pivotal.io/platform/ops-manager/2-9/index.html |
 | `2.8` | Ops Manager v2.8  | https://docs.pivotal.io/platform/ops-manager/2-8/index.html |
 | `2.7` | Ops Manager v2.7  | https://docs.pivotal.io/platform/ops-manager/2-7/index.html |
 | `2.6` | Ops Manager v2.6  | https://docs.pivotal.io/platform/ops-manager/2-6/index.html |
@@ -30,7 +31,10 @@ bottom of the topic.
 | `2.1` | Ops Manager v2.1  | https://docs.pivotal.io/platform/ops-manager/2-1/index.html |
 | `2.0` | Ops Manager v2.0  | https://docs.pivotal.io/platform/ops-manager/2-0/index.html |
 
-**master**: The `master` branch is used to publish the v2.9 site. Create pull requests on `master` to contribute or
+**master**: The `master` branch is used to publish the pre-release v2.10 site. Create pull requests on `master` to
+contribute or correct technical inaccuracies in the Ops Manager v2.10 documentation.
+
+**2.9**: The `2.9` branch is used to publish the v2.9 site. Create pull requests on `master` to contribute or
 correct technical inaccuracies in the Ops Manager v2.9 documentation.
 
 **2.8**: The `2.8` branch is used to publish the v2.8 site. Create pull requests on `master` to contribute or
