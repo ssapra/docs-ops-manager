@@ -33,6 +33,8 @@ GH12345678ABCDEFGH12345678ABCDEFGH12345678...
 
 1. (Optional) Select the **Include OpsManager Root CA in Trusted Certs** checkbox to include the Ops Manager root CA in the Trusted Certificates field. BOSH Director includes this CA in the trust store of every VM that it deploys. 
 
+<p class="note warning"><strong>WARNING:</strong> If you are using Ops Manager to generate certificates for either a load balancer or router then this option needs to be checked</p>
+
 <% if current_page.data.title == "Setting Trusted Certificates" %>
 1. Click **Save**.
 <% else %>
