@@ -72,7 +72,7 @@ To configure the **Director Config** pane in the BOSH Director tile, you must ha
 <div class="note"><strong>Note:</strong> <%= vars.company_name %> recommends at least three availability zones (AZs) for a highly available installation.
   <ul>
     <li>For configuring a <%= vars.app_runtime_abbr %> deployment with multiple AZs, see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for <%= vars.platform_name %> on GCP</a>.</li>
-    <li>For <%= vars.k8s_runtime_abbr %> best practices for distributing workloads across multiple AZs and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
+    <li>For <%= vars.k8s_runtime_abbr %> best practices for distributing workloads across multiple AZs and clusters, see <a href="https://docs.pivotal.io/tkgi/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
   </ul>
 </div>
 
@@ -266,4 +266,4 @@ After you complete this procedure, follow the instructions for the runtime you i
 
 * To deploy <%= vars.app_runtime_abbr %>, see [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html).
 
-* To prepare to deploy <%= vars.k8s_runtime_abbr %>, see [Creating Service Accounts in GCP for <%= vars.k8s_runtime_abbr %>](https://docs.pivotal.io/pks/gcp-service-accounts.html).
+* To prepare to deploy <%= vars.k8s_runtime_abbr %>, see [Creating Service Accounts in GCP for <%= vars.k8s_runtime_abbr %>](https://docs.pivotal.io/tkgi/gcp-service-accounts.html).
