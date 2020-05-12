@@ -438,7 +438,7 @@ To create the infrastructure network, do the following:
 
 ## <a id='syslog'></a> Step 8: Syslog Page
 
-<%= partial(:'../common/syslog_bosh', :locals => { :syslog_context => 'BOSH Director' }) %>
+<%= partial(:"/pcf/ops_manager/syslog_bosh", :locals => { :syslog_context => 'BOSH Director' }) %>
 
 ## <a id='resource'></a> Step 9: Resource Config Page
 
