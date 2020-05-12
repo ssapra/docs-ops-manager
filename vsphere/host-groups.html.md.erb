@@ -7,49 +7,51 @@ This topic describes the host groups feature in vSphere and provides an example 
 
 ## <a id="overview"></a> Overview
 
-When you use Ops Manager, you define availability zones (AZs) for your BOSH Director deployments. BOSH AZs provide a mechanism for balancing apps and jobs across resources for resiliency and fault tolerance. For BOSH deployments on vSphere infrastructure, you associate vSphere clusters, resource pools and host groups with the AZs. This association allows BOSH to distribute deployments across predefined vSphere resources.
+When you use Ops Manager, you define availability zones (AZs) for your BOSH Director deployments. AZs are a construct within BOSH. AZs provide a mechanism for balancing apps and jobs across resources for resiliency and fault tolerance. For BOSH deployments on vSphere infrastructure, you associate vSphere clusters, resource pools or host groups with the AZs. This association allows BOSH to distribute deployments across predefined vSphere resources.
 
-In vSphere, a cluster is a collection of EXSi servers that run virtual machines (VMs). A typical way to organize resources within a cluster is using resource pools, which are a collection of vSphere resources. Using resource pools in BOSH deployments however have some limitations.
+In vSphere, a cluster is a collection of EXSi servers that run virtual machines (VMs). A typical way of organizing resources within a cluster is to use resource pools, which are a collection of vSphere resources. Using resource pools in BOSH deployments however has some limitations.
 
-Host groups are another way to segment and organize resources within a vSphere cluster. This means that within a cluster object, you can specify certain ESXi hosts to be part of a host group. For situations where you have multiple residents on a cluster, it is more advantageous to associate a host group with an AZ rather than a resource pool for your BOSH deployments.
+Host groups are another way to segment and organize resources within a vSphere cluster. This means that within a cluster object, you can specify certain ESXi hosts to be part of a host group. For situations where you have multiple residents on a cluster, it may be more advantageous to associate a host group with an AZ rather than a resource pool for your BOSH deployments.
 
 For more information about configuring AZs in BOSH Director, see _Step 4: Create Availability Zones_ in [Configuring BOSH Director on vSphere](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/vsphere/config.html#create-az).
 
 ## <a id="when-to-use"></a> When to Use Host Groups
 
 Host groups are most useful for deployments where the underlying clusters are being used by multiple residents. For example, there may be multiple BOSH-managed foundations installed side-by-side on the same vSphere cluster.
+In addition, you want tighter control around cluster resource usage than provided by resource pools, and you also want to be able scale up or down the number of ESXi hosts used by your AZ without disrupting BOSH. 
 
-For deployments where the underlying clusters are dedicated to a single use, such as just running application containers, then it is simpler to use AZs to balance associated jobs and apps. Configuring host groups does not provide an advantage.
+For deployments where the underlying clusters are dedicated to a single use, such as running only app containers, it is simpler to use only AZs to balance associated jobs and apps. Configuring host groups does not provide an advantage. 
 
 ### <a id="compare"></a> Comparing Host Groups to Resource Pools
 
-A resource pool is a common way to organize resources within a vSphere cluster. 
+A resource pool is a child construct of the vSphere cluster and a common way to manage and protect resources within a multi-use cluster. Resource pools can access resources of the entire cluster but enforce boundaries of resource consumption between other resource pools. 
 
-A typical use case for using resource pools is when you want place two or more completely different installations in your cluster. 
-A resource pool allows both resident installations to have access to the total compute capacity of the cluster. 
-It also puts up a protective resource boundary contention between these installations. 
+By contrast, host groups permit access to a specific subset of hosts in a vSphere cluster. Host groups allow zero or very limited access to the other hosts in the cluster, thus providing a harder boundary for resource usage between hosts. 
+
+A typical use case for using resource pools is when you want to place two or more completely different installations in your cluster. 
+A resource pool allows both resident installations to have access to the total compute capacity of the cluster, but also puts up a protective resource boundary contention between the installations. 
 The resident installations can share the resources, but in the event that resource consumption spikes, a resource management engine kicks in and enforces resource usage limits. 
 In this situation, the engine may deny pool resources to one of the residents. 
 Depending on the nature of the installations, denying resources to one of the residents may be less than ideal.
 
-By contrast, if you specify a host group when defining AZs in Ops Manager, then you can restrict BOSH VM deployments to a very specific set of compute resources. 
-With host groups, the boundaries around compute resources are better defined than with resource pools. You can steer a foundation to a predetermined set of servers and a single resident never competes for resources with other cluster residents.
+If you specify a host group when defining AZs in Ops Manager, then you can restrict BOSH VM deployments to a very specific set of compute resources. 
+With host groups, the boundaries around compute resources are better defined than with resource pools. You can steer a foundation to a predetermined set of servers and a single resident is not forced to compete for resources with other cluster residents.
 
 ### <a id="vertical-scale"></a> Vertical Scaling Use Case
 
-In addition to the stricter resource boundaries between resident installations, host groups make it easier for you to vertically scale resources without forcing BOSH to redraw or redeploy its AZs. 
+In addition to the stricter resource boundaries between resident installations, host groups make it easier for you to vertically scale resources without forcing BOSH to redeploy its AZs. 
 
-For example, with host groups, you can start off by associating a single server from a cluster with an AZ. When one of the foundations requires more resources, instead of updating AZs or tuning resource pools, you can move additional servers from the existing cluster into the host group.
+For example, with host groups, you can begin by associating a single server from a cluster with an AZ. When one of the foundations requires more resources, instead of updating AZs or tuning resource pools, you can move additional servers from the existing cluster into the host group without disruption to the BOSH deployments.
 
 For more information on using host groups in scaling platforms, see [Growth Beyond Minimal Viable Platform](https://docs.pivotal.io/pra/2-3/growth.html) in the _Tanzu Architecture for Dell EMC VxRail_ (TA4V) documentation set.
 
 ## <a id="host-affinity-rule"></a> DRS Host-Affinity Rules and Stretched Clusters
 
-When configuring host groups, you should also configure the host group's Distributed Resource Scheduler (DRS) Host-Affinity Rule to `SHOULD`. This configuration allows VMs to start up in a new host group and availability zone in the event that an AZ fails or you want to scale up the number of VM instances for a job. 
+When configuring host groups, you should also configure the host group's Distributed Resource Scheduler (DRS) Host-Affinity Rule to `SHOULD`. This configuration allows VMs to start up in a new host group and availability zone in the event that an AZ fails or in the event that you want to scale up the number of VM instances for a job. 
 
-To illustrate the reason behind this configuration, let's say you have a deployment where the rule is set to `MUST`. The `MUST` rule requires that each VM is deployed to its associated host group. If you have a three-instance job, then BOSH deploys one instance to each host group and AZ. If you add a fourth instance, vSphere will not allow that fourth VM to turn on in order to achieve DRS separation.
+To illustrate the reason behind this configuration, let's say you have a deployment where the rule is set to `MUST`. The `MUST` rule requires that each VM is deployed to its associated host group. If you have a three-instance job, then BOSH deploys one instance to each host group and AZ. If you add a fourth instance and the rule is set to `MUST`, vSphere will not allow that fourth VM to turn on in order to achieve DRS separation.
 
-In deployments that use stretched clusters, configuring the DRS Host-Affinity Rule to `SHOULD` is especially valuable for ensuring high availability in the event that an AZ fails.
+In deployments that use stretched clusters, configuring the DRS Host-Affinity Rule to `SHOULD` is especially important for ensuring high availability in the event that an AZ fails.
 
 You configure this rule when setting the host group for an AZ in BOSH Director. See _Step 4: Create Availability Zones_ in [Configuring BOSH Director on vSphere](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/vsphere/config.html#create-az).
 
