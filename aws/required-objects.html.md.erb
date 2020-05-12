@@ -187,9 +187,9 @@ The <%= vars.ops_manager %> Security Group must be named `pcf-ops-manager-securi
 
 See [Step 5: Configure a Security Group for <%= vars.ops_manager %>](prepare-env-manual.html#pcfaws-om-secgrp) in _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_.
 
-### <%= vars.platform_name %> VMs
+### BOSH-Deployed VMs
 
-The <%= vars.platform_name %> VMs Security Group must be named `pcf-vms-security-group` and have the following inbound rule:
+The BOSH-deployed VMs Security Group must be named `pcf-vms-security-group` and have the following inbound rule:
 
 <table border="1" class="nice" >
 <tr>
@@ -207,7 +207,8 @@ The <%= vars.platform_name %> VMs Security Group must be named `pcf-vms-security
 </tr>
 </table>
 
-See [Step 6: Configure a Security Group for <%= vars.platform_name %> VMs](prepare-env-manual.html#pcfaws-om-ersecgrp) in _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_.
+See [Step 6: Configure a Security Group for BOSH-Deployed VMs](prepare-env-manual.html#pcfaws-om-ersecgrp)
+in _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_.
 
 ### Web ELB
 
