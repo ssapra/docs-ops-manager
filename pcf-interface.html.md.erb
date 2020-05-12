@@ -7,7 +7,7 @@ This topic describes key features of the Ops Manager interface.
 
 ## <a id="installation-dashboard"></a> Installation Dashboard Page
 
-The Installation Dashboard is the central Ops Manager interface for managing your 
+The Installation Dashboard is the central Ops Manager interface for managing your
 deployment. It displays the BOSH Director configuration for your IaaS and product tiles for your deployment.
 
 The following screenshot shows the Installation Dashboard. Each section is labeled with a
@@ -184,13 +184,13 @@ bottom, the tabs are 'Change Decryption Passphrase,' 'SAML Settings', 'LDAP Sett
 
 ### <a id="internal_auth"></a> Internal Authentication Settings
 
-You can use the **Internal Authentication Settings** pane to view and update the settings for your internal authentication method. 
+You can use the **Internal Authentication Settings** pane to view and update the settings for your internal authentication method.
 
 This pane includes the following fields:
 
-* **Current Decryption Passphrase**: Update the decryption passphrase for your internal authentication method. 
-* **Admin Username**: Update the username for the admin user. 
-* **Admin Password** and **Admin Password Confirmation**: Update the password for the admin user. 
+* **Current Decryption Passphrase**: Update the decryption passphrase for your internal authentication method.
+* **Admin Username**: Update the username for the admin user.
+* **Admin Password** and **Admin Password Confirmation**: Update the password for the admin user.
 
 ### SAML Settings
 To change your Identity Provider (IdP) to SAML, configure the following fields:
@@ -257,7 +257,7 @@ access events to the syslog endpoint.
 
 To configure a custom syslog endpoint for Ops Manager logs:
 
-<%= partial(:"/common/syslog_bosh", :locals => { :syslog_context => 'Ops Manager' }) %>
+<%= partial(:"/pcf/ops_manager/syslog_bosh", :locals => { :syslog_context => 'Ops Manager' }) %>
 
 ### <a id="advanced"></a> Advanced Options
 <ul>
