@@ -3,7 +3,7 @@ title: Host Groups in vSphere
 owner: Ops Manager
 ---
 
-This topic describes the host groups feature in vSphere and provides an example of how an operator can use host groups in Ops Manager to build flexible scalability and high availability into their BOSH deployment.
+This topic documents the host groups feature in vSphere and describes how an operator can use host groups in Ops Manager to build flexible scalability and high availability into their BOSH deployment.
 
 ## <a id="overview"></a> Overview
 
@@ -13,7 +13,7 @@ In vSphere, a cluster is a collection of EXSi servers that run virtual machines 
 
 Host groups are another way to segment and organize resources within a vSphere cluster. This means that within a cluster object, you can specify certain ESXi hosts to be part of a host group. For situations where you have multiple residents on a cluster, it may be more advantageous to associate a host group with an AZ rather than a resource pool for your BOSH deployments.
 
-For more information about configuring AZs in BOSH Director, see _Step 4: Create Availability Zones_ in [Configuring BOSH Director on vSphere](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/vsphere/config.html#create-az).
+For more information about configuring AZs in BOSH Director, see _Step 4: Create Availability Zones_ in [Configuring BOSH Director on vSphere](config.html#create-az).
 
 ## <a id="when-to-use"></a> When to Use Host Groups
 
@@ -53,6 +53,6 @@ To illustrate the reason behind this configuration, let's say you have a deploym
 
 In deployments that use stretched clusters, configuring the DRS Host-Affinity Rule to `SHOULD` is especially important for ensuring high availability in the event that an AZ fails.
 
-You configure this rule when setting the host group for an AZ in BOSH Director. See _Step 4: Create Availability Zones_ in [Configuring BOSH Director on vSphere](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/vsphere/config.html#create-az).
+You configure this rule when setting the host group for an AZ in BOSH Director. See _Step 4: Create Availability Zones_ in [Configuring BOSH Director on vSphere](config.html#create-az).
 
 For more information about DRS Host-Affinity Rules, see [VM-Host Affinity Rules](https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.resmgmt.doc/GUID-2FB90EF5-7733-4095-8B66-F10D6C57B820.html) in the _VMware vSphere Product Documentation_.
