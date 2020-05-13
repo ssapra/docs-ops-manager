@@ -469,3 +469,14 @@ For more information about storage requirements and recommendations, see [Persis
 ### <a id="pks-nsx-t-security"></a> Security
 
 For information about security requirements and recommendations, see [Security](../index.html#pks-security) in _Platform Architecture and Planning Overview_.
+
+## <a id="pks-without-nsx-t"></a> <%= vars.k8s_runtime_abbr %> on vSphere without NSX-T
+
+You can deploy <%= vars.k8s_runtime_abbr %> without NSX-T.
+If you want to deploy <%= vars.k8s_runtime_abbr %> without NSX-T, select
+**Flannel** as your container network interface in the **Networking** pane of
+the <%= vars.k8s_runtime_abbr %> tile.
+
+Select from networks already identified in Ops Manager to deploy the
+<%= vars.k8s_runtime_abbr %> API and <%= vars.k8s_runtime_abbr %>-provisioned
+Kubernetes clusters.
