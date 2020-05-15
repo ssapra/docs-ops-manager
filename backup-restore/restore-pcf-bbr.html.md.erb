@@ -103,7 +103,7 @@ If you re-create your IaaS resources, you must also add those resources to <%= v
 
         1. In the import panel:
           * Enter the **Decryption Passphrase** in use when you exported the installation settings from <%= vars.ops_manager %>.
-          * Click **Choose File** and browse to the installation ZIP file that you exported in [Export Installation Settings](./backup-pcf-bbr.html#export) in _Backing Up Deployments with BBR_.
+          * Click **Choose File** and browse to the installation ZIP file that you exported in [Export Installation Settings](./backup-pcf-bbr.html#export) in _Backing Up <%= vars.platform_name %>  with BBR_.
 
             <%= image_tag("../images/upgrading/decryption_passphrase.png") %>
 
@@ -195,7 +195,7 @@ Use the <%= vars.ops_manager %> API or the checkbox on the **Review Pending Chan
 
 ### <a id="artifacts-jumpbox"></a> Step 6: Transfer Artifacts to Jumpbox
 
-In the [Back Up Your <%= vars.app_runtime_abbr %> Deployment](./backup-pcf-bbr.html#bbr-backup) step of _Backing Up Deployments with BBR_,
+In the [Back Up Your <%= vars.app_runtime_abbr %> Deployment](./backup-pcf-bbr.html#bbr-backup) step of _Backing Up <%= vars.platform_name %> with BBR_,
 you moved the TAR and metadata files of the backup artifacts off your jumpbox to your preferred storage space. Now you must transfer those files back to your jumpbox.
 
 
@@ -264,8 +264,8 @@ If the command fails:
         Where:
         * `PRIVATE-KEY-FILE`is the path to the private key file you created in [ Retrieve BOSH Credentials](#retrieve-credentials).
         * `HOST` is the address of the BOSH Director.
-            * If the BOSH Director is public, `HOST` is a URL, such as `https://bosh-director.xxx.cf-app.com`.
-            * If the BOSH Director is not public, `HOST` is the `BOSH-DIRECTOR-IP` you retrieved in [Retrieve BOSH Director Address](#retrieve-address).
+        * If the BOSH Director is public, `HOST` is a URL, such as `https://bosh-director.xxx.cf-app.com`.
+        * If the BOSH Director is not public, `HOST` is the `BOSH-DIRECTOR-IP` you retrieved in [Retrieve BOSH Director Address](#retrieve-address).
     1. Run the BBR restore command again after ensuring that:
         * All the parameters in the command are set.
         * The BOSH Director credentials are valid.
