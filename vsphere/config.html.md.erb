@@ -136,13 +136,13 @@ Multiple AZs allow you to provide high availability and load balancing to your a
     For example, `RP-MGMT`. The jobs running in this AZ share the CPU and memory resources defined by the pool.
     You only need to specify this resource group in one AZ.
     * (Optional) Enter the name of a **Host Group** for the AZ to use. The host group must be within the cluster you designated in the **Clusters** field. You created host groups in the [Prepare vSphere](./deploy.html#prepare-vsphere) step of _Deploying <%= vars.ops_manager %> to vSphere_. For more information about using host groups, see [Host Groups in vSphere](host-groups.html).  
-    * (Optional) In the **VM-Host Affinity Rule** dropdown, select **SHOULD**.  Selecting **SHOULD** allows vSphere to restart VMs in another host group in the event of an AZ failure.
+    * (Optional) In the **VM-Host Affinity Rule** dropdown, select **SHOULD**.  Selecting **SHOULD** allows vSphere to restart VMs in another host group in the event of an AZ failure. For more information, see [DRS Host-Affinity Rules and Stretched Clusters](host-groups.html#host-affinity-rule).
       <p class="note"><strong>Note:</strong> The value for <strong>VM-Host Affinity Rule</strong> only applies if you are using Host Groups. If you do not specify a <strong>Host Group</strong> for the cluster, then any changes you make to <strong>VM-Host Affinity Rule</strong> are ignored.</p></p>
     * (Optional) Click **Add Cluster** to add more clusters to the AZ as required by your installation size and high availability requirements.
 
 1. (Optional) Use the following steps to create additional AZs.
     * Click **Add**.
-    * Specify **Cluster** and optionally, a **Resource Pool** or a **Host Group** with a **VM-Host Affinity Rule**. Typically you specify either a resource pool or a host group for an AZ, but not both.
+    * Specify **Cluster** and optionally, a **Resource Pool** or a **Host Group** with a **VM-Host Affinity Rule**. Typically you specify either a resource pool or a host group for an AZ, but not both. For more information about the difference between host groups and resource pools, see [Host Groups in vSphere](host-groups.html).
     * Click **Add Cluster** to assign more clusters to the AZ as necessary for high availability. Click the trash icon to delete a cluster. The first cluster cannot be deleted.
 
 1. Click **Save**.
