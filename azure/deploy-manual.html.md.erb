@@ -288,7 +288,9 @@ To create load balancers, do the following:
         $ az network lb create --name pcf-lb \
         --resource-group $RESOURCE_GROUP --location $LOCATION \
         --backend-pool-name pcf-lb-be-pool --frontend-ip-name pcf-lb-fe-ip \
-        --private-ip-address 10.0.0.6 --sku Standard
+        --private-ip-address 10.0.12.6 --sku Standard \
+        --vnet-name pcf-virtual-network \
+        --subnet pcf-pas-subnet
         </pre>
         * Add a probe to the load balancer.
         <pre class="terminal">
@@ -334,8 +336,10 @@ To create load balancers, do the following:
         $ az network lb create --name pcf-ssh-lb \
         --resource-group $RESOURCE_GROUP --location $LOCATION \
         --backend-pool-name pcf-ssh-lb-be-pool --frontend-ip-name pcf-ssh-lb-fe-ip \
-        --private-ip-address 10.0.0.7 \
-        --sku Standard
+        --private-ip-address 10.0.12.7 \
+        --sku Standard \
+        --vnet-name pcf-virtual-network \
+        --subnet pcf-pas-subnet
         </pre>
         <p class="note"><strong>Note:</strong> If the Standard SKU is not available in Azure China, you can change to use the Basic SKU.</p>
         This back end pool is empty when you create it.
