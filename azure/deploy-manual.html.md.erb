@@ -283,7 +283,7 @@ To create load balancers, do the following:
         --probe-name http8080
         </pre>
     1. (Optional) For private IPs, do the following:
-        * Create a load balancer named `pcf-lb`.
+        1. Create a load balancer named `pcf-lb`.
         <pre class="terminal">
         $ az network lb create --name pcf-lb \
         --resource-group $RESOURCE_GROUP --location $LOCATION \
@@ -292,13 +292,13 @@ To create load balancers, do the following:
         --vnet-name pcf-virtual-network \
         --subnet pcf-pas-subnet
         </pre>
-        * Add a probe to the load balancer.
+        1. Add a probe to the load balancer.
         <pre class="terminal">
         $ az network lb probe create --lb-name pcf-lb \
         --name http8080 --resource-group $RESOURCE_GROUP \
         --protocol Http --port 8080 --path health
         </pre>
-        * Add a load balancing rule for HTTP.
+        1. Add a load balancing rule for HTTP.
         <pre class="terminal">
         $ az network lb rule create --lb-name pcf-lb \
         --name http --resource-group $RESOURCE_GROUP \
@@ -307,7 +307,7 @@ To create load balancers, do the following:
         --backend-pool-name pcf-lb-be-pool \
         --probe-name http8080
         </pre>
-        * Add a load balancing rule for HTTPS.
+        1. Add a load balancing rule for HTTPS.
         <pre class="terminal">
         $ az network lb rule create --lb-name pcf-lb \
         --name https --resource-group $RESOURCE_GROUP \
