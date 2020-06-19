@@ -135,7 +135,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
     * Enter the name of the **Resource Pool** that you created in the [Prepare vSphere](./deploy.html#prepare-vsphere) step of _Deploying Ops Manager to vSphere_ to organize management components like Ops Manager and BOSH Director.
     For example, `RP-MGMT`. The jobs running in this AZ share the CPU and memory resources defined by the pool.
     You only need to specify this resource group in one AZ.
-    * (Optional) Enter the name of a **Host Group** for the AZ to use. The host group must be within the cluster you designated in the **Clusters** field. You created host groups in the [Prepare vSphere](./deploy.html#prepare-vsphere) step of _Deploying <%= vars.ops_manager %> to vSphere_. For more information about using host groups, see [Host Groups in vSphere](host-groups.html).  
+    * (Optional) Enter the name of a **Host Group** for the AZ to use. The host group must be within the cluster you designated in the **Clusters** field. You created host groups in the [Prepare vSphere](./deploy.html#prepare-vsphere) step of _Deploying <%= vars.ops_manager %> to vSphere_. For more information about using host groups, see [Host Groups in vSphere](host-groups.html).
     * (Optional) In the **VM-Host Affinity Rule** dropdown, select **SHOULD**.  Selecting **SHOULD** allows vSphere to restart VMs in another host group in the event of an AZ failure.
       <p class="note"><strong>Note:</strong> The value for <strong>VM-Host Affinity Rule</strong> only applies if you are using Host Groups. If you do not specify a <strong>Host Group</strong> for the cluster, then any changes you make to <strong>VM-Host Affinity Rule</strong> are ignored.</p></p>
     * (Optional) Click **Add Cluster** to add more clusters to the AZ as required by your installation size and high availability requirements.
@@ -251,7 +251,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
   </table><br/>
   <sup id="note1">&#42;</sup> In **vSphere Network Name**, enter the full path of the network as it displays in vCenter. For example, enter `YOUR-DIRECTORY-NAME/YOUR-NETWORK-NAME`. If your vSphere Network Name contains a forward slash character, replace the forward slash with the URL-encoded forward slash character `%2f`.<br/>
   <sup id="note2">&#8224;</sup> For **Reserved IP Ranges**, enter any IP addresses from the **CIDR**
-      that you want to blacklist from the installation. Ops Manager will not deploy VMs to any address in this range.
+      that you do not want BOSH to use in your installation. Ops Manager will not deploy VMs to any address in this range.
 
   1. For PKS, click **Add Network** and create the following networks:
       * `infrastructure`: This network is for Ops Manager, the BOSH Director, the PKS broker, and the PKS API.
@@ -349,7 +349,7 @@ Pivotal recommends that you use at least three AZs for a highly available instal
     </tr>
   </table><br/>
   <sup id="note1">&#42;</sup> In **vSphere Network Name**, enter the full path of the network as it displays in vCenter. For example, enter `YOUR-DIRECTORY-NAME/YOUR-NETWORK-NAME`. If your vSphere Network Name contains a forward slash character, replace the forward slash with the URL-encoded forward slash character `%2f`.<br/>
-  <sup id="note2">&#8224;</sup> For **Reserved IP Ranges**, enter any IP addresses from the **CIDR** that you want to blacklist from the installation. Ops Manager will not deploy VMs to any address in this range.
+  <sup id="note2">&#8224;</sup> For **Reserved IP Ranges**, enter any IP addresses from the **CIDR** that you do not want BOSH to use in your installation. Ops Manager will not deploy VMs to any address in this range.
 
 1. For each network that you create, select the **Availability Zones** to use with the network. Assign as many AZs to your network as needed by your deployment. For more information, see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#high-availability">Compute and HA Considerations</a> and <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#scaling">Scaling and Capacity Managment</a> sections of the vSphere Reference Architecture.
 
