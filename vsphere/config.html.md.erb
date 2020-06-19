@@ -251,7 +251,7 @@ Multiple AZs allow you to provide high availability and load balancing to your a
   </table><br/>
   <sup id="note1">&#42;</sup> In **vSphere Network Name**, enter the full path of the network as it displays in vCenter. For example, enter `YOUR-DIRECTORY-NAME/YOUR-NETWORK-NAME`. If your vSphere Network Name contains a forward slash character, replace the forward slash with the URL-encoded forward slash character `%2f`.<br/>
   <sup id="note2">&#8224;</sup> For **Reserved IP Ranges**, enter any IP addresses from the **CIDR**
-      that you want to blacklist from the installation. <%= vars.ops_manager %> will not deploy VMs to any address in this range.
+      that you do not want BOSH to use in your installation. <%= vars.ops_manager %> will not deploy VMs to any address in this range.
 
   1. For <%= vars.k8s_runtime_abbr %>, click **Add Network** and create the following networks:
       * `infrastructure`: This network is for <%= vars.ops_manager %>, the BOSH Director, the <%= vars.k8s_runtime_abbr %> broker, and the <%= vars.k8s_runtime_abbr %> API.
@@ -349,7 +349,7 @@ Multiple AZs allow you to provide high availability and load balancing to your a
     </tr>
   </table><br/>
   <sup id="note1">&#42;</sup> In **vSphere Network Name**, enter the full path of the network as it displays in vCenter. For example, enter `YOUR-DIRECTORY-NAME/YOUR-NETWORK-NAME`. If your vSphere Network Name contains a forward slash character, replace the forward slash with the URL-encoded forward slash character `%2f`.<br/>
-  <sup id="note2">&#8224;</sup> For **Reserved IP Ranges**, enter any IP addresses from the **CIDR** that you want to blacklist from the installation. <%= vars.ops_manager %> will not deploy VMs to any address in this range.
+  <sup id="note2">&#8224;</sup> For **Reserved IP Ranges**, enter any IP addresses from the **CIDR** that you do not want BOSH to use in your installation. <%= vars.ops_manager %> will not deploy VMs to any address in this range.
 
 1. For each network that you create, select the **Availability Zones** to use with the network. Assign as many AZs to your network as needed by your deployment. For more information, see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#high-availability">Compute and HA Considerations</a> and <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/vsphere/vsphere_ref_arch.html#scaling">Scaling and Capacity Managment</a> sections of the vSphere Reference Architecture.
 
