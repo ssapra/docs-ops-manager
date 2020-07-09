@@ -43,8 +43,7 @@ Stemcells](../opsguide/managing-stemcells.html).
 installations. See the [Change Log Page](#changelog) section of this topic for details.
 
 - **F**---**Certificates**: Click this link to view certificates in your installation.
-This screen lists the certificates that the Ops Manager API rotates automatically and the certificates that you must rotate manually.
-For more information, see [Rotating Certificates](https://docs.pivotal.io/platform/security/pcf-infrastructure/api-cert-rotation.html).
+See the [Certificates Page](#certificates) section of this topic for details.
 
 - **G**---**User Account Menu**: Click the arrow next to your username to view the menu.
 Use this menu to navigate to your **Settings** page, view **My Account** to change your
@@ -156,6 +155,32 @@ As you type, matching entries appear on the screen.
 - **Previous / Next**---Click **Previous**, **Next**, or the number between
 them to load older or newer entries.
 
+## <a id='certificates'></a> Certificates Page
+
+Navigate to the **Certificates** page by clicking the corresponding link in the dashboard header.
+This page shows the certificates in your Ops Manager installation.
+
+The following image shows the top section of the **Certificates** page:
+
+<%= image_tag("certificates.png", :width => "500", :alt => "The 'Certificates' menu page") %>
+
+The top section of the **Certificates** page lists the certificates that you rotate using the Ops Manager API.
+For information about how to rotate these certificates, see [Rotating Certificates](https://docs.pivotal.io/platform/2-9/security/pcf-infrastructure/api-cert-rotation.html).
+
+The following describes the information listed on the **Certificates** page:
+
++ **Certificate name**: lists the name of the certificate.
++ **Product GUID**: lists the product name and its unique identifier.
++ **Location**: specifies whether CredHub or Ops Manager manages the certificate.
++ **Type**: specifies if the certificate is a certificate authority (CA) or leaf certificate.
++ **Configurable**: specifies whether or not you can configure the certificate.
++ **Valid until**: lists the date that the certificate expires.
+
+The following image shows the **Excluded certificates** section of the **Certificates** page:
+
+<%= image_tag("excluded-certificates.png", :width= => "500", :alt => "The 'Excluded Certificates' section") %>
+
+The **Excluded certificates** section lists the certificates that you cannot rotate using the Ops Manager API.
 
 ## <a id='settings'></a> Settings Page
 
