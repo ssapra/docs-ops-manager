@@ -162,7 +162,20 @@ This page shows the certificates in your Ops Manager installation.
 
 The following image shows the top section of the **Certificates** page:
 
-<%= image_tag("certificates.png", :alt => "The 'Certificates' menu page") %>
+<%= image_tag("certificates.png", :alt => "The 'Certificates' menu page is indicated by a header that says 'Certificates' in large type at the top of the page.
+Below the header, there is one line of text that reads,
+'The following certificates will be rotated using Ops Manager API.
+To view the certificates that will not be rotated, click here.
+To get started, please visit the documentation.'
+Below the text, there is a table with six columns.
+The columns are labeled, from left to right, 'Certificate name', 'Product GUID', 'Location', 'Type', 'Configurable', and 'Valid until'.
+Below the column headers are two rows that contain example values.
+Under 'Certificate name', the first example is '/p-bosh/example-product-864b7cc671f9590a0b6f/generated-certificate-migrated-to-credhub' and the second example is '/bosh_dns_health_client_tls'.
+Under 'Product GUID', both example values are 'example-product-864b7cc671f9590a0b6f'.
+Under 'Location', both example values are 'credhub'.
+Under 'Type', the first example is 'CA' and the second example is 'Leaf'.
+Under 'Configurable', both example values are 'No'.
+Under 'Valid until', the both example values are 'July 7, 2021' and in bold text on the next line, 'in 364 days'.") %>
 
 The top section of the **Certificates** page lists the certificates that you rotate using the Ops Manager API.
 For information about how to rotate these certificates, see [Rotating Certificates](https://docs.pivotal.io/platform/2-9/security/pcf-infrastructure/api-cert-rotation.html).
@@ -179,7 +192,19 @@ If a certificate is configurable, you can generate your own and paste it into Op
 
 The following image shows the **Excluded certificates** section of the **Certificates** page:
 
-<%= image_tag("excluded-certificates.png", :alt => "The 'Excluded Certificates' section") %>
+<%= image_tag("excluded-certificates.png", :alt => "The 'Excluded certificates' section has a header that says 'Excluded certificates' in large type at the top of the section.
+Below the header, there is one line of text that reads,
+'The following certificates will not be rotated using Ops Manager API.
+Please follow the guidelines in our documentation.'
+Below the text, there is a table with six columns.
+The columns are labeled, from left to right, 'Certificate name', 'Product GUID', 'Location', 'Type', 'Configurable', and 'Valid until'.
+Below the column headers are two rows that contain example values.
+Under 'Certificate name', the first example is '/foo/service-instance_3/pxc_4' and the second example is '/bazz/service-instance_7/redis_certificate'.
+Under 'Product GUID', both example values are 'example-product-864b7cc671f9590a0b6f'.
+Under 'Location', both example values are 'credhub'.
+Under 'Type', both example values are 'CA'.
+Under 'Configurable', both example values are 'No'.
+Under 'Valid until', the both example values are 'July 7, 2021' and in bold text on the next line, 'in 364 days'.") %>
 
 The **Excluded certificates** section lists the certificates that you cannot rotate using the Ops Manager API.
 To rotate these certificates, see the documentation for the product tile associated with the non-rotatable certificate or contact [Support](https://pivotal.io/support).
