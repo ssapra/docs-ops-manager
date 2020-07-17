@@ -35,6 +35,59 @@ To set Ops Manager to Advanced Mode, follow the instructions in [How to Enable A
 in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US)
 in the Knowledge Base.
 
+## <a id="bosh-overrides"></a> Override BOSH Director Manifest Properties
+
+You can override certain properties in the BOSH Director Manifest.
+
+You can use the `/api/v0/staged/director/overrides`
+Ops Manager API endpoint to override properties in the BOSH Director manifest.
+With this endpoint, you can only override properties that are
+in the instance groups and networks sections of the manifest.
+
+For information on the Ops Manager API endpoints related to this feature, see [Advanced Manifest Configuration](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration) in Ops Manager API Documentation.
+
+For information about enabling Advanced Mode using the Ops Manager API, see [Advanced Mode](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Mode) in Ops Manager API Documentation.
+
+## <a id="runtime-config-overrides"></a> Override Runtime Config Properties
+
+You can override the runtime config properties in the BOSH Director manifest.
+
+You use the `/api/v0/staged/director/runtime_configs/overrides` endpoint in the runtime configs
+to override properties:
+
+<table>
+  <tr>
+    <th>Runtime Config Names</th>
+    <th>Add-on Names</th>
+  </tr>
+  <tr>
+    <td><code>ops_manager_dns_runtime</code></td>
+    <td><ul>
+      <li><code>bosh_dns</code></li>
+      <li><code>bosh_dns_windows</code></li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td><code>ops_manager_system_metrics_runtime</code></td>
+    <td><ul>
+      <li><code>system_metrics_agent</code></li>
+      <li><code>system_metrics_agent_windows</code></li>
+    </ul></td>
+  </tr>
+</table>
+
+For example, although you cannot change the log level for the BOSH DNS logs through the Ops Manager UI,
+you can change the log level using the <code>/api/v0/staged/director/runtime_configs/overrides</code> endpoint.
+Increase the log level to `DEBUG` for more information
+or decrease the level for less verbose logs.
+
+For more information, see:
+
++ [BOSH DNS job spec](https://github.com/cloudfoundry/bosh-dns-release/blob/master/jobs/bosh-dns/spec) in GitHub
++ [Provide a new list of runtime config overrides for the BOSH
+Director](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration/paths/~1api~1v0~1staged~1director~1runtime_configs~1overrides/get)
++ [Advanced Mode](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Mode) in Ops Manager API Documentation
+
 ## <a id="api"></a>API Docs
 
 See [Advanced Manifest Configuration](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration)
