@@ -3,24 +3,42 @@ title: Overriding Manifest Properties in Advanced Mode
 owner: Ops Manager
 ---
 
-This topic describes something
+This topic describes how you can use Advanced Mode to override some manifest properties.
+This allows you to change properties that you cannot change through the Ops Manager UI.
+
 
 ## <a id='overview'></a> Overview
 
-The 
+How the overrides work...
+
+You can edit the properties in the following sections of the manifest:
+
++ Network
++ BOSH instance group
++ Runtime config
+
+You cannot edit properties in other sections of the manifest.
+For example, you cannot add or delete an arbitrary instance group.
+
+## <a id='prerequisites'></a> Prerequisites
+
+Before you can override manifest properties, you must set Ops Manager to Advanced Mode.
+
+<p class="note warning"><strong>Warning:</strong> <%= vars.company_name %> recommends that
+only skilled operators use Ops Manager's Advanced Mode.
+If you use Advanced Mode incorrectly, you can disable or destroy your deployment.
+</p>
+
+[//]: # (Change the above warning into a partial that can be used consistently. See "Ops Manager Fields That Lock on Deploy")
+
+To set Ops Manager to Advanced Mode, follow the instructions in [How to Enable Advanced Mode
+in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US)
+in the Knowledge Base.
+
+## <a id="api"></a>API Docs
+
+See [Advanced Manifest Configuration](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration)
+in the _Ops Manager API Reference_.
 
 
-## <a id="xxx"></a> 
-
-Create a new topic in the "Advanced Features in Ops Manager" section of the subnav (next to this topic, for example https://docs-pcf-staging.cfapps.io/platform/2-10/customizing/lock-on-deploy.html#unlock). New topic should include:
-Indication that Advanced Mode is required
-A Warning that overriding is advanced (for an example of this warning, see https://docs-pcf-staging.cfapps.io/platform/2-10/customizing/lock-on-deploy.html#unlock)
-A link to the API docs (see below)
-A link to the KB article that explains how to enable Advanced mode. See https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US
-Description of how these overrides work
-One or more useful examples of properties that you might override (work with Vibhas and/or Brian on this)
-Go back into the related release note for this feature, and add a link to this new topic you just created. See #172800280
-Also add a link to this topic from the related release note about editing runtime config properties using the API: https://docs-pcf-staging.cfapps.io/platform/2-10/release-notes/opsmanager-rn.html#runtime-config-overrides
-
-Leader-follower instances have additional infrastructure requirements for capacity planning, availability zones (AZs), and networking compared to singleton instances.
-
+## <a id='examples'></a> Practical Examples of Properties that Can Be Overridden
