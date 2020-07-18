@@ -4,56 +4,36 @@ owner: Ops Manager
 ---
 
 This topic describes how you can use Advanced Mode to override some manifest properties.
-This allows you to change properties that you cannot change through the Ops Manager UI.
+This allows you to change properties that you cannot change through the Ops Manager UI
+or the Ops Manager API.
 
 
 ## <a id='overview'></a> Overview
 
-How the overrides work...
+Ops Manager is an interface to the BOSH Director manifest and the runtime configs
+that underlie Cloud Foundry.
+Ops Manager does not allow you to edit the manifest and configs directly.
 
-You can edit the properties in the following sections of the manifest:
+When you configure Ops Manager through the UI or API,
+you set many of the properties contained in the manifest and configs.
+Other properties are set for you by Ops Manager itself. 
+Still others use the BOSH/Cloud Foundry defaults for these properties.
+
+The manifest property override feature that is described in this topic,
+lets you modify some properties that cannot be modified any other way.
+
+## <a id='properties'></a>Properties That Can Be Overridden
+
+You can edit the properties in the network and instance group jobs sections of the BOSH Director manifest.
+You can also edit properties in two of the the following sections of the BOSH manifest:
 
 + Network
-+ BOSH instance group
++ instance group jobs
 + Runtime config
 
-You cannot edit properties in other sections of the manifest.
-For example, you cannot add or delete an arbitrary instance group.
+You cannot edit properties in other sections of the BOSH Director manifest.
+For example, you cannot add or delete an instance group.
 
-## <a id='prerequisites'></a> Prerequisites
-
-Before you can override manifest properties, you must set Ops Manager to Advanced Mode.
-
-<p class="note warning"><strong>Warning:</strong> <%= vars.company_name %> recommends that
-only skilled operators use Ops Manager's Advanced Mode.
-If you use Advanced Mode incorrectly, you can disable or destroy your deployment.
-</p>
-
-[//]: # (Change the above warning into a partial that can be used consistently. See "Ops Manager Fields That Lock on Deploy")
-
-To set Ops Manager to Advanced Mode, follow the instructions in [How to Enable Advanced Mode
-in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US)
-in the Knowledge Base.
-
-## <a id="bosh-overrides"></a> Override BOSH Director Manifest Properties
-
-You can override certain properties in the BOSH Director Manifest.
-
-You can use the `/api/v0/staged/director/overrides`
-Ops Manager API endpoint to override properties in the BOSH Director manifest.
-With this endpoint, you can only override properties that are
-in the instance groups and networks sections of the manifest.
-
-For information on the Ops Manager API endpoints related to this feature, see [Advanced Manifest Configuration](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration) in Ops Manager API Documentation.
-
-For information about enabling Advanced Mode using the Ops Manager API, see [Advanced Mode](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Mode) in Ops Manager API Documentation.
-
-## <a id="runtime-config-overrides"></a> Override Runtime Config Properties
-
-You can override the runtime config properties in the BOSH Director manifest.
-
-You use the `/api/v0/staged/director/runtime_configs/overrides` endpoint in the runtime configs
-to override properties:
 
 <table>
   <tr>
@@ -76,6 +56,69 @@ to override properties:
   </tr>
 </table>
 
+You cannot edit properties in the third runtime config, `name of that third config`.
+
+## <a id='prerequisites'></a> Prerequisites
+
+Before you can override manifest properties, you must set Ops Manager to Advanced Mode.
+
+<p class="note warning"><strong>Warning:</strong> <%= vars.company_name %> recommends that
+only skilled operators use Ops Manager's Advanced Mode.
+If you use Advanced Mode incorrectly, you can disable or destroy your deployment.
+</p>
+
+[//]: # (Change the above warning into a partial that can be used consistently. See "Ops Manager Fields That Lock on Deploy")
+
+To set Ops Manager to Advanced Mode, follow the instructions in [How to Enable Advanced Mode
+in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US)
+in the Knowledge Base.
+
+
+For additional information about Advanced Mode, see [Advanced Mode](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Mode)
+in the _Ops Manager API_ documentation.
+
+## <a id='process'></a> Process
+
+This is an overview of the steps/tasks things you have to do to change properties in the
+manifest or runtime config.
+
+1. If the property you want change can be modified through the Ops Manager UI or API,
+then change it that way.
+
+2. If the property cannot be modified through the Ops Manager UI or API,
+then follow the steps below.
+
+3. Determine if the property can be overridden.
+   See [Properties That Can Be Overriden](#properties).
+
+4. If the property is in the BOSH Director Manifest, see <a href="#bosh-overrides"> Override BOSH Director Manifest Properties</a>.
+
+4. If the property is in one of the runtime configs, see <a href="#"runtime-config-overrides">  Override Runtime Config Properties</a>.
+
+
+<p class="note"><strong> Note:</strong> There is no validation on properties that you change.
+For example, if you enter a string where an integer is required, no error is given.
+</p>
+
+## <a id="bosh-overrides"></a> Override BOSH Director Manifest Properties
+
+To override properties in the BOSH Director manifest:
+
+1. Use the `/api/v0/staged/director/overrides` endpoint.
+
+For details, see [Advanced Manifest Configuration](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration)
+in _Ops Manager API_ documentation.
+
+This documentation also describes how to view the overrides that are applied and how to delete the overrides.
+
+
+
+## <a id="runtime-config-overrides"></a> Override Runtime Config Properties
+
+
+To override properties in the runtime configs:
+
+1. Use the `/api/v0/staged/director/runtime_configs/overrides` endpoint.
 For example, although you cannot change the log level for the BOSH DNS logs through the Ops Manager UI,
 you can change the log level using the <code>/api/v0/staged/director/runtime_configs/overrides</code> endpoint.
 Increase the log level to `DEBUG` for more information
@@ -88,10 +131,64 @@ For more information, see:
 Director](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration/paths/~1api~1v0~1staged~1director~1runtime_configs~1overrides/get)
 + [Advanced Mode](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Mode) in Ops Manager API Documentation
 
-## <a id="api"></a>API Docs
-
-See [Advanced Manifest Configuration](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration)
-in the _Ops Manager API Reference_.
 
 
 ## <a id='examples'></a> Practical Examples of Properties that Can Be Overridden
+
+Three things you can override:
+- BOSH Director manifest
+- Ops Manager managed Runtime Configs (only two - which are ops_manager_dns_runtime and ops_manager_system_metrics_runtime)
+- BOSH Product (Tile) Manifest
+# BOSH Director Manifest
+1. Does Ops Manager allow me to modify this already? Through the UI (and API, but they should be the same, most of the time...)
+2. What part of the BOSH manifest do you want to override? Right now we only allow users to modify the "Network" and "Instance Group Properties"
+Networks - https://bosh.io/docs/deployment-manifest/#networks
+ - cloud properties are Iaas dependent
+Instance Group (Job) Properties -
+0. Look at the staged manifest (/api/v0/staged/director/manifest endpoint). Is the property you want to change present?
+0.a. Property is present
+ - Is it configurable?
+   Ans: Is there an API/UI to configure this property?
+0.b. Property is NOT present
+ - you need to specify an override
+1. Which job do I want to modify?
+2. Does Ops Manager allow me to modify it currently? (May be hard to answer)
+# BOSH Product Manifest
+This is NOT about modifying the individual job properties. This concern is still up to the tile developers.
+This is about modifying the how the Director will deploy this product. (eg. I want to change max_in_flight)
+Each product has its own manifest. So modifying the overrides for one product will NOT affect another product.
+# Runtime Configs
+Runtime configs are used to apply jobs across a wide swaft of deployments. (Possibly all). Example: Telemetry, Harbor (security)
+This is useful for things you want across many tiles w/o specifying it inside each and every single tile.
+Ops Manager manages (three) runtime configs, and allows you to modify two of them:
+ops_manager_dns_runtime
+ops_manager_system_metrics_runtime
+BOSH terms     |   Ops Manager terms
+deployments   ===  tile
+
+Ming Xiao  2 hours ago
+https://bosh.io/docs/deployment-manifest/#networks
+
+
+
+
+Ming Xiao  2 hours ago
+https://bosh.io/docs/deployment-manifest/#properties
+
+Jane Day:speech_balloon:  1 hour ago
+Okay to reconvene at 10:30 am?
+
+Ming Xiao  1 hour ago
+sounds good
+
+Ming Xiao  1 hour ago
+https://docs.google.com/document/d/1TaFGhydTADua-5CuPF9jB7fCOgkvduq-QrHno6ukADo/edit#heading=h.pxqpkksk6jh7
+
+Ming Xiao  1 hour ago
+https://docs.google.com/document/d/1TaFGhydTADua-5CuPF9jB7fCOgkvduq-QrHno6ukADo/edit?usp=sharing
+
+Ming Xiao  1 hour ago
+https://pcf.daily-cheese.opsmanager.cf-app.com/docs#tag/Products/paths/~1api~1v0~1staged~1products/get
+
+Ming Xiao  1 hour ago
+https://bosh.io/docs/runtime-config/
