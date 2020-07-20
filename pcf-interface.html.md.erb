@@ -155,6 +155,7 @@ As you type, matching entries appear on the screen.
 - **Previous / Next**---Click **Previous**, **Next**, or the number between
 them to load older or newer entries.
 
+
 ## <a id='certificates'></a> Certificates Page
 
 Navigate to the **Certificates** page by clicking the corresponding link in the dashboard header.
@@ -177,7 +178,8 @@ Under 'Type', the first example is 'CA' and the second example is 'Leaf'.
 Under 'Configurable', both example values are 'No'.
 Under 'Valid until', the both example values are 'July 7, 2021' and in bold text on the next line, 'in 364 days'.") %>
 
-The top section of the **Certificates** page lists the certificates that you rotate using the Ops Manager API.
+The top section of the **Certificates** page includes the certificates that the Ops Manager API attempts to rotate.
+This section includes both certificates that the Ops Manager API can rotate and certificates that you must rotate manually.
 For information about how to rotate these certificates, see [Rotating Certificates](https://docs.pivotal.io/platform/security/pcf-infrastructure/api-cert-rotation.html).
 
 The following describes the information listed on the **Certificates** page:
@@ -206,8 +208,12 @@ Under 'Type', both example values are 'CA'.
 Under 'Configurable', both example values are 'No'.
 Under 'Valid until', the both example values are 'July 7, 2021' and in bold text on the next line, 'in 364 days'.") %>
 
-The **Excluded certificates** section lists the certificates that you cannot rotate using the Ops Manager API.
-To rotate these certificates, see the documentation for the product tile associated with the non-rotatable certificate or contact [Support](https://pivotal.io/support).
+The **Excluded certificates** section includes the certificates that the Ops Manager API does not attempt to rotate, because they either must be rotated using the CredHub Maestro CLI or cannot be rotated safely at all.
+
+The Services TLS CA and its leaf certificates must be rotated using the CredHub Maestro CLI. To rotate the Services TLS CA certificate and its leaf certificates, see [Rotate the Services TLS CA and Its Leaf Certificates](https://docs.pivotal.io/platform/2-10/security/pcf-infrastructure/advanced-certificate-rotation.html#services-rotation) in _Advanced Certificate Rotation with CredHub Maestro_.
+
+For all other certificates listed in **Excluded certificates**, see the documentation for the product tile associated with the non-rotatable certificate or contact [Support](https://tanzu.vmware.com/support).
+
 
 ## <a id='settings'></a> Settings Page
 
