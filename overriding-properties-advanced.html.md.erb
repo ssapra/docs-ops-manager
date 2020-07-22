@@ -24,21 +24,31 @@ lets you modify some properties that cannot be modified any other way.
 
 ## <a id='properties'></a>Properties That Can Be Overridden
 
-You can edit the properties in the network and instance group jobs sections of the BOSH Director manifest.
-You can also edit properties in two of the the following sections of the BOSH manifest:
+You can edit properties in the BOSH Director manifest and two of the runtime configs.
 
-+ Network
-+ instance group jobs
-+ Runtime config
 
-You cannot edit properties in other sections of the BOSH Director manifest.
-For example, you cannot add or delete an instance group.
+### <a id='bosh-director-manifest'></a>BOSH Director Manfest
 
+In the BOSH Director manifest, you can edit properties in these sections:
+
++ `network` group
++ `instance_group` `jobs`
+
+You cannot:
+
++ Edit properties in other sections of the BOSH Director manifest
++ Add or delete a network
++ Add or delete an instance group
+
+### <a id='runtime-configs'></a>Runtime Configs
+
+You can edit properties in two addons in each of two of the runtime configs files.
+The table below lists these:
 
 <table>
   <tr>
-    <th>Runtime Config Names</th>
-    <th>Add-on Names</th>
+    <th>Runtime Config</th>
+    <th>Addon</th>
   </tr>
   <tr>
     <td><code>ops_manager_dns_runtime</code></td>
@@ -56,11 +66,10 @@ For example, you cannot add or delete an instance group.
   </tr>
 </table>
 
-You cannot edit properties in the third runtime config, `name of that third config`.
 
 ## <a id='prerequisites'></a> Prerequisites
 
-Before you can override manifest properties, you must set Ops Manager to Advanced Mode.
+Before you can override properties, you must set Ops Manager to Advanced Mode.
 
 <p class="note warning"><strong>Warning:</strong> <%= vars.company_name %> recommends that
 only skilled operators use Ops Manager's Advanced Mode.
@@ -106,10 +115,10 @@ To override properties in the BOSH Director manifest:
 
 1. Use the `/api/v0/staged/director/overrides` endpoint.
 
-For details, see [Advanced Manifest Configuration](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration)
+    For details, see [Advanced Manifest Configuration](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration)
 in _Ops Manager API_ documentation.
-
-This documentation also describes how to view the overrides that are applied and how to delete the overrides.
+    This documentation also describes how to view the BOSH Director manifest,
+view overrides that are applied, and to delete the overrides.
 
 
 
@@ -119,76 +128,33 @@ This documentation also describes how to view the overrides that are applied and
 To override properties in the runtime configs:
 
 1. Use the `/api/v0/staged/director/runtime_configs/overrides` endpoint.
-For example, although you cannot change the log level for the BOSH DNS logs through the Ops Manager UI,
-you can change the log level using the <code>/api/v0/staged/director/runtime_configs/overrides</code> endpoint.
-Increase the log level to `DEBUG` for more information
-or decrease the level for less verbose logs.
 
 For more information, see:
 
-+ [BOSH DNS job spec](https://github.com/cloudfoundry/bosh-dns-release/blob/master/jobs/bosh-dns/spec) in GitHub
++ [BOSH DNS job spec](https://github.com/cloudfoundry/bosh-dns-release/blob/master/jobs/bosh-dns/spec) in GitHub.
+  This file shows the properties and defaults for the `bosh_dns` addon in the `ops_manager_dns_runtime`.
 + [Provide a new list of runtime config overrides for the BOSH
 Director](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration/paths/~1api~1v0~1staged~1director~1runtime_configs~1overrides/get)
+in the _Ops Manager API Reference_.
 + [Advanced Mode](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Mode) in Ops Manager API Documentation
 
 
 
-## <a id='examples'></a> Practical Examples of Properties that Can Be Overridden
+## <a id='examples'></a> Examples of Properties That Can Be Overridden
 
-Three things you can override:
-- BOSH Director manifest
-- Ops Manager managed Runtime Configs (only two - which are ops_manager_dns_runtime and ops_manager_system_metrics_runtime)
-- BOSH Product (Tile) Manifest
-# BOSH Director Manifest
-1. Does Ops Manager allow me to modify this already? Through the UI (and API, but they should be the same, most of the time...)
-2. What part of the BOSH manifest do you want to override? Right now we only allow users to modify the "Network" and "Instance Group Properties"
-Networks - https://bosh.io/docs/deployment-manifest/#networks
- - cloud properties are Iaas dependent
-Instance Group (Job) Properties -
-0. Look at the staged manifest (/api/v0/staged/director/manifest endpoint). Is the property you want to change present?
-0.a. Property is present
- - Is it configurable?
-   Ans: Is there an API/UI to configure this property?
-0.b. Property is NOT present
- - you need to specify an override
-1. Which job do I want to modify?
-2. Does Ops Manager allow me to modify it currently? (May be hard to answer)
-# BOSH Product Manifest
-This is NOT about modifying the individual job properties. This concern is still up to the tile developers.
-This is about modifying the how the Director will deploy this product. (eg. I want to change max_in_flight)
-Each product has its own manifest. So modifying the overrides for one product will NOT affect another product.
-# Runtime Configs
-Runtime configs are used to apply jobs across a wide swaft of deployments. (Possibly all). Example: Telemetry, Harbor (security)
-This is useful for things you want across many tiles w/o specifying it inside each and every single tile.
-Ops Manager manages (three) runtime configs, and allows you to modify two of them:
-ops_manager_dns_runtime
-ops_manager_system_metrics_runtime
-BOSH terms     |   Ops Manager terms
-deployments   ===  tile
+Here are a couple of examples of properties that customers have asked to override.
 
-Ming Xiao  2 hours ago
-https://bosh.io/docs/deployment-manifest/#networks
+###<a id='example1'></a>BOSH Director Manifest Example: Change the network type dynamic
+
+The network type is set to manual.
+This cannot be changed through the the Ops Manager UI or API.
+However, if you want to use a dynamic network, you can by overriding the `type` property
+in the Networks block of the BOSH Director manifest.
 
 
+###<a id='example2'></a>Runtime Config Example: Change the timeout for the BOSH DNS network health check.
 
-
-Ming Xiao  2 hours ago
-https://bosh.io/docs/deployment-manifest/#properties
-
-Jane Day:speech_balloon:  1 hour ago
-Okay to reconvene at 10:30 am?
-
-Ming Xiao  1 hour ago
-sounds good
-
-Ming Xiao  1 hour ago
-https://docs.google.com/document/d/1TaFGhydTADua-5CuPF9jB7fCOgkvduq-QrHno6ukADo/edit#heading=h.pxqpkksk6jh7
-
-Ming Xiao  1 hour ago
-https://docs.google.com/document/d/1TaFGhydTADua-5CuPF9jB7fCOgkvduq-QrHno6ukADo/edit?usp=sharing
-
-Ming Xiao  1 hour ago
-https://pcf.daily-cheese.opsmanager.cf-app.com/docs#tag/Products/paths/~1api~1v0~1staged~1products/get
-
-Ming Xiao  1 hour ago
-https://bosh.io/docs/runtime-config/
+The network timeout for synchronous health checks is 1 second.
+This cannot be changed through the Ops Manager UI or API.
+However, you can change this value by overriding the `health.health.synchronous_check_timeout`
+property in the `bosh-dns` addon of the `ops_mananger_dns_runtime` runtime config.
