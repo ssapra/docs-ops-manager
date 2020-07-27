@@ -139,17 +139,17 @@ in the _Ops Manager API Reference_.
 
 Here are a couple of examples of properties that customers have asked to override.
 
-###<a id='example1'></a>BOSH Director Manifest Example: Change the network type dynamic
+###<a id='example1'></a>BOSH Director Manifest Example: Change the network type to dynamic
 
-The network type is set to manual.
-This cannot be changed through the Ops Manager UI or API.
-However, if you want to use a dynamic network, you can by overriding the `type` property
-in the Networks block of the BOSH Director manifest.
+By default, the network type is set to `manual`.
+You cannot change this property through the Ops Manager UI or API.
+Override this by changing the value of the `type` property in the "Networks" block of the
+BOSH Director manifest.
 
 
 ###<a id='example2'></a>Runtime Config Example: Change the timeout for the BOSH DNS network health check.
 
-The network timeout for synchronous health checks is 1 second.
-This cannot be changed through the Ops Manager UI or API.
-However, you can change this value by overriding the `health.health.synchronous_check_timeout`
+By default, the network timeout for synchronous health checks is 1 second.
+You cannot cannot this property through the Ops Manager UI or API.
+Override this by changing the value of the `health.health.synchronous_check_timeout`
 property in the `bosh-dns` add-on of the `ops_mananger_dns_runtime` runtime config.
