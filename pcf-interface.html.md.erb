@@ -26,10 +26,10 @@ red letter. Click the image to see it at full size.
 The following list describes each labeled section of the Installation Dashboard:
 
 - **A**---**Import a Product**: Click this button to add a new product to Ops Manager. You
-can download <%= vars.product_name %>-compatible product files from [Pivotal
-Network](https://network.pivotal.io).
-  * If you have configured a [Pivotal Network
-API](../customizing/add-delete.html) token in the **Settings** section of Ops Manager, a
+can download <%= vars.platform_name %>-compatible product files from
+[VMware Tanzu Network](https://network.pivotal.io).
+  * If you have configured a [VMware Tanzu Network
+API](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/add-delete.html) token in the **Settings** section of Ops Manager, a
 list of the latest versions of already imported products appears automatically.
 
 - **B**---**Delete All Unused Products**: Click this link to delete any unused products.
@@ -40,7 +40,7 @@ Dashboard** page from other Ops Manager pages.
 - **D**---**Stemcell Library**: Click this link to open the **Stemcell Library**. In the
 **Stemcell Library** you can import stemcells, stage stemcells, and review your stemcell
 version numbers. For more information, see [Importing and Managing
-Stemcells](../opsguide/managing-stemcells.html).
+Stemcells](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/opsguide/managing-stemcells.html).
 
 - **E**---**Change Log**: Click this link to view and search a log of your previous
 installations. See the [Change Log Page](#changelog) section of this topic for details.
@@ -59,7 +59,7 @@ be lost.
 - **H**---**Review Pending Changes**: Click the button to go to the **Review Pending
 Changes** page, which organizes pending changes by tile. You are able to enable or disable
 each tile to selectively deploy individual tiles and their dependencies. For more
-information, see [Reviewing Pending Product Changes](https://docs.pivotal.io/platform/2-7/customizing/review-pending-changes.html).
+information, see [Reviewing Pending Product Changes](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/review-pending-changes.html).
 
 - **I**---**Orange Bar**: Indicates that additional configuration for the product tile is
 required before deployment. Click the product tile to complete its configuration.
@@ -67,12 +67,12 @@ required before deployment. Click the product tile to complete its configuration
 - **J**---**Missing Stemcell Link**: If an imported product is missing a required
 stemcell, a **Missing Stemcell** link appears on the tile. Click this link to open the
 Stemcell Library. For more information, see [Importing and Managing
-Stemcells](../opsguide/managing-stemcells.html).
+Stemcells](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/opsguide/managing-stemcells.html).
 
 - **K**---**API Docs**: Click this link to go to the Ops Manager API documentation, which
 details how you can manage Ops Manager through the API rather than with the user
 interface. For more information about the Ops Manager API, see [Using the Ops Manager
-API](https://docs.pivotal.io/platform/2-7/customizing/ops-man-api.html).
+API](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html).
 
 
 ## <a id="changelog"></a> Change Log Page
@@ -193,7 +193,7 @@ To change your Identity Provider (IdP) to SAML, configure the following fields:
   <li><strong>BOSH IDP Metadata</strong>: (Optional) Enter the full URL or XML BOSH IdP metadata. If left blank, the default is the same metadata as the field above.</li>
   <li><strong>SAML Admin Group</strong>: Enter the name of the SAML group that contains all of the Ops Manager administrators. This field is case-sensitive.</li>
   <li><strong>Groups Attribute</strong>: Enter the groups attribute tag name with which you configured the SAML server. This field is case-sensitive.</li>
-  <li><strong>Provision an admin client in the Bosh UAA</strong>: Enable if you want to provision an admin client in the BOSH UAA. For more information, see <a href="https://docs.pivotal.io/platform/2-7/customizing/opsmanager-create-bosh-client.html#saml">Provision Admin Client</a> in the <em>Creating UAA Clients for BOSH Director</em> topic.</li>
+  <li><strong>Provision an admin client in the Bosh UAA</strong>: Enable if you want to provision an admin client in the BOSH UAA. For more information, see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/opsmanager-create-bosh-client.html#saml">Provision Admin Client</a> in the <em>Creating UAA Clients for BOSH Director</em> topic.</li>
 </ul>
 
 ### LDAP Settings
@@ -201,11 +201,11 @@ Use this pane to change your IdP to LDAP.
 
 For more information about changing your IdP to SAML or LDAP, view the following instructions for your IaaS configuration:
 
-* Amazon Web Services. See [Configuring BOSH Director on AWS](../om/aws/config-manual.html).
-* Google Cloud Platform. See [Configuring BOSH Director on GCP Manually](../om/aws/config-manual.html).
-* Microsoft Azure. See [Configuring BOSH Director on Azure Manually](../om/azure/config-manual.html).
-* OpenStack. See [Configuring BOSH Director on OpenStack](../om/openstack/config.html).
-* vSphere. See [Configuring BOSH Director on vSphere](../om/vsphere/config.html).
+* Amazon Web Services. See [Configuring BOSH Director on AWS](aws/config-manual.html).
+* Google Cloud Platform. See [Configuring BOSH Director on GCP Manually](gcp/config-manual.html).
+* Microsoft Azure. See [Configuring BOSH Director on Azure Manually](azure/config-manual.html).
+* OpenStack. See [Configuring BOSH Director on OpenStack](openstack/config.html).
+* vSphere. See [Configuring BOSH Director on vSphere](vsphere/config.html).
 
 <%= image_tag("settings-ssl-cert.png", :alt => "The 'Settings' page shows the 'SSL
       Certificate' pane highlighted on the left-hand tabular layout to indicate selection. The body shows a header titled 'SSL Certificate' with an option to 'Revert to self-signed certificate' followed by help text and two required fields: 'Certificate' and 'Private key'. The 'Add Certificate' button is at the bottom of the body.") %>
@@ -220,10 +220,11 @@ If you leave the fields blank, Ops Manager uses an auto-generated self-signed ce
 indicate selection. The body shows a header titled 'Pivotal Network Settings' with help
 text beneath and one field: 'Set API Token'. A button labeled 'Add Token' is at the bottom of the body.") %>
 
-### Pivotal Network Settings
-Enter your [Pivotal Network
-API](../customizing/add-delete.html#pivnet-api) token and click **Add Token** to connect your **Installation
-Dashboard** to Pivotal Network.
+### <a id="vmware-tanzu"></a>VMware Tanzu Network Settings
+
+Enter your [VMware Tanzu Network
+API](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/add-delete.html#pivnet-api) token and click **Add Token** to connect your **Installation
+Dashboard** to VMware Tanzu Network.
 
 ### Proxy Settings
 If you are using a proxy to connect to Ops Manager, update your
