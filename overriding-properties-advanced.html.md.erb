@@ -38,7 +38,7 @@ or the Ops Manager API, use the UI or API to change the property.
     4. If the property is in one of the runtime configs, see
 	 <a href="#"runtime-config-overrides">Override Runtime Config Properties</a>.
 
-<p class="note"><strong>Warning:</strong> No validation is performed on the properties that you change
+<p class="note warning"><strong>Warning:</strong> No validation is performed on the properties that you change
 using Advanced Mode.
 For example, if you enter a string where an integer is required, no error is given.
 </p>
@@ -110,9 +110,10 @@ To override properties in the BOSH Director manifest:
 
 1. Use the `/api/v0/staged/director/overrides` endpoint.
 
-    For details, see [Advanced Manifest Configuration](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration)
+For more information, see [Advanced Manifest Configuration]
+(https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration)
 in _Ops Manager API_ documentation.
-    This documentation also describes how to view the BOSH Director manifest,
+This documentation also describes how to view the BOSH Director manifest,
 view overrides that are applied, and to delete the overrides.
 
 
