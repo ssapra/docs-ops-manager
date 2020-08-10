@@ -305,6 +305,8 @@ Isolation segments can help with satisfying IP address space needs in a routed n
 
 These sections describe the reference architecture for <%= vars.k8s_runtime_abbr %> on vSphere with NSX-T deployments. They also provide requirements and recommendations for deploying <%= vars.k8s_runtime_abbr %> on vSphere with NSX-T, such as network, load balancing, and storage capacity requirements and recommendations.
 
+<p class="note"><strong>NOTE:</strong> VMware recommends deploying <%= vars.k8s_runtime_abbr %> on its own dedicated Ops Manager instance, rather than on a shared Ops Manager that also hosts other runtimes such as Tanzu Application Service.</p>
+
 ### <a id="pks-nsx-t-diagram"></a> Architecture
 
 The diagram below illustrates the reference architecture for <%= vars.k8s_runtime_abbr %> on vSphere with NSX-T deployments.
@@ -451,3 +453,5 @@ the <%= vars.k8s_runtime_abbr %> tile.
 Select from networks already identified in <%= vars.ops_manager %> to deploy the
 <%= vars.k8s_runtime_abbr %> API and <%= vars.k8s_runtime_abbr %>-provisioned
 Kubernetes clusters.
+
+<p class="note"><strong>NOTE:</strong> VMware recommends deploying <%= vars.k8s_runtime_abbr %> on its own dedicated Ops Manager instance, rather than on a shared Ops Manager that also hosts other runtimes such as Tanzu Application Service.</p>
