@@ -27,10 +27,14 @@ that cannot be modified in other ways.
 
 Before you can override properties, you must set Ops Manager to Advanced Mode.
 
-<p class="note warning"><strong>Warning:</strong> <%= vars.company_name %> recommends that
-only skilled operators use Advanced Mode in Ops Manager.
-If you use Advanced Mode incorrectly, you can disable or destroy your deployment.
-</p>
+<div class="note warning"><strong>Warning:</strong>
+  <ul>
+    <li><%= vars.company_name %> recommends that only skilled operators use Advanced Mode in Ops Manager.
+      If you use Advanced Mode incorrectly, you can disable or destroy your deployment.</li>
+    <li>Ops Manager does not validate the properties that you change using Advanced Mode.
+      For example, if you enter a string where an integer is required, you do not receive an error.</li>
+  </ul>
+</div>
 
 To set Ops Manager to Advanced Mode, follow the procedure in [How to Enable Advanced Mode
 in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US)
@@ -56,14 +60,9 @@ or the Ops Manager API, use the UI or API to change the property.
     1. If the property is in one of the runtime configs,
     see [Override Runtime Config Properties](#runtime-config-overrides).
 
-<p class="note warning"><strong>Warning:</strong> No validation is performed on the properties that you change
-using Advanced Mode.
-For example, if you enter a string where an integer is required, no error is given.
-</p>
-
-You can also view the BOSH Director manifest,
+You can also use the Ops Manager API to view the BOSH Director manifest,
 view the list of overrides for the BOSH Director and runtime configs,
-and delete the overrides using the Ops Manager API.
+and delete the overrides.
 For more information, see [Advanced Manifest Configuration](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration)
 in the Ops Manager API documentation.
 
