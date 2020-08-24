@@ -40,9 +40,11 @@ To configure the **Director Config** pane:
 
 1. Select the **Enable VM Resurrector Plugin** checkbox to enable the BOSH Resurrector functionality and increase your runtime availability. <% if current_page.data.iaas == "vSphere" %>If you intend to install <%= vars.app_runtime_abbr %>, see [Using the BOSH Resurrector](https://docs.pivotal.io/platform/customizing/resurrector.html) for more information about the Resurrector plugin.<% end %>
 
-1. Keep the **Enable deprecated BOSH System Metrics Server** checkbox selected to collect 14 basic datapoints, including load, CPU, memory, swap, and disk metrics. View the output in the **Status** tab.
+1. Keep the **Enable deprecated BOSH System Metrics Server** checkbox selected to collect basic metrics, including load, CPU, memory, swap, and disk metrics. View the output in the **Status** tab.
 
-1.  For more detailed data, keep the **Enable additional System Metrics** checkbox selected to collect more than 42 datapoints of CPU, disk, and network metrics. If you don’t need this information, deselect to reduce volume.
+1.  For more detailed metrics, keep the **Enable additional System Metrics** checkbox selected.
+If you do not need this level of detail, deselect the checkbox to reduce volume.
+For a list of metrics collected, see [System Metrics Agent](https://github.com/cloudfoundry/system-metrics-release/blob/develop/docs/system-metrics-agent.md) in GitHub.
 
 1. Select **Enable Post Deploy Scripts** to run a post-deploy script after deployment. This script allows the job to execute additional commands against a deployment.
     <p class="note"><strong>Note:</strong> If you intend to install <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>), you must enable post-deploy scripts.</p>
