@@ -19,7 +19,7 @@ the source for this page in GitHub" at the bottom of the topic.
 
 | **Branch Name** | **Content** | **Location** |
 |-----------------|-------------|--------------|
-| `master` | Ops Manager v2.11 pre-release  | https://docs-pcf-staging.cfapps.io/platform/ops-manager/2-11/ |
+| `master` | Ops Manager v2.11 pre-release  | https://docs-pcf-staging.cfapps.io/ops-manager/2-11/ |
 | `2.10` | Ops Manager v2.10 | https://docs.pivotal.io/platform/ops-manager/2-10/index.html |
 | `2.9` | Ops Manager v2.9  | https://docs.pivotal.io/platform/ops-manager/2-9/index.html |
 | `2.8` | Ops Manager v2.8  | https://docs.pivotal.io/platform/ops-manager/2-8/index.html |
