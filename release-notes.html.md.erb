@@ -3,14 +3,12 @@ title: Ops Manager v2.9 Release Notes
 owner: Ops Manager
 ---
 
-<% current_page.data.title = vars.ops_manager + " " + vars.v_major_version + " Release Notes" %>
-
 <p class="note"><strong>Note:</strong>
   Pivotal Platform is now part of VMware Tanzu.
   In v2.9 and later, Pivotal Operations Manager is named <%= vars.ops_manager %>.
 </p>
 
-This topic contains release notes for <%= vars.ops_manager %> <%= vars.v_major_version %>.
+This topic contains release notes for <%= vars.ops_manager %> v2.9.
 
 <%= vars.platform_name %> is certified by the Cloud Foundry Foundation for <%= Date.today.year %>.
 
@@ -38,9 +36,9 @@ Ops Manager v2.9.9 uses the following component versions:
     <td>Ops Manager</td><td>2.9.9-build.164*</td>
   </tr>
   <tr><td>Stemcell</td><td>621.78</td></tr><tr><td>BBR SDK</td><td>1.18.0</td></tr><tr><td>BOSH Director</td><td>270.11.1</td></tr><tr><td>BOSH DNS</td><td>1.24.0*</td></tr><tr><td>Metrics Server</td><td>0.1.0*</td></tr><tr><td>System Metrics</td><td>2.0.11</td></tr><tr><td>CredHub</td><td>2.5.12</td></tr><tr><td>CredHub Maestro</td><td>6.0.0</td></tr><tr><td>Syslog</td><td>11.6.1</td></tr><tr><td>Windows Syslog</td><td>1.0.3</td></tr><tr><td>UAA</td><td>74.5.18</td></tr><tr><td>BPM</td><td>1.1.8</td></tr><tr><td>Networking</td><td>9</td></tr><tr><td>OS Conf</td><td>22.0.0</td></tr><tr><td>AWS CPI</td><td>81</td></tr><tr><td>Azure CPI</td><td>37.3.0</td></tr><tr><td>Google CPI</td><td>30.0.0</td></tr><tr><td>OpenStack CPI</td><td>44</td></tr><tr><td>vSphere CPI</td><td>54.1.0</td></tr><tr><td>BOSH CLI</td><td>6.3.1</td></tr><tr><td>Credhub CLI</td><td>2.8.0</td></tr><tr><td>BBR CLI</td><td>1.7.2</td></tr><tr><td>Telemetry</td><td>1.1.1</td></tr>
-  
+
     <td colspan="2"><em>* Components marked with an asterisk have been updated.</em></td>
-  
+
   </tbody>
 </table>
 
@@ -64,9 +62,9 @@ Ops Manager v2.9.8 uses the following component versions:
     <td>Ops Manager</td><td>2.9.8-build.160*</td>
   </tr>
   <tr><td>Stemcell</td><td>621.78*</td></tr><tr><td>BBR SDK</td><td>1.18.0</td></tr><tr><td>BOSH Director</td><td>270.11.1</td></tr><tr><td>BOSH DNS</td><td>1.21.0</td></tr><tr><td>Metrics Server</td><td>0.0.24</td></tr><tr><td>System Metrics</td><td>2.0.11</td></tr><tr><td>CredHub</td><td>2.5.12</td></tr><tr><td>CredHub Maestro</td><td>6.0.0</td></tr><tr><td>Syslog</td><td>11.6.1</td></tr><tr><td>Windows Syslog</td><td>1.0.3</td></tr><tr><td>UAA</td><td>74.5.18</td></tr><tr><td>BPM</td><td>1.1.8</td></tr><tr><td>Networking</td><td>9</td></tr><tr><td>OS Conf</td><td>22.0.0</td></tr><tr><td>AWS CPI</td><td>81</td></tr><tr><td>Azure CPI</td><td>37.3.0*</td></tr><tr><td>Google CPI</td><td>30.0.0</td></tr><tr><td>OpenStack CPI</td><td>44</td></tr><tr><td>vSphere CPI</td><td>54.1.0</td></tr><tr><td>BOSH CLI</td><td>6.3.1</td></tr><tr><td>Credhub CLI</td><td>2.8.0</td></tr><tr><td>BBR CLI</td><td>1.7.2</td></tr><tr><td>Telemetry</td><td>1.1.1</td></tr>
-  
+
     <td colspan="2"><em>* Components marked with an asterisk have been updated.</em></td>
-  
+
   </tbody>
 </table>
 
@@ -106,9 +104,9 @@ Ops Manager v2.9.7 uses the following component versions:
     <td>Ops Manager</td><td>2.9.7-build.157*</td>
   </tr>
   <tr><td>Stemcell</td><td>621.77*</td></tr><tr><td>BBR SDK</td><td>1.18.0</td></tr><tr><td>BOSH Director</td><td>270.11.1</td></tr><tr><td>BOSH DNS</td><td>1.21.0</td></tr><tr><td>Metrics Server</td><td>0.0.24</td></tr><tr><td>System Metrics</td><td>2.0.11</td></tr><tr><td>CredHub</td><td>2.5.12</td></tr><tr><td>CredHub Maestro</td><td>6.0.0</td></tr><tr><td>Syslog</td><td>11.6.1</td></tr><tr><td>Windows Syslog</td><td>1.0.3</td></tr><tr><td>UAA</td><td>74.5.18*</td></tr><tr><td>BPM</td><td>1.1.8</td></tr><tr><td>Networking</td><td>9</td></tr><tr><td>OS Conf</td><td>22.0.0</td></tr><tr><td>AWS CPI</td><td>81</td></tr><tr><td>Azure CPI</td><td>37.2.0</td></tr><tr><td>Google CPI</td><td>30.0.0</td></tr><tr><td>OpenStack CPI</td><td>44</td></tr><tr><td>vSphere CPI</td><td>54.1.0</td></tr><tr><td>BOSH CLI</td><td>6.3.1*</td></tr><tr><td>Credhub CLI</td><td>2.8.0*</td></tr><tr><td>BBR CLI</td><td>1.7.2</td></tr><tr><td>Telemetry</td><td>1.1.1*</td></tr>
-  
+
     <td colspan="2"><em>* Components marked with an asterisk have been updated.</em></td>
-  
+
   </tbody>
 </table>
 
@@ -172,7 +170,7 @@ Ops Manager v2.9.7 uses the following component versions:
 **Release Date:** June 4, 2020
 
 * **[Feature]**: Adds an **Enable additional System Metrics** checkbox to the Director Config screen and adds `metrics_server_enabled` and `system_metrics_runtime_enabled` accessors to `$director`. These configurations are used by Tanzu Application Service for VMs (TAS for VMs) deployments.
-  <p class="note"><strong>Note</strong>: The checkbox and accessors are currently placeholders and will only be functional with a future release of TAS for VMs.</p> 
+  <p class="note"><strong>Note</strong>: The checkbox and accessors are currently placeholders and will only be functional with a future release of TAS for VMs.</p>
 * **[Bug Fix]**: Tiles that fail to deploy do not appear twice in the `GET /api/v0/staged/pending_changes` API endpoint output.
 
 <%= vars.ops_manager %> v2.9.4 uses the following component versions:
@@ -189,9 +187,9 @@ Ops Manager v2.9.7 uses the following component versions:
     <td>Ops Manager</td><td>2.9.4-build.137*</td>
   </tr>
   <tr><td>Stemcell</td><td>621.74</td></tr><tr><td>BBR SDK</td><td>1.18.0</td></tr><tr><td>BOSH Director</td><td>270.11.1</td></tr><tr><td>BOSH DNS</td><td>1.21.0</td></tr><tr><td>Metrics Server</td><td>0.0.24</td></tr><tr><td>System Metrics</td><td>2.0.11</td></tr><tr><td>CredHub</td><td>2.5.12*</td></tr><tr><td>Syslog</td><td>11.6.1</td></tr><tr><td>Windows Syslog</td><td>1.0.3</td></tr><tr><td>UAA</td><td>74.5.16</td></tr><tr><td>BPM</td><td>1.1.8</td></tr><tr><td>Networking</td><td>9</td></tr><tr><td>OS Conf</td><td>22.0.0</td></tr><tr><td>AWS CPI</td><td>81</td></tr><tr><td>Azure CPI</td><td>37.2.0</td></tr><tr><td>Google CPI</td><td>30.0.0</td></tr><tr><td>OpenStack CPI</td><td>44</td></tr><tr><td>vSphere CPI</td><td>53.0.11</td></tr><tr><td>BOSH CLI</td><td>6.2.1</td></tr><tr><td>Credhub CLI</td><td>2.7.0</td></tr><tr><td>BBR CLI</td><td>1.7.2</td></tr><tr><td>Telemetry</td><td>1.1.0</td></tr>
-  
+
     <td colspan="2"><em>* Components marked with an asterisk have been updated.</em></td>
-  
+
   </tbody>
 </table>
 
@@ -252,7 +250,7 @@ Ops Manager v2.9.7 uses the following component versions:
 **Release Date:** May 4, 2020
 
 * **[Feature]**: Ops Manager and BOSH Director support the Hong Kong region in AWS.
-* **[Feature]**: In the Ops Manager UI, the text of the Pivotal Network link is updated to VMware Tanzu Network. 
+* **[Feature]**: In the Ops Manager UI, the text of the Pivotal Network link is updated to VMware Tanzu Network.
 * **[Bug Fix]**: Fixes issue where rsyslog stops forwarding logs after first log rotation.
 * **[Bug Fix]**: Fixes issue where CredHub-generated variables are displayed in plain text on the streaming and historical log pages.
 * **[Bug Fix]**: Fixes issue in Ops Manager UI where stemcell versions are compared as strings and incorrectly report stemcell out-of-date messages. This resolves [Stemcell Library Warns That Stemcells with Triple-Digit Minor Release Numbers Are Out of Date ](#triple-digit-stemcell) known issue.
@@ -305,19 +303,19 @@ Ops Manager v2.9.7 uses the following component versions:
 
 ## <a id='how-to-upgrade'></a> How to Upgrade
 
-To upgrade to <%= vars.ops_manager_full %> <%= vars.v_major_version %>, see [Upgrading <%= vars.platform_name %>](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/upgrading-pcf.html).
+To upgrade to <%= vars.ops_manager_full %> v2.9, see [Upgrading <%= vars.platform_name %>](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/upgrading-pcf.html).
 
 
-## <a id='major-features'></a> New Features in <%= vars.ops_manager %> <%= vars.v_major_version %>
+## <a id='major-features'></a> New Features in <%= vars.ops_manager %> v2.9
 
-<%= vars.ops_manager %> <%= vars.v_major_version %> includes the following major features:
+<%= vars.ops_manager %> v2.9 includes the following major features:
 
 ### <a id='om-api-rotate-credhub-certs'></a> <%= vars.ops_manager %> API Rotates BOSH CredHub Certificates and Certificate Authorities
 
 The `certificate_authorities` API endpoints in <%= vars.ops_manager %> rotates certificates
 in BOSH CredHub as well as in <%= vars.ops_manager %> if the following conditions are met:
 
-* <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) <%= vars.v_major_version %> or later is installed.
+* <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) v2.9 or later is installed.
 * <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>) is not installed.
 
 The <%= vars.ops_manager %> API rotates both certificate authorities (CAs) and leaf certificates.
@@ -337,17 +335,17 @@ see the [<%= vars.ops_manager %> API documentation](https://docs.pivotal.io/plat
 
 ### <a id='authentication-update'></a> View and Update <%= vars.ops_manager %> Authentication Settings
 
-Operators can view and update the current authentication settings through the <%= vars.ops_manager %> UI and API. 
+Operators can view and update the current authentication settings through the <%= vars.ops_manager %> UI and API.
 
 To view and update authentication settings through the <%= vars.ops_manager %> UI:
 
 1. Go to the <%= vars.ops_manager %> Installation Dashboard **Settings** pane.
 
-1. Select **Internal Authentication Settings**. 
+1. Select **Internal Authentication Settings**.
 
 1. Edit the current settings.
 
-1. Click **Update**. 
+1. Click **Update**.
 
 For more information about accessing the **Settings** pane, see [Setting Page](https://docs.pivotal.io/platform/ops-manager/2-9/pcf-interface.html#settings) in _Using the <%= vars.ops_manager %> Interface_.
 
@@ -355,12 +353,12 @@ To view and update authentication settings through the <%= vars.ops_manager %> A
 
 ### <a id='update-decryption-passphrase'></a> Update the <%= vars.ops_manager %> Decryption Passphrase
 
-Operators can update the <%= vars.ops_manager %> decryption passphrase 
+Operators can update the <%= vars.ops_manager %> decryption passphrase
 by using the `/api/v0/settings/decryption-passphrase` <%= vars.ops_manager %> API endpoint.
 
 ### <a id='update-decryption-passphrase'></a> View and Update <%= vars.ops_manager %> Proxy Settings
 
-Operators can view and update proxy settings in <%= vars.ops_manager %> 
+Operators can view and update proxy settings in <%= vars.ops_manager %>
 by using the `/api/v0/settings/proxy_settings` <%= vars.ops_manager %> API endpoint.
 
 ### <a id='advanced-mode-banner'></a> Advanced Mode UI Banner
@@ -373,7 +371,7 @@ in the Knowledge Base.
 
 ### <a id='advanced-mode-fields'></a> Modifications to Locked and Unlockable Fields
 
-<%= vars.ops_manager %> <%= vars.v_major_version %> changes which fields 
+<%= vars.ops_manager %> v2.9 changes which fields
 are locked after you deploy the BOSH Director.
 
 You can access these fields in the <%= vars.ops_manager %> Director Config pane. For unlockable fields, you can also modify the values of these settings by using the `/api/v0/staged/director/properties` <%= vars.ops_manager %> API endpoint in Advanced Mode.
@@ -408,7 +406,7 @@ The following fields are locked and you can unlock them in Advanced Mode:
 
 #### Permanently Locked Field Changes
 
-The following fields are locked and you cannot unlock them, 
+The following fields are locked and you cannot unlock them,
 even in Advanced Mode:
 
 * **Database Location**
@@ -424,7 +422,7 @@ For more information about fields that can be unlocked in Advanced Mode, see the
 
 For more information about the end of support for path-style S3 bucket URLs, see [Amazon S3 Path Deprecation Plan – The Rest of the Story](https://aws.amazon.com/blogs/aws/amazon-s3-path-deprecation-plan-the-rest-of-the-story/) in the AWS News Blog.
 
-You can specify either path-style or domain-style URLs for S3-compatible blobstores in the **S3 URLs Style** dropdown in the <%= vars.ops_manager %> **Director Config** pane. 
+You can specify either path-style or domain-style URLs for S3-compatible blobstores in the **S3 URLs Style** dropdown in the <%= vars.ops_manager %> **Director Config** pane.
 
 If you used S3-compatible blobstores on <%= vars.platform_name %> v2.8, <%= vars.ops_manager %> specifies path-style URLs for the blobstores <%= vars.platform_name %> v2.9 by default. This helps ensure compatibility on upgrade to <%= vars.platform_name %> v2.9.
 
@@ -440,7 +438,7 @@ For more information about the difference between path-style and virtual-hosted-
 
 ### <a id='open-api-spec-docs'></a> <%= vars.ops_manager %> API Documentation Uses the Open API Specification
 
-In <%= vars.ops_manager %> <%= vars.v_major_version %>, <%= vars.ops_manager %> API documentation adopts the Open API Specification (OAS). In addition to general format improvements, this update provides operators with a machine-parsable version of the <%= vars.ops_manager %> API docs.
+In <%= vars.ops_manager %> v2.9, <%= vars.ops_manager %> API documentation adopts the Open API Specification (OAS). In addition to general format improvements, this update provides operators with a machine-parsable version of the <%= vars.ops_manager %> API docs.
 
 For more information about OAS, see the [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) repository on GitHub.
 
@@ -469,27 +467,27 @@ You can recreate the BOSH Director VM in one of two ways:
 
 * In the **Director Config** pane of the BOSH Director tile.
 
-* With the `/api/v0/staged/director/properties` <%= vars.ops_manager %> API endpoint. 
+* With the `/api/v0/staged/director/properties` <%= vars.ops_manager %> API endpoint.
 
 To recreate the BOSH Director VM in the BOSH Director tile:
 
-1. Go to the **Director Config** pane. 
+1. Go to the **Director Config** pane.
 
-1. Enable the **Recreate BOSH Director VM** checkbox. 
+1. Enable the **Recreate BOSH Director VM** checkbox.
 
-1. Click **Apply Changes** in the <%= vars.ops_manager %> Installation Dashboard. 
+1. Click **Apply Changes** in the <%= vars.ops_manager %> Installation Dashboard.
 
-The checkbox clears after you apply changes. 
+The checkbox clears after you apply changes.
 For more information, see the [BOSH Director configuration topic for your IaaS](https://docs.pivotal.io/platform/ops-manager/2-9/index.html).
 
-To recreate the BOSH Director VM through the <%= vars.ops_manager %> API, use the `/api/v0/staged/director/properties` endpoint to set the `bosh_recreate_director_on_next_deploy` property to `true`. 
+To recreate the BOSH Director VM through the <%= vars.ops_manager %> API, use the `/api/v0/staged/director/properties` endpoint to set the `bosh_recreate_director_on_next_deploy` property to `true`.
 
-This property is set to `false` by default. For more information about using the `api/v0/staged/director/properties` endpoint, see [Updating director and Iaas properties (Experimental)](https://docs.pivotal.io/platform/2-8/opsman-api/#updating-director-and-iaas-properties-experimental) 
+This property is set to `false` by default. For more information about using the `api/v0/staged/director/properties` endpoint, see [Updating director and Iaas properties (Experimental)](https://docs.pivotal.io/platform/2-8/opsman-api/#updating-director-and-iaas-properties-experimental)
 in the <%= vars.ops_manager %> API documentation.
 
 ### <a id='deployment-log-improved'></a> Improved Deployment Log Display
 
-<%= vars.ops_manager %> <%= vars.v_major_version %> includes UI and performance improvements
+<%= vars.ops_manager %> v2.9 includes UI and performance improvements
 to the deployment log display:
 
 * Deployment logs render more quickly
@@ -516,24 +514,24 @@ For more information about stretched clusters, see [Introduction to Stretched Cl
 
 ## <a id='known-issues'></a> Known Issues
 
-<%= vars.ops_manager %> <%= vars.v_major_version %> includes the following known issues:
+<%= vars.ops_manager %> v2.9 includes the following known issues:
 
 ### <a id='unresponsive-agent'></a> BOSH VMs Report Unresponsive Agent After Activating New Root CA
 
-<%= partial "/pcf/certs/recreate-service-instances" %> 
+<%= partial "/pcf/certs/recreate-service-instances" %>
 
 
 ### <a id='credhub-generated-field'></a> Reset Manually Set Certificates in CredHub Before Rotating Certificates with the <%= vars.ops_manager %> API
 
-If you have manually set any certificates in CredHub on <%= vars.ops_manager %> v2.6 or earlier, you need to reset those certificates before using the <%= vars.ops_manager %> API to rotate CredHub certificates. 
+If you have manually set any certificates in CredHub on <%= vars.ops_manager %> v2.6 or earlier, you need to reset those certificates before using the <%= vars.ops_manager %> API to rotate CredHub certificates.
 
 Resetting these certificates is not a required condition for the <%= vars.ops_manager %> v2.9 upgrade. You can reset them either before or after the upgrade.
 
-To reset a certificate in CredHub, see [Reviewing and Resetting Manually Set Certificates in CredHub](https://docs.pivotal.io/platform/2-9/security/pcf-infrastructure/manual-credhub-certificate.html). 
+To reset a certificate in CredHub, see [Reviewing and Resetting Manually Set Certificates in CredHub](https://docs.pivotal.io/platform/2-9/security/pcf-infrastructure/manual-credhub-certificate.html).
 
 For more information about rotating certificates using the <%= vars.ops_manager %> API, see [Rotating Certificates](https://docs.pivotal.io/platform/2-9/security/pcf-infrastructure/api-cert-rotation.html). For more information about the `certificate_authorities/active/regenerate` endpoint, see [Rotate Certificates](https://docs.pivotal.io/pivotalcf/2-9/opsman-api/#create-root-certificate-authorities) in the <%= vars.ops_manager %> API documentation.
 
-### <a id='triple-digit-stemcell'></a> Stemcell Library Warns That Stemcells with Triple-Digit Minor Release Numbers Are Out of Date 
+### <a id='triple-digit-stemcell'></a> Stemcell Library Warns That Stemcells with Triple-Digit Minor Release Numbers Are Out of Date
 
 In Ops Manager v2.9.0, when you upload a stemcell with a triple-digit minor release number to the <%= vars.ops_manager %> Stemcell Library, you see a warning that the stemcell is out of date.
 
