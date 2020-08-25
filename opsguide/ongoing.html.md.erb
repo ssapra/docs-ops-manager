@@ -1,0 +1,131 @@
+---
+title: Ongoing Operations
+owner: <%= vars.platform_name %> Documentation
+---
+
+This topic describes how to perform routine operations on a running <%= vars.platform_name %>.
+
+
+## <a id='overview'></a> Overview
+
+Ongoing operations are procedures that <%= vars.platform_name %> operators routinely perform to keep the platform working as it should, or to change how it works if the platform needs to do something new or has a problem.
+
+Examples include:
+
+* Performing <%= vars.platform_name %> upgrades
+* Making changes to your IaaS and external components
+* Monitoring platform health, checking logs, and generating usage reports
+* Tuning the platform to eliminate bottlenecks or increase capacity
+* Giving developers access to new software services, stacks, and app capabilities
+* Backing up and restoring the platform
+
+In addition to these tasks, <%= vars.platform_name %> operators also routinely perform Day 2 configurations to configure or change platform features and integrations even well past Day 2. For more information, see [Day 2 Configurations](../customizing/day2.html).
+
+
+## <a id='contents'></a> Contents
+
+### <a id='upgrading'></a> Upgrading
+
+* [Upgrading <%= vars.platform_name %>](../customizing/upgrading-pcf.html)
+
+* [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](../customizing/upgrading-products.html)
+
+* [cf push Availability During <%= vars.app_runtime_abbr %> Upgrades](../customizing/cfpush-availability-during-upgrade.html)
+
+* [Upgrading <%= vars.ops_manager %> on Azure](../customizing/azure-om-upgrade.html)
+
+* [Upgrading <%= vars.ops_manager %> on GCP](../customizing/gcp-om-upgrade.html)
+
+* [Upgrade Load Example&#58; Pivotal Web Services](./pws_upgrade_load.html)
+
+### <a id='changes'></a> IaaS Changes
+
+* [Migrating <%= vars.platform_name %> to a New Datastore in vSphere](../refarch/vsphere/vsphere_migrate_datastore.html)
+
+* [Upgrading vSphere without <%= vars.platform_name %> Downtime](../refarch/vsphere/vsphere_upgrade.html)
+
+* [Deleting <%= vars.platform_name %> on AWS](../customizing/deleting-aws-install.html)
+
+* [Deleting <%= vars.platform_name %> on Azure](../customizing/deleting-azure-install.html)
+
+* [Deleting <%= vars.platform_name %> on GCP](../customizing/deleting-gcp-install.html)
+
+### <a id='monitoring'></a> Monitoring, Logging, and Reporting
+
+* [Logs and Metrics Sources](../loggregator/data-sources.html)
+
+* [Monitoring <%= vars.platform_name %>](../monitoring/index.html)
+
+	* [Key Performance Indicators](../monitoring/kpi.html)
+
+	* [Key Capacity Scaling Indicators](../monitoring/key-cap-scaling.html)
+
+	* [Selecting and Configuring a Monitoring System](../monitoring/metrics.html)
+
+* [Loggregator Architecture](../loggregator/architecture.html)
+
+* [Loggregator Guide for <%= vars.app_runtime_abbr %> Operators](../loggregator/log-ops-guide.html)
+
+* [Security Event Logging](../loggregator/cc-uaa-logging.html)
+
+* [Reporting Instance Usage with Apps Manager](./accounting-report-apps-man.html)
+
+* [Reporting App, Task, and Service Instance Usage](./accounting-report.html)
+
+* [Monitoring <%= vars.platform_name %> VMs from <%= vars.ops_manager %>](../customizing/monitoring.html)
+
+* [Monitoring <%= vars.platform_name %> VMs from vSphere](../customizing/monitoring-vsphere.html)
+
+### <a id='tuning'></a> Platform Tuning
+
+* [Scaling <%= vars.app_runtime_abbr %>](./scaling-ert-components.html)
+
+* [Managing Internal Databases](./internal-databases.html)
+
+* [Gorouter Back End Keep-Alive Connections](../adminguide/routing-keepalive.html)
+
+* [High Availability in <%= vars.app_runtime_abbr %>](../concepts/high-availability.html)
+
+### <a id='devs'></a> Enabling Developers
+
+* [Adding and Deleting Products](../customizing/add-delete.html)
+
+* [Managing Isolation Segments](../adminguide/isolation-segments.html)
+
+* [Routing for Isolation Segments](../adminguide/routing-is.html)
+
+* [Enabling Volume Services](./enable-vol-services.html)
+
+* [Configuring Container-to-Container Networking](../devguide/deploy-apps/cf-networking.html)
+
+* [Switching App Domains](./switching-domains.html)
+
+### <a id='backups'></a> Backing Up
+
+* [Disaster Recovery in <%= vars.platform_name %>](../customizing/backup-restore/disaster-recovery.html)
+
+* [Backing Up and Restoring <%= vars.platform_name %>](../customizing/backup-restore/index.html)
+
+* [Backing Up <%= vars.platform_name %> with BBR](../customizing/backup-restore/backup-pcf-bbr.html)
+
+* [<%= vars.app_runtime_abbr %> Component Availability During Backup](../customizing/backup-restore/component-backups.html)
+
+* [Restoring <%= vars.platform_name %> from Backup with BBR](../customizing/backup-restore/restore-pcf-bbr.html)
+
+* [Stopping and Starting Virtual Machines](../adminguide/start-stop-vms.html)
+
+* [Troubleshooting BBR](../customizing/backup-restore/troubleshooting-bbr.html)
+
+* [BOSH Backup and Restore (Open-Source Documentation)](http://docs.cloudfoundry.org/bbr/index.html)
+
+### <a id='security'></a> Security
+
+* [Retrieving Credentials from Your Deployment](../customizing/credentials.html)
+
+* [Restricting App Access to Internal <%= vars.platform_name %> Components](./app-sec-groups.html)
+
+* [Providing a Certificate for Your TLS Termination Point](./security_config.html)
+
+* [Rotating Certificates](../security/pcf-infrastructure/api-cert-rotation.html)
+
+* [Rotating Runtime CredHub Encryption Keys](./credential-rotation.html)
