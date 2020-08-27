@@ -112,11 +112,13 @@ in the Ops Manager API documentation.
     </ul>
   </div>
 
-1. Use the `/api/v0/staged/director/overrides` endpoint.
-
-For more information, see
+1. Use the `/api/v0/staged/director/overrides` endpoint. For more information, see
 [Provide a new list of overrides for the BOSH Director](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration/paths/~1api~1v0~1staged~1director~1overrides/put)
 in the Ops Manager API documentation.
+
+1. Once you have completed your changes, disable Advanced Mode by following the procedure in
+[How to Enable Advanced Mode in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US)
+in the Knowledge Base.
 
 
 ## <a id="runtime-config-overrides"></a> Override Runtime Config Properties
@@ -138,16 +140,16 @@ in the Ops Manager API documentation.
     </ul>
   </div>
 
-1. Use the `/api/v0/staged/director/runtime_configs/overrides` endpoint.
-
-For more information, see:
-
-* [BOSH DNS job spec](https://github.com/cloudfoundry/bosh-dns-release/blob/master/jobs/bosh-dns/spec) in GitHub.
+1. Use the `/api/v0/staged/director/runtime_configs/overrides` endpoint. For more information, see:
+  * [BOSH DNS job spec](https://github.com/cloudfoundry/bosh-dns-release/blob/master/jobs/bosh-dns/spec) in GitHub.
 This file shows the properties and defaults for the `bosh_dns` add-on in the `ops_manager_dns_runtime`.
-
-* [Provide a new list of runtime config overrides for the BOSH
+  * [Provide a new list of runtime config overrides for the BOSH
 Director](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration/paths/~1api~1v0~1staged~1director~1runtime_configs~1overrides/put)
 in the Ops Manager API documentation.
+
+1. Once you have completed your changes, disable Advanced Mode by following the procedure in
+[How to Enable Advanced Mode in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US)
+in the Knowledge Base.
 
 
 ## <a id='examples'></a> Examples of Overridable Properties
