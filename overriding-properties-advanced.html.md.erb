@@ -23,28 +23,6 @@ Use the manifest property override feature described in this topic to modify pro
 that cannot be modified in other ways.
 
 
-## <a id='prerequisite'></a> Prerequisite
-
-Before you can override properties, you must set Ops Manager to Advanced Mode.
-
-<div class="note warning"><strong>Warning:</strong>
-  <ul>
-    <li><%= vars.company_name %> recommends that only skilled operators use Advanced Mode in Ops Manager.
-      If you use Advanced Mode incorrectly, you can disable or destroy your deployment.</li>
-    <li>Ops Manager does not validate the properties that you change using Advanced Mode.
-      For example, if you enter a string where an integer is required, you do not receive an error.</li>
-  </ul>
-</div>
-
-To set Ops Manager to Advanced Mode, follow the procedure in [How to Enable Advanced Mode
-in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US)
-in the Knowledge Base.
-
-For more information about Advanced Mode,
-see [Advanced Mode](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Mode)
-in the Ops Manager API documentation.
-
-
 ## <a id='process'></a> Procedure
 
 To override manifest properties:
@@ -119,9 +97,20 @@ The table below lists these properties:
 
 To override properties in the BOSH Director manifest:
 
-1. Log in to the Ops Manager VM.
-To log in, see [Log In to Ops Manager](https://docs.pivotal.io/platform/2-10/customizing/ops-man-api.html#opsman_login)
-in _Using the Ops Manager API_.
+1. Set Ops Manager to Advanced Mode by following the procedure in
+[How to Enable Advanced Mode in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US)
+in the Knowledge Base.
+For more information about Advanced Mode,
+see [Advanced Mode](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Mode)
+in the Ops Manager API documentation.
+  <div class="note warning"><strong>Warning:</strong>
+    <ul>
+      <li><%= vars.company_name %> recommends that only skilled operators use Advanced Mode in Ops Manager.
+        If you use Advanced Mode incorrectly, you can disable or destroy your deployment.</li>
+      <li>Ops Manager does not validate the properties that you change using Advanced Mode.
+        For example, if you enter a string where an integer is required, you do not receive an error.</li>
+    </ul>
+  </div>
 
 1. Use the `/api/v0/staged/director/overrides` endpoint.
 
@@ -134,9 +123,20 @@ in the Ops Manager API documentation.
 
 To override properties in the runtime configs:
 
-1. Log in to the Ops Manager VM.
-To log in, see [Log In to Ops Manager](https://docs.pivotal.io/platform/2-10/customizing/ops-man-api.html#opsman_login)
-in _Using the Ops Manager API_.
+1. Set Ops Manager to Advanced Mode by following the procedure in
+[How to Enable Advanced Mode in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US)
+in the Knowledge Base.
+For more information about Advanced Mode,
+see [Advanced Mode](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Mode)
+in the Ops Manager API documentation.
+  <div class="note warning"><strong>Warning:</strong>
+    <ul>
+      <li><%= vars.company_name %> recommends that only skilled operators use Advanced Mode in Ops Manager.
+        If you use Advanced Mode incorrectly, you can disable or destroy your deployment.</li>
+      <li>Ops Manager does not validate the properties that you change using Advanced Mode.
+        For example, if you enter a string where an integer is required, you do not receive an error.</li>
+    </ul>
+  </div>
 
 1. Use the `/api/v0/staged/director/runtime_configs/overrides` endpoint.
 
