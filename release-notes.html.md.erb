@@ -141,4 +141,19 @@ Troubleshooting CredHub Maestro Safety Violations During Certificate Rotation](h
 
 ## <a id='known-issues'></a> Known Issues
 
-There are no known issues for this release.
+<%= vars.ops_manager %> v2.10 includes the following known issue:
+
+### <a id='metrics-server-upgrade'></a> Metrics Server Configuration Causes BOSH Director Deployment to Fail During Upgrade
+
+During an upgrade to Ops Manager v2.10, the BOSH Director deployment and 
+subsequent upgrade may fail due to the default enablement of the `metrics-server` job. 
+An error similar to the following appears in the `metrics-server` logs. 
+
+```
+Required property 'networks' was not specified in object ({"vm_extensions"=>[{"cloud_properties"=>{"vmx_options"=>{"disk.enableUUID"=>"1"}}, "name"=>"disk_enable_uuid"}, {"cloud_properties"=>{"upgrade_hw_version"=>true}, "name"=>"set_version_hardware"}]}) (Bosh::Director::ValidationMissingField)
+``` 
+
+The cause of this upgrade failure is the presence of a tile, such as any version of Tanzu Kubernetes Grid Integrated Edition (TKGI), that is incompatible with Ops Manager v2.10 due to its default `metrics-server` enablement.
+
+To workaround this issue, see the [BOSH Director fails with non-running job during upgrade to Ops Manager 2.10](https://community.pivotal.io/s/article/OM-2-10-Bosh-Director-fails-to-deploy) Knowledge Base article.
+
