@@ -181,7 +181,7 @@ Under 'Valid until', the both example values are 'July 7, 2021' and in bold text
 The top section of the **Certificates** page includes the certificates that the Ops Manager API attempts to rotate.
 This section includes both certificates that the Ops Manager API can rotate and certificates that you must rotate manually.
 
-For information about how to rotate these certificates, see [Rotating Certificates](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/security/pcf-infrastructure/api-cert-rotation.html).
+For information about how to rotate these certificates, see [Rotating Certificates](security/pcf-infrastructure/api-cert-rotation.html).
 
 The following describes the information listed on the **Certificates** page:
 
@@ -211,7 +211,7 @@ Under 'Valid until', the both example values are 'July 7, 2021' and in bold text
 
 The **Excluded certificates** section includes the certificates that the Ops Manager API does not attempt to rotate, because they either must be rotated using the CredHub Maestro CLI or cannot be rotated safely at all.
 
-The Services TLS CA and its leaf certificates must be rotated using the CredHub Maestro CLI. To rotate the Services TLS CA certificate and its leaf certificates, see [Rotate the Services TLS CA and Its Leaf Certificates](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/security/pcf-infrastructure/advanced-certificate-rotation.html#services-rotation) in _Advanced Certificate Rotation with CredHub Maestro_.
+The Services TLS CA and its leaf certificates must be rotated using the CredHub Maestro CLI. To rotate the Services TLS CA certificate and its leaf certificates, see [Rotate the Services TLS CA and Its Leaf Certificates](security/pcf-infrastructure/advanced-certificate-rotation.html#services-rotation) in _Advanced Certificate Rotation with CredHub Maestro_.
 
 For all other certificates listed in **Excluded certificates**, see the documentation for the product tile associated with the non-rotatable certificate or contact [Support](https://tanzu.vmware.com/support).
 
