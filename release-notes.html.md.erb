@@ -325,10 +325,10 @@ After rotating certificates using the `certificate_authorities` <%= vars.ops_man
 review the output list of rotated certificates for missing CredHub certificates.
 
 For information about rotating <%= vars.ops_manager %>- and BOSH CredHub-managed certificates with the
-<%= vars.ops_manager %> API, see [Rotating Certificates](https://docs.pivotal.io/platform/2-8/security/pcf-infrastructure/api-cert-rotation.html).
+<%= vars.ops_manager %> API, see [Rotating Certificates](security/pcf-infrastructure/api-cert-rotation.html).
 
 For information about rotating only CredHub-managed certificates,
-see [Advanced Certificate Rotation with CredHub Maestro](https://docs.pivotal.io/platform/2-9/security/pcf-infrastructure/advanced-certificate-rotation.html).
+see [Advanced Certificate Rotation with CredHub Maestro](security/pcf-infrastructure/advanced-certificate-rotation.html).
 
 For more information about the `certificate_authorities` <%= vars.ops_manager %> API endpoint,
 see the [<%= vars.ops_manager %> API documentation](https://docs.pivotal.io/platform/2-9/opsman-api/#tag/Certificate-Authorities/paths/~1api~1v0~1certificate_authorities~1generate/post).
@@ -527,9 +527,9 @@ If you have manually set any certificates in CredHub on <%= vars.ops_manager %> 
 
 Resetting these certificates is not a required condition for the <%= vars.ops_manager %> v2.9 upgrade. You can reset them either before or after the upgrade.
 
-To reset a certificate in CredHub, see [Reviewing and Resetting Manually Set Certificates in CredHub](https://docs.pivotal.io/platform/2-9/security/pcf-infrastructure/manual-credhub-certificate.html).
+To reset a certificate in CredHub, see [Reviewing and Resetting Manually Set Certificates in CredHub](security/pcf-infrastructure/manual-credhub-certificate.html).
 
-For more information about rotating certificates using the <%= vars.ops_manager %> API, see [Rotating Certificates](https://docs.pivotal.io/platform/2-9/security/pcf-infrastructure/api-cert-rotation.html). For more information about the `certificate_authorities/active/regenerate` endpoint, see [Rotate Certificates](https://docs.pivotal.io/pivotalcf/2-9/opsman-api/#create-root-certificate-authorities) in the <%= vars.ops_manager %> API documentation.
+For more information about rotating certificates using the <%= vars.ops_manager %> API, see [Rotating Certificates](security/pcf-infrastructure/api-cert-rotation.html). For more information about the `certificate_authorities/active/regenerate` endpoint, see [Rotate Certificates](https://docs.pivotal.io/pivotalcf/2-9/opsman-api/#create-root-certificate-authorities) in the <%= vars.ops_manager %> API documentation.
 
 ### <a id='triple-digit-stemcell'></a> Stemcell Library Warns That Stemcells with Triple-Digit Minor Release Numbers Are Out of Date
 
