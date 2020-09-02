@@ -13,6 +13,42 @@ Read more about the [certified provider program](https://www.cloudfoundry.org/pr
 
 ## <a id='releases'></a> Releases
 
+### <a id="2-10-1"></a> v2.10.1
+
+**Release Date:** September 1, 2020
+
+- **[Feature]**: If you click the **Support** link in the Ops Manager UI, information about expired certificates appears in the Platform Information Bundle.
+- **[Bug Fix]**: The `regenerate` API endpoint does not exclude any leaf certificates from rotation.
+- **[Bug Fix]**: Ops Manager does not crash after you change the LDAP authentication group.
+- **[Bug Fix]**: The Support Bundle downloads successfully for deploy records that do not have timestamps.
+- **[Bug Fix]**: TKGi users can deploy Ops Manager v2.10 with the BOSH metrics server feature enabled.
+- **[Bug Fix]**: The **Revert Changes** button does not appear when there are no pending changes.
+- **[Bug Fix]**: If you have a tile that is not configured and you apply changes, you receive a warning message but changes to other configured tiles are applied. In earlier patches, the apply changes failed. This only happened on vSphere environments.
+- **[Bug Fix]**: For Redis for VMware Tanzu v2.4 and later, certificates can be rotated by CredHub Maestro.
+- **[Bug Fix]**: When the **Enable additional System Metrics** checkbox is cleared on the tile UI, the `loggr-system-metrics-agent` and `loggr-system-metrics-agent-windows` jobs of the `system-metrics` release are removed from the product tile.
+- **[Bug Fix]**: For the `hm_emailer_options.recipients` key, the `PUT /api/v0/staged/director/properties` endpoint accepts the format used by `GET /api/v0/staged/director/properties` endpoint for this key in addition to the existing format accepted.
+
+
+Ops Manager v2.10.1 uses the following component versions:
+
+<table border="1" class="nice">
+  <thead>
+  <tr>
+    <th>Component</th>
+    <th>Version</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Ops Manager</td><td>2.10.1-build.69*</td>
+  </tr>
+  <tr><td>Stemcell</td><td>621.82*</td></tr><tr><td>BBR SDK</td><td>1.18.0</td></tr><tr><td>BOSH Director</td><td>271.2.0*</td></tr><tr><td>BOSH DNS</td><td>1.24.0*</td></tr><tr><td>Metrics Server</td><td>0.1.0*</td></tr><tr><td>System Metrics</td><td>2.0.11</td></tr><tr><td>CredHub</td><td>2.8.0</td></tr><tr><td>CredHub Maestro</td><td>8.0.1</td></tr><tr><td>Syslog</td><td>11.6.1</td></tr><tr><td>Windows Syslog</td><td>1.0.3</td></tr><tr><td>UAA</td><td>74.5.18</td></tr><tr><td>BPM</td><td>1.1.9*</td></tr><tr><td>Networking</td><td>9</td></tr><tr><td>OS Conf</td><td>22.1.0*</td></tr><tr><td>AWS CPI</td><td>81</td></tr><tr><td>Azure CPI</td><td>37.3.0*</td></tr><tr><td>Google CPI</td><td>30.0.0</td></tr><tr><td>OpenStack CPI</td><td>44</td></tr><tr><td>vSphere CPI</td><td>54.1.0</td></tr><tr><td>BOSH CLI</td><td>6.3.1</td></tr><tr><td>Credhub CLI</td><td>2.8.0*</td></tr><tr><td>BBR CLI</td><td>1.7.2</td></tr><tr><td>Telemetry</td><td>1.1.1</td></tr>
+
+    <td colspan="2"><em>* Components marked with an asterisk have been updated.</em></td>
+
+  </tbody>
+</table>
+
 ### <a id="2-10-0"></a> v2.10.0
 
 **Release Date:** July 31, 2020
@@ -145,15 +181,14 @@ Troubleshooting CredHub Maestro Safety Violations During Certificate Rotation](s
 
 ### <a id='metrics-server-upgrade'></a> Metrics Server Configuration Causes BOSH Director Deployment to Fail During Upgrade
 
-During an upgrade to Ops Manager v2.10, the BOSH Director deployment and 
-subsequent upgrade may fail due to the default enablement of the `metrics-server` job. 
-An error similar to the following appears in the `metrics-server` logs. 
+During an upgrade to Ops Manager v2.10, the BOSH Director deployment and
+subsequent upgrade may fail due to the default enablement of the `metrics-server` job.
+An error similar to the following appears in the `metrics-server` logs.
 
 ```
 Required property 'networks' was not specified in object ({"vm_extensions"=>[{"cloud_properties"=>{"vmx_options"=>{"disk.enableUUID"=>"1"}}, "name"=>"disk_enable_uuid"}, {"cloud_properties"=>{"upgrade_hw_version"=>true}, "name"=>"set_version_hardware"}]}) (Bosh::Director::ValidationMissingField)
-``` 
+```
 
 The cause of this upgrade failure is the presence of a tile, such as any version of Tanzu Kubernetes Grid Integrated Edition (TKGI), that is incompatible with Ops Manager v2.10 due to its default `metrics-server` enablement.
 
 To workaround this issue, see the [BOSH Director fails with non-running job during upgrade to Ops Manager 2.10](https://community.pivotal.io/s/article/OM-2-10-Bosh-Director-fails-to-deploy) Knowledge Base article.
-
