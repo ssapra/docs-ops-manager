@@ -671,6 +671,23 @@ BOSH Backup and Restore (BBR) backs up BOSH Director blobstores that save extern
 
 PCF <%= vars.ops_manager %> is renamed to <%= vars.ops_manager_full %> in the Installation Dashboard. Additionally, the file names for <%= vars.ops_manager %> downloads are renamed in Pivotal Network.
 
+## <a id='breaking-changes'></a> Breaking Changes
+
+<%= vars.ops_manager %> v2.7 includes the following breaking changes:
+
+### <a id='renamed-stemcell-endpoint'></a> Stemcell Assignments Endpoint Removed
+
+The `stemcells_assignments` endpoint in the <%= vars.ops_manager %> API has been removed.
+
+Instead, operators must use the `stemcell_associations` endpoint, which returns information about all stemcells associated with a product.
+
+For more information, see [Stemcell Associations for Products](https://docs.pivotal.io/platform/2-7/opsman-api/#stemcell-associations-for-products) in the <%= vars.ops_manager %> API documentation.
+
+### <a id='bosh-cli-v1'></a> BOSH CLI v1 Not Supported
+
+<%= vars.ops_manager %> <%= vars.v_major_version %> does not support BOSH CLI v1.
+
+If you use BOSH CLI v1 commands manually from your workstation or in automation scripts, you must update your usage to BOSH CLI v2. For more information, see [Installing the CLI](https://bosh.io/docs/cli-v2-install/) and [Commands](https://bosh.io/docs/cli-v2/) in the BOSH documentation.
 
 ## <a id='known-issues'></a> Known Issues
 
