@@ -309,7 +309,7 @@ Ops Manager v2.9.7 uses the following component versions:
 **Release Date:** April 10, 2020
 
 * See [New Features in <%= vars.ops_manager %> v2.9](#major-features).
-* See [Breaking Changes](https://docs.pivotal.io/platform/2-9/release-notes/breaking-changes.html).
+* See [Breaking Changes](#breaking-changes).
 
 <%= vars.ops_manager %> v2.9.0 uses the following component versions:
 
@@ -540,6 +540,31 @@ For more information about VM-Host Affinity Rules, see [VM-Host Affinity Rules
 For more information about stretched clusters, see [Introduction to Stretched Clusters
 ](https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.vsan-planning.doc/GUID-1BDC7194-67A7-4E7C-BF3A-3A0A32AEECA9.html) in the vSphere documentation.
 
+## <a id='breaking-changes'></a> Breaking Changes
+
+<%= vars.ops_manager %> v2.9 includes the following breaking changes:
+
+### <a id='maestro'></a> Rotating Certificates in Ops Manager
+
+Before performing certificate rotation with Ops Manager v2.9, you must first upgrade both <%= vars.ops_manager %> and <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) to v2.9.
+
+If you rotate certificates with Ops Manager v2.9 and Pivotal Application Service
+(PAS) v2.8, you can orphan VMs.
+
+### <a id='maestro-services'></a> Service TLS CA Rotation
+
+Not all  <%= vars.ops_manager %> service tiles are compatible with CredHub Maestro.
+If you use CredHub Maestro to rotate the services TLS certificate authority (CA) and you have incompatible tiles in your deployment, then you may experience services downtime or data loss.
+
+Before rotating the services TLS CA with CredHub Maestro, you must check that the tiles in your deployment are compatible. For compatibility information, see [CredHub Maestro Tile Compatibility](https://docs.pivotal.io/platform/2-9/security/pcf-infrastructure/maestro-tile-compatibility.html).
+
+To rotate the services TLS CA, see [Advanced Certificate Rotation with CredHub Maestro](https://docs.pivotal.io/platform/2-9/security/pcf-infrastructure/advanced-certificate-rotation.html#services-rotation).
+
+### <a id='nsx-t-2-2'></a> Ops Manager v2.9 Incompatible with vSphere Data Center NSX-T v2.2 and Earlier
+
+The BOSH vSphere CPI included with Ops Manager v2.9 does not support NSX-T v2.2 or earlier.
+
+If you are running NSX-T v2.2 or earlier, you must upgrade NSX-T before deploying Ops Manager v2.9.
 
 ## <a id='known-issues'></a> Known Issues
 
