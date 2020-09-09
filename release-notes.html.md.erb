@@ -54,7 +54,7 @@ Ops Manager v2.10.1 uses the following component versions:
 **Release Date:** July 31, 2020
 
 * See [New Features in <%= vars.ops_manager %> v2.10](#major-features).
-* See [Breaking Changes](https://docs.pivotal.io/platform/2-10/release-notes/breaking-changes.html).
+* See [Breaking Changes in <%= vars.ops_manager %> v2.10](#breaking-changes).
 
 <%= vars.ops_manager %> v2.10.0 uses the following component versions:
 
@@ -174,6 +174,32 @@ To observe this feature in Ops Manager v2.10 certificate rotation API calls, you
 
 For more information, see [
 Troubleshooting CredHub Maestro Safety Violations During Certificate Rotation](security/pcf-infrastructure/troubleshoot-cert-errors.html), [Rotating Certificates](security/pcf-infrastructure/api-cert-rotation.html), and [Advanced Certificate Rotation with CredHub Maestro](security/pcf-infrastructure/advanced-certificate-rotation.html).
+
+## <a id='breaking-changes'></a> Breaking Changes in <%= vars.ops_manager %> v2.10
+
+<%= vars.ops_manager %> v2.10 includes the following breaking changes:
+
+### <a id='credhub-regenerate'></a> CredHub Maestro Removes the "update-transitional latest" Command
+
+Ops Manager v2.10 includes CredHub Maestro v8.0.
+In this version of CredHub Maestro, the `maestro update-transitional latest` command is removed.
+
+If you have scripts that rely on the `maestro update-transitional latest` command,
+remove references to the command before you upgrade to Ops Manager v2.10.
+
+In CredHub Maestro v8.0, you run `maestro regenerate ca` to regenerate a certificate authority (CA) and mark the latest version of the CA as transitional.
+This command performs both actions, while previous versions of CredHub Maestro use a separate command for each task.
+
+For information about rotating CAs and certificates using CredHub Maestro, see [Advanced Certificate Rotation with CredHub Maestro](https://docs.pivotal.io/platform/2-10/security/pcf-infrastructure/advanced-certificate-rotation.html).
+
+### <a id='metrics-server-upgrade'></a> Metrics Server Configuration Causes BOSH Director Deployment to Fail During Upgrade
+
+During an upgrade to Ops Manager v2.10, the BOSH Director deployment and
+subsequent upgrade may fail due to the default enablement of the `metrics-server` job.
+
+The cause of this upgrade failure is the presence of a tile, such as any version of Tanzu Kubernetes Grid Integrated Edition (TKGI), that is incompatible with Ops Manager v2.10 due to its default `metrics-server` enablement.
+
+To work around this issue, see the [BOSH Director fails with non-running job during upgrade to Ops Manager 2.10](https://community.pivotal.io/s/article/OM-2-10-Bosh-Director-fails-to-deploy) Knowledge Base article.
 
 ## <a id='known-issues'></a> Known Issues
 
