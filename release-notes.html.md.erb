@@ -585,6 +585,10 @@ To reset a certificate in CredHub, see [Reviewing and Resetting Manually Set Cer
 
 For more information about rotating certificates using the <%= vars.ops_manager %> API, see [Rotating Certificates](security/pcf-infrastructure/api-cert-rotation.html). For more information about the `certificate_authorities/active/regenerate` endpoint, see [Rotate Certificates](https://docs.pivotal.io/pivotalcf/2-9/opsman-api/#create-root-certificate-authorities) in the <%= vars.ops_manager %> API documentation.
 
+### <a id='increased-logging'></a> Increased Logging Slows Platform Functions  
+
+<%= partial "/pcf/ops-manager/increased_logging_ki" %>
+
 ### <a id='triple-digit-stemcell'></a> Stemcell Library Warns That Stemcells with Triple-Digit Minor Release Numbers Are Out of Date
 
 In Ops Manager v2.9.0, when you upload a stemcell with a triple-digit minor release number to the <%= vars.ops_manager %> Stemcell Library, you see a warning that the stemcell is out of date.
