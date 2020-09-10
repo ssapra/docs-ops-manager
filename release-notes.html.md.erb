@@ -404,6 +404,8 @@ System metrics report usage and status of VM memory, disk, CPU, network, load, a
 
 Before <%= vars.ops_manager %> v2.8, the metrics agent was installed only on <%= vars.app_runtime_abbr %> VMs, and VMs deployed by other products did not emit the system metrics described above.
 
+Increased logging could cause platform issues. For more information, see [Increased Logging Slows Platform Functions](#increased-logging).
+
 ### <a id='tls-always-enabled-for-internal-blobstore'></a> TLS Always Enabled for Internal Blobstore
 
 TLS is now always enabled for the internal blobstore. You can no longer toggle TLS for the internal blobstore with the UI or API.
@@ -522,6 +524,18 @@ To reset a certificate in CredHub, see [Reviewing and Resetting Manually Set Cer
 ### <a id='unresponsive-agent'></a> BOSH VMs Report Unresponsive Agent After Activating New Root CA
 
 <%= partial "/pcf/certs/recreate-service-instances" %>
+
+### <a id='increased-logging'></a> Increased Logging Slows Platform Functions  
+
+If your Loggregrator does not have sufficient memory to handle the increased system metrics emitted in <%= vars.ops_manager %> v2.8 and later, you may experience dropped logs and slow consumers. This can impact platform functions.  
+
+To solve this issue, do the following:
+
+* If you have <%= vars.app_runtime_abbr %>, scale Loggregrator to handle the increased volume. See [Scaling Up <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/operating/scaling-ert-components.html#scaleup). 
+
+* If you do not need these system metrics, disable **Enable additional System Metrics** in the **Director Config** pane of the **BOSH Director** tile. For a list of metrics collected, see [System Metrics Agent](https://github.com/cloudfoundry/system-metrics-release/blob/develop/docs/system-metrics-agent.md) in GitHub.
+
+For more information on this feature, see [All Platform VMs Emit System Metrics](#opsman-metrics).  
 
 ### <a id='triple-digit-stemcell'></a> Stemcell Library Warns That Stemcells with Triple-Digit Minor Release Numbers Are Out of Date
 
