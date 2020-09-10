@@ -45,6 +45,7 @@ To configure the **Director Config** pane:
 1.  For more detailed metrics, keep the **Enable additional System Metrics** checkbox selected.
 If you do not need this level of detail, deselect the checkbox to reduce volume.
 For a list of metrics collected, see [System Metrics Agent](https://github.com/cloudfoundry/system-metrics-release/blob/develop/docs/system-metrics-agent.md) in GitHub.
+Increased logging could cause platform issues. For more information, see [Increased Logging Slows Platform Functions](../release-notes.html#increased-logging).
 
 1. Select **Enable Post Deploy Scripts** to run a post-deploy script after deployment. This script allows the job to execute additional commands against a deployment.
     <p class="note"><strong>Note:</strong> If you intend to install <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>), you must enable post-deploy scripts.</p>
