@@ -1,0 +1,170 @@
+---
+title: Jump Upgrading to Ops Manager v2.10
+owner: Ops Manager
+---
+
+Customers running versions of OpsManager with at least version 2.4.0 can now directly upgrade to OpsManager 2.10 LTS. Like any other minor version upgrade, customers must ensure that the products they have installed are also compatible with OpsManager 2.10 before performing the upgrade.
+
+## <a id="prerequisites"></a> Prerequisites
+
+Before you jump upgrade:
+
+-   Foundations must be running Ops Manager v2.4 or later.
+
+-   The target upgrade version of Ops Manager must be v2.10.2 or later.
+
+-   All product tiles must list compatibility with the target version of Ops Manager.
+
+-   You have no staged changes to any product tile or service instance.
+
+-   If you are using vSphere with NSX-T, you must be running NSX-T v2.3 or later. NSX-T thats compatible with their current OpsManager version and Ops Manager 2.10.
+
+-   Customers should be running Trusty stemcell 3541 or higher before they jump upgrade to 2.10.
+
+-   You can use the [Upgrade Planner](https://upgrade-planner.pivotal.io/) to figure out the upgrade path for your foundation. 
+
+## <a id="jump-upgrade"></a> Jump Upgrade
+
+After you have verified everything in the Eligibility section, you can upgrade Ops Manager to 2.10.2+ by following the steps here.
+
+Step Upgrading Ops Manager Docs that talks about upgrading Ops Manager and TAS together: <https://docs-pcf-staging.cfapps.io/platform/2-10/customizing/upgrading-pcf.html>
+
+## After Jump Upgrading
+
+After you jump upgrade:
+
+-   There are several breaking API changes. Direct API automation used with their older version might need minor updates. See the consolidated breaking changes and known issues for a complete list.
+
+-   Credhub-based BOSH Certificates, included certificate authorities (CAs), for Maestro-compatible products are now rotated with Maestro. For more information, see an introduction to Maestro.
+
+-   Products that are not Maestro-compatible can still be used with OpsManager v2.10, but their certificate authorities cannot be rotated and will eventually expire.
+
+## <a href="breaking-changes"></a> Consolidated Breaking Changes and Known Issues
+
+See the following table for consolidated breaking changes and known issues:
+
+<table>
+	<tr>
+		<th>Issue</th>
+		<th>Impact</th>
+		<th>Release Note Source</th>
+		<th>Versions Affected</th>
+	</tr>
+	<tr>
+		<td>Ops Manager Release Artifacts Renamed on Tanzu Network</td>
+		<td>Might break any automation.</td>
+		<td></td>
+		<td>v2.4</td>
+	</tr>
+	<tr>
+		<td>OpsManager should hardcode allow_legacy_agents to false</td>
+		<td>Older stemcells will be unmanageable and unfixable by the BOSH Director. Customers who are on v2.4 should be running stemcell [X] or higher before they jump upgrade to v2.10.</td>
+		<td></td>
+		<td>v2.4</td>
+	</tr>
+	<tr>
+		<td>Passwords Not Supported for Ops Manager VM on vSphere</td>
+		<td></td>
+		<td></td>
+		<td>v2.5</td>
+	</tr>
+	<tr>
+		<td>Stemcell Property for Diagnostic Report API Endpoint is Removed</td>
+		<td>Breaking API change.</td>
+		<td></td>
+		<td>v2.4 - 2.5</td>
+	</tr>
+	<tr>
+		<td>Stemcell Version Key for Pending Changes is Moved and Renamed</td>
+		<td>Breaking API change.</td>
+		<td></td>
+		<td>v2.4, v2.5</td>
+	</tr>
+	<tr>
+		<td>AWS Deployments Use 5th Generation Instances</td>
+		<td>Customers on AWS Ops Manager 2.4 or 2.5 will notice that their VMs will upgrade to 5th generation.</td>
+		<td></td>
+		<td>v2.4 - 2.5</td>
+	</tr>
+	<tr>
+		<td>Stemcell Assignments Endpoint Removed</td>
+		<td>Breaking API change.</td>
+		<td></td>
+		<td>v2.4 - v2.6</td>
+	</tr>
+	<tr>
+		<td>BOSH CLI v1 Not Supported</td>
+		<td>Customers need to start using BOSH CLI v2.</td>
+		<td></td>
+		<td>v2.4 - 2.6</td>
+	</tr>
+	<tr>
+		<td>Non-configurable properties nested under collections should not appear in the UI</td>
+		<td>If customers have a tile that relies on being able to view and change a non-configurable property, then customers will not see those properties anymore.</td>
+		<td></td>
+		<td>v2.4 - 2.6</td>
+	</tr>
+	<tr>
+		<td>Non-configurable properties within a collection / selector should not be configurable via API</td>
+		<td>Breaking API change.</td>
+		<td></td>
+		<td>v2.4 - 2.6</td>
+	</tr>
+	<tr>
+		<td>Update the resource configuration endpoints to nest nsx parameters under an `nsx` key</td>
+		<td>Breaking API change.</td>
+		<td></td>
+		<td>v2.4 - 2.6</td>
+	</tr>
+	<tr>
+		<td>Support NSX-T in the resource config API</td>
+		<td>Breaking API change.</td>
+		<td></td>
+		<td>v2.4 - 2.6</td>
+	</tr>
+	<tr>
+		<td>Ops Manager v2.9 Incompatible with vSphere Data Center NSX-T v2.2 and Earlier</td>
+		<td>They need to be on a NSX-T version that is compatible with both their current Ops Manager version and Ops Manager 2.10.</td>
+		<td></td>
+		<td>v2.4 - 2.8</td>
+	</tr>
+	<tr>
+		<th colspan="4">Known Issues</th>
+	</tr>
+	<tr>
+		<td>BPM Fails to Start Job Process</td>
+		<td></td>
+		<td></td>
+		<td>v2.4</td>
+	</tr>
+	<tr>
+		<td>Monit Inaccurately Reports Health of UAA</td>
+		<td></td>
+		<td></td>
+		<td>v2.4 - 2.6</td>
+	</tr>
+	<tr>
+		<td>CredHub Database Migration Failure</td>
+		<td></td>
+		<td></td>
+		<td>v2.4 - 2.5</td>
+	</tr>
+	<tr>
+		<td>BOSH VMs Report Unresponsive Agent After Activating New Root CA</td>
+		<td></td>
+		<td></td>
+		<td>v2.4 - 2.8</td>
+	</tr>
+	<tr>
+		<td>Reset Manually Set Certificates in CredHub Before Rotating Certificates with the Ops Manager API</td>
+		<td>After upgrading to 2.10, customers need to set again their manually configured certificates in credhub, if there are any.</td>
+		<td></td>
+		<td>v2.4 - 2.9</td>
+	</tr>
+	<tr>
+		<td>Service TLS CA Rotation</td>
+		<td>This basically tells customers that not all tiles are compatible with Services TLS CA rotation and they should use Maestro directly to do it.</td>
+		<td></td>
+		<td>v2.4 - 2.9</td>
+	</tr>
+</table>
