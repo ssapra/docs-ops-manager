@@ -15,7 +15,7 @@ Before you jump upgrade:
 
 -   The target upgrade version of <%= vars.ops_manager %> must be v2.10.2 or later.
 
--   All product tiles must list compatibility with the target version of <%= vars.ops_manager %>. For more information on creating an upgrade path for your product tiles, see the [Upgrade Planner](https://upgrade-planner.pivotal.io/).
+-   All product tiles must list compatibility with the target version of <%= vars.ops_manager %>. For more information on creating an upgrade path for your product tiles, see the [Upgrade Planner</a>https://upgrade-planner.pivotal.io/).
 
 -   You have no staged changes to any product tile or service instance.
 
@@ -52,7 +52,7 @@ See the following table for consolidated breaking changes and known issues:
 		<th>Versions Affected</th>
 	</tr>
 	<tr>
-		<td><%= vars.ops_manager %> Release Artifacts Renamed on Tanzu Network. See [release note](https://docs.pivotal.io/pivotalcf/2-5/pcf-release-notes/breaking-changes.html#rename)</td>
+		<td><%= vars.ops_manager %> Release Artifacts Renamed on Tanzu Network. See <a href="https://docs.pivotal.io/pivotalcf/2-5/pcf-release-notes/breaking-changes.html#rename">release note</a>.</td>
 		<td>Might break any automation. If you use automation scripts or other tools to access release artifacts, you may need to update them to match the new filename scheme.</td>
 		<td>v2.4</td>
 	</tr>
@@ -62,32 +62,32 @@ See the following table for consolidated breaking changes and known issues:
 		<td>v2.4</td>
 	</tr>
 	<tr>
-		<td>Passwords Not Supported for <%= vars.ops_manager %> VM on vSphere. See [release note](https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#ssh-private-key).</td>
+		<td>Passwords Not Supported for <%= vars.ops_manager %> VM on vSphere. See <a href="https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#ssh-private-key">release note</a>.</td>
 		<td></td>
 		<td>v2.5</td>
 	</tr>
 	<tr>
-		<td>Stemcell Property for Diagnostic Report API Endpoint is Removed. See [release note](https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#diagnostic-report-stemcell).</td>
+		<td>Stemcell Property for Diagnostic Report API Endpoint is Removed. See <a href="https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#diagnostic-report-stemcell">release note</a>.</td>
 		<td>Breaking API change.</td>
 		<td>v2.4 - 2.5</td>
 	</tr>
 	<tr>
-		<td>Stemcell Version Key for Pending Changes is Moved and Renamed. See [release note](https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#stemcell-version-key).</td>
+		<td>Stemcell Version Key for Pending Changes is Moved and Renamed. See <a href="https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#stemcell-version-key">release note</a>.</td>
 		<td>Breaking API change.</td>
 		<td>v2.4, v2.5</td>
 	</tr>
 	<tr>
-		<td>AWS Deployments Use 5th Generation Instances. See [release note](https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#5th-gen-instances).</td>
+		<td>AWS Deployments Use 5th Generation Instances. See <a href="https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#5th-gen-instances">release note</a>.</td>
 		<td>Customers on AWS Ops Manager 2.4 or 2.5 will notice that their VMs will upgrade to 5th generation.</td>
 		<td>v2.4 - 2.5</td>
 	</tr>
 	<tr>
-		<td>Stemcell Assignments Endpoint Removed. See [release note](https://docs.pivotal.io/platform/2-7/release-notes/breaking-changes.html#renamed-stemcell-endpoint).</td>
+		<td>Stemcell Assignments Endpoint Removed. See <a href="https://docs.pivotal.io/platform/2-7/release-notes/breaking-changes.html#renamed-stemcell-endpoint">release note</a>.</td>
 		<td>Breaking API change.</td>
 		<td>v2.4 - v2.6</td>
 	</tr>
 	<tr>
-		<td>BOSH CLI v1 Not Supported. See [release note](https://docs.pivotal.io/platform/2-7/release-notes/breaking-changes.html#bosh-cli-v1).</td>
+		<td>BOSH CLI v1 Not Supported. See <a href="https://docs.pivotal.io/platform/2-7/release-notes/breaking-changes.html#bosh-cli-v1">release note</a>.</td>
 		<td>Customers need to start using BOSH CLI v2.</td>
 		<td>v2.4 - 2.6</td>
 	</tr>
@@ -112,7 +112,7 @@ See the following table for consolidated breaking changes and known issues:
 		<td>v2.4 - 2.6</td>
 	</tr>
 	<tr>
-		<td><%= vars.ops_manager %> v2.9 Incompatible with vSphere Data Center NSX-T v2.2 and Earlier. See [release note](https://docs.pivotal.io/platform/2-9/release-notes/breaking-changes.html#nsx-t-2-2).</td>
+		<td><%= vars.ops_manager %> v2.9 Incompatible with vSphere Data Center NSX-T v2.2 and Earlier. See <a href="https://docs.pivotal.io/platform/2-9/release-notes/breaking-changes.html#nsx-t-2-2">release note</a>.</td>
 		<td>They need to be on a NSX-T version that is compatible with both their current Ops Manager version and <%= vars.ops_manager %> 2.10.</td>
 		<td>v2.4 - 2.8</td>
 	</tr>
@@ -120,32 +120,32 @@ See the following table for consolidated breaking changes and known issues:
 		<th colspan="4">Known Issues</th>
 	</tr>
 	<tr>
-		<td>BPM Fails to Start Job Process. See [release note](https://docs.pivotal.io/pivotalcf/2-5/pcf-release-notes/opsmanager-rn.html#bpm).</td>
+		<td>BPM Fails to Start Job Process. See <a href="https://docs.pivotal.io/pivotalcf/2-5/pcf-release-notes/opsmanager-rn.html#bpm">release note</a>.</td>
 		<td></td>
 		<td>v2.4</td>
 	</tr>
 	<tr>
-		<td>Monit Inaccurately Reports Health of UAA. See [release note](https://docs.pivotal.io/platform/2-7/release-notes/opsmanager-rn.html#monit).</td>
+		<td>Monit Inaccurately Reports Health of UAA. See <a href="https://docs.pivotal.io/platform/2-7/release-notes/opsmanager-rn.html#monit">release note</a>.</td>
 		<td></td>
 		<td>v2.4 - 2.6</td>
 	</tr>
 	<tr>
-		<td>CredHub Database Migration Failure. See [release note](https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/opsmanager-rn.html#credhub-db-migration-failure).</td>
+		<td>CredHub Database Migration Failure. See <a href="https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/opsmanager-rn.html#credhub-db-migration-failure">release note</a>.</td>
 		<td></td>
 		<td>v2.4 - 2.5</td>
 	</tr>
 	<tr>
-		<td>BOSH VMs Report Unresponsive Agent After Activating New Root CA. See [release note](https://docs.pivotal.io/platform/2-9/release-notes/opsmanager-rn.html#unresponsive-agent).</td>
+		<td>BOSH VMs Report Unresponsive Agent After Activating New Root CA. See <a href="https://docs.pivotal.io/platform/2-9/release-notes/opsmanager-rn.html#unresponsive-agent">release note</a>.</td>
 		<td></td>
 		<td>v2.4 - 2.8</td>
 	</tr>
 	<tr>
-		<td>Reset Manually Set Certificates in CredHub Before Rotating Certificates with the <%= vars.ops_manager %> API. See [release note](https://docs.pivotal.io/platform/2-9/release-notes/opsmanager-rn.html#credhub-generated-field).</td>
+		<td>Reset Manually Set Certificates in CredHub Before Rotating Certificates with the <%= vars.ops_manager %> API. See <a href="https://docs.pivotal.io/platform/2-9/release-notes/opsmanager-rn.html#credhub-generated-field">release note</a>.</td>
 		<td>After upgrading to 2.10, customers need to set again their manually configured certificates in credhub, if there are any.</td>
 		<td>v2.4 - 2.9</td>
 	</tr>
 	<tr>
-		<td>Service TLS CA Rotation. See [release note](https://docs.pivotal.io/platform/2-9/release-notes/breaking-changes.html#maestro-services).</td>
+		<td>Service TLS CA Rotation. See <a href="https://docs.pivotal.io/platform/2-9/release-notes/breaking-changes.html#maestro-services">release note</a>.</td>
 		<td>This basically tells customers that not all tiles are compatible with Services TLS CA rotation and they should use Maestro directly to do it.</td>
 		<td>v2.4 - 2.9</td>
 	</tr>
