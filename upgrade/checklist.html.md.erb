@@ -10,7 +10,7 @@ This topic contains important preparation steps that you must follow before begi
 
 After completing the steps in this topic, you can continue to [Upgrading <%= vars.platform_name %>](../upgrade/upgrading-pcf.html).
 
-<p class="note warning"><strong>Warning:</strong> <%= vars.recommended_by %> does not recommend that you skip minor versions when upgrading <%= vars.platform_name %>. Skipping minor versions when upgrading <%= vars.platform_name %> may result in breaking changes. To avoid additional breaking changes, upgrade <%= vars.platform_name %> to the minor version that directly follows your current version of <%= vars.platform_name %>.</p>
+<p class="note warning"><strong>Warning:</strong> <%= vars.company_name %> does not recommend that you skip minor versions when upgrading <%= vars.platform_name %>. Skipping minor versions when upgrading <%= vars.platform_name %> may result in breaking changes. To avoid additional breaking changes, upgrade <%= vars.platform_name %> to the minor version that directly follows your current version of <%= vars.platform_name %>.</p>
 
 
 ## <a id="back-up-your-pcf-deployment"></a> Back Up Your <%= vars.platform_name %> Deployment
@@ -151,9 +151,9 @@ For more information, see [Add and Import Products](https://docs.pivotal.io/plat
 
 #### <a id="run-nfs-broker-errand"></a> Run the NFS Broker Errand
 
-If you are using NFS Volume Services, you must run the **NFS Broker Errand** errand before upgrading to <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>. Running this errand in <%= vars.app_runtime_abbr_pivotal %> v2.8 migrates existing service instances for NFS Volume Services from MySQL to CredHub.
+If you are using NFS Volume Services, you must run the **NFS Broker Errand** errand before upgrading to <%= vars.app_runtime_abbr %> v2.9. Running this errand in <%= vars.app_runtime_abbr_pivotal %> v2.8 migrates existing service instances for NFS Volume Services from MySQL to CredHub.
 
-<%= vars.app_runtime_abbr %> <%= vars.v_major_version %> removes the ability to migrate data from MySQL to CredHub. If you do not run the errand in <%= vars.app_runtime_abbr_pivotal %> v2.8, you may be unable to bind apps to existing NFS Volume Service service instances after upgrading to <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>.
+<%= vars.app_runtime_abbr %> v2.9 removes the ability to migrate data from MySQL to CredHub. If you do not run the errand in <%= vars.app_runtime_abbr_pivotal %> v2.8, you may be unable to bind apps to existing NFS Volume Service service instances after upgrading to <%= vars.app_runtime_abbr %> v2.9.
 
 For more information, see [Configure Errands](https://docs.pivotal.io/application-service/operating/configure-pas.html#errands) in _Configuring <%= vars.app_runtime_abbr %>_.
 
@@ -281,7 +281,7 @@ These sections describe steps for ensuring your deployment is healthy before you
 
 ### <a id="collect-foundation-health-status"></a> Collect Foundation Health Status
 
-For collecting foundation health status, <%= vars.recommended_by %> recommends Healthwatch,
+For collecting foundation health status, <%= vars.company_name %> recommends Healthwatch,
 which monitors and alerts on the current health, performance,
 and capacity of your <%= vars.platform_name %> deployment.
 For more information, see the [Healthwatch documentation](https://docs.pivotal.io/platform/healthwatch/index.html).
