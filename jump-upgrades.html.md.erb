@@ -49,124 +49,104 @@ See the following table for consolidated breaking changes and known issues:
 	<tr>
 		<th>Issue</th>
 		<th>Impact</th>
-		<th>Release Note Source</th>
 		<th>Versions Affected</th>
 	</tr>
 	<tr>
-		<td><%= vars.ops_manager %> Release Artifacts Renamed on Tanzu Network</td>
-		<td>Might break any automation.</td>
-		<td></td>
+		<td><%= vars.ops_manager %> Release Artifacts Renamed on Tanzu Network. See [release note](https://docs.pivotal.io/pivotalcf/2-5/pcf-release-notes/breaking-changes.html#rename)</td>
+		<td>Might break any automation. If you use automation scripts or other tools to access release artifacts, you may need to update them to match the new filename scheme.</td>
 		<td>v2.4</td>
 	</tr>
 	<tr>
-		<td>OpsManager should hardcode allow_legacy_agents to false</td>
-		<td>Older stemcells will be unmanageable and unfixable by the BOSH Director. Customers who are on v2.4 should be running stemcell [X] or higher before they jump upgrade to v2.10.</td>
-		<td></td>
+		<td><%= vars.ops_manager %> should hardcode allow_legacy_agents to false</td>
+		<td>The BOSH Director cannot manage older stemcells. Customers who are on <%= vars.ops_manager %> v2.4 should be running newer stemcells before they jump upgrade to v2.10.</td>
 		<td>v2.4</td>
 	</tr>
 	<tr>
-		<td>Passwords Not Supported for <%= vars.ops_manager %> VM on vSphere</td>
-		<td></td>
+		<td>Passwords Not Supported for <%= vars.ops_manager %> VM on vSphere. See [release note](https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#ssh-private-key).</td>
 		<td></td>
 		<td>v2.5</td>
 	</tr>
 	<tr>
-		<td>Stemcell Property for Diagnostic Report API Endpoint is Removed</td>
+		<td>Stemcell Property for Diagnostic Report API Endpoint is Removed. See [release note](https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#diagnostic-report-stemcell).</td>
 		<td>Breaking API change.</td>
-		<td></td>
 		<td>v2.4 - 2.5</td>
 	</tr>
 	<tr>
-		<td>Stemcell Version Key for Pending Changes is Moved and Renamed</td>
+		<td>Stemcell Version Key for Pending Changes is Moved and Renamed. See [release note](https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#stemcell-version-key).</td>
 		<td>Breaking API change.</td>
-		<td></td>
 		<td>v2.4, v2.5</td>
 	</tr>
 	<tr>
-		<td>AWS Deployments Use 5th Generation Instances</td>
+		<td>AWS Deployments Use 5th Generation Instances. See [release note](https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#5th-gen-instances).</td>
 		<td>Customers on AWS Ops Manager 2.4 or 2.5 will notice that their VMs will upgrade to 5th generation.</td>
-		<td></td>
 		<td>v2.4 - 2.5</td>
 	</tr>
 	<tr>
-		<td>Stemcell Assignments Endpoint Removed</td>
+		<td>Stemcell Assignments Endpoint Removed. See [release note](https://docs.pivotal.io/platform/2-7/release-notes/breaking-changes.html#renamed-stemcell-endpoint).</td>
 		<td>Breaking API change.</td>
-		<td></td>
 		<td>v2.4 - v2.6</td>
 	</tr>
 	<tr>
-		<td>BOSH CLI v1 Not Supported</td>
+		<td>BOSH CLI v1 Not Supported. See [release note](https://docs.pivotal.io/platform/2-7/release-notes/breaking-changes.html#bosh-cli-v1).</td>
 		<td>Customers need to start using BOSH CLI v2.</td>
-		<td></td>
 		<td>v2.4 - 2.6</td>
 	</tr>
 	<tr>
 		<td>Non-configurable properties nested under collections should not appear in the UI</td>
 		<td>If customers have a tile that relies on being able to view and change a non-configurable property, then customers will not see those properties anymore.</td>
-		<td></td>
 		<td>v2.4 - 2.6</td>
 	</tr>
 	<tr>
-		<td>Non-configurable properties within a collection / selector should not be configurable via API</td>
+		<td>Non-configurable properties within a collection / selector should not be configurable with API</td>
 		<td>Breaking API change.</td>
-		<td></td>
 		<td>v2.4 - 2.6</td>
 	</tr>
 	<tr>
 		<td>Update the resource configuration endpoints to nest nsx parameters under an `nsx` key</td>
 		<td>Breaking API change.</td>
-		<td></td>
 		<td>v2.4 - 2.6</td>
 	</tr>
 	<tr>
 		<td>Support NSX-T in the resource config API</td>
 		<td>Breaking API change.</td>
-		<td></td>
 		<td>v2.4 - 2.6</td>
 	</tr>
 	<tr>
-		<td><%= vars.ops_manager %> v2.9 Incompatible with vSphere Data Center NSX-T v2.2 and Earlier</td>
+		<td><%= vars.ops_manager %> v2.9 Incompatible with vSphere Data Center NSX-T v2.2 and Earlier. See [release note](https://docs.pivotal.io/platform/2-9/release-notes/breaking-changes.html#nsx-t-2-2).</td>
 		<td>They need to be on a NSX-T version that is compatible with both their current Ops Manager version and <%= vars.ops_manager %> 2.10.</td>
-		<td></td>
 		<td>v2.4 - 2.8</td>
 	</tr>
 	<tr>
 		<th colspan="4">Known Issues</th>
 	</tr>
 	<tr>
-		<td>BPM Fails to Start Job Process</td>
-		<td></td>
+		<td>BPM Fails to Start Job Process. See [release note](https://docs.pivotal.io/pivotalcf/2-5/pcf-release-notes/opsmanager-rn.html#bpm).</td>
 		<td></td>
 		<td>v2.4</td>
 	</tr>
 	<tr>
-		<td>Monit Inaccurately Reports Health of UAA</td>
-		<td></td>
+		<td>Monit Inaccurately Reports Health of UAA. See [release note](https://docs.pivotal.io/platform/2-7/release-notes/opsmanager-rn.html#monit).</td>
 		<td></td>
 		<td>v2.4 - 2.6</td>
 	</tr>
 	<tr>
-		<td>CredHub Database Migration Failure</td>
-		<td></td>
+		<td>CredHub Database Migration Failure. See [release note](https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/opsmanager-rn.html#credhub-db-migration-failure).</td>
 		<td></td>
 		<td>v2.4 - 2.5</td>
 	</tr>
 	<tr>
-		<td>BOSH VMs Report Unresponsive Agent After Activating New Root CA</td>
-		<td></td>
+		<td>BOSH VMs Report Unresponsive Agent After Activating New Root CA. See [release note](https://docs.pivotal.io/platform/2-9/release-notes/opsmanager-rn.html#unresponsive-agent).</td>
 		<td></td>
 		<td>v2.4 - 2.8</td>
 	</tr>
 	<tr>
-		<td>Reset Manually Set Certificates in CredHub Before Rotating Certificates with the <%= vars.ops_manager %> API</td>
+		<td>Reset Manually Set Certificates in CredHub Before Rotating Certificates with the <%= vars.ops_manager %> API. See [release note](https://docs.pivotal.io/platform/2-9/release-notes/opsmanager-rn.html#credhub-generated-field).</td>
 		<td>After upgrading to 2.10, customers need to set again their manually configured certificates in credhub, if there are any.</td>
-		<td></td>
 		<td>v2.4 - 2.9</td>
 	</tr>
 	<tr>
-		<td>Service TLS CA Rotation</td>
+		<td>Service TLS CA Rotation. See [release note](https://docs.pivotal.io/platform/2-9/release-notes/breaking-changes.html#maestro-services).</td>
 		<td>This basically tells customers that not all tiles are compatible with Services TLS CA rotation and they should use Maestro directly to do it.</td>
-		<td></td>
 		<td>v2.4 - 2.9</td>
 	</tr>
 </table>
