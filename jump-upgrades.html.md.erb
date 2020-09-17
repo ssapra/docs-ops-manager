@@ -3,33 +3,35 @@ title: Jump Upgrading to Ops Manager v2.10
 owner: Ops Manager
 ---
 
-Customers running versions of OpsManager with at least version 2.4.0 can now directly upgrade to OpsManager 2.10 LTS. Like any other minor version upgrade, customers must ensure that the products they have installed are also compatible with OpsManager 2.10 before performing the upgrade.
+<%= vars.ops_manager %> v2.4 and later can now upgrade directly to <%= vars.ops_manager %> v2.10.
+
+To upgrade to <%= vars.ops_manager %> v2.10, you must ensure that the products you have installed are also compatible with <%= vars.ops_manager %> v2.10 before performing the upgrade.
 
 ## <a id="prerequisites"></a> Prerequisites
 
 Before you jump upgrade:
 
--   Foundations must be running Ops Manager v2.4 or later.
+-   Foundations must be running <%= vars.ops_manager %> v2.4 or later.
 
--   The target upgrade version of Ops Manager must be v2.10.2 or later.
+-   The target upgrade version of <%= vars.ops_manager %> must be v2.10.2 or later.
 
--   All product tiles must list compatibility with the target version of Ops Manager.
+-   All product tiles must list compatibility with the target version of <%= vars.ops_manager %>. For more information on creating an upgrade path for your product tiles, see the [Upgrade Planner](https://upgrade-planner.pivotal.io/).
 
 -   You have no staged changes to any product tile or service instance.
 
 -   If you are using vSphere with NSX-T, you must be running NSX-T v2.3 or later. NSX-T thats compatible with their current OpsManager version and Ops Manager 2.10.
 
--   Customers should be running Trusty stemcell 3541 or higher before they jump upgrade to 2.10.
+-   You are running Trusty stemcell 3541 or higher.
 
--   You can use the [Upgrade Planner](https://upgrade-planner.pivotal.io/) to figure out the upgrade path for your foundation. 
+
 
 ## <a id="jump-upgrade"></a> Jump Upgrade
 
-After you have verified everything in the Eligibility section, you can upgrade Ops Manager to 2.10.2+ by following the steps here.
+After you have verified everything in the Eligibility section, you can upgrade <%= vars.ops_manager %> to v2.10.2 and later by following the steps here.
 
-Step Upgrading Ops Manager Docs that talks about upgrading Ops Manager and TAS together: <https://docs-pcf-staging.cfapps.io/platform/2-10/customizing/upgrading-pcf.html>
+Step Upgrading <%= vars.ops_manager %> Docs that talks about upgrading <%= vars.ops_manager %> and TAS together: [Upgrading <%= vars.ops_manager %>](https://docs.pivotal.io/platform/2-10/customizing/upgrading-pcf.html)
 
-## After Jump Upgrading
+## <a id="after-jump-upgrade"></a> After You Jump Upgrade
 
 After you jump upgrade:
 
@@ -51,7 +53,7 @@ See the following table for consolidated breaking changes and known issues:
 		<th>Versions Affected</th>
 	</tr>
 	<tr>
-		<td>Ops Manager Release Artifacts Renamed on Tanzu Network</td>
+		<td><%= vars.ops_manager %> Release Artifacts Renamed on Tanzu Network</td>
 		<td>Might break any automation.</td>
 		<td></td>
 		<td>v2.4</td>
@@ -63,7 +65,7 @@ See the following table for consolidated breaking changes and known issues:
 		<td>v2.4</td>
 	</tr>
 	<tr>
-		<td>Passwords Not Supported for Ops Manager VM on vSphere</td>
+		<td>Passwords Not Supported for <%= vars.ops_manager %> VM on vSphere</td>
 		<td></td>
 		<td></td>
 		<td>v2.5</td>
@@ -123,8 +125,8 @@ See the following table for consolidated breaking changes and known issues:
 		<td>v2.4 - 2.6</td>
 	</tr>
 	<tr>
-		<td>Ops Manager v2.9 Incompatible with vSphere Data Center NSX-T v2.2 and Earlier</td>
-		<td>They need to be on a NSX-T version that is compatible with both their current Ops Manager version and Ops Manager 2.10.</td>
+		<td><%= vars.ops_manager %> v2.9 Incompatible with vSphere Data Center NSX-T v2.2 and Earlier</td>
+		<td>They need to be on a NSX-T version that is compatible with both their current Ops Manager version and <%= vars.ops_manager %> 2.10.</td>
 		<td></td>
 		<td>v2.4 - 2.8</td>
 	</tr>
@@ -156,7 +158,7 @@ See the following table for consolidated breaking changes and known issues:
 		<td>v2.4 - 2.8</td>
 	</tr>
 	<tr>
-		<td>Reset Manually Set Certificates in CredHub Before Rotating Certificates with the Ops Manager API</td>
+		<td>Reset Manually Set Certificates in CredHub Before Rotating Certificates with the <%= vars.ops_manager %> API</td>
 		<td>After upgrading to 2.10, customers need to set again their manually configured certificates in credhub, if there are any.</td>
 		<td></td>
 		<td>v2.4 - 2.9</td>
