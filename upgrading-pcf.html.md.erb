@@ -9,10 +9,6 @@ This topic describes upgrading <%= vars.ops_manager %> and <%= vars.app_runtime_
 
 <p class="note breaking"><strong>Breaking Changes:</strong> Read the <a href="https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/release-notes.html"><%= vars.ops_manager %> <%= vars.v_major_version %> Release Notes</a>, <a href="https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/overview/release-notes/runtime-rn.html"><%= vars.app_runtime_full %> <%= vars.v_major_version %> Release Notes</a>, <a href="https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/overview/release-notes/segment-rn.html"><%= vars.segment_runtime_full %> <%= vars.v_major_version %> Release Notes</a>, <a href="https://docs.pivotal.io/application-service-windows/<%= vars.current_major_version.sub('.', '-') %>/release-notes.html"><%= vars.windows_runtime_full %> <%= vars.v_major_version %> Release Notes</a>, and <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/release-notes/breaking-changes.html"><%= vars.ops_manager %> <%= vars.v_major_version %> and Runtime Breaking Changes</a> for this release, including the <em>Known Issues</em> sections, before starting the upgrade process.</p>
 
-<p class="note warning"><strong>Warning:</strong> VMware does not recommend that you skip minor versions when upgrading.
-   Skipping minor versions when upgrading might result in breaking changes.
-   To avoid additional breaking changes, upgrade to the minor version that directly follows your current version.</p>
-
 
 ## <a id='overview'></a> Overview
 
@@ -21,6 +17,13 @@ The procedure below describes upgrading <%= vars.ops_manager %>, <%= vars.app_ru
 The apps in your deployment continue to run during the upgrade. However, you cannot write to your deployment or make changes to apps during the upgrade.
 
 For details about how upgrading impacts individual <%= vars.app_runtime_abbr %> components, see [What Happens During <%= vars.app_runtime_abbr %> Upgrades](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/understanding-pas.html).
+
+
+## <a id='jump-upgrade'></a> Jump Upgrade from <%= vars.ops_manager %> v2.4 Through v2.8
+
+If you are upgrading to <%= vars.ops_manager %> v2.10 from <%= vars.ops_manager %> v2.4 through v2.8, follow the procedure in [Jump Upgrading to <%= vars.ops_manager %> v2.10](jump-upgrades.html).
+
+Although you can skip minor versions when upgrading <%= vars.ops_manager %>, <%= vars.company_name %> does not recommend that you skip minor versions when upgrading <%= vars.app_runtime_abbr %>. Skipping minor versions when upgrading <%= vars.app_runtime_abbr %> may result in additional breaking changes. To avoid this, upgrade <%= vars.app_runtime_abbr %> to the minor version that directly follows your current version of <%= vars.app_runtime_abbr %>. To upgrade <%= vars.app_runtime_abbr %> to the next minor release, see [Configuring <%= vars.app_runtime_abbr %> for Upgrades](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configuring.html) and [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/upgrading-products.html).
 
 
 ## <a id="prepare"></a> Task 1: Prepare to Upgrade
@@ -92,6 +95,8 @@ see [Export Your Installation](https://docs.pivotal.io/ops-manager/2-10/upgrade/
 <a name="success"></a> After upgrading to Ops Manager <%= vars.v_major_version %>, you must upgrade your product versions.
 
 To upgrade your product versions:
+
+1.
 
 1. Click **IMPORT A PRODUCT** to upload the product file.
 
