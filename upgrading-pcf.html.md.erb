@@ -19,9 +19,9 @@ The apps in your deployment continue to run during the upgrade. However, you can
 For details about how upgrading impacts individual <%= vars.app_runtime_abbr %> components, see [What Happens During <%= vars.app_runtime_abbr %> Upgrades](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/understanding-pas.html).
 
 
-## <a id='jump-upgrade'></a> Jump Upgrade from <%= vars.ops_manager %> v2.4 Through v2.8
+## <a id='jump-upgrade'></a> Jump Upgrade to <%= vars.ops_manager %> v2.10
 
-If you are upgrading to <%= vars.ops_manager %> v2.10 from <%= vars.ops_manager %> v2.4 through v2.8, follow the procedure in [Jump Upgrading to <%= vars.ops_manager %> v2.10](https://docs.pivotal.io/ops-manager/2-10/jump-upgrades.html).
+<%= vars.company_name %> recommends upgrading directly to <%= vars.ops_manager %> v2.10 from <%= vars.ops_manager %> v2.8. For more information, see [Jump Upgrading to <%= vars.ops_manager %> v2.10](https://docs.pivotal.io/ops-manager/2-10/jump-upgrades.html).
 
 Although you can skip minor versions when upgrading <%= vars.ops_manager %>, <%= vars.company_name %> does not recommend that you skip minor versions when upgrading <%= vars.app_runtime_abbr %>. Skipping minor versions when upgrading <%= vars.app_runtime_abbr %> may result in additional breaking changes. To avoid this, upgrade <%= vars.app_runtime_abbr %> to the minor version that directly follows your current version of <%= vars.app_runtime_abbr %>. To upgrade <%= vars.app_runtime_abbr %> to the next minor release, see [Configuring <%= vars.app_runtime_abbr %> for Upgrades](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configuring.html) and [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/upgrading-products.html).
 
