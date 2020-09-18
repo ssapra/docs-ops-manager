@@ -20,12 +20,12 @@ The procedure below describes upgrading <%= vars.ops_manager %>, <%= vars.app_ru
 
 The apps in your deployment continue to run during the upgrade. However, you cannot write to your deployment or make changes to apps during the upgrade.
 
-For details about how upgrading impacts individual <%= vars.app_runtime_abbr %> components, see [What Happens During <%= vars.app_runtime_abbr %> Upgrades](../upgrading/understanding-pas.html).
+For details about how upgrading impacts individual <%= vars.app_runtime_abbr %> components, see [What Happens During <%= vars.app_runtime_abbr %> Upgrades](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/understanding-pas.html).
 
 
 ## <a id="prepare"></a> Task 1: Prepare to Upgrade
 
-If you have not already, complete the steps in [Upgrade Preparation Checklist for <%= vars.platform_name %> v2.10](https://docs.pivotal.io/ops-manager/2-10/upgrade/checklist.html).
+If you have not already, complete the steps in [Upgrade Preparation Checklist for <%= vars.platform_name %> v2.10](../upgrade/checklist.html).
 
 
 ## <a id="upgrade_ops"></a> Task 2: Upgrade Ops Manager and Installed Products to v2.11
@@ -49,11 +49,11 @@ To import your Ops Manager installation to the Ops Manager v2.11 VM:
 1. To avoid conflicts, power off the existing Ops Manager VM.
 
 1. Deploy the new Ops Manager VM by following the steps in one of these topics:
-    * **AWS:** [Upgrading BOSH Director on AWS](./aws-om-upgrade.html)
-    * **Azure:** [Upgrading BOSH Director on Azure](./azure-om-upgrade.html)
-    * **GCP:** [Upgrading BOSH Director on GCP](./gcp-om-upgrade.html)
-    * **OpenStack:** [Deploying Ops Manager on OpenStack](../openstack/setup.html)
-    * **vSphere:** [Deploying Ops Manager on vSphere](../vsphere/deploy.html)
+    * **AWS:** [Upgrading BOSH Director on AWS](aws-om-upgrade.html)
+    * **Azure:** [Upgrading BOSH Director on Azure](azure-om-upgrade.html)
+    * **GCP:** [Upgrading BOSH Director on GCP](gcp-om-upgrade.html)
+    * **OpenStack:** [Deploying Ops Manager on OpenStack](openstack/setup.html)
+    * **vSphere:** [Deploying Ops Manager on vSphere](vsphere/deploy.html)
 
 1. When redirected to the **Welcome to Ops Manager** page,
 select **Import Existing Installation**.
@@ -66,7 +66,7 @@ You set this passphrase during your initial installation of Ops Manager.
 
 1. Click **Choose File** and browse to the installation ZIP file exported in the installation export step of your upgrade preparation.
 For more information,
-see [Export Your Installation](https://docs.pivotal.io/ops-manager/2-10/upgrade/checklist.html#export) in _Upgrade Preparation Checklist for <%= vars.platform_name %> v2.10_.
+see [Export Your Installation](../upgrade/checklist.html#export) in _Upgrade Preparation Checklist for <%= vars.platform_name %> v2.10_.
 
     <%= image_tag("./images/upgrading/decryption_passphrase.png", alt: "Below the VMware logo is a field labeled 'Decryption Passphrase' containing five hidden characters. Below this field is the text 'Enter file', below which is a small, rectangular gray button labeled 'Choose File'. To the right of the 'Choose File' button is the filename 'installation (4).zip'. Below this button and filename is a rectangular blue button labeled 'Import' in white text.", :width => "400") %>
 
@@ -101,7 +101,7 @@ To upgrade your product versions:
 
 1. (Optional) If you use other service tiles,
 you can upgrade them following the same procedure.
-For more information, see [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](./upgrading-products.html).
+For more information, see [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](upgrading-products.html).
 
 ### <a id="perform-upgrade"></a> Perform Your Upgrade
 
@@ -135,14 +135,14 @@ VMware recommends live-monitoring your upgrade with Healthwatch, which captures,
 
 * BOSH-reported VM metrics
 * Runtime component metrics
-* [Key Performance Indicators](../monitoring/kpi.html) and [Key Scaling Indicators](../monitoring/key-cap-scaling.html)
-* Healthwatch-generated [super metrics](https://docs.pivotal.io/pcf-healthwatch/metrics.html)
+* [Key Performance Indicators](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/monitoring/kpi.html) and [Key Scaling Indicators](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/monitoring/key-cap-scaling.html)
+* Healthwatch-generated [super metrics](https://docs.pivotal.io/healthwatch/metrics.html)
 
-For more information, see the [Healthwatch](https://docs.pivotal.io/pcf-healthwatch/index.html) documentation.
+For more information, see the [Healthwatch documentation](https://docs.pivotal.io/healthwatch/index.html).
 
 If you are not using Healthwatch, you can do some or all of the following to monitor upgrade progress:
 
-* Use the BOSH CLI to check the status of a task, VM, or instance. For more information, see [Check Status Using BOSH CLI](#bosh-cli-status).
+* Use the BOSH CLI to check the status of a task, VM, or instance. For more information, see [Check Status Using BOSH CLI](#bosh-cli-status) below.
 
 * Check app availability.
 
@@ -241,7 +241,7 @@ To install the version of the Cloud Foundry Command Line Interface (cf CLI) pack
 
 1. Unzip the cf CLI ZIP file containing compressed binaries for the cf CLI.
 
-1. Follow the procedure in the [Install the cf CLI Using a Compressed Binary](../../cf-cli/install-go-cli.html#bin) section of the _Installing the cf CLI_ topic.
+1. Follow the procedure in [Install the cf CLI Using a Compressed Binary](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/cf-cli/install-go-cli.html#bin) in _Installing the cf CLI_.
 
 ### <a id="health"></a> Check the Health of Your Deployment
 
@@ -262,7 +262,7 @@ To check the health of your deployment:
 
 1. Push and horizontally scale a test app to test <%= vars.app_runtime_abbr %> performance.
 
-1. If you are running <%= vars.app_runtime_abbr %> MySQL as a cluster, run the `mysql-diag` tool to validate health of the cluster. For more information, see the BOSH CLI v2 instructions in [Running mysql-diag](../mysql/mysql-diag.html).
+1. If you are running <%= vars.app_runtime_abbr %> MySQL as a cluster, run the `mysql-diag` tool to validate health of the cluster. For more information, see the BOSH CLI v2 instructions in [Running mysql-diag](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/mysql/mysql-diag.html).
 
 ### <a id="resource-settings"></a> Check Resource Settings
 
@@ -292,4 +292,4 @@ To clean up old stemcells, releases, orphaned disks, and other unused resources:
 
 VMware recommends telling developers to restage any apps that use buildpacks that were updated as a part of this upgrade.
 
-For more information about how developers can restage apps, see [Restage Your App](https://docs.pivotal.io/application-service/devguide/deploy-apps/start-restart-restage.html#restage).
+For more information about how developers can restage apps, see [Restage Your App](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/devguide/deploy-apps/start-restart-restage.html#restage) in _Starting, Restarting, and Restaging Apps_.

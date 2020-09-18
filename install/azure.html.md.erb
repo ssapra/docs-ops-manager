@@ -14,16 +14,16 @@ It includes resource requirements, prerequisites, instructions for installing <%
 
 You can install <%= vars.platform_name %> on Azure, Azure Government Cloud, or Azure Germany. For more information about Azure regions, see [Azure regions](https://azure.microsoft.com/en-us/global-infrastructure/regions/) in the Microsoft Azure documentation.
 
-You can install <%= vars.platform_name %> on Azure with the <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) runtime. There are resource requirements specific to both <%= vars.app_runtime_abbr %> and Azure. Ensure you meet the requirements for <%= vars.app_runtime_abbr %> and the requirements specific to Azure before installing <%= vars.platform_name %> on Azure. For more information, see [Requirements](#requirements).
+You can install <%= vars.platform_name %> on Azure with the <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) runtime. There are resource requirements specific to both <%= vars.app_runtime_abbr %> and Azure. Ensure you meet the requirements for <%= vars.app_runtime_abbr %> and the requirements specific to Azure before installing <%= vars.platform_name %> on Azure. For more information, see [Requirements](#requirements) below.
 
 
 ## <a id="requirements"></a> Requirements
 
 This section lists the following resource requirements for installing <%= vars.platform_name %> on Azure:
 
-* <%= vars.app_runtime_abbr %> resource requirements. For more information, see [<%= vars.app_runtime_abbr %> Resource Requirements](#pcf-requirements).
+* <%= vars.app_runtime_abbr %> resource requirements. For more information, see [<%= vars.app_runtime_abbr %> Resource Requirements](#pcf-requirements) below.
 
-* Azure-specific resource requirements. For more information, see [Azure Resource Requirements](#azure-requirements).
+* Azure-specific resource requirements. For more information, see [Azure Resource Requirements](#azure-requirements) below.
 
 ### <a id="pcf-requirements"></a> <%= vars.app_runtime_abbr %> Resource Requirements
 
@@ -49,7 +49,7 @@ The following are general resource requirements for deploying and managing an <%
   * <%= vars.company_name %> recommends that you allocate at least 36 dynamic IP addresses when deploying <%= vars.ops_manager %> with <%= vars.app_runtime_abbr %>. BOSH requires additional dynamic IP addresses during installation to compile and deploy VMs, install <%= vars.app_runtime_abbr %>, and connect to services.
 
 * <%= vars.company_name %> recommends using a network without DHCP for deploying <%= vars.app_runtime_abbr %> VMs.
-  <p class="note"><strong>Note:</strong> If you have DHCP, see <a href="./troubleshooting.html">Troubleshooting Deployment Problems</a> to avoid issues with your installation.</p>
+  <p class="note"><strong>Note:</strong> If you have DHCP, see <a href="troubleshooting.html">Troubleshooting Deployment Problems</a> to avoid issues with your installation.</p>
 
 ### <a id="azure-requirements"></a> Azure Resource Requirements
 
@@ -86,7 +86,7 @@ The following are the minimum resource requirements for deploying an <%= vars.pl
         <td>24</td>
       </tr>
     </table>
-    <p class="note"><strong>Note:</strong> If you are deploying a test or sandbox <%= vars.platform_name %> that does not require high availability, then you can scale down the number of VM instances in your deployment. For more information, see <a href="../opsguide/scaling-ert-components.html">Scaling <%= vars.app_runtime_abbr %></a>.</p>
+    <p class="note"><strong>Note:</strong> If you are deploying a test or sandbox <%= vars.platform_name %> that does not require high availability, then you can scale down the number of VM instances in your deployment. For more information, see <a href="https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/scaling-ert-components.html">Scaling <%= vars.app_runtime_abbr %></a>.</p>
   * **Small Footprint <%= vars.app_runtime_abbr %>:** A new Azure deployment requires the following VMs for Small Footprint <%= vars.app_runtime_abbr %> and <%= vars.ops_manager %>:
     <table id='azure-requirements' border="1" class="nice">
       <tr>
@@ -137,7 +137,7 @@ Before installing <%= vars.platform_name %> on Azure, you must:
 
 * Install the Azure CLI v2.0. To install the Azure CLI for your operating system, see [Preparing to Deploy <%= vars.ops_manager %> on Azure Manually](../azure/prepare-env-manual.html).
 
-* Configure sufficient IP allocation for <%= vars.app_runtime_abbr %>. For more information about IP allocation requirements, see [<%= vars.app_runtime_abbr %> Resource Requirements](#pas).
+* Configure sufficient IP allocation for <%= vars.app_runtime_abbr %>. For more information about IP allocation requirements, see [<%= vars.app_runtime_abbr %> Resource Requirements](#pas) above.
 
 * Create an SSL certificate for your <%= vars.platform_name %> domain.
   <p class="note"><strong>Note:</strong> To deploy <%= vars.platform_name %> to a production environment, you must obtain a certificate from a certificate authority (CA). <%= vars.company_name %> recommends using a self-signed certificate generated by <%= vars.ops_manager %> for development and testing purposes only.</p>
@@ -145,13 +145,13 @@ Before installing <%= vars.platform_name %> on Azure, you must:
 * Assign administrative rights to a domain for <%= vars.platform_name %>. You must be able to add wildcard records to this domain.
 
 * Create a wildcard DNS record that points to your Gorouter or load balancer. Alternatively, you can use a service such as xip.io. For example, `203.0.113.0.xip.io`. Then, create at least one wildcard TLS certificate that matches the DNS record you configured.
-  <p class="note"><strong>Note:</strong> With a wildcard DNS record, every hostname in your domain resolves to the IP address of your Gorouter or load balancer. For example, if you create a DNS record `*.example.com` pointing to your Gorouter, every app deployed to the `example.com` domain resolves to the IP address of your Gorouter.</p>
+  <p class="note"><strong>Note:</strong> With a wildcard DNS record, every hostname in your domain resolves to the IP address of your Gorouter or load balancer. For example, if you create a DNS record <code>*.example.com</code> pointing to your Gorouter, every app deployed to the <code>example.com</code> domain resolves to the IP address of your Gorouter.</p>
 
 * Create one or more NTP servers, if the NTP servers are not already provided by your Azure project.
 
 * Install the most recent version of the Cloud Foundry Command Line Interface (cf CLI). For more information, see the [Cloud Foundry Command Line Interface](https://github.com/cloudfoundry/cli) repository on GitHub.
 
-* (Optional) Configure external storage. <%= vars.company_name %> recommends using external storage if possible. For more information about how file storage location affects platform performance and stability during upgrades, see [Configure File Storage](../upgrading/configuring.html#file-storage) in _Configuring <%= vars.app_runtime_abbr %>_.
+* (Optional) Configure external storage. <%= vars.company_name %> recommends using external storage if possible. For more information about how file storage location affects platform performance and stability during upgrades, see [Configure File Storage](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configuring.html#file-storage) in _Configuring <%= vars.app_runtime_abbr %>_.
 
 * (Optional) Configure external databases. <%= vars.company_name %> recommends using external databases in production deployments for BOSH Director and <%= vars.app_runtime_abbr %>. An external database must be configured to use the UTC timezone.
 
@@ -184,7 +184,7 @@ The following are additional resources related to installing <%= vars.platform_n
 
 * For information about troubleshooting the <%= vars.platform_name %> on Azure install process, see [Troubleshooting <%= vars.platform_name %> on Azure](azure-troubleshooting.html).
 
-* For production-level deployment options for <%= vars.platform_name %> on Azure, see [Reference Architecture for <%= vars.platform_name %> on Azure](../plan/azure/azure_ref_arch.html).
+* For production-level deployment options for <%= vars.platform_name %> on Azure, see [Reference Architecture for <%= vars.platform_name %> on Azure](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/plan/azure/azure_ref_arch.html).
 
 * For information about how to manage IaaS users and credentials in Azure, see the [Azure security documentation](https://docs.microsoft.com/en-us/azure/security/).
 
