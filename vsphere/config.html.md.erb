@@ -7,7 +7,7 @@ iaas: vSphere
 This topic describes how to configure the BOSH Director tile for VMware vSphere.
 
 You can also perform the procedures in this topic using the <%= vars.ops_manager %> API. For more information,
-see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the <%= vars.ops_manager %> API</a>.
+see <a href="../ops-man-api.html">Using the <%= vars.ops_manager %> API</a>.
 
 <p class="note warning"><strong>WARNING:</strong> If you are installing <%= vars.k8s_runtime_full %>
 (<%= vars.k8s_runtime_abbr %>) on vSphere with NSX-T integration, follow the instructions in <a href="https://docs.pivotal.io/tkgi/vsphere-nsxt-om-config.html">Configuring BOSH Director with NSX-T for <%= vars.k8s_runtime_abbr %></a> instead of performing the procedure described in this topic.</p>
@@ -17,7 +17,7 @@ After you complete this procedure, follow the configuration instructions for the
 </br>
 For example:
 <ul>
-  <li> To install <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>), see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html">Configuring <%= vars.app_runtime_abbr %></a>.</li>
+  <li> To install <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>), see <a href="https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html">Configuring <%= vars.app_runtime_abbr %></a>.</li>
   <li> To install <%= vars.k8s_runtime_abbr %>, see [Installing <%= vars.k8s_runtime_abbr %> on vSphere](https://docs.pivotal.io/tkgi/installing-vsphere.html).</li>
 </ul>
 
@@ -417,7 +417,7 @@ and you want to configure security and load balancing for the BOSH Director job:
 After you complete this procedure, follow the instructions for the runtime that you intend to install.
 
 <ul>
-  <li>To install <%= vars.app_runtime_abbr %>, see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html">Configuring <%= vars.app_runtime_abbr %></a>.</li>
+  <li>To install <%= vars.app_runtime_abbr %>, see <a href="https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html">Configuring <%= vars.app_runtime_abbr %></a>.</li>
   <li>To install <%= vars.k8s_runtime_abbr %>, see <a href="https://docs.pivotal.io/tkgi/installing-vsphere.html">Installing <%= vars.k8s_runtime_abbr %> on vSphere</a>.</li>
 </ul>
 

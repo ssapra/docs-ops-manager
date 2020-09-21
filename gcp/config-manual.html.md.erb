@@ -7,7 +7,7 @@ install_type: manual
 
 This topic describes how to configure the BOSH Director in <%= vars.platform_name %> on Google Cloud Platform (GCP).
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the <%= vars.ops_manager %> API. For more information, see <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the <%= vars.ops_manager %> API</a>.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the <%= vars.ops_manager %> API. For more information, see <a href="../ops-man-api.html">Using the <%= vars.ops_manager %> API</a>.</p>
 
 
 ## <a id='access-om'></a> Step 1: Access <%= vars.ops_manager %>
@@ -264,6 +264,6 @@ To complete your BOSH Director installation:
 
 After you complete this procedure, follow the instructions for the runtime you intend to install.
 
-* To deploy <%= vars.app_runtime_abbr %>, see [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html).
+* To deploy <%= vars.app_runtime_abbr %>, see [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html).
 
 * To prepare to deploy <%= vars.k8s_runtime_abbr %>, see [Creating Service Accounts in GCP for <%= vars.k8s_runtime_abbr %>](https://docs.pivotal.io/tkgi/gcp-service-accounts.html).
