@@ -78,7 +78,7 @@ In the event of a disaster, you can lose not only your VMs and disks, but your I
 
 If you need to re-create your IaaS resources, prepare your environment
 by following the instructions specific to your IaaS in
-[Installation Overview](../../customizing/index.html).
+[Installation Overview](../index.html).
 
 <p class="note"><strong>Note:</strong> The instructions for installing a deployment on Amazon Web Services (AWS) and OpenStack combine the procedures for preparing your environment and deploying <%= vars.ops_manager %> into a single topic. The instructions for the other supported IaaSes split these procedures into two separate topics.</p>
 
@@ -88,11 +88,11 @@ If you re-create your IaaS resources, you must also add those resources to <%= v
 
 1. Follow the procedures for your IaaS to deploy <%= vars.ops_manager %>:
     * **AWS:**
-        * If you configured AWS manually, see [Deploying <%= vars.ops_manager %> on AWS Manually](https://docs.pivotal.io../aws/deploy-manual.html).
-        * If you used Terraform to install <%= vars.platform_name %> on AWS, see [Installing <%= vars.platform_name %> on AWS Using Terraform](../aws-terraform.html).
-    * **GCP:** See [Deploying <%= vars.ops_manager %> on GCP Manually](../gcp/deploy-manual.html).
-    * **OpenStack:** See _Step 4: Create <%= vars.ops_manager %> Image_ through _Step 9: Create a DNS Entry_ in [Deploying <%= vars.ops_manager %> on OpenStack](../openstack/setup.html#create-om-image).
-    * **vSphere:** See [Deploying <%= vars.ops_manager %> on vSphere](../vsphere/deploy.html).
+        * If you configured AWS manually, see [Deploying <%= vars.ops_manager %> on AWS Manually](../../aws/deploy-manual.html).
+        * If you used Terraform to install <%= vars.platform_name %> on AWS, see [Installing <%= vars.platform_name %> on AWS Using Terraform](../../aws-terraform.html).
+    * **GCP:** See [Deploying <%= vars.ops_manager %> on GCP Manually](../../gcp/deploy-manual.html).
+    * **OpenStack:** See _Step 4: Create <%= vars.ops_manager %> Image_ through _Step 9: Create a DNS Entry_ in [Deploying <%= vars.ops_manager %> on OpenStack](../../openstack/setup.html#create-om-image).
+    * **vSphere:** See [Deploying <%= vars.ops_manager %> on vSphere](../../vsphere/deploy.html).
 
 1. Import your installation settings. This can be done in two ways:
     1. Using the <%= vars.ops_manager %> UI:
@@ -126,7 +126,7 @@ If you re-create your IaaS resources, you must also add those resources to <%= v
             Where:
             <br>
             * `OPS-MANAGER-FQDN` is the FQDN for your <%= vars.ops_manager %> deployment.
-            * `UAA-ACCESS-TOKEN` is your UAA access token. For more information about how to retrieve this token, see [Using the <%= vars.ops_manager %> API](../../customizing/ops-man-api.html).
+            * `UAA-ACCESS-TOKEN` is your UAA access token. For more information about how to retrieve this token, see [Using the <%= vars.ops_manager %> API](../ops-man-api.html).
             * `DECRYPTION-PASSPHRASE` is the decryption passphrase in use when you exported the installation settings from <%= vars.ops_manager %>.
 
 <p class="note warning"><strong>Warning:</strong> Do not click <strong>Apply Changes</strong> in <%= vars.ops_manager %> until you reach the instructions in <a href="#restore-ert">Redeploy <%= vars.app_runtime_abbr %></a>.</p>
