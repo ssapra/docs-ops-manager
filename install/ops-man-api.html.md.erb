@@ -270,7 +270,7 @@ The following procedure configures the BOSH Director for your IaaS using the Ops
 
 To configure the BOSH Director with the Ops Manager API, do the following:
 
-1. Access the Ops Manager API by following the procedure in <a href="#access">Access the Ops Manager API</a> procedure above.</li>
+1. Access the Ops Manager API by following the procedure in <a href="#access">Access the Ops Manager API</a> procedure above.
 
 1. To perform initial setup, enter a `POST` request to the Ops Man API `setup` endpoint, passing metadata to the `-d` flag:
 
@@ -319,7 +319,7 @@ To configure the BOSH Director with the Ops Manager API, do the following:
     </pre>
  	<p class="note"><strong>Note</strong>: You do not need to specify UAA or other authentication details on a first-time deploy. Making the <code>setup</code> request automatically creates a UAA client when it completes successfully. If you specify a UAA client for a first-time deployment, the deployment will fail.</p>
 
-1. A <code>200 OK</code> response appears.</li>
+1. A <code>200 OK</code> response appears.
 
 1. After the successful response, a UAA client with the metadata you specified is created and launched. Ops Manager users can authenticate with UAAC, and if they have a pre-created client they can target UAAC with the client name and password. For more information on pre-created clients, see <a href="./opsman-users.html">Creating and Managing Ops Manager User and Client Accounts</a>.
 
