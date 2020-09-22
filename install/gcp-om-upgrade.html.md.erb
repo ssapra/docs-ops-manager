@@ -11,21 +11,21 @@ Complete the tasks in this topic as part of the Ops Manager upgrade process. For
 ## <a id='overview'></a> Overview
 
 <%# Find this partial in GitHub at `pivotal-cf/docs-partials` %>
-<%= partial "/pcf/core/#{vars.current_major_version.sub('.', '-')}/om_upgrade_overview" %>
+<%= partial "/pcf/core/2-7/om_upgrade_overview" %>
 
 To create an Ops Manager VM instance:
 
-1. Locate the Ops Manager installation file. For more information, see [Locate the Pivotal Ops Manager Installation File](#select-tgz). 
+1. Locate the Ops Manager installation file. For more information, see [Locate the Pivotal Ops Manager Installation File](#select-tgz).
 
-1. Create a private VM image. For more information, see [Create a Private VM Image](#create-image). 
+1. Create a private VM image. For more information, see [Create a Private VM Image](#create-image).
 
-1. Create the Ops Manager VM. For more information, see [Create the Ops Manager VM Instance](#start-vm). 
+1. Create the Ops Manager VM. For more information, see [Create the Ops Manager VM Instance](#start-vm).
 
 
 ## <a id='prerequisites'></a> Prerequisites
 
 <%# Find this partial in GitHub at `pivotal-cf/docs-partials` %>
-<%= partial "/pcf/core/#{vars.current_major_version.sub('.', '-')}/om_upgrade_prerequisite" %>   
+<%= partial "/pcf/core/2-7/om_upgrade_prerequisite" %>
 
 ## <a id='select-tgz'></a> Locate the Pivotal Ops Manager Installation File
 
@@ -62,27 +62,27 @@ To create a private VM image:
   * **Name**: Enter a name that matches the naming convention of your existing Ops Manager image files.
   * **Encryption**: Leave **Automatic (recommended)** selected.
   * **Source**: Choose **Cloud Storage file**.
-  * **Cloud Storage file**: Paste in the Google Cloud Storage filepath you copied from the PDF or YAML file in the previous task. 
+  * **Cloud Storage file**: Paste in the Google Cloud Storage filepath you copied from the PDF or YAML file in the previous task.
       <%= image_tag("gcp/create_image.png") %>
 
-1. Click **Create**. The file may take a few minutes to import. 
+1. Click **Create**. The file may take a few minutes to import.
 
 
 ## <a id="start-vm"></a> Create the Ops Manager VM Instance
 
 Create an Ops Manager VM instance to host the new version of Ops Manager.
 
-To create an Ops Manager VM instance: 
+To create an Ops Manager VM instance:
 
 1. Select the checkbox for the image that you created above.
 
     <%= image_tag("gcp/create_instance.png") %>
 
-1. Click **Create Instance**. 
+1. Click **Create Instance**.
 
 1. In the **Create an instance form**, complete the following fields:
   * **Name**: Enter a name that matches the naming conventions of your existing deployment.
-  * **Zone**: Choose a zone from the region of your existing deployment. 
+  * **Zone**: Choose a zone from the region of your existing deployment.
   * **Machine type**: Click **Customize** to manually configure the vCPU and memory. An Ops Manager VM instance requires the following minimum specifications:
 
         | **Machine Spec** | **Minimum Value** |
@@ -90,18 +90,18 @@ To create an Ops Manager VM instance:
         |CPU |2&nbsp;vCPUs |
         |Memory| 8&nbsp;GB |
   * **Boot disk**: Click **Change**, then perform the following steps:
-     * Click **Custom images** if it is not already selected. 
+     * Click **Custom images** if it is not already selected.
      * Select the **Boot disk type**. If you have an Ops Manager environment with high performance needs, select **SSD**. As an example, environments used to develop <%= vars.platform_name %> tiles may benefit from a higher performing Ops Manager VM boot disk. For most environments, however, you can select **Standard**.
      * Set the **Size (GB)** of the boot disk to the minimum or higher.
 
             | **Machine Spec** | **Minimum Value** |
             |------------------|----------------------|
-            |Boot disk|100&nbsp;GB| 
-     * Select the Ops Manager image you created in the previous step if it is not already selected.<br> 
+            |Boot disk|100&nbsp;GB|
+     * Select the Ops Manager image you created in the previous step if it is not already selected.<br>
         <%= image_tag("gcp/boot_image.png") %>
      * Click **Select** to save.
   * Under **Identity and API access**, choose the **Service account** you created when you initially installed <%= vars.platform_name %>. For more information, see the [Step 1: Set up IAM Service Accounts](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/gcp/prepare-env-manual.html#iam_account) of the _Preparing to Deploy Ops Manager on GCP Manually_ topic.
-  * **Allow HTTP traffic**: Only select this checkbox if you selected it in your original Ops Manager VM configuration. 
+  * **Allow HTTP traffic**: Only select this checkbox if you selected it in your original Ops Manager VM configuration.
   * **Allow HTTPS traffic**: Only select this checkbox if you selected it in your original Ops Manager VM configuration.<br/>
         <%= image_tag("gcp/om_instance_1.png") %>
   * **Networking**: Select the **Networking** tab and do the following:
@@ -113,7 +113,7 @@ To create an Ops Manager VM instance:
 
 1. Click **Create** to deploy the new Ops Manager VM. This may take a few moments.
 
-1. Navigate to your DNS provider, and modify the entry that points a fully-qualified domain name (FQDN) to the Ops Manager VM. Replace the original Ops Manager static IP address with the public IP address of the new Ops Manager VM you created in a previous step. 
+1. Navigate to your DNS provider, and modify the entry that points a fully-qualified domain name (FQDN) to the Ops Manager VM. Replace the original Ops Manager static IP address with the public IP address of the new Ops Manager VM you created in a previous step.
   <p class="note warning"><strong>Warning:</strong> In order to set up Ops Manager authentication correctly, Pivotal recommends using a FQDN to access Ops Manager. Using an ephemeral IP address to access Ops Manager can cause authentication errors upon subsequent access. If you are importing older Ops Manager settings, you must use the FQDN.</p>
 
 
