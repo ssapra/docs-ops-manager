@@ -1,0 +1,213 @@
+---
+title: Preparing CredHub HSMs for Configuration
+owner: CredHub
+---
+
+This topic describes how to prepare a Hardware Security Module (HSM) to store CredHub encryption keys. Storing CredHub encryption keys in an HSM is more secure than storing them internally.
+
+
+## <a id='overview'></a> Overview
+
+SafeNet Luna HSM is the only HSM option that you can use as a CredHub encryption provider. The Amazon Web Services (AWS) [CloudHSM Classic](https://aws.amazon.com/cloudhsm/faqs-classic/) service uses SafeNet Luna HSMs. For more information about SafeNet Luna HSM, see the [SafeNet Luna Network HSMs](https://safenet.gemalto.com/data-encryption/hardware-security-modules-hsms/safenet-network-hsm/) product page.
+
+When configuring <%= vars.ops_manager_full %>, BOSH CredHub uses a single HSM to store encryption keys. In <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>), you can configure multiple HSMs for runtime CredHub to use as encryption providers.
+
+To configure BOSH CredHub, see _Step 3: Configure Director_ in the [BOSH Director configuration topic for your IaaS](deploy-bosh-om.html#contents).
+
+<p class="note"><strong>Note:</strong> If you use <%= vars.ops_manager %> v2.7.4 or later, you can configure multiple HSMs for BOSH CredHub using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/platform/opsman-api/#updating-director-and-iaas-properties-experimental"><%= vars.ops_manager %> API documentation</a>.</p>
+
+Configure runtime CredHub with one or more HSMs to securely manage service broker credentials. To configure runtime CredHub, see [Step 1: Configure the <%= vars.app_runtime_abbr %> Tile](../opsguide/secure-si-creds.html#pas-config) in _Securing Service Instance Credentials with Runtime CredHub_.
+
+
+## <a id='checklist'></a> Prerequisites
+
+Before beginning the procedures in this topic, ensure you have:
+
+* The name of your encryption key
+
+* Your HSM certificate
+
+* Your HSM partition name and password
+
+* Your client certificate and private key
+
+* Your HSM partition serial numbers
+
+
+## <a id="initialize-and-configure"></a> Initialize and Configure New HSMs
+
+The procedures in these sections describe how to initialize and configure new HSMs.
+
+### <a id='initialize-and-set-policies'></a> Initialize HSM and Set Policies
+
+To initialize a new HSM and set its policies:
+
+1. Run: 
+
+    ```
+    ssh -i path/to/ssh-key.pem manager@HSM-IP-ADDRESS
+    ```
+    Where `HSM-IP-ADDRESS` is the IP address of your HSM.
+
+1. Initialize the HSM and create an admin password when prompted by running:
+
+    ```
+    lunash:> hsm init -label LABEL
+    ```
+    Where `LABEL` is the label you want to give the HSM.
+    <br>
+    <br>
+    Initialize all HSMs into the same cloning domain to guarantee high availability for your <%= vars.platform_name %> deployment.
+
+1. Log in to the HSM using the password you just created by running:
+
+    ```
+    lunash:> hsm login
+    ```
+
+1. Confirm that only FIPS algorithms are enabled. Run:
+
+    ```
+    lunash:> hsm changePolicy -policy 12 -value 0
+    ```
+
+1. To confirm that `Allow cloning` and `Allow network replication` policy values are set to `On` on the HSM, run:
+
+    ```
+    hsm showPolicies
+    ```
+    If these values are not set to `On`, change them by running:
+
+    ```
+    lunash:> hsm changePolicy -policy POLICY-CODE -value 1
+    ```
+    Where `POLICY-CODE` is the numerical code of the `Allow cloning` or `Allow network replication` policy.
+
+1. Validate that the `SO can reset partition PIN` is set correctly. If it is set to `Off`, consecutive failed login attempts permanently erase the partition once the failure count hits the configured threshold. If it is set to `On`, the partition locks once the threshold is met. An HSM admin must unlock the partition, but no data is lost. To set the policy to `On`, run:
+
+    ```
+    lunash:> hsm changePolicy -policy 15 -value 1
+    ```
+
+### <a id="retrieve-hsm-certificate"></a> Retrieve HSM Certificate
+
+To retrieve your HSM certificate:
+
+1. Run: 
+
+    ```
+    scp -i path/to/ssh-key.pem \
+      manager@HSM-IP-ADDRESS:server.pem \
+      HSM-IP-ADDRESS.pem
+    ```
+    Where `HSM-IP-ADDRESS` is the IP address of your HSM.
+
+BOSH CredHub uses this certificate to validate the identity of the HSM when connecting to it.
+
+### <a id="create-an-hsm-partition"></a> Create an HSM Partition
+
+To create an HSM partition to hold the encryption keys:
+
+1. Run: 
+
+    ```
+    lunash:> partition create -partition PARTITION-NAME -domain CLONING-DOMAIN
+    ```
+    Where:
+    * `PARTITION-NAME` is the name you give the partition.
+    * `CLONING-DOMAIN` is the cloning domain of the HSM.
+
+1. When prompted to do so, create a password for the partition. The partition password must be the same for all partitions in the highly available partition group.
+
+1. To retrieve the partition serial number, run:
+
+    ```
+    lunash:> partition show -partition PARTITION-NAME
+    ```
+    Where `PARTITION-NAME` is the name of the partition you created.
+
+1. Record the `Partition SN` shown in the output of the command you ran in the previous step.
+
+
+## <a id='create-register-hsm'></a> Create and Register HSM Clients
+
+Clients that communicate with the HSM must provide a client certificate to establish a client-authenticated session. You must set up each client's certificate on the HSM and assign access rights for your partition.
+
+### <a id='network-trust-link'></a> Establish a Network Trust Link Between Client and HSMs
+
+To establish a network trust link between a client and your HSMs:
+
+1. Create a certificate for the client by running:
+
+    ```
+    openssl req \
+      -x509   \
+      -newkey rsa:4096 \
+      -days   NUMBER-OF-DAYS \
+      -sha256 \
+      -nodes  \
+      -subj   "/CN=CLIENT-HOSTNAME-OR-IP" \
+      -keyout CLIENT-HOSTNAME-OR-IPKey.pem \
+      -out    CLIENT-HOSTNAME-OR-IP.pem
+    ```
+    Where `CLIENT-HOSTNAME-OR-IP` is the hostname or IP address of the client.
+
+1. Copy the client certificate to your HSM by running:
+
+    ```
+    scp -i path/to/ssh-key.pem \
+      CLIENT-HOSTNAME-OR-IP.pem \
+      manager@HSM-IP:CLIENT-HOSTNAME-OR-IP.pem
+    ```
+    Where `CLIENT-HOSTNAME-OR-IP` is the hostname or IP address of the client.
+
+### <a id='register'></a> Register HSM Client Host and Partitions
+
+To register a client host and partitions for your HSM:
+
+1. Create a client by running:
+
+    ```
+    lunash:> client register -client CLIENT-NAME -hostname CLIENT-HOSTNAME
+    ```
+    Where:
+    * `CLIENT-NAME` is the name of the client.
+    * `CLIENT-HOSTNAME` is the hostname of your planned CredHub instances.
+
+    If you are only planning to run one CredHub instance, you can also register a client with the planned CredHub IP
+    address by running:
+
+    ```
+    lunash:> client register -client CLIENT-NAME -ip CLIENT-IP-ADDRESS
+    ```
+    Where:
+    <ul>
+      <li><code>CLIENT-NAME</code> is the name of the client.</li>
+      <li><code>CLIENT-IP-ADDRESS</code> is the IP address of your planned CredHub instance.</li>
+    </ul>
+
+1. Assign the partition created in the previous section to the client by running:
+
+    ```
+    lunash:> client assignPartition -client CLIENT-NAME -partition PARTITION-NAME
+    ```
+    Where:
+    * `CLIENT-NAME` is the name of the client.
+    * `PARTITION-NAME` is the name of the partition you created.
+
+
+## <a id="hsm-encryption-keys"></a> Encryption Keys on the HSM
+
+You can set which key is used for encryption operations by defining the encryption key name in the **Director Config** pane of the BOSH Director tile for BOSH Credhub, or the **CredHub** pane of the <%= vars.app_runtime_abbr %> tile for runtime CredHub. If a key already exists on the HSM, CredHub uses it by default. If a key does not exist on the HSM, CredHub creates one automatically in the referenced partition.
+
+When you generate a new key, you should review the list of keys on each HSM to validate that key replication is occurring. If new keys do not propagate among the HSMs, you could get locked out of HSMs.
+
+To review stored keys on a partition:
+
+1. Run:
+
+    ```
+    lunash:> partition showContents -partition PARTITION-NAME
+    ```
+    Where `PARTITION-NAME` is the name of your partition.
+
