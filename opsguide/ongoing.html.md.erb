@@ -26,7 +26,7 @@ In addition to these tasks, <%= vars.platform_name %> operators also routinely p
 
 ### <a id='upgrading'></a> Upgrading
 
-* [Upgrading <%= vars.platform_name %>](https://docs.pivotal.io/platform/customizing/upgrading-pcf.html)
+* [Upgrading <%= vars.platform_name %>](../install/upgrading-pcf.html)
 
 * [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](https://docs.pivotal.io/platform/customizing/upgrading-products.html)
 
@@ -54,9 +54,9 @@ In addition to these tasks, <%= vars.platform_name %> operators also routinely p
 
 * [Logs and Metrics Sources](https://docs.pivotal.io/platform/loggregator/data-sources.html)
 
-* [Monitoring <%= vars.platform_name %>](https://docs.pivotal.io/platform/monitoring/index.html)
+* [Monitoring <%= vars.platform_name %>](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/overview/monitoring/index.html)
 
-	* [Key Performance Indicators](https://docs.pivotal.io/platform/monitoring/kpi.html)
+	* [Key Performance Indicators](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/overview/monitoring/kpi.html)
 
 	* [Key Capacity Scaling Indicators](https://docs.pivotal.io/platform/monitoring/key-cap-scaling.html)
 
@@ -68,19 +68,19 @@ In addition to these tasks, <%= vars.platform_name %> operators also routinely p
 
 * [Security Event Logging](https://docs.pivotal.io/platform/loggregator/cc-uaa-logging.html)
 
-* [Reporting Instance Usage with Apps Manager](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/operating/accounting-report-apps-man.html)
+* [Reporting Instance Usage with Apps Manager](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/accounting-report-apps-man.html)
 
-* [Reporting App, Task, and Service Instance Usage](https://docs.pivotal.io/application-service/operating/accounting-report.html)
+* [Reporting App, Task, and Service Instance Usage](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/accounting-report.html)
 
-* [Monitoring VMs in <%= vars.platform_name %>](https://docs.pivotal.io/platform/customizing/monitoring.html)
+* [Monitoring VMs in <%= vars.platform_name %>](../install/monitoring.html)
 
-* [Monitoring VMs in vSphere](https://docs.pivotal.io/platform/customizing/monitoring-vsphere.html)
+* [Monitoring VMs in vSphere](../install/monitoring-vsphere.html)
 
 ### <a id='tuning'></a> Platform Tuning
 
-* [Scaling <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/operating/scaling-ert-components.html)
+* [Scaling <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/scaling-ert-components.html)
 
-* [Managing Internal Databases](https://docs.pivotal.io/application-service/operating/internal-databases.html)
+* [Managing Internal Databases](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/internal-databases.html)
 
 * [Gorouter Back End Keep-Alive Connections](https://docs.pivotal.io/platform/adminguide/routing-keepalive.html)
 
@@ -88,7 +88,7 @@ In addition to these tasks, <%= vars.platform_name %> operators also routinely p
 
 ### <a id='devs'></a> Enabling Developers
 
-* [Adding and Deleting Products](https://docs.pivotal.io/platform/customizing/add-delete.html)
+* [Adding and Deleting Products](../install/add-delete.html)
 
 * [Managing Isolation Segments](https://docs.pivotal.io/platform/adminguide/isolation-segments.html)
 
@@ -96,7 +96,7 @@ In addition to these tasks, <%= vars.platform_name %> operators also routinely p
 
 * [Enabling Volume Services](https://docs.pivotal.io/application-service/operating/enable-vol-services.html)
 
-* [Configuring Container-to-Container Networking](https://docs.pivotal.io/platform/devguide/deploy-apps/cf-networking.html)
+* [Configuring Container-to-Container Networking](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/devguide/deploy-apps/cf-networking.html)
 
 * [Switching App Domains](https://docs.pivotal.io/application-service/operating/switching-domains.html)
 
@@ -122,9 +122,9 @@ In addition to these tasks, <%= vars.platform_name %> operators also routinely p
 
 * [Retrieving Credentials from Your Deployment](https://docs.pivotal.io/platform/customizing/credentials.html)
 
-* [Restricting App Access to Internal <%= vars.platform_name %> Components](https://docs.pivotal.io/application-service/operating//app-sec-groups.html)
+* [Restricting App Access to Internal <%= vars.platform_name %> Components](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/app-sec-groups.html)
 
-* [Providing a Certificate for Your TLS Termination Point](https://docs.pivotal.io/application-service/operating//security_config.html)
+* [Providing a Certificate for Your TLS Termination Point](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/application-service/security_config.html)
 
 * [Rotating Certificates](https://docs.pivotal.io/ops-manager/security/pcf-infrastructure/api-cert-rotation.html)
 

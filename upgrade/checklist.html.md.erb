@@ -8,7 +8,7 @@ This topic serves as a checklist for preparing to upgrade <%= vars.ops_manager %
 
 This topic contains important preparation steps that you must follow before beginning your upgrade. Failure to follow these instructions may jeopardize your existing deployment data and cause the upgrade to fail.
 
-After completing the steps in this topic, you can continue to [Upgrading <%= vars.platform_name %>](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/upgrading-pcf.html).
+After completing the steps in this topic, you can continue to [Upgrading <%= vars.platform_name %>](../install/upgrading-pcf.html).
 
 
 ## <a id="back-up-your-pcf-deployment"></a> Back Up Your <%= vars.platform_name %> Deployment
@@ -145,7 +145,7 @@ To save upgrade time, you can disable unused <%= vars.app_runtime_abbr %> post-d
 
 In some cases, if you have previously disabled lifecycle errands for any installed product
 to reduce deployment time, you may want to re-enable these errands before upgrading.
-For more information, see [Add and Import Products](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/add-delete.html#add-import) in _Adding and Deleting Products_.
+For more information, see [Add and Import Products](../install/add-delete.html#add-import) in _Adding and Deleting Products_.
 
 ### <a id="stemcell-compat"></a> Check OS Compatibility of BOSH-Managed Add-Ons and Tiles
 
@@ -366,4 +366,4 @@ When you export an installation, the export contains the base VM images, necessa
 
 ## <a id="next-steps"></a> Next Steps
 
-Now that you have completed the Upgrade Preparation Checklist, continue to [Upgrading <%= vars.platform_name %>](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/upgrading-pcf.html).
+Now that you have completed the Upgrade Preparation Checklist, continue to [Upgrading <%= vars.platform_name %>](../install/upgrading-pcf.html).

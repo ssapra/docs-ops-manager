@@ -61,15 +61,15 @@ vSphere objects used to organize resources.
 1. (Optional) If desired, create host groups within the clusters. For information about using host groups in vSphere, see [Host Groups in vSphere](host-groups.html).
 
     1. Select the **Cluster** where you want to create a host group.
-    
+
     1. Select the **Configure** tab.
-  
+
     1. Under **Configuration**, select **VM/Host Groups**.
 
     1. Click **Add** and configure the host group as follows:
         - Name: Enter a name for the host group.
         - Type: Select **Host Group** from the drop down.
-        - Click **Add** and select the ESXi host(s) to include in the host group. 
+        - Click **Add** and select the ESXi host(s) to include in the host group.
         - Click **OK**.
 
 ## <a id="deploy"></a> Deploy <%= vars.ops_manager %>
@@ -107,7 +107,7 @@ vSphere objects used to organize resources.
 1. At the **Select Storage** screen, select the virtual disk format.
     1. Choose a Datastore.
         * If you use vSAN, select the vSAN datastore and apply the default storage policy.
-        * If you use a dedicated disk, select the appropriate disk format for your deployment needs. If in doubt, choose **Thin Provision**. For more information about disk formats, see [vSphere Virtual Disk Types](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/disk-format.html).
+        * If you use a dedicated disk, select the appropriate disk format for your deployment needs. If in doubt, choose **Thin Provision**. For more information about disk formats, see [vSphere Virtual Disk Types](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/disk-format.html).
     1. Click **Next**.
 
     <p class="note warning"><strong>Warning</strong>: <%= vars.ops_manager %> requires a VM with at least 8&nbsp;GB memory.</p>
