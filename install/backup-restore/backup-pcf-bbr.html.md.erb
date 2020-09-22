@@ -1,13 +1,14 @@
 ---
-title: Backing Up Pivotal Platform with BBR
+title: Backing Up Deployments with BBR
 owner: RelEng
 ---
 
-<% current_page.data.title = "Backing Up " + vars.platform_name + " with BBR"  %>
-
 <% $this_topic = 'backup-pcf' %>
 
-This topic describes the procedure for backing up your critical back end <%= vars.platform_name %> components with BOSH Backup and Restore (BBR), a command-line tool for backing up and restoring BOSH deployments. To restore your backup, see [Restoring <%= vars.platform_name %> from Backup with BBR](restore-pcf-bbr.html).
+This topic describes the procedure for backing up your critical
+back end components with BOSH Backup and Restore (BBR),
+a command-line tool for backing up and restoring BOSH deployments.
+To restore your backup, see [Restoring Deployments from Backup with BBR](restore-pcf-bbr.html).
 
 For BBR release notes, see [BOSH Backup and Restore Release Notes](https://docs.cloudfoundry.org/bbr/bbr-rn.html) in the Cloud Foundry documentation.
 
@@ -21,20 +22,22 @@ During the backup, BBR stops the Cloud Controller API and the Cloud Controller w
     <ul>
       <li><strong>Security:</strong> Backup artifacts can contain secrets. Secure backup artifacts by using encryption or other means.</li>
       <li><strong>Compatibility:</strong> A BBR backup can only be restored to environments matching its source environment. To ensure that a restore environment is compatible with a backup, see <a href="./restore-pcf-bbr.html#compatibility">Compatibility of Restore</a>.</li>
-      <li><strong>Failed Restore:</strong> Restore is a destructive operation. BBR is designed to restore <%= vars.platform_name %> after a disaster. If a restore fails, the environment might be left in an unusable state and require re-provisioning. For more information, see <a href="restore-pcf-bbr.html">Restoring <%= vars.platform_name %> from Backup with BBR</a>.</li>
+      <li><strong>Failed Restore:</strong> Restore is a destructive operation. BBR is designed to restore deployments after a disaster. If a restore fails, the environment might be left in an unusable state and require re-provisioning. For more information, see <a href="restore-pcf-bbr.html">Restoring Deployments from Backup with BBR</a>.</li>
       <li><strong>Service Data:</strong> BBR does not back up any service data.</li>
-      <li><strong>API Outage:</strong> The Cloud Controller API does not send or receive calls during <%= vars.platform_name %> restoration.</li>
+      <li><strong>API Outage:</strong> The Cloud Controller API does not send or receive calls during restoration.</li>
     </ul>
 </div>
 
 
 ## <a id='recs'></a> Recommendations
 
-<%= vars.recommended_by %> recommends:
+<%= vars.company_name %> recommends:
 
-* Follow the full procedure documented in this topic when creating a backup. This ensures that you always have a consistent backup of <%= vars.ops_manager %> and <%= vars.app_runtime_abbr %> to restore from.
+* Follow the full procedure documented in this topic when creating a backup.
+  This ensures that you always have a consistent backup to restore from.
 
-* Back up frequently, especially before making any changes to your <%= vars.platform_name %> deployment, such as the configuration of any tiles in Ops Manager.
+* Back up frequently, especially before making any changes to your deployment,
+  such as the configuration of any tiles in <%= vars.ops_manager %>.
 
 * You can prune the BOSH blobstore by running `bosh clean-up --all` before you run a backup of the BOSH Director. The command removes all unused resources including packages compiled against older stemcell versions. If a lot of unused resources have accumulated over time, you create a smaller, faster backup of the BOSH Director. For more information see [Clean-Up](https://bosh.io/docs/cli-v2/#clean-up) in the BOSH documentation.
 
@@ -82,12 +85,12 @@ The following table shows what types of external databases and blobstores you ca
   <tr>
     <th class="rotate" rowspan="10" style="width: 5%; border-left-style: hidden; background-color: white; color: black;"><div>Deployment Type</div></th>
     <th style="background-color: #1b786e; color: white;"></th>
-    <th class="cell header" style="width: 12%; text-align: center;">2.3</th>
     <th class="cell header" style="width: 12%; text-align: center;">2.4</th>
     <th class="cell header" style="width: 12%; text-align: center;">2.5</th>
     <th class="cell header" style="width: 12%; text-align: center;">2.6</th>
     <th class="cell header" style="width: 12%; text-align: center;">2.7</th>
     <th class="cell header" style="width: 12%; text-align: center;">2.8</th>
+    <th class="cell header" style="width: 12%; text-align: center;">2.9</th>
   </tr>
   <tr>
     <td style="color: black;"><%= vars.app_runtime_abbr %> with External Database</td>
@@ -120,7 +123,7 @@ The following table shows what types of external databases and blobstores you ca
     <td style="color: black;">BOSH Director with Amazon S3 Blobstore<sup>*</sup></td>
     <td class="cell peach">No</td>
     <td class="cell peach">No</td>
-    <td class="cell peach">No</td>
+    <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
@@ -138,7 +141,7 @@ The following table shows what types of external databases and blobstores you ca
     <td style="color: black;">BOSH Director with S3-Compatible Blobstore</td>
     <td class="cell peach">No</td>
     <td class="cell peach">No</td>
-    <td class="cell peach">No</td>
+    <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
@@ -156,7 +159,7 @@ The following table shows what types of external databases and blobstores you ca
     <td style="color: black;"><%= vars.app_runtime_abbr %> with GCS Blobstore</td>
     <td class="cell peach">No</td>
     <td class="cell peach">No</td>
-    <td class="cell peach">No</td>
+    <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
@@ -166,7 +169,7 @@ The following table shows what types of external databases and blobstores you ca
     <td class="cell peach">No</td>
     <td class="cell peach">No</td>
     <td class="cell peach">No</td>
-    <td class="cell peach">No</td>
+    <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
     <td class="cell green">Yes</td>
   </tr>
@@ -183,9 +186,9 @@ If you configured an unsupported external blobstore or an unsupported external d
 
 | Scenario | Action |
 | -------- | ------ |
-| You configured a supported database and an unsupported external blobstore in <%= vars.app_runtime_abbr %>. | Follow the <%= vars.platform_name %> backup process and copy the external blobstore by using the IaaS-specific tool. |
-| You configured an unsupported external database and a supported blobstore in <%= vars.app_runtime_abbr %>. | Follow the <%= vars.platform_name %> backup process and copy the external database by using the IaaS-specific tool. |
-| You configured both an unsupported external database and an unsupported external blobstore in <%= vars.app_runtime_abbr %>. | Follow the <%= vars.platform_name %> backup process but skip [Back Up Your <%= vars.app_runtime_abbr %> Deployment](#bbr-backup). Copy the external database and blobstore by using the IaaS-specific tool. |
+| You configured a supported database and an unsupported external blobstore in <%= vars.app_runtime_abbr %>. | Follow the backup procedures and copy the external blobstore by using the IaaS-specific tool. |
+| You configured an unsupported external database and a supported blobstore in <%= vars.app_runtime_abbr %>. | Follow the backup procedures and copy the external database by using the IaaS-specific tool. |
+| You configured both an unsupported external database and an unsupported external blobstore in <%= vars.app_runtime_abbr %>. | Follow the backup procedures but skip [Back Up Your <%= vars.app_runtime_abbr %> Deployment](#bbr-backup). Copy the external database and blobstore by using the IaaS-specific tool. |
 
 <p class="note warning"><strong>Warning:</strong> You might encounter inconsistencies between the blobstore and database. If apps do not appear during a restore, re-push those apps.</p>
 
@@ -202,22 +205,23 @@ When backing up services:
 
 * BBR does not back up managed services or their data.
 
-* You can back up and restore brokered services with the procedures documented in this topic and in [Restoring <%= vars.platform_name %> from Backup with BBR](restore-pcf-bbr.html).
+* You can back up and restore brokered services with the procedures documented in this topic and in [Restoring Deployments from Backup with BBR](restore-pcf-bbr.html).
 
 
 ## <a id='workflow'></a> Backup Workflow
 
 BBR examines the jobs in the BOSH deployment, and triggers the scripts in the following stages:
 
-1. **Pre-backup lock**: The pre-backup lock scripts locks the job so backups are consistent across the cluster.
+1. **Pre-backup lock:** The pre-backup lock scripts locks the job so backups are consistent across the cluster.
 
-1. **Backup**: The backup script backs up the release.
+1. **Backup:** The backup script backs up the release.
 
-1. **Post-backup unlock**: The post-backup unlock script unlocks the job after the backup is complete.
+1. **Post-backup unlock:** The post-backup unlock script unlocks the job after the backup is complete.
 
 Scripts in the same stage are all triggered together. For instance, BBR triggers all pre-backup lock scripts before any backup scripts. Scripts within a stage can be triggered in any order.
 
-The backup artifacts are drained to the jumpbox, where the operator can transfer them to storage and use them to restore <%= vars.platform_name %>.
+The backup artifacts are drained to the jumpbox,
+where the operator can transfer them to storage and use them to restore the deployment.
 
 The following diagram shows a sample backup flow:
 
@@ -230,7 +234,7 @@ The following diagram shows a sample backup flow:
 
 You must have a jumpbox before you can install BBR to the jumpbox. A jumpbox is a separate, hardened server on your network that provides a controlled means of access to the VMs other computers on your network.
 
-<%= vars.recommended_by %> recommends using the <%= vars.ops_manager %> VM as your jumpbox. If you use the <%= vars.ops_manager %> VM as your jumpbox, the path to the root certificate authority (CA) is:
+<%= vars.company_name %> recommends using the <%= vars.ops_manager %> VM as your jumpbox. If you use the <%= vars.ops_manager %> VM as your jumpbox, the path to the root certificate authority (CA) is:
 
 ```
 /var/tempest/workspaces/default/root_ca_certificate
@@ -240,9 +244,11 @@ You must use this path to run BBR commands.
 
 As an alternative to using the <%= vars.ops_manager %> VM as your jumpbox, you can:
 
-* Use Concourse to back up a <%= vars.platform_name %> installation using BBR. For more information, see the [BBR <%= vars.platform_name %> Pipeline Tasks](https://github.com/pivotal-cf/bbr-pcf-pipeline-tasks) repository on GitHub.
+* Use Concourse to back up a deployment using BBR.
+  For more information, see the [BBR PCF Pipeline Tasks](https://github.com/pivotal-cf/bbr-pcf-pipeline-tasks) repository on GitHub.
 
-* Configure a custom jumpbox. For more information, see [Configuring a custom jumpbox for BBR](https://community.pivotal.io/s/article/Configuring-a-Custom-Jumpbox-for-BBR) in the Pivotal Knowledge Base.
+* Configure a custom jumpbox.
+  For more information, see [Configuring a custom jumpbox for BBR](https://community.pivotal.io/s/article/Configuring-a-Custom-Jumpbox-for-BBR) in the Knowledge Base.
 
 ### <a id='encrypt-key'></a> Step 2: Record the Cloud Controller Database Encryption Credentials
 
@@ -256,21 +262,22 @@ To retrieve the Cloud Controller database encryption credentials from the <%= va
 
 1. Locate the **Cloud Controller** section.
 
-1. Record the **Db Encryption Credentials**. You must provide these credentials when you contact [Pivotal Support](https://support.pivotal.io) for help restoring your installation.
+1. Record the **Db Encryption Credentials**.
+  You must provide these credentials when you contact [Support](https://support.pivotal.io) for help restoring your installation.
 
 	<%= image_tag("ccdb-encrypt-creds.png") %>
 
 ### <a id="retrieve-credentials"></a> Step 3: Retrieve BOSH Director Credentials
 
 <%# Find this partial in GitHub at `pivotal-cf/docs-partials` %>
-<%= partial "/pcf/core/#{vars.current_major_version.sub('.', '-')}/backup-restore/bosh_retrieve_credentials" %>
+<%= partial "/pcf/core/2-9/backup-restore/bosh_retrieve_credentials" %>
 
 ### <a id="retrieve-address"></a> Step 4: Retrieve BOSH Director Address
 
 To retrieve the IP address of your BOSH Director from the BOSH Director tile:
 
 <%# Find this partial in GitHub at `pivotal-cf/docs-partials` %>
-<%= partial "/pcf/core/#{vars.current_major_version.sub('.', '-')}/backup-restore/bosh_target_director_bbr" %>
+<%= partial "/pcf/core/2-9/backup-restore/bosh_target_director_bbr" %>
 
 ### <a id='check-director'></a> Step 5: Check Your BOSH Director
 
@@ -370,7 +377,7 @@ To check your BOSH Director:
 
 1. After the pre-backup check succeeds, continue to [Step 6: Confirm Backup Restore Node is Deployed](#backup-restore-node). If the pre-backup check fails, the BOSH Director might not have the correct backup scripts or the connection to the BOSH Director might have failed.
 
-### <a id='backup-restore-node'></a> Step 6: Confirm Backup Restore Node is Deployed
+### <a id='backup-restore-node'></a> Step 6: Confirm Backup Restore Node Is Deployed
 
 When BBR backs up <%= vars.app_runtime_abbr %>, it needs a Backup Restore node.
 
@@ -383,7 +390,8 @@ To confirm that the Backup Restore node is deployed:
 1. Select **Resource Config**.
 
 1. Find the **Backup Restore Node** job and check if the **Instances** dropdown is set to `1`.
-<%= image_tag("backup-restore-node.png") %>
+
+    <%= image_tag("backup-restore-node.png") %>
 
 1. If the **Instances** dropdown is not set to `1`:
   1. Set the **Instances** dropdown to `1`.
@@ -395,11 +403,11 @@ To confirm that the Backup Restore node is deployed:
 
 ### <a id='identify-deployment'></a> Step 7: Identify Your Deployment
 
-To identify the name of the BOSH deployment that contains <%= vars.platform_name %>:
+To identify the name of the BOSH deployment:
 
 1. Log in to your BOSH Director.
 
-1. To identify the name of the BOSH deployment that contains <%= vars.platform_name %>, run:
+1. To identify the name of the BOSH deployment, run:
 
     ```
     bosh -e BOSH-DIRECTOR-IP --ca-cert PATH-TO-BOSH-SERVER-CERTIFICATE deployments
@@ -439,13 +447,13 @@ This section describes the procedures for creating your backup with BBR.
 
 ### <a id='export'></a> Step 9: Export Installation Settings
 
-<%= vars.recommended_by %> recommends that you back up your <%= vars.ops_manager %> installation settings by exporting frequently.
+<%= vars.company_name %> recommends that you back up your <%= vars.ops_manager %> installation settings by exporting frequently.
 
 When exporting your installation settings, keep in mind:
 
 * This option is only available after you have deployed at least once.
 
-* Always export your installation settings before following the procedure in [Deploy <%= vars.ops_manager %> and Import Installation Settings](./restore-pcf-bbr.html#deploy-import) in _Restoring <%= vars.platform_name %> from Backup with BBR_.
+* Always export your installation settings before following the procedure in [Deploy <%= vars.ops_manager %> and Import Installation Settings](./restore-pcf-bbr.html#deploy-import) in _Restoring Deployments from Backup with BBR_.
 
 * Exporting your installation settings only backs up the settings you configured in <%= vars.ops_manager %>. It does not back up your VMs or any external MySQL databases.
 
@@ -492,7 +500,7 @@ To export your installation settings using the <%= vars.ops_manager %> API:
 <div class="note"><strong>Notes:</strong>
   <ul>
     <li>The time it takes to back up the BOSH Director varies depending on conditions such as network infrastructure and underlying hardware. For large foundations, this step can take a considerable amount of time.</li>
-    <li>Because the BBR <code>backup</code> command can take a long time to complete, <%= vars.recommended_by %> recommends you run it independently of the SSH session so that the process can continue running even if your connection to the jumpbox fails. Use <code>nohup</code>, a <code>screen</code>, or a <code>tmux</code> session.</li>
+    <li>Because the BBR <code>backup</code> command can take a long time to complete, <%= vars.company_name %> recommends you run it independently of the SSH session so that the process can continue running even if your connection to the jumpbox fails. Use <code>nohup</code>, a <code>screen</code>, or a <code>tmux</code> session.</li>
   </ul>
 </div>
 
@@ -539,7 +547,7 @@ To clean up:
 <div class="note"><strong>Notes:</strong>
   <ul>
     <li>Backing up <%= vars.app_runtime_abbr %> can take a considerable amount of time, and varies depending on network and hardware infrastructure. In controlled conditions, backup durations have been observed ranging from a few minutes to several hours. To reduce your backup lock times, consider using selective backups. For more information, see <a href="file-storage-backup-level.html">File Storage Backup Level</a>. Part of the backup process causes downtime for Cloud Controller, during which you cannot push, scale, or delete apps. Your apps are not affected.</li>
-    <li>Because the BBR <code>backup</code> command can take a long time to complete, <%= vars.recommended_by %> recommends you run it independently of the SSH session, so that the process can continue running even if your connection to the jumpbox fails. The command above uses <code>nohup</code>, but you could also run the command in a <code>screen</code> or <code>tmux</code> session.</li>
+    <li>Because the BBR <code>backup</code> command can take a long time to complete, <%= vars.company_name %> recommends you run it independently of the SSH session, so that the process can continue running even if your connection to the jumpbox fails. The command above uses <code>nohup</code>, but you could also run the command in a <code>screen</code> or <code>tmux</code> session.</li>
   </ul>
 </div>
 
@@ -599,7 +607,7 @@ This section describes the procedures you must perform after taking your backup.
 
 After creating your backup successfully:
 
-1. Move the backup artifacts off the jumpbox to your preferred storage space. The backup created by BBR consists of a directory with the backup artifacts and metadata files. <%= vars.recommended_by %> recommends compressing and encrypting the files.
+1. Move the backup artifacts off the jumpbox to your preferred storage space. The backup created by BBR consists of a directory with the backup artifacts and metadata files. <%= vars.company_name %> recommends compressing and encrypting the files.
 
 1. Make redundant copies of your backup artifacts and store them in multiple locations to minimize the risk of losing backups in the event of a disaster.
 
@@ -613,7 +621,7 @@ After backing up <%= vars.platform_name %>, consider validating your backup by r
 
 <div class="note warning"><strong>Warning:</strong>
   <ul>
-    <li><strong>The VMs and disks from the backed-up BOSH Director must not be visible to the new BOSH Director</strong> when validating your backup. As a result, <%= vars.recommended_by %> recommends that you deploy the new BOSH Director to a different IaaS network and account than the VMs and disks of the backed-up BOSH Director.</li>
+    <li><strong>The VMs and disks from the backed-up BOSH Director must not be visible to the new BOSH Director</strong> when validating your backup. As a result, <%= vars.company_name %> recommends that you deploy the new BOSH Director to a different IaaS network and account than the VMs and disks of the backed-up BOSH Director.</li>
     <li><strong>Data services outside of <%= vars.platform_name %> might produce unexpected side effects during restoration.</strong> Restored apps and services might attempt to connect to data services when you restore to a new environment. For example, consider an app that processes mail queues and connects to an external database. When you validate your backup in a test environment, the app might start processing the queue, and this work might be lost.</li>
   </ul>
 </div>
@@ -626,13 +634,13 @@ To spin up a second environment and test the backup:
 
 1. Create a new <%= vars.ops_manager %> VM in a different network to the original. Ensure that the <%= vars.ops_manager %> VM has enough persistent disk to accommodate the files exported in the previous step. For more information, see [IaaS-Specific Deployment Guidelines](../deploy-bosh-om.html#contents) in _Deploying BOSH and <%= vars.ops_manager %>_.
 
-1. Ensure that the restore environment is compatible with the backup. For more information, see [Compatibility of Restore](./restore-pcf-bbr.html#compatibility) in _Restoring <%= vars.platform_name %> from Backup with BBR_.
+1. Ensure that the restore environment is compatible with the backup. For more information, see [Compatibility of Restore](./restore-pcf-bbr.html#compatibility) in _Restoring Deployments from Backup with BBR_.
 
-1. Follow the procedures in [Restoring <%= vars.platform_name %> from Backup with BBR](restore-pcf-bbr.html).
+1. Follow the procedures in [Restoring Deployments from Backup with BBR](restore-pcf-bbr.html).
 
 #### <a id='ert-validate'></a> Validate Your <%= vars.app_runtime_abbr %> Backup Only
 
-For a sandbox or other non-production environment, you can optionally perform an _in-place_ restore of <%= vars.app_runtime_abbr %> only. In this case, you restore the <%= vars.app_runtime_abbr %> backup to the same <%= vars.platform_name %> environment that the backup was created from. For more information, see [Step 12: Redeploy <%= vars.app_runtime_abbr %>](restore-pcf-bbr.html#restore-ert) in _Restoring <%= vars.platform_name %> from Backup with BBR_.
+For a sandbox or other non-production environment, you can optionally perform an _in-place_ restore of <%= vars.app_runtime_abbr %> only. In this case, you restore the <%= vars.app_runtime_abbr %> backup to the same <%= vars.platform_name %> environment that the backup was created from. For more information, see [Step 12: Redeploy <%= vars.app_runtime_abbr %>](restore-pcf-bbr.html#restore-ert) in _Restoring Deployments from Backup with BBR_.
 
 
 ## <a id='logging'></a> Logging

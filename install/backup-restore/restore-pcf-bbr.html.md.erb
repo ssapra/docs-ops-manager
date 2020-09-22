@@ -1,5 +1,5 @@
 ---
-title: Restoring Pivotal Platform from Backup with BBR
+title: Restoring Deployments from Backup with BBR
 owner: RelEng
 ---
 
@@ -11,20 +11,20 @@ For BBR release notes, see [BOSH Backup and Restore Release Notes](https://docs.
 
 ## <a id='overview'></a> Overview
 
-To perform the procedures in this topic, you must have backed up <%= vars.platform_name %> by following the procedure in [Backing Up <%= vars.platform_name %> with BBR](backup-pcf-bbr.html).
+To perform the procedures in this topic, you must have backed up your deployment by following the procedure in [Backing Up Deployments with BBR](backup-pcf-bbr.html).
 
 The procedures described in this topic prepare your environment for <%= vars.platform_name %>, deploy <%= vars.ops_manager %>, import your installation settings, and use BBR to restore your <%= vars.platform_name %> components.
 
-<p class="note warning"><strong>Warning:</strong> Restoring <%= vars.platform_name %> with BBR is a destructive operation. If the restore fails, the new environment could be left in an unusable state and require re-provisioning. Only perform the procedures in this topic for the purpose of disaster recovery, such as re-creating <%= vars.platform_name %> after a storage-area network (SAN) corruption.</p>
+<p class="note warning"><strong>Warning:</strong> Restoring a deployment with BBR is a destructive operation. If the restore fails, the new environment could be left in an unusable state and require re-provisioning. Only perform the procedures in this topic for the purpose of disaster recovery, such as re-creating a deployment after a storage-area network (SAN) corruption.</p>
 
-<p class="note warning"><strong>Warning:</strong> When validating your backup, the VMs and disks from the backed-up BOSH Director should not be visible to the new BOSH Director. As a result, Pivotal recommends that you deploy the new BOSH Director to a different IaaS network and account than the VMs and disks of the backed-up BOSH Director.</p>
+<p class="note warning"><strong>Warning:</strong> When validating your backup, the VMs and disks from the backed-up BOSH Director should not be visible to the new BOSH Director. As a result, <%= vars.company_name %> recommends that you deploy the new BOSH Director to a different IaaS network and account than the VMs and disks of the backed-up BOSH Director.</p>
 
 <p class="note"><strong>Note:</strong> If the BOSH Director you are restoring had any deployments that were deployed manually rather than through a <%= vars.ops_manager %> tile, you must restore them manually at the end of the process. For more information, see <a href="#non-tiles">(Optional) Restore Non-Tile Deployments</a>.</p>
 
 
 ## <a id="compatibility"></a> Compatibility of Restore
 
-This section describes the restrictions for a backup artifact to be restorable to another environment. This section is for guidance only, and Pivotal recommends that you validate your backups by using the backup artifacts in a restore.
+This section describes the restrictions for a backup artifact to be restorable to another environment. This section is for guidance only, and <%= vars.company_name %> recommends that you validate your backups by using the backup artifacts in a restore.
 
 For a backup artifact to be restorable, these restrictions apply:
 
@@ -80,7 +80,7 @@ If you need to re-create your IaaS resources, prepare your environment
 by following the instructions specific to your IaaS in
 [Installation Overview](../../customizing/index.html).
 
-<p class="note"><strong>Note:</strong> The instructions for installing <%= vars.platform_name %> on Amazon Web Services (AWS) and OpenStack combine the procedures for preparing your environment and deploying <%= vars.ops_manager %> into a single topic. The instructions for the other supported IaaSes split these procedures into two separate topics.</p>
+<p class="note"><strong>Note:</strong> The instructions for installing a deployment on Amazon Web Services (AWS) and OpenStack combine the procedures for preparing your environment and deploying <%= vars.ops_manager %> into a single topic. The instructions for the other supported IaaSes split these procedures into two separate topics.</p>
 
 If you re-create your IaaS resources, you must also add those resources to <%= vars.ops_manager %> by following the procedures in [(Optional) Configure <%= vars.ops_manager %> for New Resources](#config-new-resources).
 
@@ -88,24 +88,24 @@ If you re-create your IaaS resources, you must also add those resources to <%= v
 
 1. Follow the procedures for your IaaS to deploy <%= vars.ops_manager %>:
     * **AWS:**
-        * If you configured AWS manually, see [Deploying <%= vars.ops_manager %> on AWS Manually](https://docs.pivotal.io/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/aws/deploy-manual.html).
+        * If you configured AWS manually, see [Deploying <%= vars.ops_manager %> on AWS Manually](/platform/<%= vars.current_major_version.sub('.', '-') %>/om/aws/deploy-manual.html).
         * If you used Terraform to install <%= vars.platform_name %> on AWS, see [Installing <%= vars.platform_name %> on AWS Using Terraform](../aws-terraform.html).
-    * **GCP:** See [Deploying <%= vars.ops_manager %> on GCP Manually](https://docs.pivotal.io/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/gcp/deploy-manual.html).
-    * **OpenStack:** See _Step 4: Create <%= vars.ops_manager %> Image_ through _Step 9: Create a DNS Entry_ in [Deploying <%= vars.ops_manager %> on OpenStack](https://docs.pivotal.io/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/openstack/setup.html#create-om-image).
-    * **vSphere:** See [Deploying <%= vars.ops_manager %> on vSphere](https://docs.pivotal.io/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/vsphere/deploy.html).
+    * **GCP:** See [Deploying <%= vars.ops_manager %> on GCP Manually](/platform/<%= vars.current_major_version.sub('.', '-') %>/om/gcp/deploy-manual.html).
+    * **OpenStack:** See _Step 4: Create <%= vars.ops_manager %> Image_ through _Step 9: Create a DNS Entry_ in [Deploying <%= vars.ops_manager %> on OpenStack](/platform/<%= vars.current_major_version.sub('.', '-') %>/om/openstack/setup.html#create-om-image).
+    * **vSphere:** See [Deploying <%= vars.ops_manager %> on vSphere](/platform/<%= vars.current_major_version.sub('.', '-') %>/om/vsphere/deploy.html).
 
 1. Import your installation settings. This can be done in two ways:
     1. Using the <%= vars.ops_manager %> UI:
         1. Access your new <%= vars.ops_manager %> deployment by navigating to the fully-qualified domain name (FQDN) for your <%= vars.ops_manager %> deployment in a browser.
         1. On the **Welcome to <%= vars.ops_manager %>** page, click **Import Existing Installation**.
 
-            <%= image_tag("../images/upgrading/welcome.png") %>
+            <%= image_tag("../images/upgrading/welcome.png", :width => "400") %>
 
         1. In the import panel:
           * Enter the **Decryption Passphrase** in use when you exported the installation settings from <%= vars.ops_manager %>.
           * Click **Choose File** and browse to the installation ZIP file that you exported in [Export Installation Settings](./backup-pcf-bbr.html#export) in _Backing Up Deployments with BBR_.
 
-            <%= image_tag("../images/upgrading/decryption_passphrase.png") %>
+            <%= image_tag("../images/upgrading/decryption_passphrase.png", :width => "400") %>
 
         1. Click **Import**.
             <p class="note"><strong>Note:</strong> Some browsers do not provide feedback on the status of the import process, and might appear to hang. The import process takes at least 10 minutes, and takes longer the more tiles that were present on the backed-up <%= vars.ops_manager %>.</p>
@@ -137,10 +137,10 @@ If you re-created IaaS resources such as networks and load balancers by followin
 
 To update <%= vars.ops_manager %>:
 
-1. Enable the advanced mode of <%= vars.ops_manager %>. For more information, see [How to Enable Advanced Mode in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager) in the Pivotal Knowledge Base.
+1. Enable the advanced mode of <%= vars.ops_manager %>. For more information, see [How to Enable Advanced Mode in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager) in the Knowledge Base.
     <p class="note"><strong>Note:</strong> In advanced mode, <%= vars.ops_manager %> allows you to make changes that are normally disabled. You might see warning messages when you save changes.</p>
 
-1. Navigate to the <%= vars.ops_manager %> Installation Dashboard.
+1. Navigate to the Installation Dashboard.
 
 1. Click the BOSH Director tile.
 
@@ -153,7 +153,7 @@ To update <%= vars.ops_manager %>:
 
 1. If your BOSH Director had an external hostname, modify the **Director Hostname** field in the **Director Config** pane of the BOSH Director tile to ensure it does not conflict with the hostname of the backed-up Director.
 
-1. Return to the <%= vars.ops_manager %> Installation Dashboard.
+1. Return to the Installation Dashboard.
 
 1. Click the <%= vars.app_runtime_abbr %> tile.
 
@@ -171,7 +171,7 @@ To update <%= vars.ops_manager %>:
 
 1. Update your **System domain** and **Apps domain** refer to the new environment's domains.
 
-1. Ensure that there are no outstanding warning messages in the BOSH Director tile, then disable <%= vars.ops_manager %> advanced mode. For more information, see [How to Enable Advanced Mode in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager) in the Pivotal Knowledge Base.
+1. Ensure that there are no outstanding warning messages in the BOSH Director tile, then disable <%= vars.ops_manager %> advanced mode. For more information, see [How to Enable Advanced Mode in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager) in the Knowledge Base.
 
 ### <a id="bosh-state"></a> Step 4: Remove BOSH State File
 
@@ -206,21 +206,21 @@ These sections describe the procedure to restore your backup with BBR.
 ### <a id='retrieve-credentials'></a> Step 7: Retrieve BOSH Director Credentials
 
 <%# Find this partial in GitHub at `pivotal-cf/docs-partials` %>
-<%= partial "/pcf/core/#{vars.current_major_version.sub('.', '-')}/backup-restore/bosh_retrieve_credentials" %>
+<%= partial "/pcf/core/2-9/backup-restore/bosh_retrieve_credentials" %>
 
 ### <a id="retrieve-address"></a> Step 8: Retrieve BOSH Director Address
 
 To retrieve the IP address of your BOSH Director from the BOSH Director tile:
 
 <%# Find this partial in GitHub at `pivotal-cf/docs-partials` %>
-<%= partial "/pcf/core/#{vars.current_major_version.sub('.', '-')}/backup-restore/bosh_target_director_bbr" %>
+<%= partial "/pcf/core/2-9/backup-restore/bosh_target_director_bbr" %>
 
 ### <a id='restore-bosh'></a> Step 9: Restore BOSH Director
 
 <div class="note"><strong>Notes:</strong>
   <ul>
     <li>The BBR BOSH Director restore command can take at least 15 minutes to complete.</li>
-    <li>Pivotal recommends that you run it independently of the SSH session, so that the process can continue running even if your connection to the jumpbox fails. The command above uses <code>nohup</code>, but you could also run the command in a <code>screen</code> or <code>tmux</code> session.</li>
+    <li><%= vars.company_name %> recommends that you run it independently of the SSH session, so that the process can continue running even if your connection to the jumpbox fails. The command above uses <code>nohup</code>, but you could also run the command in a <code>screen</code> or <code>tmux</code> session.</li>
   </ul>
 </div>
 
@@ -247,7 +247,8 @@ To restore BOSH Director:
       * If the BOSH Director is public, `HOST` is a URL, such as `https://bosh-director.xxx.cf-app.com`.
       * If the BOSH Director is not public, `HOST` is the `BOSH-DIRECTOR-IP` you retrieved in [Retrieve BOSH Director Address](#retrieve-address).
     * `PATH-TO-BOSH-DIRECTOR-BACKUP` is the path to the BOSH Director backup you want to restore.
-    * (Optional) To enable debug logs, use the `--debug` flag. For more information, see [Logging](backup-pcf-bbr.html#logging) in _Backing Up <%= vars.platform_name %> with BBR_.
+    * (Optional) To enable debug logs, use the `--debug` flag. For more information,
+      see [Logging](backup-pcf-bbr.html#logging) in _Backing Up Deployments with BBR_.
 
 1. After the command succeeds, continue to [Identify Your Deployment](#identify-deployment).
 <br>
@@ -264,8 +265,8 @@ If the command fails:
         Where:
         * `PRIVATE-KEY-FILE`is the path to the private key file you created in [ Retrieve BOSH Credentials](#retrieve-credentials).
         * `HOST` is the address of the BOSH Director.
-            * If the BOSH Director is public, `HOST` is a URL, such as `https://bosh-director.xxx.cf-app.com`.
-            * If the BOSH Director is not public, `HOST` is the `BOSH-DIRECTOR-IP` you retrieved in [Retrieve BOSH Director Address](#retrieve-address).
+        * If the BOSH Director is public, `HOST` is a URL, such as `https://bosh-director.xxx.cf-app.com`.
+        * If the BOSH Director is not public, `HOST` is the `BOSH-DIRECTOR-IP` you retrieved in [Retrieve BOSH Director Address](#retrieve-address).
     1. Run the BBR restore command again after ensuring that:
         * All the parameters in the command are set.
         * The BOSH Director credentials are valid.
@@ -313,6 +314,16 @@ To remove stale cloud IDs for all deployments:
     <br>
     Run this command for each deployment.
 
+1. To delete disk references, run:
+
+    ```
+    bosh cloud-check
+    ```
+    If the `bosh cloud-check` command does not successfully delete disk references, and you see a message similar to the example below, follow the additional procedures in [Remove Unused Disks](#removing-disks).
+    <pre class="terminal">
+    Scanning 19 persistent disks: 19 OK, 0 missing ...
+    </pre>
+
 ### <a id='redeploy-ert'></a> Step 12: Redeploy <%= vars.app_runtime_abbr %>
 
 These sections describe the steps to redeploy <%= vars.app_runtime_abbr %>.
@@ -335,11 +346,11 @@ To determine which stemcell is used by <%= vars.app_runtime_abbr %>, either:
 
 For more information about stemcells in <%= vars.ops_manager %>, see [Importing and Managing Stemcells](../../opsguide/managing-stemcells.html).
 
-#### <a id='upload-stemcell'></a> Upload the Stemcell
+#### <a id='upload-stemcell'></a>Upload the Stemcell
 
 To upload the required stemcell:
 
-1. Download the stemcell from the [Pivotal Stemcells](https://network.pivotal.io/products/stemcells-ubuntu-xenial/) page on Pivotal Network.
+1. Download the stemcell from the [Stemcells](https://network.pivotal.io/products/stemcells-ubuntu-xenial/) page on <%= vars.product_network %>.
 
 1. Upload the stemcell used by <%= vars.app_runtime_abbr %> by running:
 
@@ -380,7 +391,7 @@ see [Configure Databases](https://docs.pivotal.io/application-service/<%= produc
 
 To redeploy <%= vars.app_runtime_abbr %>:
 
-1. Navigate to the <%= vars.ops_manager %> Installation Dashboard.
+1. Navigate to the Installation Dashboard.
 
 1. Click the <%= vars.app_runtime_abbr %> tile.
 
@@ -394,7 +405,7 @@ To redeploy <%= vars.app_runtime_abbr %>:
 
 1. Ensure that all errands needed by your system are set to **Run**.
 
-1. Return to the <%= vars.ops_manager %> Installation Dashboard.
+1. Return to the Installation Dashboard.
 
 1. Click **Review Pending Changes**.
 
@@ -421,7 +432,7 @@ then Diego brings the apps back into a running state,
 unless <%= vars.app_runtime_abbr %> file storage has been configured to selectively back up the blobstore.
 In that case, you need to follow [(Optional) Restore Apps to a Running State](#restore-apps) below.
 
-Pivotal recommends that you run the BBR <%= vars.app_runtime_abbr %> restore command
+<%= vars.company_name %> recommends that you run the BBR <%= vars.app_runtime_abbr %> restore command
    independently of the SSH session,
 so that the process can continue running even if your connection to the jumpbox fails.
 The command uses `nohup`, but you could also run the command in a `screen` or `tmux` session.
@@ -451,11 +462,11 @@ To restore your <%= vars.app_runtime_abbr %> backup:
     * `PATH-TO-<%= vars.app_runtime_abbr %>-BACKUP` is the path to the <%= vars.app_runtime_abbr %> backup you want to restore.
 
 1. (Optional) To scale the MySQL Server job back up to its previous number of instances:
-  1. Navigate to the <%= vars.ops_manager %> Installation Dashboard
+  1. Navigate to the Installation Dashboard
   1. Click the the <%= vars.app_runtime_abbr %> tile.
   1. Select **Resource Config**.
   1. Scale the MySQL Server job back up.
-  1. Return to the <%= vars.ops_manager %> Installation Dashboard.
+  1. Return to the Installation Dashboard.
 
 1. Click **Review Pending Changes**.
 
@@ -497,7 +508,7 @@ If you have on-demand service instances provisioned by an on-demand service brok
 
 To restore your on-demand service instances:
 
-1. Navigate to the <%= vars.ops_manager %> Installation Dashboard.
+1. Navigate to the Installation Dashboard.
 
 1. Click an on-demand service tile.
 
@@ -507,7 +518,7 @@ To restore your on-demand service instances:
 
 1. Repeat for all on-demand service tiles.
 
-1. Return to the <%= vars.ops_manager %> Installation Dashboard.
+1. Return to the Installation Dashboard.
 
 1. Click **Review Pending Changes**.
 
