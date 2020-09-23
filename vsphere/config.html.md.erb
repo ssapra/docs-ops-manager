@@ -74,7 +74,7 @@ Before you begin this procedure, you must complete all steps in [Deploying <%= v
     * **vCenter Username**: A vCenter username with create and delete privileges for virtual machines (VMs) and folders.
     * **vCenter Password**: The password for the vCenter user specified above.
     * **Datacenter Name**: The name of the datacenter as it appears in vCenter.
-    * **Virtual Disk Type**: The Virtual Disk Type to provision for all VMs. For guidance on selecting a virtual disk type, see [vSphere Virtual Disk Types](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/disk-format.html).
+    * **Virtual Disk Type**: The Virtual Disk Type to provision for all VMs. For guidance on selecting a virtual disk type, see [vSphere Virtual Disk Types](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/disk-format.html).
     <p class="note"><strong>Note:</strong> Datastores do not support whitespace characters in their names. Including whitespace characters in datastore names causes an error.</p>
     * **Ephemeral Datastore Names (comma delimited)**: The names of the datastores that store ephemeral VM disks deployed by <%= vars.ops_manager %>.
     * **Persistent Datastore Names (comma delimited)**: The names of the datastores that store persistent VM disks deployed by <%= vars.ops_manager %>.

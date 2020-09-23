@@ -60,7 +60,7 @@ The following table lists network communication paths for service mesh:
 | cloud_controller (cloud\_controller\_ng) | istio_control (Copilot) | 9001 | TCP | GRPC | Mutual TLS |
 | istio_control (Copilot) | diego_database (BBS) | 8889 | TCP | HTTP | Mutual TLS |
 | istio_control (Pilot-Discovery) | istio_control (Copilot) | 9009 | TCP | GRPC | Mutual TLS |
-| istio_router (Envoy) | App containers | Varies | TCP | HTTP/HTTPS | Optional TLS |
+| istio_router (Envoy) | App containers | Varies | TCP | HTThttps | Optional TLS |
 | istio_router (Envoy) | istio_control (Pilot-Discovery) | 15010 | TCP | GRPC | None |
 | Load balancer | istio_router (Envoy) | 80 | TCP | HTTP | None |
 | Load balancer | istio_router (Envoy) | 443 | TCP | HTTPS | TLS |
