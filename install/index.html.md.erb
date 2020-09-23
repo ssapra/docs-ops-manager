@@ -51,7 +51,7 @@ The typical planning and installation process is:
   - [<%= vars.windows_runtime_full %>](https://docs.pivotal.io/application-service-windows/<%= vars.current_major_version.sub('.', '-') %>/index.html) (<%= vars.windows_runtime_abbr %>) enables <%= vars.app_runtime_abbr %> to manage Windows Server 2016 (1709) stemcells hosting .NET apps, and can also be replicated to create multiple isolated resource pools.
       - Operators replicate and configure a <%= vars.windows_runtime_abbr %> tile for each new resource pool they want to create.
       - You must install <%= vars.app_runtime_abbr %> before you can install <%= vars.windows_runtime_abbr %>.
-  - [Small Footprint <%= vars.app_runtime_abbr %>](./small-footprint.html) is an alternative to <%= vars.app_runtime_abbr %> that uses far fewer VMs than <%= vars.app_runtime_abbr %> but has limitations.
+  - [Small Footprint <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/small-footprint.html) is an alternative to <%= vars.app_runtime_abbr %> that uses far fewer VMs than <%= vars.app_runtime_abbr %> but has limitations.
 
 1. **Day 2 Configurations**
   - Day 2 configurations set up internal operations and external integrations on a running deployment.
