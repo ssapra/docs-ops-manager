@@ -3,18 +3,18 @@ title: Rotating Non-Configurable Leaf Certificates
 owner: Ops Manager
 ---
 
-This topic describes how to rotate non-configurable leaf certificates for your <%= vars.ops_manager %> deployment. To rotate all certificates in your <%= vars.ops_manager %> deployment, see [Rotating Certificates](api-cert-rotation.html).
+This topic describes how to rotate non-configurable leaf certificates for your <%= vars.ops_manager %> deployment. To rotate all certificates in your <%= vars.ops_manager %> deployment, see [Rotating CAs and Leaf Certificates](rotate-cas-and-leaf-certs.html).
 
 
 ## <a id='overview'></a> Overview
 
 This procedure rotates non-configurable leaf certificates visible to the <%= vars.ops_manager %> API, whether they are managed and stored by <%= vars.ops_manager %> directly, or by CredHub at <%= vars.ops_manager %> request.
 
-<p class='note warning'><strong>Warning:</strong> This procedure does not rotate the <%= vars.ops_manager %> root certificate authority (CA) or other CAs in your deployment. To rotate CAs and leaf certificates, see <a href="api-cert-rotation.html#rotate-ca">Rotate CAs and Leaf Certificates</a> in <em>Rotating Certificates</em>.</p>
+<p class='note warning'><strong>Warning:</strong> This procedure does not rotate the <%= vars.ops_manager %> root certificate authority (CA) or other CAs in your deployment. To rotate CAs and leaf certificates, see <a href="rotate-cas-and-leaf-certs.html">Rotating CAs and Leaf Certificates</a>.</p>
 
 Before rotating non-configurable leaf certificates, you must:
 
-* Ensure that you meet the prerequisites described in [Prerequisites](api-cert-rotation.html#prerequisite) in _Rotating Certificates_.
+* Ensure that you meet the prerequisites described in [Prerequisites](api-cert-rotation.html#prerequisite) in _Overview of Certificate Rotation_.
 
 * Check which certificates in your deployment are non-configurable and when they are due to expire. For more information, see [Checking Expiration Dates and Certificate Types](check-expiration.html).
 
