@@ -114,7 +114,7 @@ Pivotal recommends live-monitoring your upgrade with <%= vars.platform_name %> H
 
 * BOSH-reported VM metrics
 * Runtime component metrics
-* [Key Performance Indicators](../monitoring/kpi.html) and [Key Scaling Indicators](../monitoring/key-cap-scaling.html)
+* [Key Performance Indicators](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/monitoring/kpi.html) and [Key Scaling Indicators](../monitoring/key-cap-scaling.html)
 * Healthwatch-generated [super metrics](https://docs.pivotal.io/pcf-healthwatch/metrics.html)
 
 For more information, see the [<%= vars.platform_name %> Healthwatch](https://docs.pivotal.io/pcf-healthwatch/index.html) documentation.
@@ -240,7 +240,8 @@ To check the health of your deployment:
 
 1. Push and horizontally scale a test app to test PAS performance.
 
-1. If you are running PAS MySQL as a cluster, run the `mysql-diag` tool to validate health of the cluster. For more information, see the BOSH CLI v2 instructions in [Running mysql-diag](../mysql/mysql-diag.html).
+1. If you are running PAS MySQL as a cluster, run the `mysql-diag` tool to validate health of the cluster.
+   For more information, see the BOSH CLI v2 instructions in [Running mysql-diag](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/mysql/mysql-diag.html).
 
 ### <a id="resource-settings"></a> Check Resource Settings
 
