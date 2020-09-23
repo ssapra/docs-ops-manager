@@ -5,9 +5,10 @@ owner: CredHub
 
 This topic provides operators with information on how to troubleshoot safety violation errors that are returned when rotating certificates with either the Ops Manager API or CredHub Maestro CLI.
 
+
 ## <a id="overview"></a> Overview of CredHub Maestro Safety Checks
 
-CredHub Maestro performs basic safety checks when rotating certificates to prevent unsafe operations. 
+CredHub Maestro performs basic safety checks when rotating certificates to prevent unsafe operations.
 
 The Ops Manager API invokes CredHub Maestro when rotating certificates. If a certificate rotation API command is unsafe, CredHub Maestro stops the command and returns one or more safety violations.
 
@@ -15,21 +16,23 @@ The Ops Manager API does not invoke CredHub Maestro and subsequently Maestro-rel
 
 CredHub Maestro returns safety violations if a rotation step is run out of order. For example, you generate a new root certificate authority (CA) but attempt to activate it before clicking **Apply Changes**. Performing steps out of the correct order during certificate rotations can make your deployment unstable or risk downtime.
 
-For information about certificate rotation using the Ops Manager API, see [Rotating Certificates](api-cert-rotation.html).
+For information about certificate rotation using the Ops Manager API, see [Overview of Certificate Rotation](api-cert-rotation.html).
 
 For information about using the CredHub Maestro CLI, see [Getting Started with CredHub Maestro](getting-started-with-maestro-cli.html).
 
+
 ## <a id="skip-checks"></a> Skip Safety Checks
 
-To skip CredHub Maestro safety checks in Ops Manager API calls, you can pass `skip_safety_check=true` as a parameter to certificate rotation API endpoints. 
+To skip CredHub Maestro safety checks in Ops Manager API calls, you can pass `skip_safety_check=true` as a parameter to certificate rotation API endpoints.
 
-To skip CredHub Maestro safety checks in the CredHub Maestro CLI, specify the `--skip-safety-check` flag when running certificate rotation commands. 
+To skip CredHub Maestro safety checks in the CredHub Maestro CLI, specify the `--skip-safety-check` flag when running certificate rotation commands.
 
 <p class="note warning"><strong>Warning</strong> Skipping safety checks is strongly discouraged. Use the option only if absolutely necessary. For example, you might want to skip safety checks if your CA has already expired and your apps are experiencing downtime. Skipping safety checks can help bring your apps back online faster. If certificates have expired, contact <%= vars.support_link %> for guidance.</p>
 
+
 ## <a id="error_ref"></a> Troubleshoot Certificate Rotation Safety Violations
 
-This section lists known safety violations that may occur when using the Ops Manager API or CredHub Maestro CLI to rotate certificates. Each table includes the literal safety violation message, describes the safety violation, and presents possible solutions to resolve the underlying cause. 
+This section lists known safety violations that may occur when using the Ops Manager API or CredHub Maestro CLI to rotate certificates. Each table includes the literal safety violation message, describes the safety violation, and presents possible solutions to resolve the underlying cause.
 
 ### <a id="multiple-signing-cas"></a> Multiple Signing Versions of a CA
 
@@ -71,7 +74,7 @@ This section lists known safety violations that may occur when using the Ops Man
   </tr>
   <tr>
     <th style="vertical-align: top; padding-top: 1em;">Solution</th>
-    <td>There are two possible problems with different solutions. To identify and resolve the root issue: 
+    <td>There are two possible problems with different solutions. To identify and resolve the root issue:
       <ol>
       <li>Run <code>maestro topology --name CERTIFICATE-NAME</code> where <code>CERTIFICATE-NAME</code> is the name and full path of the certificate returned in the error message.</li>
       <li>Check the command line output for the following:
@@ -79,7 +82,7 @@ This section lists known safety violations that may occur when using the Ops Man
         <li>
         If the <code>signs</code> field contains a child certificate that has two versions set to <code>active: true</code> with different product tile deployment names:
          <ol><li> Navigate to the <strong>Ops Manager Installation Dashboard</strong>.</li>
-         <li> Click <strong>Review Pending Changes</strong>.</li> 
+         <li> Click <strong>Review Pending Changes</strong>.</li>
          <li> Select the product tile that is associated with the older certificate version.</li>
          <li> Click <strong>Apply Changes</strong>.</li>
        </ol></li></li>
@@ -213,9 +216,9 @@ This section lists known safety violations that may occur when using the Ops Man
     <td>
       Continue with the certificate rotation procedure. In most cases, this means clicking <strong>Apply Changes</strong> in the Ops Manager Installation Dashboard. Do not run earlier commands after the rotation process has started.
       <br/><br/>
-      If you believe you are running the steps in the correct order, it is possible that a new CA has been created in CredHub after the rotation process has begun. 
+      If you believe you are running the steps in the correct order, it is possible that a new CA has been created in CredHub after the rotation process has begun.
       <br/><br/>
-      To work around this situation, take one of the following actions: 
+      To work around this situation, take one of the following actions:
       <ul>
       <li>If the CA is new, exclude this CA by adding the <code>--exclude=CA-NAME</code> option for future commands during this rotation. For example, <code>maestro update-transitional signing --exclude=CA-NAME</code>.
       <li>If you need to rotate the CA now, re-run the earlier CredHub Maestro rotation steps <code>maestro regenerate ca CA-NAME</code> where <code>CA-NAME</code> is the name of a CA that was not originally present. Repeat this step for all CAs not originally present. This gets all targeted CAs into the same state. Then, run the <code>maestro update-transitional signing</code> step again.</li>

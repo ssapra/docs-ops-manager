@@ -10,7 +10,7 @@ For more information about setting up and using CredHub Maestro, see [Getting St
 
 ## <a id='when-to-use'></a> When to Use CredHub Maestro for Certificate Rotation
 
-<%= vars.company_name %> recommends that you use the <%= vars.ops_manager %> API to perform bulk rotation of certificates. For more information, see [Rotating Certificates](api-cert-rotation.html).
+<%= vars.company_name %> recommends that you use the <%= vars.ops_manager %> API to perform bulk rotation of certificates. For more information, see [Overview of Certificate Rotation](api-cert-rotation.html).
 
 However, there are some cases when you cannot use the <%= vars.ops_manager %> API to do bulk certificate rotation. In these cases, you can use CredHub Maestro to rotate certificates.
 
@@ -36,6 +36,7 @@ Before you rotate CredHub-managed certificates with CredHub Maestro:
   For more information about which tiles support certificate rotation,
   see [CredHub Maestro Tile Compatibility](maestro-tile-compatibility.html).
   <p class='note'><strong>Note:</strong> Using CredHub Maestro to rotate CredHub-managed certificates might cause downtime for your deployment. However, you must use CredHub Maestro in a deployment with <%= vars.k8s_runtime_abbr %> installed, since you cannot rotate CredHub-managed certificates using the <%= vars.ops_manager %> API. You can still use the <%= vars.ops_manager %> API to rotate certificates stored in <%= vars.ops_manager %>.</p>
+
 
 ## <a id='check-expiration'></a> Check Expiration Dates and Certificate Types
 
@@ -63,21 +64,21 @@ You can determine which rotation procedure to follow based on the types of certi
 
 To rotate certificates, follow one of the following procedures:
 
-* If multiple CAs are expiring soon, see [Rotate All CAs and Leaf Certificates](#bulk-rotation).
+* If multiple CAs are expiring soon, see [Rotate All CAs and Leaf Certificates](#bulk-rotation) below.
 
-* If the only certificates expiring are leaf certificates, see [Rotate All Leaf Certificates](#leaf-rotation).
+* If the only certificates expiring are leaf certificates, see [Rotate All Leaf Certificates](#leaf-rotation) below.
 
-* To only rotate a subset of CAs, see [Rotate a Single CA and Its Leaf Certificates](#single-rotation).
+* To only rotate a subset of CAs, see [Rotate a Single CA and Its Leaf Certificates](#single-rotation) below.
 
-* To rotate the Services TLS CA, see [Rotate the Services TLS CA and Its Leaf Certificates](#services-rotation).
+* To rotate the Services TLS CA, see [Rotate the Services TLS CA and Its Leaf Certificates](#services-rotation) below.
 
-* To rotate CredHub Set Certificates, see [Rotate CredHub Set Certificates](#set-certificate-rotation).
+* To rotate CredHub Set Certificates, see [Rotate CredHub Set Certificates](#set-certificate-rotation) below.
 
 <p class="note"><strong>Note:</strong> All CredHub Maestro rotation commands have a dry-run flag that can be used to preview the certificates to be modified.</p>
 
 ### <a id="safety-checks"></a> Safety Checks
 
-CredHub Maestro performs basic safety checks when rotating certificates to prevent unsafe operations. 
+CredHub Maestro performs basic safety checks when rotating certificates to prevent unsafe operations.
 
 To skip CredHub Maestro safety checks, you can pass the `--skip-safety-check` flag to CredHub Maestro certificate rotation commands.
 
@@ -94,7 +95,7 @@ This section describes the procedure for bulk rotating all CAs and leaf certific
     <li>Run all CredHub Maestro commands except <code>maestro regenerate leaf</code> with <code>--exclude /services/tls_ca</code>.</li>
     <li>Run <code>maestro regenerate leaf</code> with <code>--exclude-signed-by /services/tls_ca</code>.</li>
   </ul>
-The process for rotating the Services TLS CA requires additional steps to ensure that there is no downtime. To rotate a Services TLS CA, see <a href="#services-rotation">Rotate the Services TLS CA and Its Leaf Certificates</a>.</div>
+The process for rotating the Services TLS CA requires additional steps to ensure that there is no downtime. To rotate the Services TLS CA, see <a href="#services-rotation">Rotate the Services TLS CA and Its Leaf Certificates</a> below.</div>
 
 To rotate all CAs and leaf certificates in CredHub:
 
@@ -157,7 +158,7 @@ indicates that the latest version is inactive so that all leaf certificates trus
 
 This section describes the procedure for bulk rotating all leaf certificates using CredHub Maestro.
 
-<%= vars.company_name %> recommends that you use the <%= vars.ops_manager %> API to perform bulk rotation of certificates unless you meet the conditions described in [When to Use CredHub Maestro for Certificate Rotation](#when-to-use).
+<%= vars.company_name %> recommends that you use the <%= vars.ops_manager %> API to perform bulk rotation of certificates unless you meet the conditions described in [When to Use CredHub Maestro for Certificate Rotation](#when-to-use) above.
 
 To rotate all leaf certificates in CredHub:
 
@@ -249,15 +250,18 @@ This section describes the procedure for rotating the Services TLS CA and its le
 Before you begin this rotation procedure, ensure that you have the following:
 
 * Only one <%= vars.ops_manager %> foundation and not a multi-site or Wide Area Network (WAN) setup.
-For a multi-site or WAN setup, you must perform the <bold>Apply Changes</bold> steps across all your sites or WAN.
+For a multi-site or WAN setup, you must perform the **Apply Changes** steps across all your sites or WAN.
+
 * All certificates must include Subject Alternate Name (SAN) and Common Name (CN) entries.
+
 * Your services are configured for high availability to minimize potential app impact during CA rotation. Rotating the Services TLS CA requires an upgrade all on-demand service instances, which can cause service downtime.
-* Knowledge whether your deployment contains non-Java MySQL apps that rely on <code>VCAP_SERVICES</code> for TLS. You must rebind and restage these apps during the procedure, which can require additional time and coordination for the rotation. You do not need to rebind and restage MySQL apps that use <code>jdbcURL</code> or consume CA certificates from <code>/etc/ssl/certs/ca-certificate.crt</code>. For more information about determining which apps are affected, see this [Knowlegebase Article](https://community.pivotal.io/s/article/Rotating-services-tls-ca-certificate-using-credhub-transitional-certificate-rotation-feature?language=en_US).
+
+* Knowledge whether your deployment contains non-Java MySQL apps that rely on `VCAP_SERVICES` for TLS. You must rebind and restage these apps during the procedure, which can require additional time and coordination for the rotation. You do not need to rebind and restage MySQL apps that use `jdbcURL` or consume CA certificates from `/etc/ssl/certs/ca-certificate.crt`. For more information about determining which apps are affected, see [Rotating /services/tls_ca certificate using CredHub transitional certificate rotation feature](https://community.pivotal.io/s/article/Rotating-services-tls-ca-certificate-using-credhub-transitional-certificate-rotation-feature?language=en_US) in the Knowledge Base.
 
 To rotate the Services TLS CA and its leaf certificates:
 
 1. Check the [CredHub Maestro Tile Compatibility](maestro-tile-compatibility.html) document to ensure that all service tile versions currently deployed are compatible with Maestro.
-    <p class="note warning"><strong>Warning:</strong> If you have any service tiles that are not compatible with CredHub Maestro, do not follow this procedure. If you do, you might experience extended downtime or data loss. Use the procedure documented in <a href="services_tls_ca_rotate.html">Rotating the Services TLS CA and Its Leaf Certificates</a> instead.</p>
+    <p class="note warning"><strong>Warning:</strong> If you have any service tiles that are not compatible with CredHub Maestro, do not follow this procedure. If you do, you might experience extended downtime or data loss. Instead, follow the procedure in <a href="services_tls_ca_rotate.html">Rotate the Services TLS CA and Its Leaf Certificates</a> above.</p>
 
 1. Regenerate the Services TLS CA and mark the latest version of the CA as transitional. This creates a new version of the Services TLS CA and indicates that the latest version is inactive, so that all leaf certificates trust the new CA.
     1. On the Services TLS CA, see if your Services TLS CA was CredHub-set by running:
@@ -279,7 +283,7 @@ To rotate the Services TLS CA and its leaf certificates:
        <p class='note'><strong>Note:</strong> The name of the <strong>Upgrade all service instances</strong> errand may be slightly different between services.</p>
     1. Click **Apply Changes**.
 
-1. For deployments that use MySQL for VMware Tanzu, rebind and restage all non-Java MySQL apps that rely on <code>VCAP_SERVICES</code> for TLS.
+1. For deployments that use MySQL for VMware Tanzu, rebind and restage all non-Java MySQL apps that rely on `VCAP_SERVICES` for TLS.
 
     <p class='note'><strong>Note:</strong> The bg-restage plugin enables zero-downtime blue-green restaging without access to the app source code. For more information, see <a href="https://github.com/orange-cloudfoundry/cf-plugin-bg-restage">bg-restage</a> on GitHub.</p>
 
@@ -302,7 +306,7 @@ To rotate the Services TLS CA and its leaf certificates:
     <p class='note'><strong>Note:</strong> The name of the <strong>Upgrade all service instances</strong> errand may be slightly different between services.</p>
     1. Click **Apply Changes**.
 
-1. For deployments that use MySQL for VMware Tanzu, rebind and restage all non-Java MySQL apps that rely on <code>VCAP_SERVICES</code> for TLS.
+1. For deployments that use MySQL for VMware Tanzu, rebind and restage all non-Java MySQL apps that rely on `VCAP_SERVICES` for TLS.
 
 1. Remove the transitional flag from the Services TLS CA. This removes the old, inactive version of the Services TLS CA on the next deployment. Run:
 
@@ -317,7 +321,7 @@ To rotate the Services TLS CA and its leaf certificates:
     <p class='note'><strong>Note:</strong> The name of the <strong>Upgrade all service instances</strong> errand may be slightly different between services.</p>
     1. Click **Apply Changes**.
 
-1. For deployments that use MySQL for VMware Tanzu, rebind and restage all non-Java MySQL apps that rely on <code>VCAP_SERVICES</code> for TLS.
+1. For deployments that use MySQL for VMware Tanzu, rebind and restage all non-Java MySQL apps that rely on `VCAP_SERVICES` for TLS.
 
 ### <a id='set-certificate-rotation'></a> Rotate Manually Set Certificates
 
