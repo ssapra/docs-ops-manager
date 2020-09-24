@@ -5,7 +5,7 @@ owner: Customer0
 
 This topic describes a reference architecture for <%= vars.platform_name %>, including <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) and <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>), on Amazon Web Services (AWS). It builds on the common base architectures described in [Platform Architecture and Planning Overview](../index.html).
 
-For general requirements for running <%= vars.platform_name %> and specific requirements for running <%= vars.platform_name %> on AWS, see [<%= vars.platform_name %> on AWS Requirements](../../customizing/aws.html).
+For general requirements for running <%= vars.platform_name %> and specific requirements for running <%= vars.platform_name %> on AWS, see [<%= vars.platform_name %> on AWS Requirements](../../install/aws.html).
 
 
 ## <a id="pas"></a> <%= vars.app_runtime_abbr %>
@@ -18,7 +18,7 @@ The diagram below illustrates the reference architecture for <%= vars.app_runtim
 
 ![This diagram illustrates <%= vars.app_runtime_abbr %> on AWS. For specific details about the components and communication represented by the diagram, see the base and AWS reference architectures.](PAS_AWS.png)
 
-[View a larger version of this diagram](https://raw.githubusercontent.com/pivotal-cf/docs-pcf-refarch/master/images/PAS_AWS.png).
+[View a larger version of this diagram](../images/PAS_AWS.png).
 
 ### <a id="networking"></a> Networking
 
@@ -114,7 +114,7 @@ These options are available for choosing your network topology:
 
 ### <a id="rds"></a> RDS
 
-Use a single RDS instance for BOSH and <%= vars.app_runtime_abbr %>. This instance requires several databases. For more information, see [Step 3: Director Config Page](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/aws/config-manual.html#pcfaws-om-dirconfig) in _Configuring BOSH Director on AWS_ and [External System Database Configuration](../../customizing/configure-pas.html#create-dbs) in _Configuring <%= vars.app_runtime_abbr %>_.
+Use a single RDS instance for BOSH and <%= vars.app_runtime_abbr %>. This instance requires several databases. For more information, see [Step 3: Director Config Page](../../aws/config-manual.html#pcfaws-om-dirconfig) in _Configuring BOSH Director on AWS_ and [External System Database Configuration](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html#create-dbs) in _Configuring <%= vars.app_runtime_abbr %>_.
 
 ### <a id="blobstore"></a> Blobstore Storage Accounts
 
@@ -131,7 +131,7 @@ These buckets require an associated role for read/write access.
 
 ### <a id="identity-management"></a> Identity Management
 
-For identity management, use Instance Profiles whenever possible. For example, the **AWS Config Page** of the BOSH Director tile provides a **Use AWS Instance Profile** option. For more information, see [Step 2: AWS Config Page](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/aws/config-manual.html#pcfaws-om-awsconfig) in _Configuring BOSH Director on AWS_.
+For identity management, use Instance Profiles whenever possible. For example, the **AWS Config Page** of the BOSH Director tile provides a **Use AWS Instance Profile** option. For more information, see [Step 2: AWS Config Page](../../aws/config-manual.html#pcfaws-om-awsconfig) in _Configuring BOSH Director on AWS_.
 
 
 ## <a id="pks"></a> <%= vars.k8s_runtime_full %>
@@ -144,7 +144,7 @@ The diagram below illustrates the reference architecture for <%= vars.k8s_runtim
 
 ![This diagram illustrates <%= vars.k8s_runtime_abbr %> on AWS. For specific details about the components and communication represented by the diagram, see the base and AWS reference architectures.](../images/v2/export/PKS_AWS.png)
 
-[View a larger version of this diagram](https://raw.githubusercontent.com/pivotal-cf/docs-pcf-refarch/master/images/v2/export/PKS_AWS.png).
+[View a larger version of this diagram](../images/v2/export/PKS_AWS.png).
 
 ### <a id="pks-networking"></a> Networking
 
@@ -216,10 +216,10 @@ These options are available for choosing your network topology:
 
 ### <a id="pks-rds"></a> RDS
 
-Use a single RDS instance for BOSH. This instance requires a database. For more information, see [Step 3: Director Config Page](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/aws/config-manual.html#pcfaws-om-dirconfig) in _Configuring BOSH Director on AWS_.
+Use a single RDS instance for BOSH. This instance requires a database. For more information, see [Step 3: Director Config Page](../../aws/config-manual.html#pcfaws-om-dirconfig) in _Configuring BOSH Director on AWS_.
 
 ### <a id="pks-id"></a> Identity Management
 
 To create and manage Kubernetes master and worker nodes, use Instance Profiles. For more information, see [Kubernetes Cloud Provider](https://docs.pivotal.io/pks/installing-pks-aws.html#cloud-provider) in _Installing Enterprise <%= vars.k8s_runtime_abbr %> on AWS_.
 
-For information about installing the required AWS constructs for <%= vars.k8s_runtime_abbr %>, see [Installing <%= vars.platform_name %> on AWS](../../customizing/aws.html).
+For information about installing the required AWS constructs for <%= vars.k8s_runtime_abbr %>, see [Installing <%= vars.platform_name %> on AWS](../../install/aws.html).

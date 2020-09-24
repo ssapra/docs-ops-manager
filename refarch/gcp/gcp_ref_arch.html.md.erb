@@ -5,7 +5,7 @@ owner: Customer0
 
 This topic describes two reference architectures for <%= vars.platform_name %> and any runtime products, including <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) and <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>), on Google Cloud Platform (GCP): on a shared virtual private cloud (VPC) and on a single-project VPC. This topic also outlines multiple networking variants for VPC deployment. The architectures are validated for production-grade <%= vars.platform_name %> deployments using multiple availability zones (AZs).
 
-For general requirements for running <%= vars.platform_name %> and specific requirements for running <%= vars.platform_name %> on GCP, see [<%= vars.platform_name %> on GCP Requirements](../../customizing/gcp.html)
+For general requirements for running <%= vars.platform_name %> and specific requirements for running <%= vars.platform_name %> on GCP, see [<%= vars.platform_name %> on GCP Requirements](../../install/gcp.html)
 
 
 ## <a id="refarchs"></a> <%= vars.platform_name %> Reference Architectures
@@ -138,10 +138,10 @@ This section describes the possible network layouts for <%= vars.app_runtime_abb
 At a high level, there are currently two possible ways of granting public Internet access to <%= vars.app_runtime_abbr %> as described by the reference architecture:
 
 * NAT provides connectivity from <%= vars.app_runtime_abbr %> internals to the public Internet.
-	* The procedures in [Installing <%= vars.platform_name %> on GCP Manually](../../customizing/gcp-manual.html) use this method.
+	* The procedures in [Installing <%= vars.platform_name %> on GCP Manually](../../install/gcp-manual.html) use this method.
 
 * Every VM receives its own public IP address (no NAT).
-	* The procedures in [Installing <%= vars.platform_name %> on GCP Using Terraform](../../customizing/gcp-terraform.html) use this method.
+	* The procedures in [Installing <%= vars.platform_name %> on GCP Using Terraform](../../install/gcp-terraform.html) use this method.
 
 However, if you require NAT, see [NAT-Based Solution](#nat_network_diagram).
 
@@ -151,7 +151,7 @@ The diagram below illustrates the case where you want to expose only a minimal n
 
 <%= image_tag('gcp-net-topology-base.png') %>
 
-[View a larger version of this diagram](https://raw.githubusercontent.com/pivotal-cf/docs-pcf-refarch/master/images/gcp-net-topology-base.png).
+[View a larger version of this diagram](../images/gcp-net-topology-base.png).
 
 #### <a id="no_nat"></a> Public IP Addresses Solution
 
@@ -191,4 +191,4 @@ TLS is terminated for HTTPS on the HTTP load balancer and is terminated for WebS
 
 ### <a id='icmp'></a> ICMP
 
-GCP routers do not respond to ICMP. <%= vars.company_name %> recommends disabling ICMP checks in your BOSH Director network configuration. For more information, see [Step 5: Create Networks Page](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/gcp/config-manual.html#network) in _Configuring BOSH Director on GCP Manually_.
+GCP routers do not respond to ICMP. <%= vars.company_name %> recommends disabling ICMP checks in your BOSH Director network configuration. For more information, see [Step 5: Create Networks Page](../../gcp/config-manual.html#network) in _Configuring BOSH Director on GCP Manually_.
