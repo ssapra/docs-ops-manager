@@ -33,7 +33,7 @@ This section describes the resource requirements for installing <%= vars.platfor
 
 You can install <%= vars.platform_name %> with one of two runtimes. For more information about the requirements for each runtime, see the following:
 
-* **Pivotal Application Service (PAS)**: [PAS on vSphere Requirements](./pas-vsphere-requirements.html). For information requirements when deploying with NSX-T, see the _Requirements_ section of [Deploying PAS with NSX-T Networking](./vsphere-nsx-t.html).
+* **Pivotal Application Service (PAS)**: [PAS on vSphere Requirements](https://docs.pivotal.io/application-service/2-7/operating/pas-vsphere-requirements.html). For information requirements when deploying with NSX-T, see the _Requirements_ section of [Deploying PAS with NSX-T Networking](https://docs.pivotal.io/application-service/2-7/operating/vsphere-nsx-t.html).
 * **Pivotal Container Service (PKS)**:
     * **Without NSX-T**: [vSphere Prerequisites and Resource Requirements](https://docs.pivotal.io/pks/vsphere-requirements.html)
     * **With NSX-T**: See the _Preparing to Install PKS on vSphere with NSX-T_ section of [Installing PKS on vSphere with NSX-T Data Center](https://docs.pivotal.io/pks/vsphere-nsxt-index.html).
@@ -74,7 +74,7 @@ Follow the procedure that corresponds to your desired runtime and networking con
 
 * **PAS**:
     * **Without NSX-T**: [Configuring PAS](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html)
-    * **With NSX-T**: [Deploying PAS with NSX-T Networking](./vsphere-nsx-t.html)
+    * **With NSX-T**: [Deploying PAS with NSX-T Networking](https://docs.pivotal.io/application-service/2-7/operating/vsphere-nsx-t.html)
         <p class="note"><strong>Note</strong>: You must install the NSX-T tile before you install or Upgrade the PAS tile.</p>
 * **PKS**:
     * **Without NSX-T**: [Installing PKS](https://docs.pivotal.io/pks/vsphere-index.html)
@@ -84,6 +84,6 @@ Follow the procedure that corresponds to your desired runtime and networking con
 
 See the following topics for additional configuration options:
 
-* [Provisioning a Virtual Disk in vSphere](./disk-format.html)
+* [Provisioning a Virtual Disk in vSphere](https://docs.pivotal.io/application-service/2-7/operating/disk-format.html)
 * [Using the BOSH Resurrector](./resurrector.html)
 * [Availability Zones in vSphere](./understand-az.html)
