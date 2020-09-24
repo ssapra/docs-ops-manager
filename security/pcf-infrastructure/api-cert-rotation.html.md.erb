@@ -46,7 +46,7 @@ After identifying the types of certificates that expire soon, you can determine 
 
 To check certificate expiration dates and types:
 
-1. Follow the procedure in [Using <%= vars.ops_manager %> API](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html) to target and authenticate with the <%= vars.ops_manager %> User Account and Authentication (UAA) server. Record your <%= vars.ops_manager %> access token, and use it for `UAA-ACCESS-TOKEN` in the steps below.
+1. Follow the procedure in [Using <%= vars.ops_manager %> API](../../install/ops-man-api.html) to target and authenticate with the <%= vars.ops_manager %> User Account and Authentication (UAA) server. Record your <%= vars.ops_manager %> access token, and use it for `UAA-ACCESS-TOKEN` in the steps below.
   <p class="note"><strong>Note:</strong> When you record your <%= vars.ops_manager %> access token, remove any newline characters such as <code>\n</code>.</p>
 
 1.  To retrieve the certificates, use `curl` to call the `/deployed/certificates` endpoint of the <%= vars.ops_manager %> API. Run:
@@ -160,7 +160,7 @@ information about rotating these CAs.</p>
 
 To add new CAs:
 
-1. If you have not already done so, follow the procedure in [Using <%= vars.ops_manager %> API](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html) to target and authenticate with the <%= vars.ops_manager %> UAA server. Record your <%= vars.ops_manager %> access token, and use it for `UAA-ACCESS-TOKEN` in the following steps.
+1. If you have not already done so, follow the procedure in [Using <%= vars.ops_manager %> API](../../install/ops-man-api.html) to target and authenticate with the <%= vars.ops_manager %> UAA server. Record your <%= vars.ops_manager %> access token, and use it for `UAA-ACCESS-TOKEN` in the following steps.
   <p class="note"><strong>Note:</strong> When you record your <%= vars.ops_manager %> access token, remove any newline characters such as <code>\n</code>.</p>
 
 1. Use <%= vars.ops_manager %> to generate a new CA, or add your own custom CA:
