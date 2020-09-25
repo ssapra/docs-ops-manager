@@ -25,28 +25,28 @@ For details about how upgrading impacts individual <%= vars.app_runtime_abbr %> 
 
 <%= vars.company_name %> recommends upgrading directly to <%= vars.ops_manager %> v2.10 from <%= vars.ops_manager %> v2.6. For more information, see [Jump Upgrading to <%= vars.ops_manager %> v2.10](https://docs.pivotal.io/ops-manager/2-10/jump-upgrades.html).
 
-Although you can skip minor versions when upgrading <%= vars.ops_manager %>, <%= vars.company_name %> does not recommend that you skip minor versions when upgrading <%= vars.app_runtime_abbr %>. Skipping minor versions when upgrading <%= vars.app_runtime_abbr %> may result in additional breaking changes. To avoid this, upgrade <%= vars.app_runtime_abbr %> to the minor version that directly follows your current version of <%= vars.app_runtime_abbr %>. To upgrade <%= vars.app_runtime_abbr %> to the next minor release, see [Configuring <%= vars.app_runtime_abbr %> for Upgrades](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configuring.html) and [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/upgrading-products.html).
+Although you can skip minor versions when upgrading <%= vars.ops_manager %>, <%= vars.company_name %> does not recommend that you skip minor versions when upgrading <%= vars.app_runtime_abbr %>. Skipping minor versions when upgrading <%= vars.app_runtime_abbr %> may result in additional breaking changes. To avoid this, upgrade <%= vars.app_runtime_abbr %> to v2.7. To upgrade <%= vars.app_runtime_abbr %> to v2.7, see [Configuring <%= vars.app_runtime_abbr %> for Upgrades](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configuring.html) and [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/upgrading-products.html).
 
 
 ## <a id="prepare"></a> Task 1: Prepare to Upgrade
 
-If you have not already, complete the steps in [Upgrade Preparation Checklist for <%= vars.platform_name %> <%= vars.v_major_version %>](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/upgrade/checklist.html).
+If you have not already, complete the steps in [Upgrade Preparation Checklist for <%= vars.platform_name %> v2.7](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/upgrade/checklist.html).
 
 
-## <a id="upgrade_ops"></a> Task 2: Upgrade Ops Manager and Installed Products to <%= vars.v_major_version %>
+## <a id="upgrade_ops"></a> Task 2: Upgrade Ops Manager and Installed Products to v2.7
 
-The following sections describe how to upgrade Ops Manager and installed products to <%= vars.platform_name %> <%= vars.v_major_version %>:
+The following sections describe how to upgrade Ops Manager and installed products to <%= vars.platform_name %> v2.7:
 
-* [Import Installation to Ops Manager <%= vars.v_major_version %> VM](#upgrade)
+* [Import Installation to Ops Manager v2.7 VM](#upgrade)
 * [Import New PAS and Product Tiles](#upgrade-products)
 * [Perform Your Upgrade](#perform-upgrade)
 * [Restage Apps](#restage-apps)
 
-### <a id="upgrade"></a> Import Installation to Ops Manager <%= vars.v_major_version %> VM
+### <a id="upgrade"></a> Import Installation to Ops Manager v2.7 VM
 
-To import your Ops Manager installation to the Ops Manager <%= vars.v_major_version %> VM:
+To import your Ops Manager installation to the Ops Manager v2.7 VM:
 
-1. Download the Ops Manager VM Template <%= vars.v_major_version %> from the [Pivotal Network](https://network.pivotal.io/products/ops-manager) site.
+1. Download the Ops Manager VM Template v2.7 from the [Pivotal Network](https://network.pivotal.io/products/ops-manager) site.
 
 1. Record the fully qualified domain name (FQDN) address of the existing Ops Manager VM.
 
@@ -66,7 +66,7 @@ To import your Ops Manager installation to the Ops Manager <%= vars.v_major_vers
 1. When prompted, enter the **Decryption Passphrase** for this Ops Manager installation. You set this passphrase during your initial installation of Ops Manager.
     <p class="note"><strong>Note:</strong> If lost, the <strong>Decryption Passphrase</strong> cannot be recovered.</p>
 
-1. Click **Choose File** and browse to the installation ZIP file exported in the installation export step of your upgrade preparation. For more information, see [Export Your Installation](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/upgrade/checklist.html#export) in _Upgrade Preparation Checklist for <%= vars.platform_name %> <%= vars.v_major_version %>_.
+1. Click **Choose File** and browse to the installation ZIP file exported in the installation export step of your upgrade preparation. For more information, see [Export Your Installation](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/upgrade/checklist.html#export) in _Upgrade Preparation Checklist for <%= vars.platform_name %> v2.7_.
 
     <%= image_tag("./images/upgrading/decryption_passphrase.png", alt: "Below the green Pivotal logo is a field labeled 'Decryption Passphrase' containing five hidden characters. Below this field is the text 'Enter file', below which is a small, rectangular gray button labeled 'Choose File'. To the right of the 'Choose File' button is the filename 'installation (4).zip'. Below this button and filename is a rectangular blue button labeled 'Import' in white text.") %>
 
@@ -79,7 +79,7 @@ To import your Ops Manager installation to the Ops Manager <%= vars.v_major_vers
 
 ### <a id="upgrade-products"></a> Import New PAS and Product Tiles
 
-<a name="success"></a> After upgrading to Ops Manager <%= vars.v_major_version %>, you must upgrade your product versions.
+<a name="success"></a> After upgrading to Ops Manager v2.7, you must upgrade your product versions.
 
 To upgrade your product versions:
 
@@ -95,7 +95,7 @@ To upgrade your product versions:
 
 <p class="note warning"><strong>Warning:</strong> If the installation fails or returns errors, contact <%= vars.support_link %>. Do not attempt to roll back the upgrade by restarting the previous version's Ops Manager VM.</p>
 
-To perform your upgrade to Ops Manager <%= vars.v_major_version %>:
+To perform your upgrade to Ops Manager v2.7:
 
 1. Navigate to the Ops Manager **Installation Dashboard**.
 
