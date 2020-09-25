@@ -19,6 +19,65 @@ Read more about the [certified provider program](https://www.cloudfoundry.org/pr
 
 ## <a id='releases'></a> Releases
 
+### <a id="2-10-2"></a> v2.10.2
+
+**Release Date:** September 25, 2020
+
+- **[Bug Fix]**: `IaasConfigurationVerifier` no longer fails on Azure deployments with a `500` error when you click **Apply Changes** or modify IaaS settings.
+
+- **[Bug Fix]**: Actions that require Instance Metadata Service (IMDS), such as configuring antivirus or adding SSH keys,
+no longer fail on Ops Manager instances deployed in AWS regions that do not have Instance Metadata Service Version 2 (IMDSv2).
+
+- **[Bug Fix]**: If you added or activated a CA on Ops Manager v2.7 or earlier,
+you can then activate or delete that CA after upgrading to Ops Manager v2.9 or later as expected.
+
+- **[Bug Fix]**: The **Settings** page no longer crashes when you attempt to save a long LDAP admin group name that contains spaces.
+
+- **[Bug Fix]**: On the **Certificates** page, the **Excluded Certificates** section is updated to correctly list all certificates that the Ops Manager API does not attempt to rotate.
+
+- **[Bug Fix]**: The `/api/v0/certificate_authorities/active/regenerate` API endpoint rotates all leaf certificates as expected when a CA certificate rotation is in progress.
+
+- **[Feature]**: You can use the Ops Manager API to rotate certificates managed by CredHub if you have the following versions of
+Pivotal Application Service (PAS), Pivotal Isolation Segment tile, Small Footprint PAS, or Pivotal Application Service for Windows (PASW) installed:
+  * PAS v2.7.21 or later
+  * PAS v2.8.2 or later
+  * Pivotal Isolation Segment tile v2.7.21 or later
+  * Pivotal Isolation Segment tile v2.8.2 or later
+  * Small Footprint PAS v2.7.21 or later
+  * Small Footprint PAS v2.8.2 or later
+  * PASW v2.7.17 or later
+  * PASW v2.8.2 or later
+
+- **[Feature]**: IPsec for VMware Tanzu certificates are excluded from certificate rotation with the Ops Manager API.
+To rotate IPsec certificates, see [Rotating Active IPsec Certificates
+](https://docs.pivotal.io/addon-ipsec/1-9/credentials.html) in the IPsec for VMware Tanzu documentation. 
+
+- **[Feature]**: Ops Manager is rebranded to VMware Tanzu Operations Manager. This rebrand is reflected in the VMware Tanzu Operations Manager UI and on VMware Tanzu Network.
+
+- **[Feature]**: You can use the `/api/v0/staged/products/{product_guid}/overrides` Ops Manager API endpoint to edit the `update` and `features` sections in the manifest for an Ops Manager tile while you are in Advanced Mode.
+For more information, see [Provide a new list of overrides for the given Product](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration) in the Ops Manager API documentation.
+
+Ops Manager v2.10.2 uses the following component versions:
+
+<table border="1" class="nice">
+  <thead>
+  <tr>
+    <th>Component</th>
+    <th>Version</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Tanzu Ops Manager</td><td>2.10.2-build.90*</td>
+  </tr>
+  <tr><td>Stemcell (Bosh Director and Ops Manager)</td><td>621.84*</td></tr><tr><td>BBR SDK</td><td>1.18.0</td></tr><tr><td>BOSH Director</td><td>271.2.0</td></tr><tr><td>BOSH DNS</td><td>1.24.0</td></tr><tr><td>Metrics Server</td><td>0.1.0</td></tr><tr><td>System Metrics</td><td>2.0.11</td></tr><tr><td>CredHub</td><td>2.9.0*</td></tr><tr><td>CredHub Maestro</td><td>8.0.1</td></tr><tr><td>Syslog</td><td>11.6.1</td></tr><tr><td>Windows Syslog</td><td>1.0.3</td></tr><tr><td>UAA</td><td>74.5.18</td></tr><tr><td>BPM</td><td>1.1.9</td></tr><tr><td>Networking</td><td>9</td></tr><tr><td>OS Conf</td><td>22.1.0</td></tr><tr><td>AWS CPI</td><td>81</td></tr><tr><td>Azure CPI</td><td>37.3.0</td></tr><tr><td>Google CPI</td><td>30.0.0</td></tr><tr><td>OpenStack CPI</td><td>44</td></tr><tr><td>vSphere CPI</td><td>54.1.0</td></tr><tr><td>BOSH CLI</td><td>6.4.0*</td></tr><tr><td>Credhub CLI</td><td>2.8.0</td></tr><tr><td>BBR CLI</td><td>1.8.0*</td></tr><tr><td>Telemetry</td><td>1.1.1</td></tr>
+  
+    <td colspan="2"><em>* Components marked with an asterisk have been updated.</em></td>
+  
+  </tbody>
+</table>
+
+
 ### <a id="2-10-1"></a> v2.10.1
 
 **Release Date:** September 1, 2020
