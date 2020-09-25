@@ -91,8 +91,8 @@ The following are OpenStack requirements for deploying <%= vars.platform_name %>
 
 To install <%= vars.platform_name %> on OpenStack with the PAS runtime, do the following:
 
-1. Deploy Ops Manager. See [Deploying Ops Manager on OpenStack](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/openstack/setup.html).
+1. Deploy Ops Manager. See [Deploying Ops Manager on OpenStack](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/openstack/setup.html).
 
-1. Configure BOSH Director on OpenStack. See [Configuring BOSH Director on OpenStack](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/openstack/config.html).
+1. Configure BOSH Director on OpenStack. See [Configuring BOSH Director on OpenStack](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/openstack/config.html).
 
 1. Configure PAS. See [Configuring PAS](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html).

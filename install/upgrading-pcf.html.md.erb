@@ -18,19 +18,19 @@ The procedure below describes upgrading Pivotal Operations Manager, Pivotal Appl
 
 The apps in your deployment continue to run during the upgrade. However, you cannot write to your deployment or make changes to apps during the upgrade.
 
-For details about how upgrading impacts individual <%= vars.app_runtime_abbr %> components, see [What Happens During <%= vars.app_runtime_abbr %> Upgrades](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/understanding-pas.html).
+For details about how upgrading impacts individual <%= vars.app_runtime_abbr %> components, see [What Happens During <%= vars.app_runtime_abbr %> Upgrades](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/understanding-pas.html).
 
 
 ## <a id='jump-upgrade'></a> Jump Upgrade to <%= vars.ops_manager %> v2.10
 
 <%= vars.company_name %> recommends upgrading directly to <%= vars.ops_manager %> v2.10 from <%= vars.ops_manager %> v2.6. For more information, see [Jump Upgrading to <%= vars.ops_manager %> v2.10](https://docs.pivotal.io/ops-manager/2-10/jump-upgrades.html).
 
-Although you can skip minor versions when upgrading <%= vars.ops_manager %>, <%= vars.company_name %> does not recommend that you skip minor versions when upgrading <%= vars.app_runtime_abbr %>. Skipping minor versions when upgrading <%= vars.app_runtime_abbr %> may result in additional breaking changes. To avoid this, upgrade <%= vars.app_runtime_abbr %> to v2.7. To upgrade <%= vars.app_runtime_abbr %> to v2.7, see [Configuring <%= vars.app_runtime_abbr %> for Upgrades](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configuring.html) and [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/upgrading-products.html).
+Although you can skip minor versions when upgrading <%= vars.ops_manager %>, <%= vars.company_name %> does not recommend that you skip minor versions when upgrading <%= vars.app_runtime_abbr %>. Skipping minor versions when upgrading <%= vars.app_runtime_abbr %> may result in additional breaking changes. To avoid this, upgrade <%= vars.app_runtime_abbr %> to v2.7. To upgrade <%= vars.app_runtime_abbr %> to v2.7, see [Configuring <%= vars.app_runtime_abbr %> for Upgrades](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configuring.html) and [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/upgrading-products.html).
 
 
 ## <a id="prepare"></a> Task 1: Prepare to Upgrade
 
-If you have not already, complete the steps in [Upgrade Preparation Checklist for <%= vars.platform_name %> v2.7](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/upgrade/checklist.html).
+If you have not already, complete the steps in [Upgrade Preparation Checklist for <%= vars.platform_name %> v2.7](https://docs.pivotal.io/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/upgrade/checklist.html).
 
 
 ## <a id="upgrade_ops"></a> Task 2: Upgrade Ops Manager and Installed Products to v2.7
@@ -56,8 +56,8 @@ To import your Ops Manager installation to the Ops Manager v2.7 VM:
     * **AWS**: [Upgrading BOSH Director on AWS](./aws-om-upgrade.html)
     * **Azure**: [Upgrading BOSH Director on Azure](./azure-om-upgrade.html)
     * **GCP**: [Upgrading BOSH Director on GCP](./gcp-om-upgrade.html)
-    * **OpenStack**: [Deploying Ops Manager on OpenStack](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/openstack/setup.html)
-    * **vSphere**: [Deploying Ops Manager on vSphere](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/vsphere/deploy.html)
+    * **OpenStack**: [Deploying Ops Manager on OpenStack](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/openstack/setup.html)
+    * **vSphere**: [Deploying Ops Manager on vSphere](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/vsphere/deploy.html)
 
 1. When redirected to the **Welcome to Ops Manager** page, select **Import Existing Installation**.
 
@@ -66,7 +66,7 @@ To import your Ops Manager installation to the Ops Manager v2.7 VM:
 1. When prompted, enter the **Decryption Passphrase** for this Ops Manager installation. You set this passphrase during your initial installation of Ops Manager.
     <p class="note"><strong>Note:</strong> If lost, the <strong>Decryption Passphrase</strong> cannot be recovered.</p>
 
-1. Click **Choose File** and browse to the installation ZIP file exported in the installation export step of your upgrade preparation. For more information, see [Export Your Installation](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/upgrade/checklist.html#export) in _Upgrade Preparation Checklist for <%= vars.platform_name %> v2.7_.
+1. Click **Choose File** and browse to the installation ZIP file exported in the installation export step of your upgrade preparation. For more information, see [Export Your Installation](https://docs.pivotal.io/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/upgrade/checklist.html#export) in _Upgrade Preparation Checklist for <%= vars.platform_name %> v2.7_.
 
     <%= image_tag("./images/upgrading/decryption_passphrase.png", alt: "Below the green Pivotal logo is a field labeled 'Decryption Passphrase' containing five hidden characters. Below this field is the text 'Enter file', below which is a small, rectangular gray button labeled 'Choose File'. To the right of the 'Choose File' button is the filename 'installation (4).zip'. Below this button and filename is a rectangular blue button labeled 'Import' in white text.") %>
 
