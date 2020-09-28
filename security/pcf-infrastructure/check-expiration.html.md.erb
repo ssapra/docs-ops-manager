@@ -8,62 +8,88 @@ This topic describes how to check the expiration dates and types of the certific
 
 ## <a id="overview"></a> Overview
 
-You must use the <%= vars.ops_manager %> API to manually check the expiration dates and types of the certificates that the <%= vars.ops_manager %> API manages. For more information, see [Procedure](#check-api) below.
+You must use the <%= vars.ops_manager %> API to manually check the expiration dates of the certificates that the <%= vars.ops_manager %> API manages:
 
-To configure Concourse to automatically monitor expiring certificates, you can use Platform Automation. For more information, see [expiring-certificates](https://docs.pivotal.io/platform-automation/v4.1/tasks.html#expiring-certificates) in the Platform Automation documentation.
+* The <%= vars.ops_manager %> root CA For more information, see [Check Root CA Expiration Date](#root-expiry) below.
+
+* The leaf certificates visible to the <%= vars.ops_manager %> API, whether they are stored in <%= vars.ops_manager %> directly or stored in CredHub. You can also check the types of certificates that expire soon using the <%= vars.ops_manager %> API. After identifying the types of certificates that expire soon, you can determine which certificate rotation procedure to follow. For more information, see [Check Leaf Certificate Expiration Dates and Types](#leaf-expiry) below.
 
 
-## <a id='check-api'></a> Procedure
+## <a id='checks'></a> Procedure
 
-To check certificate expiration dates and types through the <%= vars.ops_manager %> API:
+This section describes how to check the expiration dates of the CAs and leaf certificates that the <%= vars.ops_manager %> API lists and manages. It also explains how to identify the types of certificates that require manual rotation.
 
-1. Follow the procedure in [Using <%= vars.ops_manager %> API](../../install/ops-man-api.html) to target and authenticate with the <%= vars.ops_manager %> User Account and Authentication (UAA) server. Record your <%= vars.ops_manager %> access token, and use it for `UAA-ACCESS-TOKEN` in the steps below.
+After identifying the types of certificates that expire soon, you can determine which certificate rotation procedure to follow.
+
+### <a id='root-expiry'></a> Check Root CA Expiration Date
+
+This procedure describes how to check the expiration date for the <%= vars.ops_manager %> root CA. The <%= vars.ops_manager %> root CA expires four years after creation.
+
+To check the <%= vars.ops_manager %> root CA expiration date:
+
+1. Follow the procedure in [Using <%= vars.ops_manager %> API](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing//ops-man-api.html) to target and authenticate with the <%= vars.ops_manager %> User Account and Authentication (UAA) server. Record your <%= vars.ops_manager %> access token, and use it for `UAA-ACCESS-TOKEN` in the steps below.
   <p class="note"><strong>Note:</strong> When you record your <%= vars.ops_manager %> access token, remove any newline characters such as <code>\n</code>.</p>
 
-1. To retrieve the certificates, use `curl` to call the `/deployed/certificates` endpoint of the <%= vars.ops_manager %> API. Run:
+1. To retrieve the <%= vars.ops_manager %> certificates, use `curl` to call the `/deployed/certificates` endpoint of the <%= vars.ops_manager %> API. Run:
+
+      ```
+      curl "https://OPS-MANAGER-FQDN/api/v0/deployed/certificates" \
+            -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+      ```
+      Where:
+      * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
+      * `UAA-ACCESS-TOKEN` is the `access_token` value you recorded in the previous step.
+      <p class='note'><strong>Note:</strong> To make the JSON output more readable, pipe it to <a href="https://stedolan.github.io/jq/">jq</a> or another text editor with JSON formatting.</p>
+
+1. In the `certificate_authorities` list returned, if there is more than one, find the CA with `"active": true`.
+
+1. To determine the expiration date of the active CA, refer to its `expires_on` value. For example, the root CA shown below expires on September 5, 2019:
+    <pre class='terminal'>
+    {
+      "certificate_authorities": [
+        {
+          "guid": "9c9a110c8f82a1e4aaca",
+          "issuer": "Pivotal",
+          "created_on": "2017-09-05T22:47:53Z",
+          "expires_on": "2019-09-05T22:47:53Z",
+          "active": true,
+          "cert_pem": "\-\-\-\-\-BEGIN CERTIFICATE\-\-\-\-\-\
+          [...]
+          \n-----END CERTIFICATE\-\-\-\-\-\n"
+    </pre>
+
+1. After determining when the <%= vars.ops_manager %> root CA expires, check your deployment's leaf certificate expiration dates and types by following the procedure in [Check Leaf Certificate Expiration Dates and Types](#leaf-expiry) below.
+
+### <a id='leaf-expiry'></a> Check Leaf Certificate Expiration Dates and Types
+
+This procedure describes how to check the expiration dates of leaf certificates using the `deployed/certificates` <%= vars.ops_manager %> API endpoint. It also describes how to identify non-configurable, configurable, and non-rotatable leaf certificates in the output from the `deployed/certificates` endpoint.
+
+To check the expiration dates of leaf certificates and identify the types of leaf certificates that expire soon:
+
+1. To check the system for certificates that expire within a given time interval, run:
 
     ```
-    curl "https://OPS-MANAGER-FQDN/api/v0/deployed/certificates" \
+    curl "https://OPS-MANAGER-FQDN/api/v0/deployed/certificates?expires_within=TIME" \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
     * `UAA-ACCESS-TOKEN` is the `access_token` value you recorded in the previous step.
-    <br>
-    <br>
-    More options:
-      * To limit command output to certificates that expire within a given time interval, append `?expires_within=TIME` to the endpoint, replacing `TIME` with an integer-letter code.<br>
-          * Valid letter codes are `d` for days, `w` for weeks, `m` for months, and `y` for years. For example, querying to `https://OPS-MANAGER-FQDN/api/v0/deployed/certificates?expires_within=6m` searches for certificates expiring within six months.
-      * To make the JSON output more readable, you can pipe your `curl` command to [jq](https://stedolan.github.io/jq/) or another text editor with JSON formatting.
+    * `TIME` is integer-letter code.
+        * Valid letter codes are `d` for days, `w` for weeks, `m` for months, and `y` for years.
+        <br>
+        For example, querying to `https://OPS-MANAGER-FQDN/api/v0/deployed/certificates?expires_within=6m` searches for certificates expiring within six months.
+        <p class='note'><strong>Note:</strong> To make the JSON output more readable, pipe it to <a href="https://stedolan.github.io/jq/">jq</a> or another text editor with JSON formatting.</p>
 
 1. The `deployed/certificates` output lists all CAs and leaf certificates visible to the <%= vars.ops_manager %> API, whether they are stored in <%= vars.ops_manager %> directly or stored in CredHub. To determine the expiration date and type for each certificate listed:
-  1. Determine the expiration date from the `valid_until` value. For example, the root CA listed below expires on August 12, 2020:
-    <pre class='terminal'>
-    {
-      "configurable": true,
-      "is_ca": true,
-      "property_reference": ".properties.root_ca.fb10484dd5541a273c9d",
-      "property_type": "rsa_cert_credentials",
-      "product_guid": "ops_manager",
-      "location": "ops_manager",
-      "variable_path": null,
-      "issuer": "/CN=ToolsmithsCA",
-      "valid_from": "2019-08-13T15:30:22Z",
-      "valid_until": "2020-08-12T15:30:22Z"
-    },
-    </pre>
+  1. Determine the expiration date from the `expires_on` value.
   1. For any certificates expiring soon, use the following rules to identify their types:
       * **Non-rotatable certificates:** Non-rotatable certificates have the following property value:
-          * `variable_path` matches `/p-bosh/service-instance_*/pxc_*`, `/p-bosh/service-instance_*/tls_certificate`, or `/p-bosh/service-instance_*/redis_certificate`
+          * `variable_path` is `/opsmgr/bosh_dns/tls_ca`.
       * **Non-configurable certificates:** Non-configurable leaf certificates have the following property values:
           * `configurable` is `false`.
           * `location` is either `ops_manager` or `credhub`.
-          * `is_ca` is `false`.
       * **Configurable certificates:** Configurable leaf certificates have the following property values:
           * `configurable` is `true`.
-          * `is_ca` is `false`.
-      * **CAs:** CAs have the following property values:
-          * `is_ca` is `true`.
-          * `location` is `ops_manager` or `credhub`.
 
 1. After you identify the list of certificates that expire soon, follow one of the procedures listed in [Overview of Certificate Rotation](api-cert-rotation.html).
