@@ -26,9 +26,8 @@ To rotate CAs, configurable leaf certificates, and non-configurable leaf certifi
 
 1. Delete the old root CA. For more information, see [Delete the Old Root CA](#delete) below.
 
-<p class="note warning"><strong>Warning:</strong> The Services CA certificate, <code>/services/tls_ca</code>,
-cannot be rotated using this procedure. For information about how to rotate the <code>/services/tls_ca</code>
-certificate, see <a href="advanced-certificate-rotation.html#services-rotation">Rotate the Services TLS CA and Its Leaf Certificates</a> in <em>Advanced Certificate Rotation with CredHub Maestro</em>.</p>
+<p class="note warning"><strong>Warning:</strong> The Services TLS CA, <code>/services/tls_ca</code>,
+cannot be rotated using this procedure. For information about how to rotate the Services TLS CA, see <a href="services_tls_ca_rotate.html">Rotating the Services TLS CA and Its Leaf Certificates</a>.</p>
 
 
 ## <a id='add-new-ca'></a> Step 1: Add New CAs
@@ -46,7 +45,7 @@ To add new CAs:
 
 1. Use <%= vars.ops_manager %> to generate a new CA, or add your own custom CA:
   <p class ="note"><strong>Note:</strong> Elliptic Curve Digital Signature Algorithm (ECDSA) certificates are not supported in <%= vars.platform_name %>.</p>
-  * **To use your own custom CA:** Call the <%= vars.ops_manager %> API `certificate_authorities` endpoint. Run:
+  * **To use your own custom CA:** Call the <%= vars.ops_manager %> API `certificate_authorities` endpoint by running:
 
         ```
         curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities" \
@@ -62,14 +61,14 @@ To add new CAs:
         * `UAA-ACCESS-TOKEN` is your UAA access token.
         <br>
         <br>
-        If the command succeeds, the API returns a response that includes the new CA certificate. For example:
+        If the command succeeds, the API returns a response that includes the new CA. For example:
         <pre class="terminal">
           HTTP/1.1 200 OK
           {
             "certificate_authorities": [
               {
                 "guid": "f7bc18f34f2a7a9403c3",
-                "issuer": "YOUR-CA",
+                "issuer": "CUSTOM-CERTIFICATE",
                 "created_on": "2017-01-09",
                 "expires_on": "2021-01-09",
                 "active": true,
@@ -78,7 +77,7 @@ To add new CAs:
             ]
           }
         </pre>
-  * **To use a <%= vars.platform_name %>-generated CA:** Call the <%= vars.ops_manager %> API `generate` endpoint. Run:
+  * **To use a <%= vars.platform_name %>-generated CA:** Call the <%= vars.ops_manager %> API `generate` endpoint by running:
 
         ```
         curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities/generate" \
@@ -92,7 +91,7 @@ To add new CAs:
         * `UAA-ACCESS-TOKEN` is your UAA access token.
         <br>
         <br>
-        If the command succeeds, the API returns a response that includes the new CA certificate. For example:
+        If the command succeeds, the API returns a response that includes the new CA. For example:
         <pre class="terminal">
             HTTP/1.1 200 OK
         {
@@ -122,7 +121,7 @@ To add new CAs:
               "
         </pre>
 
-1. Confirm that the new CA is added by listing all the root CAs for <%= vars.ops_manager %>. Run:
+1. Confirm that the new CA is added by listing all the CAs for <%= vars.ops_manager %>. Run:
 
     ```
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities" \
@@ -169,7 +168,7 @@ To add new CAs:
 
 1. Select **Director Config**.
 
-1. Enable the **Recreate All VMs** checkbox. This propagates the new CA to all VMs deployed by the BOSH Director to prevent downtime.
+1. Enable the **Recreate All VMs** checkbox. This propagates the new root CA to all VMs deployed by the BOSH Director to prevent downtime.
 
 1. Return to the <%= vars.ops_manager %> Installation Dashboard.
 
@@ -179,13 +178,13 @@ To add new CAs:
     1. Click the **Errands** tab.
     1. Enable the **Upgrade All Service Instances** errand. Running this errand is necessary to push CredHub certificate updates to each service instance.
     1. If the service tile has the **Recreate All Service Instances** errand:
-        1. Enable the **Recreate All Service Instances** errand. Running this errand pushes BOSH agent certificate updates to service instances.
+        1. Enable the **Recreate All Service Instances** errand.
         1. Click **Review Pending Changes**.
         1. Click **Apply Changes**.
     1. If the service tile does not have the **Recreate All Service Instances** errand:
         1. Click **Review Pending Changes**.
         1. Click **Apply Changes**.
-        1. When the deploy finishes, manually push BOSH agent certificate updates to each service instance. For each service instance, run:
+        1. When the deploy finishes, manually push the BOSH NATS CA to each service instance. For each service instance, run:
 
             ```
             bosh -d SERVICE-INSTANCE-DEPLOYMENT recreate
@@ -203,7 +202,7 @@ To add new CAs:
 
 To activate the CAs that you added in [Add New CAs](#add-new-ca) above:
 
-1. Make a call to the <%= vars.ops_manager %> API that activates the new CAs. Run:
+1. Call the <%= vars.ops_manager %> API `activate` endpoint by running:
 
     ```
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities/CERTIFICATE-GUID/activate" \
@@ -214,7 +213,7 @@ To activate the CAs that you added in [Add New CAs](#add-new-ca) above:
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
-    * `CERTIFICATE-GUID` is the GUID of your CA that you retrieved in the previous section.
+    * `CERTIFICATE-GUID` is the GUID of your root CA that you retrieved in the previous section.
     * `UAA-ACCESS-TOKEN` is your UAA access token.
     <br>
     <br>
@@ -232,7 +231,7 @@ To activate the CAs that you added in [Add New CAs](#add-new-ca) above:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
     * `UAA-ACCESS-TOKEN` is your UAA access token.
 
-1. Examine the response to ensure that your new CA has the `active` property set to `true`.
+1. Examine the response to ensure that your new root CA has the `active` property set to `true`.
 
 
 ## <a id='rotate-config-after-new-root'></a> Step 3: Rotate Configurable Leaf Certificates
@@ -256,7 +255,7 @@ After activating the new <%= vars.ops_manager %> root CA and other CAs, you must
 
 To rotate non-configurable leaf certificates:
 
-1. Make a call to the <%= vars.ops_manager %> API to regenerate all non-configurable certificates. Run:
+1. Call the <%= vars.ops_manager %> `regenerate` endpoint by running:
 
     ```
       curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities/active/regenerate" \
@@ -284,18 +283,18 @@ To rotate non-configurable leaf certificates:
 1. Return to the <%= vars.ops_manager %> Installation Dashboard.
 
 1. If you have service tiles installed, for each service tile:
-    <p class='note'><strong>Note:</strong> The names of the <strong>Upgrade all service instances</strong> and <strong>Recreate all service instances</strong> errands may be slightly different between services.</p>
+    <p class='note'><strong>Note:</strong> The names of the <strong>Upgrade All Service Instances</strong> and <strong>Recreate All Service Instances</strong> errands may be slightly different between services.</p>
     1. Click the tile.
     1. Click the **Errands** tab.
     1. Enable the **Upgrade All Service Instances** errand. Running this errand is necessary to push CredHub certificate updates to each service instance.
     1. If the service tile has the **Recreate All Service Instances** errand:
-        1. Enable the **Recreate All Service Instances** errand. Running this errand pushes BOSH agent certificate updates to service instances.
+        1. Enable the **Recreate All Service Instances** errand.
         1. Click **Review Pending Changes**.
         1. Click **Apply Changes** to perform a second deploy.
     1. If the service tile does not have the **Recreate All Service Instances** errand:
         1. Click **Review Pending Changes**.
         1. Click **Apply Changes** to perform a second deploy.
-        1. When the deploy finishes, manually push BOSH agent certificate updates to each service instance. For each service instance, run:
+        1. When the deploy finishes, manually push certificate updates to each service instance. For each service instance, run:
 
             ```
             bosh -d SERVICE-INSTANCE-DEPLOYMENT recreate
@@ -321,7 +320,7 @@ If your old root CA or leaf certificates have been compromised, you must delete 
 
 To delete the old <%= vars.ops_manager %> root CA:
 
-1. List your root CAs to retrieve the GUID of the old, inactive <%= vars.ops_manager %> root CA. Run:
+1. List your CAs to retrieve the GUID of the old, inactive <%= vars.ops_manager %> root CA. Run:
 
     ```
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities" \
@@ -359,18 +358,18 @@ To delete the old <%= vars.ops_manager %> root CA:
 1. Return to the <%= vars.ops_manager %> Installation Dashboard.
 
 1. If you have service tiles installed, for each service tile:
-    <p class='note'><strong>Note:</strong> The names of the <strong>Upgrade all service instances</strong> and <strong>Recreate all service instances</strong> errands may be slightly different between services.</p>
+    <p class='note'><strong>Note:</strong> The names of the <strong>Upgrade All Service Instances</strong> and <strong>Recreate All Service Instances</strong> errands may be slightly different between services.</p>
     1. Click the tile.
     1. Click the **Errands** tab.
     1. Enable the **Upgrade All Service Instances** errand. Running this errand is necessary to push CredHub certificate updates to each service instance.
     1. If the service tile has the **Recreate All Service Instances** errand:
-        1. Enable the **Recreate All Service Instances** errand. Running this errand pushes BOSH agent certificate updates to service instances.
+        1. Enable the **Recreate All Service Instances** errand.
         1. Click **Review Pending Changes**.
         1. Click **Apply Changes**.
     1. If the service tile does not have the **Recreate All Service Instances** errand:
         1. Click **Review Pending Changes**.
         1. Click **Apply Changes**.
-        1. When the deploy finishes, manually push BOSH agent certificate updates to each service instance. For each service instance, run:
+        1. When the deploy finishes, manually push BOSH Agent certificate updates to each service instance. For each service instance, run:
 
             ```
             bosh -d SERVICE-INSTANCE-DEPLOYMENT recreate
