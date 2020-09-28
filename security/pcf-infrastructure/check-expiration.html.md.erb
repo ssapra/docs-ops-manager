@@ -57,7 +57,7 @@ To check certificate expiration dates and types through the <%= vars.ops_manager
 1. Follow the procedure in [Using <%= vars.ops_manager %> API](../../install/ops-man-api.html) to target and authenticate with the <%= vars.ops_manager %> User Account and Authentication (UAA) server. Record your <%= vars.ops_manager %> access token, and use it for `UAA-ACCESS-TOKEN` in the steps below.
   <p class="note"><strong>Note:</strong> When you record your <%= vars.ops_manager %> access token, remove any newline characters such as <code>\n</code>.</p>
 
-1.  To retrieve the certificates, use `curl` to call the `/deployed/certificates` endpoint of the <%= vars.ops_manager %> API. Run:
+1. To retrieve the certificates, use `curl` to call the `/deployed/certificates` endpoint of the <%= vars.ops_manager %> API. Run:
 
     ```
     curl "https://OPS-MANAGER-FQDN/api/v0/deployed/certificates" \
@@ -103,4 +103,4 @@ To check certificate expiration dates and types through the <%= vars.ops_manager
           * `is_ca` is `true`.
           * `location` is `ops_manager` or `credhub`.
 
-1. After you identify the list of certificates that expire soon, follow one of the procedures in [Overview of Certificate Rotation Procedures](api-cert-rotation.html).
+1. After you identify the list of certificates that expire soon, follow one of the procedures listed in [Overview of Certificate Rotation](api-cert-rotation.html).
