@@ -55,7 +55,7 @@ To add new CAs:
             -d '{"cert_pem": "-----BEGIN CERTIFICATE-----\CUSTOM-CERTIFICATE", "private_key_pem": "-----BEGIN RSA PRIVATE KEY-----\RSA-KEY"}'
         ```
         Where:
-        * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
+        * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
         * `CUSTOM-CERTIFICATE` is your custom CA.
         * `RSA-KEY` is your RSA key.
         * `UAA-ACCESS-TOKEN` is your UAA access token.
@@ -331,7 +331,7 @@ To delete the old <%= vars.ops_manager %> root CA:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
     * `UAA-ACCESS-TOKEN` is your UAA access token.
 
-1. Make a call to the <%= vars.ops_manager %> API to delete the old <%= vars.ops_manager %> root CA. Run:
+1. Delete the old <%= vars.ops_manager %> root CA by running:
 
     ```
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities/OLD-CERTIFICATE-GUID" \
