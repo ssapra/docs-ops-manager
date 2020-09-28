@@ -8,7 +8,7 @@ This topic describes how to rotate certificate authorities (CAs) and leaf certif
 
 ## <a id='overview'></a> Overview
 
-This procedure uses the <%= vars.ops_manager %> API to rotate the <%= vars.ops_manager %> root CA and leaf certificates. When you rotate the <%= vars.ops_manager %> root CA, the <%= vars.ops_manager %> API automatically rotates the BOSH NATS CA as well as CAs stored in CredHub, such as the BOSH DNS CA and the Diego root CA. To rotate only leaf certificates, see one of the leaf certificate rotation topics listed in [Overview of Certificate Rotation](api-cert-rotation.html).
+This procedure uses the <%= vars.ops_manager %> API to rotate the <%= vars.ops_manager %> root CA and leaf certificates. When you rotate the <%= vars.ops_manager %> root CA, the <%= vars.ops_manager %> API automatically rotates the BOSH NATS CA. To rotate only leaf certificates, see one of the leaf certificate rotation topics listed in [Overview of Certificate Rotation](api-cert-rotation.html).
 
 To prevent system downtime, this procedure includes two BOSH deploys. The first BOSH deploy applies new certificates to <%= vars.platform_name %> components. The second BOSH deploy deletes the old certificates.
 
@@ -122,7 +122,7 @@ To add new CAs:
               "
         </pre>
 
-1. Confirm that the new CA is added by listing all the root CAs for <%= vars.ops_manager %> by running:
+1. Confirm that the new CA is added by listing all the root CAs for <%= vars.ops_manager %>. Run:
 
     ```
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities" \
@@ -203,7 +203,7 @@ To add new CAs:
 
 To activate the CAs that you added in [Add New CAs](#add-new-ca) above:
 
-1. Make an <%= vars.ops_manager %> API call that activates the new CAs. Run:
+1. Make a call to the <%= vars.ops_manager %> API that activates the new CAs. Run:
 
     ```
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities/CERTIFICATE-GUID/activate" \
