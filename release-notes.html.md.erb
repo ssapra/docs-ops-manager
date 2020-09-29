@@ -10,8 +10,8 @@ owner: Ops Manager
 
 This topic contains release notes for <%= vars.ops_manager %> v2.9.
 
-For the feature highlights of this release, 
-read the blog post [VMware Tanzu Application Service 2.9: Key Enhancements for Transformation at Scale](https://tanzu.vmware.com/content/blog/vmware-tanzu-application-service-2-9-key-enhancements-for-transformation-at-scale), 
+For the feature highlights of this release,
+read the blog post [VMware Tanzu Application Service 2.9: Key Enhancements for Transformation at Scale](https://tanzu.vmware.com/content/blog/vmware-tanzu-application-service-2-9-key-enhancements-for-transformation-at-scale),
 or see [New Features in <%= vars.ops_manager %> v2.9](#major-features).
 
 <%= vars.platform_name %> is certified by the Cloud Foundry Foundation for <%= Date.today.year %>.
@@ -38,7 +38,7 @@ you can then activate or delete that CA after upgrading to Ops Manager v2.9 or l
 
 - **[Feature]**: IPsec for VMware Tanzu certificates are excluded from certificate rotation with the Ops Manager API.
 To rotate IPsec certificates, see [Rotating Active IPsec Certificates
-](https://docs.pivotal.io/addon-ipsec/1-9/credentials.html) in the IPsec for VMware Tanzu documentation. 
+](https://docs.pivotal.io/addon-ipsec/1-9/credentials.html) in the IPsec for VMware Tanzu documentation.
 
 Ops Manager v2.9.11 uses the following component versions:
 
@@ -54,9 +54,9 @@ Ops Manager v2.9.11 uses the following component versions:
     <td>Tanzu Ops Manager</td><td>2.9.11-build.186*</td>
   </tr>
   <tr><td>Stemcell (Bosh Director and Ops Manager)</td><td>621.84*</td></tr><tr><td>BBR SDK</td><td>1.18.0</td></tr><tr><td>BOSH Director</td><td>270.11.2</td></tr><tr><td>BOSH DNS</td><td>1.24.0</td></tr><tr><td>Metrics Server</td><td>0.1.0</td></tr><tr><td>System Metrics</td><td>2.0.11</td></tr><tr><td>CredHub</td><td>2.5.13</td></tr><tr><td>CredHub Maestro</td><td>6.0.0</td></tr><tr><td>Syslog</td><td>11.6.1</td></tr><tr><td>Windows Syslog</td><td>1.0.3</td></tr><tr><td>UAA</td><td>74.5.18</td></tr><tr><td>BPM</td><td>1.1.9</td></tr><tr><td>Networking</td><td>9</td></tr><tr><td>OS Conf</td><td>22.1.0</td></tr><tr><td>AWS CPI</td><td>81</td></tr><tr><td>Azure CPI</td><td>37.3.0</td></tr><tr><td>Google CPI</td><td>30.0.0</td></tr><tr><td>OpenStack CPI</td><td>44</td></tr><tr><td>vSphere CPI</td><td>54.1.0</td></tr><tr><td>BOSH CLI</td><td>6.4.0</td></tr><tr><td>Credhub CLI</td><td>2.8.0</td></tr><tr><td>BBR CLI</td><td>1.8.0*</td></tr><tr><td>Telemetry</td><td>1.1.1</td></tr>
-  
+
     <td colspan="2"><em>* Components marked with an asterisk have been updated.</em></td>
-  
+
   </tbody>
 </table>
 
@@ -396,7 +396,7 @@ After rotating certificates using the `certificate_authorities` <%= vars.ops_man
 review the output list of rotated certificates for missing CredHub certificates.
 
 For information about rotating <%= vars.ops_manager %>- and BOSH CredHub-managed certificates with the
-<%= vars.ops_manager %> API, see [Rotating Certificates](security/pcf-infrastructure/api-cert-rotation.html).
+<%= vars.ops_manager %> API, see [Overview of Certificate Rotation](security/pcf-infrastructure/api-cert-rotation.html).
 
 For information about rotating only CredHub-managed certificates,
 see [Advanced Certificate Rotation with CredHub Maestro](security/pcf-infrastructure/advanced-certificate-rotation.html).
@@ -625,9 +625,9 @@ Resetting these certificates is not a required condition for the <%= vars.ops_ma
 
 To reset a certificate in CredHub, see [Reviewing and Resetting Manually Set Certificates in CredHub](security/pcf-infrastructure/manual-credhub-certificate.html).
 
-For more information about rotating certificates using the <%= vars.ops_manager %> API, see [Rotating Certificates](security/pcf-infrastructure/api-cert-rotation.html). For more information about the `certificate_authorities/active/regenerate` endpoint, see [Rotate Certificates](https://docs.pivotal.io/pivotalcf/2-9/opsman-api/#create-root-certificate-authorities) in the <%= vars.ops_manager %> API documentation.
+For more information about rotating certificates using the <%= vars.ops_manager %> API, see [Overview of Certificate Rotation](security/pcf-infrastructure/api-cert-rotation.html). For more information about the `certificate_authorities/active/regenerate` endpoint, see [Rotate Certificates](https://docs.pivotal.io/pivotalcf/2-9/opsman-api/#create-root-certificate-authorities) in the <%= vars.ops_manager %> API documentation.
 
-### <a id='increased-logging'></a> Increased Logging Slows Platform Functions  
+### <a id='increased-logging'></a> Increased Logging Slows Platform Functions
 
 <%= partial "/pcf/ops-manager/increased_logging_ki" %>
 
