@@ -39,7 +39,7 @@ This procedure also automatically regenerates the BOSH NATS CA.
 
 To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA:
 
-1. If you have not already done so, follow the procedure in [Using <%= vars.ops_manager %> API](../../install/ops-man-api.html) to target and authenticate with the <%= vars.ops_manager %> UAA server. Record your <%= vars.ops_manager %> access token, and use it for `UAA-ACCESS-TOKEN` in the following steps.
+1. If you have not already done so, follow the procedure in [Using <%= vars.ops_manager %> API](https://docs.pivotal.io/pivotalcf/2-6/customizing/ops-man-api.html) to target and authenticate with the <%= vars.ops_manager %> UAA server. Record your <%= vars.ops_manager %> access token, and use it for `UAA-ACCESS-TOKEN` in the following steps.
   <p class="note"><strong>Note:</strong> When you record your <%= vars.ops_manager %> access token, remove any newline characters such as <code>\n</code>.</p>
 
 1. Use <%= vars.ops_manager %> to generate a new CA, or add your own custom CA:
