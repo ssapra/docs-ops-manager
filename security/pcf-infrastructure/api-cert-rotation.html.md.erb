@@ -1,13 +1,11 @@
 ---
-title: Rotating Certificates
+title: Overview of Certificate Rotation
 owner: Ops Manager
 ---
 
 This topic describes how to check the expiration date of and rotate certificate authorities (CAs) and leaf certificates in <%= vars.platform_name %>.
 
-This includes the <%= vars.ops_manager %> root CA, BOSH NATS CA, and other CAs and leaf
-certificates stored in <%= vars.ops_manager %> and CredHub that are visible to the
-<%= vars.ops_manager %> API.
+This includes the <%= vars.ops_manager %> root CA, BOSH NATS CA, and other CAs and leaf certificates stored in <%= vars.ops_manager %> and CredHub that are visible to the <%= vars.ops_manager %> API.
 
 <p class='note warning'><strong>Warning:</strong> The rotation procedures described in this topic do not work if the certificates have already expired. If the certificates have expired, contact <%= vars.support_link %> for guidance.</p>
 
@@ -39,7 +37,7 @@ To rotate certificates, follow one of these procedures:
 
 * To rotate non-rotatable certificates, contact <%= vars.support_link %>.
 
-* To rotate CAs stored in <%= vars.ops_manager %> and CredHub, see [Rotate CAs and Leaf Certificates](#rotate-ca) below. This procedure also rotates the BOSH NATS CA.
+* To rotate CAs and leaf certificates stored in <%= vars.ops_manager %> and CredHub, see [Rotating CAs and Leaf Certificates](rotate-cas-and-leaf-certs.html). This procedure also rotates the BOSH NATS CA.
 
 * To rotate non-configurable leaf certificates, but not the <%= vars.ops_manager %> root CA or BOSH NATS CA, see [Rotating Non-Configurable Leaf Certificates](rotate-non-configurable-certs.html).
 
