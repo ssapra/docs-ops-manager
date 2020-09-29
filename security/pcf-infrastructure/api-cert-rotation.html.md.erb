@@ -1,5 +1,5 @@
 ---
-title: Rotating Certificates
+title: Overview of Certificate Rotation
 owner: Ops Manager
 ---
 
@@ -46,9 +46,9 @@ You can determine which rotation procedure to follow based on the types of certi
 
 To rotate certificates, follow one of these procedures:
 
-* To rotate non-rotatable certificates, contact <%= vars.support_link %>
+* To rotate non-rotatable certificates, contact <%= vars.support_link %>.
 
-* To rotate CAs stored in <%= vars.ops_manager %> and CredHub, see [Rotate CAs and Leaf Certificates](#rotate-ca) below. This procedure also rotates the BOSH NATS CA.
+* To rotate CAs and leaf certificates stored in <%= vars.ops_manager %> and CredHub, see [Rotating CAs and Leaf Certificates](rotate-cas-and-leaf-certs.html). This procedure also rotates the BOSH NATS CA.
 
 * To rotate non-configurable leaf certificates, but not the <%= vars.ops_manager %> root CA or BOSH NATS CA, see [Rotating Non-Configurable Leaf Certificates](rotate-non-configurable-certs.html).
 
