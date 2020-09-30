@@ -17,6 +17,7 @@ However, there are some cases when you cannot use the <%= vars.ops_manager %> AP
 The following describes when to use CredHub Maestro instead of the <%= vars.ops_manager %> API for certificate rotation:
 
 * You have <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>) installed and therefore cannot use the <%= vars.ops_manager %> API to rotate CredHub-managed certificates. In <%= vars.k8s_runtime_abbr %> v1.9 and later, these include the cluster-specfic `kubo_ca_2018` and `etcd_ca_2018` CAs and their leaf certificates.
+    <p class='note warning'><strong>Warning:</strong> In <%= vars.k8s_runtime_abbr %> v1.8 and earlier, you cannot use CredHub Maestro to rotate any <%= vars.k8s_runtime_abbr %> certificates.</p>
 
 * You have <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) v2.8.2 or earlier installed and therefore cannot use the <%= vars.ops_manager %> API to rotate CredHub-managed certificates.
 
@@ -35,7 +36,7 @@ Before you rotate CredHub-managed certificates with CredHub Maestro:
   Not every tile currently supports certificate rotation, so there is a potential for downtime.
   For more information about which tiles support certificate rotation,
   see [CredHub Maestro Tile Compatibility](maestro-tile-compatibility.html).
-  <p class='note'><strong>Note:</strong> Using CredHub Maestro to rotate CredHub-managed certificates might cause downtime for your deployment. However, you must use CredHub Maestro in a deployment with <%= vars.k8s_runtime_abbr %> installed, since you cannot rotate CredHub-managed certificates using the <%= vars.ops_manager %> API. You can still use the <%= vars.ops_manager %> API to rotate certificates stored in <%= vars.ops_manager %>.</p>
+  <p class='note'><strong>Note:</strong> Using CredHub Maestro to rotate CredHub-managed certificates might cause downtime for your deployment. However, you must use CredHub Maestro if your deployment includes <%= vars.k8s_runtime_abbr %>, since you cannot rotate CredHub-managed certificates using the <%= vars.ops_manager %> API. You can still use the <%= vars.ops_manager %> API to rotate certificates stored in <%= vars.ops_manager %>.</p>
 
 
 ## <a id='check-expiration'></a> Check Expiration Dates and Certificate Types
