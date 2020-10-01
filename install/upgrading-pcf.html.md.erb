@@ -18,7 +18,7 @@ The apps in your deployment continue to run during the upgrade. However, you can
 
 For details about how upgrading impacts individual <%= vars.app_runtime_abbr %> components, see [What Happens During <%= vars.app_runtime_abbr %> Upgrades](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/understanding-pas.html).
 
-To upgrade bot <%= vars.ops_manager %> and <%= vars.app_runtime_abbr %> to v2.9, see [Task 1: Prepare to Upgrade](#prepare) below. To upgrade <%= vars.ops_manager %> to v2.10, see [Jump Upgrade to <%= vars.ops_manager %> v2.10](#jump-upgrade) below.
+To upgrade both <%= vars.ops_manager %> and <%= vars.app_runtime_abbr %> to v2.9, see [Task 1: Prepare to Upgrade](#prepare) below. To upgrade <%= vars.ops_manager %> to v2.10, see [Jump Upgrade to <%= vars.ops_manager %> v2.10](#jump-upgrade) below.
 
 
 ## <a id='jump-upgrade'></a> Jump Upgrade to <%= vars.ops_manager %> v2.10
@@ -148,9 +148,9 @@ VMware recommends live-monitoring your upgrade with Healthwatch, which captures,
 * BOSH-reported VM metrics
 * Runtime component metrics
 * [Key Performance Indicators](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/overview/monitoring/kpi.html) and [Key Scaling Indicators](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/overview/monitoring/key-cap-scaling.html)
-* Healthwatch-generated [super metrics](https://docs.pivotal.io/pcf-healthwatch/metrics.html)
+* Healthwatch-generated [super metrics](https://docs.pivotal.io/healthwatch/metrics.html)
 
-For more information, see the [Healthwatch](https://docs.pivotal.io/pcf-healthwatch/index.html) documentation.
+For more information, see the [Healthwatch documentation](https://docs.pivotal.io/healthwatch/index.html).
 
 If you are not using Healthwatch, you can do some or all of the following to monitor upgrade progress:
 
@@ -274,7 +274,7 @@ To check the health of your deployment:
 
 1. Push and horizontally scale a test app to test <%= vars.app_runtime_abbr %> performance.
 
-1. If you are running <%= vars.app_runtime_abbr %> MySQL as a cluster, run the `mysql-diag` tool to validate health of the cluster. For more information, see the BOSH CLI v2 instructions in [Running mysql-diag](https://docs.pivotal.io/p-mysql/mysql-diag.html).
+1. If you are running <%= vars.app_runtime_abbr %> MySQL as a cluster, run the `mysql-diag` tool to validate health of the cluster. For more information, see the BOSH CLI v2 instructions in [Running mysql-diag](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/mysql/mysql-diag.html) in the <%= vars.app_runtime_abbr %> documentation.
 
 ### <a id="resource-settings"></a> Check Resource Settings
 

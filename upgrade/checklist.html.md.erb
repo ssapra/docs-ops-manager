@@ -161,7 +161,7 @@ For more information, see [Configure Errands](https://docs.pivotal.io/applicatio
 
 ### <a id="stemcell-compat"></a> Check OS Compatibility of BOSH-Managed Add-Ons and Tiles
 
-Before upgrading to <%= vars.platform_name %> v2.10, operators who have deployed any BOSH-managed add-ons such as **IPsec**, **Anti-Virus**, or **File Integrity Monitoring** and who have deployed or are planning to deploy <%= vars.windows_runtime_abbr %> must modify the add-on manifest to specify a compatible OS stemcell. For more information, see [<%= vars.windows_runtime_full %>](https://docs.pivotal.io/application-service-windows/<%= product_info['local_product_version'].to_s.sub('.','-') %>/index.html) in the <%= vars.windows_runtime_abbr %> documentation.
+Before upgrading to <%= vars.platform_name %> v2.10, operators who have deployed any BOSH-managed add-ons such as **IPsec**, **Anti-Virus**, or **File Integrity Monitoring** and who have deployed or are planning to deploy <%= vars.windows_runtime_abbr %> must modify the add-on manifest to specify a compatible OS stemcell. For more information, see the [<%= vars.windows_runtime_abbr %> documentation](https://docs.pivotal.io/application-service-windows/<%= product_info['local_product_version'].to_s.sub('.','-') %>/index.html).
 
 For example, **File Integrity Monitor** (FIM) is not supported on Windows. Therefore, the manifest must use an `include` directive to specify the target OS stemcell of `ubuntu-trusty` and `ubuntu-xenial`.
 
@@ -218,7 +218,7 @@ Where:
 * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
 * `UAA-ACCESS-TOKEN` is your UAA access token.
 
-For information about regenerating and rotating CA certificates, see [Managing TLS Certificates](../security/pcf-infrastructure/api-cert-rotation.html).
+For information about regenerating and rotating CA certificates, see [Overview of Certificate Rotation](../security/pcf-infrastructure/api-cert-rotation.html).
 
 
 ## <a id="capacity"></a> Check the Capacity of Your Deployment
