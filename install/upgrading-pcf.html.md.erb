@@ -116,9 +116,7 @@ To upgrade your product versions:
 
 1. Click the newly-added tile to review and save any configurable options.
 
-1. (Optional) If you use other service tiles,
-you can upgrade them following the same procedure.
-For more information, see [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](upgrading-products.html).
+1. (Optional) If you use other service tiles, you can upgrade them following the same procedure. For more information, see [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/upgrading-products.html).
 
 ### <a id="perform-upgrade"></a> Perform Your Upgrade
 
@@ -144,7 +142,7 @@ The following sections describe how to monitor your <%= vars.platform_name %> fo
 * [Take Snapshots of Storage Metrics](#storage)
 * [Collect Logs](#collect-logs)
 
-###  <a id="status"></a> Check Status and Performance
+### <a id="status"></a> Check Status and Performance
 
 You can monitor the progress of the upgrade by checking the status of the foundation at various locations.
 
@@ -152,14 +150,14 @@ VMware recommends live-monitoring your upgrade with Healthwatch, which captures,
 
 * BOSH-reported VM metrics
 * Runtime component metrics
-* [Key Performance Indicators](https://docs.pivotal.io/application-service/overview/monitoring/kpi.html) and [Key Scaling Indicators](https://docs.pivotal.io/application-service/overview/monitoring/key-cap-scaling.html)
+* [Key Performance Indicators](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/overview/monitoring/kpi.html) and [Key Scaling Indicators](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/overview/monitoring/key-cap-scaling.html)
 * Healthwatch-generated [super metrics](https://docs.pivotal.io/pcf-healthwatch/metrics.html)
 
 For more information, see the [Healthwatch](https://docs.pivotal.io/pcf-healthwatch/index.html) documentation.
 
 If you are not using Healthwatch, you can do some or all of the following to monitor upgrade progress:
 
-* Use the BOSH CLI to check the status of a task, VM, or instance. For more information, see [Check Status Using BOSH CLI](#bosh-cli-status).
+* Use the BOSH CLI to check the status of a task, VM, or instance. For more information, see [Check Status Using BOSH CLI](#bosh-cli-status) below.
 
 * Check app availability.
 
@@ -258,7 +256,7 @@ To install the version of the Cloud Foundry Command Line Interface (cf CLI) pack
 
 1. Unzip the cf CLI ZIP file containing compressed binaries for the cf CLI.
 
-1. Follow the procedure in the [Install the cf CLI Using a Compressed Binary](../../cf-cli/install-go-cli.html#bin) section of the _Installing the cf CLI_ topic.
+1. Follow the procedure in [Install the cf CLI Using a Compressed Binary](../../cf-cli/install-go-cli.html#bin) in _Installing the cf CLI_.
 
 ### <a id="health"></a> Check the Health of Your Deployment
 
@@ -304,9 +302,8 @@ To clean up old stemcells, releases, orphaned disks, and other unused resources:
     ```
     Where `ALIAS` is the BOSH alias you are re-creating.
 
-
 ### <a id="restage-apps"></a> Restage Apps
 
 VMware recommends telling developers to restage any apps that use buildpacks that were updated as a part of this upgrade.
 
-For more information about how developers can restage apps, see [Restage Your App](https://docs.pivotal.io/application-service/devguide/deploy-apps/start-restart-restage.html#restage).
+For more information about how developers can restage apps, see [Restage Your App](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/devguide/deploy-apps/start-restart-restage.html#restage) in _Starting, Restarting, and Restaging Apps_.
