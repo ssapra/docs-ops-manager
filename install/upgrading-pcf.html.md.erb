@@ -18,11 +18,7 @@ The apps in your deployment continue to run during the upgrade. However, you can
 
 For details about how upgrading impacts individual PAS components, see [What Happens During PAS Upgrades](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/understanding-pas.html).
 
-<<<<<<< HEAD
-To upgrade both <%= vars.ops_manager %> and PAS to v2.8, see [Task 1: Prepare to Upgrade](#prepare) below. To upgrade <%= vars.ops_manager %> to v2.10, see [Jump Upgrade to <%= vars.ops_manager %> v2.10](#jump-upgrade) below.
-=======
-<%= vars.company_name %> recommends upgrading directly to <%= vars.ops_manager %> v2.10 from <%= vars.ops_manager %> v2.6. To upgrade <%= vars.ops_manager %> to v2.10, see [Jump Upgrade to <%= vars.ops_manager %> v2.10](#jump-upgrade) below. To upgrade both <%= vars.ops_manager %> and PAS to v2.7, see [Task 1: Prepare to Upgrade](#prepare) below.
->>>>>>> 4a73d141... [#174651508] Edited wording; corrected variables
+<%= vars.company_name %> recommends upgrading directly to <%= vars.ops_manager %> v2.10 from <%= vars.ops_manager %> v2.7. To upgrade <%= vars.ops_manager %> to v2.10, see [Jump Upgrade to <%= vars.ops_manager %> v2.10](#jump-upgrade) below. To upgrade both <%= vars.ops_manager %> and PAS to v2.8, see [Task 1: Prepare to Upgrade](#prepare) below.
 
 
 ## <a id='jump-upgrade'></a> Jump Upgrade to <%= vars.ops_manager %> v2.10
@@ -35,9 +31,9 @@ To jump upgrade to <%= vars.ops_manager %> v2.10:
 
 1. Review the prerequisites and breaking changes described in [Jump Upgrading to <%= vars.ops_manager %> v2.10](https://docs.pivotal.io/ops-manager/2-10/jump-upgrades.html).
 
-1. Complete the steps to prepare <%= vars.ops_manager %>, the BOSH Director, and BOSH-managed add-ons for upgrading in [Upgrade Preparation Checklist for <%= vars.ops_manager %> v2.10](https://docs.pivotal.io/ops-manager/2-10/upgrade/checklist.html). Do not complete the steps to prepare PAS for upgrading.
+1. Complete the steps to prepare <%= vars.ops_manager %>, the BOSH Director, and BOSH-managed add-ons for upgrading in [Upgrade Preparation Checklist for <%= vars.ops_manager %> v2.10](https://docs.pivotal.io/ops-manager/2-10/upgrade/checklist.html). Do not complete the steps to prepare TAS for VMs for upgrading.
 
-1. Follow the procedure in the v2.10 version of _Upgrading <%= vars.ops_manager %>_ to upgrade <%= vars.ops_manager %>, starting at [Task 1: Prepare to Upgrade](https://docs.pivotal.io/ops-manager/2-10/install/upgrading-pcf.html#prepare). Do not complete the steps to upgrade PAS.
+1. Follow the procedure in the v2.10 version of _Upgrading <%= vars.ops_manager %>_ to upgrade <%= vars.ops_manager %>, starting at [Task 1: Prepare to Upgrade](https://docs.pivotal.io/ops-manager/2-10/install/upgrading-pcf.html#prepare). Do not complete the steps to upgrade TAS for VMs.
 
 1. To upgrade PAS to v2.8:
     1. Complete the steps that are specific to PAS in [Upgrade Preparation Checklist for <%= vars.platform_name %> v2.8](../upgrade/checklist.html).
