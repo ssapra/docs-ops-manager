@@ -103,7 +103,7 @@ To upgrade your product versions:
 
 1. Click the newly-added tile to review any configurable options.
 
-1. (Optional) If you use other service tiles, you can upgrade them following the same procedure. For more information, see [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](upgrading-products.html).
+1. (Optional) If you use other service tiles, you can upgrade them following the same procedure. For more information, see [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/upgrading-products.html).
 
 ### <a id="perform-upgrade"></a> Perform Your Upgrade
 
@@ -129,7 +129,7 @@ The following sections describe how to monitor your <%= vars.platform_name %> fo
 * [Take Snapshots of Storage Metrics](#storage)
 * [Collect Logs](#collect-logs)
 
-###  <a id="status"></a> Check Status and Performance
+### <a id="status"></a> Check Status and Performance
 
 You can monitor the progress of the upgrade by checking the status of the foundation at various locations.
 
@@ -137,14 +137,14 @@ Pivotal recommends live-monitoring your upgrade with <%= vars.platform_name %> H
 
 * BOSH-reported VM metrics
 * Runtime component metrics
-* [Key Performance Indicators](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/monitoring/kpi.html) and [Key Capacity Scaling Indicators](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/overview/monitoring/key-cap-scaling.html)
+* [Key Performance Indicators](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/overview/monitoring/kpi.html) and [Key Scaling Indicators](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/overview/monitoring/key-cap-scaling.html)
 * Healthwatch-generated [super metrics](https://docs.pivotal.io/pcf-healthwatch/metrics.html)
 
 For more information, see the [<%= vars.platform_name %> Healthwatch](https://docs.pivotal.io/pcf-healthwatch/index.html) documentation.
 
 If you are not using <%= vars.platform_name %> Healthwatch, you can do some or all of the following to monitor upgrade progress:
 
-* Use the BOSH CLI to check the status of a task, VM, or instance. For more information, see [Check Status Using BOSH CLI](#bosh-cli-status).
+* Use the BOSH CLI to check the status of a task, VM, or instance. For more information, see [Check Status Using BOSH CLI](#bosh-cli-status) below.
 
 * Check app availability.
 
@@ -288,7 +288,6 @@ To clean up old stemcells, releases, orphaned disks, and other unused resources:
     bosh -e ALIAS clean-up --all
     ```
     Where `ALIAS` is the BOSH alias you are re-creating.
-
 
 ### <a id="restage-apps"></a> Restage Apps
 
