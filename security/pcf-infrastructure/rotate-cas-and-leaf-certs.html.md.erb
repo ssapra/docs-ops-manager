@@ -63,19 +63,19 @@ To add new CAs:
         <br>
         If the command succeeds, the API returns a response that includes the new CA. For example:
         <pre class="terminal">
-          HTTP/1.1 200 OK
-          {
-            "certificate_authorities": [
-              {
-                "guid": "f7bc18f34f2a7a9403c3",
-                "issuer": "CUSTOM-CERTIFICATE",
-                "created_on": "2017-01-09",
-                "expires_on": "2021-01-09",
-                "active": true,
-                "cert_pem": "-----BEGIN CERTIFICATE-----\nMIIC+zCCAeOgAwIBAgI....etc"
-              }
-            ]
-          }
+        HTTP/1.1 200 OK
+        {
+          "certificate_authorities": [
+            {
+              "guid": "f7bc18f34f2a7a9403c3",
+              "issuer": "CUSTOM-CERTIFICATE",
+              "created_on": "2017-01-09",
+              "expires_on": "2021-01-09",
+              "active": true,
+              "cert_pem": "-----BEGIN CERTIFICATE-----\nMIIC+zCCAeOgAwIBAgI....etc"
+            }
+          ]
+        }
         </pre>
   * **To use a <%= vars.platform_name %>-generated CA:** Call the <%= vars.ops_manager %> API `generate` endpoint by running:
 
@@ -93,32 +93,32 @@ To add new CAs:
         <br>
         If the command succeeds, the API returns a response that includes the new CA. For example:
         <pre class="terminal">
-            HTTP/1.1 200 OK
+        HTTP/1.1 200 OK
         {
-            "guid": "f7bc18f34f2a7a9403c3",
-            "issuer": "<%= vars.company_name %>",
-            "created_on": "2017-01-19",
-            "expires_on": "2021-01-19",
-            "active": false,
-            "cert_pem": "-----BEGIN EXAMPLE CERTIFICATE-----
-            MIIC+zCCAeOgAwIBAgIBADANBgkqhkiG9w0BAQsFADAfMQswCQYDVQQGEwJVUzEQ
-            EXAMPLEoCgwHUGl2b3RhbDAeFw0xNDarthgyMTQyMjVaFw0yMTAxMTkyMTQyMjVa
-            EXAMPLEoBgNVBAYTAlVTMRAwDgYDVVaderdQaXZvdGFsMIIBIjANBgkqhkiG9w0B
-            EXAMPLEoAQ8AMIIBCgKCAQEAyV4OhPIIZTEym9OcdcNVip9Ev0ijPPLo9WPLUMzT
-            EXAMPLEo/TgD+DP09mwVXfqwBlJmoj9DqRED1x/6bc0Ki/BAFo/P4MmOKm3QnDCt
-            EXAMPLEooqgA++2HYrNTKWJ5fsXmERs8lK9AXXT7RKXhktyWWU3oNGf7zo0e3YKp
-            EXAMPLEoh1NwIbNcGT1AurIDsxyOZy1HVzBLTisMyDogJmSCLsOw3qUDQjatjXKw
-            EXAMPLEojG3nv2hvD4/aTOiHuKM3+AGbnaS2MdIOvFOh/7Y79tUp89csK0gs6uOd
-            EXAMPLEohe4DcKw5CzUTfHKNXgHyeoVOBPcVQTp4lJp1iQIDAQABo0IwQDAdBgNV
-            EXAMPLEoyH4y7VEuImLStXM0CKR8uVqxX/gwDwYDVR0TAQH/BAUwAwEB/zAOBgNV
-            EXAMPLEoBAMCAQYwDQYJKoZIhvcNAQELBQADggEBALmHOPxdyBGnuR0HgR9V4TwJ
-            EXAMPLEoGLKVT7am5z6G2Oq5cwACFHWAFfrPG4W9Jm577QtewiY/Rad/PbkY0YSY
-            EXAMPLEokrfNjxjxI0H2sr7qLBFjJ0wBZHhVmDsO6A9PkfAPu4eJvqRMuL/xGmSQ
-            EXAMPLEoCynMNz7FgHyFbd9D9X5YW8fWGSeVBPPikcONdRvjw9aEeAtbGEh8eZCP
-            EXAMPLEob33RuR+CTNqThXY9k8d7/7ba4KVdd4gP8ynFgwvnDQOjcJZ6Go5QY5HA
-            EXAMPLEoPFW8pAYcvWrXKR0rE8fL5o9qgTyjmO+5yyyvWIYrKPqqIUIvMCdNr84=
-              -----END EXAMPLE CERTIFICATE-----
-              "
+          "guid": "f7bc18f34f2a7a9403c3",
+          "issuer": "<%= vars.company_name %>",
+          "created_on": "2017-01-19",
+          "expires_on": "2021-01-19",
+          "active": false,
+          "cert_pem": "-----BEGIN EXAMPLE CERTIFICATE-----
+          MIIC+zCCAeOgAwIBAgIBADANBgkqhkiG9w0BAQsFADAfMQswCQYDVQQGEwJVUzEQ
+          EXAMPLEoCgwHUGl2b3RhbDAeFw0xNDarthgyMTQyMjVaFw0yMTAxMTkyMTQyMjVa
+          EXAMPLEoBgNVBAYTAlVTMRAwDgYDVVaderdQaXZvdGFsMIIBIjANBgkqhkiG9w0B
+          EXAMPLEoAQ8AMIIBCgKCAQEAyV4OhPIIZTEym9OcdcNVip9Ev0ijPPLo9WPLUMzT
+          EXAMPLEo/TgD+DP09mwVXfqwBlJmoj9DqRED1x/6bc0Ki/BAFo/P4MmOKm3QnDCt
+          EXAMPLEooqgA++2HYrNTKWJ5fsXmERs8lK9AXXT7RKXhktyWWU3oNGf7zo0e3YKp
+          EXAMPLEoh1NwIbNcGT1AurIDsxyOZy1HVzBLTisMyDogJmSCLsOw3qUDQjatjXKw
+          EXAMPLEojG3nv2hvD4/aTOiHuKM3+AGbnaS2MdIOvFOh/7Y79tUp89csK0gs6uOd
+          EXAMPLEohe4DcKw5CzUTfHKNXgHyeoOBPcVQTp4lJp1iQIDAQABo0IwQDAdBgNV
+          EXAMPLEoyH4y7VEuImLStXM0CKR8uVqxX/gwDwYDVR0TAQH/BAUwAwEB/zAOBgNV
+          EXAMPLEoBAMCAQYwDQYJKoZIhvcNAQELBQADggEBALmHOPxdyBGnuR0HgR9V4TwJ
+          EXAMPLEoGLKVT7am5z6G2Oq5cwACFHWAFfrPG4W9Jm577QtewiY/Rad/PbkY0YSY
+          EXAMPLEokrfNjxjxI0H2sr7qLBFjJ0wBZHhVmDsO6A9PkfAPu4eJvqRMuL/xGmSQ
+          EXAMPLEoCynMNz7FgHyFbd9D9X5YW8fWGSeVBPPikcONdRvjw9aEeAtbGEh8eZCP
+          EXAMPLEob33RuR+CTNqThXY9k8d7/7ba4KVdd4gP8ynFgwvnDQOjcJZ6Go5QY5HA
+          EXAMPLEoPFW8pAYcvWrXKR0rE8fL5o9qgTyjmO+5yyyvWIYrKPqqIUIvMCdNr84=
+            -----END EXAMPLE CERTIFICATE-----"
+        {
         </pre>
 
 1. Confirm that the new CA is added by listing all the CAs for <%= vars.ops_manager %>. Run:
@@ -135,27 +135,27 @@ To add new CAs:
     <br>
     The API call returns the GUID of the newly added CA. For example:
     <pre class="terminal">
-      HTTP/1.1 200 OK
-      {
-        "certificate_authorities": [
-          {
-            "guid": "f7bc18f34f2a7a9403c3",
-            "issuer": "<%= vars.company_name %>",
-            "created_on": "2017-01-09",
-            "expires_on": "2021-01-09",
-            "active": true,
-            "cert_pem": "-----BEGIN CERTIFICATE-----\nMIIC+zCCAeOgAwIBAgI....etc"
-          }
-          {
-            "guid": "a8ee01e33e3e3e3303e3",
-            "issuer": "<%= vars.company_name %>",
-            "created_on": "2017-04-09",
-            "expires_on": "2021-04-09",
-            "active": false,
-            "cert_pem": "-----BEGIN CERTIFICATE-----\nzBBBC+eAAAe1gAwAAAeZ....etc"
-          }
-        ]
-      }
+    HTTP/1.1 200 OK
+    {
+      "certificate_authorities": [
+        {
+          "guid": "f7bc18f34f2a7a9403c3",
+          "issuer": "<%= vars.company_name %>",
+          "created_on": "2017-01-09",
+          "expires_on": "2021-01-09",
+          "active": true,
+          "cert_pem": "-----BEGIN CERTIFICATE-----\nMIIC+zCCAeOgAwIBAgI....etc"
+        }
+        {
+          "guid": "a8ee01e33e3e3e3303e3",
+          "issuer": "<%= vars.company_name %>",
+          "created_on": "2017-04-09",
+          "expires_on": "2021-04-09",
+          "active": false,
+          "cert_pem": "-----BEGIN CERTIFICATE-----\nzBBBC+eAAAe1gAwAAAeZ....etc"
+        }
+      ]
+    }
     </pre>
 
 1. Identify the newly added CA, which has `active` set to `false`. Record its GUID.
@@ -258,11 +258,11 @@ To rotate non-configurable leaf certificates:
 1. Call the <%= vars.ops_manager %> `regenerate` endpoint by running:
 
     ```
-      curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities/active/regenerate" \
-            -X POST \
-            -H "Authorization: Bearer UAA-ACCESS-TOKEN" \
-            -H "Content-Type: application/json" \
-            -d '{}'
+    curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities/active/regenerate" \
+          -X POST \
+          -H "Authorization: Bearer UAA-ACCESS-TOKEN" \
+          -H "Content-Type: application/json" \
+          -d '{}'
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
@@ -290,10 +290,10 @@ To rotate non-configurable leaf certificates:
     1. If the service tile has the **Recreate All Service Instances** errand:
         1. Enable the **Recreate All Service Instances** errand.
         1. Click **Review Pending Changes**.
-        1. Click **Apply Changes** to perform a second deploy.
+        1. Click **Apply Changes**
     1. If the service tile does not have the **Recreate All Service Instances** errand:
         1. Click **Review Pending Changes**.
-        1. Click **Apply Changes** to perform a second deploy.
+        1. Click **Apply Changes**
         1. When the deploy finishes, manually push certificate updates to each service instance. For each service instance, run:
 
             ```
@@ -303,7 +303,7 @@ To rotate non-configurable leaf certificates:
 
 1. If you do not have any service tiles installed:
     1. Click **Review Pending Changes**.
-    1. Click **Apply Changes** to perform a second deploy.
+    1. Click **Apply Changes**
 
 1. When the deploy finishes and you have completed all necessary tasks to update service instances, continue to the next section, [Delete the Old Root CA](#delete).
 
