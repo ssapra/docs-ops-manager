@@ -47,11 +47,11 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
   * **To use your own custom CA:** Call the <%= vars.ops_manager %> API `certificate_authorities` endpoint by running:
 
         ```
-        curl "https://OPS-MANAGER-FQDN/api/v0/certificate\_authorities" \
+        curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities" \
             -X POST \
             -H "Authorization: Bearer UAA-ACCESS-TOKEN" \
             -H "Content-Type: application/json" \
-            -d '{"cert\_pem": "\-\-\-\-\-BEGIN CERTIFICATE\-\-\-\-\-\CUSTOM-CERTIFICATE", "private\_key\_pem": "\-\-\-\-\-BEGIN RSA PRIVATE KEY\-\-\-\-\-\RSA-KEY"}'
+            -d '{"cert_pem": "-----BEGIN CERTIFICATE-----CUSTOM-CERTIFICATE", "private_key_pem": "-----BEGIN RSA PRIVATE KEY-----RSA-KEY"}'
         ```
         Where:
         * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
@@ -95,7 +95,7 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
         HTTP/1.1 200 OK
         {
               "guid": "f7bc18f34f2a7a9403c3",
-              "issuer": "<%= vars.company_name %>",
+              "issuer": "VMware",
               "created\_on": "2017-01-19",
               "expires\_on": "2021-01-19",
               "active": false,
@@ -139,7 +139,7 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
           "certificate\_authorities": [
             {
               "guid": "f7bc18f34f2a7a9403c3",
-              "issuer": "<%= vars.company_name %>",
+              "issuer": "VMware",
               "created\_on": "2017-01-09",
               "expires\_on": "2021-01-09",
               "active": true,
@@ -147,7 +147,7 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
             }
             {
               "guid": "a8ee01e33e3e3e3303e3",
-              "issuer": "<%= vars.company_name %>",
+              "issuer": "VMware",
               "created\_on": "2017-04-09",
               "expires\_on": "2021-04-09",
               "active": false,
