@@ -4,9 +4,9 @@ owner: Ops Manager
 ---
 
 This topic describes how to check the expiration date of and rotate certificate authorities (CAs) and leaf certificates
-in <%= vars.product_name_full %> (<%= vars.product_name %>).
+in <%= vars.platform_old_pivotal %> (<%= vars.platform_code_pivotal %>).
 
-This includes the <%= vars.ops_manager %> root CA, BOSH NATS CA, and leaf certificates in <%= vars.product_name %> that
+This includes the <%= vars.ops_manager %> root CA, BOSH NATS CA, and leaf certificates in <%= vars.platform_code_pivotal %> that
 are visible to the <%= vars.ops_manager %> API.
 
 <p class='note warning'><strong>Warning:</strong> The rotation procedures described in this topic do not work if the certificates have already expired. If the certificates have expired, contact <a href="https://support.pivotal.io/">Pivotal Support</a> for guidance.</p>
@@ -18,7 +18,7 @@ For information about rotating IPsec certificates, see
 ## <a id='overview'></a> Overview
 
 The <%= vars.ops_manager %> API manages and lists internal CAs and leaf certificates that enable
-<%= vars.product_name %> components to communicate with each other securely using TLS. It can also list certificates
+<%= vars.platform_code_pivotal %> components to communicate with each other securely using TLS. It can also list certificates
 used externally, such as SAML certificates that authenticate to an external identity provider (IDP).
 
 For more information about the CAs and leaf certificates visible to the <%= vars.ops_manager %> API, see
@@ -30,11 +30,11 @@ Rotate CAs and leaf certificates before they expire to avoid downtime for your f
 ## <a id='procedure'></a> Procedure
 
 This section explains how to rotate the <%= vars.ops_manager %> root CA, BOSH NATS CA, and leaf certificates in
-<%= vars.product_name %>.
+<%= vars.platform_code_pivotal %>.
 
 <p class="note"><strong>Note:</strong> The BOSH NATS CA is automatically rotated when you rotate the <%= vars.ops_manager %> root CA. For more information, see <a href="certificate-types.html">Certificate Types</a>.</p>
 
-To rotate certificates in <%= vars.product_name %>, you first check the expiration dates of all certificates. Then,
+To rotate certificates in <%= vars.platform_code_pivotal %>, you first check the expiration dates of all certificates. Then,
 based on the types of certificates that expire soon, you follow a certificate rotation procedure to replace expiring
 certificates and redeploy BOSH to apply changes.
 
