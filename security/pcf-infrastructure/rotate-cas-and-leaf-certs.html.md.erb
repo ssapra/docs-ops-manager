@@ -117,7 +117,7 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
          EXAMPLEob33RuR+CTNqThXY9k8d7/7ba4KVdd4gP8ynFgwvnDQOjcJZ6Go5QY5HA
          EXAMPLEoPFW8pAYcvWrXKR0rE8fL5o9qgTyjmO+5yyyvWIYrKPqqIUIvMCdNr84=
            -----END EXAMPLE CERTIFICATE-----"
-        {
+        }
         </pre>
 
 1. Confirm that the new CA is added by listing all the CAs for <%= vars.ops_manager %>. Run:
@@ -289,10 +289,10 @@ To rotate non-configurable leaf certificates:
     1. If the service tile has the **Recreate All Service Instances** errand:
         1. Enable the **Recreate All Service Instances** errand.
         1. Click **Review Pending Changes**.
-        1. Click **Apply Changes**
+        1. Click **Apply Changes**.
     1. If the service tile does not have the **Recreate All Service Instances** errand:
         1. Click **Review Pending Changes**.
-        1. Click **Apply Changes**
+        1. Click **Apply Changes**.
         1. When the deploy finishes, manually push the BOSH NATS CA to each service instance. For each service instance, run:
 
             ```
@@ -302,7 +302,7 @@ To rotate non-configurable leaf certificates:
 
 1. If you do not have any service tiles installed:
     1. Click **Review Pending Changes**.
-    1. Click **Apply Changes**
+    1. Click **Apply Changes**.
 
 1. When the deploy finishes and you have completed all necessary tasks to update service instances, continue to the next section, [Delete the Old Root CA](#delete).
 
