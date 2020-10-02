@@ -77,17 +77,17 @@ To check certificate expiration dates and types through the <%= vars.ops_manager
   1. Determine the expiration date from the `valid_until` value. For example, the root CA listed below expires on August 12, 2020:
     <pre class='terminal'>
     {
-      "configurable": true,
-      "is_ca": true,
-      "property_reference": ".properties.root_ca.fb10484dd5541a273c9d",
-      "property_type": "rsa_cert_credentials",
-      "product_guid": "ops_manager",
-      "location": "ops_manager",
-      "variable_path": null,
-      "issuer": "/CN=ToolsmithsCA",
-      "valid_from": "2019-08-13T15:30:22Z",
-      "valid_until": "2020-08-12T15:30:22Z"
-    },
+          "configurable": true,
+          "is\_ca": true,
+          "property\_reference": ".properties.root\_ca.fb10484dd5541a273c9d",
+          "property\_type": "rsa\_cert\_credentials",
+          "product\_guid": "ops\_manager",
+          "location": "ops\_manager",
+          "variable\_path": null,
+          "issuer": "/CN=ToolsmithsCA",
+          "valid\_from": "2019-08-13T15:30:22Z",
+          "valid\_until": "2020-08-12T15:30:22Z"
+    }
     </pre>
   1. For any certificates expiring soon, use the following rules to identify their types:
       * **Non-rotatable certificates:** Non-rotatable certificates have the following property value:
