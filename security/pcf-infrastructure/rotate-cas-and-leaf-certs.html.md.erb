@@ -95,7 +95,7 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
         HTTP/1.1 200 OK
         {
               "guid": "f7bc18f34f2a7a9403c3",
-              "issuer": "<%= vars.company_name %>",
+              "issuer": "Pivotal",
               "created\_on": "2017-01-19",
               "expires\_on": "2021-01-19",
               "active": false,
@@ -139,7 +139,7 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
           "certificate\_authorities": [
             {
               "guid": "f7bc18f34f2a7a9403c3",
-              "issuer": "<%= vars.company_name %>",
+              "issuer": "Pivotal",
               "created\_on": "2017-01-09",
               "expires\_on": "2021-01-09",
               "active": true,
@@ -147,7 +147,7 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
             }
             {
               "guid": "a8ee01e33e3e3e3303e3",
-              "issuer": "<%= vars.company_name %>",
+              "issuer": "Pivotal",
               "created\_on": "2017-04-09",
               "expires\_on": "2021-04-09",
               "active": false,
@@ -311,7 +311,7 @@ To rotate non-configurable leaf certificates:
 
 After activating new CAs and rotating leaf certificates from the new CAs, you should delete the old <%= vars.ops_manager %> root CA from your foundation.
 
-If your old root CA or leaf certificates have been compromised, you must delete the old root CA immediately. Otherwise, the old root CA and its leaf certificates may still be trusted, which compromises your foundation's security. If your old root CA or leaf certificates have not been compromised, <%= vars.company_name %> recommends that you delete the old root CA as soon as possible, but you can also delete it at a later time, such as in conjunction with another deploy.
+If your old root CA or leaf certificates have been compromised, you must delete the old root CA immediately. Otherwise, the old root CA and its leaf certificates may still be trusted, which compromises your foundation's security. If your old root CA or leaf certificates have not been compromised, Pivotal recommends that you delete the old root CA as soon as possible, but you can also delete it at a later time, such as in conjunction with another deploy.
 
 <p class="note warning"><strong>Warning:</strong> Before you delete the old CA, ensure that you reviewed the <strong>Review Pending Changes</strong> page and clicked <strong>Apply Changes</strong> as part of <a href="#regenerate-from-new-root">Rotate Non-Configurable Leaf Certificates from the New Root CA</a> above.</p>
 
