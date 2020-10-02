@@ -6,19 +6,21 @@ owner: OpsMan
 This topic provides an overview of using custom certificate authorities (CAs) in a Pivotal Cloud Foundry (PCF)
 deployment.
 
+
 ## <a id='overview'></a>Overview
 
 To secure traffic in your PCF deployment, you must provide a CA to issue digital certificates. This can be either a
 Pivotal-generated or custom CA. When you add and activate a new CA, a digital certificate is issued to BOSH Director.
-BOSH Director then passes the certificate to other components in your PCF deployment. 
+BOSH Director then passes the certificate to other components in your PCF deployment.
 
 Pivotal recommends that you supply a CA from a trusted provider when using a production environment. While you can
 create your own custom CAs if necessary, a trusted CA is more secure because it has been authenticated by the trusted
 entities permitted to issue them.
 
-<p class ="note"><b>Note:</b> Elliptic Curve Digital Signature Algorithm (ECDSA) certificates are not supported in PCF.</p>
+<p class ="note"><strong>Note:</strong> Elliptic Curve Digital Signature Algorithm (ECDSA) certificates are not supported in PCF.</p>
 
-## <a id='add-custom-ca'></a>Add a Custom CA
+
+## <a id='add-custom-ca'></a> Add a Custom CA
 
 You can add a new custom CA as part of the procedure for rotating CAs and other certificate types in PCF. To add and
-activate a new custom CA in PCF, see [Rotate Root and Leaf Certificates](./api-cert-rotation.html#rotate-ca).
+activate a new custom CA in PCF, see [Rotating the Root CA and Leaf Certificates](rotate-cas-and-leaf-certs.html).
