@@ -23,7 +23,7 @@ Before rotating non-configurable leaf certificates, you must:
 
 To rotate non-configurable leaf certificates:
 
-1. Use `curl` to make an API call to regenerate all non-configurable certificates. Run:
+1. Call the <%= vars.ops_manager %> API `regenerate` endpoint by running:
 
     ```
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities/active/regenerate" \
@@ -35,8 +35,8 @@ To rotate non-configurable leaf certificates:
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
     * `UAA-ACCESS-TOKEN` is your UAA access token.
-    </br>
-    </br>
+    <br>
+    <br>
     The API returns a successful response:
     <pre class="terminal">HTTP/1.1 200 OK</pre>
 
