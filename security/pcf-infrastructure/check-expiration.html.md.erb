@@ -40,14 +40,14 @@ To check the <%= vars.ops_manager %> root CA expiration date:
 1. Determine the expiration date of the active CA by checking its `expires_on` value. For example, the root CA shown below expires on September 5, 2019:
     <pre class='terminal'>
     {
-      "certificate_authorities": [
+      "certificate\_authorities": [
         {
           "guid": "9c9a110c8f82a1e4aaca",
-          "issuer": "Pivotal",
-          "created_on": "2017-09-05T22:47:53Z",
-          "expires_on": "2019-09-05T22:47:53Z",
+          "issuer": "<%= vars.company_name %>",
+          "created\_on": "2017-09-05T22:47:53Z",
+          "expires\_on": "2019-09-05T22:47:53Z",
           "active": true,
-          "cert_pem": "\-\-\-\-\-BEGIN CERTIFICATE\-\-\-\-\-\
+          "cert\_pem": "\-\-\-\-\-BEGIN CERTIFICATE\-\-\-\-\-\
           [...]
           \n-----END CERTIFICATE\-\-\-\-\-\n"
     </pre>
