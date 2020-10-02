@@ -21,7 +21,7 @@ This procedure describes how to check the expiration date for the <%= vars.ops_m
 
 To check the <%= vars.ops_manager %> root CA expiration date:
 
-1. Follow the procedure in [Using <%= vars.ops_manager %> API](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing//ops-man-api.html) to target and authenticate with the <%= vars.ops_manager %> User Account and Authentication (UAA) server. Record your <%= vars.ops_manager %> access token, and use it for `UAA-ACCESS-TOKEN` in the steps below.
+1. Follow the procedure in [Using <%= vars.ops_manager %> API](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html) to target and authenticate with the <%= vars.ops_manager %> User Account and Authentication (UAA) server. Record your <%= vars.ops_manager %> access token, and use it for `UAA-ACCESS-TOKEN` in the steps below.
   <p class="note"><strong>Note:</strong> When you record your <%= vars.ops_manager %> access token, remove any newline characters such as <code>\n</code>.</p>
 
 1. To retrieve the list of <%= vars.ops_manager %> certificates, call the `/deployed/certificates` endpoint of the <%= vars.ops_manager %> API by running:
@@ -60,7 +60,7 @@ This procedure describes how to check the expiration dates of leaf certificates 
 
 To check the expiration dates of leaf certificates and identify the types of leaf certificates that expire soon:
 
-1. To check the system for certificates that expire within a given time interval, run:
+1. Check the system for certificates that expire within a given time interval by running:
 
     ```
     curl "https://OPS-MANAGER-FQDN/api/v0/deployed/certificates?expires_within=TIME" \
