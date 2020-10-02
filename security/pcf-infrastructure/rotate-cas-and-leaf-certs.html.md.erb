@@ -10,7 +10,7 @@ This topic describes how to rotate the <%= vars.ops_manager %> root certificate 
 
 This procedure uses the <%= vars.ops_manager %> API to rotate the <%= vars.ops_manager %> root CA and leaf certificates. When you rotate the <%= vars.ops_manager %> root CA, the <%= vars.ops_manager %> API automatically rotates the BOSH NATS CA. To rotate only leaf certificates, see one of the leaf certificate rotation topics listed in [Overview of Certificate Rotation](api-cert-rotation.html).
 
-To prevent system downtime, this procedure includes two BOSH deploys. The first BOSH deploy applies new certificates to <%= vars.product_name %> components. The second BOSH deploy deletes the old certificates.
+To prevent system downtime, this procedure includes two BOSH deploys. The first BOSH deploy applies new certificates to <%= vars.platform_old_pivotal %> (<%= vars.platform_code_pivotal %>) components. The second BOSH deploy deletes the old certificates.
 
 <p class="note warning"><strong>Warning:</strong> You must complete these steps in the exact order specified. Otherwise, you may damage your deployment.</p>
 
@@ -31,11 +31,11 @@ To rotate the <%= vars.ops_manager %> root CA and leaf certificates:
 
 ## <a id='add-new-ca'></a> Step 1: Add a New Root CA
 
-This section describes how to add a new root CA for <%= vars.ops_manager %>. The new root CA can be a <%= vars.product_name %>-generated CA or your own custom CA.
+This section describes how to add a new root CA for <%= vars.ops_manager %>. The new root CA can be a <%= vars.platform_code_pivotal %>-generated CA or your own custom CA.
 
 This procedure also automatically regenerates the BOSH NATS CA.
 
-<p class="note warning"><strong>Warning:</strong> The <%= vars.ops_manager %> API also excludes from rotation the CAs for certain versions of the MySQL, Redis, RabbitMQ, and <%= vars.product_name %> Cloud Cache tiles. For information about rotating these CAs, see the documentation for each tile.</p>
+<p class="note warning"><strong>Warning:</strong> The <%= vars.ops_manager %> API also excludes from rotation the CAs for certain versions of the MySQL, Redis, RabbitMQ, and <%= vars.platform_code_pivotal %> Cloud Cache tiles. For information about rotating these CAs, see the documentation for each tile.</p>
 
 To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA:
 
@@ -43,7 +43,7 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
   <p class="note"><strong>Note:</strong> When you record your <%= vars.ops_manager %> access token, remove any newline characters such as <code>\n</code>.</p>
 
 1. Use <%= vars.ops_manager %> to generate a new CA, or add your own custom CA:
-  <p class ="note"><strong>Note:</strong> Elliptic Curve Digital Signature Algorithm (ECDSA) certificates are not supported in <%= vars.product_name %>.</p>
+  <p class ="note"><strong>Note:</strong> Elliptic Curve Digital Signature Algorithm (ECDSA) certificates are not supported in <%= vars.platform_code_pivotal %>.</p>
   * **To use your own custom CA:** Call the <%= vars.ops_manager %> API `certificate_authorities` endpoint by running:
 
         ```
@@ -76,7 +76,7 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
           ]
         }
         </pre>
-  * **To use a <%= vars.product_name %>-generated CA:** Call the <%= vars.ops_manager %> API `generate` endpoint by running:
+  * **To use a <%= vars.platform_code_pivotal %>-generated CA:** Call the <%= vars.ops_manager %> API `generate` endpoint by running:
 
         ```
         curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities/generate" \
