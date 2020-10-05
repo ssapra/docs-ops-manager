@@ -36,7 +36,7 @@ This section describes how to add a new root CA for <%= vars.ops_manager %>. The
 
 This procedure also automatically regenerates the BOSH NATS CA as well as CAs stored in CredHub, such as the BOSH DNS CA and the Diego root CA.
 
-<p class="note warning"><strong>Warning:</strong> The <%= vars.ops_manager %> API also excludes from rotation the CAs for certain versions of the VMware Tanzu SQL [MySQL for VMs], Redis for VMware Tanzu, VMware Tanzu RabbitMQ, and VMware Tanzu GemFire tiles. For information about rotating these CAs, see the documentation for each tile.</p>
+<p class="note warning"><strong>Warning:</strong> The <%= vars.ops_manager %> API also excludes from rotation the CAs for certain versions of the VMware Tanzu SQL [MySQL for VMs], Redis for VMware Tanzu, VMware Tanzu RabbitMQ, and VMware Tanzu GemFire tiles and IPsec for VMware Tanzu. For information about rotating these CAs, see the documentation for those products.</p>
 
 To add new CAs:
 
@@ -253,7 +253,7 @@ To regenerate and rotate each configurable leaf certificate that expires soon:
 
 After activating the new <%= vars.ops_manager %> root CA and other CAs, you must rotate non-configurable leaf certificates from the new CAs.
 
-<p class="note warning"><strong>Warning:</strong> The <%= vars.ops_manager %> API also excludes from rotation the CAs for certain versions of the VMware Tanzu SQL [MySQL for VMs], Redis for VMware Tanzu, VMware Tanzu RabbitMQ, and VMware Tanzu GemFire tiles. For information about rotating these CAs, see the documentation for each tile.</p>
+<p class="note warning"><strong>Warning:</strong> The <%= vars.ops_manager %> API also excludes from rotation the CAs for certain versions of the VMware Tanzu SQL [MySQL for VMs], Redis for VMware Tanzu, VMware Tanzu RabbitMQ, and VMware Tanzu GemFire tiles and IPsec for VMware Tanzu. For information about rotating these CAs, see the documentation for those products.</p>
 
 To rotate non-configurable leaf certificates:
 
