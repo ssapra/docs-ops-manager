@@ -14,7 +14,14 @@ This procedure rotates non-configurable leaf certificates visible to the <%= var
 
 Before rotating non-configurable leaf certificates, you must:
 
-* Ensure that you meet the prerequisites described in [Prerequisites](api-cert-rotation.html#prerequisite) in _Overview of Certificate Rotation_.
+* Ensure that you meet the prerequisites described in [Prerequisites](#prerequisites) below.
+
+* Check which certificates in your deployment are non-configurable and when they are due to expire. For more information, see [Checking Expiration Dates and Certificate Types](check-expiration.html).
+
+
+## <a id='prerequisites'></a> Prerequisites
+
+<%= partial "/pcf/core/#{product_info['local_product_version'].to_s.sub('.','-')}/rotate-cas-certs-prereqs" %>
 
 * Check which certificates in your deployment are non-configurable and when they are due to expire. For more information, see [Checking Expiration Dates and Certificate Types](check-expiration.html).
 
