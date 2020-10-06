@@ -37,6 +37,18 @@ To rotate CAs, configurable leaf certificates, and non-configurable leaf certifi
 <p class="note warning"><strong>Warning:</strong> The Services TLS CA, <code>/services/tls_ca</code>,
 cannot be rotated using this procedure. For information about how to rotate the Services TLS CA, see <a href="advanced-certificate-rotation.html#services-rotation">Rotate the Services TLS CA and Its Leaf Certificates</a> in <em>Advanced Certificate Rotation with CredHub Maestro</em>.</p>
 
+## <a id='prerequisites'></a> Prerequisites
+
+To rotate certificates using the <%= vars.ops_manager %> API, you must have the following versions of <%= vars.app_runtime_full %> (<%= vars.app_runtime %>), <%= vars.segment_runtime_full %> tile, Small Footprint <%= vars.app_runtime %>, or <%= vars.windows_runtime_full %> (<%= vars.windows_runtime_abbr %>) installed:
+
+* <%= vars.app_runtime %> v2.7.21 or later
+* <%= vars.app_runtime %> v2.8.2 or later
+* <%= vars.segment_runtime_full %> tile v2.7.21 or later
+* <%= vars.segment_runtime_full %> tile v2.8.2 or later
+* Small Footprint <%= vars.app_runtime %> v2.7.21 or later
+* Small Footprint <%= vars.app_runtime %> v2.8.2 or later
+* <%= vars.windows_runtime_abbr %> v2.7.17 or later
+* <%= vars.windows_runtime_abbr %> v2.8.2 or later
 
 ## <a id='add-new-ca'></a> Step 1: Add New CAs
 
