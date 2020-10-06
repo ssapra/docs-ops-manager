@@ -12,9 +12,17 @@ This procedure uses the <%= vars.ops_manager %> API to rotate the <%= vars.ops_m
 
 To prevent system downtime, this procedure includes two BOSH deploys. The first BOSH deploy applies new certificates to <%= vars.platform_name %> components. The second BOSH deploy deletes the old certificates.
 
-<p class="note warning"><strong>Warning:</strong> You must complete these steps in the exact order specified. Otherwise, you may damage your deployment.</p>
+
+## <a id='prerequisite'></a> Prerequisites
+
+<%= partial "/pcf/core/#{product_info['local_product_version'].to_s.sub('.','-')}/rotate-cas-certs-prereqs" %>
+
+
+## <a id='procedure'></a> Procedure
 
 To rotate CAs, configurable leaf certificates, and non-configurable leaf certificates:
+
+<p class="note warning"><strong>Warning:</strong> You must complete these steps in the exact order specified. Otherwise, you may damage your deployment.</p>
 
 1. Add a new <%= vars.ops_manager %> root CA. This step also automatically adds new CAs for all CAs visible to the <%= vars.ops_manager %> API. For more information, see [Add New CAs](#add-new-ca) below.
 
