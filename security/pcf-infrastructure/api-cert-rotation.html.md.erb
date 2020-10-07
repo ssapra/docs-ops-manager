@@ -5,16 +5,6 @@ owner: Ops Manager
 
 This topic describes how to check the expiration date of and rotate certificate authorities (CAs) and leaf certificates in <%= vars.platform_name_pivotal %>.
 
-This includes the <%= vars.ops_manager %> root CA, BOSH NATS CA, and other CAs and leaf certificates stored in <%= vars.ops_manager %> and CredHub that are visible to the <%= vars.ops_manager %> API.
-
-<p class='note warning'><strong>Warning:</strong> The rotation procedures described in this topic do not work if the certificates have already expired. If the certificates have expired, contact <%= vars.support_link %> for guidance.</p>
-
-For information about rotating IPsec certificates, see [Rotating IPsec Certificates](https://docs.pivotal.io/addon-ipsec/credentials.html).
-
-For information about using trusted third-party certificates for both apps hosted on <%= vars.platform_name_pivotal %> and internal <%= vars.platform_name_pivotal %> components, see [Setting Trusted Certificates](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/trusted-certificates.html).
-
-For information about how to rotate certificates managed by CredHub, see [Advanced Certificate Rotation with CredHub Maestro](advanced-certificate-rotation.html).
-
 
 ## <a id='overview'></a> Overview
 
@@ -25,13 +15,21 @@ For more information about the CAs and leaf certificates visible to the <%= vars
 Rotate CAs and leaf certificates before they expire to avoid downtime for your foundation. To rotate certificates in <%= vars.platform_name_pivotal %>, first check the expiration dates of all certificates. Then, based on the types of certificates that expire soon, follow a certificate rotation procedure to replace expiring certificates and deploy BOSH to apply changes.
 
 
-## <a id='rotate'></a> Rotate Certificates
+## <a id='check-expiration-and-types'></a> Check Certificate Expiration Dates and Types
 
-This section explains how to rotate certificates in <%= vars.platform_name_pivotal %>, including the <%= vars.ops_manager %> root CA, BOSH NATS CA, CAs stored in CredHub, and leaf certificates. There are different rotation procedures for each type of certificate that requires rotation.
+Before determining which certificate rotation procedure to follow, you must determine:
 
-You can determine which rotation procedure to follow based on the types of certificates in your foundation that must be rotated.
+* Which types of CAs and leaf certificates exist in your deployment.
+* Which CAs and leaf certificates are due to expire soon.
 
-<p class='note warning'><strong>Warning:</strong> The rotation procedures described in this topic do not work if the certificates have already expired. If the certificates have expired, contact <%= vars.support_link %> for guidance.</p>
+To check the types and expiration dates of your certificates, see [Checking Expiration Dates and Certificate Types](check-expiration.html).
+
+
+## <a id='procedures'></a> Certificate Rotation Procedures
+
+The topics listed in this section explain how to rotate certificates in <%= vars.platform_name %>, including the <%= vars.ops_manager %> root CA, BOSH NATS CA, CAs stored in CredHub, and leaf certificates. There are different rotation procedures for each type of certificate that requires rotation.
+
+<p class='note warning'><strong>Warning:</strong> The rotation procedures described in the topics below do not work if the certificates have already expired. If the certificates have expired, contact <%= vars.support_link %> for guidance.</p>
 
 To rotate certificates, follow one of these procedures:
 
@@ -42,3 +40,14 @@ To rotate certificates, follow one of these procedures:
 * To rotate non-configurable leaf certificates, but not the <%= vars.ops_manager %> root CA or BOSH NATS CA, see [Rotating Non-Configurable Leaf Certificates](rotate-non-configurable-certs.html).
 
 * To rotate configurable leaf certificates, but not the <%= vars.ops_manager %> root CA or BOSH NATS CA, see [Rotating Configurable Leaf Certificates](rotate-configurable-certs.html).
+
+
+## <a id='other-certs'></a> Rotating Other Certificates
+
+Other certificates that the <%= vars.ops_manager %> API does not rotate include:
+
+* Certificates managed by CredHub, including the Services TLS CA. To rotate CredHub-managed certificates, see [Advanced Certificate Rotation with CredHub Maestro](advanced-certificate-rotation.html).
+
+* Identity provider (IDP) SAML certificates. To rotate IDP SAML certificates, see [Rotating Identity Provider SAML Certificates](rotate-saml-ca.html).
+
+* IPsec certificates. To rotate IPsec certificates, see [Rotating IPsec Certificates](https://docs.pivotal.io/addon-ipsec/credentials.html) in the IPsec for VMware Tanzu documentation.

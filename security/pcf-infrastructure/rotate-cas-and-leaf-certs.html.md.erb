@@ -3,12 +3,12 @@ title: Rotating CAs and Leaf Certificates
 owner: Ops Manager
 ---
 
-This topic describes how to rotate certificate authorities (CAs) and leaf certificates using the <%= vars.ops_manager %> API.
+This topic describes how to rotate certificate authorities (CAs) and leaf certificates using the <%= vars.ops_manager %> API. To rotate only leaf certificates, see one of the leaf certificate rotation topics listed in [Certificate Rotation Procedures](api-cert-rotation.html#procedures) in _Overview of Certificate Rotation_.
 
 
 ## <a id='overview'></a> Overview
 
-This procedure uses the <%= vars.ops_manager %> API to rotate the <%= vars.ops_manager %> root CA and leaf certificates. When you rotate the <%= vars.ops_manager %> root CA, the <%= vars.ops_manager %> API automatically rotates the BOSH NATS CA. To rotate only leaf certificates, see one of the leaf certificate rotation topics listed in [Overview of Certificate Rotation](api-cert-rotation.html).
+This procedure uses the <%= vars.ops_manager %> API to rotate the <%= vars.ops_manager %> root CA and leaf certificates. When you rotate the <%= vars.ops_manager %> root CA, the <%= vars.ops_manager %> API automatically rotates the BOSH NATS CA.
 
 To prevent system downtime, this procedure includes two BOSH deploys. The first BOSH deploy applies new certificates to <%= vars.platform_name_pivotal %> components. The second BOSH deploy deletes the old certificates.
 
@@ -26,8 +26,7 @@ To rotate CAs, configurable leaf certificates, and non-configurable leaf certifi
 
 1. Delete the old root CA. For more information, see [Delete the Old Root CA](#delete) below.
 
-<p class="note warning"><strong>Warning:</strong> The Services TLS CA, <code>/services/tls_ca</code>,
-cannot be rotated using this procedure. For information about how to rotate the Services TLS CA, see <a href="services_tls_ca_rotate.html">Rotating the Services TLS CA and Its Leaf Certificates</a>.</p>
+<p class="note warning"><strong>Warning:</strong> The Services TLS CA, <code>/services/tls_ca</code>, cannot be rotated using this procedure. For information about how to rotate the Services TLS CA, see <a href="services_tls_ca_rotate.html">Rotating the Services TLS CA and Its Leaf Certificates</a>.</p>
 
 
 ## <a id='add-new-ca'></a> Step 1: Add New CAs
