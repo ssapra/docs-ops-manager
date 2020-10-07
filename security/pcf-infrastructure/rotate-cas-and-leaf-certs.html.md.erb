@@ -8,7 +8,7 @@ This topic describes how to rotate certificate authorities (CAs) and leaf certif
 
 ## <a id='overview'></a> Overview
 
-This procedure uses the <%= vars.ops_manager %> API to rotate the <%= vars.ops_manager %> root CA and leaf certificates. When you rotate the <%= vars.ops_manager %> root CA, the <%= vars.ops_manager %> API automatically rotates the BOSH NATS CA as well as CAs stored in CredHub, such as the BOSH DNS CA and the Diego root CA. To rotate only leaf certificates, see one of the leaf certificate rotation topics listed in [Certificate Rotation Procedures](api-cert-rotation.html#procedures) in _Overview of Certificate Rotation_.
+This procedure uses the <%= vars.ops_manager %> API to rotate the <%= vars.ops_manager %> root CA and leaf certificates. When you rotate the <%= vars.ops_manager %> root CA, the <%= vars.ops_manager %> API automatically rotates the BOSH NATS CA as well as CAs stored in CredHub, such as the BOSH DNS CA and the Diego root CA.
 
 To prevent system downtime, this procedure includes two BOSH deploys. The first BOSH deploy applies new certificates to <%= vars.platform_name %> components. The second BOSH deploy deletes the old certificates.
 
