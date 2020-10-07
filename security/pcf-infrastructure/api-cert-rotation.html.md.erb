@@ -3,13 +3,7 @@ title: Overview of Certificate Rotation
 owner: Ops Manager
 ---
 
-This topic describes how to check the expiration date of and rotate certificate authorities (CAs) and leaf certificates in <%= vars.platform_old_pivotal %> (<%= vars.platform_code_pivotal %>).
-
-This includes the <%= vars.ops_manager %> root CA, BOSH NATS CA, and leaf certificates in <%= vars.platform_code_pivotal %> that are visible to the <%= vars.ops_manager %> API.
-
-<p class='note warning'><strong>Warning:</strong> The rotation procedures described in this topic do not work if the certificates have already expired. If the certificates have expired, contact <a href="https://support.pivotal.io/">Pivotal Support</a> for guidance.</p>
-
-For information about rotating IPsec certificates, see [Rotating IPsec Certificates](https://docs.pivotal.io/addon-ipsec/credentials.html).
+This topic provides an overview of rotating certificate authorities (CAs) and leaf certificates in <%= vars.platform_old_pivotal %> (<%= vars.platform_code_pivotal %>).
 
 
 ## <a id='overview'></a> Overview
@@ -18,29 +12,24 @@ The <%= vars.ops_manager %> API manages and lists internal CAs and leaf certific
 
 For more information about the CAs and leaf certificates visible to the <%= vars.ops_manager %> API, see [Certificate Types](certificate-types.html).
 
-Rotate CAs and leaf certificates before they expire to avoid downtime for your foundation.
+Rotate CAs and leaf certificates before they expire to avoid downtime for your deployment. To rotate certificates in <%= vars.platform_code_pivotal %>, first check the expiration dates of all certificates. Then, based on the types of certificates that expire soon, follow a certificate rotation procedure to replace expiring certificates and deploy BOSH to apply changes.
 
 
-## <a id='procedure'></a> Procedure
+## <a id='check-expiration-and-types'></a> Check Certificate Expiration Dates and Types
 
-This section explains how to rotate the <%= vars.ops_manager %> root CA, BOSH NATS CA, and leaf certificates in <%= vars.platform_code_pivotal %>.
+Before determining which certificate rotation procedure to follow, you must determine:
 
-<p class="note"><strong>Note:</strong> The BOSH NATS CA is automatically rotated when you rotate the <%= vars.ops_manager %> root CA. For more information, see <a href="certificate-types.html">Certificate Types</a>.</p>
+* Which types of CAs and leaf certificates exist in your deployment.
+* Which CAs and leaf certificates are due to expire soon.
 
-To rotate certificates in <%= vars.platform_code_pivotal %>, you first check the expiration dates of all certificates. Then, based on the types of certificates that expire soon, you follow a certificate rotation procedure to replace expiring certificates and redeploy BOSH to apply changes.
-
-To rotate CAs and leaf certificates:
-
-1. Check the expiration dates of the <%= vars.ops_manager %> root CA and leaf certificates, and identify the types of leaf certificates that require rotation. For more information, see [Checking Expiration Dates and Certificate Types](check-expiration.html).
-
-1. Rotate the certificates that expire soon. For more information, see [Rotate Certificates](#rotate) below.
+To check the types and expiration dates of your certificates, see [Checking Expiration Dates and Certificate Types](check-expiration.html).
 
 
-## <a id='rotate'></a> Rotate Certificates
+## <a id='procedures'></a> Certificate Rotation Procedures
 
-This section includes procedures for rotating CAs and leaf certificates. There are different rotation procedures for each type of certificate that requires rotation.
+The topics listed in this section explain procedures for rotating CAs and leaf certificates in <%= vars.platform_code_pivotal %>. There are different rotation procedures for each type of certificate that requires rotation.
 
-You can determine which rotation procedure to follow based on the types of certificates in your foundation that must be rotated. For more information about identifying the types of certificates in your foundation that expire soon, see [Checking Expiration Dates and Certificate Types](check-expiration.html).
+<p class='note warning'><strong>Warning:</strong> The rotation procedures listed below do not work if the certificates have already expired. If the certificates have expired, contact <a href="https://support.pivotal.io/">Pivotal Support</a> for guidance.</p>
 
 To rotate certificates, follow one of these procedures:
 
@@ -52,4 +41,13 @@ To rotate certificates, follow one of these procedures:
 
 * To rotate configurable leaf certificates, but not the <%= vars.ops_manager %> root CA or BOSH NATS CA, see [Rotating Configurable Leaf Certificates](rotate-configurable-certs.html).
 
-* To rotate the `/services/tls_ca` certificate, see [Rotating the Services TLS CA and Its Leaf Certificates](services_tls_ca_rotate.html).
+* To rotate the Services TLS CA certificate, see [Rotating the Services TLS CA and Its Leaf Certificates](services_tls_ca_rotate.html).
+
+
+## <a id='other-certs'></a> Rotating Other Certificates
+
+Other certificates that the <%= vars.ops_manager %> API does not rotate include:
+
+* IDP SAML certificates. To rotate IDP SAML certificates, see [Rotating Identity Provider SAML Certificates](rotate-saml-ca.html).
+
+* IPsec certificates. To rotate IPsec certificates, see [Rotating IPsec Certificates](https://docs.pivotal.io/addon-ipsec/credentials.html) in the IPsec for VMware Tanzu documentation.
