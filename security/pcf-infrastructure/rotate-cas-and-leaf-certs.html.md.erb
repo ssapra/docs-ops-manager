@@ -3,7 +3,7 @@ title: Rotating CAs and Leaf Certificates
 owner: Ops Manager
 ---
 
-This topic describes how to rotate certificate authorities (CAs) and leaf certificates using the <%= vars.ops_manager %> API. To rotate only leaf certificates, see one of the leaf certificate rotation topics listed in [Overview of Certificate Rotation](api-cert-rotation.html).
+This topic describes how to rotate certificate authorities (CAs) and leaf certificates using the <%= vars.ops_manager %> API. To rotate only leaf certificates, see one of the leaf certificate rotation topics listed in [Certificate Rotation Procedures](api-cert-rotation.html#procedures) in _Overview of Certificate Rotation_.
 
 
 ## <a id='overview'></a> Overview
@@ -13,7 +13,7 @@ This procedure uses the <%= vars.ops_manager %> API to rotate the <%= vars.ops_m
 To prevent system downtime, this procedure includes two BOSH deploys. The first BOSH deploy applies new certificates to <%= vars.platform_name %> components. The second BOSH deploy deletes the old certificates.
 
 
-## <a id='prerequisite'></a> Prerequisites
+## <a id='prerequisites'></a> Prerequisites
 
 <%= partial "/pcf/core/#{product_info['local_product_version'].to_s.sub('.','-')}/rotate-cas-certs-prereqs" %>
 
