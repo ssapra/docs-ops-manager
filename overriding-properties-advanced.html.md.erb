@@ -47,7 +47,7 @@ in the Ops Manager API documentation.
 
 ## <a id='properties'></a> Overridable Properties
 
-You can edit properties in the BOSH Director manifest and two of the runtime configs.
+You can edit properties in the BOSH Director manifest, another tile manifest, or two of the runtime configs.
 
 ### <a id='bosh-director-manifest'></a> BOSH Director Manifest
 
@@ -61,6 +61,18 @@ You cannot:
 * Edit properties in other sections of the BOSH Director manifest
 * Add or delete a network
 * Add or delete an instance group
+
+For an example, see [Change the Network Type to Dynamic](#example1) below.
+
+### <a id='tile-manifest'></a> Tile Manifest
+
+In the tile manifest, you can override properties in the following sections:
+
+* `features`
+* `update` 
+
+For an example, see [Change Number of Canary Instances](#example3) or
+[Enable Returning DNS Addresses in Links](#example4) below. 
 
 ### <a id='runtime-configs'></a> Runtime Configs
 
@@ -120,6 +132,34 @@ in the Ops Manager API documentation.
 [How to Enable Advanced Mode in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US)
 in the Knowledge Base.
 
+## <a id="tile-overrides"></a> Override Tile Manifest Properties
+
+To override properties in the tile manifest:
+
+1. Set Ops Manager to Advanced Mode by following the procedure in
+[How to Enable Advanced Mode in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US)
+in the Knowledge Base.
+For more information about Advanced Mode,
+see [Advanced Mode](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Mode)
+in the Ops Manager API documentation.
+  <div class="note warning"><strong>Warning:</strong>
+    <ul>
+      <li><%= vars.company_name %> recommends that only skilled operators use Advanced Mode in Ops Manager.
+        If you use Advanced Mode incorrectly, you can disable or destroy your deployment.</li>
+      <li>Ops Manager does not validate the properties that you change using Advanced Mode.
+        For example, if you enter a string where an integer is required, you do not receive an error.</li>
+    </ul>
+  </div>
+
+1. Use the `/api/v0/staged/products` endpoint to get and record the product GUID from the output of the command. For more information, see [All staged products](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Products/paths/~1api~1v0~1staged~1products/get) in the Ops Manager API documentation.
+
+1. Use the `/api/v0/staged/products/PRODUCT-GUID/overrides` endpoint. Where `PRODUCT-GUID` is the GUID you recorded in the previous step. For more information, see
+[Provide a new list of overrides for the BOSH Director](https://docs.pivotal.io/platform/2-10/opsman-api/#tag/Advanced-Manifest-Configuration/paths/~1api~1v0~1staged~1products~1{product_guid}~1overrides/put)
+in the Ops Manager API documentation.
+
+1. After you have completed your changes, disable Advanced Mode by following the procedure in
+[How to Enable Advanced Mode in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US)
+in the Knowledge Base.
 
 ## <a id="runtime-config-overrides"></a> Override Runtime Config Properties
 
@@ -151,6 +191,7 @@ in the Ops Manager API documentation.
 [How to Enable Advanced Mode in the Ops Manager](https://community.pivotal.io/s/article/How-to-Enable-Advanced-Mode-in-the-Ops-Manager?language=en_US)
 in the Knowledge Base.
 
+For an example, see [Change the Timeout for the BOSH DNS Network Health Check](#example2) below.
 
 ## <a id='examples'></a> Examples of Overridable Properties
 
@@ -163,6 +204,28 @@ You cannot change this property through the Ops Manager UI or API.
 
 You can override this default by changing the value of the `type` property
 in the `networks` section of the BOSH Director manifest.
+
+### <a id='example3'></a> Tile Manifest Example: Change Number of Canary Instances
+
+By default, the number of canary instances is set to 1.
+You cannot change this property through the Ops Manager UI or API.
+
+You can override this default by changing the number of canary instances
+in the `update` section of the tile manifest.
+
+For a list of all the properties you can change in the `update` section, 
+see [Update Block](https://bosh.io/docs/manifest-v2/#update) in the BOSH documentation. 
+
+### <a id='example4'></a> Tile Manifest Example: Enable Returning DNS Addresses in Links
+
+By default, `use_dns_addresses` is set to `false`.
+You cannot change this property through the Ops Manager UI or API.
+
+You can override this default by changing the value to `true`
+in the `features` section of the tile manifest.
+
+For a list of all the properties you can change in the `features` section, 
+see [Features Block](https://bosh.io/docs/manifest-v2/#features) in the BOSH documentation.
 
 ### <a id='example2'></a> Runtime Config Example: Change the Timeout for the BOSH DNS Network Health Check
 
