@@ -3,23 +3,32 @@ title: Jump Upgrading to Ops Manager v2.10
 owner: Ops Manager
 ---
 
-This topic describes upgrading to <%= vars.ops_manager %> v2.10.2 directly from  <%= vars.ops_manager %> v2.4 and later.
+This topic describes upgrading to <%= vars.ops_manager %> v2.10.2 directly from
+<%= vars.ops_manager %> v2.4 and later.
 
 
 ## <a id='overview'></a> Overview
 
-Jump upgrading describes the process of skipping minor versions when upgrading <%= vars.ops_manager %>. Jump upgrading enables you to upgrade directly to the long-term support (LTS) version of <%= vars.ops_manager %>, which is v2.10. <%= vars.ops_manager %> v2.10 is supported through April 2024. For more information, see [Long-Term Support for Ops Manager v2.10](release-notes.html#lts) in _<%= vars.ops_manager %> v2.10 Release Notes_.
+Jump upgrading describes the process of skipping minor versions when upgrading
+<%= vars.ops_manager %>. Jump upgrading enables you to upgrade directly to the
+long-term support (LTS) version of <%= vars.ops_manager %>, which is v2.10.
+<%= vars.ops_manager %> v2.10 is supported through April 2024. For more
+information, see [Long-Term Support for Ops Manager v2.10](release-notes.html#lts)
+in _<%= vars.ops_manager %> v2.10 Release Notes_.
 
 
 ## <a id="prerequisites"></a> Prerequisites
 
-Before you jump upgrade:
+Before you jump upgrade to <%= vars.ops_manager %> v2.10.2:
 
-* If you are on <%= vars.ops_manager %> v2.3 or earlier, you must upgrade to v2.4 before you can jump upgrade to v2.10.2.
+* If you are on <%= vars.ops_manager %> v2.3 or earlier, you must upgrade to
+v2.4 before you can jump upgrade to v2.10.2.
 
 * You must upgrade to <%= vars.ops_manager %> v2.10.2 or later.
 
-* To upgrade to <%= vars.ops_manager %> v2.10, you must ensure that the products you have installed are compatible with <%= vars.ops_manager %> v2.10.2. To create an upgrade path for your product tiles, see the [Upgrade Planner](https://upgrade-planner.pivotal.io/).
+* To upgrade to <%= vars.ops_manager %> v2.10, you must ensure that the products
+you have installed are compatible with <%= vars.ops_manager %> v2.10.2. To create
+an upgrade path for your product tiles, see the [Upgrade Planner](https://upgrade-planner.pivotal.io/).
 
 * You must have no changes to any product tile or service instance currently staged.
 
@@ -30,88 +39,117 @@ Before you jump upgrade:
 
 ## <a id="jump-upgrade"></a> Jump Upgrade
 
-After you have ensured that your deployment meets the requirements described in [Prerequisites](#prequisites) above, you can upgrade to <%= vars.ops_manager %> to v2.10.2 or later.
+After you ensure your deployment meets the requirements described in
+[Prerequisites](#prequisites) above, you can upgrade to <%= vars.ops_manager %>
+to v2.10.2 or later.
 
 To jump upgrade to <%= vars.ops_manager %> to v2.10.2 or later:
 
-1. Review the table in [Consolidated Breaking Changes](#breaking-changes) below and address any breaking changes that apply to your current <%= vars.ops_manager %> version.
+1. Review the table in [Address Breaking Changes](#breaking-changes) below
+and address any breaking changes that apply to your current <%= vars.ops_manager %> version.
 
 1. Follow the procedure in [Upgrading Ops Manager](install/upgrading-pcf.html).
 
 
-## <a id="breaking-changes"></a> Consolidated Breaking Changes
+## <a id="breaking-changes"></a> Address Breaking Changes
 
-The table below describes breaking changes for <%= vars.ops_manager %> v2.4 through v2.8 and how to address them before upgrading:
+The table below describes what could happen if there are breaking changes
+that affect your current version of <%= vars.ops_manager %> and how to address
+them before upgrading:
 
 <table>
 	<tr>
-		<th>Breaking Change</th>
-		<th>Action</th>
-		<th>Versions</th>
+		<th>Upgrading From</th>
+		<th>What Could Happen</th>
+		<th>How to Avoid</th>
 	</tr>
 	<tr>
-		<td><%= vars.ops_manager %> release artifacts are renamed on Tanzu Network.</td>
-		<td>If you use automation scripts or other tools to access release artifacts, you may need to update them to match the new filename scheme. See <a href="https://docs.pivotal.io/pivotalcf/2-5/pcf-release-notes/breaking-changes.html#rename">Ops Manager Release Artifacts Renamed on Pivotal Network</a> in <em><%= vars.ops_manager %> v2.5 Release Notes</em>.</td>
 		<td>v2.4</td>
+		<td>Your pipline jobs break due to outdated product filenames.</td>
+		<td><%= vars.ops_manager %> release artifacts are renamed for smoother automation.
+			If you use automation scripts or other tools to access release artifacts,
+			update them to match the new filename scheme. For more information, see <a href="https://community.pivotal.io/s/article/ops-manager-2-5-changing-the-file-naming-scheme-might-break-the-pipeline-jobs?language=en_US">Ops Manager 2.5 changing the file naming scheme might break the pipeline jobs</a>
+			in the Knowledge Base.
+			</td>
 	</tr>
 	<tr>
-		<td><%= vars.ops_manager %> should hardcode <code>allow_legacy_agents</code> to <code>false</code>. The BOSH Director cannot manage older stemcells.</td>
-		<td>If you are on <%= vars.ops_manager %> v2.4, upgrade your stemcells before jump upgrading to v2.10.</td>
-		<td>v2.4</td>
-	</tr>
-	<tr>
-		<td>vSphere does not support passwords for the <%= vars.ops_manager %> VM.</td>
-		<td>See <a href="https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#ssh-private-key">Passwords Not Supported for Ops Manager VM on vSphere</a> in <em><%= vars.ops_manager %> v2.6 Release Notes</em>.</td>
 		<td>v2.5</td>
+		<td>You get an error when authenticating that causes <%= vars.ops_manager %>
+			to shut down and enter a reboot loop.</td>
+		<td>You can only SSH onto the <%= vars.ops_manager %> VM in a vSphere
+			deployment with a private SSH key, not a password. Add a public key to the
+			OVF template for the <%= vars.ops_manager %> VM. Then, use the private key
+			to SSH onto the <%= vars.ops_manager %> VM. For more information, see
+			<a href="https://docs.pivotal.io/ops-manager/2-10/vsphere/deploy.html#deploy"
+			>Deploying Ops Manager on vSphere</a>.</td>
 	</tr>
 	<tr>
-		<td>THe stemcell property for the diagnostic report <%= vars.ops_manager %> API endpoint is removed. This is a breaking API change.</td>
-		<td>Update any automation scripts you use accordingly. See <a href="https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#diagnostic-report-stemcell">Stemcell Property for Diagnostic Report API Endpoint is Removed</a> in <em><%= vars.ops_manager %> v2.6 Release Notes</em>.</td>
 		<td>v2.4 and v2.5</td>
+		<td>You get an error retrieving <%= vars.ops_manager %> diagnostic reports.</td>
+		<td>The <code>stemcell</code> property for the diagnostic report Ops Manager API endpoint
+			is removed. Update any automation scripts that use the <code>stemcell</code> property
+			accordingly. For more information, see
+			<a href="https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#diagnostic-report-stemcell"
+			>Stemcell Property for Diagnostic Report API Endpoint is Removed</a>
+			in <em><%= vars.ops_manager %> v2.6 Release Notes</em>.</td>
 	</tr>
 	<tr>
-		<td>The stemcell version key for pending changes is moved and renamed. This is a breaking API change.</td>
-		<td>Update any automation scripts you use accordingly. See <a href="https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#stemcell-version-key">release note</a> in <em><%= vars.ops_manager %> v2.6 Release Notes</em>.</td>
 		<td>v2.4 and v2.5</td>
+		<td>You get an error retrieving <%= vars.ops_manager %> API pending changes.</td>
+		<td>The <code>stemcell</code> version key for pending changes is moved and renamed.
+			Update any automation scripts that uses the <code>stemcell</code> information in the
+			<code>/api/v0/pending_changes</code> endpoint. For more information, see
+			<a href="https://docs.pivotal.io/pivotalcf/2-6/opsman-api/#view-a-list-of-pending-changes"
+			>View a list of pending changes</a> in the <%= vars.ops_manager %> API documentation.</td>
 	</tr>
 	<tr>
-		<td>AWS deployments use 5th generation instances. If your deployment is on AWS, your VMs upgrade to 5th generation.</td>
-		<td>See <a href="https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#5th-gen-instances">AWS Deployments Use 5th Generation Instances</a> in <em><%= vars.ops_manager %> v2.6 Release Notes</em>.</td>
 		<td>v2.4 and v2.5</td>
+		<td>If your deployment is on AWS, <%= vars.ops_manager %> fails to boot due
+			to outdated stemcells.</td>
+		<td>Install Xenial stemcells or Trusty stemcell 3586 or later. For more
+			information, see <a href="https://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/breaking-changes.html#5th-gen-instances"
+			>AWS Deployments Use 5th Generation Instances</a> in
+			<em><%= vars.ops_manager %> v2.6 Release Notes</em>.</td>
 	</tr>
 	<tr>
-		<td>The stemcell assignments <%= vars.ops_manager %> API endpoint is removed. This is a breaking API change.</td>
-		<td>Update any automation scripts you use accordingly. See <a href="https://docs.pivotal.io/platform/2-7/release-notes/breaking-changes.html#renamed-stemcell-endpoint">Stemcell Assignments Endpoint Removed</a> in <em><%= vars.ops_manager %> v2.7 Release Notes</em>.</td>
 		<td>v2.4, v2.5, and v2.6</td>
+		<td>You get an error retrieving <%= vars.ops_manager %> API stemcell assignments.</td>
+		<td>The <code>stemcells_assignments</code> endpoint in the <%= vars.ops_manager %>
+			API is removed. Use the <code>stemcell_associations</code> endpoint instead.
+			For more information, see <a href="https://docs.pivotal.io/platform/2-7/opsman-api/#stemcell-associations-for-products"
+			>Stemcell Associations for Products</a> in the <%= vars.ops_manager %> API documentation.</td>
 	</tr>
 	<tr>
-		<td>BOSH CLI v1 is not supported.</td>
-		<td>Upgrade to BOSH CLI v2. See <a href="https://docs.pivotal.io/platform/2-7/release-notes/breaking-changes.html#bosh-cli-v1">BOSH CLI v1 Not Supported</a> in <em><%= vars.ops_manager %> v2.7 Release Notes</em>.</td>
 		<td>v2.4, v2.5, and v2.6</td>
+		<td>Your BOSH CLI automation scripts stop working.</td>
+		<td>A later version of the BOSH CLI is installed with the jump upgrade.
+			Update your scripts to BOSH CLI v2. For more information, see
+			<a href="https://bosh.io/docs/cli-v2-install/">Installing the CLI</a> and
+			<a href="https://bosh.io/docs/cli-v2/">Commands</a> in the BOSH documentation.</td>
 	</tr>
 	<tr>
-		<td>Non-configurable properties nested under collections do not appear in the <%= vars.ops_manager %> UI.</td>
-		<td>If your deployment has a tile that requires the ability to view and configure a non-configurable property, then customers will not see those properties anymore.</td>
 		<td>v2.4, v2.5, and v2.6</td>
+		<td>You cannot find the tile property you are looking for in the
+			<%= vars.ops_manager %> UI or API.</td>
+		<td>Certain properties within a collection or selector are no longer configurable
+			in the <%= vars.ops_manager %> UI and API. Update any automation scripts accordingly.
+			For more information on the tile properties you can configure in v2.10.2,
+			see the release notes for that tile.</td>
 	</tr>
 	<tr>
-		<td>You cannot configure non-configurable properties within a collection or selector with the <%= vars.ops_manager %> API. This is a breaking API change.</td>
-		<td>Update any automation scripts you use accordingly.</td>
 		<td>v2.4, v2.5, and v2.6</td>
-	</tr>
-	<tr>
 		<td>Breaking API change.</td>
-		<td>Update the resource configuration endpoints to nest NSX parameters under an `nsx` key. Update any automation scripts you use accordingly.</td>
-		<td>v2.4, v2.5, and v2.6</td>
+		<td>Update the resource configuration endpoints to nest NSX parameters under
+			an "nsx" key. Update any automation scripts you use accordingly.</td>
 	</tr>
 	<tr>
+		<td>v2.4, v2.5, and v2.6</td>
 		<td>Support NSX-T in the resource config API. This is a breaking API change.</td>
 		<td>Update any automation scripts you use accordingly.</td>
-		<td>v2.4, v2.5, and v2.6</td>
 	</tr>
 	<tr>
+		<td>v2.4, v2.5, v2.6, v2.7, and v2.8</td>
 		<td><%= vars.ops_manager %> v2.9 is incompatible with vSphere Data Center NSX-T v2.2 and earlier.</td>
 		<td>Upgrade to NSX-T v2.3 or later. See <a href="https://docs.pivotal.io/platform/2-9/release-notes/breaking-changes.html#nsx-t-2-2">Ops Manager v2.9 Incompatible with vSphere Data Center NSX-T v2.2 and Earlier</a> in <em><%= vars.ops_manager %> v2.9 Release Notes</em>.</td>
-		<td>v2.4, v2.5, v2.6, v2.7, and v2.8</td>
 	</tr>
 </table>
