@@ -18,14 +18,12 @@ The apps in your deployment continue to run during the upgrade. However, you can
 
 For details about how upgrading impacts individual <%= vars.app_runtime_abbr %> components, see [What Happens During <%= vars.app_runtime_abbr %> Upgrades](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/understanding-pas.html).
 
-<%= vars.company_name %> recommends upgrading directly to <%= vars.ops_manager %> v2.10 from <%= vars.ops_manager %> v2.4 through v2.8. To upgrade <%= vars.ops_manager %> to v2.10 from <%= vars.ops_manager %> v2.4 through v2.8, see [Jump Upgrade to <%= vars.ops_manager %> v2.10](#jump-upgrade) below. To upgrade both <%= vars.ops_manager %> and <%= vars.app_runtime_abbr %> to v2.10, see [Task 1: Prepare to Upgrade](#prepare) below.
+<%= vars.company_name %> recommends upgrading directly to <%= vars.ops_manager %> v2.10 from <%= vars.ops_manager %> v2.4 through v2.8. To upgrade <%= vars.ops_manager %> to v2.10 from <%= vars.ops_manager %> v2.4 through v2.8, see [Jump Upgrade to <%= vars.ops_manager %> v2.10](#jump-upgrade) below. To upgrade both <%= vars.ops_manager %> and <%= vars.app_runtime_abbr %> to v2.10 from v2.9, see [Task 1: Prepare to Upgrade](#prepare) below.
 
 
 ## <a id='jump-upgrade'></a> Jump Upgrade from <%= vars.ops_manager %> v2.4 Through v2.8
 
 Jump upgrading describes the process of skipping minor versions when upgrading <%= vars.ops_manager %>. Jump upgrading enables you to upgrade directly to the long-term support (LTS) version of <%= vars.ops_manager %>, which is v2.10. <%= vars.ops_manager %> v2.10 is supported through April 2024. For more information, see [Long-Term Support for Ops Manager v2.10](../release-notes.html#lts) in _<%= vars.ops_manager %> v2.10 Release Notes_.
-
-Although you can skip minor versions when upgrading <%= vars.ops_manager %>, you should not skip minor versions when upgrading <%= vars.app_runtime_abbr %>. Skipping minor versions when upgrading <%= vars.app_runtime_abbr %> may result in additional breaking changes. To avoid this, upgrade <%= vars.app_runtime_abbr %> to the minor version that directly follows your current version of <%= vars.app_runtime_abbr %>.
 
 To jump upgrade to <%= vars.ops_manager %> v2.10:
 
@@ -35,9 +33,16 @@ To jump upgrade to <%= vars.ops_manager %> v2.10:
 
 1. Follow the procedure in this topic to upgrade <%= vars.ops_manager %>, starting at [Task 1: Prepare to Upgrade](#prepare) below. Do not complete the steps to upgrade <%= vars.app_runtime_abbr %>.
 
-1. To upgrade <%= vars.app_runtime_abbr %> to the next minor release:
-    1. Locate the version of [Upgrade Preparation Checklist for <%= vars.platform_name %>](../upgrade/checklist.html) that is specific to the minor release version to which you are upgrading and complete the steps that are specific to <%= vars.app_runtime_abbr %>.
-    1. See the versions of [Configuring <%= vars.app_runtime_abbr %> for Upgrades](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configuring.html) in the <%= vars.app_runtime_abbr %> documentation and [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](upgrading-products.html) that are specific to the minor release version to which you are upgrading.
+
+## <a id='upgrade-tas'></a> Upgrade <%= vars.app_runtime_abbr %>
+
+Although you can skip minor versions when upgrading <%= vars.ops_manager %>, you should not skip minor versions when upgrading <%= vars.app_runtime_abbr %>. Skipping minor versions when upgrading <%= vars.app_runtime_abbr %> may result in additional breaking changes. To avoid this, upgrade <%= vars.app_runtime_abbr %> to the minor version that directly follows your current version of <%= vars.app_runtime_abbr %>.
+
+If you are upgrading <%= vars.app_runtime_abbr %> to the next minor release:
+
+1. Locate the version of [Upgrade Preparation Checklist for <%= vars.platform_name %>](../upgrade/checklist.html) that is specific to the minor release version to which you are upgrading and complete the steps that are specific to <%= vars.app_runtime_abbr %>.
+
+1. See the versions of [Configuring <%= vars.app_runtime_abbr %> for Upgrades](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configuring.html) in the <%= vars.app_runtime_abbr %> documentation and [Upgrading <%= vars.app_runtime_abbr %> and Other <%= vars.platform_name %> Products](upgrading-products.html) that are specific to the minor release version to which you are upgrading.
 
 
 ## <a id="prepare"></a> Task 1: Prepare to Upgrade
