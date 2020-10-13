@@ -45,12 +45,12 @@ To upgrade <%= vars.app_runtime_abbr_pivotal %> to v2.8:
 
 ## <a id="prepare"></a> Task 1: Prepare to Upgrade
 
-If you have not already, complete the steps in [Upgrade Preparation Checklist for <%= vars.platform_name %> v2.8](../upgrade/checklist.html).
+If you have not already, complete the steps in [Upgrade Preparation Checklist for <%= vars.platform_name_pivotal %> v2.8](../upgrade/checklist.html).
 
 
 ## <a id="upgrade_ops"></a> Task 2: Upgrade Ops Manager and Installed Products to v2.8
 
-The following sections describe how to upgrade Ops Manager and installed products to <%= vars.platform_name %> v2.8:
+The following sections describe how to upgrade Ops Manager and installed products to <%= vars.platform_name_pivotal %> v2.8:
 
 * [Import Installation to Ops Manager v2.8 VM](#upgrade)
 * [Import New <%= vars.app_runtime_abbr_pivotal %> and Product Tiles](#upgrade-products)
@@ -83,7 +83,7 @@ select **Import Existing Installation**.
 You set this passphrase during your initial installation of Ops Manager.
     <p class="note"><strong>Note:</strong> If lost, the <strong>Decryption Passphrase</strong> cannot be recovered.</p>
 
-1. Click **Choose File** and browse to the installation ZIP file exported in the installation export step of your upgrade preparation. For more information, see [Export Your Installation](../upgrade/checklist.html#export) in _Upgrade Preparation Checklist for <%= vars.platform_name %> v2.8_.
+1. Click **Choose File** and browse to the installation ZIP file exported in the installation export step of your upgrade preparation. For more information, see [Export Your Installation](../upgrade/checklist.html#export) in _Upgrade Preparation Checklist for <%= vars.platform_name_pivotal %> v2.8_.
 
     <%= image_tag("./images/upgrading/decryption_passphrase.png", alt: "Below the green Pivotal logo is a field labeled 'Decryption Passphrase' containing five hidden characters. Below this field is the text 'Enter file', below which is a small, rectangular gray button labeled 'Choose File'. To the right of the 'Choose File' button is the filename 'installation (4).zip'. Below this button and filename is a rectangular blue button labeled 'Import' in white text.") %>
 
@@ -116,7 +116,7 @@ To upgrade your product versions:
 
 1. Click the newly-added tile to review and save any configurable options.
 
-1. (Optional) If you use other service tiles, you can upgrade them following the same procedure. For more information, see [Upgrading <%= vars.app_runtime_abbr_pivotal %> and Other <%= vars.platform_name %> Products](upgrading-products.html).
+1. (Optional) If you use other service tiles, you can upgrade them following the same procedure. For more information, see [Upgrading <%= vars.app_runtime_abbr_pivotal %> and Other <%= vars.platform_name_pivotal %> Products](upgrading-products.html).
 
 ### <a id="perform-upgrade"></a> Perform Your Upgrade
 
@@ -135,7 +135,7 @@ To perform your upgrade to Ops Manager v2.8:
 
 ## <a id="monitor"></a> (Optional) Task 3: Monitor Upgrade
 
-The following sections describe how to monitor your <%= vars.platform_name %> foundation during the upgrade and troubleshoot issues:
+The following sections describe how to monitor your <%= vars.platform_name_pivotal %> foundation during the upgrade and troubleshoot issues:
 
 * [Check Status and Performance](#status)
 * [Check Diego State](#diego)
@@ -146,7 +146,7 @@ The following sections describe how to monitor your <%= vars.platform_name %> fo
 
 You can monitor the progress of the upgrade by checking the status of the foundation at various locations.
 
-Pivotal recommends live-monitoring your upgrade with Pivotal Healthwatch, which monitors and alerts on the current health, performance, and capacity of <%= vars.platform_name %>. Pivotal Healthwatch captures, calculates, stores, visualizes, and alerts on <%= vars.platform_name %> platform metrics, including:
+Pivotal recommends live-monitoring your upgrade with Pivotal Healthwatch, which monitors and alerts on the current health, performance, and capacity of <%= vars.platform_name_pivotal %>. Pivotal Healthwatch captures, calculates, stores, visualizes, and alerts on <%= vars.platform_name_pivotal %> platform metrics, including:
 
 * BOSH-reported VM metrics
 * Runtime component metrics
@@ -222,7 +222,7 @@ This information helps determine the cause of upgrade issues.
 
 ## <a id="after"></a> Task 4: After Upgrade
 
-The following sections describe how to prepare for use of your new environment, check its health status, and clean up after upgrading your <%= vars.platform_name %> deployment:
+The following sections describe how to prepare for use of your new environment, check its health status, and clean up after upgrading your <%= vars.platform_name_pivotal %> deployment:
 
 * [Re-Create BOSH Alias](#bosh-alias)
 * [Install New cf CLI](#cf-cli)
@@ -232,7 +232,7 @@ The following sections describe how to prepare for use of your new environment, 
 
 ### <a id="bosh-alias"></a> Re-Create BOSH Alias
 
-To log in to BOSH after upgrading <%= vars.platform_name %>, you must re-create your alias.
+To log in to BOSH after upgrading <%= vars.platform_name_pivotal %>, you must re-create your alias.
 
 To re-create your alias using BOSH:
 
@@ -259,7 +259,7 @@ To install the version of the Cloud Foundry Command Line Interface (cf CLI) pack
 
 ### <a id="health"></a> Check the Health of Your Deployment
 
-Check the health of your <%= vars.platform_name %> deployment to ensure that all jobs and processes are running as expected.
+Check the health of your <%= vars.platform_name_pivotal %> deployment to ensure that all jobs and processes are running as expected.
 
 To check the health of your deployment:
 
@@ -272,7 +272,7 @@ To check the health of your deployment:
     ```
     Where:
     * `ALIAS` is your BOSH alias.
-    * `DEPLOYMENT-NAME` is the name of your <%= vars.platform_name %> deployment.
+    * `DEPLOYMENT-NAME` is the name of your <%= vars.platform_name_pivotal %> deployment.
 
 1. Push and horizontally scale a test app to test <%= vars.app_runtime_abbr_pivotal %> performance.
 
