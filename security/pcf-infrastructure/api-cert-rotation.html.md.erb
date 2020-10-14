@@ -48,8 +48,14 @@ To rotate certificates, follow one of these procedures:
 
 Other certificates that the <%= vars.ops_manager %> API does not rotate include:
 
-* Certificates managed by CredHub, including the Services TLS CA. To rotate CredHub-managed certificates, see [Advanced Certificate Rotation with CredHub Maestro](advanced-certificate-rotation.html).
+* The Services TLS CA. To rotate this CA, see [Advanced Certificate Rotation with CredHub Maestro](advanced-certificate-rotation.html).
 
 * IDP SAML certificates. To rotate IDP SAML certificates, see [Rotating Identity Provider SAML Certificates](rotate-saml-ca.html).
 
 * IPsec certificates. To rotate IPsec certificates, see [Rotating IPsec Certificates](https://docs.pivotal.io/addon-ipsec/credentials.html) in the IPsec documentation.
+
+* CredHub-managed certificates for the following product versions:
+   * <%= vars.app_runtime %> v2.7.20 or earlier
+   * <%= vars.segment_runtime_full %> tile v2.7.20 or earlier
+   * Small Footprint <%= vars.app_runtime %> v2.7.20 or earlier
+   * <%= vars.windows_runtime_abbr %> v2.7.16 or earlier
