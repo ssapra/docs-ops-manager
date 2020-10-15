@@ -73,7 +73,7 @@ An internal MySQL database is sufficient for use in production environments.
 
 However, an external database provides more control over database management for large environments that require multiple data centers.
 
-For information about configuring system databases on <%= vars.app_runtime_abbr %>, see [Configure System Databases](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html#sys-db) in _Configuring <%= vars.app_runtime_abbr %>_.
+For information about configuring system databases on <%= vars.app_runtime_abbr %>, see [Configure System Databases](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configure-pas.html#sys-db) in _Configuring <%= vars.app_runtime_abbr %>_.
 
 ### <a id="pas-nsx-t-security"></a> Security
 
@@ -136,7 +136,7 @@ These sections describe the reference architecture for <%= vars.app_runtime_abbr
 
 The diagram below illustrates reference architecture for <%= vars.app_runtime_abbr %> on vSphere with NSX-T deployments:
 
-![The diagram shows the architecture for a <%= vars.app_runtime_abbr %> on vSphere with NSX-T deployment. For more information about the components and networking demonstrated by the diagram, read the description below this diagram.](../images/v2/export/PAS_vSphere_NSX-T.png)
+![The diagram shows the architecture for a <%= vars.app_runtime_abbr %> on vSphere with NSX-T deployment. For more information about the components and networking demonstrated by the diagram, read the description below this diagram.](../images/v2/export/<%= vars.app_runtime_abbr %>_vSphere_NSX-T.png)
 
 <%= vars.app_runtime_abbr %> deployments with NSX-T are deployed with three clusters and three AZs.
 
@@ -210,9 +210,9 @@ These sections describe the reference architecture for <%= vars.app_runtime_abbr
 
 The diagram below illustrates the reference architecture for <%= vars.app_runtime_abbr %> on vSphere with NSX-V deployments.
 
-![The diagram shows the architecture for a <%= vars.app_runtime_abbr %> on vSphere with NSX-V deployment. For more information about the components and networking demonstrated by the diagram, read the description below this diagram.](../images/v2/export/PAS_vSphere_NSX-V.png)
+![The diagram shows the architecture for a <%= vars.app_runtime_abbr %> on vSphere with NSX-V deployment. For more information about the components and networking demonstrated by the diagram, read the description below this diagram.](../images/v2/export/<%= vars.app_runtime_abbr %>_vSphere_NSX-V.png)
 
-[View a larger version of this diagram](../images/v2/export/PAS_vSphere_NSX-V.png).
+[View a larger version of this diagram](../images/v2/export/<%= vars.app_runtime_abbr %>_vSphere_NSX-V.png).
 
 <%= vars.app_runtime_abbr %> deployments with NSX-V are deployed with three clusters and three AZs.
 
@@ -288,7 +288,7 @@ An internal MySQL database is sufficient for use in production environments.
 
 However, an external database provides more control over database management for large environments that require multiple data centers.
 
-For information about configuring system databases on <%= vars.app_runtime_abbr %>, see [Configure System Databases](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html#sys-db) in _Configuring <%= vars.app_runtime_abbr %>_.
+For information about configuring system databases on <%= vars.app_runtime_abbr %>, see [Configure System Databases](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configure-pas.html#sys-db) in _Configuring <%= vars.app_runtime_abbr %>_.
 
 ### <a id="pas-nsx-v-security"></a> Security
 
@@ -312,7 +312,7 @@ For more information about blobstore storage requirements and recommendations, s
 These sections describe the architecture for <%= vars.app_runtime_abbr %> on vSphere without software-defined networking deployments.
 
 <p class="note"><strong>Note:</strong> This architecture was validated for earlier versions of <%= vars.app_runtime_abbr %>.
-However, it has not been validated for <%= vars.app_runtime_abbr %> v2.7.
+However, it has not been validated for <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>.
 </p>
 
 ### <a id="pas-routed-networking"></a> Networking
@@ -340,9 +340,9 @@ These sections describe the reference architecture for <%= vars.k8s_runtime_abbr
 
 The diagram below illustrates the reference architecture for <%= vars.k8s_runtime_abbr %> on vSphere with NSX-T deployments.
 
-![The diagram shows the architecture for a <%= vars.k8s_runtime_abbr %> on vSphere with NSX-T deployment. For more information about the components and networking demonstrated by the diagram, read the description below this diagram.](../images/v2/export/PKS_vSphere_NSX-T.png)
+![The diagram shows the architecture for a <%= vars.k8s_runtime_abbr %> on vSphere with NSX-T deployment. For more information about the components and networking demonstrated by the diagram, read the description below this diagram.](../images/v2/export/<%= vars.k8s_runtime_abbr %>_vSphere_NSX-T.png)
 
-[View a larger version of this diagram](../images/v2/export/PKS_vSphere_NSX-T.png).
+[View a larger version of this diagram](../images/v2/export/<%= vars.k8s_runtime_abbr %>_vSphere_NSX-T.png).
 
 <%= vars.k8s_runtime_abbr %> deployments with NSX-T are deployed with three clusters and three AZs.
 

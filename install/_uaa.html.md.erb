@@ -3,7 +3,7 @@ In the **UAA** pane, you configure the User Account and Authentication server.
 1. Select **UAA**.
 
 1. Under **UAA database location**, select one of the following:
-  - **PAS database**: Use the same database server that other PAS components use. This system database is configured in the **Databases** pane, and it can be either internal or external.
+  - **<%= vars.app_runtime_abbr %> database**: Use the same database server that other <%= vars.app_runtime_abbr %> components use. This system database is configured in the **Databases** pane, and it can be either internal or external.
   - **Other external database**: Use a separate, dedicated database server for UAA.
     <p class="note warning"><strong>Warning:</strong> Protect whichever database you use in your deployment with a password.</p>
     <p class="note"><strong>Note:</strong> For GCP installations, Pivotal recommends using an external database on Google Cloud SQL.</p>

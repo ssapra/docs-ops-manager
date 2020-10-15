@@ -88,7 +88,7 @@ For more information about how BOSH integrates with IaaS-level disk encryption o
 
 On AWS in <%= vars.ops_manager %> v2.0 and later, you can either use your Amazon account key to encrypt Linux EBS volumes or supply your own key.
 
-To encrypt BOSH-deployed VMs and the <%= vars.ops_manager %> VM on AWS, see [Configuring Amazon EBS Encryption](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing//cloudform-om-ebs-config.html).
+To encrypt BOSH-deployed VMs and the <%= vars.ops_manager %> VM on AWS, see [Configuring Amazon EBS Encryption](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing//cloudform-om-ebs-config.html).
 
 For more information about how BOSH integrates with IaaS-level disk encryption on AWS, see [Encryption](https://bosh.io/docs/aws/#encryption) in _Amazon Web Services_ in the BOSH documentation.
 
@@ -102,8 +102,8 @@ Unless you are using Azure managed disks, you must manually recreate disks on BO
     	* If propagating disk encryption is urgent, contact [Pivotal Support](https://support.pivotal.io).
 	* **Ephemeral Disks:** In the **Director Config** pane of the <%= vars.ops_manager %> tile, enable the **Recreate All VMs** checkbox.
 	* **Persistent Disks**
-    	* <%= vars.platform_code_pivotal %> v2.3 and later: In the **Director Config** pane of the <%= vars.ops_manager %> tile, enable the **Recreate All Persistent Disks** checkbox.
-    	* <%= vars.platform_code_pivotal %> v2.2 and earlier: In the **Resource Config** pane of all tiles, change the disk or VM sizes of all VMs that you need to encrypt.
+    	* <%= vars.platform_code %> v2.3 and later: In the **Director Config** pane of the <%= vars.ops_manager %> tile, enable the **Recreate All Persistent Disks** checkbox.
+    	* <%= vars.platform_code %> v2.2 and earlier: In the **Resource Config** pane of all tiles, change the disk or VM sizes of all VMs that you need to encrypt.
 
 1. Click **Review Pending Changes**.
 

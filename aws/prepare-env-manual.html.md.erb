@@ -3,23 +3,23 @@ title: Preparing to Deploy Ops Manager on AWS Manually
 owner: Ops Manager
 ---
 
-This topic describes how to manually configure the Amazon Web Services (AWS) components that you need to deploy [<%= vars.platform_name_pivotal %>](https://network.pivotal.io/products/pivotal-cf) on AWS.
+This topic describes how to manually configure the Amazon Web Services (AWS) components that you need to deploy [<%= vars.platform_name %>](https://network.pivotal.io/products/pivotal-cf) on AWS.
 
-<p class="note"><strong>Note</strong>: To install <%= vars.platform_name_pivotal %> with the <%= vars.k8s_runtime_full_pivotal %> (<%= vars.k8s_runtime_pivotal %>) runtime on AWS, you must use Terraform. Manual installation is not currently supported. See <a href="https://docs.pivotal.io/pks/aws-om-install-config.html">Installing and Configuring Ops Manager on AWS</a> in the <%= vars.k8s_runtime_abbr %> documentation.</p>
+<p class="note"><strong>Note</strong>: To install <%= vars.platform_name %> with the <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>) runtime on AWS, you must use Terraform. Manual installation is not currently supported. See <a href="https://docs.pivotal.io/pks/aws-om-install-config.html">Installing and Configuring Ops Manager on AWS</a> in the <%= vars.k8s_runtime_abbr %> documentation.</p>
 
-To deploy <%= vars.platform_name_pivotal %> on AWS, you must perform the procedures in this topic to create objects in the AWS Management Console that <%= vars.platform_name_pivotal %> requires.
+To deploy <%= vars.platform_name %> on AWS, you must perform the procedures in this topic to create objects in the AWS Management Console that <%= vars.platform_name %> requires.
 
 To view the list of AWS objects created by the procedures in this topic, see [Required AWS Objects](required-objects.html).
 
-After completing the procedures in this topic, proceed to [Deploying Ops Manager on AWS Manually](deploy-manual.html) to continue deploying <%= vars.platform_name_pivotal %>.
+After completing the procedures in this topic, proceed to [Deploying Ops Manager on AWS Manually](deploy-manual.html) to continue deploying <%= vars.platform_name %>.
 
 ## <a id='file-ticket'></a> Step 1: File a Ticket
 
 Log in to the AWS Management Console, and file a ticket with Amazon to ensure that your account can launch more than the default 20 instances. In the ticket, ask for a limit of 50 `t3.micro` instances and 20 `c5.large` instances in the region you are using.
 
-<p class="note"><strong>Note:</strong> To deploy <%= vars.platform_name_pivotal %> to AWS GovCloud (US), log in to the <a href="https://console.amazonaws-us-gov.com/">AWS GovCloud (US) Console</a> instead of the standard AWS Management Console and select the <code>us-gov-west-1</code> region.</p>
+<p class="note"><strong>Note:</strong> To deploy <%= vars.platform_name %> to AWS GovCloud (US), log in to the <a href="https://console.amazonaws-us-gov.com/">AWS GovCloud (US) Console</a> instead of the standard AWS Management Console and select the <code>us-gov-west-1</code> region.</p>
 
-<p class="note"><strong>Note:</strong> To deploy <%= vars.platform_name_pivotal %> to AWS China, set up an <a href="http://www.amazonaws.cn/en/products/">AWS China</a> account and contact the Platform Architect assigned for your Pivotal account.</p>
+<p class="note"><strong>Note:</strong> To deploy <%= vars.platform_name %> to AWS China, set up an <a href="http://www.amazonaws.cn/en/products/">AWS China</a> account and contact the Platform Architect assigned for your Pivotal account.</p>
 
 You can check the limits on your account by visiting the EC2 Dashboard on the AWS Management Console and clicking **Limits** on the left navigation.
 
@@ -42,9 +42,9 @@ You can check the limits on your account by visiting the EC2 Dashboard on the AW
 		1. `ID-STRING-pcf-droplets-bucket`
 
 
-## <a id='create-iam'></a> Step 3: Create an IAM User for <%= vars.platform_name_pivotal %>
+## <a id='create-iam'></a> Step 3: Create an IAM User for <%= vars.platform_name %>
 
-Perform the following steps to create an Amazon Identity and Access Management (IAM) user with the minimal permissions necessary to run and install <%= vars.platform_name_pivotal %>:
+Perform the following steps to create an Amazon Identity and Access Management (IAM) user with the minimal permissions necessary to run and install <%= vars.platform_name %>:
 
 1. Click **IAM** to access the IAM Dashboard.
 
@@ -78,7 +78,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
 
 1. On the **Create policy** page, define a policy:
 
-   1. Copy the policy document included in the [<%= vars.platform_name_pivotal %> for AWS Policy Document](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/policy-doc.html) topic. You must edit the policy document so the names of the S3 buckets match the ones you created in [Step 2: Create S3 Buckets](#create-s3).
+   1. Copy the policy document included in the [<%= vars.platform_name %> for AWS Policy Document](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/policy-doc.html) topic. You must edit the policy document so the names of the S3 buckets match the ones you created in [Step 2: Create S3 Buckets](#create-s3).
 
    1. Paste the policy document into the **JSON** tab on the **Create policy** page.
 
@@ -257,7 +257,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
 1. Click **Create**.
 
 
-## <a id='pcfaws-om-ersecgrp'></a> Step 6: Configure a Security Group for <%= vars.platform_name_pivotal %> VMs
+## <a id='pcfaws-om-ersecgrp'></a> Step 6: Configure a Security Group for <%= vars.platform_name %> VMs
 
 1. From the **Security Groups** page, click **Create Security Group** to create another security group.
 
@@ -265,13 +265,13 @@ Perform the following steps to create an Amazon Identity and Access Management (
 
 1. For **Description**, enter a description to identify this security group.
 
-1. For **VPC**, select the VPC where you want to deploy the <%= vars.platform_name_pivotal %> VMs.
+1. For **VPC**, select the VPC where you want to deploy the <%= vars.platform_name %> VMs.
 
 1. Click the **Inbound** tab and add rules for all traffic from your public and private subnets to your private subnet, as the table and image show.
     This rule configuration does the following:
-    * Enables BOSH to deploy PAS and other services.
+    * Enables BOSH to deploy <%= vars.app_runtime_abbr %> and other services.
     * Enables application VMs to communicate through the router.
-    * Allows the load balancer to send traffic to Pivotal Application Service (PAS).
+    * Allows the load balancer to send traffic to <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>).
 
     <table border="1" class="nice" >
 <tr>
@@ -307,7 +307,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
 1. Click the **Inbound** tab and add rules to allow traffic to ports `80`, `443`, and `4443` from `0.0.0.0/0`, as the table and image show.
     <p class="note"><strong>Note</strong>: Allow traffic to port `4443` only if you are in an AWS cloud region that does not support AWS ALBs. For example, the GovCloud region. For more information about AWS regoins and availability zones, see <a href="https://aws.amazon.com/about-aws/global-infrastructure/">AWS Global Infrastructure</a>.</p>
 
-    <p class="note"><strong>Note:</strong> For finer control over what can reach PAS, change <code>0.0.0.0/0</code> to be more restrictive. This security group governs external access to PAS from apps such as the cf CLI and app URLs.</p>
+    <p class="note"><strong>Note:</strong> For finer control over what can reach <%= vars.app_runtime_abbr %>, change <code>0.0.0.0/0</code> to be more restrictive. This security group governs external access to <%= vars.app_runtime_abbr %> from apps such as the cf CLI and app URLs.</p>
 
     <table border="1" class="nice" >
 <tr>

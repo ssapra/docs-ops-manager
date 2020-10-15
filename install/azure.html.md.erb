@@ -14,21 +14,21 @@ It includes resource requirements, prerequisites, instructions for installing <%
 
 You can install <%= vars.product_name %> on Azure, Azure Government Cloud, or Azure Germany. For more information about Azure regions, see [Azure regions](https://azure.microsoft.com/en-us/global-infrastructure/regions/) in the Microsoft Azure documentation.
 
-You can install <%= vars.product_name %> on Azure with the Pivotal Application Service (PAS) runtime. There are resource requirements specific to both PAS and Azure. Ensure you meet the requirements for PAS and the requirements specific to Azure before installing <%= vars.product_name %> on Azure. For more information, see [Requirements](#requirements).
+You can install <%= vars.product_name %> on Azure with the <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) runtime. There are resource requirements specific to both <%= vars.app_runtime_abbr %> and Azure. Ensure you meet the requirements for <%= vars.app_runtime_abbr %> and the requirements specific to Azure before installing <%= vars.product_name %> on Azure. For more information, see [Requirements](#requirements).
 
 
 ## <a id="requirements"></a> Requirements
 
 This section lists the following resource requirements for installing <%= vars.product_name %> on Azure:
 
-* PAS resource requirements. See [PAS Resource Requirements](#pcf-requirements).
+* <%= vars.app_runtime_abbr %> resource requirements. See [<%= vars.app_runtime_abbr %> Resource Requirements](#pcf-requirements).
 * Azure-specific resource requirements. See [Azure Resource Requirements](#azure-requirements).
 
-### <a id="pcf-requirements"></a> PAS Resource Requirements
+### <a id="pcf-requirements"></a> <%= vars.app_runtime_abbr %> Resource Requirements
 
-The following are general resource requirements for deploying and managing a <%= vars.product_name %> deployment with Pivotal Operations Manager and PAS:
+The following are general resource requirements for deploying and managing a <%= vars.product_name %> deployment with Pivotal Operations Manager and <%= vars.app_runtime_abbr %>:
 
-* PAS requires sufficient IP allocation. The following lists the minimum required IP allocations:
+* <%= vars.app_runtime_abbr %> requires sufficient IP allocation. The following lists the minimum required IP allocations:
   * One static IP address for either HAProxy or one of your Gorouters
   * One static IP address for each job in the Ops Manager tile. See the Ops Manager **Resource Config** pane for each tile for a full list.
   * One static IP address for each job listed below:
@@ -45,20 +45,20 @@ The following are general resource requirements for deploying and managing a <%=
       * TCP Router
   * One IP for each VM instance created by the service.
   * An additional IP address for each compilation worker. Use the following formula to determine the total IPs required: `IPs needed = static IPs + VM instances + compilation workers`.
-  * Pivotal recommends that you allocate at least 36 dynamic IP addresses when deploying Ops Manager and PAS. BOSH requires additional dynamic IP addresses during installation to compile and deploy VMs, install PAS, and connect to services.
-* Pivotal recommends using a network without DHCP for deploying PAS VMs.
+  * Pivotal recommends that you allocate at least 36 dynamic IP addresses when deploying Ops Manager and <%= vars.app_runtime_abbr %>. BOSH requires additional dynamic IP addresses during installation to compile and deploy VMs, install <%= vars.app_runtime_abbr %>, and connect to services.
+* Pivotal recommends using a network without DHCP for deploying <%= vars.app_runtime_abbr %> VMs.
   <p class="note"><strong>Note:</strong> If you have DHCP, refer to the <a href="./troubleshooting.html">Troubleshooting Guide</a> to avoid issues with your installation.</p>
 
 ### <a id="azure-requirements"></a> Azure Resource Requirements
 
-The following are the minimum resource requirements for deploying a <%= vars.product_name %> deployment with Ops Manager and PAS on Azure:
+The following are the minimum resource requirements for deploying a <%= vars.product_name %> deployment with Ops Manager and <%= vars.app_runtime_abbr %> on Azure:
 
 * An OS disk of 120&nbsp;GB for the Ops Manager VM.
   <p class="note"><strong>Note:</strong> Ops Manager v1.11 requires a Director VM with at least 8&nbsp;GB memory.</p>
 
-* A minimum of the following VM instance limits in your Azure account. The number of VMs required depends on the number of tiles and availability zones you plan to deploy. The following VM guidelines apply to the PAS and Small Footprint PAS runtimes:
+* A minimum of the following VM instance limits in your Azure account. The number of VMs required depends on the number of tiles and availability zones you plan to deploy. The following VM guidelines apply to the <%= vars.app_runtime_abbr %> and Small Footprint <%= vars.app_runtime_abbr %> runtimes:
 
-  - **PAS**: A new Azure deployment requires the following VMs for PAS and Ops Manager:
+  - **<%= vars.app_runtime_abbr %>**: A new Azure deployment requires the following VMs for <%= vars.app_runtime_abbr %> and Ops Manager:
 <table border='1' class='nice'>
   <tr>
     <th>VM Type</th>
@@ -80,9 +80,9 @@ The following are the minimum resource requirements for deploying a <%= vars.pro
     <td>24</td>
   </tr>
 </table>
-<p class="note"><b>Note: </b>If you are deploying a test or sandbox <%= vars.product_name %> that does not require high availability, then you can scale down the number of VM instances in your deployment. For more information, see <a href="https://docs.pivotal.io/application-service/2-7/operating/scaling-ert-components.html">Scaling PAS</a>.</p>
+<p class="note"><b>Note: </b>If you are deploying a test or sandbox <%= vars.product_name %> that does not require high availability, then you can scale down the number of VM instances in your deployment. For more information, see <a href="https://docs.pivotal.io/application-service/2-7/operating/scaling-ert-components.html">Scaling <%= vars.app_runtime_abbr %></a>.</p>
 
-  - **Small Footprint PAS**: A new Azure deployment requires the following VMs for Small Footprint PAS and Ops Manager:
+  - **Small Footprint <%= vars.app_runtime_abbr %>**: A new Azure deployment requires the following VMs for Small Footprint <%= vars.app_runtime_abbr %> and Ops Manager:
 <table id='azure-requirements' border="1" class="nice">
   <tr>
   </tr></tr>
@@ -91,7 +91,7 @@ The following are the minimum resource requirements for deploying a <%= vars.pro
     <th>VM Count</th>
     <th>Notes</th>
   </tr><tr>
-    <th rowspan=4>Small Footprint PAS</th>
+    <th rowspan=4>Small Footprint <%= vars.app_runtime_abbr %></th>
     <td>DS11 v2</td>
     <td>1</td>
     <td></td>
@@ -125,9 +125,9 @@ The following are the minimum resource requirements for deploying a <%= vars.pro
 
 Before installing <%= vars.product_name %> on Azure, you must do the following:
 
-* Install the Azure CLI v2.0. For instructions on how to install the Azure CLI for your operating system, see [Preparing to Deploy Ops Manager on Azure Manually](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/azure/prepare-env-manual.html).
+* Install the Azure CLI v2.0. For instructions on how to install the Azure CLI for your operating system, see [Preparing to Deploy Ops Manager on Azure Manually](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/azure/prepare-env-manual.html).
 
-* Configure sufficient IP allocation for PAS. For more information about IP allocation requirements, see [PAS Resource Requirements](#pas).
+* Configure sufficient IP allocation for <%= vars.app_runtime_abbr %>. For more information about IP allocation requirements, see [<%= vars.app_runtime_abbr %> Resource Requirements](#pas).
 
 * Create an SSL certificate for your <%= vars.product_name %> domain.
   <p class="note"><b>Note: </b>To deploy <%= vars.product_name %> to a production environment, you must obtain a certificate from a certificate authority. Pivotal recommends using a self-signed certificate generated by Ops Manager for development and testing purposes only.</p>
@@ -143,9 +143,9 @@ Before installing <%= vars.product_name %> on Azure, you must do the following:
 
 * **(Optional)** Configure external storage. Pivotal recommends using external storage if possible. For more information about how file storage location affects platform performance and stability during upgrades, see [Configure File Storage](https://docs.pivotal.io/application-service/<%= vars.current_major_version %>/operating/configuring.html#file-storage) in _Configuring <%= vars.app_runtime_abbr %>_ for Upgrades.
 
-* **(Optional)** Configure external databases. Pivotal recommends using external databases in production deployments for BOSH Director and PAS. An external database must be configured to use the UTC timezone.
+* **(Optional)** Configure external databases. Pivotal recommends using external databases in production deployments for BOSH Director and <%= vars.app_runtime_abbr %>. An external database must be configured to use the UTC timezone.
 
-* **(Optional)**  Configure external user stores. When you deploy <%= vars.product_name %>, you can select a SAML user store for Ops Manager or a SAML or LDAP user store for PAS, to integrate existing user accounts.
+* **(Optional)**  Configure external user stores. When you deploy <%= vars.product_name %>, you can select a SAML user store for Ops Manager or a SAML or LDAP user store for <%= vars.app_runtime_abbr %>, to integrate existing user accounts.
 
 
 ## <a id='install'></a> Install <%= vars.product_name %> on Azure
@@ -161,12 +161,12 @@ To install <%= vars.product_name %> on Azure, do one of the following:
 
 ## <a id='install-gov'></a> Install <%= vars.product_name %> on Azure Government Cloud
 
-To install <%= vars.product_name %> on Azure Government Cloud, see [Configuring BOSH Director on Azure Government Cloud](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/azure/gov-cloud.html).
+To install <%= vars.product_name %> on Azure Government Cloud, see [Configuring BOSH Director on Azure Government Cloud](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/azure/gov-cloud.html).
 
 
 ## <a id='install-germany'></a> Install <%= vars.product_name %> on Azure Germany
 
-To install <%= vars.product_name %> in Azure Germany, see [Configuring BOSH Director on Azure Germany](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/azure/german-cloud.html).
+To install <%= vars.product_name %> in Azure Germany, see [Configuring BOSH Director on Azure Germany](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/azure/german-cloud.html).
 
 
 ## <a id='resources'></a> Additional Resources

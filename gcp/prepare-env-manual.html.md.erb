@@ -11,23 +11,23 @@ This topic describes the preparation steps required to install Pivotal Operation
 
 Before you prepare your Ops Manager installation, do the following depending on the runtime you intend to deploy:
 
-- If you are deploying Pivotal Application Service (PAS), see [<%= vars.product_name %> on GCP Requirements](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp.html).
+- If you are deploying <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>), see [<%= vars.product_name %> on GCP Requirements](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/gcp.html).
 
-- If you are deploying Enterprise Pivotal Container Service (PKS), see [GCP Prerequisites and Resource Requirements](https://docs.pivotal.io/pks/gcp-requirements.html).
+- If you are deploying <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>), see [GCP Prerequisites and Resource Requirements](https://docs.pivotal.io/pks/gcp-requirements.html).
 
 
 ## <a id="config-components"></a> Configuration and Components
 
-This section outlines high-level infrastructure options for <%= vars.product_name %> on GCP. A <%= vars.product_name %> deployment includes Ops Manager and your chosen runtime. For example, both Ops Manager with PAS
-and Ops Manager with PKS are <%= vars.product_name %> deployments. For more information, review the deployment
-options and recommendations in [Reference Architecture for <%= vars.product_name %> on GCP](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html).
+This section outlines high-level infrastructure options for <%= vars.product_name %> on GCP. A <%= vars.product_name %> deployment includes Ops Manager and your chosen runtime. For example, both Ops Manager with <%= vars.app_runtime_abbr %>
+and Ops Manager with <%= vars.k8s_runtime_abbr %> are <%= vars.product_name %> deployments. For more information, review the deployment
+options and recommendations in [Reference Architecture for <%= vars.product_name %> on GCP](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/refarch/gcp/gcp_ref_arch.html).
 
 You can deploy <%= vars.product_name %> using one of two main configurations on a GCP virtual private cloud (VPC):
 
   * A _single-project_ configuration that gives Ops Manager full access to VPC resources
   * A _shared VPC_ configuration in which Ops Manager shares VPC resources
 
-See [Shared vs Single-Project VPCs](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html#shared-vs-single) in the _Reference Architecture for <%= vars.product_name %> on GCP_ topic for a full discussion and recommendations.
+See [Shared vs Single-Project VPCs](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/refarch/gcp/gcp_ref_arch.html#shared-vs-single) in the _Reference Architecture for <%= vars.product_name %> on GCP_ topic for a full discussion and recommendations.
 
 When deploying <%= vars.product_name %> on GCP, Pivotal recommends using the following GCP components:
 
@@ -63,7 +63,7 @@ Ops Manager uses IAM service accounts to access GCP resources.
 
 1. Click **Create**. Your browser automatically downloads a JSON file with a private key for this account. Save this file in a secure location.
 
-<p class='note'><strong>Note:</strong> You can use this service account to configure file storage for PAS. For more information, see the <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pas-file-storage.html#gcp">GCP</a> section of the <em>Configuring File Storage for PAS</em> topic.</p>
+<p class='note'><strong>Note:</strong> You can use this service account to configure file storage for <%= vars.app_runtime_abbr %>. For more information, see the <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/pas-file-storage.html#gcp">GCP</a> section of the <em>Configuring File Storage for <%= vars.app_runtime_abbr %></em> topic.</p>
 
 
 ## <a id="enable_compute_resource_api"></a> Step 2: Enable Google Cloud APIs
@@ -183,7 +183,7 @@ Use NAT instances when you want to expose only a minimal number of public IP add
 Creating NAT instances permits internet access from cluster VMs.
 You might, for example, need this internet access for pulling Docker images or enabling internet access for your workloads.
 
-For more information, see [Reference Architecture for <%= vars.product_name %> on GCP](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html#common_network) and the [GCP documentation](https://cloud.google.com/solutions/connecting-securely#natgateway).
+For more information, see [Reference Architecture for <%= vars.product_name %> on GCP](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/refarch/gcp/gcp_ref_arch.html#common_network) and the [GCP documentation](https://cloud.google.com/solutions/connecting-securely#natgateway).
 
 1. In the GCP console, with your single project or shared-VPC host project selected, navigate to **Compute Engine** > **VM instances**.
   ![Compute Instance](../common/images/gcp/gcp-vm-instances.png)
@@ -416,9 +416,9 @@ This step assigns tags and firewall rules to Ops Manager components and VMs that
    * `default-allow-rdp`
    * `default-allow-ssh`
 
-If you are deploying **PKS only**, continue to [Next Steps](#next-steps).
+If you are deploying **<%= vars.k8s_runtime_abbr %> only**, continue to [Next Steps](#next-steps).
 
-If you are deploying **PAS or other runtimes**, proceed to the following step.
+If you are deploying **<%= vars.app_runtime_abbr %> or other runtimes**, proceed to the following step.
 
 
 ## <a id="dbs"></a> Step 6: Create Database Instance and Databases
@@ -511,7 +511,7 @@ To create an internal load balancer for Ops Manager on GCP, do the following.
 
 1. Assign private IP addresses to the load balancers.
 
-1. After you have deployed Ops Manager, follow instructions in [Create or Update a VM Extension](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/custom-vm-extensions.html#create-vm-extension) to add a custom VM extension that applies internal load balancing to all VMs deployed by BOSH.
+1. After you have deployed Ops Manager, follow instructions in [Create or Update a VM Extension](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/custom-vm-extensions.html#create-vm-extension) to add a custom VM extension that applies internal load balancing to all VMs deployed by BOSH.
   - For example, the following manifest code adds a VM extension `backend-pool` to <%= vars.product_name %> VMs:
 
     ```
@@ -636,7 +636,7 @@ To create a global HTTP load balancer for <%= vars.product_name %> on GCP, do th
   * In the **Public key certificate** field, copy in the contents of your public certificate, or upload your certificate as a .pem file.
      If the certificate is runtime-generated, copy and paste the generated contents from the runtime's Certificate field into the Ops Manager **Public key certificate** field.
   * In the **Certificate chain** field, enter or upload your certificate chain in the .pem format.
-  If you are using a self-signed certificate, such as a PAS or PKS-generated certificate, do not enter a value in the **Certificate Chain** field.
+  If you are using a self-signed certificate, such as a <%= vars.app_runtime_abbr %> or <%= vars.k8s_runtime_abbr %>-generated certificate, do not enter a value in the **Certificate Chain** field.
   * In the **Private key** field, copy in the contents or upload the .pem file of the private key for the certificate.
   If the certificate is runtime-generated, copy and paste the generated contents from the runtime's Private Key field into the Ops Manager **Private key** field.
 
@@ -845,8 +845,8 @@ xyz.EXAMPLE.COM.      1767    IN  A 203.0.113.1</pre>
 
 ## <a id="next-steps"></a> Next Steps
 
-* (Optional) To prepare for deploying either a PAS or PKS tile on GCP, you can download the needed runtime tile in advance:
-  * To download PAS, log in to [Pivotal Network](https://network.pivotal.io/products/elastic-runtime), select your desired release version, and download **Pivotal Application Service**.
-  * To download PKS, log in to [Pivotal Network](https://network.pivotal.io/products/pivotal-container-service), select your desired release version, and download **Pivotal Container Service**.
+* (Optional) To prepare for deploying either a <%= vars.app_runtime_abbr %> or <%= vars.k8s_runtime_abbr %> tile on GCP, you can download the needed runtime tile in advance:
+  * To download <%= vars.app_runtime_abbr %>, log in to [Pivotal Network](https://network.pivotal.io/products/elastic-runtime), select your desired release version, and download **<%= vars.app_runtime_full %>**.
+  * To download <%= vars.k8s_runtime_abbr %>, log in to [Pivotal Network](https://network.pivotal.io/products/pivotal-container-service), select your desired release version, and download **<%= vars.k8s_runtime_full %>**.
 
 * After initiating the tile download, proceed to the next step, [Deploying Ops Manager on GCP Manually](./deploy-manual.html).

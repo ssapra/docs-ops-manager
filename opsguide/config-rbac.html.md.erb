@@ -145,11 +145,11 @@ To use the UAAC to configure roles:
     Client ID: opsman
     Client secret:
     User name: USERNAME
-    Password: PASSWORD
+    Password: <%= vars.app_runtime_abbr %>SWORD
     ```
     Where:
     * `USERNAME` is your username.
-    * `PASSWORD` is your password.
+    * `<%= vars.app_runtime_abbr %>SWORD` is your password.
 
 1. To assign a role to a user, run one of these commands:
     * **<%= vars.ops_manager %> Administrator:**
@@ -200,9 +200,9 @@ If you configured <%= vars.ops_manager %> with SAML authentication, you can assi
     ```
     Client ID: opsman
     Client secret:
-    Passcode: UAA-PASSCODE
+    Passcode: UAA-<%= vars.app_runtime_abbr %>SCODE
     ```
-    Where `UAA-PASSCODE` is the passcode you retrieved in the previous step.
+    Where `UAA-<%= vars.app_runtime_abbr %>SCODE` is the passcode you retrieved in the previous step.
 
 1. Run:
 
@@ -232,9 +232,9 @@ If you configured <%= vars.ops_manager %> with LDAP authentication, you can assi
     ```
     Client ID: opsman
     Client secret:
-    Passcode: UAA-PASSCODE
+    Passcode: UAA-<%= vars.app_runtime_abbr %>SCODE
     ```
-    Where `UAA-PASSCODE` is the passcode you retrieved in the previous step.
+    Where `UAA-<%= vars.app_runtime_abbr %>SCODE` is the passcode you retrieved in the previous step.
 
 1. Run:
 

@@ -49,7 +49,7 @@ To retrieve your authorization token, perform the procedure below that correspon
 
 To log in to the Ops Manager VM with SSH in vSphere, you need the public SSH key that imports the <%= vars.platform_name %> `.ova` or `.ovf` file into your virtualization system.
 
-You set the public SSH key in the **Public SSH Key** field of the **Customize template** screen when you deployed Ops Manager. For more information, see [Deploy Ops Manager](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/vsphere/deploy.html#deploy).
+You set the public SSH key in the **Public SSH Key** field of the **Customize template** screen when you deployed Ops Manager. For more information, see [Deploy Ops Manager](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/vsphere/deploy.html#deploy).
 
 To retrieve the authorization token from internal UAA on vSphere, do the following:
 
@@ -176,9 +176,9 @@ To log in to the Ops Manager VM and retrieve your token, do the following:
     	Client ID: opsman
     	Client secret: [Leave Blank]
     	User name: OPS-MAN-USERNAME
-    	Password: OPS-MAN-PASSWORD
+    	Password: OPS-MAN-<%= vars.app_runtime_abbr %>SWORD
     	```
-      Where `OPS-MAN-USERNAME` and `OPS-MAN-PASSWORD` are the credentials that you use to log in to the Ops Manager web interface.
+      Where `OPS-MAN-USERNAME` and `OPS-MAN-<%= vars.app_runtime_abbr %>SWORD` are the credentials that you use to log in to the Ops Manager web interface.
       For example:
       <pre class="terminal">
         $ uaac token owner get
@@ -193,9 +193,9 @@ To log in to the Ops Manager VM and retrieve your token, do the following:
       uaac token sso get
     	Client ID: opsman
     	Client secret: [Leave Blank]
-    	Passcode: OPS-MAN-PASSCODE
+    	Passcode: OPS-MAN-<%= vars.app_runtime_abbr %>SCODE
     	```
-      Where `OPS-MAN-PASSCODE` is the value you retrieve from `https://OPS-MAN-FQDN/uaa/passcode`.
+      Where `OPS-MAN-<%= vars.app_runtime_abbr %>SCODE` is the value you retrieve from `https://OPS-MAN-FQDN/uaa/passcode`.
       For example:
       <pre class="terminal">
         $ uaac token sso get
@@ -262,11 +262,11 @@ The following procedure configures the BOSH Director for your IaaS using the Ops
 
 Pivotal recommends that beginning users configure the BOSH Director through the Ops Manager UI, which provides context and explanations for each option. For information about configuring the BOSH Director tile in the Ops Manager UI, see one of the following:
 
-* AWS ([Terraform](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/aws/config-terraform.html) | [manual](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/aws/config-manual.html))
-* Azure ([Terraform](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/azure/config-terraform.html) | [manual](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/azure/config-manual.html))
-* GCP ([Terraform](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/gcp/config-terraform.html) | [manual](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/gcp/config-manual.html))
-* [OpenStack](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/openstack/config.html)
-* [vSphere](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/vsphere/config.html)
+* AWS ([Terraform](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/aws/config-terraform.html) | [manual](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/aws/config-manual.html))
+* Azure ([Terraform](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/azure/config-terraform.html) | [manual](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/azure/config-manual.html))
+* GCP ([Terraform](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/gcp/config-terraform.html) | [manual](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/gcp/config-manual.html))
+* [OpenStack](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/openstack/config.html)
+* [vSphere](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/vsphere/config.html)
 
 To configure the BOSH Director with the Ops Manager API, do the following:
 
@@ -279,23 +279,23 @@ To configure the BOSH Director with the Ops Manager API, do the following:
       -X POST \
       -H "Content-Type: application/json" \
       -d '{ "setup": {
-      "decryption_passphrase": "PASSPHRASE",
-      "decryption_passphrase_confirmation":"PASSPHRASE",
+      "decryption_passphrase": "<%= vars.app_runtime_abbr %>SPHRASE",
+      "decryption_passphrase_confirmation":"<%= vars.app_runtime_abbr %>SPHRASE",
       "eula_accepted": "EULA-STATUS",
       "identity_provider": "IDP-LOCATION",
       "admin_user_name": "ADMIN-USERNAME",
-      "admin_password": "ADMIN-PASSWORD",
-      "admin_password_confirmation": "ADMIN-PASSWORD",
+      "admin_password": "ADMIN-<%= vars.app_runtime_abbr %>SWORD",
+      "admin_password_confirmation": "ADMIN-<%= vars.app_runtime_abbr %>SWORD",
       "http_proxy": HTTP-PROXY,
       "https_proxy": HTTPS-PROXY,
       "no_proxy": "127.0.0.1"
     ```
     Where:
-    * `PASSPHRASE` is your deployment's decryption passphrase
+    * `<%= vars.app_runtime_abbr %>SPHRASE` is your deployment's decryption passphrase
     * `EULA-STATUS` is your EULA status
     * `IDP-LOCATION` is your identity provider location, `internal` or `external`
     * `ADMIN-USERNAME`is your Ops Manager admin username
-    * `ADMIN-PASSWORD`is your Ops Manager admin password
+    * `ADMIN-<%= vars.app_runtime_abbr %>SWORD`is your Ops Manager admin password
     * `HTTP-PROXY` is your HTTP proxy, if applicable
     * `HTTPS-PROXY` is your HTTPS proxy, if applicable
 

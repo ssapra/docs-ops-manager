@@ -3,7 +3,7 @@ title: Advanced Troubleshooting with the BOSH CLI
 owner: Ops Manager
 ---
 
-This topic describes using the BOSH CLI to help diagnose and resolve issues with your [<%= vars.product_name %>](https://network.pivotal.io/products/pivotal-cf) deployment. Before using the information and techniques in this topic, review [Diagnosing Problems in <%= vars.product_name %>](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/diagnostics.html).
+This topic describes using the BOSH CLI to help diagnose and resolve issues with your [<%= vars.product_name %>](https://network.pivotal.io/products/pivotal-cf) deployment. Before using the information and techniques in this topic, review [Diagnosing Problems in <%= vars.product_name %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/diagnostics.html).
 
 To follow the steps in this topic, you must log in to the BOSH Director VM. The BOSH Director runs on the virtual machine (VM) that Pivotal Operations Manager deploys on the first install of the BOSH Director tile.
 
@@ -111,7 +111,7 @@ To log in to the Ops Manager VM with SSH in GCP, do the following:
 
 ### <a id='ssh-openstack'></a> OpenStack
 
-To log in to the Ops Manager VM with SSH in OpenStack, you need the key pair that you created in _Step 2: Configure Security_ of [Deploying Ops Manager on OpenStack](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/openstack/setup.html#security).
+To log in to the Ops Manager VM with SSH in OpenStack, you need the key pair that you created in _Step 2: Configure Security_ of [Deploying Ops Manager on OpenStack](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/openstack/setup.html#security).
 If you need to reset the SSH key, locate the Ops Manager VM in the OpenStack console and boot it in recovery mode to generate a new key pair.
 
 To log in to the Ops Manager VM with SSH in OpenStack, do the following:
@@ -132,7 +132,7 @@ To log in to the Ops Manager VM with SSH in OpenStack, do the following:
 
 To log in to the Ops Manager VM with SSH in vSphere, you need the public SSH key that imports the <%= vars.platform_name %> `.ova` or `.ovf` file into your virtualization system.
 
-You set the public SSH key in the **Public SSH Key** field of the **Customize template** screen when you deployed Ops Manager. For more information, see [Deploy Ops Manager](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/vsphere/deploy.html#deploy).
+You set the public SSH key in the **Public SSH Key** field of the **Customize template** screen when you deployed Ops Manager. For more information, see [Deploy Ops Manager](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/vsphere/deploy.html#deploy).
 
 <p class="note"><strong>Note</strong>: If you lose your SSH key, you must shut down the Ops Manager VM in the vSphere UI and then reset the public SSH key. For more information, see <a href="https://docs.vmware.com/en/VMware-vSphere/6.5/com.vmware.vsphere.vm_admin.doc/GUID-E05E8AF9-C8F2-4482-B3F0-733C85C6DD97.html">Edit vApp Settings</a> in the vSphere documentation.</p>
 
@@ -297,7 +297,7 @@ troubleshooting.
 * `--dns`: Report also includes the DNS A record for each VM
 * `--vitals`: Report also includes load, CPU, memory usage, swap usage, system disk usage, ephemeral disk usage, and persistent disk usage for each VM
 
-<p class="note"><strong>Note:</strong> The <strong>Status</strong> tab of the Pivotal Application Service (PAS) product tile displays information similar to the <code>bosh vms</code> output.</p>
+<p class="note"><strong>Note:</strong> The <strong>Status</strong> tab of the <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) product tile displays information similar to the <code>bosh vms</code> output.</p>
 
 ### <a id='cck'></a> BOSH Cloud Check
 

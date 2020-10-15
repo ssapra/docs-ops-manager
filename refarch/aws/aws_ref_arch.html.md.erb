@@ -16,9 +16,9 @@ This section describes a reference architecture for a <%= vars.app_runtime_abbr 
 
 The diagram below illustrates the reference architecture for <%= vars.app_runtime_abbr %> on AWS.
 
-![This diagram illustrates <%= vars.app_runtime_abbr %> on AWS. For specific details about the components and communication represented by the diagram, see the base and AWS reference architectures.](PAS_AWS.png)
+![This diagram illustrates <%= vars.app_runtime_abbr %> on AWS. For specific details about the components and communication represented by the diagram, see the base and AWS reference architectures.](<%= vars.app_runtime_abbr %>_AWS.png)
 
-[View a larger version of this diagram](../images/PAS_AWS.png).
+[View a larger version of this diagram](../images/<%= vars.app_runtime_abbr %>_AWS.png).
 
 ### <a id="networking"></a> Networking
 
@@ -114,7 +114,7 @@ These options are available for choosing your network topology:
 
 ### <a id="rds"></a> RDS
 
-Use a single RDS instance for BOSH and <%= vars.app_runtime_abbr %>. This instance requires several databases. For more information, see [Step 3: Director Config Page](../../aws/config-manual.html#pcfaws-om-dirconfig) in _Configuring BOSH Director on AWS_ and [External System Database Configuration](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html#create-dbs) in _Configuring <%= vars.app_runtime_abbr %>_.
+Use a single RDS instance for BOSH and <%= vars.app_runtime_abbr %>. This instance requires several databases. For more information, see [Step 3: Director Config Page](../../aws/config-manual.html#pcfaws-om-dirconfig) in _Configuring BOSH Director on AWS_ and [External System Database Configuration](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configure-pas.html#create-dbs) in _Configuring <%= vars.app_runtime_abbr %>_.
 
 ### <a id="blobstore"></a> Blobstore Storage Accounts
 
@@ -142,9 +142,9 @@ These sections describe a reference architecture for a <%= vars.k8s_runtime_abbr
 
 The diagram below illustrates the reference architecture for <%= vars.k8s_runtime_abbr %> on AWS.
 
-![This diagram illustrates <%= vars.k8s_runtime_abbr %> on AWS. For specific details about the components and communication represented by the diagram, see the base and AWS reference architectures.](../images/v2/export/PKS_AWS.png)
+![This diagram illustrates <%= vars.k8s_runtime_abbr %> on AWS. For specific details about the components and communication represented by the diagram, see the base and AWS reference architectures.](../images/v2/export/<%= vars.k8s_runtime_abbr %>_AWS.png)
 
-[View a larger version of this diagram](../images/v2/export/PKS_AWS.png).
+[View a larger version of this diagram](../images/v2/export/<%= vars.k8s_runtime_abbr %>_AWS.png).
 
 ### <a id="pks-networking"></a> Networking
 

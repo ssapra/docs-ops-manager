@@ -4,7 +4,6 @@ owner: Ops Manager
 iaas: Azure
 ---
 
-
 This topic describes how to configure the BOSH Director tile within Pivotal Operations Manager on Azure after [Deploying Ops Manager on Azure Manually](./deploy-manual.html).
 
 
@@ -19,11 +18,11 @@ Before you perform the procedures in this topic, you must have completed the pro
 * [Preparing to Deploy Ops Manager on Azure Manually](prepare-env-manual.html)
 * [Deploying Ops Manager on Azure Manually](deploy-manual.html)
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
 
 ### <a id="stack-gov-prereqs"></a> Prerequisites for Azure Stack or Azure Government Cloud
 
-If you use Azure Government Cloud, you must set custom VM types for a successful deployment. You can set custom VM types with the Ops Manager API. For more information, see [Using the Ops Manager API](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html).
+If you use Azure Government Cloud, you must set custom VM types for a successful deployment. You can set custom VM types with the Ops Manager API. For more information, see [Using the Ops Manager API](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/ops-man-api.html).
 
 Example `curl` command to set a VM types:
 
@@ -64,7 +63,7 @@ Manager API endpoint.
 1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html).
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/pcf-director-proxy-settings.html).
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -317,7 +316,7 @@ To create the services network, do the following:
 1. Adjust any values as necessary for your deployment. Under the **Instances**, **VM Type**, and **Persistent Disk Type** fields, choose **Automatic** from the dropdown to allocate the recommended resources for the job. If the **Persistent Disk Type** field reads **None**, the job does not require persistent disk space.
     <p class="note"><strong>Note:</strong> For the BOSH Director job, select a VM type with at least 8&nbsp;GB memory.</p>
     <p class="note"><strong>Note:</strong> If you set a field to <strong>Automatic</strong> and the recommended resource allocation changes in a future version, Ops Manager automatically uses the updated recommended allocation.</p>
-    <p class="note"><strong>Note:</strong> If you install Pivotal Application Service for Windows (PASW),
+    <p class="note"><strong>Note:</strong> If you install <%= vars.windows_runtime_full %> (<%= vars.app_runtime_abbr %>W),
     provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
 
 1. (Optional) To add a load balancer to the BOSH Director:
@@ -343,6 +342,6 @@ To create the services network, do the following:
 
 ## <a id="next"></a> Next Steps
 
-* (Optional) When Ops Manager finishes deploying, deploy BOSH Add-ons to your system. For more information, see [Deploying BOSH Add-Ons](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/add-ons.html).
+* (Optional) When Ops Manager finishes deploying, deploy BOSH Add-ons to your system. For more information, see [Deploying BOSH Add-Ons](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/add-ons.html).
 
-* Install one or more <%= vars.product_name %> runtime environments to complete your installation. For more information, see [Installing Runtimes](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html)
+* Install one or more <%= vars.product_name %> runtime environments to complete your installation. For more information, see [Installing Runtimes](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/runtimes.html)
