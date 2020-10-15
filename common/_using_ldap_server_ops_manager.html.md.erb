@@ -16,7 +16,7 @@ To configure Ops Manager to use an LDAP server for user authentication:
 In the LDAP search filter string that you use to configure your runtime, use `{0}` instead of the username. For example, use `cn={0}` to return all LDAP objects with the same common name as the username.
 <br><br>
 In addition to `cn`, other attributes commonly searched for and returned are `mail`, `uid` and, in the case of Active Directory, `sAMAccountName`.
-    <p class="note"><strong>Note:</strong> For instructions for testing and troubleshooting your LDAP search filters, see <a href="https://community.pivotal.io/s/article/Configuring-LDAP-Integration-with-Pivotal-Cloud-Foundry">Configuring LDAP Integration with <%= vars.platform_name_pivotal %></a> in the Pivotal Support Knowledge Base.</p>
+    <p class="note"><strong>Note:</strong> For instructions for testing and troubleshooting your LDAP search filters, see <a href="https://community.pivotal.io/s/article/Configuring-LDAP-Integration-with-Pivotal-Cloud-Foundry">Configuring LDAP Integration with <%= vars.platform_name %></a> in the Pivotal Support Knowledge Base.</p>
 
 1. For **Group Search Base**, enter the location in the LDAP directory tree from which the LDAP Group search begins. For example, a domain named "cloud.example.com" typically uses the following LDAP Group Search Base: `ou=Groups,dc=example,dc=com`
 
@@ -35,11 +35,11 @@ In addition to `cn`, other attributes commonly searched for and returned are `ma
 
 1. Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
 
-1. If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html).
+1. If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/pcf-director-proxy-settings.html).
 
 1. Read the **End User License Agreement**, and select the checkbox to accept the terms.
 
-1. Select **Provision an admin client in the BOSH UAA**. You can use this to enable BOSH automation with scripts and tooling. For more information, see [Provision Admin Client](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/opsmanager-create-bosh-client.html#saml) in _Creating UAA Clients for BOSH Director_.
+1. Select **Provision an admin client in the BOSH UAA**. You can use this to enable BOSH automation with scripts and tooling. For more information, see [Provision Admin Client](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/opsmanager-create-bosh-client.html#saml) in _Creating UAA Clients for BOSH Director_.
 
 1. Click **Setup Authentication**.
 

@@ -7,14 +7,14 @@ This guide describes the preparation steps required to deploy Pivotal Operations
 
 The Terraform template for Ops Manager on AWS describes a set of AWS resources and properties. For more information about how Terraform creates resources in AWS, see [AWS Provider](https://www.terraform.io/docs/providers/aws/index.html) in the Terraform documentation.
 
-If you are deploying Pivotal Application Service (PAS), review different deployment options in [Reference Architecture for <%= vars.platform_name_pivotal %> on AWS](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/aws/aws_ref_arch.html).
+If you are deploying Pivotal Application Service (PAS), review different deployment options in [Reference Architecture for <%= vars.platform_name %> on AWS](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/refarch/aws/aws_ref_arch.html).
 
 
 ## <a id="prereqs"></a> Prerequisites
 
 Before you deploy Ops Manager on AWS:
 
-* If you intend to install PAS, see [<%= vars.platform_name_pivotal %> on AWS Requirements](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/aws.html).
+* If you intend to install PAS, see [<%= vars.platform_name %> on AWS Requirements](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/aws.html).
 
 * If you intend to install Pivotal Container Service (PKS), see [AWS Prerequisites and Resource Requirements](https://docs.pivotal.io/pks/aws-requirements.html).
 
