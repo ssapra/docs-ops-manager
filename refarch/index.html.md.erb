@@ -47,7 +47,7 @@ These topics address aspects of platform architecture and planning that the <%= 
 The diagram below illustrates a base architecture for <%= vars.app_runtime_abbr %> and how its network topology places and replicates <%= vars.platform_name %> and <%= vars.app_runtime_abbr %> components across subnets and Availability Zones (AZs).
 
 <%# Image from PAS_Base canvas of /images/v2/PCF_Reference_Architecture_2019.graffle %>
-![<%= vars.app_runtime_abbr %>  Base Deployment Topology](./images/v2/export/PAS_Base.png)
+![PAS Base Deployment Topology](./images/v2/export/PAS_Base.png)
 
 [View a larger version of this diagram](./images/v2/export/PAS_Base.png)
 
@@ -62,7 +62,7 @@ The table below describes the internal component placements shown in the diagram
 | Jumpbox | Optional. Deployed on the infrastructure subnet for accessing <%= vars.app_runtime_abbr %> management components such as <%= vars.ops_manager %> and the Cloud Foundry Command Line Interface (cf CLI). |
 | Gorouters (HTTP routers in <%= vars.platform_name %>) | Deployed on all three <%= vars.app_runtime_abbr %> subnets, one per AZ. Accessed through the HTTP, HTTPS, and SSL load balancers. |
 | Diego Brain | Deployed on all three <%= vars.app_runtime_abbr %> subnets, one per AZ. The Diego Brain component is required, but SSH container access support through the Diego Brain is optional, and enabled through the SSH load balancers. |
-| TCP routers | Optional. Deployed on all three P<%= vars.app_runtime_abbr %> subnets, one per AZ, to support TCP routing. |
+| TCP routers | Optional. Deployed on all three <%= vars.app_runtime_abbr %> subnets, one per AZ, to support TCP routing. |
 | Service tiles | Service brokers and shared services instances are deployed to the Services subnet. Dedicated on-demand service instances are deployed to an on-demand services subnet. |
 | Isolation segments | Deployed on an isolation segment subnet. Includes Diego Cells and Gorouters for running and accessing apps hosted within isolation segments. |
 
@@ -147,7 +147,7 @@ You must also define these wildcard domain names and include them when creating 
 
 ### <a id="pas-scaling"></a> Component Scaling
 
-For recommendations on scaling <%= vars.app_runtime_abbr %> for different deployment scenarios, see [Scaling <%= vars.app_runtime_abbr %> ](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/scaling-ert-components.html).
+For recommendations on scaling <%= vars.app_runtime_abbr %> for different deployment scenarios, see [Scaling <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/scaling-ert-components.html).
 
 
 ## <a id="pks-base"></a> <%= vars.k8s_runtime_abbr %> Architecture
