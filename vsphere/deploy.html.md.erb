@@ -84,7 +84,7 @@ Ops Manager for vSphere is provided as an OVA file. An OVA file is a template fo
     <%= image_tag("../common/images/vsphere/vsphere_om-deploy-02.png") %>
 
     <p class="note"><strong>Note</strong>: Hardware virtualization must be turned off if your
-    vSphere host does not support VT-X/EPT. Refer to <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/vsphere.html#vsphere-reqs">vSphere Requirements</a> in <em><%= vars.product_name %> on vSphere Requirements</em> for more information.</p>
+    vSphere host does not support VT-X/EPT. Refer to <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/vsphere.html#vsphere-reqs">vSphere Requirements</a> in <em><%= vars.platform_name %> on vSphere Requirements</em> for more information.</p>
 
 1. At the **Review Details** screen, confirm the configuration up to this point and click **Next**.
 
@@ -129,7 +129,7 @@ Ops Manager for vSphere is provided as an OVA file. An OVA file is a template fo
 
 1. Create a DNS entry for the IP address that you used for Ops Manager. You must use this fully qualified domain name when you log into Ops Manager.
 
-    <p class="note"><strong>Note</strong>: Ops Manager security features require you to create a fully qualified domain name to access Ops Manager during the initial configuration. For more information, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/vsphere.html"><%= vars.product_name %> on vSphere Requirements</a>.</p>
+    <p class="note"><strong>Note</strong>: Ops Manager security features require you to create a fully qualified domain name to access Ops Manager during the initial configuration. For more information, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/vsphere.html"><%= vars.platform_name %> on vSphere Requirements</a>.</p>
 
 1. Select the Ops Manager VM and click **Actions** > **Power** > **Power On**.
 

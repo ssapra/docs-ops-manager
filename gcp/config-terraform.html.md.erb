@@ -5,7 +5,7 @@ iaas: GCP
 install_type: terraform
 ---
 
-This topic describes how to configure the BOSH Director for <%= vars.product_name %> on Google Cloud Platform (GCP) after [Preparing to Deploy Ops Manager on GCP Using Terraform](./prepare-env-terraform.html).
+This topic describes how to configure the BOSH Director for <%= vars.platform_name %> on Google Cloud Platform (GCP) after [Preparing to Deploy Ops Manager on GCP Using Terraform](./prepare-env-terraform.html).
 
 <p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Pivotal Operations Manager API. For more information, see <a href="http://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.</p>
 
@@ -69,7 +69,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
   <div class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation.
     <ul>
-      <li>For configuring a <%= vars.app_runtime_abbr %> deployment with multiple availability zones, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for <%= vars.product_name %> on GCP</a>.</li>
+      <li>For configuring a <%= vars.app_runtime_abbr %> deployment with multiple availability zones, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for <%= vars.platform_name %> on GCP</a>.</li>
       <li>For <%= vars.k8s_runtime_abbr %> best practices for distributing workloads across multiple availability zones and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
     </ul>
   </div>
