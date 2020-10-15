@@ -118,10 +118,10 @@ account to log in to your Azure subscription.
 
     ```
     az ad app create --display-name "Service Principal for BOSH" \
-    --password "<%= vars.app_runtime_abbr %>SWORD" --homepage "http://BOSHAzureCPI" \
+    --password "PASSWORD" --homepage "http://BOSHAzureCPI" \
     --identifier-uris "http://BOSHAzureCPI"
     ```
-    Where `<%= vars.app_runtime_abbr %>SWORD` is a password of your choice. This is your `CLIENT_SECRET` for creating a
+    Where `PASSWORD` is a password of your choice. This is your `CLIENT_SECRET` for creating a
     service principal.
 
     For example:

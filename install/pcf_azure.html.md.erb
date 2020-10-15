@@ -63,7 +63,7 @@ Follow the steps below to create a JSON-formatted Azure Service Principal file.
         "subscriptionID": "SUBSCRIPTION-ID",
         "tenantID": "TENANT-ID",
         "clientID": "SERVICE-PRINCIPAL-NAME",
-        "clientSecret": "SERVICE-PRINCIPAL-<%= vars.app_runtime_abbr %>SWORD"
+        "clientSecret": "SERVICE-PRINCIPAL-PASSWORD"
     }
     ```
 
@@ -71,7 +71,7 @@ Follow the steps below to create a JSON-formatted Azure Service Principal file.
   * **SUBSCRIPTION-ID:** Replace this with your default Azure Subscription ID.
   * **TENANT-ID:** Replace this with your default Azure Tenant ID.
   * **SERVICE-PRINCIPAL-NAME:** Replace this with the application ID.
-  * **SERVICE-PRINCIPAL-<%= vars.app_runtime_abbr %>SWORD:** Replace this with the application authentication key.
+  * **SERVICE-PRINCIPAL-PASSWORD:** Replace this with the application authentication key.
   <br>
   <br>To retrieve the application ID and authentication key, see [Get application ID and authentication key](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-create-service-principal-portal#get-application-id-and-authentication-key) in the Microsoft Azure documentation.
 
