@@ -5,9 +5,9 @@ owner: Partners
 
 <% current_page.data.title = "Installing " + vars.platform_name + " on Microsoft Azure" %>
 
-<p class="note"><strong>Note:</strong> This document describes how to install a basic, opinionated <%= vars.platform_name  %> on Azure using the Azure Marketplace. To install a more robust <%= vars.platform_name %> deployment on Azure for development or production, see the <a href="azure.html">Installing <%= vars.platform_name %> on Azure</a> topic.</p>
+<p class="note"><strong>Note:</strong> This document describes how to install a basic, opinionated <%= vars.platform_name %> on Azure using the Azure Marketplace. To install a more robust <%= vars.platform_name %> deployment on Azure for development or production, see the <a href="azure.html">Installing <%= vars.platform_name %> on Azure</a> topic.</p>
 
-This topic describes how to deploy <%= vars.platform_name  %> on Microsoft Azure.
+This topic describes how to deploy <%= vars.platform_name %> on Microsoft Azure.
 
 <%= vars.platform_name %> on Microsoft Azure is available in [Azure Marketplace](https://azure.microsoft.com/en-us/marketplace/partners/pivotal/pivotal-cloud-foundryazure-pcf/). The Azure Marketplace offering installs a pre-configured deployment of <%= vars.platform_name %>.
 
@@ -16,7 +16,7 @@ This topic describes how to deploy <%= vars.platform_name  %> on Microsoft Azure
 
 <%= vars.platform_name %> on Microsoft Azure includes the following components:
 
-* [Pivotal Application Service (PAS)](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/concepts/overview.html)
+* [<%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>)](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/concepts/overview.html)
 * [Microsoft Azure Service Broker](http://network.pivotal.io)
 
 Optional:
@@ -156,7 +156,7 @@ See [Raise Your Quota](#raising-quota).
   1. Find the Apps Manager password by following [Logging in to Apps Manager](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/console-login.html)
   1. Find the System Domain needed for the Apps Manager URL:
     1. Navigate to the Ops Manager Installation Dashboard.
-    1. Select PAS.
+    1. Select <%= vars.app_runtime_abbr %>.
     1. Select **Domains**.
     1. Copy the System Domain URL, referred to as SYSTEMDOMAINURL below.
   1. Navigate to the URL `https://apps.SYSTEMDOMAINURL`.

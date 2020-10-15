@@ -9,7 +9,7 @@ This topic describes reference architectures and other plans for installing <%= 
 
 ## <a id="overview"></a> Overview
 
-A <%= vars.platform_name  %> reference architecture describes a proven approach for deploying <%= vars.platform_name %> on a specific IaaS, such as AWS, Azure, GCP, OpenStack, or vSphere. <%= vars.platform_name %> reference architectures meet these requirements:
+A <%= vars.platform_name %> reference architecture describes a proven approach for deploying <%= vars.platform_name %> on a specific IaaS, such as AWS, Azure, GCP, OpenStack, or vSphere. <%= vars.platform_name %> reference architectures meet these requirements:
 
 * Secure
 * Publicly accessible
@@ -47,7 +47,7 @@ These topics address aspects of platform architecture and planning that the <%= 
 The diagram below illustrates a base architecture for <%= vars.app_runtime_abbr %> and how its network topology places and replicates <%= vars.platform_name %> and <%= vars.app_runtime_abbr %> components across subnets and Availability Zones (AZs).
 
 <%# Image from PAS_Base canvas of /images/v2/PCF_Reference_Architecture_2019.graffle %>
-![<%= vars.app_runtime_abbr %> Base Deployment Topology](./images/v2/export/PAS_Base.png)
+![<%= vars.app_runtime_abbr %>  Base Deployment Topology](./images/v2/export/PAS_Base.png)
 
 [View a larger version of this diagram](./images/v2/export/PAS_Base.png)
 
@@ -154,7 +154,7 @@ For recommendations on scaling <%= vars.app_runtime_abbr %> for different deploy
 
 The diagram below illustrates a base architecture for <%= vars.k8s_runtime_abbr %> and how its network topology places and replicates <%= vars.platform_name %> and <%= vars.k8s_runtime_abbr %> components across subnets and AZs:
 
-<%# Image from PKS_Base canvas of /images/v2/PCF_Reference_Architecture_2019.graffle %>
+<%# Image from <%= vars.k8s_runtime_abbr %>_Base canvas of /images/v2/PCF_Reference_Architecture_2019.graffle %>
 ![<%= vars.k8s_runtime_abbr %> Base Deployment Topology](./images/v2/export/PKS_Base.png)
 
 [View a larger version of this diagram](./images/v2/export/PKS_Base.png)
@@ -168,7 +168,7 @@ The table below describes the internal component placements shown in the diagram
 | <%= vars.ops_manager %> | Deployed on one of the subnets. Accessible by fully-qualified domain name (FQDN) or through an optional jumpbox. |
 | BOSH Director | Deployed on the infrastructure subnet. |
 | Jumpbox | Optional. Deployed on the infrastructure subnet for accessing <%= vars.k8s_runtime_abbr %> management components such as <%= vars.ops_manager %> and the `kubectl` command line interface. |
-| <%= vars.k8s_runtime_abbr %> API | Deployed as a service broker VM on the <%= vars.k8s_runtime_abbr %> services subnet. Handles <%= vars.k8s_runtime_abbr %> API and service adapter requests, and manages <%= vars.k8s_runtime_abbr %> clusters. For more information, see [Enterprise PKS Components](https://docs.pivotal.io/pks/index.html#components) in _Enterprise <%= vars.k8s_runtime_full %> (Enterprise <%= vars.k8s_runtime_abbr %>)_. |
+| <%= vars.k8s_runtime_abbr %> API | Deployed as a service broker VM on the <%= vars.k8s_runtime_abbr %> services subnet. Handles <%= vars.k8s_runtime_abbr %> API and service adapter requests, and manages <%= vars.k8s_runtime_abbr %> clusters. For more information, see [<%= vars.k8s_runtime_abbr %> Components](https://docs.pivotal.io/pks/index.html#components) in _Enterprise <%= vars.k8s_runtime_full %> (Enterprise <%= vars.k8s_runtime_abbr %>)_. |
 | Harbor tile | Optional container images registry, typically deployed to the services subnet. |
 | <%= vars.k8s_runtime_abbr %> Cluster** | Deployed to a dynamically-created, dedicated <%= vars.k8s_runtime_abbr %> cluster subnet. Each cluster consists of worker nodes that run the workloads, or apps, and one or more master nodes. |
 

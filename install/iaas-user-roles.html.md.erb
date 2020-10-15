@@ -6,14 +6,14 @@ owner: Program Management
 This topic describes practices recommended by Pivotal for creating secure IaaS
 user roles.
 
-<%= vars.platform_name  %> is an automated platform that connects to IaaS
+<%= vars.platform_name %> is an automated platform that connects to IaaS
 providers such as AWS and OpenStack.
 This connectivity typically requires accounts with appropriate permissions to
 act on behalf of the operator to access IaaS functionality such as creating
 virtual machines (VMs), managing networks and storage, and other related
 services.
 
-Pivotal Operations Manager and Pivotal Application Service (PAS) can be configured with IaaS users in different ways depending on your IaaS. Other product tiles and services might also use their own IaaS credentials. Refer to the documentation for those product tiles or services to configure them securely.
+Pivotal Operations Manager and <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) can be configured with IaaS users in different ways depending on your IaaS. Other product tiles and services might also use their own IaaS credentials. Refer to the documentation for those product tiles or services to configure them securely.
 
 ##<a id="lpus"></a> Least Privileged Users (LPUs)
 
@@ -33,7 +33,7 @@ See the permissions recommendations in [Preparing to Deploy Ops Manager on Azure
 
 For GCP, Pivotal recommends using two different accounts with the least privilege. 
 
-Use one account with the minimum permissions required to create desired GCP resources in your GCP project, then create a separate service account with the minimum permissions required to deploy <%= vars.product_short %> components such as Pivotal Ops Manager and PAS. For more information about creating the service account, see _Step 1: Set up IAM Service Accounts_ in [Preparing to Deploy Ops Manager on GCP Manually](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/gcp/prepare-env-manual.html#iam_account).
+Use one account with the minimum permissions required to create desired GCP resources in your GCP project, then create a separate service account with the minimum permissions required to deploy <%= vars.app_runtime_abbr %> components such as Pivotal Ops Manager and <%= vars.app_runtime_abbr %>. For more information about creating the service account, see _Step 1: Set up IAM Service Accounts_ in [Preparing to Deploy Ops Manager on GCP Manually](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/gcp/prepare-env-manual.html#iam_account).
 
 ##<a id="openstack"></a>OpenStack Guidelines
 

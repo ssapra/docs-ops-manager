@@ -11,11 +11,11 @@ The instructions in this topic are based on vSphere 6.5 using the vSphere Client
 ## <a id="pas_and_pks"></a> Runtime Considerations
 
 For security purposes, VMware requires a dedicated instance of Ops Manager for use with Pivotal
-Container Service (PKS). 
+Container Service (<%= vars.k8s_runtime_abbr %>). 
 
-<p class="note warning"><strong>Warning:</strong> If you are installing PKS on vSphere with NSX-T
+<p class="note warning"><strong>Warning:</strong> If you are installing <%= vars.k8s_runtime_abbr %> on vSphere with NSX-T
 integration, follow the instructions in
-<a href="https://docs.pivotal.io/pks/vsphere-nsxt-om-deploy.html">Deploying Ops Manager with NSX-T for PKS</a> instead of performing the steps described in this topic.</p>
+<a href="https://docs.pivotal.io/pks/vsphere-nsxt-om-deploy.html">Deploying Ops Manager with NSX-T for <%= vars.k8s_runtime_abbr %></a> instead of performing the steps described in this topic.</p>
 
 ## <a id="prepare-vsphere"></a> Prepare vSphere
 
@@ -99,7 +99,7 @@ Ops Manager for vSphere is provided as an OVA file. An OVA file is a template fo
     <%= image_tag("../common/images/vsphere/vsphere_om-deploy-10.png") %>
 
     <p class="note"><strong>Note</strong>: Hardware virtualization must be turned off if your
-    vSphere host does not support VT-X/EPT. Refer to <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/vsphere.html#vsphere-reqs">vSphere Requirements</a> in <em><%= vars.product_name %> on vSphere Requirements</em> for more information.</p>
+    vSphere host does not support VT-X/EPT. Refer to <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/vsphere.html#vsphere-reqs">vSphere Requirements</a> in <em><%= vars.platform_name %> on vSphere Requirements</em> for more information.</p>
 
 1. At the **Review Details** screen, confirm the configuration up to this point and click **Next**.
 
@@ -144,7 +144,7 @@ Ops Manager for vSphere is provided as an OVA file. An OVA file is a template fo
 
 1. Create a DNS entry for the IP address that you used for Ops Manager. You must use this fully qualified domain name when you log into Ops Manager.
 
-    <p class="note"><strong>Note</strong>: Ops Manager security features require you to create a fully qualified domain name to access Ops Manager during the initial configuration. For more information, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/vsphere.html"><%= vars.product_name %> on vSphere Requirements</a>.</p>
+    <p class="note"><strong>Note</strong>: Ops Manager security features require you to create a fully qualified domain name to access Ops Manager during the initial configuration. For more information, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/vsphere.html"><%= vars.platform_name %> on vSphere Requirements</a>.</p>
 
 1. Select the Ops Manager VM and click **Actions** > **Power** > **Power On**. 
 

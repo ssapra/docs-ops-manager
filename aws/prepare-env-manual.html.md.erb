@@ -269,9 +269,9 @@ Perform the following steps to create an Amazon Identity and Access Management (
 
 1. Click the **Inbound** tab and add rules for all traffic from your public and private subnets to your private subnet, as the table and image show.
     This rule configuration does the following:
-    * Enables BOSH to deploy PAS and other services.
+    * Enables BOSH to deploy <%= vars.app_runtime_abbr %> and other services.
     * Enables application VMs to communicate through the router.
-    * Allows the load balancer to send traffic to Pivotal Application Service (PAS).
+    * Allows the load balancer to send traffic to <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>).
 
     <table border="1" class="nice" >
 <tr>
@@ -307,7 +307,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
 1. Click the **Inbound** tab and add rules to allow traffic to ports `80`, `443`, and `4443` from `0.0.0.0/0`, as the table and image show.
     <p class="note"><strong>Note</strong>: Allow traffic to port `4443` only if you are in an AWS cloud region that does not support AWS ALBs. For example, the GovCloud region. For more information about AWS regoins and availability zones, see <a href="https://aws.amazon.com/about-aws/global-infrastructure/">AWS Global Infrastructure</a>.</p>
 
-    <p class="note"><strong>Note:</strong> For finer control over what can reach PAS, change <code>0.0.0.0/0</code> to be more restrictive. This security group governs external access to PAS from apps such as the cf CLI and app URLs.</p>
+    <p class="note"><strong>Note:</strong> For finer control over what can reach <%= vars.app_runtime_abbr %>, change <code>0.0.0.0/0</code> to be more restrictive. This security group governs external access to <%= vars.app_runtime_abbr %> from apps such as the cf CLI and app URLs.</p>
 
     <table border="1" class="nice" >
 <tr>

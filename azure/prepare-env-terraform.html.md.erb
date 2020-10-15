@@ -7,14 +7,14 @@ owner: Ops Manager
 
 This guide describes the preparation steps required to deploy Pivotal Operations Manager to Azure using Terraform templates.
 
-The Azure Terraform templates describe a set of Azure resources and properties. For more information about how Terraform creates resources in Azure, see the [Azure Provider](https://www.terraform.io/docs/providers/azurerm/index.html) topic on the Terraform site. 
+The Azure Terraform templates describe a set of Azure resources and properties. For more information about how Terraform creates resources in Azure, see the [Azure Provider](https://www.terraform.io/docs/providers/azurerm/index.html) topic on the Terraform site.
 
-You may also find it helpful to review different deployment options in the [Reference Architecture for <%= vars.product_name %> on Azure](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/refarch/azure/azure_ref_arch.html).
+You may also find it helpful to review different deployment options in the [Reference Architecture for <%= vars.platform_name %> on Azure](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/refarch/azure/azure_ref_arch.html).
 
 
 ## <a id="prereqs"></a> Prerequisites
 
-In addition to fulfilling the prerequisites listed in the [Installing <%= vars.product_name %> on Azure](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/azure.html) topic, ensure you have the following: 
+In addition to fulfilling the prerequisites listed in the [Installing <%= vars.platform_name %> on Azure](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/azure.html) topic, ensure you have the following:
 
 * The Terraform CLI. For information about installing the Terraform CLI, see [Installing Terraform](https://www.terraform.io/intro/getting-started/install.html) in the Terraform documentation.
 
@@ -25,9 +25,9 @@ In addition to fulfilling the prerequisites listed in the [Installing <%= vars.p
 
 Before you can run Terraform commands to provision infrastructure resources, you must download the Azure Terraform Templates and create a Terraform template variables file. To download the templates and create the template variables file:
 
-1. On [Pivotal Network](https://network.pivotal.io), navigate to the Pivotal Application Service (PAS) release.
+1. On [Pivotal Network](https://network.pivotal.io), navigate to the <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) release.
 
-1. Download the Azure Terraform Templates ZIP file. You can use the templates to deploy PAS or Pivotal Container Service (PKS).
+1. Download the Azure Terraform Templates ZIP file. You can use the templates to deploy <%= vars.app_runtime_abbr %> or <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>).
 
 1. Extract the contents of the ZIP file.
 

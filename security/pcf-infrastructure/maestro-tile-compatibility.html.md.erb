@@ -21,11 +21,11 @@ For more information about CredHub Maestro, see [Getting Started with CredHub Ma
     <th>Notes</th>
   </tr>
   <tr>
-    <td>Enterprise PKS</td>
+    <td><%= vars.k8s_runtime_abbr %></td>
     <td>pivotal-container-service</td>
     <td><em>n/a</em></td>
     <td>No</td>
-    <td>You cannot use CredHub Maestro to rotate certificates for Enterprise PKS. However, if a multi-runtime <%= vars.platform_name %> deployment includes Enterprise PKS v1.8 or earlier, you must use CredHub Maestro to rotate CredHub-managed certificates for all other runtimes. For more information, see <a href="advanced-certificate-rotation.html">Advanced Certificate Rotation with CredHub Maestro</a>.</td>
+    <td>You cannot use CredHub Maestro to rotate certificates for <%= vars.k8s_runtime_abbr %>. However, if a multi-runtime <%= vars.platform_name %> deployment includes <%= vars.k8s_runtime_abbr %> v1.8 or earlier, you must use CredHub Maestro to rotate CredHub-managed certificates for all other runtimes. For more information, see <a href="advanced-certificate-rotation.html">Advanced Certificate Rotation with CredHub Maestro</a>.</td>
   </tr>
   <tr>
     <td>File Integrity Monitoring Add-on for PCF</td>
