@@ -409,9 +409,9 @@ This step assigns tags and firewall rules to Ops Manager components and VMs that
    * `default-allow-rdp`
    * `default-allow-ssh`
 
-If you are deploying **PKS only**, continue to [Next Steps](#next-steps).
+If you are deploying **<%= vars.k8s_runtime_abbr %> only**, continue to [Next Steps](#next-steps).
 
-If you are deploying **PAS or other runtimes**, proceed to the following step.
+If you are deploying **<%= vars.app_runtime_abbr %> or other runtimes**, proceed to the following step.
 
 
 ## <a id="dbs"></a> Step 6: Create Database Instance and Databases
@@ -575,7 +575,7 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
 
 1. If you use a trusted SSL certificate or already have a self-signed certificate, proceed to step 5.
 
-1. If you want to use a self-signed certificate generated during [PAS network configuration](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp-er-config.html#networking), skip over the next step of adding the HTTPS frontend configuration until after you generate the certificate in <%= vars.app_runtime_abbr %>. After you generate the certificate, return to step 5 using the following guidelines:
+1. If you want to use a self-signed certificate generated during [<%= vars.app_runtime_abbr %> network configuration](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp-er-config.html#networking), skip over the next step of adding the HTTPS frontend configuration until after you generate the certificate in <%= vars.app_runtime_abbr %>. After you generate the certificate, return to step 5 using the following guidelines:
    * Copy and paste the generated contents of the **Router SSL Termination Certificate and Private Key** fields from <%= vars.app_runtime_abbr %> into the public certificate and private key fields.
    * Since you are using a self-signed certificate, do not enter a value in the **Certificate Chain** field.
 

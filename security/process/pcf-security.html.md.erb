@@ -4,10 +4,10 @@ owner: Security
 ---
 
 This document outlines Pivotal's security policy and is addressed to operators deploying
-[<%= vars.first_product_name %>](https://network.pivotal.io/products/pivotal-cf) using Pivotal Operations Manager.
+[<%= vars.platform_name %> (<%= vars.platform_code %>)](https://network.pivotal.io/products/pivotal-cf) using Pivotal Operations Manager.
 
-For a comprehensive overview of the security architecture of each <%= vars.product_runtime %> component, see
-[PAS Security](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/concepts/security.html).
+For a comprehensive overview of the security architecture of each <%= vars.app_runtime_full %> component, see
+[<%= vars.app_runtime_abbr %> Security](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/concepts/security.html).
 
 ## <a id='monitor'></a> How Pivotal Monitors for Security Vulnerabilities
 
@@ -26,18 +26,18 @@ details about the software and hardware configuration of your system so that Piv
 
 ## <a id='notification-policy'></a> Notification Policy
 
-<%= vars.product_name %> has many customer stakeholders who need to know about security updates. When there is a
-possible security vulnerability identified for an <%= vars.product_name %> component, Pivotal does the following:
+<%= vars.platform_code %> has many customer stakeholders who need to know about security updates. When there is a
+possible security vulnerability identified for an <%= vars.platform_code %> component, Pivotal does the following:
 
-1. Assess the impact to <%= vars.product_name %>.
+1. Assess the impact to <%= vars.platform_code %>.
 
-1. If the vulnerability would affect an <%= vars.product_name %> component, Pivotal schedules an update for the
+1. If the vulnerability would affect an <%= vars.platform_code %> component, Pivotal schedules an update for the
 impacted component(s).
 
 1. Update the affected component(s) and perform system tests.
 
 1. Announce the fix publicly through the following channels:
-  1. Automated notification to end users who have downloaded or subscribed to an <%= vars.product_name %> product on
+  1. Automated notification to end users who have downloaded or subscribed to an <%= vars.platform_code %> product on
   [Pivotal Network](https://network.pivotal.io) when a new, fixed version is available.
   1. Adding a new post to [https://www.pivotal.io/security](https://www.pivotal.io/security).
 
@@ -52,11 +52,11 @@ For other vulnerabilities, Pivotal follows
 [Common Vulnerability Scoring System v3.0 standards](https://www.first.org/cvss/specification-document) when assessing
 severity.
 
-Pivotal uses Canonical's Ubuntu distribution of Linux for <%= vars.product_name %> Ubuntu stemcells and rootfs.
+Pivotal uses Canonical's Ubuntu distribution of Linux for <%= vars.platform_code %> Ubuntu stemcells and rootfs.
 Canonical provides Pivotal with support services allowing Pivotal to escalate CVEs that Pivotal determine might affect
-<%= vars.product_name %>. In general, Pivotal does not escalate to upstream open source software components or vendors
-for Medium or Low CVEs that are not yet patched. <%= vars.product_name %> can escalate on behalf of a customer for High
-or Critical CVEs. <%= vars.product_name %> customers who are interested in addressing CVEs in Ubuntu that are not yet
+<%= vars.platform_code %>. In general, Pivotal does not escalate to upstream open source software components or vendors
+for Medium or Low CVEs that are not yet patched. <%= vars.platform_code %> can escalate on behalf of a customer for High
+or Critical CVEs. <%= vars.platform_code %> customers who are interested in addressing CVEs in Ubuntu that are not yet
 patched can establish their own support relationship with [Canonical](https://www.ubuntu.com/support).
 
 Pivotal reports the severity of vulnerabilities using the following severity classes:
@@ -85,9 +85,9 @@ exploitation is believed to be extremely difficult, or for which successful expl
 
 ## <a id='release-policy'></a> Release Policy
 
-<%= vars.product_name %> schedules regular monthly releases of software in the <%= vars.product_name %> Suite to
+<%= vars.platform_code %> schedules regular monthly releases of software in the <%= vars.platform_code %> Suite to
 address Low and Medium severity vulnerability exploits. When High severity vulnerability exploits are identified,
-<%= vars.product_name %> releases fixes to software in the <%= vars.product_name %> Suite on-demand, with as fast a
+<%= vars.platform_code %> releases fixes to software in the <%= vars.platform_code %> Suite on-demand, with as fast a
 turnaround time as possible.
 
 

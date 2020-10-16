@@ -112,15 +112,15 @@ configuration that you created for your VPC.
 * [Create Network for <%= vars.k8s_runtime_abbr %>](#pks-network)
 
 If you complete this step for <%= vars.k8s_runtime_abbr %>, proceed to
-[PKS Infrastructure Network](#pks-infrastructure-network).
+[<%= vars.k8s_runtime_abbr %> Infrastructure Network](#pks-infrastructure-network).
 
 ### <a id='pas-network'></a> Create Network for <%= vars.app_runtime_abbr %>
 
 Create the following three networks:
 
-* [PAS Infrastructure Network](#pas-infrastructure-network)
-* [PAS Runtime Network](#pas-runtime-network)
-* [PAS Services Network](#pas-services-network)
+* [<%= vars.app_runtime_abbr %> Infrastructure Network](#pas-infrastructure-network)
+* [<%= vars.app_runtime_abbr %> Runtime Network](#pas-runtime-network)
+* [<%= vars.app_runtime_abbr %> Services Network](#pas-services-network)
 
 <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources
 with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name
@@ -280,9 +280,9 @@ If you complete this step for <%= vars.app_runtime_abbr %>, proceed to
 
 Create the following three networks:
 
-* [PKS Infrastructure Network](#pks-infrastructure-network)
-* [PKS Runtime Network](#pks-runtime-network)
-* [PKS Services Network](#pks-services-network)
+* [<%= vars.k8s_runtime_abbr %> Infrastructure Network](#pks-infrastructure-network)
+* [<%= vars.k8s_runtime_abbr %> Runtime Network](#pks-runtime-network)
+* [<%= vars.k8s_runtime_abbr %> Services Network](#pks-services-network)
 
 <p class="note"><strong>Note:</strong> The Azure portal sometimes displays the names of resources
 with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name
