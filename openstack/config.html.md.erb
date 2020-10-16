@@ -4,13 +4,13 @@ owner: Ops Manager
 iaas: OpenStack
 ---
 
-This topic describes how to configure BOSH Director after deploying [<%= vars.platform_name %>](https://network.pivotal.io/products/pivotal-cf) on OpenStack. Use this topic when [Installing <%= vars.platform_name %> on OpenStack](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/openstack.html).
+This topic describes how to configure BOSH Director after deploying [<%= vars.platform_name %>](https://network.pivotal.io/products/pivotal-cf) on OpenStack. Use this topic when [Installing <%= vars.platform_name %> on OpenStack](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/customizing/openstack.html).
 
 * Before beginning this procedure, ensure that you have successfully completed all steps in [Provisioning the OpenStack Infrastructure](./setup.html).
 
-* After you complete this procedure, follow the instructions in [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configure-pas.html).
+* After you complete this procedure, follow the instructions in [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configure-pas.html).
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Pivotal Operations Manager API. For more information, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Pivotal Operations Manager API. For more information, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.</p>
 
 
 ## <a id='log-in'></a> Step 1: Access Ops Manager
@@ -27,7 +27,7 @@ This topic describes how to configure BOSH Director after deploying [<%= vars.pl
 1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/pcf-director-proxy-settings.html).
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/customizing/pcf-director-proxy-settings.html).
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -78,7 +78,7 @@ This topic describes how to configure BOSH Director after deploying [<%= vars.pl
     <%= image_tag("../common/images/openstack/om-config-ssh.png", :alt => "At the top of the image is a text area labeled 'SSH Private Key', with a red asterisk to denote that it is a required field. It contains eight asterisks and has the word 'Change' in blue letters underneath. Below this is another text area labeled 'API SSL Certificate' with the words 'API SSL Certificate' in small black letters underneath. Below the API SSL Certificate text area are two checkboxes: one labeled 'Disable DHCP', and one selected checkbox labeled 'Boot From Volume'.") %>
 1. Click **Save**.
 
-1. (Optional) Click **Add OpenStack Config** to configure additional data centers. Click **Save** for each additional OpenStack config to add it successfully. For more information, see [Managing Multiple Data Centers](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/multiple-datacenters.html).
+1. (Optional) Click **Add OpenStack Config** to configure additional data centers. Click **Save** for each additional OpenStack config to add it successfully. For more information, see [Managing Multiple Data Centers](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/customizing/multiple-datacenters.html).
 
 
 ## <a id='advanced-config'></a> Step 3: (Optional) Advanced Config Page
@@ -199,8 +199,8 @@ This topic describes how to configure BOSH Director after deploying [<%= vars.pl
 
     <%= image_tag("../common/images/openstack/om-installed.png", :alt => "A pop-up window with a round, gray X button in the upper-right corner and the words 'Changed Applied' next to a round, green circle containing a checkmark. Below 'Changed Applied' are the words 'Ops Manager Director was successfully installed. We recommend that you export a backup of this installation from the actions menu.' Below this text and to the right of the pop-up window are a gray, rectangular button labeled 'Close' next to a blue, rectangular button labeled 'Return to Installation Dashboard'.") %>
 
-1. After you complete this procedure, follow the instructions in [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configure-pas.html).
+1. After you complete this procedure, follow the instructions in [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configure-pas.html).
 
 ---
 
-Return to [Installing <%= vars.platform_name %> on OpenStack](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/openstack.html).
+Return to [Installing <%= vars.platform_name %> on OpenStack](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/customizing/openstack.html).
