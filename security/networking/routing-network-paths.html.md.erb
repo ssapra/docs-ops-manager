@@ -3,7 +3,7 @@ title: Routing Network Communications
 owner: Routing
 ---
 
-This topic describes the internal network communication paths of the routing subsystem with other <%= vars.product_runtime %> (<%= vars.product_short %>) components.
+This topic describes the internal network communication paths of the routing subsystem with other <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) components.
 
 
 ## <a id="http"></a> HTTP Routing
@@ -46,7 +46,7 @@ The following table lists network communication paths for TCP routing:
 
 <sup>&#42;</sup> This communication happens through a load balancer and a Gorouter. Requests are received by Routing API on port 3000.
 
-<sup>&#8224;</sup> You can use this port range to configure the port in the <%= vars.product_short %> tile.
+<sup>&#8224;</sup> You can use this port range to configure the port in the <%= vars.app_runtime_abbr %> tile.
 
 <sup>&#42;&#42;</sup> MySQL authentication uses the MySQL native password method.
 
