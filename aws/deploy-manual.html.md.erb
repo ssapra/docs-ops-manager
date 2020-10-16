@@ -5,7 +5,7 @@ owner: Ops Manager
 
 This topic describes how to deploy Pivotal Operations Manager for <%= vars.platform_name %> on Amazon Web Services (AWS).
 
-<p class="note"><strong>Note</strong>: To install <%= vars.platform_name %> with the <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>) runtime, you must use Terraform. Manual installation is not currently supported. See <a href="https://docs.pivotal.io/pks/aws-om-install-config.html">Installing and Configuring Ops Manager on AWS</a> in the <%= vars.k8s_runtime_abbr %> documentation.</p>
+<p class="note"><strong>Note</strong>: To install <%= vars.platform_code %> with the <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>) runtime, you must use Terraform. Manual installation is not currently supported. See <a href="https://docs.pivotal.io/pks/aws-om-install-config.html">Installing and Configuring Ops Manager on AWS</a> in the <%= vars.k8s_runtime_abbr %> documentation.</p>
 
 Before you deploy Ops Manager, see the preparation steps in [Preparing to Deploy Ops Manager on AWS Manually](prepare-env-manual.html).
 
@@ -293,7 +293,7 @@ The default persistent disk value is 50&nbsp;GB. Pivotal recommends increasing t
   * A: `pcf.DOMAIN.com` points to the public IP address of the `pcf-ops-manager` EC2 instance.
   </br>
   </br>
-  Where `DOMAIN` is a domain name. <%= vars.company_name %> recommends that you use the same domain name for each record. 
+  Where `DOMAIN` is a domain name. <%= vars.company_name %> recommends that you use the same domain name for each record.
 
 
 ## <a id='pcfaws-nat'></a> Step 6: Secure the NAT Instance

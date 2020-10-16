@@ -67,7 +67,7 @@ To complete the procedures in this topic, you must have access to the output fro
       on persistent disks of all BOSH-deployed VMs, except
       for the Ops Manager VM and BOSH Director VM. See the [Configuring Amazon EBS Encryption](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/cloudform-om-ebs-config.html) topic for
       details about using Elastic Block Store (EBS) encryption.
-      <p class="note"><strong>Note:</strong> Enabling EBS encryption only encrypts Linux VMs. The Windows VMs deployed with Pivotal Application Service for Windows (PASW) are not encrypted.</p>
+      <p class="note"><strong>Note</strong>: Enabling EBS encryption only encrypts Linux VMs. The Windows VMs deployed with Pivotal Application Service for Windows (<%= vars.windows_runtime_abbr %>) are not encrypted.</p>
       * **Custom Encryption Key (Optional)** Once you enable EBS encryption, you may want to specify a custom Key Management Service (KMS) encryption key. If you don't enter a value, your custom encryption key will default to the account key. For more information, see [Configuring Amazon EBS Encryption](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/cloudform-om-ebs-config.html).
 
 1. Click **Save**.
@@ -364,7 +364,7 @@ To complete the procedures in this topic, you must have access to the output fro
 
 1. Click **Save**.
 
-    <p class="note"><strong>Note:</strong> If you are deploying PKS with a PKS workload load balancer, you must tag each AWS subnet with your PKS Kubernetes cluster unique identifier before you create the load balancer. For more information about tagging subnets with a PKS cluster unique identifier, see <a href="https://docs.pivotal.io/pks/deploy-workloads.html#aws">AWS Prerequisites</a>.</p>
+    <p class="note"><strong>Note:</strong> If you are deploying <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>) with a <%= vars.k8s_runtime_abbr %> workload load balancer, you must tag each AWS subnet with your <%= vars.k8s_runtime_abbr %> Kubernetes cluster unique identifier before you create the load balancer. For more information about tagging subnets with a <%= vars.k8s_runtime_abbr %> cluster unique identifier, see <a href="https://docs.pivotal.io/pks/deploy-workloads.html#aws">AWS Prerequisites</a>.</p>
 
     <%= vars.expand_network_azs %>
 
@@ -401,7 +401,7 @@ To complete the procedures in this topic, you must have access to the output fro
 1. Adjust any values as necessary for your deployment. Under the **Instances**, **Persistent Disk Type**, and **VM Type** fields, choose **Automatic** from the dropdown to allocate the recommended resources for the job. If the **Persistent Disk Type** field reads **None**, the job does not require persistent disk space.
     <p class="note"><strong>Note:</strong> Pivotal recommends provisioning a BOSH Director VM with at least 8&nbsp;GB memory.</p>
     <p class="note"><strong>Note:</strong> If you set a field to <strong>Automatic</strong> and the recommended resource allocation changes in a future version, Ops Manager automatically uses the new recommended allocation.</p>
-    <p class="note"><strong>Note:</strong> If you install PASW, provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
+    <p class="note"><strong>Note:</strong> If you install <%= vars.windows_runtime_abbr %>, provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
     <p class="note"><strong>Note:</strong> Ignore the Load Balancers field. See [Step 11](#load-balancer-vm-extensions) for details.</p>
 
 1. Click **Save**.
@@ -454,6 +454,6 @@ To assign your load balancer VMs to the correct target groups and security group
     <%= image_tag("../common/images/cloudform/ops-manager-complete.png", :alt => "A pop-up window with a round, gray X button in the upper-right corner and the words 'Changed Applied' next to a round, green circle containing a checkmark. Below 'Changed Applied' are the words 'Ops Manager Director was successfully installed. We recommend that you export a backup of this installation from the actions menu.' Below this text and to the right of the pop-up window are a gray, rectangular button labeled 'Close' next to a blue, rectangular button labeled 'Return to Installation Dashboard'.") %>
 
 1. After you complete this procedure, continue to the topic for the runtime you are installing:
-  * **PAS**: [Configuring PAS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html)
-  * **PKS v1.2**: [Installing PKS on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html)
-  * **PKS v1.3**: [Installing PKS on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html)
+  * **<%= vars.app_runtime_abbr %>**: [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html)
+  * **<%= vars.k8s_runtime_abbr %> v1.2**: [Installing <%= vars.k8s_runtime_abbr %> on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html)
+  * **<%= vars.k8s_runtime_abbr %> v1.3**: [Installing <%= vars.k8s_runtime_abbr %> on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html)

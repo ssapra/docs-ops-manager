@@ -36,7 +36,7 @@ Support includes maintenance updates and upgrades, bug and security fixes, and t
 
 Patch releases are more frequent and less predictable than major and minor releases. The <%= vars.product_name %> v1.6.x line provides a good example of their frequency. <%= vars.product_name %> v1.6.1 was released on October 26, 2015. Through August 2016, 36 additional patches of Elastic Runtime v1.6.x and 18 patches of <%= vars.ops_manager %> v1.6.x provided security and bug fixes to customers.
 
-Pivotal identifies security issues using standard nomenclature from [Common Vulnerabilities and Exposures (CVE)](https://cve.mitre.org/), [Ubuntu Security Notices (USN)](https://www.ubuntu.com/usn/), and other third-party sources. For more information about security fixes in core <%= vars.product_name %> code or packaged dependencies, see [<%= vars.ops_manager %> <%= vars.v_major_version %> Release Notes](http://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/opsmanager-rn.html) and [<%= vars.product_runtime %> <%= vars.v_major_version %> Release Notes](http://docs.pivotal.io/pivotalcf/2-6/pcf-release-notes/runtime-rn.html).
+Pivotal identifies security issues using standard nomenclature from [Common Vulnerabilities and Exposures (CVE)](https://cve.mitre.org/), [Ubuntu Security Notices (USN)](https://www.ubuntu.com/usn/), and other third-party sources. For more information about security fixes in core <%= vars.product_name %> code or packaged dependencies, see [<%= vars.ops_manager %> <%= vars.v_major_version %> Release Notes](http://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/pcf-release-notes/opsmanager-rn.html) and [<%= vars.product_runtime %> <%= vars.v_major_version %> Release Notes](http://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/pcf-release-notes/runtime-rn.html).
 
 The Pivotal Application Security Team maintains a running list of security fixes in <%= vars.product_name %> and <%= vars.product_name %> dependencies. To see their most recent findings, see [Pivotal Application Security Team](https://pivotal.io/security) on the Pivotal website.
 
@@ -49,7 +49,7 @@ All <%= vars.product_name %> releases pass through extensive test suites that in
 
 This section describes Pivotal's software development processes and explains compliance and regulatory standards to which Pivotal software adheres.
 
-### <a id='tdd'></a> Test-Driven Development   
+### <a id='tdd'></a> Test-Driven Development
 
 Pivotal's development process relies on a strict workflow with continuous automated testing. Pivotal R&D does not separate engineering and testing teams. Rather, every Pivot on each engineering team is responsible for ensuring the quality of their code. They write tests for all of the software components that they develop, often before writing the software itself.
 
