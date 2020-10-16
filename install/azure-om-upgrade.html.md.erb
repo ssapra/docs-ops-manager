@@ -233,9 +233,9 @@ To create an Ops Manager VM instance, do the following:
             --os-type Linux
             </pre>
             If you are using Azure China, Azure Government Cloud, or Azure Germany, replace `blob.core.windows.net` with the following:
-            * For Azure China, use `blob.core.chinacloudapi.cn`. See the [Azure documentation](https://docs.microsoft.com/en-us/azure/china/china-get-started-developer-guide) for more information.
-            * For Azure Government Cloud, use `blob.core.usgovcloudapi.net`. See the [Azure documentation](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-services-storage) for more information.
-            * For Azure Germany, use `blob.core.cloudapi.de`. See the [Azure documentation](https://docs.microsoft.com/en-us/azure/germany/germany-developer-guide) for more information.
+            * For Azure China, use `blob.core.chinacloudapi.cn`. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/china/china-get-started-developer-guide).
+            * For Azure Government Cloud, use `blob.core.usgovcloudapi.net`. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-services-storage).
+            * For Azure Germany, use `blob.core.cloudapi.de`. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/germany/germany-developer-guide).
         1. Create your Ops Manager VM, replacing `PATH-TO-PUBLIC-KEY` with the path to your public key `.pub` file, and replacing `opsman-version` and `opsman-image-version` with the version of Ops Manager you are deploying, for example `opsman-2.0.1`, `opsman-2.0.1-osdisk`, and `opsman-image-2.0.1`.
             <pre class="terminal">
              $ az vm create --name opsman-version --resource-group $RESOURCE\_GROUP \
@@ -269,4 +269,4 @@ To create an Ops Manager VM instance, do the following:
 
 ## <a id='next'></a> Next Steps
 
-After you complete this procedure, continue the upgrade instructions in Upgrading <%= vars.platform_name %> topic.
+After you complete this procedure, continue the upgrade instructions in _Upgrading <%= vars.platform_name %>_.

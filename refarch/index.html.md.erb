@@ -46,8 +46,8 @@ These topics address aspects of platform architecture and planning that the <%= 
 
 The diagram below illustrates a base architecture for <%= vars.app_runtime_abbr %> and how its network topology places and replicates <%= vars.platform_name %> and <%= vars.app_runtime_abbr %> components across subnets and Availability Zones (AZs).
 
-<%# Image from <%= vars.app_runtime_abbr %>_Base canvas of /images/v2/PCF_Reference_Architecture_2019.graffle %>
-![<%= vars.app_runtime_abbr %> Base Deployment Topology](./images/v2/export/PAS_Base.png)
+<%# Image from PAS_Base canvas of /images/v2/PCF_Reference_Architecture_2019.graffle %>
+![PAS Base Deployment Topology](./images/v2/export/PAS_Base.png)
 
 [View a larger version of this diagram](./images/v2/export/PAS_Base.png)
 
@@ -110,7 +110,7 @@ For more information, see [Global DNS Load Balancers for Multi-Foundation Enviro
 
 On IaaSes with their own HA capabilities, using the IaaS HA in conjunction with a <%= vars.platform_name %> HA topology provides the best of both worlds. Multiple AZs give <%= vars.platform_name %> redundancy, so that losing an AZ is not catastrophic. The BOSH Resurrector can then replace lost VMs as needed to repair a foundation.
 
-To back up and restore a foundation externally, use BOSH Backup and Restore (BBR). For more information, see the [BOSH Backup and Restore](https://docs.cloudfoundry.org/bbr/) documentation.
+To back up and restore a foundation externally, use BOSH Backup and Restore (BBR). For more information, see [BOSH Backup and Restore documentation](https://docs.cloudfoundry.org/bbr/).
 
 ### <a id="pas-storage"></a> Storage
 
@@ -147,7 +147,7 @@ You must also define these wildcard domain names and include them when creating 
 
 ### <a id="pas-scaling"></a> Component Scaling
 
-For recommendations on scaling <%= vars.app_runtime_abbr %> for different deployment scenarios, see [Scaling <%= vars.app_runtime_abbr %> ](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/scaling-ert-components.html).
+For recommendations on scaling <%= vars.app_runtime_abbr %> for different deployment scenarios, see [Scaling <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/scaling-ert-components.html).
 
 
 ## <a id="pks-base"></a> <%= vars.k8s_runtime_abbr %> Architecture

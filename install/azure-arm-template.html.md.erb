@@ -157,9 +157,9 @@ Azure for <%= vars.platform_name %> uses multiple general-purpose Azure storage 
     * **OpsManVHDStorageAccount**: The name of the storage account you created in [Step 1: Create Storage Account](#storage)
     * **BlobStorageContainer**: The name of the container to which you copied the Ops Manager VHD
     * **BlobStorageEndpoint**: The base URL of the storage endpoint. Leave the default endpoint unless you are using Azure China, Azure Government Cloud, or Azure Germany:
-        * For Azure China, use `blob.core.chinacloudapi.cn`. See the [Azure documentation](https://docs.microsoft.com/en-us/azure/china/china-get-started-developer-guide) for more information.
-        * For Azure Government Cloud, use `blob.core.usgovcloudapi.net`. See the [Azure documentation](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-services-storage) for more information.
-        * For Azure Germany, use `blob.core.cloudapi.de`. See the [Azure documentation](https://docs.microsoft.com/en-us/azure/germany/germany-developer-guide) for more information.
+        * For Azure China, use `blob.core.chinacloudapi.cn`. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/china/china-get-started-developer-guide).
+        * For Azure Government Cloud, use `blob.core.usgovcloudapi.net`. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-services-storage).
+        * For Azure Germany, use `blob.core.cloudapi.de`. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/germany/germany-developer-guide).
     * **AdminSSHKey**: The contents of the `opsman.pub` public key file that you created above
     * **Location**: The location to install the Ops Manager VM. For example, `westus`.
     * **Environment**: Tag template-created resources for assisting with resource management
@@ -195,4 +195,4 @@ Azure for <%= vars.platform_name %> uses multiple general-purpose Azure storage 
 1. Navigate to your DNS provider, and create an entry that points a fully qualified domain name (FQDN) in your domain to the IP address of the Ops Manager VM.
     <p class="note"><strong>Note:</strong> If the ARM template deployment does not return an IP address in the output of <code>opsMan-FQDN</code>, then visit the Azure Portal to retrieve the public IP address of the new Ops Manager virtual machine.</p>
 
-1. Continue to the [Configuring BOSH Director on Azure Manually](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/azure/config-manual.html) topic.
+1. Continue to [Configuring BOSH Director on Azure Manually](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/azure/config-manual.html).
