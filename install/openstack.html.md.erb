@@ -83,9 +83,9 @@ The following are OpenStack requirements for deploying <%= vars.platform_name %>
 * The following are requirements for using an Overlay Network with VXLAN or GRE Protocols:
   * If an overlay network is being used with VXLAN or GRE protocols, the MTU of the created VMs must be adjusted to the best practices recommended by the plugin vendor (if any).
   * DHCP must be enabled in the internal network for the MTU to be assigned to the VMs automatically.
-  * Review the [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/2-8/operating/configure-pas.html#networking) topic to adjust your MTU values.
+  * Review [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/2-8/operating/configure-pas.html#networking) to adjust your MTU values.
   * Failure to configure your overlay network correctly could cause Apps Manager to fail since applications will not be able to connect to the UAA.
-    <p class='note'><strong>Note:</strong> If you are using IPsec, your resource usage will increase by approximately 36 bytes. View the <a href="https://docs.pivotal.io/addon-ipsec/installing.html"> Installing IPsec topic</a> for information, including setting correct MTU values.</p>
+    <p class='note'><strong>Note:</strong> If you are using IPsec, your resource usage will increase by approximately 36&nbsp;bytes. For more information, including information about setting correct MTU values, see <a href="https://docs.pivotal.io/addon-ipsec/installing.html">Installing IPsec</a> in the IPsec documentation.</p>
 
 
 ## <a id='outputs'></a> Install <%= vars.platform_name %> on OpenStack with <%= vars.app_runtime_abbr %>

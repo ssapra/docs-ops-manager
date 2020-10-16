@@ -484,9 +484,9 @@ To boot Ops Manager, do the following:
             --os-type Linux
             </pre>
             If you are using Azure China, Azure Government Cloud, or Azure Germany, replace `blob.core.windows.net` with the following:
-            * For Azure China, use `blob.core.chinacloudapi.cn`. See the [Azure documentation](https://docs.microsoft.com/en-us/azure/china/china-get-started-developer-guide) for more information.
-            * For Azure Government Cloud, use `blob.core.usgovcloudapi.net`. See the [Azure documentation](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-services-storage) for more information.
-            * For Azure Germany, use `blob.core.cloudapi.de`. See the [Azure documentation](https://docs.microsoft.com/en-us/azure/germany/germany-developer-guide) for more information.
+            * For Azure China, use `blob.core.chinacloudapi.cn`. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/china/china-get-started-developer-guide).
+            * For Azure Government Cloud, use `blob.core.usgovcloudapi.net`. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-services-storage).
+            * For Azure Germany, use `blob.core.cloudapi.de`. For more information, see the [Azure documentation](https://docs.microsoft.com/en-us/azure/germany/germany-developer-guide).
         1. Create your Ops Manager VM, replacing `PATH-TO-PUBLIC-KEY` with the path to your public key `.pub` file.
             <pre class="terminal">
              $ az vm create --name opsman-2.6.x --resource-group $RESOURCE\_GROUP \
@@ -525,4 +525,4 @@ To finish configuring BOSH Director, do the following:
 
 1. Navigate to your DNS provider, and create an entry that points a fully qualified domain name (FQDN) to the public IP address of Ops Manager. As a best practice, always use the FQDN to access Ops Manager.
 
-1. Continue to the [Configuring BOSH Director on Azure Manually](config-manual.html) topic.
+1. Continue to [Configuring BOSH Director on Azure Manually](config-manual.html).

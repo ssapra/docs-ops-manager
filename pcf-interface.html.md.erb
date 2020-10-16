@@ -43,14 +43,13 @@ version numbers. For more information, see [Importing and Managing
 Stemcells](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/opsguide/managing-stemcells.html).
 
 - **E**---**Change Log**: Click this link to view and search a log of your previous
-installations. See the [Change Log Page](#changelog) section of this topic for details.
+installations. For more information, see [Change Log Page](#changelog) below.
 
 - **F**---**User Account Menu**: Click the arrow next to your username to view the menu.
 Use this menu to navigate to your **Settings** page, view **My Account** to change your
-email and password, or log out of the **Installation Dashboard**. See [My
-Account](#account_settings) of this topic for details on account information. See the
-[Settings Page](#settings) section of this topic for details on available Ops Manager
-settings.
+email and password, or log out of the **Installation Dashboard**. For details about account
+information, see [My Account](#account_settings) below. For more information about available
+Ops Manager settings, see [Settings Page](#settings) below.
 
 - **G**---**Revert**: Click the revert button to return to the previous successful
 installation. Any pending changes you have made to the current installation settings will
@@ -193,7 +192,7 @@ To change your Identity Provider (IdP) to SAML, configure the following fields:
   <li><strong>BOSH IDP Metadata</strong>: (Optional) Enter the full URL or XML BOSH IdP metadata. If left blank, the default is the same metadata as the field above.</li>
   <li><strong>SAML Admin Group</strong>: Enter the name of the SAML group that contains all of the Ops Manager administrators. This field is case-sensitive.</li>
   <li><strong>Groups Attribute</strong>: Enter the groups attribute tag name with which you configured the SAML server. This field is case-sensitive.</li>
-  <li><strong>Provision an admin client in the Bosh UAA</strong>: Enable if you want to provision an admin client in the BOSH UAA. For more information, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/opsmanager-create-bosh-client.html#saml">Provision Admin Client</a> in the <em>Creating UAA Clients for BOSH Director</em> topic.</li>
+  <li><strong>Provision an admin client in the Bosh UAA</strong>: Enable if you want to provision an admin client in the BOSH UAA. For more information, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/opsmanager-create-bosh-client.html#saml">Provision Admin Client</a> in <em>Creating UAA Clients for BOSH Director</em>.</li>
 </ul>
 
 ### LDAP Settings
@@ -223,8 +222,7 @@ text beneath and one field: 'Set API Token'. A button labeled 'Add Token' is at 
 ### <a id="vmware-tanzu"></a>VMware Tanzu Network Settings
 
 Enter your [VMware Tanzu Network
-API](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/add-delete.html#pivnet-api) token and click **Add Token** to connect your **Installation
-Dashboard** to VMware Tanzu Network.
+API](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/add-delete.html#pivnet-api) token and click **Add Token** to connect your **Installation Dashboard** to VMware Tanzu Network.
 
 ### Proxy Settings
 If you are using a proxy to connect to Ops Manager, update your
