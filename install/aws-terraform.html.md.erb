@@ -19,9 +19,9 @@ you can install either the <%= vars.app_runtime_full %> (<%= vars.app_runtime_ab
 
 To install <%= vars.ops_manager %> using Terraform:
 
-1. Deploy <%= vars.ops_manager %>. For more information, see [Deploying <%= vars.ops_manager %> on AWS Using Terraform](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/aws/prepare-env-terraform.html).
+1. Deploy <%= vars.ops_manager %>. For more information, see [Deploying <%= vars.ops_manager %> on AWS Using Terraform](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/aws/prepare-env-terraform.html).
 
-1. Configure BOSH Director. For more information, see [Configuring BOSH Director on AWS Using Terraform](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/aws/config-terraform.html).
+1. Configure BOSH Director. For more information, see [Configuring BOSH Director on AWS Using Terraform](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/aws/config-terraform.html).
 
 ## <a id="next"></a> Next Steps
 
@@ -30,5 +30,5 @@ You can install the <%= vars.app_runtime_abbr %> runtime or the <%= vars.k8s_run
 
 For information about installing and configuring a runtime, see the following:
 
-* [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html).
-* [Installing <%= vars.k8s_runtime_abbr %> on AWS](https://docs.pivotal.io/tkgi/installing-aws.html).
+* [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configure-pas.html).
+* [Installing <%= vars.k8s_runtime_abbr %> on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html).

@@ -7,7 +7,7 @@ install_type: terraform
 
 This topic describes how to configure the BOSH Director tile within <%= vars.ops_manager %> on Azure after [Deploying <%= vars.ops_manager %> to Azure](./prepare-env-terraform.html).
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the <%= vars.ops_manager %> API. For more information, see the <a href="../install/ops-man-api.html">Using the <%= vars.ops_manager %> API</a> topic.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the <%= vars.ops_manager %> API. For more information, see <a href="../install/ops-man-api.html">Using the <%= vars.ops_manager %> API</a>.</p>
 
 
 ## <a id='prerequisites'></a> Prerequisite
@@ -29,7 +29,7 @@ To complete the procedures in this topic, you must have access to the output gen
 1.  When redirected to the **Internal Authentication** page, you must complete the following steps:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the <%= vars.ops_manager %> datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/pcf-director-proxy-settings.html).
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -52,10 +52,10 @@ To complete the procedures in this topic, you must have access to the output gen
 
     <%= image_tag("../common/images/azure/azure-config.png", :alt => "At the top of the image is the header 'BOSH Director for Azure', below which are three tabs in a horizontal row labeled 'Settings', 'Status', and 'Credentials'. The Settings tab is highlighted in light gray to show that it is selected, while the others are dark gray. Below the Settings tab is a list of panes on the left labeled, from top to bottom: 'Azure Config', 'Director Config', 'Create Networks', 'Assign AZs and Networks', 'Security', 'BOSH DNS Config', 'Syslog', and 'Resource Config'. Each pane has a green circle with a checkmark inside to the left of its label. Azure Config is highlighted in dark gray to show that it is selected. To the right of the image is the header 'Azure Config', below which are text fields labeled, from top to bottom: 'Subscription ID', 'Tenant ID', 'Application ID', 'Client Secret', 'Resource Group Name', and 'BOSH Storage Account Name'. All of these fields are marked with red asterisks to denote that they are mandatory fields. The 'Client Secret' field contains eight asterisks, while the word 'Change' in blue letters is underneath the text field. Below 'BOSH Storage Account Name' are the words 'Cloud Storage Type' with two options underneath: a selected radio button labeled 'Use Managed Disks', below which is a dropdown labeled 'Storage Account Type' with 'Premium_LRS' selected; and a radio button labeled 'Use Storage Accounts', below which is a grayed-out text field labeled 'Deployments Storage Account Name'. Below this are more text fields, labeled 'Default Security Group' and 'SSH Public Key', the latter of which has a red asterisk. Next is a text area labeled 'SSH Private Key' with a red asterisk. Below the text area are the words 'Availability Mode' with two options underneath: a radio button labeled 'Availability Sets' and a selected radio button labeled 'Availability Zones'. Below these are the words 'Azure Environment' with five options underneath: a selected radio button labeled 'Azure Commercial Cloud', and four more radio buttons labeled, from top to bottom, 'Azure US Gov Cloud', 'Azure Germany Cloud', 'Azure China Cloud', and 'Azure Stack'. Below 'Azure Stack' are several grayed-out text fields and one text area, labeled, from top to bottom: 'Tenant Management Resource Endpoint', 'Domain', 'Authentication', 'Azure Stack Endpoint Prefix', and 'Azure Stack CA Certificate'. All of these have red asterisks to denote they are mandatory fields when the 'Azure Stack' option is selected. Below the 'Azure Stack CA Certificate' text area is a blue, rectangular button labeled 'Save'.") %>
 
-1. Complete the following fields with information you obtained in the [Preparing to Deploy <%= vars.ops_manager %> on Azure Using Terraform](./prepare-azure-terraform.html) topic.
+1. Complete the following fields with information you obtained in [Preparing to Deploy <%= vars.ops_manager %> on Azure Using Terraform](./prepare-azure-terraform.html).
 	* **Subscription ID**: Enter the ID of your Azure subscription.
 	* **Tenant ID**: Enter your `TENANT_ID`.
-	* **Application ID**: Enter the `APPLICATION_ID` that you created in the [Step 3: Create an AAD Application](./prepare-azure-terraform.html#create-aad) step of the _Preparing to Deploy <%= vars.ops_manager %> on Azure Using Terraform_ topic.
+	* **Application ID**: Enter the `APPLICATION_ID` that you created in [Step 3: Create an AAD Application](./prepare-azure-terraform.html#create-aad) in _Preparing to Deploy <%= vars.ops_manager %> on Azure Using Terraform_.
 	* **Client Secret**: Enter your `CLIENT_SECRET`.
 
 1. Complete the following fields:
@@ -478,6 +478,6 @@ To create an application gateway, follow the procedures in [Create an applicatio
 
 After you complete this procedure, do one of the following:
 <ul>
-  <li>If you are deploying <%= vars.app_runtime_abbr %>, follow the procedures in [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html).</li>
-  <li>If you are deploying <%= vars.k8s_runtime_abbr %>, follow the procedures in [Creating Managed Identities in Azure for <%= vars.k8s_runtime_abbr %>](https://docs.pivotal.io/tkgi/azure-managed-identities.html).</li>
+  <li>If you are deploying <%= vars.app_runtime_abbr %>, follow the procedures in [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configure-pas.html).</li>
+  <li>If you are deploying <%= vars.k8s_runtime_abbr %>, follow the procedures in [Creating Managed Identities in Azure for <%= vars.k8s_runtime_abbr %>](https://docs.pivotal.io/pks/azure-managed-identities.html).</li>
 </ul>

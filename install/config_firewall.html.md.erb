@@ -16,7 +16,7 @@ This topic describes how to configure your firewall and how to verify that compo
 * **8844:** Routes from <%= vars.ops_manager %> VM to BOSH CredHub.
 * **8443:** Routes from <%= vars.ops_manager %> VM to BOSH Director UAA.
 * **6868:** Routes to the BOSH Agent.
-* **2222:** Necessary for using App SSH. For more information, see [How Diego Runs an App](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/concepts/diego/diego-architecture.html#diagram) in _Diego Components and Architecture_.
+* **2222:** Necessary for using App SSH. For more information, see [How Diego Runs an App](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/concepts/#diagram) in _Diego Components and Architecture_.
 * **25595:** Routes from the Traffic Controller to the BOSH Director, to enable sending BOSH health metrics to the Firehose.
 
 UDP port 123 must be open if you want to use an external NTP server.

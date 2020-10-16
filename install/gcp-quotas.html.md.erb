@@ -99,6 +99,6 @@ The following table lists recommended resource quotas for a single <%= vars.plat
 <sup>&#42;</sup> Assuming a deployment with 100 app instances.<br/>
 <sup>&#42;</sup><sup>&#42;</sup>  Assuming a SNAT topology.
 
-To view production-level deployment options for <%= vars.platform_name %> on GCP, see the [Reference Architecture for <%= vars.platform_name %> on GCP](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/plan/gcp/gcp_ref_arch.html).
+To view production-level deployment options for <%= vars.platform_name %> on GCP, see the [Reference Architecture for <%= vars.platform_name %> on GCP](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/plan/gcp/gcp_ref_arch.html).
 
-For instructions about setting up the GCP resources required to deploy <%= vars.platform_name %>, see [Preparing to Deploy <%= vars.ops_manager %> on GCP Manually](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/gcp/prepare-env-manual.html).
+For instructions about setting up the GCP resources required to deploy <%= vars.platform_name %>, see [Preparing to Deploy <%= vars.ops_manager %> on GCP Manually](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/gcp/prepare-env-manual.html).
