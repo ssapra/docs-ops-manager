@@ -118,19 +118,19 @@ To back up and restore a foundation externally, use BOSH Backup and Restore (BBR
 
 <%= vars.app_runtime_abbr %> requires disk storage for each component, for both persistent data and to allocate to ephemeral data. You size these disks in the **Resource Config** pane of the <%= vars.app_runtime_abbr %> tile. For more information about storage configuration and capacity planning, see the corresponding section in the [reference architecture for your IaaS](#topics).
 
-The platform also requires you to configure file storage for large shared objects. These blobstores can be external or internal. For details, see [Configuring File Storage for <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/pas-file-storage.html).
+The platform also requires you to configure file storage for large shared objects. These blobstores can be external or internal. For details, see [Configuring File Storage for <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/pas-file-storage.html).
 
 ### <a id="pas-security"></a> Security
 
 For information about how <%= vars.app_runtime_abbr %> implements security, see:
 
-* [<%= vars.platform_name %> Infrastructure Security](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/security/pcf-infrastructure/index.html)
+* [<%= vars.platform_name %> Infrastructure Security](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.','-') %>/security/pcf-infrastructure/index.html)
 
-* [Security Concepts](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/security/concepts/index.html)
+* [Security Concepts](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.','-') %>/security/concepts/index.html)
 
-* [Certificates and TLS in <%= vars.platform_name %>](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/security/pcf-infrastructure/certificates-index.html)
+* [Certificates and TLS in <%= vars.platform_name %>](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.','-') %>/security/pcf-infrastructure/certificates-index.html)
 
-* [Network Communication Paths in <%= vars.platform_name %>](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/security/networking/#net_commpaths) in _Network Security_
+* [Network Communication Paths in <%= vars.platform_name %>](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.','-') %>/security/networking/#net_commpaths) in _Network Security_
 
 ### <a id="pas-domains"></a> Domain Names
 
@@ -148,7 +148,7 @@ You must also define these wildcard domain names and include them when creating 
 
 ### <a id="pas-scaling"></a> Component Scaling
 
-For recommendations on scaling <%= vars.app_runtime_abbr %> for different deployment scenarios, see [Scaling <%= vars.app_runtime_abbr %> ](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/scaling-ert-components.html).
+For recommendations on scaling <%= vars.app_runtime_abbr %> for different deployment scenarios, see [Scaling <%= vars.app_runtime_abbr %> ](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/scaling-ert-components.html).
 
 
 ## <a id="pks-base"></a> <%= vars.k8s_runtime_full %> Architecture
@@ -169,7 +169,7 @@ The table below describes the internal component placements shown in the diagram
 | <%= vars.ops_manager %> VM | Deployed on one of the subnets. Accessible by fully-qualified domain name (FQDN) or through an optional jumpbox. |
 | BOSH Director | Deployed on the infrastructure subnet. |
 | Jumpbox | Optional. Deployed on the infrastructure subnet for accessing <%= vars.k8s_runtime_abbr %> management components such as <%= vars.ops_manager %> and the `kubectl` command line interface. |
-| <%= vars.k8s_runtime_abbr %> API | Deployed as a service broker VM on the <%= vars.k8s_runtime_abbr %> services subnet. Handles <%= vars.k8s_runtime_abbr %> API and service adapter requests, and manages <%= vars.k8s_runtime_abbr %> clusters. For more information, see [Enterprise PKS Components](https://docs.pivotal.io/pks/index.html#components) in _Enterprise <%= vars.k8s_runtime_full %> (Enterprise <%= vars.k8s_runtime_abbr %>)_. |
+| <%= vars.k8s_runtime_abbr %> API | Deployed as a service broker VM on the <%= vars.k8s_runtime_abbr %> services subnet. Handles <%= vars.k8s_runtime_abbr %> API and service adapter requests, and manages <%= vars.k8s_runtime_abbr %> clusters. For more information, see [<%= vars.k8s_runtime_abbr %> Components](https://docs.pivotal.io/pks/index.html#components) in _Enterprise <%= vars.k8s_runtime_full %> (Enterprise <%= vars.k8s_runtime_abbr %>)_. |
 | Harbor tile | Optional container images registry, typically deployed to the services subnet. |
 | <%= vars.k8s_runtime_abbr %> Cluster | Deployed to a dynamically-created, dedicated <%= vars.k8s_runtime_abbr %> cluster subnet. Each cluster consists of worker nodes that run the workloads, or apps, and one or more master nodes. |
 

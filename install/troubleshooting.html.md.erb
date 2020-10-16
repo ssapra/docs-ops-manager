@@ -172,7 +172,7 @@ If users receive `Out of Disk Space` errors when trying to push apps, this can m
 Diego cells may be running out of disk space capacity.
 
 To perform a detailed analysis of disk usage by containers and host VMs in your <%= vars.platform_name %> deployment,
-see [Examining GrootFS Disk Usage](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/adminguide/).
+see [Examining GrootFS Disk Usage](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/adminguide/examining_grootfs_disk.html).
 
 ### <a id='vsphere_fails'></a>Installing BOSH Director Fails in vSphere ###
 
@@ -217,7 +217,7 @@ When MySQL cannot communicate with UAA, <%= vars.ops_manager %> shows the follow
 > **Error: 'mysql_monitor/12a3b456-cd7e-8fgh-9012-345678b90ijk (0)' is not running after update. Review logs for failed jobs: replication-canary.**
 
 If you see this error, create firewall rules that allow MySQL to reach UAA, using
-[MySQL Network Communications](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/security/networking/mysql-network-paths.html) as a
+[MySQL Network Communications](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.','-') %>/security/networking/mysql-network-paths.html) as a
 reference.
 
 ### <a id='ip_address_taken'></a><%= vars.ops_manager %> Hangs During MicroBOSH Install or HAProxy States "IP Address Already Taken" ###
@@ -275,6 +275,6 @@ This section describes various issues you might encounter when installing
 ### <a id='DNS_res_fails'></a>DNS Resolution Fails ###
 
 When you install <%= vars.platform_name %> in an environment that uses a strong firewall, the
-firewall might block DNS resolution. To resolve this issue, refer to
-[Verify Ops Manager Resolves DNS Entries Behind a Firewall](./config_firewall.html#DNS_fails) in
+firewall might block DNS resolution. To resolve this issue, see
+[Verify Ops Manager Resolves DNS Entries Behind a Firewall](config_firewall.html#DNS_fails) in
 _Preparing Your Firewall_.
