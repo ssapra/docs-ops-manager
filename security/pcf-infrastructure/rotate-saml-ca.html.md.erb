@@ -40,22 +40,22 @@ To regenerate and rotate SAML SP certificates without disrupting <%= vars.app_ru
 
 1. For <%= vars.app_runtime_abbr %>, follow the procedure in the table below that corresponds to your use case.
 This includes downloading and importing a new certificate and updated SAML metadata in your IDP.
-  <table border="1">
+<table border="1">
   <tr>
     <th>Solution Name</th>
     <th>Procedure</th>
   </tr>
   <tr>
     <td><a href='https://www.ca.com/us/securecenter/ca-single-sign-on.aspx'>CA Single Sign-On aka CA SiteMinder</a></td>
-    <td><a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/opsguide//https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/opsguide//opsguide/ca-sso-config.html">Configuring CA as an Identity Provider</a></td>
+    <td><a href="https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/ca-sso-config.html">Configuring CA as an Identity Provider</a></td>
   </tr>
   <tr>
     <td><a href='https://www.pingidentity.com/en/products/pingfederate.html'>PingFederate</a></td>
-    <td><a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/opsguide//https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/opsguide//opsguide/ping-federate-sso-configuration.html">Configuring PingFederate as an Identity Provider</a></td>
+    <td><a href="https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/ping-federate-sso-configuration.html">Configuring PingFederate as an Identity Provider</a></td>
   </tr>
   <tr>
     <td><a href='https://technet.microsoft.com/en-us/windowsserver/dd448613.aspx'>Active Directory Federation Services (AD FS)</a></td>
-    <td><a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/opsguide//https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/opsguide//opsguide/adfs-sso-configuration.html">Configuring AD FS as an Identity Provider</a></td>
+    <td><a href="https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.','-') %>/opsguide/adfs-sso-configuration.html">Configuring AD FS as an Identity Provider</a></td>
   </tr>
 </table>
 
