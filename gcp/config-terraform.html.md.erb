@@ -73,11 +73,11 @@ Use the `ops_manager_dns` value from running `terraform output`.
   <div class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation.
     <ul>
 <<<<<<< HEAD
-      <li>For configuring a PAS deployment with multiple availability zones, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</li>
-      <li>For configuring a PKS deployment for distributing workloads across multiple availability zones and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
+      <li>For configuring a <%= vars.app_runtime_abbr %> deployment with multiple availability zones, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</li>
+      <li>For configuring a <%= vars.k8s_runtime_abbr %> deployment for distributing workloads across multiple availability zones and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
 =======
       <li>For configuring a <%= vars.app_runtime_abbr %> deployment with multiple availability zones, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</li>
-      <li>For configuring a <%= vars.k8s_runtime%> deployment for distributing workloads across multiple availability zones and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
+      <li>For configuring a <%= vars.k8s_runtime_abbr %> deployment for distributing workloads across multiple availability zones and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
 >>>>>>> eae576b9... [#175258535] Inserted, corrected variables
     </ul>
   </div>
@@ -218,7 +218,7 @@ Use the `ops_manager_dns` value from running `terraform output`.
 1. Verify that the **Internet Connected** checkbox for every job is checked. The Terraform templates do not provision a Network Address Translation (NAT) box for internet connectivity to your VMs, so instead VMs are provided with ephemeral public IP addresses to allow the jobs to reach the internet.
    <p class="note"><strong>Note:</strong> If you want to provision a Network Address Translation (NAT) box to provide internet connectivity to your VMs instead of providing them with public IP addresses, deselect the <strong>Internet Connected</strong> checkboxes. For more information about using NAT in GCP, see the <a href="https://cloud.google.com/compute/docs/networking">GCP documentation</a>.</p>
 
-<p class="note"><strong>Note:</strong> If you install Pivotal Application Service for Windows (<%= vars.windows_runtime_abbr %>), provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
+<p class="note"><strong>Note:</strong> If you install <%= vars.windows_runtime_full %> (<%= vars.windows_runtime_abbr %>), provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
 
 ## <a id='custom-vm-extensions'></a> Step 10: (Optional) Add Custom VM Extensions
 
@@ -242,5 +242,5 @@ Use the `ops_manager_dns` value from running `terraform output`.
 After you complete this procedure, follow the instructions for the runtime you intend to install.
 <ul>
   <li>To deploy <%= vars.app_runtime_abbr %>, see [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html).</li>
-  <li>To prepare to deploy <%= vars.k8s_runtime%>, see [Creating Service Accounts in GCP for <%= vars.k8s_runtime%>](https://docs.pivotal.io/pks/gcp-service-accounts.html).</li>
+  <li>To prepare to deploy <%= vars.k8s_runtime_abbr %>, see [Creating Service Accounts in GCP for <%= vars.k8s_runtime_abbr %>](https://docs.pivotal.io/pks/gcp-service-accounts.html).</li>
 </ul>
