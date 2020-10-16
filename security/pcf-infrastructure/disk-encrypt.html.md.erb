@@ -3,7 +3,7 @@ title: Disk Encryption
 owner: Security
 ---
 
-This topic describes how to secure <%= vars.product_name_full %> (<%= vars.product_name %>) VMs by encrypting their
+This topic describes how to secure <%= vars.platform_name %> (<%= vars.platform_code %>) VMs by encrypting their
 disks or rotating their disk encryption keys.
 
 
@@ -12,7 +12,7 @@ disks or rotating their disk encryption keys.
 Disk encryption protects data integrity if computing resources are stolen physically.
 
 Disk encryption for VMs works at the IaaS level. An IaaS encrypts disks when it first creates them, or re-encrypts them
-when it rotates encryption keys. To encrypt disks in <%= vars.product_name %>, you must:
+when it rotates encryption keys. To encrypt disks in <%= vars.platform_code %>, you must:
 
 1. Configure the IaaS to encrypt disks when it creates or re-creates them.
 
@@ -20,9 +20,9 @@ when it rotates encryption keys. To encrypt disks in <%= vars.product_name %>, y
 
 The procedures below describe how to do this for each IaaS.
 
-### <a id='disks'></a> Disks You Can Encrypt on a <%= vars.product_name %> VM
+### <a id='disks'></a> Disks You Can Encrypt on a <%= vars.platform_code %> VM
 
-The disks you can encrypt on a <%= vars.product_name %> VM are:
+The disks you can encrypt on a <%= vars.platform_code %> VM are:
 
 * The root file system for the VM. For BOSH-created VMs, this comes from the stemcell.
 
@@ -35,7 +35,7 @@ The disks you can encrypt on a <%= vars.product_name %> VM are:
 For each IaaS, there are two disk encryption procedures, which encrypt different VMs:
 
 * The **BOSH Director** procedure encrypts the disks used by the BOSH Director VM when you first create a
-<%= vars.product_name %> environment.
+<%= vars.platform_code %> environment.
 
 * The **BOSH-deployed VM** procedure encrypts disks for the VMs that the BOSH Director creates, after BOSH has been
 deployed.
@@ -79,7 +79,7 @@ To initiate or rotate disk encryption for BOSH-deployed VMs on Azure:
 
 1. Log in to Azure Portal.
 
-1. Encrypt new and existing <%= vars.product_name %> VMs by following the procedure in
+1. Encrypt new and existing <%= vars.platform_code %> VMs by following the procedure in
 [Azure Disk Encryption for virtual machines and virtual machine scale sets](https://docs.microsoft.com/en-us/azure/security/fundamentals/azure-disk-encryption-vms-vmss)
 in the Microsoft Azure documentation.
 
@@ -129,9 +129,9 @@ rotated disk encryption keys. To manually recreate disks:
   * **Ephemeral Disks:** In the **Director Config** pane of the <%= vars.ops_manager %> tile, enable the
     **Recreate All VMs** checkbox.
   * **Persistent Disks**
-    * <%= vars.product_name %> v2.3 and later: In the **Director Config** pane of the <%= vars.ops_manager %> tile,
+    * <%= vars.platform_code %> v2.3 and later: In the **Director Config** pane of the <%= vars.ops_manager %> tile,
     enable the **Recreate All Persistent Disks** checkbox.
-    * <%= vars.product_name %> v2.2 and earlier: In the **Resource Config** pane of all tiles, change the disk or VM
+    * <%= vars.platform_code %> v2.2 and earlier: In the **Resource Config** pane of all tiles, change the disk or VM
     sizes of all VMs that you need to encrypt.
 
 1. Click **Apply Changes**.

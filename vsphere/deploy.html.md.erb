@@ -13,9 +13,9 @@ The instructions in this topic are based on vSphere 6.5 using the vSphere Client
 
 For security purposes, VMware requires a dedicated instance of Ops Manager for use with <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>).
 
-<p class="note warning"><strong>Warning:</strong> If you are installing <%= vars.k8s_runtime %> on vSphere with NSX-T
+<p class="note warning"><strong>Warning:</strong> If you are installing <%= vars.k8s_runtime_abbr %> on vSphere with NSX-T
 integration, follow the instructions in
-<a href="https://docs.pivotal.io/pks/vsphere-nsxt-om-deploy.html">Deploying Ops Manager with NSX-T for <%= vars.k8s_runtime %></a> instead of performing the steps described in this topic.</p>
+<a href="https://docs.pivotal.io/pks/vsphere-nsxt-om-deploy.html">Deploying Ops Manager with NSX-T for <%= vars.k8s_runtime_abbr %></a> instead of performing the steps described in this topic.</p>
 
 ## <a id="prepare-vsphere"></a> Prepare vSphere
 
@@ -44,7 +44,7 @@ integration, follow the instructions in
 1. Create a resource pool for the management components in your deployment. Resource pools are
 vSphere objects used to organize resources.
     <p class="note"><strong>Note:</strong> The management resource pool separates non-HA components
-    such as Ops Manager and BOSH Director. For example, if you deploy Ops Manager for use with <%= vars.k8s_runtime %>,
+    such as Ops Manager and BOSH Director. For example, if you deploy Ops Manager for use with <%= vars.k8s_runtime_abbr %>,
     the <%= vars.k8s_runtime_abbr %> management plane includes Ops Manager, BOSH Director, the <%= vars.k8s_runtime_abbr %> control plane, and
     Harbor(optional).</p>
 

@@ -66,7 +66,7 @@ Before you can run Terraform commands to provision infrastructure resources,
 you must download the GCP Terraform Templates and create a Terraform template variables
 file as described below:
 
-1. On [Pivotal Network](https://network.pivotal.io), navigate to the Pivotal Application Service (<%= vars.app_runtime_abbr %>) release.
+1. On [Pivotal Network](https://network.pivotal.io), navigate to the <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) release.
 
 1. Download the GCP Terraform ZIP file.
 
@@ -212,7 +212,7 @@ ISO_SEG_SSL_KEY
 
 ### <a id="cloudsql"></a> External Database
 
-1. If you want to use an external Google Cloud SQL database for Ops Manager and Pivotal Application Service (<%= vars.app_runtime_abbr %>), add the following to your `terraform.tfvars` file:
+1. If you want to use an external Google Cloud SQL database for Ops Manager and <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>), add the following to your `terraform.tfvars` file:
 
     ```
     external_database = true

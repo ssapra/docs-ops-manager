@@ -15,7 +15,7 @@ Leaf certificates are signed by a CA and are used to identify resources in PCF. 
 
 The following types of PCF certificates require planned rotation:
 
-* **Ops Manager Root CA**: The Ops Manager root CA issues other certificates that <%= vars.product_name %> uses. The
+* **Ops Manager Root CA**: The Ops Manager root CA issues other certificates that <%= vars.platform_code %> uses. The
   root CA can be a Pivotal-generated CA or your own custom CA. The Ops Manager root CA expires four years after
   creation. For more information about viewing the root CAs for Ops Manager, see
 [Listing the Root Certificate Authorities](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/opsman-api/#listing-the-root-certificate-authorities). 
@@ -57,5 +57,5 @@ In addition to the types of certificates listed above, some Pivotal products iss
 not managed by or visible to the Ops Manager API. These tile certificates do not require planned rotation because they
 rotate automatically with product upgrades.
 
-Pivotal Application Service (<%= vars.app_runtime_abbr %>) and Pivotal Container Service (<%= vars.k8s_runtime_abbr %>) both use tile certificates in addition to their
+<%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) and <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>) both use tile certificates in addition to their
 Ops Manager certificates.
