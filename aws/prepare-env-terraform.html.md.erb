@@ -88,7 +88,7 @@ for your runtime.
     </tr>
     <tr>
       <td><code>YOUR-ENVIRONMENT-NAME</code></td>
-      <td>Enter a name to use to identify resources in AWS. Terraform prepends the names of the resources it creates with this environment name. 
+      <td>Enter a name to use to identify resources in AWS. Terraform prepends the names of the resources it creates with this environment name.
       <p class="note"><strong>Note</strong>: You can only enter lowercase alphanumeric characters and hyphens. Examples include <code>pcf</code>, <code>pas</code>, and <code>pks</code>.</td>
     </tr>
     <tr>
@@ -123,7 +123,7 @@ for your runtime.
     </tr>
     <tr>
       <td><code>YOUR-CERTIFICATE</code></td>
-      <td>Enter a certificate to use for HTTP load balancing. For production environments, use a certificate from a Certificate Authority (CA). For test environments, you can use a self-signed certificate. 
+      <td>Enter a certificate to use for HTTP load balancing. For production environments, use a certificate from a Certificate Authority (CA). For test environments, you can use a self-signed certificate.
 
       Your certificate must specify your system domain as the common name. Your system domain is <code>YOUR-ENVIRONMENT-NAME.YOUR-DNS-SUFFIX</code>.
 
@@ -141,7 +141,7 @@ for your runtime.
 Complete this step if you want to do any of the following in PAS:
 
 - Use an AWS Relational Database Service (RDS) for your deployment. For more information, see [Getting started with Amazon RDS](https://aws.amazon.com/rds/resources/) in Amazon RDS resources.
-- Deploy the Isolation Segment tile.
+- Deploy the <%= vars.segment_runtime_full %> tile.
 
 In your `terraform.tfvars` file, specify the appropriate variables from the sections below.
 
@@ -149,9 +149,9 @@ In your `terraform.tfvars` file, specify the appropriate variables from the sect
 
 ### <a id="iso_seg"></a> Isolation Segments
 
-If you plan to deploy the Isolation Segment tile, add the following variables to your `terraform.tfvars` file,
+If you plan to deploy the <%= vars.segment_runtime_full %> tile, add the following variables to your `terraform.tfvars` file,
 replacing `YOUR-CERTIFICATE` and `YOUR-PRIVATE-KEY` with a certificate and private key.
-This causes terraform to create an additional HTTP load balancer across three availability zones to use for the Isolation Segment tile. 
+This causes terraform to create an additional HTTP load balancer across three availability zones to use for the <%= vars.segment_runtime_full %> tile.
 
 ```
 create_isoseg_resources = 1
@@ -171,7 +171,7 @@ ISO_SEG_SSL_KEY
 
 ### <a id="cloudsql"></a> RDS
 
-1. If you want to use an RDS for Ops Manager and PAS, add the following to your `terraform.tfvars` file: 
+1. If you want to use an RDS for Ops Manager and PAS, add the following to your `terraform.tfvars` file:
 
     ```
     rds_instance_count = 1
@@ -188,23 +188,25 @@ ISO_SEG_SSL_KEY
 
 Follow these steps to use the Terraform CLI to create resources on AWS:
 
-1. From the directory that contains the Terraform files, run `terraform init` to initialize the directory based on the information you specified in the `terraform.tfvars` file. 
-  
-  ```
-  terraform init
-  ```
+
+1. From the directory that contains the Terraform files, run `terraform init` to initialize the directory based on the information you specified in the `terraform.tfvars` file.
+
+    ```
+    terraform init
+    ```
 
 1. Run `terraform plan -out=plan` to create the execution plan for Terraform.
-  
-  ```
-  terraform plan -out=plan
-  ```
 
-1. Run `terraform apply plan` to execute the plan from the previous step. It may take several minutes for Terraform to create all the resources in AWS. 
-  
-  ```
-  terraform apply plan
-  ```
+    ```
+    terraform plan -out=plan
+    ```
+
+
+1. Run `terraform apply plan` to execute the plan from the previous step. It may take several minutes for Terraform to create all the resources in AWS.
+
+    ```
+    terraform apply plan
+    ```
 
 
 ## <a id="dns"></a> Step 4: Create DNS Record
