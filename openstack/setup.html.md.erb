@@ -6,9 +6,9 @@ owner: Ops Manager
 
 
 This guide describes how to provision the OpenStack infrastructure where you
-need to install [<%= vars.platform_name %>](https://network.pivotal.io/products/pivotal-cf). Use this topic when [Installing <%= vars.platform_name %> on OpenStack](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/openstack.html).
+need to install [<%= vars.platform_name %>](https://network.pivotal.io/products/pivotal-cf). Use this topic when [Installing <%= vars.platform_name %> on OpenStack](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/openstack.html).
 
-After completing this procedure, complete all of the steps in the [Configuring BOSH Director on OpenStack](config.html) and [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html) topics.
+After completing this procedure, complete all of the steps in [Configuring BOSH Director on OpenStack](config.html) and [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configure-pas.html).
 
 <p class="note"><strong>Note:</strong> This document uses Mirantis OpenStack for screenshots and examples. The screens of your OpenStack vendor configuration interface may differ.</p>
 
@@ -331,8 +331,8 @@ You must use this fully qualified domain name when you log into <%= vars.ops_man
 
 ## <a id='configure-ops'></a> Step 10: Configure BOSH Director for OpenStack
 
-After completing this procedure, complete all of the steps in the [Configuring BOSH Director on OpenStack](config.html) and [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html) topics.
+After completing this procedure, complete all of the steps in the [Configuring BOSH Director on OpenStack](config.html) and [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configure-pas.html)s.
 
 ---
 
-Return to [Installing <%= vars.platform_name %> on OpenStack](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/openstack.html).
+Return to [Installing <%= vars.platform_name %> on OpenStack](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/openstack.html).

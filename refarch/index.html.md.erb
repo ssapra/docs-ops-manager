@@ -47,7 +47,7 @@ These topics address aspects of platform architecture and planning that the <%= 
 The diagram below illustrates a base architecture for <%= vars.app_runtime_abbr %> and how its network topology places and replicates <%= vars.app_runtime_abbr %> components across subnets and availability zones (AZs).
 
 <%# Image from PAS_Base canvas of /images/v2/PCF_Reference_Architecture_2019.graffle %>
-![<%= vars.app_runtime_abbr %> Base Deployment Topology](./images/v2/export/PAS_Base.png)
+![TAS for VMs Base Deployment Topology](./images/v2/export/PAS_Base.png)
 
 [View a larger version of this diagram](./images/v2/export/PAS_Base.png)
 
@@ -118,19 +118,19 @@ To back up and restore a foundation externally, use BOSH Backup and Restore (BBR
 
 <%= vars.app_runtime_abbr %> requires disk storage for each component, for both persistent data and to allocate to ephemeral data. You size these disks in the **Resource Config** pane of the <%= vars.app_runtime_abbr %> tile. For more information about storage configuration and capacity planning, see the corresponding section in the [reference architecture for your IaaS](#topics).
 
-The platform also requires you to configure file storage for large shared objects. These blobstores can be external or internal. For details, see [Configuring File Storage for <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/pas-file-storage.html).
+The platform also requires you to configure file storage for large shared objects. These blobstores can be external or internal. For details, see [Configuring File Storage for <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/pas-file-storage.html).
 
 ### <a id="pas-security"></a> Security
 
 For information about how <%= vars.app_runtime_abbr %> implements security, see:
 
-* [<%= vars.platform_name %> Infrastructure Security](https://docs.pivotal.io/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/security/pcf-infrastructure/index.html)
+* [<%= vars.platform_name %> Infrastructure Security](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/security/pcf-infrastructure/index.html)
 
-* [Security Concepts](https://docs.pivotal.io/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/security/concepts/index.html)
+* [Security Concepts](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/security/concepts/index.html)
 
-* [Certificates and TLS in <%= vars.platform_name %>](https://docs.pivotal.io/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/security/pcf-infrastructure/certificates-index.html)
+* [Certificates and TLS in <%= vars.platform_name %>](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/security/pcf-infrastructure/certificates-index.html)
 
-* [Network Communication Paths in <%= vars.platform_name %>](https://docs.pivotal.io/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/security/networking/#net_commpaths) in _Network Security_
+* [Network Communication Paths in <%= vars.platform_name %>](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/security/networking/#net_commpaths) in _Network Security_
 
 ### <a id="pas-domains"></a> Domain Names
 
@@ -148,7 +148,7 @@ You must also define these wildcard domain names and include them when creating 
 
 ### <a id="pas-scaling"></a> Component Scaling
 
-For recommendations on scaling <%= vars.app_runtime_abbr %> for different deployment scenarios, see [Scaling <%= vars.app_runtime_abbr %> ](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/scaling-ert-components.html).
+For recommendations on scaling <%= vars.app_runtime_abbr %> for different deployment scenarios, see [Scaling <%= vars.app_runtime_abbr %> ](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/scaling-ert-components.html).
 
 
 ## <a id="pks-base"></a> <%= vars.k8s_runtime_full %> Architecture

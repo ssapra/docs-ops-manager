@@ -30,7 +30,7 @@ This topic describes how to prepare Azure to deploy Ops Manager. You must deploy
     </pre>
 
     <p class="note"><strong>Note:</strong> For more information about installing Ops Manager in the China
-    Region, see <a href="https://docs.pivotal.io/platform/customizing/offline_installation.html#install_china">Install in the China Region</a> in the <em>Installing <%= vars.platform_name %> in Airgapped Environments</em> topic.</p>
+    Region, see <a href="https://docs.pivotal.io/platform/customizing/offline_installation.html#install_china">Install in the China Region</a> in <em>Installing <%= vars.platform_name %> in Airgapped Environments</em>.</p>
 
 1. To log in, run:
 
@@ -65,7 +65,7 @@ This topic describes how to prepare Azure to deploy Ops Manager. You must deploy
       "isDefault": true,
       "registeredProviders": [],
       "environmentName": "AzureCloud"
-   },      
+   },
    {
       "id": "87654321-1234-5678-1234-678912345678",
       "name": "Sample Subscription1",
@@ -81,7 +81,7 @@ This topic describes how to prepare Azure to deploy Ops Manager. You must deploy
      }
     ]
     </pre>
- 
+
 1. Identify your default subscription in the output of this command by locating the subscription listed that has `isDefault` set to `true`. To deploy Ops Manager to a different subscription, you must set the other subscription as the default. To set a new default subscription, run:
 
     ```
@@ -138,7 +138,7 @@ This topic describes how to prepare Azure to deploy Ops Manager. You must deploy
     </pre>
 
 
-## <a id="create-configure"></a> Step 4: Create and Configure a Service Principal 
+## <a id="create-configure"></a> Step 4: Create and Configure a Service Principal
 
 1. To create a service principal, run:
 
@@ -216,7 +216,7 @@ To verify your service principal, run the following command to log in to your se
 
 ```
 az login --username APP_ID --password CLIENT_SECRET \
---service-principal --tenant TENANT_ID 
+--service-principal --tenant TENANT_ID
 ```
 Where:
 

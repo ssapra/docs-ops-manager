@@ -172,7 +172,7 @@ If users receive `Out of Disk Space` errors when trying to push apps, this can m
 Diego cells may be running out of disk space capacity.
 
 To perform a detailed analysis of disk usage by containers and host VMs in your <%= vars.platform_name %> deployment,
-see [Examining GrootFS Disk Usage](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/adminguide/).
+see [Examining GrootFS Disk Usage](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/adminguide/).
 
 ### <a id='vsphere_fails'></a>Installing BOSH Director Fails in vSphere ###
 
@@ -216,8 +216,8 @@ Machine properties.
 When MySQL cannot communicate with UAA, <%= vars.ops_manager %> shows the following error:
 > **Error: 'mysql_monitor/12a3b456-cd7e-8fgh-9012-345678b90ijk (0)' is not running after update. Review logs for failed jobs: replication-canary.**
 
-If you see this error, create firewall rules that allow MySQL to reach UAA, using the
-[MySQL Network Communications](https://docs.pivotal.io/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/security/networking/mysql-network-paths.html) topic as a
+If you see this error, create firewall rules that allow MySQL to reach UAA, using
+[MySQL Network Communications](https://docs.pivotal.io/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/security/networking/mysql-network-paths.html) as a
 reference.
 
 ### <a id='ip_address_taken'></a><%= vars.ops_manager %> Hangs During MicroBOSH Install or HAProxy States "IP Address Already Taken" ###
@@ -244,7 +244,7 @@ address are unassigned.
 ### <a id='pcf_slow'></a>Poor Performance ###
 
 If you notice poor network performance by your deployment and your
-deployment uses a Network Address Translation (NAT) gateway, 
+deployment uses a Network Address Translation (NAT) gateway,
 your NAT gateway may be
 under-resourced.
 

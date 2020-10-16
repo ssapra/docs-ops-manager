@@ -25,7 +25,7 @@ See [Step 2: Create S3 Buckets](prepare-env-manual.html#create-s3) in _Preparing
 
 ## <a id='iam-user-pcf'></a> IAM User for <%= vars.platform_name %>
 
-You must create an IAM user for <%= vars.platform_name %> named `pcf-user` from the Identity and Access Management Dashboard, using the policy document included in the [<%= vars.platform_name %> for AWS Policy Document](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/policy-doc.html) topic.
+You must create an IAM user for <%= vars.platform_name %> named `pcf-user` from the Identity and Access Management Dashboard, using the policy document included in [<%= vars.platform_name %> for AWS Policy Document](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/policy-doc.html).
 
 See [Step 3: Create an IAM User for <%= vars.platform_name %>](prepare-env-manual.html#create-iam) in _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_.
 

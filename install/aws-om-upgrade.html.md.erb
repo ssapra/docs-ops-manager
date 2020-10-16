@@ -5,7 +5,7 @@ owner: Ops Manager
 
 This topic describes how to upgrade BOSH Director for <%= vars.platform_name %> on Amazon Web Services (AWS).
 
-Complete the tasks in this topic as part of the <%= vars.ops_manager %> upgrade process. For more information, see [Task 2: Upgrade <%= vars.ops_manager %> and Installed Products to v2.9](upgrading-pcf.html#upgrade_ops) in _Upgrading <%= vars.platform_name %>_.
+Complete the tasks in this topic as part of the <%= vars.ops_manager %> upgrade process. For more information, see [Task 2: Upgrade <%= vars.ops_manager %> and Installed Products to <%= vars.v_major_version %>](upgrading-pcf.html#upgrade_ops) in _Upgrading <%= vars.platform_name %>_.
 
 
 ## <a id='overview'></a> Overview
@@ -97,7 +97,7 @@ To launch the AMI for <%= vars.ops_manager %>:
 
 1. Click **Next: Configure Security Group**.
 
-1. Select the `<%= vars.product_name_lc %>-ops-manager-security-group` that you created in [Step 5: Configure a Security Group for <%= vars.ops_manager %>](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/aws/prepare-env-manual.html#pcfaws-om-secgrp) in _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_.
+1. Select the `<%= vars.product_name_lc %>-ops-manager-security-group` that you created in [Step 5: Configure a Security Group for <%= vars.ops_manager %>](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/aws/prepare-env-manual.html#pcfaws-om-secgrp) in _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_.
 
 1. Click **Review and Launch** and confirm the instance launch details.
 

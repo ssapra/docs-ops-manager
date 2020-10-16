@@ -16,8 +16,8 @@ Line Interface (BOSH CLI). BOSH Director diagnostic commands have access to info
 entire <%= vars.platform_name %> installation.
 
 <p class="note"><strong>Note:</strong> Before running any BOSH CLI commands, verify that no BOSH
-  Director tasks are running on the <%= vars.platform_name %> VM. For more information, see the
-  <a href="https://bosh.io/docs/cli-v2#task-mgmt">Tasks</a> section of <em>BOSH CLI commands</em>
+  Director tasks are running on the <%= vars.platform_name %> VM. For more information, see
+  <a href="https://bosh.io/docs/cli-v2#task-mgmt">Tasks</a> in <em>BOSH CLI commands</em>
   in the BOSH documentation.</p>
 
 ## <a id='gather'></a> Gather Credential and IP Address Information
@@ -136,7 +136,7 @@ command `gcloud auth login`.
 ### <a id='ssh-openstack'></a> OpenStack
 
 To log in to the <%= vars.platform_name %> VM with SSH in OpenStack, you need the key pair that you
-created in [Configure Security](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/openstack/setup.html#security) in _Deploying <%= vars.platform_name %> on OpenStack_.
+created in [Configure Security](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/openstack/setup.html#security) in _Deploying <%= vars.platform_name %> on OpenStack_.
 If you must reset the SSH key, locate the <%= vars.platform_name %> VM in the OpenStack console and
 boot it in recovery mode to generate a new key pair.
 
@@ -164,7 +164,7 @@ To log in to the <%= vars.platform_name %> VM with SSH in vSphere, you must have
 that imports the <%= vars.platform_name %> `.ova` or `.ovf` file into your virtualization system.
 
 You set the public SSH key in the **Public SSH Key** field of the **Customize template** screen
-when you deployed <%= vars.platform_name %>. For more information, see [Deploy <%= vars.platform_name %>](/platform/ops-manager/<%= product_info['local_product_version'].to_s.sub('.','-') %>/vsphere/deploy.html#deploy) in _Deploying <%= vars.platform_name %> on vSphere_.
+when you deployed <%= vars.platform_name %>. For more information, see [Deploy <%= vars.platform_name %>](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/vsphere/deploy.html#deploy) in _Deploying <%= vars.platform_name %> on vSphere_.
 
 <p class="note"><strong>Note</strong>: If you lose your SSH key, you must shut down the
   <%= vars.platform_name %> VM in the vSphere UI and then reset the public SSH key. For more
@@ -308,7 +308,7 @@ credential structure.
 
 1. Copy the `RSA PRIVATE KEY` and paste it into a file named `bbr.pem`. Include
 `-----BEGIN RSA PRIVATE KEY-----` and `-----END RSA PRIVATE KEY-----`.
-    
+
 	 <p class="note warning"><strong>Warning:</strong> Keep the key secure. The key provides full
     access to the entire <%= vars.platform_name %> environment.</p>
 
