@@ -19,7 +19,7 @@ choose to install.
 </br>
 For example:
 <ul>
-  <li> To install Pivotal Application Service (PAS), see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html">Configuring PAS</a>.</li>
+  <li> To install Pivotal Application Service (<%= vars.app_runtime_abbr %>), see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html">Configuring <%= vars.app_runtime_abbr %></a>.</li>
   <li> To install <%= vars.k8s_runtime %>, see [Installing <%= vars.k8s_runtime %> on vSphere](https://docs.pivotal.io/pks/installing-pks-vsphere.html).</li>
 </ul>
 
@@ -90,11 +90,11 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
     <p class="note"><strong>Note:</strong> The following fields do not allow whitespace. Including whitespace characters in datastore or datastore folder names causes an error.</p>
     * **Ephemeral Datastore Names (comma delimited)**: The names of the datastores that store ephemeral VM disks deployed by Ops Manager.
     * **Persistent Datastore Names (comma delimited)**: The names of the datastores that store persistent VM disks deployed by Ops Manager.
-        
+
 1. Select a network configuration from one of the following:
     * **Standard vCenter Networking**: This is the default option when upgrading Ops Manager.
-    <p class="note warning"><strong>Warning:</strong> If you intend to deploy Enterprise PKS using Flannel as the CNI (as opposed to NSX-T), then select this option to configure the BOSH Director. Do not select **NSX Networking**. When you configure the Enterprise PKS tile later on, you will configure Flannel as the container network interface (CNI). <br/><br/>If you intend to deploy PKS with NSX-T, see <a href="https://docs.pivotal.io/pks/vsphere-nsxt-index.html">Installing PKS on vSphere with NSX-T Data Center</a>.</p>  
-    * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization for non-PKS runtimes such as Pivotal Application Service (PAS). Configure NSX networking by entering the following information:
+    <p class="note warning"><strong>Warning:</strong> If you intend to deploy Enterprise <%= vars.k8s_runtime_abbr %> using Flannel as the CNI (as opposed to NSX-T), then select this option to configure the BOSH Director. Do not select **NSX Networking**. When you configure the Enterprise <%= vars.k8s_runtime_abbr %> tile later on, you will configure Flannel as the container network interface (CNI). <br/><br/>If you intend to deploy <%= vars.k8s_runtime_abbr %> with NSX-T, see <a href="https://docs.pivotal.io/pks/vsphere-nsxt-index.html">Installing <%= vars.k8s_runtime_abbr %> on vSphere with NSX-T Data Center</a>.</p>
+    * **NSX Networking**: Select this option to enable VMware NSX Network Virtualization for non-<%= vars.k8s_runtime_abbr %> runtimes such as Pivotal Application Service (<%= vars.app_runtime_abbr %>). Configure NSX networking by entering the following information:
         * **NSX Mode**: Select either **NSX-V** or **NSX-T**.
         * **NSX Address**: The address of the NSX manager.
         * **NSX Username**: The username to connect to the NSX manager.
@@ -123,11 +123,11 @@ Before you begin this procedure, you must complete all steps in [Deploying Ops M
 
 ## <a id='create-az'></a> Step 4: Create Availability Zones Page
 
-Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and resource pools. 
+Ops Manager Availability Zones (AZs) correspond to your vCenter clusters and resource pools.
 
-Multiple AZs allow you to provide high availability and load balancing to your applications. 
-When you run more than one instance of an application, Ops Manager balances those instances 
-across all of the AZs assigned to the application. 
+Multiple AZs allow you to provide high availability and load balancing to your applications.
+When you run more than one instance of an application, Ops Manager balances those instances
+across all of the AZs assigned to the application.
 
 Pivotal recommends that you use at least three AZs for a highly available installation of your chosen runtime.
 
@@ -140,12 +140,12 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
     <%= image_tag("../common/images/create-az.png", :alt => "The 'Create Availability Zones' pane shows a list of two availability zones: 'first-az' and 'second-az' with a button to the right to 'Add'. The 'first-az' is expanded and shows the fields 'Name' and 'IaaS Configuration'. Below that, still in the expanded 'first-az', a subhead called 'Clusters' lists a group of two fields, 'Cluster' and 'Resource Pool' with a button to the right to 'Add Cluster'.") %>
 
 1. Use the following steps to create the first AZ.
-    * Click **Add**. 
+    * Click **Add**.
     * Enter a unique **Name** for the AZ.
     * Select a vCenter config name from the **IaaS Configuration** dropdown to associate your AZ with a vCenter. If you have only one vCenter config, or if you are creating your first AZ, IaaS Configuration defaults to the first vCenter and cannot be configured.
     * Enter the name of the vCenter **Cluster** where you deployed Ops Manager. You created this cluster in the [Prepare vSphere](./deploy.html#prepare-vsphere) step of _Deploying Ops Manager to vSphere_. For example, `Cluster1`.
-    * Enter the name of the **Resource Pool** that you created in the [Prepare vSphere](./deploy.html#prepare-vsphere) step of _Deploying Ops Manager to vSphere_ to organize management components like Ops Manager and BOSH Director. 
-    For example, `RP-MGMT`. The jobs running in this AZ share the CPU and memory resources defined by the pool. 
+    * Enter the name of the **Resource Pool** that you created in the [Prepare vSphere](./deploy.html#prepare-vsphere) step of _Deploying Ops Manager to vSphere_ to organize management components like Ops Manager and BOSH Director.
+    For example, `RP-MGMT`. The jobs running in this AZ share the CPU and memory resources defined by the pool.
     You only need to specify this resource group in one AZ.
     * (Optional) Enter the name of a **Host Group** for the AZ to use. The host group must be within the cluster you designated in the **Clusters** field.
     * (Optional) Click **Add Cluster** to add more clusters to the AZ as required by your installation size and high availability requirements.
@@ -164,10 +164,10 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
 1. Select **Enable ICMP checks** to enable ICMP on your networks. Ops Manager uses ICMP checks to confirm that components within your network are reachable.
 
 1. Depending on the runtime that you are deploying, do one of the following:
-  * For PAS, click **Add Network** and create the following networks:
+  * For <%= vars.app_runtime_abbr %>, click **Add Network** and create the following networks:
       * `infrastructure`: This network is for Ops Manager and the BOSH Director.
-      * `pas`: This network is for all the PAS VMs including Gorouter, Diego cells, and Cloud Controller.
-      * `services`: This network is for any service tiles to be deployed alongside PAS.   <br/><br/> 
+      * `pas`: This network is for all the <%= vars.app_runtime_abbr %> VMs including Gorouter, Diego cells, and Cloud Controller.
+      * `services`: This network is for any service tiles to be deployed alongside <%= vars.app_runtime_abbr %>.   <br/><br/>
     Use the values from the following table as a guide when you create each network, replacing the IP addresses with ranges that are available in your vSphere environment:
      <table>
      <tr>
@@ -263,7 +263,7 @@ vSphere, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_
       that you do not want BOSH to use in your installation. Ops Manager will not deploy VMs to any address in this range.
 
   1. For <%= vars.k8s_runtime %>, click **Add Network** and create the following networks:
-      * `infrastructure`: This network is for Ops Manager, the BOSH Director, the PKS broker, and the PKS API.
+      * `infrastructure`: This network is for Ops Manager, the BOSH Director, the <%= vars.k8s_runtime_abbr %> broker, and the <%= vars.k8s_runtime_abbr %> API.
       * `pks`: If you have a large deployment with multiple tiles, you can choose to deploy the <%= vars.k8s_runtime %> broker and <%= vars.k8s_runtime %> API to a separate network named `pks`. See the table below for more information.
       * `services`: Network for creating the master and worker VMs for Kubernetes clusters. The CIDR should not conflict with the pod overlay network `10.200.0.0/16` or the reserved Kubernetes services CIDR of `10.100.200.0/24`.
       <p class="note"><strong>Note</strong>: Multiple networks allow you to place vCenter on a private network and the rest of your deployment on a public network. Isolating vCenter in this manner denies access to it from outside sources and reduces possible security vulnerabilities.</p>
@@ -401,7 +401,7 @@ Assign as many AZs to your network as needed by your deployment. For more inform
 1. Adjust any values as necessary for your deployment. Under the **Instances**, **Persistent Disk Type**, and **VM Type** fields, choose **Automatic** from the dropdown to allocate the recommended resources for the job. If the **Persistent Disk Type** field reads **None**, the job does not require persistent disk space.
     <p class="note"><strong>Note:</strong> Ops Manager requires a Director VM with at least 8&nbsp;GB memory.</p>
     <p class="note"><strong>Note:</strong> If you set a field to <strong>Automatic</strong> and the recommended resource allocation changes in a future version, Ops Manager automatically uses the updated recommended allocation.</p>
-    <p class="note"><strong>Note:</strong> If you install PAS for Windows, provision your <strong>Master Compilation Job</strong>
+    <p class="note"><strong>Note:</strong> If you install <%= vars.windows_runtime_abbr %>, provision your <strong>Master Compilation Job</strong>
     with at least 100&nbsp;GB of disk space.</p>
 
 1. Click **Save**.
@@ -422,10 +422,9 @@ After you complete this procedure, follow the instructions for the runtime that 
 install.
 
 <ul>
-  <li>To install PAS, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html">Configuring PAS</a>.</li>
+  <li>To install <%= vars.app_runtime_abbr %>, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html">Configuring <%= vars.app_runtime_abbr %></a>.</li>
   <li>To install <%= vars.k8s_runtime %>, see <a href="https://docs.pivotal.io/pks/installing-pks-vsphere.html">Installing <%= vars.k8s_runtime %> on vSphere</a>.</li>
 </ul>
 
 For more information about PCF runtimes,
 see [Installing Runtimes](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/runtimes.html).
-

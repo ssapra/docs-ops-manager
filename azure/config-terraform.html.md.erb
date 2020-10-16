@@ -75,8 +75,8 @@ output to configure the BOSH Director tile.
 	* **BOSH Storage Account Name**: Enter the name of your storage account, which is exported from Terraform as the output `bosh_root_storage_account`.
 
 1. For **Cloud Storage Type**, select **Use Managed Disks**. For **Storage Account Type**,
- select **Premium_LRS** which corresponds to SSD-based storage. 
- See [Azure Managed Disks Overview](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview) in the Microsoft documentation for more information. 
+ select **Premium_LRS** which corresponds to SSD-based storage.
+ See [Azure Managed Disks Overview](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview) in the Microsoft documentation for more information.
         <%= image_tag("../common/images/azure/azure-managed-disk.png") %>
 
     <p class="note warning"><strong>Warning:</strong> You can update your deployment from using storage accounts to using managed disks. However, after you select <strong>Use Managed Disks</strong> and deploy Ops Manager, you cannot change your deployment back to use storage accounts.</p>
@@ -88,8 +88,8 @@ output to configure the BOSH Director tile.
 1. For **SSH Private Key**, enter the `ops_manager_ssh_private_key` output from Terraform.
 
 1. For **Availability Mode**, choose whether to use **Availability Sets** or **Availability Zones**. You can further configure this option in the [**Assign AZs and Networks Page**](#assign-networks).
-   * **For new installations of Ops Manager v2.5**: **Availability Zones** are selected by default, but you can choose **Availability Sets**. 
-   * **If you are upgrading from v2.4**: You must use **Availability Sets**. 
+   * **For new installations of Ops Manager v2.5**: **Availability Zones** are selected by default, but you can choose **Availability Sets**.
+   * **If you are upgrading from v2.4**: You must use **Availability Sets**.
     <p class="note"><strong>Note:</strong> You can only choose between Availability Zones and Availability Sets in a staged BOSH Director tile that has not yet deployed. After you click <strong>Apply Changes</strong> and the BOSH Director deploys successfully, you cannot switch between Availability Zones and Availability Sets.</p>
 
 1. <%= partial "../common/azure-environment" %>
@@ -106,10 +106,10 @@ output to configure the BOSH Director tile.
 Select **Create Networks** and follow the procedures in this section to add the network
 configuration that you created for your VPC.
 
-* [Create Network for PAS](#pas-network)
+* [Create Network for <%= vars.app_runtime_abbr %>](#pas-network)
 * [Create Network for <%= vars.k8s_runtime %>](#pks-network)
 
-### <a id='pas-network'></a> Create Network for PAS
+### <a id='pas-network'></a> Create Network for <%= vars.app_runtime_abbr %>
 
 Create the following three networks:
 
@@ -121,7 +121,7 @@ Create the following three networks:
 with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name
 of a resource.</p>
 
-#### <a id='pas-infrastructure-network'></a> PAS Infrastructure Network
+#### <a id='pas-infrastructure-network'></a> <%= vars.app_runtime_abbr %> Infrastructure Network
 
 Follow the steps below to create the infrastructure network.
 
@@ -173,7 +173,7 @@ checks to confirm that components within your network are reachable.
 
 1. Click **Save**.<%= vars.expand_network_azs %>
 
-#### <a id='pas-runtime-network'></a> PAS Runtime Network
+#### <a id='pas-runtime-network'></a> <%= vars.app_runtime_abbr %> Runtime Network
 
 1. Click **Add Network**.
 
@@ -220,7 +220,7 @@ checks to confirm that components within your network are reachable.
 
 1. Click **Save**.
 
-#### <a id='pas-services-network'></a> PAS Services Network
+#### <a id='pas-services-network'></a> <%= vars.app_runtime_abbr %> Services Network
 
 1. Click **Add Network**.
 
@@ -268,7 +268,7 @@ checks to confirm that components within your network are reachable.
 1. Click **Save**. If **Enable ICMP checks** is not selected, you may see red warnings. You can
 ignore these warnings.
 
-If you complete this step for PAS, proceed to
+If you complete this step for <%= vars.app_runtime_abbr %>, proceed to
 [Assign AZs and Networks Page](#assign-networks).
 
 ### <a id='pks-network'></a> Create Network for <%= vars.k8s_runtime %>
@@ -442,7 +442,7 @@ ignore these warnings.
     <li>If you use Availability Sets, choose a network from the <strong>Networks</strong> dropdown. The networks that appear in this list are networks you created earlier in this procedure.</li>
     </ul>
   </li>
-  <li>Click <strong>Save</strong>.</li>  
+  <li>Click <strong>Save</strong>.</li>
 </ol>
 
 ## <a id='security'></a> Step 6: Security Page
@@ -465,7 +465,7 @@ ignore these warnings.
 1. Adjust any values as necessary for your deployment. Under the **Instances**, **Persistent Disk Type**, and **VM Type** fields, choose **Automatic** from the dropdown to allocate the recommended resources for the job. If the **Persistent Disk Type** field reads **None**, the job does not require persistent disk space.
     <p class="note"><strong>Note:</strong> Pivotal recommends provisioning a BOSH Director VM with at least 8&nbsp;GB memory.</p>
     <p class="note"><strong>Note:</strong> If you set a field to <strong>Automatic</strong> and the recommended resource allocation changes in a future version, Ops Manager automatically uses the new recommended allocation.</p>
-    <p class="note"><strong>Note:</strong> If you install PAS for Windows,
+    <p class="note"><strong>Note:</strong> If you install <%= vars.windows_runtime_abbr %>,
     provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
 
 1. (Optional) For **Load Balancers**, enter your Azure application gateway name for each associated job. To create an application gateway, follow the procedures in [Create an application gateway with SSL termination using Azure PowerShell](https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-arm) from the Azure documentation. When you create the application gateway, associate the gateway's IP with your system domain.
@@ -492,6 +492,6 @@ ignore these warnings.
 
 After you complete this procedure, do one of the following:
 <ul>
-  <li>If you are deploying PAS, follow the procedures in [Configuring PAS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html).</li>
+  <li>If you are deploying <%= vars.app_runtime_abbr %>, follow the procedures in [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/configure-pas.html).</li>
   <li>If you are deploying <%= vars.k8s_runtime %>, follow the procedures in [Creating Managed Identities in Azure for <%= vars.k8s_runtime %>](https://docs.pivotal.io/pks/azure-managed-identities.html).</li>
 </ul>
