@@ -10,7 +10,7 @@ This topic describes how to rotate the <%= vars.ops_manager %> root certificate 
 
 This procedure uses the <%= vars.ops_manager %> API to rotate the <%= vars.ops_manager %> root CA and leaf certificates. When you rotate the <%= vars.ops_manager %> root CA, the <%= vars.ops_manager %> API automatically rotates the BOSH NATS CA. To rotate only leaf certificates, see one of the leaf certificate rotation topics listed in [Certificate Rotation Procedures](api-cert-rotation.html#procedures) in _Overview of Certificate Rotation_.
 
-To prevent system downtime, this procedure includes two BOSH deploys. The first BOSH deploy applies new certificates to <%= vars.platform_old_pivotal %> (<%= vars.platform_code_pivotal %>) components. The second BOSH deploy deletes the old certificates.
+To prevent system downtime, this procedure includes two BOSH deploys. The first BOSH deploy applies new certificates to <%= vars.platform_name %> (<%= vars.platform_code %>) components. The second BOSH deploy deletes the old certificates.
 
 <p class="note warning"><strong>Warning:</strong> You must complete these steps in the exact order specified. Otherwise, you may damage your deployment.</p>
 
@@ -31,11 +31,11 @@ To rotate the <%= vars.ops_manager %> root CA and leaf certificates:
 
 ## <a id='add-new-ca'></a> Step 1: Add a New Root CA
 
-This section describes how to add a new root CA for <%= vars.ops_manager %>. The new root CA can be a <%= vars.platform_code_pivotal %>-generated CA or your own custom CA.
+This section describes how to add a new root CA for <%= vars.ops_manager %>. The new root CA can be a <%= vars.platform_code %>-generated CA or your own custom CA.
 
 This procedure also automatically regenerates the BOSH NATS CA.
 
-<p class="note warning"><strong>Warning:</strong> The <%= vars.ops_manager %> API also excludes from rotation the CAs for certain versions of the MySQL, Redis, RabbitMQ, and <%= vars.platform_code_pivotal %> Cloud Cache tiles. For information about rotating these CAs, see the documentation for each tile.</p>
+<p class="note warning"><strong>Warning:</strong> The <%= vars.ops_manager %> API also excludes from rotation the CAs for certain versions of the MySQL, Redis, RabbitMQ, and <%= vars.platform_code %> Cloud Cache tiles. For information about rotating these CAs, see the documentation for each tile.</p>
 
 To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA:
 
@@ -43,7 +43,7 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
   <p class="note"><strong>Note:</strong> When you record your <%= vars.ops_manager %> access token, remove any newline characters such as <code>\n</code>.</p>
 
 1. Use <%= vars.ops_manager %> to generate a new CA, or add your own custom CA:
-  <p class ="note"><strong>Note:</strong> Elliptic Curve Digital Signature Algorithm (ECDSA) certificates are not supported in <%= vars.platform_code_pivotal %>.</p>
+  <p class ="note"><strong>Note:</strong> Elliptic Curve Digital Signature Algorithm (ECDSA) certificates are not supported in <%= vars.platform_code %>.</p>
   * **To use your own custom CA:** Call the <%= vars.ops_manager %> API `certificate_authorities` endpoint by running:
 
         ```
@@ -76,7 +76,7 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
               ]
         }
         </pre>
-  * **To use a <%= vars.platform_code_pivotal %>-generated CA:** Call the <%= vars.ops_manager %> API `generate` endpoint by running:
+  * **To use a <%= vars.platform_code %>-generated CA:** Call the <%= vars.ops_manager %> API `generate` endpoint by running:
 
         ```
         curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities/generate" \
@@ -240,8 +240,8 @@ Any configurable leaf certificates generated from the <%= vars.ops_manager %> ro
 To regenerate and rotate each configurable leaf certificate that expires soon:
 
 1. Find the text field where the leaf certificate is configured within the <%= vars.ops_manager %> UI. You might need to look through multiple configuration panes to identify the location of the certificate configuration text field. Use the following fields to identify the location of the certificate configuration text field:
-    * The `product_guid` field in the <%= vars.ops_manager %> API output can help identify the tile in which the certificate is configured. For example, the prefix `p-bosh-` refers to the BOSH Director tile, and the prefix `cf-` refers to the <%= vars.app_runtime_full_pivotal %> (<%= vars.app_runtime_abbr_pivotal %>) tile.
-    * The `property_reference` field in the <%= vars.ops_manager %> API output can help identify the configuration pane in which the certificate is configured. For example, the `uaa.service_provider_key_credentials` property is configured in the **UAA** pane of the <%= vars.app_runtime_abbr_pivotal %> tile.
+    * The `product_guid` field in the <%= vars.ops_manager %> API output can help identify the tile in which the certificate is configured. For example, the prefix `p-bosh-` refers to the BOSH Director tile, and the prefix `cf-` refers to the <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) tile.
+    * The `property_reference` field in the <%= vars.ops_manager %> API output can help identify the configuration pane in which the certificate is configured. For example, the `uaa.service_provider_key_credentials` property is configured in the **UAA** pane of the <%= vars.app_runtime_abbr %> tile.
 
 1. Copy a new value for the leaf certificate into the text field or generate a new leaf certificate using the **Generate RSA Certificate** button.
 
