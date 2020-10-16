@@ -72,7 +72,7 @@ To configure the **Director Config** pane in the BOSH Director tile, you must ha
 
   <div class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation.
     <ul>
-      <li>For configuring a PAS deployment with multiple availability zones, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</li>
+      <li>For configuring a <%= vars.app_runtime_abbr %> deployment with multiple availability zones, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</li>
       <li>For configuring a <%= vars.pks_product_short%> deployment for distributing workloads across multiple availability zones and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
     </ul>
   </div>
@@ -229,7 +229,7 @@ To configure the **Director Config** pane in the BOSH Director tile, you must ha
 
 1. Ensure that the **Internet Connected** checkboxes are not selected for any jobs. The checkbox gives VMs a public IP address that enables outbound internet access. In [Preparing to Deploy Ops Manager on GCP Manually](./prepare-env-manual.html), you provisioned a Network Address Translation (NAT) box to provide internet connectivity to your VMs. For more information about using NAT in GCP, see the <a href="https://cloud.google.com/compute/docs/networking">GCP documentation</a>.
 
-<p class="note"><strong>Note:</strong> If you install Pivotal Application Service for Windows (PASW), provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
+<p class="note"><strong>Note:</strong> If you install <%= vars.windows_runtime_full %> (<%= vars.windows_runtime_abbr %>), provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
 
 
 ## <a id="custom-vm-extensions"></a> Step 11: (Optional) Add Custom VM Extensions
@@ -253,6 +253,6 @@ Dashboard.
 
 After you complete this procedure, follow the instructions for the runtime you intend to install.
 <ul>
-  <li>To deploy PAS, see [Deploying PAS on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp-er-config.html).</li>
-  <li>To prepare to deploy PKS, see [Installing PKS on GCP](https://docs.pivotal.io/pks/installing-pks-gcp.html).</li>
+  <li>To deploy <%= vars.app_runtime_abbr %>, see [Deploying <%= vars.app_runtime_abbr %> on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp-er-config.html).</li>
+  <li>To prepare to deploy <%= vars.k8s_runtime_abbr %>, see [Installing <%= vars.k8s_runtime_abbr %> on GCP](https://docs.pivotal.io/pks/installing-pks-gcp.html).</li>
 <ul>

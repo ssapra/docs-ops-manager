@@ -75,7 +75,7 @@ output to configure the BOSH Director tile.
 	* **Resource Group Name**: Enter the name of your resource group, which is exported from Terraform as the output `pcf_resource_group_name`.
 	* **BOSH Storage Account Name**: Enter the name of your storage account, which is exported from Terraform as the output `bosh_root_storage_account`.
 
-1. For **Cloud Storage Type**, select **Use Managed Disks**. For **Storage Account Type**, select **Premium_LRS** which corresponds to SSD-based storage. See [Azure Managed Disks Overview](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview) in the Microsoft documentation for more information. 
+1. For **Cloud Storage Type**, select **Use Managed Disks**. For **Storage Account Type**, select **Premium_LRS** which corresponds to SSD-based storage. See [Azure Managed Disks Overview](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview) in the Microsoft documentation for more information.
         <%= image_tag("../common/images/azure/azure-managed-disk.png") %>
 
     <p class="note warning"><strong>Warning:</strong> You can update your deployment from using storage accounts to using managed disks. However, after you select <strong>Use Managed Disks</strong> and deploy Ops Manager, you cannot change your deployment back to use storage accounts.</p>
@@ -99,10 +99,13 @@ output to configure the BOSH Director tile.
 
 Select **Create Networks** and follow the procedures in this section to add the network configuration that you created for your VPC.
 
-* [Create Network for PAS](#pas-network)
-* [Create Network for PKS](#pks-network)
+* [Create Network for <%= vars.app_runtime_abbr %>](#pas-network)
+* [Create Network for <%= vars.k8s_runtime_abbr %>](#pks-network)
 
-### <a id='pas-network'></a> Create Network for PAS
+If you complete this step for <%= vars.k8s_runtime_abbr %>, proceed to
+[PKS Infrastructure Network](#pks-infrastructure-network).
+
+### <a id='pas-network'></a> Create Network for <%= vars.app_runtime_abbr %>
 
 Create the following three networks:
 
@@ -114,7 +117,7 @@ Create the following three networks:
 with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name
 of a resource.</p>
 
-#### <a id='pas-infrastructure-network'></a> PAS Infrastructure Network
+#### <a id='pas-infrastructure-network'></a> <%= vars.app_runtime_abbr %> Infrastructure Network
 
 Follow the steps below to create the infrastructure network.
 
@@ -166,7 +169,7 @@ checks to confirm that components within your network are reachable.
 
 1. Click **Save**.<%= vars.expand_network_azs %>
 
-#### <a id='pas-runtime-network'></a> PAS Runtime Network
+#### <a id='pas-runtime-network'></a> <%= vars.app_runtime_abbr %> Runtime Network
 
 1. Click **Add Network**.
 
@@ -213,7 +216,7 @@ checks to confirm that components within your network are reachable.
 
 1. Click **Save**.
 
-#### <a id='pas-services-network'></a> PAS Services Network
+#### <a id='pas-services-network'></a> <%= vars.app_runtime_abbr %> Services Network
 
 1. Click **Add Network**.
 
@@ -261,10 +264,10 @@ checks to confirm that components within your network are reachable.
 1. Click **Save**. If **Enable ICMP checks** is not selected, you may see red warnings. You can
 ignore these warnings.
 
-If you complete this step for PAS, proceed to
+If you complete this step for <%= vars.app_runtime_abbr %>, proceed to
 [Assign Networks Page](#assign-azs).
 
-### <a id='pks-network'></a> Create Network for PKS
+### <a id='pks-network'></a> Create Network for <%= vars.k8s_runtime_abbr %>
 
 Create the following three networks:
 
@@ -276,7 +279,7 @@ Create the following three networks:
 with incorrect capitalization. Always use the Azure CLI to retrieve the correctly capitalized name
 of a resource.</p>
 
-#### <a id='pks-infrastructure-network'></a> PKS Infrastructure Network
+#### <a id='pks-infrastructure-network'></a> <%= vars.k8s_runtime_abbr %> Infrastructure Network
 
 Follow the steps below to create the infrastructure network.
 
@@ -327,7 +330,7 @@ checks to confirm that components within your network are reachable.
 
 1. Click **Save**.
 
-#### <a id='pks-runtime-network'></a> PKS Runtime Network
+#### <a id='pks-runtime-network'></a> <%= vars.k8s_runtime_abbr %> Runtime Network
 
 1. Click **Add Network**.
 
@@ -375,7 +378,7 @@ checks to confirm that components within your network are reachable.
 
 1. Click **Save**.
 
-### <a id='pks-services-network'></a> PKS Services Network
+### <a id='pks-services-network'></a> <%= vars.k8s_runtime_abbr %> Services Network
 
 1. Click **Add Network**.
 
@@ -455,7 +458,7 @@ ignore these warnings.
 1. Adjust any values as necessary for your deployment. Under the **Instances**, **Persistent Disk Type**, and **VM Type** fields, choose **Automatic** from the dropdown to allocate the recommended resources for the job. If the **Persistent Disk Type** field reads **None**, the job does not require persistent disk space.
     <p class="note"><strong>Note:</strong> Pivotal recommends provisioning a BOSH Director VM with at least 8&nbsp;GB memory.</p>
     <p class="note"><strong>Note:</strong> If you set a field to <strong>Automatic</strong> and the recommended resource allocation changes in a future version, Ops Manager automatically uses the new recommended allocation.</p>
-    <p class="note"><strong>Note:</strong> If you install PAS for Windows,
+    <p class="note"><strong>Note:</strong> If you install <%= vars.windows_runtime_abbr %>,
     provision your <strong>Master Compilation Job</strong> with at least 100&nbsp;GB of disk space.</p>
 
 1. (Optional) For **Load Balancers**, enter your Azure application gateway name for each associated job. To create an application gateway, follow the procedures in [Create an application gateway with SSL termination using Azure PowerShell](https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-ssl-arm) from the Azure documentation. When you create the application gateway, associate the gateway's IP with your system domain.
@@ -482,6 +485,6 @@ ignore these warnings.
 
 After you complete this procedure, do one of the following:
 <ul>
-  <li>If you are deploying PAS, follow the procedures in [Deploying PAS on Azure Using Terraform](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-er-config-terraform.html).</li>
-  <li>If you are deploying PKS, follow the procedures in [Creating Managed Identities in Azure for PKS](https://docs.pivotal.io/pks/azure-managed-identities.html).</li>
+  <li>If you are deploying <%= vars.app_runtime_abbr %>, follow the procedures in [Deploying <%= vars.app_runtime_abbr %> on Azure Using Terraform](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/azure-er-config-terraform.html).</li>
+  <li>If you are deploying <%= vars.k8s_runtime_abbr %>, follow the procedures in [Creating Managed Identities in Azure for <%= vars.k8s_runtime_abbr %>](https://docs.pivotal.io/pks/azure-managed-identities.html).</li>
 </ul>

@@ -8,14 +8,14 @@ This guide describes the preparation steps required to deploy Ops Manager on Ama
 
 The Terraform template for Ops Manager on AWS describes a set of AWS resources and properties. For more information about how Terraform creates resources in AWS, see the [AWS Provider](https://www.terraform.io/docs/providers/aws/index.html) topic on the Terraform site.
 
-If you are deploying Pivotal Application Service (PAS), you may also find it helpful to review different deployment options in the [Reference Architecture for Pivotal Cloud Foundry on AWS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/aws/aws_ref_arch.html).
+If you are deploying <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>), you may also find it helpful to review different deployment options in the [Reference Architecture for Pivotal Cloud Foundry on AWS](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/aws/aws_ref_arch.html).
 
 ## <a id="prereqs"></a> Prerequisites
 
 Before you deploy Ops Manager on AWS, review the following:
 
-* If you intend to install PAS, see [PCF on AWS Requirements](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/aws.html).
-* If you intend to install Pivotal Container Service (PKS), see [AWS Prerequisites and Resource Requirements](https://docs.pivotal.io/pks/aws-requirements.html).
+* If you intend to install <%= vars.app_runtime_abbr %>, see [PCF on AWS Requirements](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/aws.html).
+* If you intend to install <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>), see [AWS Prerequisites and Resource Requirements](https://docs.pivotal.io/pks/aws-requirements.html).
 
 In addition to reviewing the prerequisites for your runtime, ensure you have the following:
 
@@ -36,7 +36,7 @@ Before you can run Terraform commands to provision infrastructure resources,
 you must download the AWS Terraform templates and create a Terraform template variables
 file as described below:
 
-1. On [Pivotal Network](https://network.pivotal.io), navigate to the **Pivotal Application Service (formerly Elastic Runtime)** release.
+1. On [Pivotal Network](https://network.pivotal.io), navigate to the **<%= vars.app_runtime_full %> (formerly Elastic Runtime)** release.
 
 1. Download the AWS Terraform templates ZIP file.
 
@@ -138,7 +138,7 @@ for your runtime.
 
 ## <a id="variables"></a> Step 2: Add Optional Variables
 
-Complete this step if you want to do any of the following in PAS:
+Complete this step if you want to do any of the following in <%= vars.app_runtime_abbr %>:
 
 - Use an AWS Relational Database Service (RDS) for your deployment. For more information, see [Getting started with Amazon RDS](https://aws.amazon.com/rds/resources/) in Amazon RDS resources.
 - Deploy the <%= vars.segment_runtime_full %> tile.
@@ -171,7 +171,7 @@ ISO_SEG_SSL_KEY
 
 ### <a id="cloudsql"></a> RDS
 
-1. If you want to use an RDS for Ops Manager and PAS, add the following to your `terraform.tfvars` file:
+1. If you want to use an RDS for Ops Manager and <%= vars.app_runtime_abbr %>, add the following to your `terraform.tfvars` file:
 
     ```
     rds_instance_count = 1
