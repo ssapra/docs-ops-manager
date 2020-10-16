@@ -33,18 +33,18 @@ Review each of the following links to understand the changes in the new release,
 
 * **Release Notes**
 	* [<%= vars.ops_manager %> <%= vars.v_major_version %> Release Notes](../release-notes.html)
-	* [<%= vars.app_runtime_full %> <%= vars.v_major_version %> Release Notes](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/overview/release-notes/runtime-rn.html)
+	* [<%= vars.app_runtime_full %> <%= vars.v_major_version %> Release Notes](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/overview/release-notes/runtime-rn.html)
 
 * **Known Issues**
 	* [<%= vars.ops_manager %> <%= vars.v_major_version %> Known Issues](../release-notes.html#known-issues)
-	* [<%= vars.app_runtime_full %> <%= vars.v_major_version %> Known Issues](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/overview/release-notes/runtime-rn.html#known-issues)
+	* [<%= vars.app_runtime_full %> <%= vars.v_major_version %> Known Issues](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/overview/release-notes/runtime-rn.html#known-issues)
 
 * **Breaking Changes**
 	* [<%= vars.ops_manager %> <%= vars.v_major_version %> Breaking Changes](../release-notes.html#breaking-changes)
-	* [<%= vars.app_runtime_full %> <%= vars.v_major_version %> Breaking Changes](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/overview/release-notes/runtime-rn.html#breaking-changes)
+	* [<%= vars.app_runtime_full %> <%= vars.v_major_version %> Breaking Changes](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/overview/release-notes/runtime-rn.html#breaking-changes)
 
 * **KPI Changes**
-	* [KPI Changes](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/overview/monitoring/index.html#new)
+	* [KPI Changes](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/overview/monitoring/index.html#new)
 
 * **Diego Network Communications**:
 	* [Diego Network Communications](../security/networking/diego-network-paths.html)
@@ -122,7 +122,7 @@ If you do not enable Syslog Agents prior to upgrade, the upgrade to <%= vars.app
 
 #### <a id="disable-unused-errands"></a> (Optional) Disable Unused Errands
 
-To save upgrade time, you can disable unused <%= vars.app_runtime_abbr %> post-deploy errands. For more information, see [Post-Deploy Errands](https://docs.pivotal.io/tiledev/<%= vars.current_major_version.sub('.', '-') %>/tile-errands.html#post-deploy) in _Errands_. Only disable these errands if your environment does not need them.
+To save upgrade time, you can disable unused <%= vars.app_runtime_abbr %> post-deploy errands. For more information, see [Post-Deploy Errands](https://docs.pivotal.io/tiledev/<%= vars.current_major_version.sub('.','-') %>/tile-errands.html#post-deploy) in _Errands_. Only disable these errands if your environment does not need them.
 
 In some cases, if you have previously disabled lifecycle errands for any installed product to reduce deployment time, you may want to re-enable these errands before upgrading. For more information, see [Adding and Deleting Products](../install/add-delete.html#add-import) in _Adding and Deleting Products_.
 
@@ -130,7 +130,7 @@ In some cases, if you have previously disabled lifecycle errands for any install
 
 In the **App Containers** pane of the <%= vars.app_runtime_abbr %> tile, if **Docker images disk cleanup scheduling on Diego Cell VMs** is set to **Clean up disk space once usage fills disk** and the value of **Reserved disk space for other jobs** is different from the default of `15360`, you must specify a new threshold.
 
-If the scheduling is set to **Never clean up Diego Cell disk space** or **Routinely clean up Diego Cell disk space**, or the reserved disk space value is set to the default of `15360`, no action is necessary. All thresholds will migrate to a sensible value when you upgrade <%= vars.app_runtime_abbr %>. For more information, see [Options for Disk Cleanup](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/config-cell-cleanup.html#options) in _Configuring Diego Cell Disk Cleanup Scheduling_ in the <%= vars.app_runtime_abbr %> documentation.
+If the scheduling is set to **Never clean up Diego Cell disk space** or **Routinely clean up Diego Cell disk space**, or the reserved disk space value is set to the default of `15360`, no action is necessary. All thresholds will migrate to a sensible value when you upgrade <%= vars.app_runtime_abbr %>. For more information, see [Options for Disk Cleanup](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/config-cell-cleanup.html#options) in _Configuring Diego Cell Disk Cleanup Scheduling_ in the <%= vars.app_runtime_abbr %> documentation.
 
 #### <a id="disable-hostname-verification"></a> Disable Hostname Verification for External CredHub Databases on GCP and Azure
 
@@ -163,7 +163,7 @@ If you meet these conditions, you must configure the imported <%= vars.app_runti
 
 Make these configuration changes before you apply changes for the upgrade. Failure to disable hostname verification can cause the upgrade to fail for deployments that use external databases on GCP or Azure.
 
-For more information about CredHub database configuration in <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>, see [Configure CredHub](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configure-pas.html#credhub) in _Configuring <%= vars.app_runtime_abbr %>_ in the <%= vars.app_runtime_abbr %> documentation.
+For more information about CredHub database configuration in <%= vars.app_runtime_abbr %> <%= vars.v_major_version %>, see [Configure CredHub](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configure-pas.html#credhub) in _Configuring <%= vars.app_runtime_abbr %>_ in the <%= vars.app_runtime_abbr %> documentation.
 
 #### <a id="minimum-credhub-instances"></a> Configure CredHub Instances
 
@@ -175,7 +175,7 @@ For high availability, <%= vars.company_name %> recommends that you use at least
 
 ### <a id="stemcell-compat"></a> Check OS Compatibility of BOSH-Managed Add-Ons and Tiles
 
-Before upgrading to <%= vars.platform_name %> <%= vars.v_major_version %>, operators who have deployed any <%= vars.platform_name %> add-ons such as **IPsec for <%= vars.platform_name %>**, **ClamAV for <%= vars.platform_name %>**, or **File Integrity Monitoring for <%= vars.platform_name %>** and who have deployed or are planning to deploy <%= vars.windows_runtime_abbr %> must modify the add-on manifest to specify a compatible OS stemcell. For more information, see the [<%= vars.windows_runtime_full %> (<%= vars.windows_runtime_abbr %>) documentation](https://docs.pivotal.io/application-service-windows/<%= vars.current_major_version.sub('.', '-') %>/index.html).
+Before upgrading to <%= vars.platform_name %> <%= vars.v_major_version %>, operators who have deployed any <%= vars.platform_name %> add-ons such as **IPsec for <%= vars.platform_name %>**, **ClamAV for <%= vars.platform_name %>**, or **File Integrity Monitoring for <%= vars.platform_name %>** and who have deployed or are planning to deploy <%= vars.windows_runtime_abbr %> must modify the add-on manifest to specify a compatible OS stemcell. For more information, see the [<%= vars.windows_runtime_full %> (<%= vars.windows_runtime_abbr %>) documentation](https://docs.pivotal.io/application-service-windows/<%= vars.current_major_version.sub('.','-') %>/index.html).
 
 For example, **File Integrity Monitor for <%= vars.platform_name %>** (FIM) is not supported on Windows. Therefore, the manifest must use an `include` directive to specify the target OS stemcell of `ubuntu-trusty` and `ubuntu-xenial`.
 
@@ -254,27 +254,27 @@ The KPIs that monitor these these resources are are:
 
 ### <a id="adjust-diego-cell-limits"></a> Adjust Diego Cell Limits
 
-If needed, adjust the maximum number of Diego Cells that the platform can upgrade simultaneously, to avoid overloading the other Diego Cells. For more information, see [Limit Component Instance Restarts](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configuring.html#limit-restart) in _Configuring <%= vars.app_runtime_abbr %> for Upgrades_ in the <%= vars.app_runtime_abbr %> documentation.
+If needed, adjust the maximum number of Diego Cells that the platform can upgrade simultaneously, to avoid overloading the other Diego Cells. For more information, see [Limit Component Instance Restarts](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configuring.html#limit-restart) in _Configuring <%= vars.app_runtime_abbr %> for Upgrades_ in the <%= vars.app_runtime_abbr %> documentation.
 
-The maximum number of Diego Cells that can update at once, `max_in_flight`, is 4%. This setting is configured in the BOSH manifest's Diego Cell definition. For more information, see [Prevent Overload](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configuring.html#limitations-considerations) in _Configuring <%= vars.app_runtime_abbr %> for Upgrades_ in the <%= vars.app_runtime_abbr %> documentation.
+The maximum number of Diego Cells that can update at once, `max_in_flight`, is 4%. This setting is configured in the BOSH manifest's Diego Cell definition. For more information, see [Prevent Overload](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configuring.html#limitations-considerations) in _Configuring <%= vars.app_runtime_abbr %> for Upgrades_ in the <%= vars.app_runtime_abbr %> documentation.
 
-For more information about these KPIs, see [Diego Cell Metrics](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/overview/monitoring/kpi.html#Cell) in _Key Performance Indicators_ in the <%= vars.app_runtime_abbr %> documentation.
+For more information about these KPIs, see [Diego Cell Metrics](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/overview/monitoring/kpi.html#Cell) in _Key Performance Indicators_ in the <%= vars.app_runtime_abbr %> documentation.
 
 ### <a id="storage"></a> Review File Storage IOPS and Other Upgrade Limiting Factors
 
 During the <%= vars.platform_name %> upgrade process, a large quantity of data is moved around on disk.
 
-To ensure a successful upgrade of your deployment, verify that your underlying <%= vars.app_runtime_abbr %> file storage is performant enough to handle the upgrade. For more information about the configurations to evaluate, see [Configure File Storage](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configuring.html#file-storage) in _Configuring <%= vars.app_runtime_abbr %> for Upgrades_ in the <%= vars.app_runtime_abbr %> documentation.
+To ensure a successful upgrade of your deployment, verify that your underlying <%= vars.app_runtime_abbr %> file storage is performant enough to handle the upgrade. For more information about the configurations to evaluate, see [Configure File Storage](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configuring.html#file-storage) in _Configuring <%= vars.app_runtime_abbr %> for Upgrades_ in the <%= vars.app_runtime_abbr %> documentation.
 
 In addition to file storage IOPS, consider additional existing deployment factors that can impact overall upgrade duration and performance:
 
 | **Factor** | **Impact** |
 | ---------- | ---------- |
 | **Network latency** | Network latency can contribute to how long it takes to move app instance data to new containers. |
-| **Number of ASGs** | A large number of App Security Groups (ASGs) in your deployment can contribute to an increase in app instance container startup time. For more information, see [App Security Groups](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/concepts/asg.html) in the <%= vars.app_runtime_abbr %> documentation. |
+| **Number of ASGs** | A large number of App Security Groups (ASGs) in your deployment can contribute to an increase in app instance container startup time. For more information, see [App Security Groups](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/concepts/asg.html) in the <%= vars.app_runtime_abbr %> documentation. |
 | **Number of app instances and app growth** | A large increase in the number of app instances and average droplet size since the initial deployment can increase the upgrade impact on your system. |
 
-For example upgrade-related performance measurements of an existing production deployment, see [Upgrade Load Example: Pivotal Web Services During Upgrade](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/pws_upgrade_load.html) in the <%= vars.app_runtime_abbr %> documentation.
+For example upgrade-related performance measurements of an existing production deployment, see [Upgrade Load Example: Pivotal Web Services During Upgrade](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/pws_upgrade_load.html) in the <%= vars.app_runtime_abbr %> documentation.
 
 ### <a id="bosh-clean-up"></a> Run BOSH Clean-Up
 
@@ -336,7 +336,7 @@ If you are not using Pivotal Healthwatch, you can do some or all of the followin
 
 * Check that <%= vars.ops_manager %> persistent disk usage is below 50%. If not, follow the procedure in [Confirm Adequate Disk Space](#confirm-om-disk) above.
 
-* (Optional) Check the logs for errors before proceeding with the upgrade. For more information, see [Viewing Logs in the Command Line Interface](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/devguide/deploy-apps/streaming-logs.html#view) in _App Logging in <%= vars.app_runtime_abbr %>_ in the <%= vars.app_runtime_abbr %> documentation.
+* (Optional) Check the logs for errors before proceeding with the upgrade. For more information, see [Viewing Logs in the Command Line Interface](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/devguide/deploy-apps/streaming-logs.html#view) in _App Logging in <%= vars.app_runtime_abbr %>_ in the <%= vars.app_runtime_abbr %> documentation.
 
 ### <a id="push-test-app"></a> Push and Scale a Test App
 
@@ -346,7 +346,7 @@ Check that a test app can be pushed and scaled horizontally, manually, or throug
 
 If you are running <%= vars.app_runtime_abbr %> MySQL as a cluster, run the `mysql-diag` tool to validate health of the cluster.
 
-For BOSH CLI v2 instructions, see [Running mysql-diag](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/mysql/mysql-diag.html) in the <%= vars.app_runtime_abbr %> documentation.
+For BOSH CLI v2 instructions, see [Running mysql-diag](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/mysql/mysql-diag.html) in the <%= vars.app_runtime_abbr %> documentation.
 
 ### <a id="check-health"></a> Review Pending and Recent Changes
 

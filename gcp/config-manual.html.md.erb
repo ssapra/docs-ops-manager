@@ -7,7 +7,7 @@ install_type: manual
 
 This topic describes how to configure the BOSH Director in Pivotal Operations Manager for <%= vars.platform_name %> on Google Cloud Platform (GCP).
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.</p>
 
 
 ## <a id='access-om'></a> Step 1: Access Ops Manager
@@ -31,7 +31,7 @@ To configure Ops Manager to use internal authentication for user authentication:
 1.  When redirected to the **Internal Authentication** page:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/pcf-director-proxy-settings.html).
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/customizing/pcf-director-proxy-settings.html).
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -69,7 +69,7 @@ To configure your GCP tile:
 
 <div class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones (AZs) for a highly available installation.
   <ul>
-    <li>For configuring a <%= vars.app_runtime_abbr %> deployment with multiple AZs, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/refarch/gcp/gcp_ref_arch.html">GCP Reference Architecture</a>.</li>
+    <li>For configuring a <%= vars.app_runtime_abbr %> deployment with multiple AZs, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">GCP Reference Architecture</a>.</li>
     <li>For <%= vars.k8s_runtime_abbr %> best practices for distributing workloads across multiple AZs and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
   </ul>
 </div>
@@ -99,7 +99,7 @@ To configure the **Create Networks** pane:
 1. Make sure **Enable ICMP checks** is not selected. GCP routers do not respond to ICMP pings.
 
 1. Click **Add Network**. Create the three networks described in the tables below.
-    <p class="note"><strong>Note:</strong> To use a shared VPC network, enter the shared VPC host project name before the network name in the format <code>VPC-PROJECT-NAME/NETWORK-NAME/SUBNET-NAME/REGION-NAME</code>. For example, <code>vpc-project/opsmgr/central/us-central1</code>. For more information, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/gcp-shared-vpc.html">Configuring a Shared VPC on GCP</a>.</p>
+    <p class="note"><strong>Note:</strong> To use a shared VPC network, enter the shared VPC host project name before the network name in the format <code>VPC-PROJECT-NAME/NETWORK-NAME/SUBNET-NAME/REGION-NAME</code>. For example, <code>vpc-project/opsmgr/central/us-central1</code>. For more information, see <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/customizing/gcp-shared-vpc.html">Configuring a Shared VPC on GCP</a>.</p>
     <h3>Infrastructure Network</h3>
     <table>
       <tr>
@@ -262,6 +262,6 @@ To complete your BOSH Director installation:
 
 After you complete this procedure, follow the instructions for the runtime you intend to install.
 
-* To deploy <%= vars.app_runtime_abbr %>, see [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/configure-pas.html).
+* To deploy <%= vars.app_runtime_abbr %>, see [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/customizing/configure-pas.html).
 
 * To prepare to deploy <%= vars.k8s_runtime_abbr %>, see [Creating Service Accounts in GCP for <%= vars.k8s_runtime_abbr %>](https://docs.pivotal.io/pks/gcp-service-accounts.html).

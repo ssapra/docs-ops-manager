@@ -22,7 +22,7 @@ Before beginning this procedure, ensure that you have successfully completed all
 1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/pcf-director-proxy-settings.html).
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/customizing/pcf-director-proxy-settings.html).
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -53,7 +53,7 @@ Before beginning this procedure, ensure that you have successfully completed all
     * **Key Pair Name**: Enter `pcf-ops-manager-key`.
     * **SSH Private Key**: Open the AWS key pair `pcf-ops-manager-keys.pem` file you generated in [Step 3: Create an IAM User for <%= vars.platform_name %>](prepare-env-manual.html#create-iam) in _Preparing to Deploy Ops Manager on AWS Manually_. Copy the contents of the `.pem` file and paste it into the **SSH Private Key** field.
     * **Region**: Select the region where you deployed Ops Manager.
-    * **Encrypt Linux EBS Volumes**: Select this checkbox to enable full encryption on persistent disks of all BOSH-deployed VMs except the Ops Manager VM and Director VM. For more information about using EBS encryption, see [Configuring Amazon EBS Encryption for <%= vars.platform_name %> on AWS](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/cloudform-om-ebs-config.html).
+    * **Encrypt Linux EBS Volumes**: Select this checkbox to enable full encryption on persistent disks of all BOSH-deployed VMs except the Ops Manager VM and Director VM. For more information about using EBS encryption, see [Configuring Amazon EBS Encryption for <%= vars.platform_name %> on AWS](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/customizing/cloudform-om-ebs-config.html).
     <p class="note"><strong>Note:</strong> Enabling EBS encryption only encrypts Linux VMs. The Windows VMs deployed with <%= vars.windows_runtime_full %> (<%= vars.windows_runtime_abbr %>) or <%= vars.windows_runtime_abbr %> 2012 R2 are not encrypted.</p>
 
 1. Click **Save**.
@@ -428,5 +428,5 @@ After completing the procedures in this topic, you must configure a runtime for 
 
 To configure a runtime, do one of the following:
 
-* Configure <%= vars.app_runtime_abbr %>. See [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.', '-') %>/customizing/configure-pas.html).
+* Configure <%= vars.app_runtime_abbr %>. See [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/customizing/configure-pas.html).
 * Configure <%= vars.k8s_runtime_abbr %>. See [Installing <%= vars.k8s_runtime_abbr %> on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html).
