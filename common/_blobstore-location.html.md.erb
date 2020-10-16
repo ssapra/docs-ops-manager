@@ -2,7 +2,7 @@ Select a **Blobstore Location** to either configure the blobstore as an internal
   <p class="note"><strong>Note:</strong> After you deploy <%= vars.ops_manager %>, you cannot change the blobstore location.</p>
   * **Internal:** Select this option to use an internal blobstore. <%= vars.ops_manager %> creates a new VM for blob storage. No additional configuration is required.
       * **Enable TLS**: Select this checkbox to enable TLS to the blobstore.
-        <p class='note'><strong>Note:</strong> If you are using <%= vars.product_windows_runtime %> (<%= vars.product_windows_short %>) 2016, make sure you have downloaded Windows stemcell v1709.10 or later before enabling TLS. For more information, see <a href="https://docs.pivotal.io/platform/stemcells/windows-stemcell-v2019x.html#1709.10">Stemcell v2019.x (Windows Server version 2019) Release Notes</a>.</p>
+        <p class='note'><strong>Note:</strong> If you are using <%= vars.product_windows_runtime %> (<%= vars.windows_runtime_abbr %>) 2016, make sure you have downloaded Windows stemcell v1709.10 or later before enabling TLS. For more information, see <a href="https://docs.pivotal.io/platform/stemcells/windows-stemcell-v2019x.html#1709.10">Stemcell v2019.x (Windows Server version 2019) Release Notes</a>.</p>
   * **S3 Compatible Blobstore:** Select this option to use an external S3-compatible endpoint.
     <% if current_page.data.iaas == "AWS" %>
     When you have created an S3 bucket, configure the following fields:
@@ -34,7 +34,7 @@ Select a **Blobstore Location** to either configure the blobstore as an internal
       1. **Storage Class:** Select the storage class for your GCS bucket. For more information, see [Storage Classes](https://cloud.google.com/storage/docs/storage-classes) in the GCP documentation.
       <% if current_page.data.iaas == "GCP" %>
       1. **Service Account Key:** Enter the contents of the JSON file that you downloaded in [Set up IAM Service Accounts](../gcp/prepare-env-manual.html#iam_account) in _Preparing to Deploy <%= vars.ops_manager %> on GCP Manually_.
-      <p class='note'><strong>Note:</strong> The <%= vars.product_windows_short %> tile is incompatible with GCP configured with a GCS file store. If you are deploying <%= vars.product_windows_short %> in your GCP environment, <%= vars.recommended_by %> recommends that you select the S3-compatible file store for your environment.</p>
+      <p class='note'><strong>Note:</strong> The <%= vars.windows_runtime_abbr %> tile is incompatible with GCP configured with a GCS file store. If you are deploying <%= vars.windows_runtime_abbr %> in your GCP environment, <%= vars.recommended_by %> recommends that you select the S3-compatible file store for your environment.</p>
       <% else %>
       1. **Service Account Key:** Follow the steps in [Set up IAM Service Accounts](../gcp/prepare-env-manual.html#iam_account) in _Preparing to Deploy <%= vars.ops_manager %> on GCP Manually_ to download a JSON file with a private key. Enter the contents of the JSON file into the field.
       <% end %>
