@@ -192,7 +192,7 @@ The following are AWS-specific resource requirements for installing <%= vars.pla
           <td>Required</td>
       </tr>
     </table>
-    <p class="note"><strong>Note:</strong> If you are deploying a test or sandbox deployment that does not require high availability, then you can scale down the number of VM instances in your deployment. For more information, see <a href="https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/scaling-ert-components.html">Scaling <%= vars.app_runtime_abbr %></a>.</p>
+    <p class="note"><strong>Note:</strong> If you are deploying a test or sandbox deployment that does not require high availability, then you can scale down the number of VM instances in your deployment. For more information, see <a href="https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/scaling-ert-components.html">Scaling <%= vars.app_runtime_abbr %></a>.</p>
   * **Small Footprint <%= vars.app_runtime_abbr %>:** To run Small Footprint <%= vars.app_runtime_abbr %>, a new AWS deployment requires:
     <table id='aws-requirements' border="1" class="nice">
       <tr>
@@ -341,4 +341,4 @@ The following are additional resources related to installing <%= vars.platform_n
 
 * For recommendations on how to create and scope AWS accounts for <%= vars.platform_name %>, see [AWS Permissions Guidelines](aws-iaas-user-roles.html).
 
-* For more information about certificate requirements for installing <%= vars.platform_name %>, see [Certificate Requirements](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/adminguide/).
+* For more information about certificate requirements for installing <%= vars.platform_name %>, see [Certificate Requirements](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/adminguide/).

@@ -41,17 +41,17 @@ The typical planning and installation process is:
   - IPsec is deployed with BOSH rather than as an <%= vars.ops_manager %> tile.
 
 1. **Install Runtimes**
-  - [<%= vars.app_runtime_full %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/configure-pas.html) (<%= vars.app_runtime_abbr %>) lets developers develop and manage cloud-native apps and software services.
+  - [<%= vars.app_runtime_full %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configure-pas.html) (<%= vars.app_runtime_abbr %>) lets developers develop and manage cloud-native apps and software services.
       - <%= vars.app_runtime_abbr %> is based on the Cloud Foundry Foundation's open-source Application Runtime (formerly Elastic Runtime) project.
   - [<%= vars.k8s_runtime_full %>](https://docs.pivotal.io/tkgi/index.html) (<%= vars.k8s_runtime_abbr %>) uses BOSH to run and manage Kubernetes container clusters.
       - <%= vars.k8s_runtime_abbr %> is based on the Cloud Foundry Foundation's open-source Container Runtime (formerly Kubo) project.
-  - [<%= vars.segment_runtime_full %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/installing-pcf-is.html) lets a single <%= vars.app_runtime_abbr %> deployment run apps from separate, isolated pools of computing, routing, and logging resources.
+  - [<%= vars.segment_runtime_full %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/installing-pcf-is.html) lets a single <%= vars.app_runtime_abbr %> deployment run apps from separate, isolated pools of computing, routing, and logging resources.
       - Operators replicate and configure an <%= vars.segment_runtime_full %> tile for each new resource pool they want to create.
       - You must install <%= vars.app_runtime_abbr %> before you can install <%= vars.segment_runtime_full %>.
-  - [<%= vars.windows_runtime_full %>](https://docs.pivotal.io/application-service-windows/<%= vars.current_major_version.sub('.', '-') %>/index.html) (<%= vars.windows_runtime_abbr %>) enables <%= vars.app_runtime_abbr %> to manage Windows Server 2016 (1709) stemcells hosting .NET apps, and can also be replicated to create multiple isolated resource pools.
+  - [<%= vars.windows_runtime_full %>](https://docs.pivotal.io/application-service-windows/<%= vars.current_major_version.sub('.','-') %>/index.html) (<%= vars.windows_runtime_abbr %>) enables <%= vars.app_runtime_abbr %> to manage Windows Server 2016 (1709) stemcells hosting .NET apps, and can also be replicated to create multiple isolated resource pools.
       - Operators replicate and configure a <%= vars.windows_runtime_abbr %> tile for each new resource pool they want to create.
       - You must install <%= vars.app_runtime_abbr %> before you can install <%= vars.windows_runtime_abbr %>.
-  - [Small Footprint <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/small-footprint.html) is an alternative to <%= vars.app_runtime_abbr %> that uses far fewer VMs than <%= vars.app_runtime_abbr %> but has limitations.
+  - [Small Footprint <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/small-footprint.html) is an alternative to <%= vars.app_runtime_abbr %> that uses far fewer VMs than <%= vars.app_runtime_abbr %> but has limitations.
 
 1. **Day 2 Configurations**
   - Day 2 configurations set up internal operations and external integrations on a running deployment.
@@ -75,13 +75,13 @@ The following describes how you can use BOSH to run software in the cloud:
 
 1. BOSH CLI and API commands let you control BOSH-managed processes and allocate or release IaaS resources.
 
-* [Configuring BOSH Director on OpenStack](/platform/ops-manager/<%= vars.current_major_version.sub('.', '-') %>/openstack/config.html)
-* [Using Your Own Load Balancer](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/custom-load-balancer.html)
-* [<%= vars.app_runtime_abbr %> User Types](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/user-types.html)
+* [Configuring BOSH Director on OpenStack](/platform/ops-manager/<%= vars.current_major_version.sub('.','-') %>/openstack/config.html)
+* [Using Your Own Load Balancer](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/custom-load-balancer.html)
+* [<%= vars.app_runtime_abbr %> User Types](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/user-types.html)
 * [Creating and Managing <%= vars.ops_manager %> User Accounts](./opsman-users.html)
-* [Creating New <%= vars.app_runtime_abbr %> User Accounts](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/creating-account.html)
-* [Logging In to Apps Manager](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/console-login.html)
-* [Adding Existing SAML or LDAP Users to an <%= vars.platform_name %> Deployment](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/external-user-management.html)
+* [Creating New <%= vars.app_runtime_abbr %> User Accounts](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/creating-account.html)
+* [Logging In to Apps Manager](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/console-login.html)
+* [Adding Existing SAML or LDAP Users to an <%= vars.platform_name %> Deployment](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/external-user-management.html)
 * [Deleting an AWS Installation from the Console](./deleting-aws-install.html)
 * [Modifying Your <%= vars.ops_manager %> Installation and Product Template Files](./modify-ops-man.html)
 * [Managing Errands in <%= vars.ops_manager %>](./managing_errands.html)
@@ -95,8 +95,8 @@ The following describes how you can use BOSH to run software in the cloud:
 ## <a id='monitoring-logging-troubleshooting'></a> Monitoring, Logging, and Troubleshooting
 
 * [Monitoring VMs in <%= vars.platform_name %>](./monitoring.html)
-* [Diagnosing Deployment Problems](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/operating/diagnostics.html)
+* [Diagnosing Deployment Problems](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/diagnostics.html)
 * [Troubleshooting Deployment Problems](./troubleshooting.html)
 * [Troubleshooting <%= vars.ops_manager %> for vSphere](./troubleshooting-vsphere.html)
-* [Recovering from MySQL Cluster Downtime](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.', '-') %>/mysql/bootstrap-mysql.html)
+* [Recovering from MySQL Cluster Downtime](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/mysql/bootstrap-mysql.html)
 * [Advanced Troubleshooting with the BOSH CLI](./trouble-advanced.html)
