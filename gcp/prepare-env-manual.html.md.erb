@@ -11,15 +11,15 @@ This topic describes the preparation steps required to install Ops Manager for P
 
 Before you prepare your Ops Manager installation, do the following depending on the runtime you intend to deploy:
 
-- If you are deploying Pivotal Application Service (PAS), see [PCF on GCP Requirements](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp.html).
+- If you are deploying <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>), see [PCF on GCP Requirements](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp.html).
 
-- If you are deploying Pivotal Container Service (PKS), see [GCP Prerequisites and Resource Requirements](https://docs.pivotal.io/pks/gcp-requirements.html).
+- If you are deploying <%= vars.k8s_runtime_full %> (<%= vars.k8s_runtime_abbr %>), see [GCP Prerequisites and Resource Requirements](https://docs.pivotal.io/pks/gcp-requirements.html).
 
 
 ## <a id="config-components"></a> Configuration and Components
 
-This section outlines high-level infrastructure options for PCF on GCP. A PCF deployment includes Ops Manager and your chosen runtime. For example, both Ops Manager with PAS
-and Ops Manager with PKS are PCF deployments. For more information, review the deployment
+This section outlines high-level infrastructure options for PCF on GCP. A PCF deployment includes Ops Manager and your chosen runtime. For example, both Ops Manager with <%= vars.app_runtime_abbr %>
+and Ops Manager with <%= vars.k8s_runtime_abbr %> are PCF deployments. For more information, review the deployment
 options and recommendations in [Reference Architecture for Pivotal Cloud Foundry on GCP](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html).
 
 You can deploy PCF using one of two main configurations on a GCP virtual private cloud (VPC):
@@ -59,7 +59,7 @@ For more information, review the different deployment options and recommendation
 
 1. Click **Create**. Your browser automatically downloads a JSON file with a private key for this account. Save this file in a secure location.
 
-<p class='note'><strong>Note:</strong> You can use this service account to configure file storage for PAS. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pas-file-storage.html#gcp">GCP</a> section of the <em>Configuring File Storage for PAS</em> topic.</p>
+<p class='note'><strong>Note:</strong> You can use this service account to configure file storage for <%= vars.app_runtime_abbr %>. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pas-file-storage.html#gcp">GCP</a> section of the <em>Configuring File Storage for <%= vars.app_runtime_abbr %></em> topic.</p>
 
 
 ## <a id="enable_compute_resource_api"></a> Step 2: Enable Google Cloud APIs
@@ -575,8 +575,8 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
 
 1. If you use a trusted SSL certificate or already have a self-signed certificate, proceed to step 5.
 
-1. If you want to use a self-signed certificate generated during [PAS network configuration](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp-er-config.html#networking), skip over the next step of adding the HTTPS frontend configuration until after you generate the certificate in PAS. After you generate the certificate, return to step 5 using the following guidelines:
-   * Copy and paste the generated contents of the **Router SSL Termination Certificate and Private Key** fields from PAS into the public certificate and private key fields.
+1. If you want to use a self-signed certificate generated during [PAS network configuration](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/gcp-er-config.html#networking), skip over the next step of adding the HTTPS frontend configuration until after you generate the certificate in <%= vars.app_runtime_abbr %>. After you generate the certificate, return to step 5 using the following guidelines:
+   * Copy and paste the generated contents of the **Router SSL Termination Certificate and Private Key** fields from <%= vars.app_runtime_abbr %> into the public certificate and private key fields.
    * Since you are using a self-signed certificate, do not enter a value in the **Certificate Chain** field.
 
 1. Click **Add Frontend IP and port** and add the following:
@@ -593,7 +593,7 @@ If you are deploying **PAS or other runtimes**, proceed to the following step.
   * In the **Public key certificate** field, copy in the contents of your public certificate, or upload your certificate as a .pem file.
      If the certificate is runtime-generated, copy and paste the generated contents from the runtime's Certificate field into the Ops Manager **Public key certificate** field.
   * In the **Certificate chain** field, enter or upload your certificate chain in the .pem format.
-  If you are using a self-signed certificate, such as a PAS or PKS-generated certificate, do not enter a value in the **Certificate Chain** field.
+  If you are using a self-signed certificate, such as a <%= vars.app_runtime_abbr %> or <%= vars.k8s_runtime_abbr %>-generated certificate, do not enter a value in the **Certificate Chain** field.
   * In the **Private key** field, copy in the contents or upload the .pem file of the private key for the certificate.
   If the certificate is runtime-generated, copy and paste the generated contents from the runtime's Private Key field into the Ops Manager **Private key** field.
 
@@ -801,8 +801,8 @@ xyz.EXAMPLE.COM.      1767    IN  A 203.0.113.1</pre>
 
 ## <a id="next-steps"></a> Next Steps
 
-* (Optional) To prepare for deploying either a PAS or PKS tile on GCP, you can download the needed runtime tile in advance:
-  * To download PAS, log in to [Pivotal Network](https://network.pivotal.io/products/elastic-runtime), select your desired release version, and download **Pivotal Application Service**.
-  * To download PKS, log in to [Pivotal Network](https://network.pivotal.io/products/pivotal-container-service), select your desired release version, and download **Pivotal Container Service**.
+* (Optional) To prepare for deploying either a <%= vars.app_runtime_abbr %> or <%= vars.k8s_runtime_abbr %> tile on GCP, you can download the needed runtime tile in advance:
+  * To download <%= vars.app_runtime_abbr %>, log in to [Pivotal Network](https://network.pivotal.io/products/elastic-runtime), select your desired release version, and download **<%= vars.app_runtime_full %>**.
+  * To download <%= vars.k8s_runtime_abbr %>, log in to [Pivotal Network](https://network.pivotal.io/products/pivotal-container-service), select your desired release version, and download **<%= vars.k8s_runtime_full %>**.
 
 * After initiating the tile download, proceed to the next step, [Deploying Ops Manager on GCP Manually](./deploy-manual.html).
