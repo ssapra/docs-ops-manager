@@ -9,7 +9,7 @@ install_type: terraform
 This topic describes how to configure the BOSH Director tile in Ops Manager on
 Amazon Web Services (AWS) after [Deploying Ops Manager on AWS Using Terraform](./prepare-env-terraform.html).
 
-<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see the <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a> topic.</p>
+<p class="note"><strong>Note:</strong> You can also perform the procedures in this topic using the Ops Manager API. For more information, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/ops-man-api.html">Using the Ops Manager API</a>.</p>
 
 
 ## <a id='prereq'></a> Prerequisites
@@ -33,7 +33,7 @@ To complete the procedures in this topic, you must have access to the output fro
 1.  When redirected to the **Internal Authentication** page, do the following:
     * Enter a **Username**, **Password**, and **Password confirmation** to create an Admin user.
     * Enter a **Decryption passphrase** and the **Decryption passphrase confirmation**. This passphrase encrypts the Ops Manager datastore, and is not recoverable.
-    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in the [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html) topic.
+    * If you are using an **HTTP proxy** or **HTTPS proxy**, follow the instructions in [Configuring Proxy Settings for the BOSH CPI](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/pcf-director-proxy-settings.html).
     * Read the **End User License Agreement**, and select the checkbox to accept the terms.
     * Click **Setup Authentication**.
 
@@ -466,6 +466,6 @@ To assign your load balancer VMs to the correct target groups and security group
     <%= image_tag("../common/images/cloudform/ops-manager-complete.png") %>
 
 1. After you complete this procedure, continue to the topic for the runtime you are installing:
-  * **<%= vars.app_runtime_abbr**: [Deploying <%= vars.app_runtime_abbr %> on AWS Using Terraform](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/aws-er-config-terraform.html)
-  * **<%= vars.k8s_runtime_abbr v1.2**: [Installing <%= vars.k8s_runtime_abbr %> on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html)
-  * **<%= vars.k8s_runtime_abbr v1.3**: [Installing <%= vars.k8s_runtime_abbr %> on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html)
+  * **<%= vars.app_runtime_abbr %>**: [Deploying <%= vars.app_runtime_abbr %> on AWS Using Terraform](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/aws-er-config-terraform.html)
+  * **<%= vars.k8s_runtime_abbr %> v1.2**: [Installing <%= vars.k8s_runtime_abbr %> on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html)
+  * **<%= vars.k8s_runtime_abbr %> v1.3**: [Installing <%= vars.k8s_runtime_abbr %> on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html)
