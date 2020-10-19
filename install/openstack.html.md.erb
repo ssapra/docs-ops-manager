@@ -86,7 +86,6 @@ The following are OpenStack requirements for deploying <%= vars.platform_name %>
   * Failure to configure your overlay network correctly could cause Apps Manager to fail since applications will not be able to connect to the UAA.
     <p class='note'><strong>Note:</strong> If you are using IPsec, your resource usage will increase by approximately 36 bytes. View the <a href="https://docs.pivotal.io/addon-ipsec/installing.html"> Installing IPsec topic</a> for information, including setting correct MTU values.</p>
 
-
 ## <a id='outputs'></a> Install <%= vars.platform_name %> on OpenStack with <%= vars.app_runtime_abbr %>
 
 To install <%= vars.platform_name %> on OpenStack with the <%= vars.app_runtime_abbr %> runtime, do the following:
@@ -95,4 +94,10 @@ To install <%= vars.platform_name %> on OpenStack with the <%= vars.app_runtime_
 
 1. Configure BOSH Director on OpenStack. See [Configuring BOSH Director on OpenStack](/platform/ops-manager/<%= vars.current_major_version.sub('.','-') %>/openstack/config.html).
 
-1. Configure <%= vars.app_runtime_abbr %>. See [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configure-pas.html).
+## <a id="next"></a> Next Steps
+
+After completing the procedures above, configure a runtime for <%= vars.platform_name %>.
+
+For information about installing and configuring a runtime, see the following:
+
+* [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configure-pas.html).
