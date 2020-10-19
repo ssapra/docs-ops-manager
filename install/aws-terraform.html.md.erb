@@ -24,8 +24,6 @@ To install with <%= vars.app_runtime_abbr %> using Terraform, do the following:
 
 1. Configure BOSH Director. See [Configuring BOSH Director on AWS Using Terraform](/platform/ops-manager/<%= vars.current_major_version.sub('.','-') %>/aws/config-terraform.html).
 
-1. Configure <%= vars.app_runtime_abbr %>. See [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configure-pas.html).
-
 ## <a id="terraform-pks"></a> Install with <%= vars.k8s_runtime_abbr %> Using Terraform
 
 To install with <%= vars.k8s_runtime_abbr %> using Terraform, do the following:
@@ -34,4 +32,12 @@ To install with <%= vars.k8s_runtime_abbr %> using Terraform, do the following:
 
 1. Configure BOSH Director. See [Configuring BOSH Director on AWS Using Terraform](/platform/ops-manager/<%= vars.current_major_version.sub('.','-') %>/aws/config-terraform.html).
 
-1. Configure <%= vars.k8s_runtime_abbr %>. See [Installing <%= vars.k8s_runtime_abbr %> on AWS](https://docs.pivotal.io/pks/installing-pks-aws.html).
+## <a id="next"></a> Next Steps
+
+After completing the procedures above, configure a runtime for <%= vars.platform_name %>.
+You can install the <%= vars.app_runtime_abbr %> runtime or the <%= vars.k8s_runtime_abbr %> runtime.
+
+For information about installing and configuring a runtime, see the following:
+
+* [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configure-pas.html).
+* [Installing <%= vars.k8s_runtime_abbr %> on AWS](https://docs.pivotal.io/tkgi/installing-aws.html).
