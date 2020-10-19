@@ -28,8 +28,6 @@ To install manually with <%= vars.app_runtime_abbr %>, do the following:
 
 1. (Optional). Configure a shared VPC. See [(Optional) Configuring a Shared VPC on GCP](./gcp-shared-vpc.html).
 
-1. Configure <%= vars.app_runtime_abbr %>. See [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configure-pas.html).
-
 ## <a id="manual-pks"></a> Install Manually with <%= vars.k8s_runtime_abbr %>
 
 To install manually with <%= vars.k8s_runtime_abbr %>, do the following:
@@ -42,4 +40,12 @@ To install manually with <%= vars.k8s_runtime_abbr %>, do the following:
 
 1. (Optional). Configure a shared VPC. See [(Optional) Configuring a Shared VPC on GCP](./gcp-shared-vpc.html).
 
-1. Configure <%= vars.k8s_runtime_abbr %>. See [Installing <%= vars.k8s_runtime_abbr %> on GCP](https://docs.pivotal.io/pks/installing-pks-gcp.html).
+## <a id="next"></a> Next Steps
+
+After completing the procedures above, configure a runtime for <%= vars.platform_name %>.
+You can install the <%= vars.app_runtime_abbr %> runtime or the <%= vars.k8s_runtime_abbr %> runtime.
+
+For information about installing and configuring a runtime, see the following:
+
+* Configure <%= vars.app_runtime_abbr %>. See [Configuring <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configure-pas.html).
+* Configure <%= vars.k8s_runtime_abbr %>. See [Installing <%= vars.k8s_runtime_abbr %> on GCP](https://docs.pivotal.io/tkgi/installing-gcp.html).
