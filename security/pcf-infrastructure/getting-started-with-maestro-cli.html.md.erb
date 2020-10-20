@@ -103,7 +103,8 @@ You can use the following flags with `maestro topology`:
 
 #### <a id='regenerate-ca'></a> maestro regenerate ca
 
-`maestro regenerate ca` regenerates actively deployed CAs.
+`maestro regenerate ca` regenerates actively deployed CAs and adds transitional flags to these new CA versions.
+The transitional status indicates that these new CA versions will not yet sign any leaf certificates, though they will be trusted by clients.
 
 You can use the following flags with `maestro regenerate ca`:
 
