@@ -293,3 +293,16 @@ This issue is resolved in Ops Manager v2.10.1.
 ### <a id='increased-logging'></a> Increased Logging Slows Platform Functions
 
 <%= partial "/pcf/ops-manager/increased_logging_ki" %>
+
+### <a id='credhub-generated-field'></a> Reset Manually Set Certificates in CredHub Before Rotating Certificates with the <%= vars.ops_manager %> API
+
+<!--- If and when this KI is fixed, remove the cross-reference to it in security/pcf-infrastructure/advanced-certificate-rotation.html#prerequisites --->
+
+If you have manually set any certificates in CredHub on <%= vars.ops_manager %> v2.6 or earlier, you need to reset those certificates before using the <%= vars.ops_manager %> API to rotate CredHub certificates.
+
+Resetting these certificates is not a required condition for the <%= vars.ops_manager %> v2.10 upgrade. You can reset them either before or after the upgrade.
+
+To reset a certificate in CredHub, see [Reviewing and Resetting Manually Set Certificates in CredHub](security/pcf-infrastructure/manual-credhub-certificate.html).
+
+For more information about rotating certificates using the <%= vars.ops_manager %> API, see [Overview of Certificate Rotation](security/pcf-infrastructure/api-cert-rotation.html). For more information about the `certificate_authorities/active/regenerate` endpoint, see [Rotate Certificates](https://docs.pivotal.io/pivotalcf/2-10/opsman-api/#create-root-certificate-authorities) in the <%= vars.ops_manager %> API documentation.
+
