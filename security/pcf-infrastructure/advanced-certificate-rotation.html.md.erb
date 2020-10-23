@@ -34,8 +34,6 @@ Before you rotate CredHub-managed certificates with CredHub Maestro:
   Not every tile currently supports certificate rotation, so there is a potential for downtime.
   For more information about which tiles support certificate rotation,
   see [CredHub Maestro Tile Compatibility](maestro-tile-compatibility.html).
-  <p class='note'><strong>Note:</strong> Using CredHub Maestro to rotate CredHub-managed certificates might cause downtime for your deployment. However, you must use CredHub Maestro if your deployment includes <%= vars.k8s_runtime_abbr %>, since you cannot rotate CredHub-managed certificates using the <%= vars.ops_manager %> API. You can still use the <%= vars.ops_manager %> API to rotate certificates stored in <%= vars.ops_manager %>.</p>
-
 
 ## <a id='check-expiration'></a> Check Expiration Dates and Certificate Types
 
