@@ -7,7 +7,7 @@ This topic describes how to manage and retrieve information about certificates i
 
 ## <a id='overview'></a> Overview
 
-The Ops Manager API includes endpoints for managing and retrieving information about certificates in a PCF deployment. 
+The Ops Manager API includes endpoints for managing and retrieving information about certificates in a PCF deployment.
 
 For more information about Ops Manager API endpoints for managing certificates, see
 [Certificate Authorities](https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/opsman-api/#certificate-authorities)
@@ -26,42 +26,69 @@ For more information about authenticating with UAA, see
 To generate and return a new RSA certificate signed by the root certificate authority (CA), use `curl` to make the
 following API call:
 
-```
-curl "https://OPS-MAN-FQDN/api/v0/certificates/generate" \
-      -X POST \
-      -H "Authorization: Bearer YOUR-UAA-ACCESS-TOKEN"
-```
+    ```
+    curl "https://OPS-MANAGER-FQDN/api/v0/certificates/generate" \
+          -X POST \
+          -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
+    ```
+    Where:
+    * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
+    * `UAA-ACCESS-TOKEN` is your <%= vars.ops_manager %> access token without any newline characters such as `\n`.
 
-Where `YOUR-UAA-ACCESS-TOKEN` is your Ops Manager access token without any newline characters such as `\n`. 
+Where `YOUR-UAA-ACCESS-TOKEN` is your Ops Manager access token without any newline characters such as `\n`.
 
 
 ## <a id='root-certs'></a> Retrieve the Ops Manager Root CA
 
 You can view the Ops Manager root CA as a file or in JSON format.
 
+<<<<<<< HEAD
+=======
+### <a id='root-certs-file-ui'></a> Retrieve the Ops Manager Root CA as a File, Using Ops Manager
+
+To retrieve the Ops Manager Root CA as a file, do the following:
+
+1. Open Ops Manager.
+
+1. Select **Settings** from the account menu pull-down in the upper-right corner of the screen.
+
+1. Select **Advanced Options**.
+
+1. Select **Download Root CA Cert**. The Ops Manager Root CA certificate file is downloaded by your browser.
+
+>>>>>>> 9d41ee85... [#175506920] adds -i flag to curl commands
 ### <a id='root-certs-file'></a> Retrieve the Ops Manager Root CA as a File
 
 To return the Ops Manager root CA as a file, use `curl` to make the following API call:
 
-```
-curl "https://OPS-MAN-FQDN/download_root_ca_cert" \
-      -X GET \
-      -H "Authorization: Bearer YOUR-UAA-ACCESS-TOKEN"
-```
+    ```
+    curl "https://OPS-MANAGER-FQDN/download_root_ca_cert" \
+          -X GET \
+          -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
+    ```
+    Where:
+    * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
+    * `UAA-ACCESS-TOKEN` is your <%= vars.ops_manager %> access token without any newline characters such as `\n`.
 
-Where `YOUR-UAA-ACCESS-TOKEN` is your Ops Manager access token without any newline characters such as `\n`. 
+Where `YOUR-UAA-ACCESS-TOKEN` is your Ops Manager access token without any newline characters such as `\n`.
 
 ### <a id='root-certs-json'></a> Retrieve the Ops Manager Root CA as JSON
 
 To return the Ops Manager root CA as JSON, use `curl` to make the following API call:
 
-```
-curl "https://OPS-MAN-FQDN/api/v0/security/root_ca_certificate" \
-      -X GET \
-      -H "Authorization: Bearer YOUR-UAA-ACCESS-TOKEN"
-```
+    ```
+    curl "https://OPS-MANAGER-FQDN/api/v0/security/root_ca_certificate" \
+          -X GET \
+          -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
+    ```
+    Where:
+    * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
+    * `UAA-ACCESS-TOKEN` is your <%= vars.ops_manager %> access token without any newline characters such as `\n`.
 
-Where `YOUR-UAA-ACCESS-TOKEN` is your Ops Manager access token without any newline characters such as `\n`. 
+Where `YOUR-UAA-ACCESS-TOKEN` is your Ops Manager access token without any newline characters such as `\n`.
 
 ## <a id='list-rsa-certs'></a> List all RSA Certificates
 
@@ -74,4 +101,12 @@ curl "https://OPS-MAN-FQDN/api/v0/deployed/certificates" \
       -H "Authorization: Bearer YOUR-UAA-ACCESS-TOKEN"
 ```
 
-Where `YOUR-UAA-ACCESS-TOKEN` is your Ops Manager access token without any newline characters such as `\n`.
+    ```
+    curl "https://OPS-MANAGER-FQDN/api/v0/deployed/certificates" \
+          -X GET \
+          -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
+    ```
+    Where:
+    * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
+    * `UAA-ACCESS-TOKEN` is your <%= vars.ops_manager %> access token without any newline characters such as `\n`.
