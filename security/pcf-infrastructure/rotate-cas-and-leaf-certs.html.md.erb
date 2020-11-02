@@ -60,6 +60,7 @@ To add new CAs:
             -H "Authorization: Bearer UAA-ACCESS-TOKEN" \
             -H "Content-Type: application/json" \
             -d '{"cert_pem": "-----BEGIN CERTIFICATE-----CUSTOM-CERTIFICATE", "private_key_pem": "-----BEGIN RSA PRIVATE KEY-----RSA-KEY"}'
+            -i
         ```
         Where:
         * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
@@ -92,6 +93,7 @@ To add new CAs:
               -H "Authorization: Bearer UAA-ACCESS-TOKEN" \
               -H "Content-Type: application/json" \
               -d '{}'
+              -i
         ```
         Where:
         * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
@@ -134,6 +136,7 @@ To add new CAs:
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities" \
           -X GET \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
@@ -216,6 +219,7 @@ To activate the CAs that you added in [Add New CAs](#add-new-ca) above:
       -H "Authorization: Bearer UAA-ACCESS-TOKEN" \
       -H "Content-Type: application/json" \
       -d '{}'
+      -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
@@ -232,6 +236,7 @@ To activate the CAs that you added in [Add New CAs](#add-new-ca) above:
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities" \
           -X GET \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
@@ -269,6 +274,7 @@ To rotate non-configurable leaf certificates:
           -H "Authorization: Bearer UAA-ACCESS-TOKEN" \
           -H "Content-Type: application/json" \
           -d '{}'
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
@@ -336,6 +342,7 @@ To delete the old <%= vars.ops_manager %> root CA and mark the old CredHub CAs a
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities" \
           -X GET \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
@@ -347,6 +354,7 @@ To delete the old <%= vars.ops_manager %> root CA and mark the old CredHub CAs a
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities/OLD-CERTIFICATE-GUID" \
           -X DELETE \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
