@@ -30,6 +30,7 @@ To generate and return a new RSA certificate signed by the root certificate auth
     curl "https://OPS-MANAGER-FQDN/api/v0/certificates/generate" \
           -X POST \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
@@ -62,6 +63,7 @@ To return the <%= vars.ops_manager %> root CA as a file:
     curl "https://OPS-MANAGER-FQDN/download_root_ca_cert" \
           -X GET \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
@@ -77,6 +79,7 @@ To return the <%= vars.ops_manager %> root CA as JSON:
     curl "https://OPS-MANAGER-FQDN/api/v0/security/root_ca_certificate" \
           -X GET \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
@@ -93,6 +96,7 @@ To return metadata from all deployed RSA certificates visible to <%= vars.ops_ma
     curl "https://OPS-MANAGER-FQDN/api/v0/deployed/certificates" \
           -X GET \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
