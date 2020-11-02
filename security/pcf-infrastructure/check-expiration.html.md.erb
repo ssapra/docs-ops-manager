@@ -25,6 +25,7 @@ To check certificate expiration dates and types through the <%= vars.ops_manager
     ```
     curl "https://OPS-MANAGER-FQDN/api/v0/deployed/certificates" \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
