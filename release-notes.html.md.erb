@@ -31,8 +31,7 @@ no longer fail on Ops Manager instances deployed in AWS regions that do not have
 - **[Bug Fix]**: If you added or activated a CA on Ops Manager v2.7 or earlier,
 you can then activate or delete that CA after upgrading to Ops Manager v2.9 or later as expected.
 
-- **[Bug Fix]**: The **Settings** page no longer crashes when you attempt to save a long LDAP admin group name that contains spaces.
-  Crash message: `NoMethodError: undefined method `<' for nil:NilClass`
+- **[Bug Fix]**: The **Settings** page no longer crashes when you attempt to save a long LDAP admin group name that contains spaces. The following error message is associated with this bug: `NoMethodError: undefined method `<' for nil:NilClass`.
 
 - **[Bug Fix]**: On the **Certificates** page, the **Excluded Certificates** section is updated to correctly list all certificates that the Ops Manager API does not attempt to rotate.
 
@@ -306,4 +305,3 @@ Resetting these certificates is not a required condition for the <%= vars.ops_ma
 To reset a certificate in CredHub, see [Reviewing and Resetting Manually Set Certificates in CredHub](security/pcf-infrastructure/manual-credhub-certificate.html).
 
 For more information about rotating certificates using the <%= vars.ops_manager %> API, see [Overview of Certificate Rotation](security/pcf-infrastructure/api-cert-rotation.html). For more information about the `certificate_authorities/active/regenerate` endpoint, see [Rotate Certificates](https://docs.pivotal.io/pivotalcf/2-10/opsman-api/#create-root-certificate-authorities) in the <%= vars.ops_manager %> API documentation.
-
