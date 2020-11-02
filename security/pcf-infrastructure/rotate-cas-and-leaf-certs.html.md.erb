@@ -51,6 +51,7 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
             -H "Authorization: Bearer UAA-ACCESS-TOKEN" \
             -H "Content-Type: application/json" \
             -d '{"cert_pem": "-----BEGIN CERTIFICATE-----CUSTOM-CERTIFICATE", "private_key_pem": "-----BEGIN RSA PRIVATE KEY-----RSA-KEY"}'
+            -i
         ```
         Where:
         * `OPS-MANAGER-FQDN` is the fully-qualified domain name (FQDN) of your <%= vars.ops_manager %> deployment.
@@ -83,6 +84,7 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
               -H "Authorization: Bearer UAA-ACCESS-TOKEN" \
               -H "Content-Type: application/json" \
               -d '{}'
+              -i
         ```
         Where:
         * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
@@ -125,6 +127,7 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities" \
           -X GET \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
@@ -207,6 +210,7 @@ To activate the new root CA:
       -H "Authorization: Bearer UAA-ACCESS-TOKEN" \
       -H "Content-Type: application/json" \
       -d '{}'
+      -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
@@ -223,6 +227,7 @@ To activate the new root CA:
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities" \
           -X GET \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
@@ -259,6 +264,7 @@ To rotate non-configurable leaf certificates:
           -H "Authorization: Bearer UAA-ACCESS-TOKEN" \
           -H "Content-Type: application/json" \
           -d '{}'
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
@@ -319,6 +325,7 @@ To delete the old <%= vars.ops_manager %> root CA:
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities" \
           -X GET \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
@@ -330,6 +337,7 @@ To delete the old <%= vars.ops_manager %> root CA:
     curl "https://OPS-MANAGER-FQDN/api/v0/certificate_authorities/OLD-CERTIFICATE-GUID" \
           -X DELETE \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
