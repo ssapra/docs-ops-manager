@@ -32,6 +32,7 @@ no longer fail on Ops Manager instances deployed in AWS regions that do not have
 you can then activate or delete that CA after upgrading to Ops Manager v2.9 or later as expected.
 
 - **[Bug Fix]**: The **Settings** page no longer crashes when you attempt to save a long LDAP admin group name that contains spaces.
+  Crash message: `NoMethodError: undefined method `<' for nil:NilClass`
 
 - **[Bug Fix]**: On the **Certificates** page, the **Excluded Certificates** section is updated to correctly list all certificates that the Ops Manager API does not attempt to rotate.
 
