@@ -65,6 +65,7 @@ To check the expiration dates of leaf certificates and identify the types of lea
     ```
     curl "https://OPS-MANAGER-FQDN/api/v0/deployed/certificates?expires_within=TIME" \
           -H "Authorization: Bearer UAA-ACCESS-TOKEN"
+          -i
     ```
     Where:
     * `OPS-MANAGER-FQDN` is the FQDN of your <%= vars.ops_manager %> deployment.
