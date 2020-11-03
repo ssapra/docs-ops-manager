@@ -5,6 +5,8 @@ iaas: GCP
 install_type: terraform
 ---
 
+<%= partial "/pcf/warning-terraform" %>
+
 This guide describes the preparation steps required to install <%= vars.platform_name %>  on Google Cloud Platform (GCP) using Terraform templates.
 
 The Terraform template for <%= vars.platform_name %> on GCP describes a set of GCP resources and properties. For more information about how Terraform creates resources in GCP, see [Google Cloud Provider](https://www.terraform.io/docs/providers/google/index.html) on the Terraform site.
