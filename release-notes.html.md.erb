@@ -19,6 +19,36 @@ Read more about the [certified provider program](https://www.cloudfoundry.org/pr
 
 <%= vars.ops_manager %> v2.7 includes the following minor releases:
 
+### <a id="2-7-24"></a> 2.7.25
+
+**Release Date:** November 3, 2020
+
+- **[Feature]** API endpoints default to app or JSON content types 
+- **[Feature]** You can configure domain-style S3 access
+- **[Feature]** Upgrade NGINX
+- **[Bug Fix]** Tile migrations are properly recorded when tile is staged
+- **[Bug Fix]** Clusters in an Availability Zone (AZ) are validated
+- **[Bug Fix]** Repeated calls to `DELETE /api/v0/installation_asset_collection` deletes any deployed products
+- **[Bug Fix]** On the AZ and Network configuration pane, handles the `freeze_on_deploy` behavior better
+
+<table border="1" class="nice">
+  <thead>
+  <tr>
+    <th>Component</th>
+    <th>Version</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Tanzu Ops Manager</td><td>2.7.25-build.397*</td>
+  </tr>
+  <tr><td>Stemcell (Bosh Director and Ops Manager)</td><td>456.126*</td></tr><tr><td>BBR SDK</td><td>1.18.0</td></tr><tr><td>BOSH Director</td><td>270.4.6*</td></tr><tr><td>BOSH DNS</td><td>1.24.0</td></tr><tr><td>Metrics Server</td><td>0.1.0</td></tr><tr><td>CredHub</td><td>2.5.13</td></tr><tr><td>CredHub Maestro</td><td>1.0.4</td></tr><tr><td>Syslog</td><td>11.6.1</td></tr><tr><td>Windows Syslog</td><td>1.0.3</td></tr><tr><td>UAA</td><td>73.4.29*</td></tr><tr><td>BPM</td><td>1.1.9</td></tr><tr><td>Networking</td><td>9</td></tr><tr><td>OS Conf</td><td>22.1.0</td></tr><tr><td>AWS CPI</td><td>78</td></tr><tr><td>Azure CPI</td><td>36.0.1</td></tr><tr><td>Google CPI</td><td>29.0.1</td></tr><tr><td>OpenStack CPI</td><td>43</td></tr><tr><td>vSphere CPI</td><td>53.0.11</td></tr><tr><td>BOSH CLI</td><td>6.4.1*</td></tr><tr><td>Credhub CLI</td><td>2.8.0</td></tr><tr><td>BBR CLI</td><td>1.8.1*</td></tr>
+  
+    <td colspan="2"><em>* Components marked with an asterisk have been updated.</em></td>
+  
+  </tbody>
+</table>
+
 ### <a id="2-7-24"></a> 2.7.24
 
 **Release Date:** September 25, 2020
