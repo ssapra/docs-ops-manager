@@ -23,13 +23,13 @@ Read more about the [certified provider program](https://www.cloudfoundry.org/pr
 
 **Release Date:** November 3, 2020
 
-- **[Feature]** API endpoints default to app or JSON content types 
+- **[Feature]** API endpoints default to `application/json` content type 
 - **[Feature]** You can configure domain-style S3 access
 - **[Feature]** Upgrade NGINX
 - **[Bug Fix]** Tile migrations are properly recorded when tile is staged
-- **[Bug Fix]** Clusters in an Availability Zone (AZ) are validated
+- **[Bug Fix]** Clusters in an AZ are validated based on cluster name, resource pool, host group, and VM host affinity rule
 - **[Bug Fix]** Repeated calls to `DELETE /api/v0/installation_asset_collection` deletes any deployed products
-- **[Bug Fix]** On the AZ and Network configuration pane, handles the `freeze_on_deploy` behavior better
+- **[Bug Fix]** The AZ and Network configuration pane does not error when properties are missing
 
 <table border="1" class="nice">
   <thead>
