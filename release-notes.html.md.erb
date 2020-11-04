@@ -354,6 +354,7 @@ Ops Manager v2.9.7 uses the following component versions:
 * **[Bug Fix]**: Fixes issue in Ops Manager UI where stemcell versions are compared as strings and incorrectly report stemcell out-of-date messages. This resolves [Stemcell Library Warns That Stemcells with Triple-Digit Minor Release Numbers Are Out of Date ](#triple-digit-stemcell) known issue.
 * **[Bug Fix]**: Fixes issue where Ops Manager API did not mark products as having an update when staged version differs from last successful deploy.
 * **[Bug Fix]**: Fixes issue where the `configurable` field incorrectly displays `true` for auto-generated certificates in CredHub. This issue affected CredHub certificates that set `generated` to `null` during the upgrade from Ops Manager v2.6 to v2.7.
+* **[Bug Fix]**: Fixes issue where BOSH DNS certificates are not regenerated when a tile that is incompatible with CredHub Maestro is installed.
 
 <%= vars.ops_manager %> v2.9.1 uses the following component versions:
 
@@ -665,5 +666,19 @@ In Ops Manager v2.9.0, when you upload a stemcell with a triple-digit minor rele
 This is because <%= vars.ops_manager %> erroneously interprets triple-digit minor release numbers, such as Ubuntu Xenial stemcell 456.100, as being older than double-digit minor release numbers, such as Ubuntu Xenial stemcell 456.98. The Stemcell Library then erroneously lists the most recent double-digit minor release stemcell you uploaded as the required stemcell.
 
 You can use stemcells with triple-digit minor release numbers and ignore the warning.
+
+This is resolved in Ops Manager v2.9.1.
+
+### <a id='bosh-dns-certs-not-rotated'></a> BOSH DNS Certificates Are Not Rotated When An Installed Tile Is Incompatible With CredHub Maestro
+
+In Ops Manager v2.9.0, when a tile is installed that is incompatible with CredHub Maestro and you use the leaf certificate regeneration API endpoint, BOSH DNS leaf certificates are not regenerated as intended.
+
+To rotate the BOSH DNS leaf certificates in Ops Manager 2.9.0, it is recommended that you either:
+* Upgrade to Ops Manager 2.9.1 or later, and then rotate certificates via the API.
+* Use CredHub Maestro to manually rotate the BOSH DNS leaf certificates.
+
+For more information about rotating certificates using the <%= vars.ops_manager %> API, see [Overview of Certificate Rotation](security/pcf-infrastructure/api-cert-rotation.html). For more information about the `certificate_authorities/active/regenerate` endpoint, see [Rotate Certificates](https://docs.pivotal.io/ops-manager/2-9/opsman-api/#tag/Certificate-Authorities/paths/~1api~1v0~1certificate_authorities~1generate/post) in the <%= vars.ops_manager %> API documentation.
+
+For more information about rotating specific CredHub-managed certificates, see [Advanced Certificate Rotation with CredHub Maestro](security/pcf-infrastructure/advanced-certificate-rotation.html).
 
 This is resolved in Ops Manager v2.9.1.
