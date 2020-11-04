@@ -545,6 +545,26 @@ To delete the old <%= vars.ops_manager %> root CA and mark the old CredHub CAs a
             ```
             Where `SERVICE-INSTANCE-DEPLOYMENT` is the BOSH deployment name for the service instance.
 
+1. (Optional) If you deploy any BOSH releases manually, you must redeploy and re-create VMs using the BOSH CLI.
+To log in to the Ops Manager VM and use the BOSH CLI, follow the steps in [Log in to the Ops Manager VM with SSH](../../install/trouble-advanced.html#ssh) in _Advanced Troubleshooting with the BOSH CLI_.
+<br><br>
+For each BOSH release:
+    1. Redeploy the BOSH release by running:
+
+        ```
+        bosh -d MY-DEPLOYMENT deploy PATH-TO-MANIFEST
+        ```
+        Where:
+        - `MY-DEPLOYMENT` is the name of your BOSH release.
+        - `PATH-TO-MANIFEST` is the location of your BOSH release manifest.
+
+    1. Re-create VMs for the BOSH releases by running:
+
+        ```
+        bosh -d MY-DEPLOYMENT recreate
+        ```
+        Where `MY-DEPLOYMENT` is the name of your BOSH release.
+
 1. If you do not have any service tiles installed:
     1. Click **Review Pending Changes**.
     1. Click **Apply Changes**.
