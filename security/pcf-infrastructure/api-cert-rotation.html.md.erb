@@ -54,6 +54,9 @@ Other certificates that the <%= vars.ops_manager %> API does not rotate include:
 
 * IPsec certificates. To rotate IPsec certificates, see [Rotating IPsec Certificates](https://docs.pivotal.io/addon-ipsec/credentials.html) in the IPsec documentation.
 
+* Certificates for any products that you deploy manually with BOSH.
+To rotate these certificates, you must re-deploy the BOSH release and re-create its VMs using the BOSH CLI.
+
 * CredHub-managed certificates for the following product versions:
     * <%= vars.app_runtime %> v2.7.0-v2.7.20
     * <%= vars.app_runtime %> v2.8.0-v2.8.1
