@@ -51,3 +51,6 @@ Other certificates that the <%= vars.ops_manager %> API does not rotate include:
 * IDP SAML certificates. To rotate IDP SAML certificates, see [Rotating Identity Provider SAML Certificates](rotate-saml-ca.html).
 
 * IPsec certificates. To rotate IPsec certificates, see [Rotating IPsec Certificates](https://docs.pivotal.io/addon-ipsec/credentials.html) in the IPsec Add-On for PCF documentation.
+
+* Certificates for any products that you deploy manually with BOSH.
+To rotate these certificates, you must re-deploy the BOSH release and re-create its VMs using the BOSH CLI.
