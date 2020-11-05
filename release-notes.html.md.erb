@@ -43,9 +43,9 @@ Read more about the [certified provider program](https://www.cloudfoundry.org/pr
     <td>Tanzu Ops Manager</td><td>2.9.12-build.198*</td>
   </tr>
   <tr><td>Stemcell (Bosh Director and Ops Manager)</td><td>621.89*</td></tr><tr><td>BBR SDK</td><td>1.18.0</td></tr><tr><td>BOSH Director</td><td>270.11.3*</td></tr><tr><td>BOSH DNS</td><td>1.24.0</td></tr><tr><td>Metrics Server</td><td>0.1.0</td></tr><tr><td>System Metrics</td><td>2.0.11</td></tr><tr><td>CredHub</td><td>2.5.13</td></tr><tr><td>CredHub Maestro</td><td>6.0.0</td></tr><tr><td>Syslog</td><td>11.6.1</td></tr><tr><td>Windows Syslog</td><td>1.0.3</td></tr><tr><td>UAA</td><td>74.5.20*</td></tr><tr><td>BPM</td><td>1.1.9</td></tr><tr><td>Networking</td><td>9</td></tr><tr><td>OS Conf</td><td>22.1.0</td></tr><tr><td>AWS CPI</td><td>81</td></tr><tr><td>Azure CPI</td><td>37.3.0</td></tr><tr><td>Google CPI</td><td>30.0.0</td></tr><tr><td>OpenStack CPI</td><td>44</td></tr><tr><td>vSphere CPI</td><td>54.1.0</td></tr><tr><td>BOSH CLI</td><td>6.4.1*</td></tr><tr><td>Credhub CLI</td><td>2.8.0</td></tr><tr><td>BBR CLI</td><td>1.8.0</td></tr><tr><td>Telemetry</td><td>1.1.1</td></tr>
-  
+
     <td colspan="2"><em>* Components marked with an asterisk have been updated.</em></td>
-  
+
   </tbody>
 </table>
 
@@ -671,7 +671,7 @@ This is resolved in Ops Manager v2.9.1.
 
 ### <a id='bosh-dns-certs-not-rotated'></a> BOSH DNS Certificates Are Not Rotated When An Installed Tile Is Incompatible With CredHub Maestro
 
-In Ops Manager v2.9.0, when a tile is installed that is incompatible with CredHub Maestro and you use the leaf certificate regeneration API endpoint, BOSH DNS leaf certificates are not regenerated as intended.
+In Ops Manager v2.9.0, when a tile is installed that is incompatible with CredHub Maestro, BOSH DNS leaf certificates are not regenerated as intended when you use the leaf ertificate regeneration API endpoint.
 
 To rotate the BOSH DNS leaf certificates in Ops Manager 2.9.0, it is recommended that you either:
 * Upgrade to Ops Manager 2.9.1 or later, and then rotate certificates via the API.
