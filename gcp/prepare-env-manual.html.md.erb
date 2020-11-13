@@ -712,7 +712,7 @@ The load balancer for tailing logs with WebSockets for <%= vars.platform_name %>
    * **Backup pool**: `None`
    * **Failover ratio**: `10%`
    * **Health check**: `No health check`
-<%= image_tag("../common/images/gcp/ssl_lb_backend_config_complete.png"), :alt => "Screenshot of the TCP load balancer Backend Configuration dialog" %>
+<%= image_tag("../common/images/gcp/ssl_lb_backend_config_complete.png", :alt => "Screenshot of the TCP load balancer Backend Configuration dialog") %>
 
 1. Select **Frontend configuration**, and add the following:
    * **Protocol**: `TCP`
@@ -752,7 +752,7 @@ To create a load balancer for TCP routing in GCP, do the following:
       * **Healthy threshold**: `10`
       * **Unhealthy threshold**: `2`
       * Click **Save and continue**.
- <%= image_tag("../common/images/gcp/tcp_lb_backend.png"), :alt => "Screenshot of the TCP load balancer Backend Configuration dialog" %>
+ <%= image_tag("../common/images/gcp/tcp_lb_backend.png", :alt => "Screenshot of the TCP load balancer Backend Configuration dialog") %>
 
 1. Select **Frontend configuration**, and add the front end IP and port entry as follows:
    * **Protocol**: `TCP`
@@ -762,7 +762,7 @@ To create a load balancer for TCP routing in GCP, do the following:
        1. Click **Reserve**.
    * **Port**: `1024-65535`
 
-	<%= image_tag("../common/images/gcp/tcp_lb_frontend.png"), :alt => "Screenshot of the TCP load balancer Frontend Configuration dialog" %>
+	<%= image_tag("../common/images/gcp/tcp_lb_frontend.png", :alt => "Screenshot of the TCP load balancer Frontend Configuration dialog") %>
 
 1. Click **Review and finalize** to verify your configuration.
 
