@@ -5,7 +5,6 @@ owner: Security
 
 This topic describes how to secure <%= vars.platform_name %> VMs by encrypting their disks or rotating their disk encryption keys.
 
-
 ## <a id='overview'></a> Overview
 
 Disk encryption protects data integrity if computing resources are stolen physically.
@@ -74,13 +73,39 @@ For more information about how BOSH integrates with IaaS-level disk encryption o
 
 ### <a id='vsphere'></a> vSphere
 
-vSphere v6.5 and later support disk encryption for encrypted VMs. To initiate or rotate disk encryption for BOSH-deployed VMs on vSphere v6.5 or later:
+vSphere v6.5 and later support disk encryption for encrypted VMs.
+
+If you are configuring volume encryption for <%= vars.k8s_runtime_full %>, you cannot use Ops Manager or the vSphere BOSH CPI to encrypt persistent disks.
+
+To initiate or rotate disk encryption for BOSH-deployed VMs on vSphere v6.5 or later:
 
 1. Log in to vCenter.
 
-1. Follow the procedure in [Encrypt an Existing Virtual Machine or Virtual Disk](https://docs.vmware.com/en/VMware-vSphere/6.5/com.vmware.vsphere.security.doc/GUID-5E2C3F74-38C1-44C3-ABC5-C2C9353B9DC4.html) in the VMware documentation.
+1. Follow the procedure in [Encrypt an Existing Virtual Machine or Virtual Disk](https://docs.vmware.com/en/VMware-vSphere/6.5/com.vmware.vsphere.security.doc/GUID-5E2C3F74-38C1-44C3-ABC5-C2C9353B9DC4.html) in the VMware documentation. If you are configuring volume encryption for <%= vars.k8s_runtime_full %>, change the **Default Storage Policy** to **kmspolicy**.
 
 1. Follow the procedure in [Recreate BOSH-Deployed Disks](#re-create) procedure to propagate the change to existing VMs.
+
+1. If you are configuring volume encryption for <%= vars.k8s_runtime_full %>, do the following:
+
+    1. Delete the BOSH Director stemcell used for the <%= vars.k8s_runtime_abbr %> foundation from the disk using vSphere WebClient.
+
+    1. Reupload the stemcell used by <%= vars.k8s_runtime_abbr %>
+
+		```
+    sudo cp /var/tempest/stemcells/STEMCELL-NAME.tgz /home/ubuntu/.
+    sudo chown ubuntu:ubuntu STEMCELL-NAME.tgz
+    bosh upload-stemcell STEMCELL-NAME.tgz --fix
+	  ```
+    Where `STEMCELL-NAME` is the name of the stemcell you want to reupload.
+		For example:
+<pre class=terminal>
+sudo cp /var/tempest/stemcells/bosh-stemcell-621.84-vsphere-esxi-ubuntu-xenial-go_agent.tgz /home/ubuntu/.
+sudo chown ubuntu:ubuntu bosh-stemcell-621.84-vsphere-esxi-ubuntu-xenial-go_agent.tgz
+bosh upload-stemcell bosh-stemcell-621.84-vsphere-esxi-ubuntu-xenial-go_agent.tgz --fix
+</pre>
+
+    1. In the <%= vars.k8s_runtime_full %> tile, select the **Upgrade All Clusters** errand.
+    1. In Ops Manager, click **Apply Changes**.
 
 For more information about how BOSH integrates with IaaS-level disk encryption on vSphere, see [Encryption](https://bosh.io/docs/vsphere/#encryption) in _vSphere_ in the BOSH documentation.
 
