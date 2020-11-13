@@ -121,38 +121,8 @@ With each release of a new <%= vars.platform_name %> version, BOSH Director may 
 
 Check the required machine specifications for <%= vars.ops_manager %> <%= vars.v_major_version %>. These specifications are specific to your IaaS. If these specifications do not match your existing <%= vars.ops_manager %> deployment, modify the values of your <%= vars.ops_manager %> VM instance. For example, if the boot disk of your existing <%= vars.ops_manager %> deployment is 50&nbsp;GB and the new <%= vars.ops_manager %> deployment requires 100&nbsp;GB, increase the size of your <%= vars.ops_manager %> boot disk to 100&nbsp;GB.
 
-### <a id='azure-vm-types'></a> Azure Generation 2 VM types
-
-Users can leverage Generation 2 Azure VM types as their default VM types. 
-Please see the <a href="https://docs.pivotal.io/ops-manager/2-10/release-notes.html">2.10 release notes</a> on the implications of using Generation 2 VM types.
-The following table illustrates the mapping between the current Generation 1 and new Generation 2 
-
-| Generation 1 VM type | Generation 2 VM type |
-| --- | --- |
-| Standard_DS1_v2 |	Standard_B2s |
-| Standard_DS2_v2 |	Standard_D2s_v3 |
-| Standard_DS3_v2 |	Standard_D4s_v3 |
-| Standard_DS4_v2 |	Standard_D8s_v3 |
-| Standard_DS5_v2 |	Standard_D16s_v3 |
-| |	Standard_D32s_v3 |
-| |	Standard_D48s_v3 |
-| |	Standard_D64s_v3 |
-| Standard_DS11_v2 | Standard_E2s_v3 |
-| Standard_DS12_v2 | Standard_E4s_v3 |
-| Standard_DS13_v2 | Standard_E8s_v3 |
-| Standard_DS14_v2 | Standard_E16s_v3 |
-| |	Standard_E20s_v3 |
-| |	Standard_E32s_v3 |
-| |	Standard_E48s_v3 |
-| |	Standard_E64s_v3 |
-| Standard_F1s | Standard_B1ms |
-| Standard_F2s | Standard_F2s_v2 |
-| Standard_F4s | Standard_F4s_v2 |
-| Standard_F8s | Standard_F8s_v2 |
-| |	Standard_F16s_v2 |
-| |	Standard_F32s_v2 |
-| |	Standard_F48s_v2 |
-| |	Standard_F64s_v2 |
+If you use Azure, review your VM type setting. You can use either Generation 1
+or Generation 2 as your default VM type. For more information, see [Azure Generation 2 VM Types](../azure/config-manual.html#azure-vm-types) in _Configuring BOSH Director on Azure Manually_.
 
 ### <a id='patch'></a> Configure <%= vars.app_runtime_abbr %>
 

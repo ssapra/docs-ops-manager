@@ -25,16 +25,17 @@ on the Cloud Foundry website.
 
 **Release Date:** TBD
 
-- **[Feature]**: You can use the Ops Manager UI and API to use Azure Generation 2 VMs as the default VM types. The list is outlined in the (upgrade checklist)[https://docs.pivotal.io/ops-manager/2-10/upgrade/checklist.html#bosh-director]Please take the following into consideration when using Generation 2 VM types:
-  * If you are using Availability Sets, you cannot use Generation 2 VM types
-  * Ensure that Generation 2 VM types are available in your Azure regions
-  * Switching to Generation 2 will cause a re-deploy of all tiles
-  * If you have custom VM types set, they will still be used if you switch to Generation 2. In order to use Generation 2 VMs in your custom VM types:
-    1. Get your current custom VM types and back it up
-    1. Delete the custom VM types
-    1. Switch to Generation 2 either via API or UI
-    1. Re-add your custom VM types
-    Instructions on adding/deleting custom vm types can be found in this (KB article)[https://community.pivotal.io/s/article/how-to-create-or-remove-custom-vmtype-template-using-the-ops-manager-api?language=en_US]
+- **[Feature]**: You can use the Ops Manager UI or API to set Azure Generation 2 VMs as the default VM type. For more information, see [Azure Generation 2 VM Types](azure/config-manual.html#azure-vm-types) in _Configuring BOSH Director on Azure Manually_.<br><br>
+Consider the following before using Azure Generation 2 VM types:
+  * If you use Availability Sets, you cannot use Generation 2 VM types.
+  * Ensure that Generation 2 VM types are available in your Azure regions.
+  * Switching to Generation 2 VM types causes all tiles to re-deploy.
+  * If you have custom VM types set, your custom VMs are still used even if you switch to Generation 2. To use Generation 2 VMs in your custom VM types:
+      1. Back up your current custom VM types.
+      1. Delete the custom VM types.
+      1. Switch to Generation 2 using either the Ops Manager API or UI.
+      1. Re-add your custom VM types.
+      For information about adding or deleting custom VM types, see [How to Create or Remove a custom VM_TYPE template in Pivotal Cloud Foundry (PCF) using the Operations Manager API](https://community.pivotal.io/s/article/how-to-create-or-remove-custom-vmtype-template-using-the-ops-manager-api?language=en_US) in the Knowledge Base.
 
 ### <a id="2-10-2"></a> v2.10.2
 

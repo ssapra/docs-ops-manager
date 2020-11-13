@@ -24,8 +24,6 @@ Before you perform the procedures in this topic, you must have completed the pro
 
 If you use Azure Government Cloud, you must set custom VM types for a successful deployment. You can set custom VM types with the <%= vars.ops_manager %> API. For more information, see [Using the <%= vars.ops_manager %> API](../install/ops-man-api.html).
 
-<p class="note"><strong>Note:</strong>Please see the <a href="../upgrade/checklist.html#bosh-director">upgrade checklist</a> for a list of Generation 2 Azure VM types</p>
-
 Example `curl` command to set a VM types:
 
 <pre class="terminal">
@@ -50,6 +48,39 @@ PUT -H "Authorization: bearer UAA-ACCESS-TOKEN"
 To verify that you have successfully set your custom VM types, use the `GET /api/v0/vm_types` Ops
 Manager API endpoint.
 
+#### <a id='azure-vm-types'></a> Azure Generation 2 VM Types
+
+You can use Generation 2 Azure VM types as the default VM type.
+For more information, see the <a href="../release-notes.html#2-10-3">Ops Manager v2.10.3 Release Notes</a>.
+
+The following table shows the mapping between Generation 1 and Generation 2 Azure VM types:
+
+| Generation 1 VM Type | Generation 2 VM Type |
+| --- | --- |
+| Standard_DS1_v2 |	Standard_B2s |
+| Standard_DS2_v2 |	Standard_D2s_v3 |
+| Standard_DS3_v2 |	Standard_D4s_v3 |
+| Standard_DS4_v2 |	Standard_D8s_v3 |
+| Standard_DS5_v2 |	Standard_D16s_v3 |
+| |	Standard_D32s_v3 |
+| |	Standard_D48s_v3 |
+| |	Standard_D64s_v3 |
+| Standard_DS11_v2 | Standard_E2s_v3 |
+| Standard_DS12_v2 | Standard_E4s_v3 |
+| Standard_DS13_v2 | Standard_E8s_v3 |
+| Standard_DS14_v2 | Standard_E16s_v3 |
+| |	Standard_E20s_v3 |
+| |	Standard_E32s_v3 |
+| |	Standard_E48s_v3 |
+| |	Standard_E64s_v3 |
+| Standard_F1s | Standard_B1ms |
+| Standard_F2s | Standard_F2s_v2 |
+| Standard_F4s | Standard_F4s_v2 |
+| Standard_F8s | Standard_F8s_v2 |
+| |	Standard_F16s_v2 |
+| |	Standard_F32s_v2 |
+| |	Standard_F48s_v2 |
+| |	Standard_F64s_v2 |
 
 ## <a id='access-om'></a> Step 1: Access <%= vars.ops_manager %>
 
