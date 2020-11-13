@@ -52,7 +52,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
 
 1. Click **Users** and then click **Add user**.
 
-     <%= image_tag("../common/images/pcfaws/aws_iam_username.png") %>
+     <%= image_tag("../common/images/pcfaws/aws_iam_username.png", :alt => "Screenshot of the IAM Dashboard") %>
 
 1. Enter a user name, such as `pcf-user`.
 
@@ -76,7 +76,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
 
 1. Click **Add inline policy**. You can review your existing inline policies by clicking the down arrow.
 
-     <%= image_tag("../common/images/pcfaws/aws_iam_json.png") %>
+     <%= image_tag("../common/images/pcfaws/aws_iam_json.png", :alt => "Screenshot of the user details page with your existing inline polocies") %>
 
 1. On the **Create policy** page, define a policy:
 
@@ -97,11 +97,9 @@ Perform the following steps to create an Amazon Identity and Access Management (
 
 1. Click **Start VPC Wizard**.
 
-    <%= image_tag("../common/images/pcfaws/pcf_aws_vpc_wizard.png") %>
+    <%= image_tag("../common/images/pcfaws/pcf_aws_vpc_wizard.png", :alt => "Screenshot of the VCP Dashboard") %>
 
 1. Select **VPC with Public and Private Subnets** and click **Select**.
-
-    <%= image_tag("../common/images/pcfaws/pcf_aws_vpc_config.png") %>
 
 1.  <a id="vpc-details"></a>Specify the following details for your VPC:
     * **IPv4 CIDR block**: Enter `10.0.0.0/16`.
@@ -293,9 +291,6 @@ Perform the following steps to create an Amazon Identity and Access Management (
 
 1. Click **Create**.
 
-    <%= image_tag("../common/images/pcfaws/pcf_aws_secgrp_er.png") %>
-
-
 ## <a id='pcfaws-om-elbsecgrp'></a> Step 7: Configure a Security Group for the Web ELB
 
 1. From the **Security Groups** page, click **Create Security Group** to create another security group.
@@ -343,7 +338,7 @@ Perform the following steps to create an Amazon Identity and Access Management (
 
 1. Click **Create**.
 
-    <%= image_tag("../common/images/pcfaws/configure-security-group.png") %>
+    <%= image_tag("../common/images/pcfaws/configure-security-group.png", :alt => "Screenshot of the Create Security Group wizard") %>
 
 
 ## <a id='pcfaws-om-sshelbsecgrp'></a> Step 8: Configure a Security Group for the SSH ELB
@@ -436,8 +431,6 @@ Perform the following steps to create an Amazon Identity and Access Management (
 
 1. Click **Create**.
 
-    <%= image_tag("../common/images/pcfaws/pcf_aws_secgrp_nat.png") %>
-
 
 ## <a id='pcfaws-om-mysqlsecgrp'></a> Step 11: Configure a Security Group for MySQL
 
@@ -486,8 +479,6 @@ Perform the following steps to create an Amazon Identity and Access Management (
     </table>
 
 1. Click **Create**.
-
-    <%= image_tag("../common/images/pcfaws/pcf_aws_secgrp_mysql.png") %>
 
 ## <a id='next'></a>Next Step
 
