@@ -18,24 +18,18 @@ To add or import products to your <%= vars.platform_name %> installation:
 
 1. Click **Import a Product**.
 
-    <%= image_tag("import-prod.png") %>
-
 1. Select the `.pivotal` file that you downloaded from VMware Tanzu Network or received from your software distributor, then click **Open**. If the product is successfully added, it appears in your product list. If the product that you selected is not the latest version, the most up-to-date version appears on your product list.
-
-    <%= image_tag("successfully-added.png") %>
 
 1. Add the product tile to the **Installation Dashboard** by clicking the green **+** icon.
 
-    <%= image_tag("plus-sign.png") %>
-
 1. The product tile appears in the <%= vars.ops_manager %> Installation Dashboard. If the product requires configuration, the tile appears orange. If necessary, configure the product.
 
-    <%= image_tag("new-orange-tile.png") %>
+    <%= image_tag("new-orange-tile.png", :alt => "Screenshot of the Ops Manager Installation Dashboard") %>
 
 1. (Optional) In the product configuration view, select the **Errands** pane to configure post-install errands or review the default settings. Post-install errands are scripts that automatically run after a product installs, before <%= vars.ops_manager %> makes the product available for use. For more information about post-install errands, see [Errands](http://docs.pivotal.io/tiledev/tile-errands.html).
   <p class="note"><strong>Note:</strong> By default, <%= vars.ops_manager %> reruns errands even if they are not necessary due to settings left from a previous install. Leaving errands checked at all times can cause updates and other processes to take longer. To prevent an errand from running, disable the checkbox for the errand in the <strong>Settings</strong> tab on the product tile before installing the product.</p>
 
-    <%= image_tag("example-errand.png") %>
+    <%= image_tag("example-errand.png", :alt => "Screenshot of the Errands pane") %>
 
     The **Broker Registrar** checkbox is an example of an errand available for a product. When you enable this checkbox, this errand registers service brokers with the Cloud Controller and updates any broker URL and credential values that have changed since the previous registration.
 
@@ -59,7 +53,6 @@ To upgrade products using the VMware Tanzu Network API:
 1. Select **Edit Profile**.
 
 1. Copy your **API Token**.
-    <%= image_tag ("edit_profile.png") %>
 
 1. Navigate to your <%= vars.ops_manager %> Installation Dashboard and log in.
 
@@ -68,7 +61,7 @@ To upgrade products using the VMware Tanzu Network API:
 1. Select **Settings**.
 
 1. In the **External API Access** tab, paste your **API Token**.
-    <%= image_tag ("external_api.png") %>
+    <%= image_tag ("external_api.png", :alt => "Screenshot of the External API Access tab") %>
 
 1. Click **Save**.
 
@@ -79,7 +72,6 @@ After you save the VMware Tanzu Network API token to the <%= vars.ops_manager %>
 To upgrade your product to the latest version:
 
 1. Locate and download the product version you want to upgrade to by clicking on the green download icon.<br>
-    <%= image_tag ("existing_upgrade.png") %>
 
 1. When the download is complete, refresh the page to use the product.
 
