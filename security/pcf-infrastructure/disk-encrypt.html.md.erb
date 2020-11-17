@@ -81,13 +81,13 @@ To initiate or rotate disk encryption for BOSH-deployed VMs on vSphere v6.5 or l
 
 1. Log in to vCenter.
 
-1. Follow the procedure in [Encrypt an Existing Virtual Machine or Virtual Disk](https://docs.vmware.com/en/VMware-vSphere/6.5/com.vmware.vsphere.security.doc/GUID-5E2C3F74-38C1-44C3-ABC5-C2C9353B9DC4.html) in the VMware documentation. If you are configuring volume encryption for <%= vars.k8s_runtime_full %>, change the **Default Storage Policy** to **kmspolicy**.
+1. Follow the procedure in [Encrypt an Existing Virtual Machine or Virtual Disk](https://docs.vmware.com/en/VMware-vSphere/6.5/com.vmware.vsphere.security.doc/GUID-5E2C3F74-38C1-44C3-ABC5-C2C9353B9DC4.html) in the VMware documentation. If you are configuring volume encryption for <%= vars.k8s_runtime_full %>, change the **Default Storage Policy** to an existing encryption policy.
 
 1. Follow the procedure in [Recreate BOSH-Deployed Disks](#re-create) procedure to propagate the change to existing VMs.
 
 1. If you are configuring volume encryption for <%= vars.k8s_runtime_full %>, do the following:
 
-    1. Delete the BOSH Director stemcell used for the <%= vars.k8s_runtime_abbr %> foundation from the disk using vSphere WebClient.
+    1. Delete the BOSH Director stemcell used for the <%= vars.k8s_runtime_abbr %> foundation from the disk using vSphere WebClient. For more information on how to delete the BOSH Director stemcell, see [How to recreate BOSH Director VM when the Stemcell is deleted from vSphere](https://community.pivotal.io/s/article/How-to-recreate-BOSH-Director-VM-when-the-Stemcell-is-deleted-from-vSphere?language=en_US).
 
     1. Reupload the stemcell used by <%= vars.k8s_runtime_abbr %>
 
