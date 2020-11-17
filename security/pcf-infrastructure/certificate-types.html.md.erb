@@ -16,6 +16,15 @@ by <%= vars.platform_name %>.
 Leaf certificates are signed by a CA and are used to identify resources in <%= vars.platform_name %>.
 Both root CAs and leaf certificates require planned rotation in <%= vars.platform_name %>.
 
+In addition to the types of certificates listed in this topic, some <%= vars.platform_name %>
+products issue their own tile certificates that are not managed by or visible to the <%= vars.ops_manager %>
+API. These tile certificates do not require planned rotation because they rotate automatically
+with product upgrades.
+
+<%= vars.app_runtime_full %> (<%= vars.app_runtime_full %>) and <%= vars.k8s_runtime_full %>
+(<%= vars.k8s_runtime_abbr %>) both use tile certificates in addition to their <%= vars.ops_manager %>
+certificates.
+
 
 ## <a id='types'></a> Certificate Types
 
@@ -58,12 +67,3 @@ non-rotatable certificates cannot be rotated by the <%= vars.ops_manager %> API.
 information about viewing non-rotatable leaf certificates, see [Getting Information About
 Certificates for Products](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/opsman-api/#tag/Certificates/paths/~1api~1v0~1deployed~1certificates/get) in the <%= vars.ops_manager %> API
 documentation.
-
-In addition to the types of certificates listed above, some <%= vars.platform_name %> products
-issue their own tile certificates that are not managed by or visible to the <%= vars.ops_manager %>
-API. These tile certificates do not require planned rotation because they rotate automatically
-with product upgrades.
-
-<%= vars.app_runtime_full %> (<%= vars.app_runtime_full %>) and <%= vars.k8s_runtime_full %>
-(<%= vars.k8s_runtime_abbr %>) both use tile certificates in addition to their <%= vars.ops_manager %>
-certificates.
