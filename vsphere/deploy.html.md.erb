@@ -102,8 +102,6 @@ vSphere objects used to organize resources.
 
 1. At the **Review Details** screen, confirm the configuration up to this point and click **Next**.
 
-    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-03.png") %>
-
 1. At the **Select Storage** screen, select the virtual disk format.
     1. Choose a Datastore.
         * If you use vSAN, select the vSAN datastore and apply the default storage policy.
@@ -127,13 +125,10 @@ vSphere objects used to organize resources.
    * **Public SSH Key**: Enter pre-existing public SSH key value to allow SSH access to the <%= vars.ops_manager %> VM. Enter the full key in the `ssh-rsa AAA...` format.
       <p class="note warning"><strong>Warning</strong>: You cannot deploy <%= vars.ops_manager %> successfully without adding a public key. If you do not add a key, <%= vars.ops_manager %> shuts down automatically because it cannot find a key and may enter a reboot loop.</p>
    * **Custom hostname**: The hostname for the <%= vars.ops_manager %> VM. For example, `ops-manager`.
-    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-06.png") %>
 
 1. At the **Ready to complete** screen, review the configuration settings and click **Finish**.
 
     This action begins the OVA import and deployment process.
-
-    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-08.png") %>
 
 1. Use the **Recent Tasks** panel at the bottom of the vCenter dashboard to check the progress of the OVA import and deployment.
    <br/><br/>
