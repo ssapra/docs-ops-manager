@@ -23,8 +23,12 @@ on the Cloud Foundry website.
 
 ### <a id="2-10-3"></a> v2.10.3
 
-**Release Date:** TBD
+**Release Date:** November 18, 2020
 
+
+- **[Feature]** A yellow banner in the Ops Manager UI shows the number of days until a certificate expires. The banner appears when a certificate expires soon.
+- **[Feature]** When you export a `installation.zip` file, a new `metadata.json` file includes timestamp, version, and product GUID.
+- **[Feature]** API endpoints default to application/json content type
 - **[Feature]**: You can use the Ops Manager UI or API to set Azure Generation 2 VMs as the default VM type. For more information, see [Azure Generation 2 VM Types](azure/config-manual.html#azure-vm-types) in _Configuring BOSH Director on Azure Manually_.<br><br>
 Consider the following before using Azure Generation 2 VM types:
   * If you use Availability Sets, you cannot use Generation 2 VM types.
@@ -36,6 +40,31 @@ Consider the following before using Azure Generation 2 VM types:
       1. Switch to Generation 2 using either the Ops Manager API or UI.
       1. Re-add your custom VM types.
       For information about adding or deleting custom VM types, see [How to Create or Remove a custom VM_TYPE template in Pivotal Cloud Foundry (PCF) using the Operations Manager API](https://community.pivotal.io/s/article/how-to-create-or-remove-custom-vmtype-template-using-the-ops-manager-api?language=en_US) in the Knowledge Base.
+- **[Feature]** You can use IAM instance profiles when configuring the S3 blobstore for the BOSH Director
+- **[Feature]** Upgrade NGINX
+- **[Bug Fix]** Repeated calls to `DELETE /api/v0/installation_asset_collection` deletes any deployed products
+- **[Bug Fix]** Safety check for BOSH product certificates on `DELETE` only includes the `system_metrics_certificate`
+- **[Bug Fix]** Clusters in an AZ are validated based on cluster name, resource pool, host group, and VM host affinity rule
+- **[Bug Fix]** The AZ and Network configuration pane does not error when properties are missing
+
+
+<table border="1" class="nice">
+  <thead>
+  <tr>
+    <th>Component</th>
+    <th>Version</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Tanzu Ops Manager</td><td>2.10.3-build.127*</td>
+  </tr>
+  <tr><td>Stemcell (Bosh Director and Ops Manager)</td><td>621.90*</td></tr><tr><td>BBR SDK</td><td>1.18.0</td></tr><tr><td>BOSH Director</td><td>271.2.0</td></tr><tr><td>BOSH DNS</td><td>1.27.0*</td></tr><tr><td>Metrics Server</td><td>0.1.0</td></tr><tr><td>System Metrics</td><td>2.0.11</td></tr><tr><td>CredHub</td><td>2.9.0</td></tr><tr><td>CredHub Maestro</td><td>8.0.1</td></tr><tr><td>Syslog</td><td>11.6.1</td></tr><tr><td>Windows Syslog</td><td>1.0.3</td></tr><tr><td>UAA</td><td>74.5.21*</td></tr><tr><td>BPM</td><td>1.1.9</td></tr><tr><td>Networking</td><td>9</td></tr><tr><td>OS Conf</td><td>22.1.0</td></tr><tr><td>AWS CPI</td><td>81</td></tr><tr><td>Azure CPI</td><td>37.3.0</td></tr><tr><td>Google CPI</td><td>30.0.0</td></tr><tr><td>OpenStack CPI</td><td>44</td></tr><tr><td>vSphere CPI</td><td>54.1.0</td></tr><tr><td>BOSH CLI</td><td>6.4.1*</td></tr><tr><td>Credhub CLI</td><td>2.8.0</td></tr><tr><td>BBR CLI</td><td>1.8.1*</td></tr><tr><td>Telemetry</td><td>1.1.2*</td></tr>
+  
+    <td colspan="2"><em>* Components marked with an asterisk have been updated.</em></td>
+  
+  </tbody>
+</table>
 
 ### <a id="2-10-2"></a> v2.10.2
 
