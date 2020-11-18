@@ -98,6 +98,51 @@ When <%= vars.company_name %> discovers a potential security vulnerability in <%
 
 ## <a id='lifecycle'></a> Fix, Test, and Release Lifecycle
 
-The following flowchart details the steps that <%= vars.company_name %> performs on a typical high-priority CVE, to publish a patch release fix on [<%= vars.product_network %>](https://network.pivotal.io):
+The following flowchart details the steps that <%= vars.company_name %> performs on a typical high-priority CVE, to publish a patch release fix on [<%= vars.company_name %> Network](https://network.pivotal.io):
 
-<%= image_tag("triage-flowchart.png") %>
+<%= image_tag("triage-flowchart.png", :alt => "Triage flowchart. For more information, see description below.") %>
+
+The triage flowchart shows the following steps:
+
+1. Vulnerability reported in a Cloud Foundry Dependency
+
+2. OSS Cloud Foundry team addresses vulnerability
+
+    1. Story detailing the vulnerability and acceptance criteria for fiex priorized on OSS backlog
+
+    2. Unit Tests written before coding the fix
+
+    3. Fix written; Unit Tests pass
+
+    4. Code committed; OSS Integration Tests pass
+
+    5. **Check:** Does Product Owner verify that fix meets acceptance criteria?
+
+    6. If yes, fix is ready for integration.
+
+3. VMware Tanzu team integrates fix
+
+    1. Story detailing the issue and acceptance criteria for fix prioritized on Commercial backlog
+
+    1. Fix patched in all release lines under General Support
+
+    1. **Check:** Have all tests passed each stage?
+
+    1. If yes, patched builds kick off integration pipeline.
+
+4. Release Engineering Integration Pipelines validate quality
+
+    1. Tests pass by scenario:
+      - New installation scenario: integration tests pass
+      - Upgrade scenario: Integration Tests pass
+      - Additional customer scenarios: Integration Tests pass
+
+    1. **Check:** Have all pipelines passed on every supported IaaS?
+
+    1. If yes, ready for Publishing
+
+5. Release is published for distribution
+
+    1. Post to <%= vars.company_name %> Network; with High CVE vulnerab ility release the fix with as fast a turnaround as possible
+
+    1. Customer receives announcements and downloads release for their IaaS
