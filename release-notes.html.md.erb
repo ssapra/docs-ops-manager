@@ -28,7 +28,7 @@ on the Cloud Foundry website.
 
 - **[Feature]** A yellow banner in the Ops Manager UI shows the number of days until a certificate expires. The banner appears when a certificate expires soon.
 - **[Feature]** When you export a `installation.zip` file, a new `metadata.json` file includes timestamp, version, and product GUID.
-- **[Feature]** API endpoints default to application/json content type
+- **[Feature]** API endpoints default to `application/json` content type
 - **[Feature]**: You can use the Ops Manager UI or API to set Azure Generation 2 VMs as the default VM type. For more information, see [Azure Generation 2 VM Types](azure/config-manual.html#azure-vm-types) in _Configuring BOSH Director on Azure Manually_.<br><br>
 Consider the following before using Azure Generation 2 VM types:
   * If you use Availability Sets, you cannot use Generation 2 VM types.
@@ -40,7 +40,7 @@ Consider the following before using Azure Generation 2 VM types:
       1. Switch to Generation 2 using either the Ops Manager API or UI.
       1. Re-add your custom VM types.
       For information about adding or deleting custom VM types, see [How to Create or Remove a custom VM_TYPE template in Pivotal Cloud Foundry (PCF) using the Operations Manager API](https://community.pivotal.io/s/article/how-to-create-or-remove-custom-vmtype-template-using-the-ops-manager-api?language=en_US) in the Knowledge Base.
-- **[Feature]** You can use IAM instance profiles when configuring the S3 blobstore for the BOSH Director
+- **[Feature]** You can use IAM instance profiles when configuring the S3 blobstore for the BOSH Director. To use this feature, you must select **Enable signed URLs**.
 - **[Feature]** Upgrade NGINX
 - **[Bug Fix]** Repeated calls to `DELETE /api/v0/installation_asset_collection` deletes any deployed products
 - **[Bug Fix]** Safety check for BOSH product certificates on `DELETE` only includes the `system_metrics_certificate`
