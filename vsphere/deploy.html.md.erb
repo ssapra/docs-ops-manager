@@ -91,12 +91,12 @@ Ops Manager for vSphere is provided as an OVA file. An OVA file is a template fo
     * Enter a name for the Ops Manager virtual machine, or use the default name.
     * Select the **Datacenter** object.
     * Click **Next**.
-    
-    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-01.png") %>
+
+    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-01.png", :alt => "Ops-manager typed in the virtual machine name field. Datacenter is selected and highlighted in light blue in the location list.") %>
 
 1. At the **Select a compute resource** screen, select the compute resource where the Ops Manager VM will run and click **Next**. Select the Resource Pool for the management components.
 
-    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-10.png") %>
+    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-10.png", :alt => "Under 'select a compute resource,' pas-az1 is highlighted in light blue in the resource list.") %>
 
     <p class="note"><strong>Note</strong>: Hardware virtualization must be turned off if your
     vSphere host does not support VT-X/EPT. Refer to <a href="https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/customizing/vsphere.html#vsphere-reqs">vSphere Requirements</a> in <em><%= vars.platform_name %> on vSphere Requirements</em> for more information.</p>
@@ -113,11 +113,11 @@ Ops Manager for vSphere is provided as an OVA file. An OVA file is a template fo
 
     <p class="note warning"><strong>Warning</strong>: Ops Manager requires a VM with at least 8&nbsp;GB memory.</p>
 
-    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-04.png") %>
+    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-04.png", :alt => "Virtual disk format and VM storage policy dropdowns have default settings. vsanDatastore is highlighted in grey and selected in the datastore list.") %>
 
 1. At the **Select Networks** screen, either select the default **VM Network** or ideally create an **Infrastructure** Network, and click **Next**.
 
-    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-12.png") %>
+    <%= image_tag("../common/images/vsphere/vsphere_om-deploy-12.png", :alt => "Under Destination Network, PAS-infrastructure is selected for Network 1.") %>
 
 1. At the **Customize template** screen, enter the following information, and click **Next**.
    * **IP Address**: The IP address of the Ops Manager network interface. For example, `10.0.0.2`.
