@@ -172,7 +172,9 @@ To add a new root CA for <%= vars.ops_manager %> and regenerate the BOSH NATS CA
 
 1. Select **Director Config**.
 
-1. Enable the **Recreate All VMs** checkbox. This propagates the new root CA to all VMs deployed by the BOSH Director to prevent downtime.
+1. Enable the **Recreate All VMs** checkbox.
+This propagates the new CA to the BOSH Agent on each VM deployed by the BOSH Director,
+which enables the new leaf certificates to trust the new CA.
 
 1. Return to the <%= vars.ops_manager %> Installation Dashboard.
 
