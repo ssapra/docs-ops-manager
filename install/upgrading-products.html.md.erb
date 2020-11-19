@@ -38,9 +38,9 @@ before starting. For all available product release notes, see:
   * [<%= vars.segment_runtime_full %> <%= vars.v_major_version %> Release Notes](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/overview/release-notes/segment-rn.html)
   in the <%= vars.app_runtime_abbr %> documentation
   * [<%= vars.windows_runtime_full %> <%= vars.v_major_version %> Release Notes](https://docs.pivotal.io/application-service-windows/<%= vars.current_major_version.sub('.','-') %>/release-notes.html)
-  in the <%= vars.windows_runtime_abbr %> documentation
-  * [Release Notes](https://docs.pivotal.io/tkgi/release-notes.html) in the <%= vars.k8s_runtime_abbr %>
-  documentation
+  in the <%= vars.windows_runtime_full %> ()<%= vars.windows_runtime_abbr %>) documentation
+  * [Release Notes](https://docs.pivotal.io/tkgi/release-notes.html) in the <%= vars.k8s_runtime_full %>
+  (<%= vars.k8s_runtime_abbr %>) documentation
 
 
 ## <a id="upgrade-er"></a> Upgrading <%= vars.app_runtime_abbr %>
@@ -92,14 +92,14 @@ matches your product and version.
 <%# Find this partial in GitHub at `pivotal-cf/docs-partials` %>
 1. <%= partial "/pcf/core/2-7/check_disk_before_upgrade" %>
 
-1. Browse to the Ops Manager web interface and click **Import a Product**.
+1. Navigate to the <%= vars.ops_manager %> Installation Dashboard.
 
-    <%= image_tag("import.png") %>
+1. Click **Import a Product**.
 
 1. Select the `.pivotal` file that you downloaded from Pivotal Network or received from your
 software distributor, then click **Open**. If the product is successfully added, it appears
 in your product list. If the product that you selected is not the latest version, the most
-up-to-date version will appear on your product list.
+up-to-date version appears in your product list.
 
 1. Click the **+** icon next to the product description to add the product tile to the
 <%= vars.ops_manager %> Installation Dashboard.
@@ -165,5 +165,5 @@ tile you want to replicate.
     * `PATH-TO-NEW-TILE` is the path to the new <%= vars.segment_runtime_full %> tile.
 
 1. After you create the replica tile **p-isolation-segment-v2-seg-one.pivotal**, upload it
-to <%= vars.ops_manager %>. This upgrades the <%= vars.segment_runtime_full %> v1 replica tile
-in place.
+to <%= vars.ops_manager %> Installation Dashboard. This upgrades the <%= vars.segment_runtime_full %>
+v1 replica tile in place.
