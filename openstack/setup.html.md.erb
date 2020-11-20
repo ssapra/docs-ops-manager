@@ -17,18 +17,16 @@ After completing this procedure, complete all of the steps in the [Configuring B
 
 1. Log in to the OpenStack Horizon dashboard.
 
-    <%= image_tag("../common/images/openstack/log-in.png") %>
+    <%= image_tag("../common/images/openstack/log-in.png", :alt => "Login screen shows red and white banner with the 'Mirantis' logo to the left of 'OpenStack Dashboard.'") %>
 
-2. Click **Connect**.
+1. From the OpenStack project list dropdown, set the active project by selecting the project where you deploy <%= vars.platform_name %>.
 
-3. From the OpenStack project list dropdown, set the active project by selecting the project where you will deploy <%= vars.platform_name %>.
-
-    <%= image_tag("../common/images/openstack/project-list.png") %>
+    <%= image_tag("../common/images/openstack/project-list.png", :alt => "To the right of the logo, the project dropdown button is red and expanded. A project name is selected with a gray checkmark.") %>
 
 
 ## <a id='security'></a> Step 2: Configure Security
 
-<p class="note warning"><strong>WARNING:</strong> If you are using OpenStack Liberty or Mitaka, do not create the key pair with the OpenStack Horizon dashboard. Instead make sure that you generate the SSH key pair manually. For example, use the <code>ssh-keygen</code> command. Then follow the procedure below to import that key pair into OpenStack. This is due to an <a href="https://bugs.launchpad.net/nova/+bug/1483132">OpenStack bug</a>.</p>
+<p class="note warning"><strong>Warning:</strong> If you are using OpenStack Liberty or Mitaka, do not create the key pair with the OpenStack Horizon dashboard. Instead make sure that you generate the SSH key pair manually. For example, use the <code>ssh-keygen</code> command. Then follow the procedure below to import that key pair into OpenStack. This is due to an <a href="https://bugs.launchpad.net/nova/+bug/1483132">OpenStack bug</a>.</p>
 
 1. In the left navigation of your OpenStack Horizon dashboard, click **Project > Compute > Access & Security**.
 
@@ -38,7 +36,8 @@ After completing this procedure, complete all of the steps in the [Configuring B
 
 1. Enter a **Key Pair Name** and the contents of your public key in the **Public Key** field.
 
-    <%= image_tag("../common/images/openstack/import-key-pair.png") %>
+    <%= image_tag("../common/images/openstack/import-key-pair.png", :alt => "Header 'Import Key Pair' is above two columns: name and key text fields on the left and description on the right.") %>
+
 
 1. Click **Import Key Pair**.
 
@@ -48,11 +47,11 @@ After completing this procedure, complete all of the steps in the [Configuring B
     * **Name**: `opsmanager`
     * **Description**: `<%= vars.ops_manager %>`
 
-    <%= image_tag("../common/images/openstack/create-security.png") %>
+    <%= image_tag("../common/images/openstack/create-security.png", :alt => "Header 'Create Security Group' is above two columns: 'Name' and 'Description' text fields on the left and description defining security groups on the right." ) %>
 
 1. Select the checkbox for the `opsmanager` Security Group and click **Manage Rules**.
 
-    <%= image_tag("../common/images/openstack/manage-security-rules.png") %>
+    <%= image_tag("../common/images/openstack/manage-security-rules.png", :alt => "'opsmanager' is checked in the left-most column of the 'Security Groups' table.") %>
 
 1. Add the following ingress access rules for HTTP, HTTPS, and SSH as shown in the table below. The rules with `opsmanager` in the Remote column have restricted access to that particular Security Group.
     <p class='note'><strong>Note:</strong> Adjust the remote sources as necessary for your own security compliance. <%= vars.company_name %> recommends limiting remote access to <%= vars.ops_manager %> to IP ranges within your organization.</p>
@@ -145,7 +144,7 @@ After completing this procedure, complete all of the steps in the [Configuring B
     </table>
 
 1. Leave the existing default egress access rules as shown in the screenshot below.
-    <%= image_tag("../common/images/openstack/ingress-egress-rules.png") %>
+    <%= image_tag("../common/images/openstack/ingress-egress-rules.png", :alt => "The Egress and Ingress rules table shows its two first egress rules as 'IPv4' and 'IPv6' ether types with an IP protocol and port range of 'any'.") %>
 
 
 ## <a id='validate-openstack'></a> Step 3: (Optional) Run the CF OpenStack Validator Tool
