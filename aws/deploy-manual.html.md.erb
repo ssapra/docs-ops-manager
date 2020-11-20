@@ -32,7 +32,7 @@ To launch an Amazon Machine Image (AMI) for <%= vars.ops_manager %>, do the foll
 1. Paste the AMI ID for your region into the search bar and press enter.
     <p class="note"><strong>Note:</strong> There is a different AMI for each region. If you cannot locate the AMI for your region, verify that you have set your AWS Management Console to your desired region. If you still cannot locate the AMI, log in to the <a href="https://network.pivotal.io">VMware Tanzu Network</a> and file a support ticket.</p>
 
-    <%= image_tag("../common/images/pcfaws/pcf_aws_ami.png" alt="Screenshot of Amazon Machine Image for Ops Manager wizard. The page has 'Launch', 'Actions', and Search options.") %>
+    <%= image_tag("../common/images/pcfaws/pcf_aws_ami.png", :alt => "Screenshot of Amazon Machine Image for Ops Manager wizard. The page has 'Launch', 'Actions', and Search options.") %>
 
 1. (Optional) If you want to encrypt the VM that runs <%= vars.ops_manager %> with AWS Key Management Service (KMS), perform the following additional steps:
   1. Right click the row that lists your AMI and click **Copy AMI**.
@@ -45,7 +45,7 @@ To launch an Amazon Machine Image (AMI) for <%= vars.ops_manager %>, do the foll
 
 1. Choose **m3.large** for your instance type and click **Next: Configure Instance Details**.
 
-    <%= image_tag("../common/images/pcfaws/aws_ami_m3large.png" alt="Screenshot of AMI page. The page has 'Family', 'Type', 'vCPUs', 'Memory', and 'Instance Storage' columns.") %>
+    <%= image_tag("../common/images/pcfaws/aws_ami_m3large.png", :alt => "Screenshot of AMI page. The page has 'Family', 'Type', 'vCPUs', 'Memory', and 'Instance Storage' columns.") %>
 
 1. Configure the following for your instance:
     * **Network**: Select the VPC that you created.
@@ -54,12 +54,12 @@ To launch an Amazon Machine Image (AMI) for <%= vars.ops_manager %>, do the foll
     * **IAM role**: Select the IAM role associated with your pcf-user profile. If you have not created one, click **Create new IAM role** and follow the [Guidelines for Creating User Roles on AWS](https://docs.pivotal.io/platform/<%= product_info['local_product_version'].to_s.sub('.','-') %>/customizing/aws-iaas-user-roles.html).
     * For all other fields, accept the default values.
 
-    <%= image_tag("../common/images/pcfaws/pcf_aws_configure_instance.png" alt="Screenshot of AMI Configure Instance Details page. The page is titled 'Step 3: Configure Instance Details'. The page has options including: 'Number of instances' and 'IAM role'.") %>
+    <%= image_tag("../common/images/pcfaws/pcf_aws_configure_instance.png", :alt => "Screenshot of AMI Configure Instance Details page. The page is titled 'Step 3: Configure Instance Details'. The page has options including: 'Number of instances' and 'IAM role'.") %>
 
 1. Click **Next: Add Storage** and adjust the **Size (GiB)** value.
 The default persistent disk value is 50&nbsp;GB. <%= vars.company_name %> recommends increasing this value to a minimum of 100&nbsp;GB.
 
-    <%= image_tag("../common/images/pcfaws/pcf_aws_add_storage.png" alt="Screenshot of AMI Add Storage page. The page is titled 'Step 4: Add Storage'. The page has columns including: 'Type', 'Device', and 'Snapshot'." ) %>
+    <%= image_tag("../common/images/pcfaws/pcf_aws_add_storage.png", :alt => "Screenshot of AMI Add Storage page. The page is titled 'Step 4: Add Storage'. The page has columns including: 'Type', 'Device', and 'Snapshot'." ) %>
 
 1. Click **Next: Tag Instance**.
 
@@ -75,7 +75,7 @@ The default persistent disk value is 50&nbsp;GB. <%= vars.company_name %> recomm
 
 1. Select the `pcf-ops-manager-key` key pair, confirm that you have access to the private key file, and click **Launch Instances**. You use this key pair to access the <%= vars.ops_manager %> VM.
 
-    <%= image_tag("../common/images/pcfaws/select_pcfpem_keypair.png" alt= "Screenshot of the Launch dialog. The page is titled 'Select an existing key pair or create a newkey pair'.") %>
+    <%= image_tag("../common/images/pcfaws/select_pcfpem_keypair.png", :alt => "Screenshot of the Launch dialog. The page is titled 'Select an existing key pair or create a newkey pair'.") %>
 
 1. Click **View Instances** to access the **Instances** page on the EC2 Dashboard.
 
@@ -167,7 +167,7 @@ The default persistent disk value is 50&nbsp;GB. <%= vars.company_name %> recomm
 
 1. On the **Assign Security Groups** page, select the security group `pcf-ssh-elb-security-group` you configured in [Step 8: Configure a Security Group for the SSH ELB](prepare-env-manual.html#pcfaws-om-sshelbsecgrp) in _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_, and click **Next: Configure Security Settings**.
 
-    <%= image_tag("../common/images/pcfaws/lb_assign_sec_groups.png" alt= "Screenshot of the Load Balancer dialog. It is titled 'Step 1: Define a Load Balancer'. The page has two sections: 'Basic Configuration' and 'Select Subnets'.") %>
+    <%= image_tag("../common/images/pcfaws/lb_assign_sec_groups.png", :alt => "Screenshot of the Load Balancer dialog. It is titled 'Step 1: Define a Load Balancer'. The page has two sections: 'Basic Configuration' and 'Select Subnets'.") %>
 
 1. On the **Configure Security Settings** page, ignore the **Improve your load balancer's security** error message and click **Next: Configure Health Check**.
 
@@ -181,7 +181,7 @@ The default persistent disk value is 50&nbsp;GB. <%= vars.company_name %> recomm
 
 1. Click **Next: Add EC2 Instances**.
 
-    <%= image_tag("../common/images/pcfaws/lb_health_check.png" alt="Screenshot of the Load Balancer dialog. The page is titled 'Step 4: Configure Health Check'. The page has an 'Advanced Details' section.") %>
+    <%= image_tag("../common/images/pcfaws/lb_health_check.png", :alt => "Screenshot of the Load Balancer dialog. The page is titled 'Step 4: Configure Health Check'. The page has an 'Advanced Details' section.") %>
 
 1. Accept the defaults on the **Add EC2 Instances** page and click **Next: Add Tags**.
 
@@ -201,7 +201,7 @@ The default persistent disk value is 50&nbsp;GB. <%= vars.company_name %> recomm
     * **Create LB Inside**: Select the `pcf-vpc` VPC that you created in [Step 4: Create a VPC](prepare-env-manual.html#pcfaws-vpc) in _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_.
     * If you want to allow traffic from public IP addresses, ensure that the **Create an internal load balancer** checkbox is not selected. If you want to allow traffic only from private IP addresses, select this checkbox.
 
-    <%= image_tag("../common/images/pcfaws/config_elb.png" alt="Screenshot of the Load Balancer dialog. The page is titled 'Step 1: Define Load Balancer'. The page has 'Basic Configuration' and 'Select Subnets' sections.") %>
+    <%= image_tag("../common/images/pcfaws/config_elb.png", :alt => "Screenshot of the Load Balancer dialog. The page is titled 'Step 1: Define Load Balancer'. The page has 'Basic Configuration' and 'Select Subnets' sections.") %>
 
 1. Under **Listener Configuration**, add the following rules:
 
@@ -251,7 +251,7 @@ The default persistent disk value is 50&nbsp;GB. <%= vars.company_name %> recomm
 
 1. On the **Assign Security Groups** page, select the security group `pcf-tcp-elb-security-group` you configured in [Step 9: Configure a Security Group for the TCP ELB](prepare-env-manual.html#pcfaws-om-tcpelbsecgrp) in _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_, and click **Next: Configure Security Settings**.
 
-    <%= image_tag("../common/images/pcfaws/lb_assign_sec_groups.png" alt="Screenshot of the Load Balancer dialog. The page is titled 'Step 2: Assign Security Groups'. The page has 'Create a new security group' or 'Select an existing security group' options.") %>
+    <%= image_tag("../common/images/pcfaws/lb_assign_sec_groups.png", :alt => "Screenshot of the Load Balancer dialog. The page is titled 'Step 2: Assign Security Groups'. The page has 'Create a new security group' or 'Select an existing security group' options.") %>
 
 1. On the **Configure Security Settings** page, ignore the **Improve you load balancer's security** error message and click **Next: Configure Health Check**.
 
@@ -265,7 +265,7 @@ The default persistent disk value is 50&nbsp;GB. <%= vars.company_name %> recomm
 
 1. Click **Next: Add EC2 Instances**.
 
-    <%= image_tag("../common/images/pcfaws/lb_health_check.png" alt="Screenshot of the Load Balancer dialog. THe page is titled 'Step 4: Configure Health Check'. The page has an 'Advanced Details' section.") %>
+    <%= image_tag("../common/images/pcfaws/lb_health_check.png", :alt => "Screenshot of the Load Balancer dialog. THe page is titled 'Step 4: Configure Health Check'. The page has an 'Advanced Details' section.") %>
 
 1. Accept the defaults on the **Add EC2 Instances** page and click **Next: Add Tags**.
 
@@ -305,7 +305,7 @@ The default persistent disk value is 50&nbsp;GB. <%= vars.company_name %> recomm
 1. From the **Actions** menu, select **Networking>Change Security Groups**.
 
 1. Change the NAT security group from the default group to the `pcf-nat-security-group` NAT security group that you created in [Step 10: Configure a Security Group for the Outbound NAT](prepare-env-manual.html#pcfaws-om-natsecgrp) in _Preparing to Deploy <%= vars.ops_manager %> on AWS Manually_.
-    <%= image_tag("../common/images/pcfaws/pcf_aws_select_security_group.png" alt="Screenshot of the E2C Dashboard. The page is titled'Change Security Groups'. The page has three sections: 'Security GroupID', 'Name', and 'Description'.") %>
+    <%= image_tag("../common/images/pcfaws/pcf_aws_select_security_group.png", :alt => "Screenshot of the E2C Dashboard. The page is titled'Change Security Groups'. The page has three sections: 'Security GroupID', 'Name', and 'Description'.") %>
 
 1. Click **Assign Security Groups**.
 
