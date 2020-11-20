@@ -45,8 +45,8 @@ the product.
 post-install errands or review the default settings. Post-install errands are scripts that
 automatically run after a product installs, before <%= vars.ops_manager %> makes the product
 available for use. For more information about post-install errands, see [Errands]
-(http://docs.pivotal.io/tiledev/tile-errands.html) in the <%= vars.platform_name %> Tile Developer
-Guide.
+(http://docs.pivotal.io/tiledev/<%= vars.current_major_version.sub('.','-') %>/tile-errands.html)
+in the <%= vars.platform_name %> Tile Developer Guide.
   <p class="note"><strong>Note:</strong> By default, <%= vars.ops_manager %> reruns errands
     even if they are not necessary due to settings left from a previous install. Leaving errands
     checked at all times can cause updates and other processes to take longer. To prevent an
