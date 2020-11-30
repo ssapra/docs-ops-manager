@@ -33,7 +33,7 @@ To configure the **Director Config** pane:
 1. In the **NTP Servers (comma delimited)** field, enter a comma-separated list of valid NTP servers.
 <% end %>
 
-    <p class="note"><strong>Note:</strong> The NTP server configuration only updates after VM recreation. If you modify the value of this field, select the <strong>Recreate VMs deployed by the BOSH Director</strong> checkbox to re-create your BOSH Director-deployed VMs and update the NTP server configuration. If you have service tiles installed, ensure that the <strong>Recreate All Service Instances</strong> errand runs for each service tile as well.</p>
+    <p class="note"><strong>Note:</strong> The NTP server configuration only updates after VM recreation. If you modify the value of this field, select the <strong>Recreate VMs deployed by the BOSH Director</strong> checkbox to re-create your BOSH Director-deployed VMs and update the NTP server configuration. If you have any service tiles installed, ensure that the <strong>Recreate All Service Instances</strong> errand runs for each service tile.</p>
 
 1. Leave the **Bosh HM Forwarder IP Address** field blank.
     <p class="note"><strong>Note:</strong> Starting in <%= vars.app_runtime_full_pivotal %> (<%= vars.app_runtime_abbr_pivotal %>) v2.0, BOSH-reported component metrics are available in Loggregator Firehose by default. If you continue to use the BOSH HM Forwarder to consume these component metrics, you might receive duplicate data. To prevent this, leave the <strong>Bosh HM Forwarder IP Address</strong> field blank.</p>
