@@ -175,54 +175,53 @@ To rotate all leaf certificates in CredHub:
         <p class='note'><strong>Note:</strong> The names of the <strong>Recreate all service instances</strong> and the <strong>Upgrade all service instances</strong> errands may be slightly different between services.</p>
     1. Click **Apply Changes**.
 
-    ### <a id='single-rotation'></a> Rotate a Single CA and Its Leaf Certificates
+### <a id='single-rotation'></a> Rotate a Single CA and Its Leaf Certificates
 
-    This section describes the procedure for rotating a single CA and its leaf certificates.
+This section describes the procedure for rotating a single CA and its leaf certificates.
 
-    To rotate a single CA and its leaf certificates:
+To rotate a single CA and its leaf certificates:
 
-    1. Regenerate the CA you want to rotate. This creates a new version of this CA. Run:
+1. Regenerate the CA you want to rotate. This creates a new version of this CA. Run:
 
-        ```
-        maestro regenerate ca --name "CA-NAME"
-        ```
-
+    ```
+    maestro regenerate ca --name "CA-NAME"
+    ```
     Where `CA-NAME` is the name of the CA you want to rotate.
     <p class="note"><strong>Note:</strong> The CA name you provide must be the full path to the credential.</p>
 
-    1. Mark the latest version of the single CA as transitional by running:
+1. Mark the latest version of the single CA as transitional by running:
 
-        ```
-        maestro update-transitional latest --name "CA-NAME"
-        ```
-        Where `CA-NAME` is the name of the CA you want to mark as transitional.
+    ```
+    maestro update-transitional latest --name "CA-NAME"
+    ```
+    Where `CA-NAME` is the name of the CA you want to mark as transitional.
 
-    1. Redeploy all deployments that use the CA.
+1. Redeploy all deployments that use the CA.
 
-    1. Mark the signing version of the CA as transitional by running:
+1. Mark the signing version of the CA as transitional by running:
 
-        ```
-        maestro update-transitional signing --name "CA-NAME"
-        ```
-        Where `CA-NAME` is the name of the CA you want to mark as transitional.
+    ```
+    maestro update-transitional signing --name "CA-NAME"
+    ```
+    Where `CA-NAME` is the name of the CA you want to mark as transitional.
 
-    1. Regenerate all leaf certificates signed by the CA by running:
+1. Regenerate all leaf certificates signed by the CA by running:
 
-        ```
-        maestro regenerate leaf --signed-by "CA-NAME"
-        ```
-        Where `CA-NAME` is the name of the CA for which you want to regenerate leaf certificates.
+    ```
+    maestro regenerate leaf --signed-by "CA-NAME"
+    ```
+    Where `CA-NAME` is the name of the CA for which you want to regenerate leaf certificates.
 
-    1. Redeploy all deployments that use the CA.
+1. Redeploy all deployments that use the CA.
 
-    1. Remove the transitional flag from the CA. This removes the old, inactive CA version on the next deploy. Run:
+1. Remove the transitional flag from the CA. This removes the old, inactive CA version on the next deploy. Run:
 
-        ```
-        maestro update-transitional remove --name "CA-NAME"
-        ```
-        Where `CA-NAME` is the name of the CA you want to remove.
+    ```
+    maestro update-transitional remove --name "CA-NAME"
+    ```
+    Where `CA-NAME` is the name of the CA you want to remove.
 
-    1. Redeploy all deployments that use the CA.
+1. Redeploy all deployments that use the CA.
 
 ### <a id='services-rotation'></a> Rotate the Services TLS CA and Its Leaf Certificates
 
