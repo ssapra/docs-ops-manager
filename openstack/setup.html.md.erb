@@ -180,7 +180,7 @@ To create an <%= vars.ops_manager %> image in OpenStack, perform the following s
     * Deselect the **Public** checkbox.
     * Select the **Protected** checkbox.
 
-    <%= image_tag("../common/images/openstack/create-image.png") %>
+    <%= image_tag("../common/images/openstack/create-image.png", :alt => "'Create an Image' screen has all fields listed on the left. A description is on the right.") %>
 
 1. Click **Create Image**.
 
@@ -191,19 +191,19 @@ To create an <%= vars.ops_manager %> image in OpenStack, perform the following s
 
 1. Click **Launch**.
 
-    <%= image_tag("../common/images/openstack/launch-image.png") %>
+    <%= image_tag("../common/images/openstack/launch-image.png", :alt => "The 'Images' table has the 'Ops Manager' Image Name enabled. The 'Launch' button is in the right-most cell of the row.") %>
 
 1. In the **Details** tab, specify the following values:
     * **Instance Name**: Enter `<%= vars.ops_manager %>`.
     * **Availability Zone**: Use the dropdown to select an availability zone. You specify this availability zone in the [Complete the Availability Zones Pages](config.html#az-config) step of [Configuring <%= vars.ops_manager %> Director](config.html).
     * **Count**: Do not change from the default value of **1**.
-      <%= image_tag("../common/images/openstack/instance-details.png") %>
+      <%= image_tag("../common/images/openstack/instance-details.png", :alt => "'Launch Instance' screen has 'Details' side-tab highlighted in dark blue. Body has short description and the three fields beneath.") %>
 
 1. In the **Source** tab, specify the following values:
     * **Select Boot Source**: Select **Image**.
     * **Create New Volume**: Leave **No** selected.
     * **Allocated**: Make sure **<%= vars.ops_manager %>** is selected.
-      <%= image_tag("../common/images/openstack/instance-source.png") %>
+      <%= image_tag("../common/images/openstack/instance-source.png", :alt => "The 'Source' side-tab is highlighted. 'Allocated' table has an expandable Ops Manager row highlighted in light gray.") %>
 
 1. In the **Flavor** tab, configure the OpenStack VM flavors as follows:
   <p class="note"><strong>Note:</strong> Do not change the names of the VM flavors.</p>
@@ -252,15 +252,15 @@ To create an <%= vars.ops_manager %> image in OpenStack, perform the following s
 
 1. In the **Networks** tab, select a private subnet. You add a Floating IP
    to this network in a later step.
-      <%= image_tag("../common/images/openstack/instance-networks.png") %>
+      <%= image_tag("../common/images/openstack/instance-networks.png", :alt => "'Allocated' is an expanded section with a network named 'loam_net'. 'Available' section is expanded with an empty table.") %>
 
 1. Skip the **Network Ports** tab.
 
 1. In the **Security Groups** tab, select the **opsmanager** security group that you created in [Step 2: Configure Security](#security). Deselect all other Security Groups.
-    <%= image_tag("../common/images/openstack/instance-security-groups.png") %>
+    <%= image_tag("../common/images/openstack/instance-security-groups.png", :alt => "'Allocated' is an expanded section that has 'opsmanager' security group in one table row. 'Available' section is expanded and has two rows of other security groups.") %>
 
 1. In the **Key Pair** tab, select the key pair that you imported in [Step 2: Configure Security](#security).
-    <%= image_tag("../common/images/openstack/instance-key-pairs.png") %>
+    <%= image_tag("../common/images/openstack/instance-key-pairs.png", :alt => "'Allocated' table has has one key pair while the 'Available' section is expanded with five items. ") %>
 
 1. Skip the **Configuration** and **Metadata** tabs.
 
@@ -274,21 +274,21 @@ To create an <%= vars.ops_manager %> image in OpenStack, perform the following s
 1. Wait until the **Power State** of the <%= vars.ops_manager %> instance shows as _Running_.
 
 1. Record the private **IP Address** of the <%= vars.ops_manager %> instance.
-    <%= image_tag("../common/images/openstack/instance-running.png") %>
+    <%= image_tag("../common/images/openstack/instance-running.png", :alt => "'Instances' table shows a single row with Instance name and Image Name of 'Ops Manager'.") %>
   You must provide this IP Address when you perform [Step 6: Complete the Create Networks Page](config.html#create-networks) in <%= vars.ops_manager %>.
 
 1. Select the **<%= vars.ops_manager %>** checkbox. Click the **Actions** dropdown and select **Associate Floating IP**. The **Manage Floating IP Associations** screen appears.
-    <%= image_tag("../common/images/openstack/floating-ip-create.png") %>
+    <%= image_tag("../common/images/openstack/floating-ip-create.png", :alt => "'Managing Floating IP Associations' screen shows 'Ops Manager' selected in the 'Port to be associated' dropdown.") %>
 
 1. Under **IP Address**, click the plus button (**+**). The **Allocate Floating IP** screen appears.
 
 1. Under **Pool**, select an IP Pool and click **Allocate IP**.
 
-    <%= image_tag("../common/images/openstack/floating-ip-allocate.png") %>
+    <%= image_tag("../common/images/openstack/floating-ip-allocate.png", :alt => "'Allocate Floating IP' screen shows 'admin_floating_net' selected in 'Pool' dropdown.") %>
 
 1. Under **Port to be associated**, select your **<%= vars.ops_manager %>** instance.
 
-    <%= image_tag("../common/images/openstack/floating-ip-assign.png") %>
+    <%= image_tag("../common/images/openstack/floating-ip-assign.png", :alt => "'Manage Floating IP Associations' screen, 'Ops Manager' is selected for 'Port to be associated.'") %>
 
 1. Click **Associate**.
 
@@ -301,7 +301,7 @@ To create an <%= vars.ops_manager %> image in OpenStack, perform the following s
     * **Container Name**: Enter `pcf`.
     * **Container Access**: Leave **public** unselected.
 
-    <%= image_tag("../common/images/openstack/create-container.png") %>
+    <%= image_tag("../common/images/openstack/create-container.png", :alt => "'Create Container' screen shows a name in 'Container Name' text field and 'Public' checkbox unselected.") %>
 
 1. Click **Create**.
 
@@ -310,7 +310,7 @@ To create an <%= vars.ops_manager %> image in OpenStack, perform the following s
 
 1. In the left navigation of your OpenStack dashboard, click **Project > Compute > Access & Security**. Select the **API Access** tab.
 
-    <%= image_tag("../common/images/openstack/download-credentials.png") %>
+    <%= image_tag("../common/images/openstack/download-credentials.png", :alt => "'Access & Security' screen, an 'API Endpoints' section has a table that lists 'Compute' and 'Network' Services.") %>
 
 1. Click **Download EC2 Credentials**.
 
