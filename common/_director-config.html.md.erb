@@ -25,11 +25,7 @@ To configure the **Director Config** pane:
 
 <%# For AWS: %>
 <% elsif current_page.data.iaas == "AWS" %>
-1. For the **NTP Servers (comma delimited)** field:
-  1. (Optional) If your AWS environment is air gapped, consider using [Amazon's Time Sync Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html#configure-amazon-time-service) which has a dedicated IP that does not require access to the internet or configuration changes to your security group or network ACL rules to access.
-  1. If you do not use Amazon’s Time Sync Service, enter at least two of the following NTP servers, separated by a comma:
-  <code>0.amazon.pool.ntp.org,1.amazon.pool.ntp.org,2.amazon.pool.ntp.org,3.amazon.pool.ntp.org</code>
-  1. The NTP server configuration only updates after VM recreation. If you modify the value of this field, select the Recreate VMs deployed by the BOSH Director checkbox to re-create your BOSH Director-deployed VMs and update the NTP server configuration. If you have any service tiles installed, ensure that the Recreate All Service Instances errand runs for each service tile.
+1. Enter at least two of the following NTP servers in the **NTP Servers (comma delimited)** field, separated by a comma: `0.amazon.pool.ntp.org,1.amazon.pool.ntp.org,2.amazon.pool.ntp.org,3.amazon.pool.ntp.org` If your AWS environment is air gapped, consider using [Amazon's Time Sync Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html#configure-amazon-time-service) which has a dedicated IP that does not require access to the internet, oor configuration changes to your security group or network ACL rules to access. 
 
 <%# For other IaaSes such as vSphere and Azure: %>
 <% else %>
