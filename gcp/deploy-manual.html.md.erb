@@ -41,7 +41,7 @@ After you complete this procedure, follow the instructions in [Configuring BOSH 
   * **Source**: Choose **Cloud Storage file**.
   * **Cloud Storage file**: Paste in the Google Cloud Storage filepath you copied from the PDF file in the [previous step](#select-tgz).
 
-      <%= image_tag("../common/images/gcp/create_image.png") %>
+      <%= image_tag("../common/images/gcp/create_image.png", :alt => "Screenshot of the GCP Compute Engine console. The page is titled 'Create an image'. It shows an example of completed 'Create an image' fields.") %>
 
 1. Click **Create**. The file might take a few minutes to import.
 
@@ -49,7 +49,7 @@ After you complete this procedure, follow the instructions in [Configuring BOSH 
 
 1. Select the checkbox for the image that you created above.
 
-    <%= image_tag("../common/images/gcp/create_instance.png") %>
+    <%= image_tag("../common/images/gcp/create_instance.png", :alt => "Screenshot of an example image. The page is titled 'Images'.") %>
 
 1. Click **Create Instance**.
 
@@ -72,7 +72,7 @@ After you complete this procedure, follow the instructions in [Configuring BOSH 
             |------------------|----------------------|
             |Boot disk|100&nbsp;GB|
      * Select the <%= vars.ops_manager %> image you created in the previous step if it is not already selected.<br>
-        <%= image_tag("../common/images/gcp/boot_image.png") %>
+        <%= image_tag("../common/images/gcp/boot_image.png", :alt => "Screenshot of the VM instance dialog. The page is titled 'Boot disk'. It shows the example image selected.") %>
      * Click **Select** to save.
   * Under **Identity and API access**, select the **Service account** you created when preparing your environment during the step [Set up IAM Service Accounts](./prepare-env-manual.html#iam_account).
   * **Allow HTTP traffic**: Leave this checkbox unselected.
