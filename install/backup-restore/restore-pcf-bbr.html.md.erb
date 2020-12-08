@@ -47,7 +47,7 @@ For a backup artifact to be restorable, these restrictions apply:
 
 The diagram below illustrates the flow of the restore process in a series of steps performed by the operator. These steps are described in more detail throughout this topic.
 
-![Flow chart shows the platform Operator through a series of steps interacting with the BOSH CLI, <%= vars.ops_manager %> VM, Director VM, and the <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>) tile. Details on these steps are described below.](./images/pcf-restore.png)
+![Flowchart of restore workflow taken by an Operator](./images/pcf-restore.png)
 
 [View a larger version of this diagram](./images/pcf-restore.png).
 
@@ -99,19 +99,19 @@ If you re-create your IaaS resources, you must also add those resources to <%= v
         1. Access your new <%= vars.ops_manager %> deployment by navigating to the fully-qualified domain name (FQDN) for your <%= vars.ops_manager %> deployment in a browser.
         1. On the **Welcome to <%= vars.ops_manager %>** page, click **Import Existing Installation**.
 
-            <%= image_tag("../images/upgrading/welcome.png", :width => "400") %><%# Images require alt text that describes the image in detail. %>
+            <%= image_tag("../images/upgrading/welcome.png", :width => "400", :alt => "Ops Manager Welcome Page") %>
 
         1. In the import panel:
           * Enter the **Decryption Passphrase** in use when you exported the installation settings from <%= vars.ops_manager %>.
           * Click **Choose File** and browse to the installation ZIP file that you exported in [Export Installation Settings](./backup-pcf-bbr.html#export) in _Backing Up Deployments with BBR_.
 
-            <%= image_tag("../images/upgrading/decryption_passphrase.png", :width => "400") %><%# Images require alt text that describes the image in detail. %>
+            <%= image_tag("../images/upgrading/decryption_passphrase.png", :width => "400", :alt => "Import Existing Installation UI") %>
 
         1. Click **Import**.
             <p class="note"><strong>Note:</strong> Some browsers do not provide feedback on the status of the import process, and might appear to hang. The import process takes at least 10 minutes, and takes longer the more tiles that were present on the backed-up <%= vars.ops_manager %>.</p>
         1. A **Successfully imported installation** message appears upon completion.
 
-            <%= image_tag("../images/upgrading/success.png") %><%# Images require alt text that describes the image in detail. %>
+            <%= image_tag("../images/upgrading/success.png", :alt => "Success message") %>
 
     1. Using the <%= vars.ops_manager %> API:
         1. Run:
