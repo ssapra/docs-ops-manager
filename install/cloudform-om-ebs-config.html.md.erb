@@ -2,11 +2,6 @@
 title: Configuring Amazon EBS Encryption
 owner: Ops Manager
 ---
-<style>
-	table.nice {
-		background-color: #FFF;
-	}
-</style>
 
 <%= vars.platform_name %> supports Amazon Elastic Block Store (EBS) encryption for <%= vars.platform_name %> deployments on AWS. You can use this feature to meet data-at-rest encryption requirements or as a security best practice. This feature uses AWS Key Management Service (KMS).
 
@@ -28,11 +23,9 @@ To enable EBS encryption, do the following:
 
 1. Click the **BOSH Director** tile.
 
-    <%= image_tag("aws/director-tile-aws.png") %>
-
 1. Select **AWS Config** to open the **AWS Management Console Config** pane.
 
-	<%= image_tag("cloudform/aws-config.png") %>
+	<%= image_tag("cloudform/aws-config.png", :alt => "AWS Management Console Config pane") %>
 
 1. Select **Encrypt Linux EBS Volumes**.
 	<p class="note"><strong>Note:</strong> <strong>Encrypt Linux EBS Volumes</strong> is a global setting. When selected, <strong>Encrypt Linux EBS Volumes</strong> enables encryption on all Linux VMs deployed by BOSH for all product tiles. Windows VMs are not encrypted.</p>
@@ -71,7 +64,7 @@ key/12345678-9012-3456-7890-123456789012
 
 1. In Ops Manager, click **Review Pending Changes**, then **Apply Changes** and review any reported errors. The following error message lists jobs that cannot be encrypted due to unsupported instance types.
 
-	<%= image_tag("cloudform/encrypt-ebs-errors.png") %>
+	<%= image_tag("cloudform/encrypt-ebs-errors.png", :alt => "Ops Manager Amazon EBS Encryption errors") %>
 
 	If you find a job that should be encrypted in the error list, modify the instance type for that job in the **Resource Config** page of the <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>). Select an instance type that supports encryption. Pivotal recommends using `t3.large`.
 
@@ -82,4 +75,4 @@ key/12345678-9012-3456-7890-123456789012
 
 ## <a id="enable-om"></a> Enable Encryption for Ops Manager
 
-To encrypt the Ops Manager VM, you must manually re-launch Ops Manager with a new Amazon Machine Image (AMI). See _Step 1: Launch an Ops Manager AMI_ in [Deploying Ops Manager on AWS Manually](/platform/ops-manager/<%= vars.current_major_version.sub('.','-') %>/aws/deploy-manual.html#pcfaws-om-ami).
+To encrypt the <%= vars.ops_manager %> VM, you must manually re-launch <%= vars.ops_manager %> with a new Amazon Machine Image (AMI). For more information, see [Step 1: Launch an <%= vars.ops_manager %> AMI](../aws/deploy-manual.html#pcfaws-om-ami) in _Deploying <%= vars.ops_manager %> on AWS Manually_.
