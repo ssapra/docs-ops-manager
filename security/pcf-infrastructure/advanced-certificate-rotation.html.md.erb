@@ -186,10 +186,9 @@ To rotate a single CA and its leaf certificates:
     ```
     maestro regenerate ca --name "CA-NAME"
     ```
-    Where `CA-NAME` is the name of the CA you want to rotate.
-    <p class="note"><strong>Note:</strong> The CA name you provide must be the full path to the credential.</p>
-
-    <p class="note"><strong>Note:</strong> For <%= vars.product_short %> v2.10 and later, 
+    Where `CA-NAME` is the name of the CA you want to rotate. The CA name you provide must 
+    be the full path to the credential. <p class="note"><strong>Note:</strong> 
+    For <%= vars.product_short %> v2.10 and later, 
     <strong>maestro update-transitional latest</strong> is not supported. For more information, see 
     [Breaking Changes](../../release-notes.html#credhub-regenerate).</p>
 
