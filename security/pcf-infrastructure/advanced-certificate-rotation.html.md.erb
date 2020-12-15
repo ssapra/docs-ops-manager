@@ -189,12 +189,8 @@ To rotate a single CA and its leaf certificates:
     Where `CA-NAME` is the name of the CA you want to rotate.
     <p class="note"><strong>Note:</strong> The CA name you provide must be the full path to the credential.</p>
 
-1. Mark the latest version of the single CA as transitional by running:
-
-    ```
-    maestro update-transitional latest --name "CA-NAME"
-    ```
-    Where `CA-NAME` is the name of the CA you want to mark as transitional.
+    <p class="note"><strong>Note:</strong> As of TAS 2.10, this command
+    also does what the `maestro update-transitional latest` used to do</p>
 
 1. Redeploy all deployments that use the CA.
 
