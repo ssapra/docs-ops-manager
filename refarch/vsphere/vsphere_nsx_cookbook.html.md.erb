@@ -66,19 +66,19 @@ The ESGs have an interface in each port group used by the foundation as well as 
 
 The diagram below illustrates an example of port groups used with an ESG:
 
-<%= image_tag('vsphere-port-groups.png') %>
+<%= image_tag('vsphere-port-groups.png', :alt => "Complex diagram. For more information, see other sections.") %>
 
 [View a larger version of this diagram](../images/vsphere-port-groups.png).
 
 The diagram below illustrates an example of a network architecture deployment.
 
-<%= image_tag('vsphere-overview-arch.png') %>
+<%= image_tag('vsphere-overview-arch.png', :alt => "Complex diagram. For more information, see other sections.") %>
 
 [View a larger version of this diagram](../images/vsphere-overview-arch.png).
 
 The diagram below illustrates container-to-container networking. The overlay addresses are wrapped and transported using the underlay deployment subnet.
 
-<%= image_tag('vsphere-pcf-c2c-networking.png') %>
+<%= image_tag('vsphere-pcf-c2c-networking.png', :alt => "Complex diagram. For more information, see other sections.") %>
 
 [View a larger version of this diagram](../images/vsphere-pcf-c2c-networking.png).
 
@@ -434,7 +434,7 @@ To create the Virtual Servers:
   1. From the **Default Pool** dropdown, select **tcp-routers**. This connects this VIP to the pool of resources being load-balanced to.
   1. (Optional)	If you want to configure a connection limit, enter an integer in **Connection Limit**.
   1. (Optional)	If you want to configure a connection rate limit, enter an integer in **Connection Rate Limit**.
-    <%= image_tag('vsphere-tcprouter-vip.png') %>
+    <%= image_tag('vsphere-tcprouter-vip.png', :alt => "Modal 'Edit Virtual Server' on 'General' tab. Includes several fields. 'Connection Rate Limit' is a text field.") %>
 
 1. To create the `SSH-DiegoBrains` Virtual Server:
   1. Click the green **+** button.
@@ -447,7 +447,7 @@ To create the Virtual Servers:
   1. From the **Default Pool** dropdown, select **diego-brains**. This connects this VIP to the pool of resources being load-balanced to.
   1. (Optional)	If you want to configure a connection limit, enter an integer in **Connection Limit**.
   1. (Optional)	If you want to configure a connection rate limit, enter an integer in **Connection Rate Limit**.
-    <%= image_tag('vsphere-vip-3.png') %>
+    <%= image_tag('vsphere-vip-3.png', :alt => "Modal 'New Virtual Server' has same fields as 'Edit Virtual Server' modal.") %>
 
 
 ## <a id="nat_snat"></a> Step 3: Configure NAT/SNAT
