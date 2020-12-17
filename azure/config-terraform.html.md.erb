@@ -65,13 +65,8 @@ To complete the procedures in this topic, you must have access to the output gen
 	* **BOSH Storage Account Name**: Enter the name of your storage account, which is exported from Terraform as the output `bosh_root_storage_account`.
 
 1. For **Cloud Storage Type**, select **Use Managed Disks**. For **Storage Account Type**, select **Premium_LRS** which corresponds to SSD-based storage. See [Azure Managed Disks Overview](https://docs.microsoft.com/en-us/azure/storage/storage-managed-disks-overview) in the Microsoft documentation for more information.
-<<<<<<< HEAD
         <%= image_tag("../common/images/azure/azure-managed-disk.png", :alt => "The words 'Cloud Storage Type' with two options underneath. The first option is a selected radio button labeled 'Use Managed Disks', below which is a dropdown labeled 'Storage Account Type' with 'Premium_LRS' selected. To the right of the dropdown is the help text 'Storage Account Type to use with managed disks'. The second option is a radio button labeled 'Use Storage Accounts', below which is a grayed-out text field labeled 'Deployments Storage Account Name'.") %>
     <p class="note warning"><strong>Warning:</strong> You can update your deployment from using storage accounts to using managed disks. However, after you select <strong>Use Managed Disks</strong> and deploy Ops Manager, you cannot change your deployment back to use storage accounts.</p>
-=======
-        <%= image_tag("../common/images/azure/azure-managed-disk.png") %>
-    <p class="note warning"><strong>Warning:</strong> You can update your deployment from using storage accounts to using managed disks. However, after you select <strong>Use Managed Disks</strong> and deploy <%= vars.ops_manager %>, you cannot change your deployment back to use storage accounts.</p>
->>>>>>> 18f0df21... [#175518886] add terraforming warning
 
 1. For **Default Security Group**, enter the `bosh_deployed_vms_security_group_name` output from Terraform.
 
