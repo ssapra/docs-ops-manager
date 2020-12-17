@@ -109,7 +109,7 @@ VM count (minimum):<br>
    <p class="note"><strong>Note:</strong> Alternately, navigate to the [<%= vars.platform_name %> on Azure Marketplace](https://azure.microsoft.com/en-us/marketplace/partners/pivotal/pivotal-cloud-foundryazure-pcf/) page and click the **Get It Now** button.</p>
 
 1. Search for "<%= vars.platform_name %>" and select **<%= vars.platform_name %> on Microsoft Azure**.
- <%= image_tag("azure/marketplace.png") %>
+ <%= image_tag("azure/marketplace.png", :alt => "Screenshot of the Ops Manager on Azure Marketplace. The page includes these sections: 'Business Benefits', 'Key Features', and 'Prerequisites'.") %>
 
 1. Click **Create**.
 
@@ -137,7 +137,7 @@ see [Manage Azure resources through portal](https://azure.microsoft.com/en-us/do
 1. Check the **Outputs** section of the deployment. Azure confirms your quota before deploying <%= vars.platform_name %>.
 Select the new resource group that was created and select the Deployments tab. Then select the specific deployment. If you see this message in the **Outputs** section of the deployment template `CRITICAL Insufficient Quota, <%= vars.platform_name %> will NOT deploy`, you need to raise your quota.
 See [Raise Your Quota](#raising-quota).
-    <%= image_tag("azure/quota.png") %>
+    <%= image_tag("azure/quota.png", :alt => "Screenshot of the Microsoft Template page. The 'SCRIPTOUTPUT' field is highlighted with a red box.") %>
 
 1. When the deployment is complete, the **Outputs** section of the deployment displays the <%= vars.ops_manager %> FQDN URL along with the <%= vars.ops_manager %> login credentials and the jumpbox FQDN URL.
 
@@ -145,7 +145,7 @@ See [Raise Your Quota](#raising-quota).
 ## <a id='verify'></a> Verify the <%= vars.platform_name %> on Microsoft Azure Installation
 
 1. From your Azure Portal, navigate to **Resource Groups** and ensure the new **Resource Group** has been created.
-	<%= image_tag("azure/resource_group.png") %>
+	<%= image_tag("azure/resource_group.png", :alt => "Screenshot of the Resource Groups page. The last deployment value is highlighted with a red box.") %>
 
 1. Find the <%= vars.ops_manager %> URL and the admin password:
   1. In the Azure Portal, return to the **Outputs** section of your deployment.
@@ -163,7 +163,7 @@ See [Raise Your Quota](#raising-quota).
   1. Log in to Apps Manager with the username `admin` and the password obtained above.
 
 1. From Apps Manager, verify that your services are running.
-<%= image_tag("azure/console.png") %>
+<%= image_tag("azure/console.png", :alt => "Screenshot of the Pivotal Apps Manager page. The System tab shows information about your deployment.") %>
 
 
 ## <a id='delete'></a> Delete a Deployment of <%= vars.platform_name %> on Microsoft Azure
