@@ -80,28 +80,29 @@ You can use BBR to back up and restore the following types of external database 
   </tr>
   <tr>
     <td><%= vars.app_runtime_abbr %></td>
-    <td>BOSH Director</td>
-  </tr>
-  <tr>
     <td>
       <ul>
         <li>External Database</li>
-        <li>Amazon S3 Blobstore<sup>*</sup></li>
+        <li>Amazon S3 Blobstore<sup></sup></li>
         <li>S3-Compatible Blobstore</li>
         <li>Azure Blobstore</li>
         <li>GCS Blobstore</li>
       </ul>
     </td>
+  </tr>
+  <tr>
+    <td>BOSH Director</td>
     <td>
       <ul>
         <li>External Database</li>
-        <li>Amazon S3 Blobstore<sup>*</sup></li>
+        <li>Amazon S3 Blobstore<sup>&#42;</sup></li>
         <li>S3-Compatible Blobstore</li>
         <li>GCS Blobstore</li>
       </ul>
   </td>
+</table>
 
-<sup>*</sup>Any S3 clone that supports the versioning API.
+<sup>&#42;</sup>Any S3 clone that supports the versioning API.
 
 ## <a id="guidelines"></a> Unsupported External Blobstores and Databases in <%= vars.app_runtime_abbr %>
 
