@@ -58,7 +58,7 @@ Use the `ops_manager_dns` value from running `terraform output`.
     * **Default Deployment Tag**: Enter the value of `env_name` from your `terraform.tfvars` file.
     * Select **AuthJSON** and in the field below enter the contents of the JSON file for you service account key.
         <p class="note"><strong>Note:</strong> As an alternative, you can select <strong>The Ops Manager VM Service Account</strong> option to use the service account automatically created by GCP for the Ops Manager VM.</p>
-       <%= image_tag("../common/images/gcp/google_config.png", :alt => "At the top of the image is the header 'Google Cloud Platform Config', underneath which is a horizonal line. Below the line are two text fields: one labeled 'Project ID' with a red asterisk to denote that it is a required field, and another labeled 'Default Deployment Tag'. Below this are two options: one selected radio button labeled 'The Ops Manager VM Service Account', and another button labeled 'AuthJSON'. Underneath 'AuthJSON' is a blank text area. At the bottom of the image is a blue, rectangular button labeled 'Save'.") %>
+       <%= image_tag("../common/images/gcp/google_config.png", :alt => "At the top of the image is the header 'Google Cloud Platform Config', underneath which is a horizontal line. Below the line are two text fields: one labeled 'Project ID' with a red asterisk to denote that it is a required field, and another labeled 'Default Deployment Tag'. Below this are two options: one selected radio button labeled 'The Ops Manager VM Service Account', and another button labeled 'AuthJSON'. Underneath 'AuthJSON' is a blank text area. At the bottom of the image is a blue, rectangular button labeled 'Save'.") %>
 
 1. Click **Save**.
 
@@ -72,13 +72,8 @@ Use the `ops_manager_dns` value from running `terraform output`.
 
   <div class="note"><strong>Note:</strong> Pivotal recommends at least three availability zones for a highly available installation.
     <ul>
-<<<<<<< HEAD
       <li>For configuring a <%= vars.app_runtime_abbr %> deployment with multiple availability zones, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</li>
       <li>For configuring a <%= vars.k8s_runtime_abbr %> deployment for distributing workloads across multiple availability zones and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
-=======
-      <li>For configuring a <%= vars.app_runtime_abbr %> deployment with multiple availability zones, see <a href="https://docs.pivotal.io/pivotalcf/<%= product_info['local_product_version'].to_s.sub('.','-') %>/refarch/gcp/gcp_ref_arch.html">Reference Architecture for Pivotal Cloud Foundry on GCP</a>.</li>
-      <li>For configuring a <%= vars.k8s_runtime_abbr %> deployment for distributing workloads across multiple availability zones and clusters, see <a href="https://docs.pivotal.io/pks/maintain-uptime.html">Maintaining Workload Uptime</a>.</li>
->>>>>>> eae576b9... [#175258535] Inserted, corrected variables
     </ul>
   </div>
 
