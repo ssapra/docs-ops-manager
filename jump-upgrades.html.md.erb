@@ -149,6 +149,17 @@ v2.4 through v2.8 and how to address them before upgrading:
 			in the <%= vars.ops_manager %> API documentation.</td>
 	</tr>
 	<tr>
+		<td>v2.4, v2.5, v2.6, and v2.7</td>
+		<td><%= vars.ops_manager %> now turns on TLS by default when an internal blobstore has
+			been configured. This could cause Apply Changes to fail if TLS was not enabled prior
+			to upgrade and Windows stemcells are in use.</td>
+		<td>Enable the internal blobstore TLS on the Director Config page under the BOSH Director
+			tile. Then ensure that all Windows-based VMs have been recreated by uploading
+			and deploying a newer Windows stemcell to all relevant tiles. Alternatively, you can check the
+			"Recreate VMs deployed by the BOSH Director" checkbox on the Director Config page and
+			deploy all relevant tiles.</td>
+	</tr>
+	<tr>
 		<td>v2.4, v2.5, v2.6, v2.7, and v2.8</td>
 		<td><%= vars.ops_manager %> v2.9 is incompatible with vSphere Data Center
 			NSX-T v2.2 and earlier.</td>
