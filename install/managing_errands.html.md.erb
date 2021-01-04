@@ -46,7 +46,7 @@ Product tiles for <%= vars.app_runtime_abbr %> and other <%= vars.platform_name 
 
 The **Errands** pane lists all errands for the product and lets you select **On** or **Off**. The [default](#defaults) option differs depending on the errand, and reflects the default setting used by Ops Manager for the errand or any tile-specific default that overrides it.
 
-  <%= image_tag("errands-on.png") %>
+  <%= image_tag("errands-on.png", :alt => "Screenshot of the Errands pane. The image shows all 'Post-Deploy Errands'.") %>
 
 To configure the run rules for a tile, do the following:
 
@@ -67,7 +67,7 @@ Ops Manager lets you quickly configure one-time errand run rules for any product
 1. Navigate to Ops Manager. The **Pending Changes** section at top right shows products that Ops Manager has yet to install or update.
 
 1. Under **Pending Changes**, click the product you wish to configure. A list of errands associated with the product appears.
-  <%= image_tag("pending_view_errands.png") %>
+  <%= image_tag("pending_view_errands.png", :alt => "Screenshot of the Ops Manager Pending Changes section. The image shows example errands associated with each product.") %>
 
 1. Use the dropdowns to configure the [run rule](#rules) choice for each errand: **On** or **Off**. Ops Manager applies these settings once you click **Review Pending Changes**, then **Apply Changes** to install the product, but does not save the settings for future installations.
 
