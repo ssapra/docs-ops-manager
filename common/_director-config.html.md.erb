@@ -27,7 +27,11 @@ To configure the **Director Config** pane:
 <% elsif current_page.data.iaas == "AWS" %>
 1. Enter at least two of the following NTP servers in the **NTP Servers (comma delimited)** field, separated by a comma: `0.amazon.pool.ntp.org,1.amazon.pool.ntp.org,2.amazon.pool.ntp.org,3.amazon.pool.ntp.org` If your AWS environment is air gapped, consider using [Amazon's Time Sync Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html#configure-amazon-time-service) which has a dedicated IP that does not require access to the internet or configuration changes to your security group or network ACL rules to access.
 
-<%# For other IaaSes such as vSphere and Azure: %>
+<%# For Azure: %>
+<% elsif current_page.data.iaas == "Azure" %>
+1. Any value you enter in the **NTP Servers (comma delimited)** field will be ignored.  However, you must enter a valid value in this field. Try `us.pool.ntp.org`. By default, Azure VMs use a Precision Time Protocol (PTP) clock source. More information about this clock source can be found [on this page](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/time-sync#overview).
+
+<%# For other IaaSes such as vSphere: %>
 <% else %>
 1. In the **NTP Servers (comma delimited)** field:
     1. (Optional) If your AWS environment is air-gapped, consider using Amazon’s Time Sync Service, consider using [Amazon's Time Sync   Service](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html#configure-amazon-time-service) which has a dedicated IP that does not require access to the internet or configuration changes to your security group or network ACL rules to access.
