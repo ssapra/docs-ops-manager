@@ -29,7 +29,7 @@ To configure the **Director Config** pane:
 
 <%# For Azure: %>
 <% elsif current_page.data.iaas == "Azure" %>
-1. Any value you enter in the **NTP Servers (comma delimited)** field will be ignored.  However, you must enter a valid value in this field. Try `us.pool.ntp.org`. By default, Azure VMs use a Precision Time Protocol (PTP) clock source. More information about this clock source can be found [on this page](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/time-sync#overview).
+1. Enter any valid value for **NTP Servers (comma delimited)**. A value is required but is ignored. For example, you can enter `us.pool.ntp.org`. By default, Azure VMs use a Precision Time Protocol (PTP) clock source. For more information, see [Time sync for Linux VMs in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/linux/time-sync) in the Azure documentation.
 
 <%# For other IaaSes such as vSphere: %>
 <% else %>
