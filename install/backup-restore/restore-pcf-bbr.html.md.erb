@@ -47,9 +47,11 @@ For a backup artifact to be restorable, these restrictions apply:
 
 The diagram below illustrates the flow of the restore process in a series of steps performed by the operator. These steps are described in more detail throughout this topic.
 
-![Flowchart of restore workflow taken by an Operator](./images/pcf-restore.png)
+![Flowchart of restore workflow taken by an Operator. Long description below.](./images/pcf-restore.png)
 
 [View a larger version of this diagram](./images/pcf-restore.png).
+
+Steps performed by the operator:
 
 1. **Launch new <%= vars.ops_manager %>:** Follow the procedures for your IaaS to deploy <%= vars.ops_manager %>. For more information, see step 1 of [Deploy <%= vars.ops_manager %> and Import Installation Settings](#deploy-import).
 
@@ -78,7 +80,7 @@ In the event of a disaster, you can lose not only your VMs and disks, but your I
 
 If you need to re-create your IaaS resources, prepare your environment
 by following the instructions specific to your IaaS in
-[Installation Overview](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/concepts/overview.html).
+[Installation Overview](../index.html).
 
 <p class="note"><strong>Note:</strong> The instructions for installing a deployment on Amazon Web Services (AWS) and OpenStack combine the procedures for preparing your environment and deploying <%= vars.ops_manager %> into a single topic. The instructions for the other supported IaaSes split these procedures into two separate topics.</p>
 
@@ -99,7 +101,7 @@ If you re-create your IaaS resources, you must also add those resources to <%= v
         1. Access your new <%= vars.ops_manager %> deployment by navigating to the fully-qualified domain name (FQDN) for your <%= vars.ops_manager %> deployment in a browser.
         1. On the **Welcome to <%= vars.ops_manager %>** page, click **Import Existing Installation**.
 
-            <%= image_tag("../images/upgrading/welcome.png", :width => "400", :alt => "Ops Manager Welcome Page") %>
+            <%= image_tag("../images/upgrading/welcome.png", :width => "400", :alt => "Ops Manager Welcome Page showing Import Existing Installation button below 'Upgrading Ops Manager?'") %>
 
         1. In the import panel:
           * Enter the **Decryption Passphrase** in use when you exported the installation settings from <%= vars.ops_manager %>.
@@ -163,7 +165,7 @@ To update <%= vars.ops_manager %>:
 
 1. If necessary, select **Networking** and update the load balancer SSL certificate and private key under **Certificates and private keys for the Gorouter and HAProxy**.
 
-1. If your environment has a new DNS address, update the old environment DNS entries to point to the new load balancer addresses. For more information, see [Configure Networking](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configure-pas.html#networking) in _Configuring <%= vars.app_runtime_abbr %>_ and follow the instructions for your IaaS.
+1. If your environment has a new DNS address, update the old environment DNS entries to point to the new load balancer addresses. For more information, see [Configure Networking](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html#networking) in _Configuring TAS for VMs_ and follow the instructions for your IaaS.
 
 1. If your <%= vars.app_runtime_abbr %> deployment uses an external blobstore, ensure that the <%= vars.app_runtime_abbr %> tile is configured to use a different blobstore. Otherwise, it attempts to connect to the blobstore that the backed-up <%= vars.app_runtime_abbr %> deployment is using.
 
@@ -376,7 +378,7 @@ If your foundation is configured to use an external MySQL database instance,
 re-create the databases on the external database instance, and
 then ensure that your external database is suitably configured.
 For an example of how to create external databases,
-see [Creating Databases for <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/create-pas-dbs.html).
+see [Creating Databases for <%= vars.app_runtime_abbr %>](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/create-pas-dbs.html).
 
 If you do not know whether your foundation uses an external or internal database,
 look on the **Databases** pane in the <%= vars.app_runtime_abbr %> tile.
@@ -384,7 +386,7 @@ look on the **Databases** pane in the <%= vars.app_runtime_abbr %> tile.
 If your external database VM instance has also changed, for example, if the database instance has been lost,
 update the configuration settings in the **Databases** pane on the <%= vars.app_runtime_abbr %> tile.
 For information about the **Databases** pane,
-see [Configure Databases](https://docs.pivotal.io/application-service/<%= vars.current_major_version.sub('.','-') %>/operating/configure-pas.html#sys-db).
+see [Configure Databases](https://docs.pivotal.io/application-service/<%= product_info['local_product_version'].to_s.sub('.','-') %>/operating/configure-pas.html#sys-db).
 
 
 #### <a id='redeploy-pas'></a> Redeploy <%= vars.app_runtime_abbr %>
