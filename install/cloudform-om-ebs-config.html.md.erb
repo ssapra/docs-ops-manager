@@ -64,7 +64,7 @@ key/12345678-9012-3456-7890-123456789012
 
 1. In Ops Manager, click **Review Pending Changes**, then **Apply Changes** and review any reported errors. The following error message lists jobs that cannot be encrypted due to unsupported instance types.
 
-	<%= image_tag("cloudform/encrypt-ebs-errors.png", :alt => "Ops Manager Amazon EBS Encryption errors") %>
+	<%= image_tag("cloudform/encrypt-ebs-errors.png", :alt => "Example Ops Manager Amazon EBS Encryption errors") %>
 
 	If you find a job that should be encrypted in the error list, modify the instance type for that job in the **Resource Config** page of the <%= vars.app_runtime_full %> (<%= vars.app_runtime_abbr %>). Select an instance type that supports encryption. Pivotal recommends using `t3.large`.
 
