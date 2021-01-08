@@ -458,12 +458,53 @@ The ESG obfuscates the installation through network translation. The installatio
 
 To translate routable IP addresses to non-routable IP addresses, see the table below:
 
-| Action | Applied on Interface | Original IP | Original Port | Translated IP | Translated Port | Protocol | Description |
-| ------ | -------------------- | ----------- | ------------- | ------------- | --------------- | -------- | ----------- |
-| SNAT | Uplink | 192.168.0.0/16 | Any | <%= vars.platform_code %>-IP | Any | Any | All Nets Egress |
-| DNAT | Uplink | OPS-MANAGER-IP | Any | 192.168.10.OpsMgr | Any | TCP | OpsMgr Mask for external use |
-| SNAT | Infra | 192.168.10.OpsMgr | Any | OPS-MANAGER-IP | Any | TCP | OpsMgr Mask for internal use |
-| DNAT | Infra | OPS-MANAGER-IP | Any | 192.168.10.OpsMgr | Any | TCP | OpsMgr Mask for internal use |
+<table class="nice" style="table-layout: fixed">
+  <tr>
+    <th>Action</th>
+    <th>Applied on Interface</th>
+    <th>Original IP</th>
+    <th>Original/<br>Translated Port</th>
+    <th>Translated IP</th>
+    <th>Protocol</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>SNAT</td>
+    <td>Uplink</td>
+    <td>192.168.0.0/16</td>
+    <td>Any</td>
+    <td>Any</td>
+    <td>PCF-IP</td>
+    <td>All Nets Egress</td>
+  </tr>
+  <tr>
+    <td>DNAT</td>
+    <td>Uplink</td>
+    <td>OPS-MANAGER-IP</td>
+    <td>Any</td>
+    <td>192.168.10.OpsMgr </td>
+    <td>TCP</td>
+    <td>OpsMgr Mask for external use</td>
+  </tr>
+  <tr>
+    <td>SNAT</td>
+    <td>Infra</td>
+    <td>192.168.10.OpsMgr</td>
+    <td>Any</td>
+    <td>OPS-MANAGER-IP</td>
+    <td>TCP</td>
+    <td>OpsMgr Mask for internal use</td>
+  </tr>
+  <tr>
+    <td>DNAT</td>
+    <td>Infra</td>
+    <td>OPS-MANAGER-IP</td>
+    <td>Any</td>
+    <td>192.168.10.OpsMgr</td>
+    <td>TCP</td>
+    <td>OpsMgr Mask for internal use</td>
+  </tr>
+</table>
 
 <p class="note"><strong>Note:</strong> The NAT/SNAT on the <code>infra</code> network in this table is an example of an optional <strong>Hairpin NAT</strong> rule to allow VMs within the <strong>Infrastructure</strong> network to access the <%= vars.ops_manager %> API. This is because the <%= vars.ops_manager %> hostname and the API HTTPS endpoint are registered to the <%= vars.ops_manager %> VM external IP address. A pair of Hairpin NAT rules are necessary on <strong>each</strong> internal network interface that requires API access to <%= vars.ops_manager %>. You should create these rules only if the network must access the <%= vars.ops_manager %> API.</p>
 
