@@ -47,9 +47,11 @@ For a backup artifact to be restorable, these restrictions apply:
 
 The diagram below illustrates the flow of the restore process in a series of steps performed by the operator. These steps are described in more detail throughout this topic.
 
-![Flowchart of restore workflow taken by an Operator](./images/pcf-restore.png)
+![Flowchart of restore workflow taken by an Operator. Long description below.](./images/pcf-restore.png)
 
 [View a larger version of this diagram](./images/pcf-restore.png).
+
+Steps performed by the operator:
 
 1. **Launch new <%= vars.ops_manager %>:** Follow the procedures for your IaaS to deploy <%= vars.ops_manager %>. For more information, see step 1 of [Deploy <%= vars.ops_manager %> and Import Installation Settings](#deploy-import).
 
@@ -99,7 +101,7 @@ If you re-create your IaaS resources, you must also add those resources to <%= v
         1. Access your new <%= vars.ops_manager %> deployment by navigating to the fully-qualified domain name (FQDN) for your <%= vars.ops_manager %> deployment in a browser.
         1. On the **Welcome to <%= vars.ops_manager %>** page, click **Import Existing Installation**.
 
-            <%= image_tag("../images/upgrading/welcome.png", :width => "400", :alt => "Ops Manager Welcome Page") %>
+            <%= image_tag("../images/upgrading/welcome.png", :width => "400", :alt => "Ops Manager Welcome Page showing Import Existing Installation button below 'Upgrading Ops Manager?'") %>
 
         1. In the import panel:
           * Enter the **Decryption Passphrase** in use when you exported the installation settings from <%= vars.ops_manager %>.
