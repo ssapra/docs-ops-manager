@@ -87,7 +87,7 @@ Before beginning this procedure, ensure that you have successfully completed all
 
 1. Perform the following steps to add the network configuration that you created for your VPC in the [Create a VPC](prepare-env-manual.html#pcfaws-vpc) section of _Preparing to Deploy Ops Manager on AWS Manually_. Record your VPC CIDR if you set a CIDR other than the recommendation!
     1. Click **Add Network**.
-    1. For **Name**, enter `infrastructure`.
+    1. For **Name**, enter `management`.
     1. Create a subnet for each availability zone by clicking **Add Subnet**. Refer to the table below for the information required to create all three subnets:
     <table>
       <tr>
@@ -95,7 +95,7 @@ Before beginning this procedure, ensure that you have successfully completed all
       </tr>
       <tr>
         <th>VPC Subnet ID</th>
-        <td><code>pcf-infrastructure-subnet-az0</code></td>
+        <td><code>pcf-management-subnet-az0</code></td>
       </tr>
       <tr>
         <th>CIDR</th>
@@ -367,7 +367,7 @@ Before beginning this procedure, ensure that you have successfully completed all
 
 1. Use the dropdown to select a **Singleton Availability Zone**. The BOSH Director is deployed into this AZ.
 
-1. Use the dropdown to select `infrastructure` under **Network**. The BOSH Director is deployed into this network.
+1. Use the dropdown to select `management` under **Network**. The BOSH Director is deployed into this network.
 
 1. Click **Save**.
 
@@ -419,7 +419,7 @@ Enter your AWS target group name in the **Load Balancers** field for the **BOSH 
 
 1. BOSH Director begins to install. The **Changes Applied** window displays when the installation process successfully completes.
 
-    <%= image_tag("../common/images/aws/vpc-step16.png", :alt => "A pop-up window with a round, gray X button in the upper-right corner and the words 'Changed Applied' next to a round, green circle containing a checkmark. Below 'Changed Applied' are the words 'Ops Manager Director was successfully installed. We recommend that you export a backup of this installation from the actions menu.' Below this text and to the right of the pop-up window are a gray, rectangular button labeled 'Close' next to a blue, rectangular button labeled 'Return to Installation Dashboard'.") %>
+    <%= image_tag("../common/images/aws/vpc-step16.png") %>
 
 
 ## <a id="next"></a> Next Steps
