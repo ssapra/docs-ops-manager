@@ -79,7 +79,7 @@ To retrieve a list of CredHub certificates:
 1. Retrieve a list of all the certificates stored in CredHub by running:
 
     ```
-    credhub curl -p "/api/v1/certificates" -X GET | jq -i
+    credhub curl -p "/api/v1/certificates" -X GET | jq .
     ```
 
 1. In the JSON output, check the value of the `generated` field of each certificate. For example:
