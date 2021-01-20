@@ -51,7 +51,7 @@ To launch an Amazon Machine Image (AMI) for Ops Manager, do the following:
     * **Network**: Select the VPC that you created.
     * **Subnet**: Select `pcf-public-subnet-az0` to allow traffic from public IP addresses, or `pcf-management-subnet-az0` to allow traffic only from private IP addresses.
     * **Auto-assign for Public IP**: Select **Enable** to allow traffic from public IP addresses, or **Disable** to allow traffic only from private IP addresses.
-    * **IAM role**: Select the IAM role associated with your pcf-user profile. If you have not created one, click **Create new IAM role** and follow the [Guidelines for Creating User Roles on AWS](https://docs.pivotal.io/platform/<%= vars.current_major_version.sub('.','-') %>/customizing/aws-iaas-user-roles.html).
+    * **IAM role**: Select the IAM role associated with your pcf-user profile. If you have not created one, click **Create new IAM role** and follow the [Guidelines for Creating User Roles on AWS](../aws-iaas-user-roles.html).
     * For all other fields, accept the default values.
 
     <%= image_tag("../common/images/pcfaws/pcf_aws_configure_instance.png", :alt => "Screenshot of AMI page titled 'Step 3: Configure Instance Details'. The page has options including: 'Number of instances' and 'IAM role'.") %>
