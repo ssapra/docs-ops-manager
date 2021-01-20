@@ -258,7 +258,7 @@ The default persistent disk value is 8&nbsp;GB. <%= vars.company_name %> recomme
 
 1. On the **Configure Health Check** page, enter the following values:
 
-    <%= image_tag("../common/images/pcfaws/lb_health_check.png") %>
+    <%= image_tag("../common/images/pcfaws/lb_health_check.png", :alt => "Screenshot of the Load Balancer dialog. THe page is titled 'Step 4: Configure Health Check'. The page has an 'Advanced Details' section.") %>
 
   * **Ping Protocol**: Select `TCP`.
   * **Ping Port**: Set to `80`.
@@ -269,11 +269,6 @@ The default persistent disk value is 8&nbsp;GB. <%= vars.company_name %> recomme
 
 1. Click **Next: Add EC2 Instances**.
 
-<<<<<<< HEAD
-    <%= image_tag("../common/images/pcfaws/lb_health_check.png", :alt => "Screenshot of the Load Balancer dialog. THe page is titled 'Step 4: Configure Health Check'. The page has an 'Advanced Details' section.") %>
-
-=======
->>>>>>> c010605f... Merge pull request #128 from pivotal-madeline-preston/patch-10
 1. Accept the defaults on the **Add EC2 Instances** page and click **Next: Add Tags**.
 
 1. Accept the defaults on the **Add Tags** page and click **Review and Create**.
@@ -353,8 +348,8 @@ The default persistent disk value is 8&nbsp;GB. <%= vars.company_name %> recomme
 1. Click **Next Step**.
 
 1. Specify the following database details:
-    * **DB Instance Class**: Select **db.m3.large - 2 vCPU, 7.5 GiB RAM**.
-    * **Multi-AZ Deployment**: Select **Yes**.
+    * **DB Instance Class**: Select **db.m5.large - 2 vCPU, 7.5 GiB RAM**.
+    * **Multi-AZ Deployment**: Select **Create a standby instance**.
     * **Storage Type**: Select `Provisioned IOPS (SSD)`.
     * **Allocated Storage**: Enter **100&nbsp;GB**.
     * **DB Instance Identifier**: Enter `pcf-ops-manager-director`.
